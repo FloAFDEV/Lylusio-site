@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Google Search Console Verification -->
+    <meta name="google-site-verification" content="VOTRE_CODE_GSC_ICI" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/favicon.png" />
+
+    <!-- Preconnect - Critical for LCP -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Preload critical font (display fonts for LCP text) -->
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Source+Sans+3:wght@300;400;500;600&display=swap"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+
+    <!-- Critical inline styles for LCP optimization -->
+    <style>
+      /* Critical CSS for above-the-fold content */
+      html{scroll-behavior:smooth;overflow-y:scroll}
+      body{margin:0;font-family:'Source Sans 3',system-ui,-apple-system,sans-serif;background:#fefdf9}
+      #root{min-height:100vh}
+      .skip-link{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;z-index:9999}
+      .skip-link:focus{position:fixed;top:0;left:0;width:auto;height:auto;padding:1rem 1.5rem;background:#1a2332;color:#fff;text-decoration:none;font-weight:600;z-index:9999}
+      /* Font-display swap fallback */
+      @font-face{font-family:'Cormorant Garamond';font-display:swap;src:local('Cormorant Garamond')}
+      @font-face{font-family:'Source Sans 3';font-display:swap;src:local('Source Sans 3')}
+    </style>
+
+    <!-- Default meta -->
+    <title>Lylusio | Astrologie Consciente & Reiki à Toulouse - Émilie Perez</title>
+    <meta
+      name="description"
+      content="Émilie Perez, astrologue et praticienne Reiki à Toulouse. Accompagnement en transitions de vie, astrologie symbolique et thérapie énergétique. Consultations en cabinet et en ligne."
+    />
+    <meta name="author" content="Émilie Perez - Lylusio" />
+    <meta
+      name="keywords"
+      content="astrologie, reiki, toulouse, cépet, astrologue, praticien reiki, thème astral, soin énergétique, accompagnement, transition de vie, développement personnel, thérapie énergétique"
+    />
+    <meta name="theme-color" content="#3d4a5c" />
+
+    <!-- Fonts - Non-blocking with swap -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Source+Sans+3:wght@300;400;500;600&family=Dancing+Script:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
+    />
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Source+Sans+3:wght@300;400;500;600&family=Dancing+Script:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+      />
+    </noscript>
+
+    <!-- Google Analytics 4 - Deferred loading -->
+    <script>
+      // GA4 loaded after page is interactive
+      if (window.location.hostname === 'lylusio.fr' || window.location.hostname === 'www.lylusio.fr') {
+        window.addEventListener('load', function() {
+          setTimeout(function() {
+            var script = document.createElement('script');
+            script.async = true;
+            script.src = 'https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX';
+            document.head.appendChild(script);
+            window.dataLayer = window.dataLayer || [];
+            function gtag() { dataLayer.push(arguments); }
+            gtag('js', new Date());
+            gtag('config', 'G-XXXXXXXXXX', {
+              'anonymize_ip': true,
+              'cookie_flags': 'SameSite=None;Secure'
+            });
+            window.gtag = gtag;
+          }, 100);
+        });
+      }
+    </script>
+  </head>
+
+  <body>
+    <!-- Skip link for accessibility -->
+    <a href="#main-content" class="skip-link">Aller au contenu principal</a>
+    
+    <noscript>
+      <p style="padding:2rem;text-align:center;background:#fef3c7;color:#92400e">
+        Ce site nécessite JavaScript pour fonctionner correctement. Veuillez activer JavaScript dans votre navigateur.
+      </p>
+    </noscript>
+
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

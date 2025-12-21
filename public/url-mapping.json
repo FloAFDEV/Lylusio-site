@@ -1,0 +1,145 @@
+{
+	"generated": "2025-12-09",
+	"description": "Mapping des URLs WordPress vers URLs du nouveau front",
+	"redirects": {
+		"wordpress_to_new": [
+			{
+				"from": "/astrologue-cepet-toulouse/astrologie/",
+				"to": "/astrologie-toulouse",
+				"type": "301"
+			},
+			{
+				"from": "/astrologue-cepet-toulouse/therapie_energetique_reiki/",
+				"to": "/reiki-toulouse",
+				"type": "301"
+			},
+			{
+				"from": "/astrologue-cepet-toulouse/accompagnements/",
+				"to": "/accompagnement-toulouse",
+				"type": "301"
+			},
+			{
+				"from": "/astrologue-cepet-toulouse/therapie_energetique_therapie_holistique/",
+				"to": "/accompagnement-toulouse",
+				"type": "301"
+			},
+			{
+				"from": "/therapie-energetique",
+				"to": "/accompagnement-toulouse",
+				"type": "301"
+			},
+			{
+				"from": "/astrologue-cepet-toulouse/mon-approche/",
+				"to": "/approche-therapeutique",
+				"type": "301"
+			},
+			{
+				"from": "/astrologue-cepet-toulouse/a-propos/",
+				"to": "/emilie-perez",
+				"type": "301"
+			},
+			{
+				"from": "/astrologue-cepet-toulouse/blog/",
+				"to": "/blog",
+				"type": "301"
+			},
+			{
+				"from": "/astrologue-cepet-toulouse/blog/reiki/",
+				"to": "/category/blog/reiki/",
+				"type": "301"
+			},
+			{
+				"from": "/astrologue-cepet-toulouse/blog/astrologie/",
+				"to": "/category/blog/astrologie/",
+				"type": "301"
+			},
+			{
+				"from": "/astrologue-cepet-toulouse/blog/developpement-personnel/",
+				"to": "/category/blog/developpement-personnel/",
+				"type": "301"
+			},
+			{
+				"from": "/astrologue-cepet-toulouse/politique-de-confidentialite/",
+				"to": "/confidentialite",
+				"type": "301"
+			},
+			{
+				"from": "/astrologue-cepet-toulouse/newsletter/",
+				"to": "/contact",
+				"type": "301"
+			}
+		]
+	},
+	"current_urls": {
+		"pages": [
+			{ "url": "/", "title": "Accueil", "priority": "1.0" },
+			{
+				"url": "/approche-therapeutique",
+				"title": "Mon Approche",
+				"priority": "0.9"
+			},
+			{
+				"url": "/accompagnement-toulouse",
+				"title": "Accompagnement",
+				"priority": "0.9"
+			},
+			{
+				"url": "/astrologie-toulouse",
+				"title": "Astrologie Toulouse",
+				"priority": "0.9"
+			},
+			{
+				"url": "/reiki-toulouse",
+				"title": "Reiki Toulouse",
+				"priority": "0.9"
+			},
+			{
+				"url": "/accompagnement-toulouse",
+				"title": "Accompagnement Toulouse",
+				"priority": "0.8"
+			},
+			{
+				"url": "/emilie-perez",
+				"title": "Émilie Perez - À propos",
+				"priority": "0.8"
+			},
+			{ "url": "/blog", "title": "Blog", "priority": "0.8" },
+			{ "url": "/faq", "title": "FAQ", "priority": "0.7" },
+			{ "url": "/contact", "title": "Contact", "priority": "0.7" },
+			{
+				"url": "/mentions-legales",
+				"title": "Mentions Légales",
+				"priority": "0.3"
+			},
+			{ "url": "/cgu", "title": "CGU", "priority": "0.3" },
+			{
+				"url": "/confidentialite",
+				"title": "Politique de Confidentialité",
+				"priority": "0.3"
+			}
+		],
+		"categories": [
+			{
+				"url": "/category/blog/astrologie/",
+				"title": "Catégorie Astrologie",
+				"priority": "0.7"
+			},
+			{
+				"url": "/category/blog/reiki/",
+				"title": "Catégorie Reiki",
+				"priority": "0.7"
+			},
+			{
+				"url": "/category/blog/developpement-personnel/",
+				"title": "Catégorie Développement Personnel",
+				"priority": "0.7"
+			}
+		],
+		"blog_articles": "Dynamiques - fetched depuis WordPress API /wp-json/wp/v2/posts"
+	},
+	"notes": [
+		"Les articles de blog WordPress sont à la racine (ex: /le-chakra-racine/)",
+		"Le front utilise /blog/:slug pour les articles",
+		"Une redirection 301 depuis /:slug vers /blog/:slug est en place pour les articles WP"
+	]
+}
