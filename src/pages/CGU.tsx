@@ -38,7 +38,7 @@ const CGU = () => {
 
 						<header className="mb-10">
 							<h1 className="font-heading text-2xl sm:text-3xl md:text-4xl text-navy">
-								<span className="font-calligraphic text-accent inline-block align-baseline mr-1">
+								<span className="font-calligraphic text-accent inline-block align-baseline  ">
 									C
 								</span>
 								onditions Générales d'Utilisation

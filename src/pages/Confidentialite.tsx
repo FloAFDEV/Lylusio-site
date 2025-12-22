@@ -30,7 +30,7 @@ const Confidentialite = () => (
 					{/* Header */}
 					<header className="mb-10 md:mb-12">
 						<h1 className="font-heading text-2xl sm:text-3xl md:text-4xl text-navy">
-							<span className="font-calligraphic text-accent inline-block align-baseline mr-1">
+							<span className="font-calligraphic text-accent inline-block align-baseline  ">
 								P
 							</span>
 							olitique de confidentialité

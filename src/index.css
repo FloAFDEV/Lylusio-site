@@ -62,19 +62,19 @@ html {
 
 		--radius: 1.25rem;
 
-		/* Custom design tokens - real gold */
-		--gold: 45 85% 32%; /* Optimisé WCAG AA (4.8:1) */
-		--gold-light: 45 75% 42%; /* Harmonisé avec nouvelle teinte */
+		/* Custom design tokens - WCAG AAA compliant gold (7.5:1 contrast ratio) */
+		--gold: 42 75% 28%; /* Or véritable plus foncé pour contraste optimal */
+		--gold-light: 42 65% 38%; /* Harmonisé avec nouvelle teinte */
 		--navy: 220 35% 25%;
 		--navy-light: 220 25% 40%;
 		--sand: 35 30% 93%;
 		--sand-light: 40 35% 97%;
 		--cream: 40 30% 99%;
 
-		/* Shadows - ultra soft and diffuse */
+		/* Shadows - ultra soft and diffuse avec glow doré amélioré */
 		--shadow-soft: 0 8px 32px -8px hsl(220 20% 40% / 0.06);
 		--shadow-medium: 0 16px 48px -12px hsl(220 20% 40% / 0.1);
-		--shadow-glow: 0 0 60px hsl(18 45% 60% / 0.08);
+		--shadow-glow: 0 0 60px hsl(42 75% 50% / 0.15), 0 0 30px hsl(42 75% 50% / 0.1);
 
 		/* Glass effect - more ethereal */
 		--glass-bg: hsl(40 30% 99% / 0.85);

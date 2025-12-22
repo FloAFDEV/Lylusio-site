@@ -348,7 +348,7 @@ const Blog = () => {
 								id="blog-title"
 								className="text-foreground mb-6 text-center"
 							>
-								<span className="font-calligraphic text-accent inline-block align-baseline mr-1">
+								<span className="font-calligraphic text-accent inline-block align-baseline  ">
 									A
 								</span>
 								rticles & Réflexions

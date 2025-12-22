@@ -275,7 +275,7 @@ const Accompagnement = () => {
 									Prestations & Tarifs
 								</p>
 								<h1 className="text-foreground text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-4 sm:mb-6 px-2">
-									<span className="font-calligraphic text-accent text-3xl sm:text-4xl md:text-5xl inline-block align-baseline mr-1">
+									<span className="font-calligraphic text-accent text-3xl sm:text-4xl md:text-5xl inline-block align-baseline  ">
 										C
 									</span>
 									onsultations & Accompagnements

@@ -156,7 +156,7 @@ const Services = () => {
 								id="services-title"
 								className="text-foreground mb-6 md:mb-8 text-center"
 							>
-								<span className="font-calligraphic text-accent inline-block align-baseline mr-1">
+								<span className="font-calligraphic text-accent inline-block align-baseline  ">
 									C
 								</span>
 								onsultations

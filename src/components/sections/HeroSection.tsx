@@ -178,7 +178,7 @@ const HeroSection = () => {
 							id="hero-title"
 							className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-foreground leading-[1.1] mb-4 sm:mb-6"
 						>
-							<span className="font-calligraphic text-accent text-5xl sm:text-6xl md:text-7xl lg:text-8xl inline-block align-baseline mr-1 transition-transform duration-300 hover:scale-110">
+							<span className="font-calligraphic text-accent text-5xl sm:text-6xl md:text-7xl lg:text-8xl inline-block align-baseline transition-transform duration-300 hover:scale-110">
 								A
 							</span>
 							strologie Consciente

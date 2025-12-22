@@ -70,32 +70,35 @@ const FloatingCTA = () => {
 
 	return (
 		<div
-			className={`fixed bottom-6 left-4 sm:left-6 z-30 transition-all duration-500 ${
+			className={`fixed bottom-6 left-4 sm:left-6 z-30 transition-all duration-700 ease-out ${
 				shouldShow
 					? "opacity-100 translate-y-0"
-					: "opacity-0 translate-y-4 pointer-events-none"
+					: "opacity-0 translate-y-8 pointer-events-none"
 			}`}
 		>
 			<Button
-				asChild // ⬅️ CHANGEMENT CLÉ : Force le rendu en tant que lien <a>
+				asChild
 				variant="hero"
 				size="default"
-				// L'onClick du Button est retiré et géré par le <a> enfant
-				className="shadow-medium hover:shadow-glow group px-3 sm:px-4"
+				className="shadow-medium hover:shadow-glow group px-3 sm:px-4 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
 				aria-label="Réserver une séance (ouvre Calendly)"
 				data-cta="true"
 			>
 				<a
-					href="https://calendly.com/lylusio-fr" // ⬅️ CHANGEMENT CLÉ : L'URL est désormais exposée pour le SEO
+					href="https://calendly.com/lylusio-fr"
 					target="_blank"
 					rel="noopener noreferrer"
-					onClick={handleLinkClick} // ⬅️ L'événement analytics est maintenant sur le <a>
+					onClick={handleLinkClick}
+					className="relative overflow-hidden"
 				>
+					{/* Effet de glow animé au hover */}
+					<span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out" />
+					
 					<Calendar
-						className="w-4 h-4 sm:mr-2 transition-transform duration-300 group-hover:scale-110"
+						className="w-4 h-4 sm:mr-2 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-12"
 						aria-hidden="true"
 					/>
-					<span className="hidden sm:inline">Réserver</span>
+					<span className="hidden sm:inline relative">Réserver</span>
 				</a>
 			</Button>
 		</div>

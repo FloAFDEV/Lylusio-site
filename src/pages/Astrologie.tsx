@@ -231,7 +231,7 @@ const Astrologie = () => {
 									</div>
 
 									<h1 className="text-foreground text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl mb-4 sm:mb-6 leading-tight">
-										<span className="font-calligraphic text-accent text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl inline-block align-baseline mr-1">
+										<span className="font-calligraphic text-accent text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl inline-block align-baseline  ">
 											C
 										</span>
 										onnaissez-vous l'Astrologie ?

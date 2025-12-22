@@ -260,7 +260,7 @@ const MonApproche = () => {
 							</p>
 
 							<h1 className="text-foreground mb-4 sm:mb-6 text-left text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl leading-tight">
-								<span className="font-calligraphic text-accent inline-block align-baseline mr-1">
+								<span className="font-calligraphic text-accent inline-block align-baseline  ">
 									M
 								</span>
 								on Approche
@@ -268,7 +268,7 @@ const MonApproche = () => {
 
 							<div className="space-y-5 text-muted-foreground text-base sm:text-lg md:text-xl leading-relaxed mb-8 text-left">
 								<p>
-									<span className="font-calligraphic text-accent inline-block align-baseline mr-1">
+									<span className="font-calligraphic text-accent inline-block align-baseline  ">
 										J
 									</span>
 									'accompagne les{" "}

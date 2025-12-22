@@ -80,7 +80,7 @@ const ApprochSection = () => {
 
 							<div className="space-y-4 text-muted-foreground text-sm sm:text-base md:text-lg leading-relaxed mb-6 text-left">
 								<p>
-									<span className="font-calligraphic text-accent text-xl sm:text-2xl md:text-3xl inline-block align-baseline mr-1">
+									<span className="font-calligraphic text-accent text-xl sm:text-2xl md:text-3xl inline-block align-baselinex">
 										J
 									</span>
 									'accompagne les{" "}

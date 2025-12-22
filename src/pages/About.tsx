@@ -121,7 +121,7 @@ const About = () => {
 									id="about-title"
 									className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-foreground leading-[1.1] mb-4 sm:mb-6"
 								>
-									<span className="font-calligraphic text-accent text-5xl sm:text-6xl md:text-7xl inline-block align-baseline mr-1">
+									<span className="font-calligraphic text-accent text-5xl sm:text-6xl md:text-7xl inline-block align-baseline  ">
 										J
 									</span>
 									e me livre ici à vous en toute intimité
@@ -536,7 +536,7 @@ const About = () => {
 										</h2>
 										<div className="space-y-5 text-muted-foreground text-base md:text-lg leading-relaxed ">
 											<p>
-												<span className="font-calligraphic text-accent text-lg sm:text-xl md:text-2xl inline-block align-baseline mr-1">
+												<span className="font-calligraphic text-accent text-lg sm:text-xl md:text-2xl inline-block align-baseline  ">
 													À
 												</span>
 												40 ans, j'ai l'impression
