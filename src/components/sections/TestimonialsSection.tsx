@@ -78,10 +78,10 @@ const TestimonialsSection = () => {
 
   return (
     <section
-      id="temoignages"
-      className="pt-8 md:pt-12 lg:pt-16 pb-16 md:pb-24 lg:pb-32 overflow-hidden bg-gradient-to-b from-background via-secondary/10 to-background relative"
-      aria-labelledby="temoignages-title"
-      ref={ref}
+    id="temoignages"
+    className="pt-8 md:pt-12 lg:pt-16 pb-16 md:pb-24 lg:pb-32 overflow-hidden bg-gradient-to-b from-cream/30 via-sand/20 to-background relative"
+    aria-labelledby="temoignages-title"
+    ref={ref}
     >
       {/* Decorative abstract shapes + stars with enhanced parallax */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">

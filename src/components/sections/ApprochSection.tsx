@@ -12,7 +12,7 @@ const ApprochSection = () => {
 	return (
 		<section
 			id="approche"
-			className="relative overflow-hidden min-h-[600px] md:min-h-[700px]"
+			className="relative overflow-hidden min-h-[600px] md:min-h-[700px] bg-gradient-to-br from-sand/30 via-cream/50 to-background"
 			aria-labelledby="approche-title"
 			ref={ref}
 		>
@@ -72,7 +72,7 @@ const ApprochSection = () => {
 								id="approche-title"
 								className="text-foreground mb-5 md:mb-6 text-left text-2xl sm:text-3xl md:text-4xl"
 							>
-								<span className="font-calligraphic text-accent text-3xl sm:text-4xl md:text-5xl inline-block align-baseline mr-1">
+								<span className="font-calligraphic text-accent text-3xl sm:text-4xl md:text-5xl inline-block align-baseline">
 									M
 								</span>
 								on approche

@@ -65,7 +65,7 @@ const ServicesPreview = () => {
 		<section
 			id="services-preview"
 			ref={ref}
-			className="py-16 md:py-20 lg:py-24 pb-8 md:pb-12 lg:pb-16 overflow-hidden relative"
+			className="py-16 md:py-20 lg:py-24 pb-8 md:pb-12 lg:pb-16 overflow-hidden relative bg-gradient-to-br from-background via-sand/20 to-cream/40"
 			aria-labelledby="services-title"
 		>
 			{/* Decorative abstract shapes with floating animation */}

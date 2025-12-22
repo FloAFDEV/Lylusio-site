@@ -107,9 +107,9 @@ const Footer = () => {
 		>
 			{/* CTA Section */}
 			<div className="border-b border-primary-foreground/15">
-				<div className="container mx-auto px-5 md:px-8 lg:px-12 py-10 md:py-20 lg:py-28 text-center relative">
+				<div className="container mx-auto px-5 md:px-8 lg:px-10 py-10 md:py-20 lg:py-28 text-center relative">
 					<GoldenPlantBadge
-						size="md"
+						size="lg"
 						className="absolute -top-4 right-2 opacity-80 hidden sm:flex"
 					/>
 					<p className="text-primary-foreground/60 text-xs uppercase tracking-[0.2em] mb-3">
