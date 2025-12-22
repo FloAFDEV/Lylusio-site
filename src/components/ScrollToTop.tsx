@@ -33,7 +33,7 @@ const ScrollToTop = () => {
   return (
     <button
       onClick={scrollToTop}
-      className={`fixed bottom-6 right-6 z-30 w-12 h-12 rounded-full bg-accent text-accent-foreground shadow-medium flex items-center justify-center transition-all duration-500 hover:scale-110 hover:shadow-glow ${
+      className={`fixed bottom-6 right-6 z-30 w-12 h-12 rounded-full bg-gradient-to-br from-[hsl(42,75%,45%)] to-[hsl(42,70%,40%)] text-white shadow-lg flex items-center justify-center transition-all duration-500 hover:scale-110 hover:shadow-glow border-0 ${
         shouldShow ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none"
       }`}
       aria-label="Retourner en haut de la page"

@@ -12,7 +12,7 @@ const ApprochSection = () => {
 	return (
 		<section
 			id="approche"
-			className="relative overflow-hidden min-h-[600px] md:min-h-[700px] bg-gradient-to-br from-sand/30 via-cream/50 to-background"
+			className="relative overflow-hidden min-h-[600px] md:min-h-[700px] py-24 md:py-32 lg:py-40 bg-gradient-to-br from-sand/30 via-cream/50 to-background"
 			aria-labelledby="approche-title"
 			ref={ref}
 		>
@@ -31,8 +31,8 @@ const ApprochSection = () => {
 					/>
 				</div>
 				{/* Gradient overlay - stronger for better card visibility */}
-				<div className="absolute inset-0 bg-gradient-to-r from-background/30 via-background/60 to-background lg:from-transparent lg:via-background/30 lg:to-background" />
-				<div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-background/20 lg:from-background/70 lg:via-transparent lg:to-transparent" />
+				<div className="absolute inset-0 bg-gradient-to-r from-background/40 via-background/70 to-background lg:from-transparent lg:via-background/40 lg:to-background" />
+				<div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-background/30 lg:from-background/80 lg:via-transparent lg:to-transparent" />
 			</div>
 
 			{/* Decorative shapes with floating animation */}
@@ -63,7 +63,7 @@ const ApprochSection = () => {
 								: "opacity-0 translate-y-12"
 						}`}
 					>
-						<div className="bg-background/90 sm:bg-background/85 lg:bg-background/80 backdrop-blur-lg rounded-2xl lg:rounded-3xl p-6 sm:p-8 md:p-10 shadow-medium border border-border/30 lg:border-border/20">
+						<div className="bg-background/95 sm:bg-background/93 lg:bg-background/90 backdrop-blur-lg rounded-2xl lg:rounded-3xl p-6 sm:p-8 md:p-10 shadow-medium border border-border/40 lg:border-border/30 hover:border-gold/30 transition-all duration-500">
 							<p className="section-label text-left">
 								Ma philosophie
 							</p>

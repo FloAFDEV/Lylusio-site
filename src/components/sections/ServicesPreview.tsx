@@ -65,7 +65,7 @@ const ServicesPreview = () => {
 		<section
 			id="services-preview"
 			ref={ref}
-			className="py-16 md:py-20 lg:py-24 pb-8 md:pb-12 lg:pb-16 overflow-hidden relative bg-gradient-to-br from-background via-sand/20 to-cream/40"
+			className="py-24 md:py-32 lg:py-40 overflow-hidden relative bg-white"
 			aria-labelledby="services-title"
 		>
 			{/* Decorative abstract shapes with floating animation */}
@@ -108,8 +108,8 @@ const ServicesPreview = () => {
 
 						return (
 							<article
-								key={service.title}
-								className={`group relative bg-gradient-to-br from-card/80 via-card/60 to-secondary/30 backdrop-blur-sm rounded-2xl md:rounded-3xl border border-border/30 transition-all duration-700 hover:-translate-y-2 transform-gpu ${
+							key={service.title}
+							className={`group relative bg-card backdrop-blur-sm rounded-2xl md:rounded-3xl border border-border/30 hover:border-gold/40 transition-all duration-700 hover:-translate-y-2 hover:shadow-glow transform-gpu ${
 									isInView
 										? "opacity-100 translate-y-0"
 										: "opacity-0 translate-y-12"

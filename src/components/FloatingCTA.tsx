@@ -78,9 +78,8 @@ const FloatingCTA = () => {
 		>
 			<Button
 				asChild
-				variant="hero"
 				size="default"
-				className="shadow-medium hover:shadow-glow group px-3 sm:px-4 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+				className="bg-gradient-to-r from-[hsl(42,75%,42%)] to-[hsl(42,70%,38%)] text-white shadow-lg hover:shadow-glow group px-3 sm:px-4 transition-all duration-300 hover:scale-[1.05] active:scale-[0.98] border-0"
 				aria-label="Réserver une séance (ouvre Calendly)"
 				data-cta="true"
 			>
@@ -93,7 +92,7 @@ const FloatingCTA = () => {
 				>
 					{/* Effet de glow animé au hover */}
 					<span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out" />
-					
+
 					<Calendar
 						className="w-4 h-4 sm:mr-2 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-12"
 						aria-hidden="true"

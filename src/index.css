@@ -44,9 +44,9 @@ html {
 		--muted: 35 25% 92%;
 		--muted-foreground: 220 15% 40%;
 
-		/* Soft terracotta/rose accent - better contrast */
-		--accent: 18 50% 50%;
-		--accent-foreground: 40 35% 97%;
+		/* Elegant gold accent - harmonious with the theme */
+		--accent: 42 65% 48%;
+		--accent-foreground: 220 25% 20%;
 
 		/* Soft CTA - gentle peach/blush */
 		--cta: 15 50% 70%;
@@ -71,10 +71,10 @@ html {
 		--sand-light: 40 35% 97%;
 		--cream: 40 30% 99%;
 
-		/* Shadows - ultra soft and diffuse avec glow doré amélioré */
+		/* Shadows - ultra soft and diffuse avec glow doré premium */
 		--shadow-soft: 0 8px 32px -8px hsl(220 20% 40% / 0.06);
 		--shadow-medium: 0 16px 48px -12px hsl(220 20% 40% / 0.1);
-		--shadow-glow: 0 0 60px hsl(42 75% 50% / 0.15), 0 0 30px hsl(42 75% 50% / 0.1);
+		--shadow-glow: 0 0 40px hsl(42 80% 55% / 0.3), 0 0 20px hsl(42 75% 50% / 0.2), 0 8px 32px hsl(42 70% 45% / 0.15);
 
 		/* Glass effect - more ethereal */
 		--glass-bg: hsl(40 30% 99% / 0.85);
