@@ -30,12 +30,23 @@ const CookieBanner = () => {
 
 	useEffect(() => {
 		const consent = localStorage.getItem(COOKIE_CONSENT_KEY);
-		if (!consent) {
+		const expiryDate = localStorage.getItem("cookie-consent-expiry");
+
+		// Vérifier si le consentement a expiré
+		if (expiryDate && new Date(expiryDate) < new Date()) {
+			localStorage.removeItem(COOKIE_CONSENT_KEY);
+			localStorage.removeItem(COOKIE_PREFERENCES_KEY);
+			localStorage.removeItem("cookie-consent-expiry");
+		}
+
+		if (!consent || (expiryDate && new Date(expiryDate) < new Date())) {
 			// Delay showing the banner for better UX - apparition ultra-douce
 			const timer = setTimeout(() => {
 				setIsVisible(true);
-				// Bloquer le scroll du body
+				// Bloquer le scroll du body sans décalage
+				const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
 				document.body.style.overflow = "hidden";
+				document.body.style.paddingRight = `${scrollbarWidth}px`;
 			}, 1500);
 			return () => clearTimeout(timer);
 		} else {
@@ -48,6 +59,24 @@ const CookieBanner = () => {
 			}
 		}
 	}, []);
+
+	// Gestion de la touche Échap pour fermer
+	useEffect(() => {
+		if (!isVisible) return;
+
+		const handleEscape = (e: KeyboardEvent) => {
+			if (e.key === "Escape") {
+				if (showSettings) {
+					handleHideSettings();
+				} else {
+					rejectAll();
+				}
+			}
+		};
+
+		document.addEventListener("keydown", handleEscape);
+		return () => document.removeEventListener("keydown", handleEscape);
+	}, [isVisible, showSettings]);
 
 	const savePreferences = (prefs: CookiePreferences) => {
 		const expiryDate = new Date();
@@ -89,8 +118,9 @@ const CookieBanner = () => {
 				// Personnalisé
 				savePreferences(preferences);
 			}
-			// Réactiver le scroll
+			// Réactiver le scroll sans décalage
 			document.body.style.overflow = "";
+			document.body.style.paddingRight = "";
 			setIsVisible(false);
 		}, 400);
 	};
@@ -171,10 +201,19 @@ const CookieBanner = () => {
 						>
 							{!showSettings ? (
 								<div className="relative p-6 md:p-8">
+									{/* Bouton fermer - facultatif si l'utilisateur veut naviguer sans choisir */}
+									<button
+										onClick={rejectAll}
+										className="absolute top-4 right-4 text-navy/40 hover:text-navy/70 transition-colors duration-200 p-2 hover:bg-sand/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold/30"
+										aria-label="Refuser et fermer"
+									>
+										<X className="w-5 h-5" />
+									</button>
+
 									{/* Header avec icône douce */}
-									<div className="flex items-start gap-4 mb-5">
+									<div className="flex items-start gap-4 mb-5 pr-8">
 										{/* Icône douce et féminine */}
-										<div className="flex items-center justify-center w-14 h-14 bg-gradient-to-br from-gold/15 to-accent/10 rounded-2xl flex-shrink-0 border border-gold/20 shadow-sm">
+										<div className="relative flex items-center justify-center w-14 h-14 bg-gradient-to-br from-gold/15 to-accent/10 rounded-2xl flex-shrink-0 border border-gold/20 shadow-sm">
 											<Cookie className="w-7 h-7 text-gold" />
 											<Shield className="w-3.5 h-3.5 text-accent absolute bottom-1.5 right-1.5" />
 										</div>
