@@ -54,16 +54,6 @@ const BlogClientWrapper = ({ initialPosts, initialCategories }: Props) => {
 
 	const totalPosts = initialPosts.length;
 
-	// Debug: log total posts
-	if (typeof window !== "undefined") {
-		console.log(
-			"Total posts:",
-			totalPosts,
-			"Initial posts:",
-			initialPosts.length
-		);
-	}
-
 	// Prefetch article on hover for instant navigation
 	const handlePrefetch = (slug: string) => {
 		router.prefetch(`/${slug}/`);

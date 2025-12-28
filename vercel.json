@@ -1,112 +1,46 @@
 {
-	"redirects": [
-		{
-			"source": "/astrologue-cepet-toulouse/astrologie/",
-			"destination": "/astrologie-toulouse",
-			"permanent": true
-		},
-		{
-			"source": "/astrologue-cepet-toulouse/reiki/",
-			"destination": "/reiki-toulouse",
-			"permanent": true
-		},
-		{
-			"source": "/astrologue-cepet-toulouse/accompagnements/",
-			"destination": "/accompagnement-toulouse",
-			"permanent": true
-		},
-		{
-			"source": "/astrologue-cepet-toulouse/mon-approche/",
-			"destination": "/approche-therapeutique",
-			"permanent": true
-		},
-		{
-			"source": "/astrologue-cepet-toulouse/qui-suis-je/",
-			"destination": "/emilie-perez",
-			"permanent": true
-		},
-		{
-			"source": "/astrologue-cepet-toulouse/",
-			"destination": "/therapie-energetique",
-			"permanent": true
-		},
-		{
-			"source": "/services",
-			"destination": "/therapie-energetique",
-			"permanent": true
-		},
-		{
-			"source": "/astrologie",
-			"destination": "/astrologie-toulouse",
-			"permanent": true
-		},
-		{
-			"source": "/reiki",
-			"destination": "/reiki-toulouse",
-			"permanent": true
-		},
-		{
-			"source": "/accompagnement",
-			"destination": "/accompagnement-toulouse",
-			"permanent": true
-		},
-		{
-			"source": "/mon-approche",
-			"destination": "/approche-therapeutique",
-			"permanent": true
-		},
-		{
-			"source": "/about",
-			"destination": "/emilie-perez",
-			"permanent": true
-		},
-		{
-			"source": "/qui-suis-je",
-			"destination": "/emilie-perez",
-			"permanent": true
-		},
-		{
-			"source": "/category/blog/:category/",
-			"destination": "/category/blog/:category/",
-			"permanent": false
-		}
-	],
-	"headers": [
-		{
-			"source": "/(.*)",
-			"headers": [
-				{ "key": "X-Content-Type-Options", "value": "nosniff" },
-				{ "key": "X-Frame-Options", "value": "DENY" },
-				{ "key": "X-XSS-Protection", "value": "1; mode=block" },
-				{
-					"key": "Referrer-Policy",
-					"value": "strict-origin-when-cross-origin"
-				}
-			]
-		},
-		{
-			"source": "/sitemap.xml",
-			"headers": [
-				{ "key": "Content-Type", "value": "application/xml" },
-				{ "key": "Cache-Control", "value": "public, max-age=86400" }
-			]
-		},
-		{
-			"source": "/robots.txt",
-			"headers": [
-				{ "key": "Content-Type", "value": "text/plain" },
-				{ "key": "Cache-Control", "value": "public, max-age=86400" }
-			]
-		},
-		{
-			"source": "/assets/(.*)",
-			"headers": [
-				{
-					"key": "Cache-Control",
-					"value": "public, max-age=31536000, immutable"
-				}
-			]
-		}
-	],
-	"trailingSlash": false
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-DNS-Prefetch-Control",
+          "value": "on"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        }
+      ]
+    },
+    {
+      "source": "/(.*)\\.(jpg|jpeg|png|gif|webp|avif|svg|ico)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/(.*)\\.(woff|woff2|ttf|otf|eot)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/(.*)\\.(js|css)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    }
+  ],
+  "rewrites": [],
+  "redirects": []
 }
