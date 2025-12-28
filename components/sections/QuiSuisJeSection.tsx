@@ -27,7 +27,10 @@ const QuiSuisJeSection = () => {
 					>
 						<div className="relative aspect-square max-w-xs mx-auto lg:mx-0">
 							{/* Decorative gradient blur */}
-							<div className="absolute -inset-4 bg-gradient-to-br from-accent/20 to-gold/20 rounded-full blur-2xl" aria-hidden="true" />
+							<div
+								className="absolute -inset-4 bg-gradient-to-br from-accent/20 to-gold/20 rounded-full blur-2xl"
+								aria-hidden="true"
+							/>
 
 							<Image
 								src="/assets/emilie-about.webp"
@@ -38,7 +41,10 @@ const QuiSuisJeSection = () => {
 							/>
 
 							{/* Decorative ring accent */}
-							<div className="absolute -inset-3 border-2 border-accent/20 rounded-full" aria-hidden="true" />
+							<div
+								className="absolute -inset-3 border-2 border-accent/20 rounded-full"
+								aria-hidden="true"
+							/>
 						</div>
 					</div>
 
@@ -50,9 +56,7 @@ const QuiSuisJeSection = () => {
 								: "opacity-0 translate-x-12"
 						}`}
 					>
-						<p className="section-label text-left">
-							À propos
-						</p>
+						<p className="section-label text-left">À propos</p>
 
 						<h2
 							id="qui-suis-je-title"
@@ -70,26 +74,44 @@ const QuiSuisJeSection = () => {
 									J
 								</span>
 								'accompagne les{" "}
-								<strong className="text-foreground">femmes en transition</strong>{" "}
-								depuis plusieurs années, avec une approche qui allie{" "}
-								<strong className="text-foreground">astrologie symbolique</strong>,{" "}
-								<strong className="text-foreground">thérapie énergétique Reiki</strong>{" "}
+								<strong className="text-foreground">
+									femmes en transition
+								</strong>{" "}
+								depuis plusieurs années, avec une approche qui
+								allie{" "}
+								<strong className="text-foreground">
+									astrologie symbolique
+								</strong>
+								,{" "}
+								<strong className="text-foreground">
+									thérapie énergétique Reiki
+								</strong>{" "}
 								et écoute profonde.
 							</p>
 							<p>
-								Mon parcours m'a menée à travers différentes disciplines —{" "}
-								de la psychologie à l'énergétique — pour créer un espace où se comprendre autrement devient possible.
+								Mon parcours m'a menée à travers différentes
+								disciplines — de la psychologie à l'énergétique
+								— pour créer un espace où se comprendre
+								autrement devient possible.
 							</p>
 							<p>
 								<strong className="text-foreground">
-									Mon intention : vous offrir un accompagnement humain, sans jugement,
-									où retrouver du sens et de la clarté.
+									Mon intention : vous offrir un
+									accompagnement humain, sans jugement, où
+									retrouver du sens et de la clarté.
 								</strong>
 							</p>
 						</div>
 
-						<Link href="/emilie-perez" aria-label="Découvrir mon parcours complet">
-							<Button variant="elegant" size="lg" className="group/btn">
+						<Link
+							href="/emilie-perez"
+							aria-label="Découvrir mon parcours complet"
+						>
+							<Button
+								variant="elegant"
+								size="lg"
+								className="group/btn"
+							>
 								En savoir plus sur mon parcours
 								<ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover/btn:translate-x-1" />
 							</Button>
