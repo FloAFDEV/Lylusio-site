@@ -71,34 +71,39 @@ const QuiSuisJeSection = () => {
 						<div className="space-y-4 text-muted-foreground text-base md:text-lg leading-relaxed mb-8">
 							<p>
 								<span className="font-calligraphic text-accent text-2xl md:text-3xl inline-block align-baseline">
-									J
+									N
 								</span>
-								'accompagne les{" "}
+								ée sous le signe des{" "}
 								<strong className="text-foreground">
-									femmes en transition
+									Gémeaux avec Soleil et Mercure conjoint à
+									Chiron
 								</strong>{" "}
-								depuis plusieurs années, avec une approche qui
-								allie{" "}
+								en Maison 8 et un{" "}
 								<strong className="text-foreground">
-									astrologie symbolique
+									ascendant Scorpion conjoint à Pluton
 								</strong>
-								,{" "}
+								, la transformation a toujours fait partie de
+								mon ADN.
+							</p>
+							<p>
+								Tel un Phœnix, j'ai appris que chaque fin porte
+								en elle une renaissance. Mon parcours m'a guidée
+								de la{" "}
 								<strong className="text-foreground">
-									thérapie énergétique Reiki
+									psychologie à l'énergétique
+								</strong>
+								, du{" "}
+								<strong className="text-foreground">
+									coaching professionnel
 								</strong>{" "}
-								et écoute profonde.
-							</p>
-							<p>
-								Mon parcours m'a menée à travers différentes
-								disciplines — de la psychologie à l'énergétique
-								— pour créer un espace où se comprendre
-								autrement devient possible.
+								à l'astrologie symbolique.
 							</p>
 							<p>
 								<strong className="text-foreground">
-									Mon intention : vous offrir un
-									accompagnement humain, sans jugement, où
-									retrouver du sens et de la clarté.
+									Ce que j'ai vécu m'a façonnée : aujourd'hui,
+									je transforme ces expériences en un espace
+									sûr où vous pouvez vous déposer, vous
+									comprendre et vous réinventer.
 								</strong>
 							</p>
 						</div>
@@ -112,7 +117,7 @@ const QuiSuisJeSection = () => {
 								size="lg"
 								className="group/btn"
 							>
-								En savoir plus sur mon parcours
+								Découvrir mon histoire
 								<ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover/btn:translate-x-1" />
 							</Button>
 						</Link>
