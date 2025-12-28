@@ -16,7 +16,7 @@ const QuiSuisJeSection = () => {
 			aria-labelledby="qui-suis-je-title"
 		>
 			<div className="container mx-auto px-4 sm:px-6 lg:px-8">
-				<div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center max-w-6xl mx-auto">
+				<div className="grid lg:grid-cols-2 gap-12 lg:gap-10 items-center max-w-6xl mx-auto">
 					{/* Image - Left on desktop */}
 					<div
 						className={`relative order-2 lg:order-1 transition-all duration-1000 ${
