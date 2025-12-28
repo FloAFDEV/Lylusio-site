@@ -52,6 +52,18 @@ const BlogClientWrapper = ({ initialPosts, initialCategories }: Props) => {
 	const [postsToShow, setPostsToShow] = useState(12);
 	const [searchQuery, setSearchQuery] = useState("");
 
+	const totalPosts = initialPosts.length;
+
+	// Debug: log total posts
+	if (typeof window !== "undefined") {
+		console.log(
+			"Total posts:",
+			totalPosts,
+			"Initial posts:",
+			initialPosts.length
+		);
+	}
+
 	// Prefetch article on hover for instant navigation
 	const handlePrefetch = (slug: string) => {
 		router.prefetch(`/${slug}/`);
@@ -84,14 +96,11 @@ const BlogClientWrapper = ({ initialPosts, initialCategories }: Props) => {
 			: new Date(a.rawDate).getTime() - new Date(b.rawDate).getTime()
 	);
 
+	const filteredCount = displayedPosts.length;
 	// Slice for pagination
 	const paginatedPosts = displayedPosts.slice(0, postsToShow);
-	const hasMore = displayedPosts.length > postsToShow;
-
-	// Counts - calculated AFTER filtering, sorting, and pagination
-	const totalPosts = initialPosts.length;
-	const filteredCount = displayedPosts.length;
 	const displayedCount = paginatedPosts.length;
+	const hasMore = displayedPosts.length > postsToShow;
 
 	const handleLoadMore = () => setPostsToShow((prev) => prev + 12);
 
@@ -134,8 +143,10 @@ const BlogClientWrapper = ({ initialPosts, initialCategories }: Props) => {
 						<div className="bg-card/50 rounded-xl border border-border/20 p-4 space-y-4">
 							<div className="flex flex-col sm:flex-row gap-4 justify-between items-start sm:items-center">
 								{/* Category Filters avec compteurs */}
+
 								<div className="flex flex-wrap items-center gap-2 flex-1">
 									<Filter className="w-4 h-4 text-muted-foreground mr-1" />
+
 									<button
 										onClick={() =>
 											setSelectedCategory(null)
@@ -152,6 +163,7 @@ const BlogClientWrapper = ({ initialPosts, initialCategories }: Props) => {
 											({totalPosts})
 										</span>
 									</button>
+
 									{initialCategories.map((category) => (
 										<button
 											key={category.id}
@@ -176,6 +188,7 @@ const BlogClientWrapper = ({ initialPosts, initialCategories }: Props) => {
 								</div>
 
 								{/* Sort */}
+
 								<div className="flex items-center gap-2">
 									<button
 										onClick={() =>
@@ -205,7 +218,9 @@ const BlogClientWrapper = ({ initialPosts, initialCategories }: Props) => {
 							</div>
 						</div>
 					</div>
+
 					{/* Compteurs articles */}
+
 					<div
 						className="max-w-5xl mx-auto mb-8 text-left px-4 py-2 text-sm text-muted-foreground"
 						aria-live="polite"
