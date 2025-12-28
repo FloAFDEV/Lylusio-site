@@ -13,6 +13,21 @@ export default {
       },
     },
     extend: {
+      typography: {
+        DEFAULT: {
+          css: {
+            'p': {
+              textAlign: 'left',
+            },
+            'li': {
+              textAlign: 'left',
+            },
+            'blockquote': {
+              textAlign: 'left',
+            },
+          },
+        },
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -78,9 +93,9 @@ export default {
         },
       },
       fontFamily: {
-        display: ['Cormorant Garamond', 'serif'],
-        body: ['Source Sans 3', 'sans-serif'],
-        calligraphic: ['Great Vibes', 'cursive'],
+        display: ['var(--font-display)', 'Georgia', 'serif'],
+        body: ['var(--font-body)', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+        calligraphic: ['var(--font-calligraphic)', 'cursive'],
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -149,5 +164,8 @@ export default {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [
+    require("tailwindcss-animate"),
+    require("@tailwindcss/typography"),
+  ],
 } satisfies Config;
