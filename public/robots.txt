@@ -1,0 +1,27 @@
+# robots.txt for Lylusio.fr
+# Site web d'Émilie Perez - Astrologie, Reiki et Accompagnement à Toulouse
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://lylusio.fr/sitemap.xml
+
+# Block internal paths
+Disallow: /api/
+Disallow: /_next/
+Disallow: /admin/
+
+# Allow crawling of public assets
+Allow: /assets/
+Allow: /images/
+Allow: /*.css
+Allow: /*.js
+Allow: /*.webp
+Allow: /*.jpg
+Allow: /*.png
+Allow: /*.svg
+
+# Crawl delay (optional - be nice to search engines)
+# Uncomment if needed:
+# Crawl-delay: 1

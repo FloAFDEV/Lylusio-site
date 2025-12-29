@@ -36,6 +36,7 @@ const mainLinks = [
 		hasSubmenu: true,
 	},
 	{ label: "Qui suis-je", href: "/emilie-perez" },
+	{ label: "Ressources", href: "/ressources" },
 	{ label: "Blog", href: "/blog" },
 	{ label: "Contact", href: "/contact" },
 ];

@@ -18,6 +18,10 @@ const TestimonialsSection = dynamic(() => import("@/components/sections/Testimon
   loading: () => <div className="section-padding" />,
 });
 
+const RessourcesCTA = dynamic(() => import("@/components/sections/RessourcesCTA"), {
+  loading: () => <div className="section-padding" />,
+});
+
 const Index = () => {
   return (
     <>
@@ -32,6 +36,7 @@ const Index = () => {
           <ProcessSection />
           <RecentArticlesSection />
           <TestimonialsSection />
+          <RessourcesCTA />
         </main>
         <Footer />
       </div>

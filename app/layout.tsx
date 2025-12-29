@@ -157,6 +157,11 @@ export default function RootLayout({
   return (
     <html lang="fr" suppressHydrationWarning>
       <head>
+        {/* Preconnect to external resources for performance */}
+        <link rel="preconnect" href="https://www.youtube.com" />
+        <link rel="preconnect" href="https://i.ytimg.com" />
+        <link rel="preconnect" href="https://www.instagram.com" />
+
         {/* Structured Data for SEO */}
         <LocalBusinessSchema />
         <WebsiteSchema />
