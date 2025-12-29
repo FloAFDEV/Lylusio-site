@@ -329,7 +329,7 @@ const MonApproche = () => {
 							{pillars.map((pillar, index) => (
 								<article
 									key={pillar.title}
-									className={`group ml-4 mr-4 bg-card/80 backdrop-blur-sm rounded-2xl p-8 text-center border border-border/20 hover:border-gold/30 hover:shadow-medium transition-all duration-500 ${
+									className={`group ml-4 mr-4 bg-card/80 backdrop-blur-sm rounded-2xl p-6 md:p-7 lg:p-8 text-center border border-border/20 hover:border-gold/30 hover:shadow-medium transition-all duration-500 ${
 										pillarsInView
 											? "opacity-100 translate-y-0"
 											: "opacity-0 translate-y-12"
@@ -343,19 +343,19 @@ const MonApproche = () => {
 											: `translateY(${20 + index * 5}px)`,
 									}}
 								>
-									<div className="w-16 h-16 mx-auto mb-5 rounded-full bg-sand/60 flex items-center justify-center shadow-soft group-hover:scale-110 group-hover:bg-gold/10 transition-all duration-500">
+									<div className="w-16 h-16 mx-auto mb-4 md:mb-5 rounded-full bg-sand/60 flex items-center justify-center shadow-soft group-hover:scale-110 group-hover:bg-gold/10 transition-all duration-500">
 										<pillar.icon
 											className="w-7 h-7 text-accent group-hover:text-gold transition-colors duration-500"
 											strokeWidth={1.5}
 										/>
 									</div>
-									<h3 className="font-display text-lg text-navy mb-3">
+									<h3 className="font-display text-lg md:text-xl text-navy mb-3 md:mb-4">
 										<span className="font-calligraphic text-accent text-3xl inline-block align-baseline">
 											{pillar.title.charAt(0)}
 										</span>
 										{pillar.title.slice(1)}
 									</h3>
-									<p className="text-sm text-muted-foreground leading-relaxed">
+									<p className="text-sm md:text-base text-muted-foreground leading-relaxed">
 										{pillar.description}
 									</p>
 								</article>
