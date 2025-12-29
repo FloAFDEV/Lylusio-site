@@ -71,7 +71,7 @@ const FloatingCTA = () => {
 
 	return (
 		<div
-			className={`fixed bottom-6 left-4 sm:left-6 z-30 transition-all duration-700 ease-out ${
+			className={`fixed bottom-6 left-4 sm:left-6 z-50 transition-all duration-700 ease-out ${
 				shouldShow
 					? "opacity-100 translate-y-0"
 					: "opacity-0 translate-y-8 pointer-events-none"
