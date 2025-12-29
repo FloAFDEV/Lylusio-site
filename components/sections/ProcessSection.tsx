@@ -34,7 +34,7 @@ const ProcessSection = memo(function ProcessSection() {
   return (
     <section
       ref={ref}
-      className="relative overflow-hidden py-16 md:py-24"
+      className="relative overflow-hidden py-20 md:py-28 bg-sand"
       aria-labelledby="process-title"
     >
       {/* Background decoration */}
@@ -87,8 +87,8 @@ const ProcessSection = memo(function ProcessSection() {
                   )}
 
                   {/* Step number */}
-                  <div className="absolute -top-2 left-1/2 flex h-6 w-6 -translate-x-1/2 items-center justify-center rounded-full bg-accent/10">
-                    <span className="text-xs font-medium text-accent">
+                  <div className="absolute -top-2 left-1/2 flex h-6 w-6 -translate-x-1/2 items-center justify-center rounded-full border border-gold/30">
+                    <span className="text-xs font-medium text-gold">
                       {index + 1}
                     </span>
                   </div>
@@ -120,13 +120,13 @@ const ProcessSection = memo(function ProcessSection() {
             isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
-          <Button asChild variant="default" size="lg" className="group">
+          <Button asChild size="lg" className="group bg-gold hover:brightness-110 text-white shadow-gold">
             <Link
               href="/contact"
               className="inline-flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
             >
               Prendre contact
-              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1 text-white" />
             </Link>
           </Button>
         </div>

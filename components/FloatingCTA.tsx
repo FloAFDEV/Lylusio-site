@@ -79,12 +79,11 @@ const FloatingCTA = () => {
 		>
 			{/* Glow effect autour du bouton */}
 			<div className="relative group/floating">
-				<div className="absolute -inset-1 bg-gradient-to-r from-[hsl(25,75%,65%)]/20 via-[hsl(30,70%,60%)]/25 to-[hsl(25,75%,65%)]/20 rounded-xl opacity-0 group-hover/floating:opacity-100 blur-sm transition-all duration-500" />
-
+	
 				<Button
 					asChild
 					size="default"
-					className="relative bg-gradient-to-br from-[hsl(20,75%,68%)] via-[hsl(30,70%,65%)] to-[hsl(35,65%,62%)] hover:from-[hsl(20,77%,70%)] hover:via-[hsl(30,72%,66%)] hover:to-[hsl(35,67%,63%)] text-white shadow-[0_4px_20px_rgba(232,156,124,0.4)] hover:shadow-[0_6px_28px_rgba(232,156,124,0.45)] group px-3 sm:px-4 py-2.5 transition-all duration-300 hover:scale-105 active:scale-95 border-0 backdrop-blur-sm"
+					className="relative bg-gold hover:brightness-110 text-white shadow-gold hover:shadow-glow group px-3 sm:px-4 py-2.5 transition-all duration-300 hover:scale-105 active:scale-95 animate-gold-glow"
 					aria-label="Réserver une séance (ouvre Calendly)"
 					data-cta="true"
 				>
@@ -99,10 +98,10 @@ const FloatingCTA = () => {
 						<span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out" />
 
 						<Calendar
-							className="w-4 h-4 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6 relative z-10"
+							className="w-4 h-4 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6 relative z-10 text-white"
 							aria-hidden="true"
 						/>
-						<span className="hidden sm:inline relative z-10 font-medium">Réserver</span>
+						<span className="hidden sm:inline relative z-10 font-medium text-white">Réserver</span>
 					</a>
 				</Button>
 			</div>

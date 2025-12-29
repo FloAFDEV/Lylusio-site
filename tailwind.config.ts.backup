@@ -47,7 +47,6 @@ export default {
 					DEFAULT: "hsl(var(--secondary))",
 					foreground: "hsl(var(--secondary-foreground))",
 				},
-				tertiary: "hsl(var(--tertiary))",
 				destructive: {
 					DEFAULT: "hsl(var(--destructive))",
 					foreground: "hsl(var(--destructive-foreground))",
@@ -80,11 +79,10 @@ export default {
 					border: "hsl(var(--sidebar-border))",
 					ring: "hsl(var(--sidebar-ring))",
 				},
-				// Céleste poudré theme colors
+				// Custom Lylusio colors
 				gold: {
 					DEFAULT: "hsl(var(--gold))",
 					light: "hsl(var(--gold-light))",
-					glow: "hsl(var(--gold-glow))",
 				},
 				navy: {
 					DEFAULT: "hsl(var(--navy))",
@@ -95,10 +93,6 @@ export default {
 					light: "hsl(var(--sand-light))",
 				},
 				cream: "hsl(var(--cream))",
-				sky: {
-					DEFAULT: "hsl(var(--sky))",
-					light: "hsl(var(--sky-light))",
-				},
 				cta: {
 					DEFAULT: "hsl(var(--cta))",
 					foreground: "hsl(var(--cta-foreground))",
@@ -127,7 +121,6 @@ export default {
 				soft: "var(--shadow-soft)",
 				medium: "var(--shadow-medium)",
 				glow: "var(--shadow-glow)",
-				gold: "var(--shadow-gold)",
 			},
 			spacing: {
 				"18": "4.5rem",
@@ -170,19 +163,6 @@ export default {
 					"0%, 100%": { opacity: "0.6", transform: "scale(1)" },
 					"50%": { opacity: "0.9", transform: "scale(1.03)" },
 				},
-				twinkle: {
-					"0%, 100%": { opacity: "0.3", transform: "scale(0.8)" },
-					"50%": { opacity: "1", transform: "scale(1.2)" },
-				},
-				"gold-glow": {
-					"0%, 100%": {
-						boxShadow: "0 4px 20px hsl(42 31% 66% / 0.3)",
-					},
-					"50%": {
-						boxShadow:
-							"0 4px 30px hsl(42 31% 66% / 0.5), 0 0 40px hsl(42 31% 66% / 0.2)",
-					},
-				},
 			},
 			animation: {
 				"accordion-down": "accordion-down 0.3s ease-out",
@@ -193,8 +173,6 @@ export default {
 				"slide-in-right": "slide-in-right 0.4s ease-out",
 				float: "float 8s ease-in-out infinite",
 				"gentle-pulse": "gentle-pulse 4s ease-in-out infinite",
-				twinkle: "twinkle 3s ease-in-out infinite",
-				"gold-glow": "gold-glow 3s ease-in-out infinite",
 			},
 		},
 	},

@@ -99,15 +99,11 @@ const Footer = () => {
 	// Composant LinkButton pour le CTA du footer (meilleur SEO/Accessibilité)
 	const LinkButton = (
 		<div className="relative group/cta">
-			{/* Glow effect animé - sans pulsation */}
-			<div className="absolute -inset-1 bg-gradient-to-r from-[hsl(25,75%,65%)]/20 via-[hsl(30,70%,60%)]/25 to-[hsl(25,75%,65%)]/20 rounded-2xl opacity-0 group-hover/cta:opacity-100 blur-sm transition-all duration-700" />
-
 			<Button
 				asChild
-				variant="accent"
 				size="lg"
 				aria-label="Réserver une séance avec Émilie Perez via Calendly"
-				className="relative w-full sm:w-auto bg-gradient-to-br from-[hsl(20,75%,68%)] via-[hsl(30,70%,65%)] to-[hsl(35,65%,62%)] text-white hover:from-[hsl(20,77%,70%)] hover:via-[hsl(30,72%,66%)] hover:to-[hsl(35,67%,63%)] hover:scale-105 shadow-[0_8px_32px_rgba(232,156,124,0.35)] hover:shadow-[0_12px_40px_rgba(232,156,124,0.4)] border-2 border-[hsl(20,75%,68%)]/40 hover:border-[hsl(20,77%,70%)] transition-all duration-500 group-hover/cta:translate-y-[-2px]"
+				className="relative w-full sm:w-auto bg-gold hover:bg-gold-light text-foreground font-medium shadow-gold hover:scale-105 transition-all duration-300"
 				onClick={() => trackBookingClick("footer_cta")}
 			>
 				<a

@@ -15,13 +15,14 @@ const ApprochSection = () => {
 	return (
 		<section
 			id="approche"
-			className="relative overflow-hidden min-h-[500px] sm:min-h-[600px] md:min-h-[700px] py-16 sm:py-20 md:py-32 lg:py-40 bg-gradient-to-br from-sand/30 via-cream/50 to-background"
+			className="relative overflow-hidden min-h-[600px] md:min-h-[700px] py-16 md:py-24 lg:py-32"
+			style={{ background: 'linear-gradient(180deg, hsl(var(--cream)) 0%, hsl(var(--sky-light)) 100%)' }}
 			aria-labelledby="approche-title"
 			ref={ref}
 		>
 			{/* Background image with parallax */}
 			<div className="absolute inset-0 lg:w-1/2" aria-hidden="true">
-				<div className="relative w-full h-[100%] sm:h-[105%] md:h-[110%] sm:-mt-[2.5%] md:-mt-[5%] overflow-hidden">
+				<div className="relative w-full h-[110%] -mt-[5%] overflow-hidden">
 					<Image
 						src="/assets/approche-arbre.webp"
 						alt=""
@@ -57,8 +58,8 @@ const ApprochSection = () => {
 			</div>
 
 			{/* Content container */}
-			<div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 md:py-24 lg:py-32">
-				<div className="flex items-center min-h-[300px] sm:min-h-[400px] md:min-h-[500px]">
+			<div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8">
+				<div className="flex items-center min-h-[400px] md:min-h-[500px]">
 					{/* Spacer for image on desktop */}
 					<div className="hidden lg:block lg:w-[45%]" />
 
@@ -130,8 +131,8 @@ const ApprochSection = () => {
 							</div>
 
 							{/* Quote */}
-							<blockquote className="relative py-4 md:py-5 my-5 md:my-6 border-l-2 border-accent/40 pl-4 md:pl-5">
-								<p className="font-display text-base sm:text-lg md:text-xl italic text-foreground/85 text-left">
+							<blockquote className="relative py-4 md:py-5 my-5 md:my-6 border-l-2 border-gold/40 pl-4 md:pl-5">
+								<p className="font-calligraphic text-lg sm:text-xl md:text-2xl text-navy font-normal text-left">
 									"On ne se change pas, on s'ajuste à ce qui
 									est déjà là."
 								</p>
@@ -150,9 +151,8 @@ const ApprochSection = () => {
 									aria-label="Découvrir mon approche thérapeutique"
 								>
 									<Button
-										variant="elegant"
 										size="lg"
-										className="w-full sm:w-auto"
+										className="w-full sm:w-auto bg-gold hover:brightness-110 text-white shadow-gold"
 									>
 										Découvrir mon approche
 									</Button>

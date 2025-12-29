@@ -66,7 +66,7 @@ const RecentArticlesSection = () => {
 	return (
 		<section
 			ref={ref}
-			className="py-20 md:py-28 bg-gradient-to-b from-background via-cream/10 to-background"
+			className="py-20 md:py-28 bg-sky"
 			aria-labelledby="recent-articles-title"
 		>
 			<div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -175,7 +175,7 @@ const RecentArticlesSection = () => {
 				{/* CTA Button */}
 				<div className="text-center mt-12">
 					<Link href="/blog" aria-label="Voir tous les articles du blog">
-						<Button variant="outline" size="lg" className="group">
+						<Button variant="elegant" size="lg" className="group">
 							Voir tous les articles
 							<ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
 						</Button>

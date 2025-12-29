@@ -68,7 +68,7 @@ const ServicesPreview = () => {
 		<section
 			id="services-preview"
 			ref={ref}
-			className="py-24 md:py-32 lg:py-40 overflow-hidden relative bg-white"
+			className="py-20 md:py-28 lg:py-32 overflow-hidden relative bg-sky"
 			aria-labelledby="services-title"
 		>
 			{/* Decorative abstract shapes with floating animation */}
@@ -115,7 +115,7 @@ const ServicesPreview = () => {
 						return (
 							<article
 							key={service.title}
-							className={`group relative bg-card backdrop-blur-sm rounded-2xl md:rounded-3xl border border-border/30 hover:border-gold/40 transition-all duration-700 hover:-translate-y-2 hover:shadow-glow transform-gpu ${
+							className={`group relative card-celestial hover:border-gold/40 transition-all duration-700 hover:-translate-y-2 hover:shadow-glow transform-gpu ${
 									isInView
 										? "opacity-100 translate-y-0"
 										: "opacity-0 translate-y-12"
@@ -191,7 +191,7 @@ const ServicesPreview = () => {
 										</div>
 
 										{/* Price */}
-										<div className="font-display text-base md:text-lg text-gold mb-3 md:mb-4">
+										<div className="text-gold font-semibold text-lg mb-3 md:mb-4">
 											{service.price}
 										</div>
 
@@ -230,7 +230,7 @@ const ServicesPreview = () => {
 												className="px-2.5 md:px-3 h-8 md:h-9"
 												aria-label={`Réserver ${service.title}`}
 											>
-												<Calendar className="w-3.5 h-3.5 md:w-4 md:h-4 text-accent-foreground" />
+												<Calendar className="w-3.5 h-3.5 md:w-4 md:h-4 text-white" />
 											</Button>
 										</div>
 									</div>
@@ -253,12 +253,11 @@ const ServicesPreview = () => {
 						aria-label="Voir tous les services proposés"
 					>
 						<Button
-							variant="elegant"
 							size="lg"
-							className="w-full sm:w-auto group/btn"
+							className="w-full sm:w-auto group/btn bg-gold hover:brightness-110 text-white shadow-gold"
 						>
 							Voir tous les tarifs
-							<ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover/btn:translate-x-1" />
+							<ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover/btn:translate-x-1 text-white" />
 						</Button>
 					</Link>
 				</div>

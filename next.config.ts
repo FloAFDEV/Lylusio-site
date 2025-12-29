@@ -41,7 +41,7 @@ const nextConfig: NextConfig = {
     contentDispositionType: 'attachment',
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
     // Configure custom quality levels
-    qualities: [40, 65, 80],
+    qualities: [40, 65, 80, 85, 95],
     unoptimized: false,
   },
 

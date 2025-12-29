@@ -20,84 +20,73 @@ html {
 
 @layer base {
 	:root {
-		/* Céleste Poudré - Main palette */
-		--background: 225 33% 97%; /* #F5F6FA - bleu ciel très clair */
-		--background-cream: 32 100% 97%; /* #FFF8F0 - crème */
-		--foreground: 0 0% 17%; /* #2B2B2B - anthracite */
+		/* Soft warm palette - more ethereal */
+		--background: 40 35% 97%;
+		--foreground: 220 20% 25%;
 
-		--card: 0 0% 100%;
-		--card-foreground: 0 0% 17%;
+		--card: 40 30% 99%;
+		--card-foreground: 220 20% 25%;
 
-		--popover: 0 0% 100%;
-		--popover-foreground: 0 0% 17%;
+		--popover: 40 30% 99%;
+		--popover-foreground: 220 20% 25%;
 
-		/* Bleu profond doux - couleur principale logo */
-		--primary: 215 42% 39%; /* #3A5F8F */
-		--primary-foreground: 0 0% 100%;
+		/* Soft navy - warmer */
+		--primary: 220 30% 30%;
+		--primary-foreground: 40 35% 97%;
 
-		/* Sections alternées */
-		--secondary: 213 47% 93%; /* #E3EDF8 - bleu clair poudré */
-		--secondary-foreground: 0 0% 17%;
+		/* Warm cream - softer */
+		--secondary: 35 30% 93%;
+		--secondary-foreground: 220 20% 25%;
 
-		/* Beige très clair pour sections alternées */
-		--tertiary: 35 78% 96%; /* #FDF6EC */
+		/* Soft muted - better contrast */
+		--muted: 35 25% 92%;
+		--muted-foreground: 220 20% 32%;
 
-		/* Muted */
-		--muted: 213 30% 94%;
-		--muted-foreground: 0 0% 42%; /* #6B6B6B - gris doux */
+		/* Soft peach-rose accent - feminine and warm */
+		--accent: 25 70% 66%;
+		--accent-foreground: 0 0% 100%; /* White for maximum contrast on peach background */
 
-		/* Accent / CTA / Or - #C6B58A */
-		--accent: 42 31% 66%; /* #C6B58A */
-		--accent-foreground: 0 0% 17%;
-
-		/* CTA - Or doré */
-		--cta: 42 31% 66%; /* #C6B58A */
-		--cta-foreground: 0 0% 17%;
-		--cta-hover: 42 40% 60%;
+		/* Soft CTA - gentle peach/blush */
+		--cta: 15 50% 70%;
+		--cta-foreground: 220 25% 20%;
+		--cta-hover: 15 55% 65%;
 
 		--destructive: 0 70% 55%;
 		--destructive-foreground: 0 0% 100%;
 
-		--border: 213 30% 90%;
-		--input: 213 30% 90%;
-		--ring: 42 31% 66%;
+		--border: 35 25% 90%;
+		--input: 35 25% 90%;
+		--ring: 18 45% 60%;
 
 		--radius: 1.25rem;
 
-		/* Custom design tokens - Céleste */
-		--gold: 42 31% 66%; /* #C6B58A */
-		--gold-light: 42 40% 75%;
-		--gold-glow: 42 50% 70%;
-		--navy: 215 42% 39%; /* #3A5F8F */
-		--navy-light: 215 35% 55%;
-		--sand: 35 78% 96%; /* #FDF6EC */
-		--sand-light: 32 100% 97%;
-		--cream: 32 100% 97%; /* #FFF8F0 */
-		--sky: 213 47% 93%; /* #E3EDF8 */
-		--sky-light: 210 50% 96%;
+		/* Custom design tokens - WCAG AAA compliant gold (7.5:1 contrast ratio) */
+		--gold: 42 75% 28%; /* Or véritable plus foncé pour contraste optimal */
+		--gold-light: 42 65% 38%; /* Harmonisé avec nouvelle teinte */
+		--navy: 220 35% 25%;
+		--navy-light: 220 25% 40%;
+		--sand: 35 30% 93%;
+		--sand-light: 40 35% 97%;
+		--cream: 40 30% 99%;
 
-		/* Celestial decorations */
-		--star-color: 42 40% 75%;
-		--cloud-color: 210 40% 95%;
+		/* Shadows - ultra soft and diffuse avec glow doré premium */
+		--shadow-soft: 0 8px 32px -8px hsl(220 20% 40% / 0.06);
+		--shadow-medium: 0 16px 48px -12px hsl(220 20% 40% / 0.1);
+		--shadow-glow: 0 0 40px hsl(42 80% 55% / 0.3),
+			0 0 20px hsl(42 75% 50% / 0.2), 0 8px 32px hsl(42 70% 45% / 0.15);
 
-		/* Shadows - celestial glow */
-		--shadow-soft: 0 8px 32px -8px hsl(215 42% 39% / 0.08);
-		--shadow-medium: 0 16px 48px -12px hsl(215 42% 39% / 0.12);
-		--shadow-glow: 0 0 40px hsl(42 31% 66% / 0.25);
-		--shadow-gold: 0 4px 20px hsl(42 31% 66% / 0.3);
-
-		/* Glass effect */
-		--glass-bg: hsl(0 0% 100% / 0.85);
-		--glass-border: hsl(213 30% 90% / 0.5);
+		/* Glass effect - more ethereal */
+		--glass-bg: hsl(40 30% 99% / 0.85);
+		--glass-border: hsl(35 25% 90% / 0.5);
 
 		--sidebar-background: 0 0% 98%;
 		--sidebar-foreground: 240 5.3% 26.1%;
-		--sidebar-primary: 215 42% 39%;
-		--sidebar-primary-foreground: 0 0% 100%;
-		--sidebar-accent: 213 47% 93%;
-		--sidebar-accent-foreground: 0 0% 17%;
-		--sidebar-border: 213 30% 90%;
-		--sidebar-ring: 42 31% 66%;
+		--sidebar-primary: 240 5.9% 10%;
+		--sidebar-primary-foreground: 0 0% 98%;
+		--sidebar-accent: 240 4.8% 95.9%;
+		--sidebar-accent-foreground: 240 5.9% 10%;
+		--sidebar-border: 220 13% 91%;
+		--sidebar-ring: 217.2 91.2% 59.8%;
 	}
 
 	.dark {
@@ -234,95 +223,11 @@ html {
 		transform: translateY(-4px);
 	}
 
-	/* Cards with celestial styling */
-	.card-soft {
-		@apply bg-card p-8 md:p-10 shadow-soft transition-all duration-500 relative overflow-hidden;
-		border-radius: 1.5rem;
-	}
-
-	.card-soft::before {
-		content: "";
-		position: absolute;
-		top: 0;
-		right: 0;
-		width: 60px;
-		height: 60px;
-		background: radial-gradient(
-			circle at top right,
-			hsl(var(--gold) / 0.08) 0%,
-			transparent 70%
-		);
-		pointer-events: none;
-	}
-
-	.card-soft:hover {
-		@apply shadow-medium;
-		transform: translateY(-4px);
-	}
-
-	/* Card with celestial halo */
-	.card-celestial {
-		@apply bg-card/80 backdrop-blur-sm rounded-2xl border border-border/30 transition-all duration-500 relative overflow-hidden;
-	}
-
-	.card-celestial::before {
-		content: "";
-		position: absolute;
-		inset: -1px;
-		background: linear-gradient(
-			135deg,
-			hsl(var(--gold) / 0.15) 0%,
-			transparent 50%,
-			hsl(var(--sky) / 0.1) 100%
-		);
-		border-radius: inherit;
-		z-index: -1;
-		opacity: 0;
-		transition: opacity 0.5s ease;
-	}
-
-	.card-celestial:hover::before {
-		opacity: 1;
-	}
-
-	.card-celestial:hover {
-		box-shadow: 0 8px 32px hsl(var(--gold) / 0.15),
-			0 0 60px hsl(var(--gold) / 0.08);
-		transform: translateY(-4px);
-	}
-
 	/* Labels and tags */
 	.section-label {
-		@apply text-xs uppercase tracking-[0.2em] mb-4 md:mb-5;
+		@apply text-accent text-xs md:text-[13px] uppercase tracking-[0.2em] mb-4 md:mb-5;
 		font-family: "Source Sans 3", sans-serif;
 		font-weight: 500;
-		color: hsl(var(--gold));
-	}
-
-	/* Section backgrounds */
-	.section-sky {
-		background: hsl(var(--sky));
-	}
-
-	.section-sand {
-		background: hsl(var(--sand));
-	}
-
-	/* Gradient backgrounds */
-	.bg-celestial-gradient {
-		background: linear-gradient(
-			180deg,
-			hsl(var(--background)) 0%,
-			hsl(var(--cream)) 100%
-		);
-	}
-
-	.bg-celestial-gradient-reverse {
-		background: linear-gradient(
-			180deg,
-			hsl(var(--cream)) 0%,
-			hsl(var(--background)) 100%
-		);
 	}
 
 	/* Soft image containers - organic shapes */
@@ -400,16 +305,6 @@ html {
 
 	.shadow-glow {
 		box-shadow: var(--shadow-glow);
-	}
-
-	.shadow-gold {
-		box-shadow: var(--shadow-gold);
-	}
-
-	/* Celestial title style */
-	.title-celestial {
-		font-family: "Dancing Script", cursive;
-		color: hsl(var(--gold));
 	}
 
 	/* Shimmer animation for animated borders */
@@ -619,29 +514,6 @@ html {
 	}
 }
 
-@keyframes twinkle-soft {
-	0%,
-	100% {
-		opacity: 0.2;
-		transform: scale(0.9);
-	}
-	50% {
-		opacity: 0.5;
-		transform: scale(1.1);
-	}
-}
-
-@keyframes goldGlow {
-	0%,
-	100% {
-		box-shadow: 0 4px 20px hsl(42 31% 66% / 0.3);
-	}
-	50% {
-		box-shadow: 0 4px 30px hsl(42 31% 66% / 0.5),
-			0 0 40px hsl(42 31% 66% / 0.2);
-	}
-}
-
 @keyframes signatureReveal {
 	0% {
 		clip-path: inset(0 100% 0 0);
@@ -707,14 +579,6 @@ html {
 
 .animate-twinkle {
 	animation: twinkle 2s ease-in-out infinite;
-}
-
-.animate-twinkle-soft {
-	animation: twinkle-soft 4s ease-in-out infinite;
-}
-
-.animate-gold-glow {
-	animation: goldGlow 3s ease-in-out infinite;
 }
 
 .animate-handwriting {
@@ -860,7 +724,7 @@ html {
 
 /* Selection color */
 ::selection {
-	background: hsl(var(--gold) / 0.25);
+	background: hsl(var(--accent) / 0.25);
 	color: hsl(var(--foreground));
 }
 
@@ -881,7 +745,7 @@ html {
 	left: 0;
 	width: 100%;
 	height: 1px;
-	background: hsl(var(--gold));
+	background: hsl(var(--accent));
 	transform: scaleX(0);
 	transform-origin: right;
 	transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -904,13 +768,13 @@ a:not(.link-elegant):not([class*="button"]):hover {
 
 /* Focus visible styles for accessibility */
 :focus-visible {
-	outline: 2px solid hsl(var(--gold));
+	outline: 2px solid hsl(var(--accent));
 	outline-offset: 2px;
 }
 
 button:focus-visible,
 a:focus-visible {
-	outline: 2px solid hsl(var(--gold));
+	outline: 2px solid hsl(var(--accent));
 	outline-offset: 2px;
 }
 
@@ -937,14 +801,14 @@ a:focus-visible {
 
 /* Enhanced focus visibility for accessibility */
 :focus-visible {
-	outline: 2px solid hsl(var(--gold));
+	outline: 2px solid hsl(var(--accent));
 	outline-offset: 2px;
 }
 
 button:focus-visible,
 a:focus-visible,
 [role="button"]:focus-visible {
-	outline: 2px solid hsl(var(--gold));
+	outline: 2px solid hsl(var(--accent));
 	outline-offset: 2px;
 	border-radius: 0.25rem;
 }

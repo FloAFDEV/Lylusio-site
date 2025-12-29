@@ -81,7 +81,8 @@ const TestimonialsSection = () => {
   return (
     <section
     id="temoignages"
-    className="py-20 md:py-28 lg:py-36 overflow-hidden bg-gradient-to-t from-sand/30 via-cream/20 to-background relative"
+    className="py-20 md:py-28 overflow-hidden relative"
+    style={{ background: 'hsl(var(--sand))' }}
     aria-labelledby="temoignages-title"
     ref={ref}
     >
@@ -158,7 +159,7 @@ const TestimonialsSection = () => {
                   className="flex-[0_0_100%] sm:flex-[0_0_80%] md:flex-[0_0_48%] lg:flex-[0_0_32%] min-w-0 px-2 sm:px-3 py-1"
                   aria-label={`Témoignage de ${testimonial.name}`}
                 >
-                  <div className="bg-card/70 backdrop-blur-sm p-5 md:p-6 shadow-soft h-full flex flex-col border border-border/30 rounded-2xl hover:shadow-medium hover:border-gold/40 hover:-translate-y-1.5 transition-all duration-500">
+                  <div className="card-soft !p-5 md:!p-6 h-full flex flex-col border-2 border-gold/20 hover:shadow-medium hover:border-gold/40 hover:-translate-y-1.5 transition-all duration-500">
                     <Quote className="w-6 h-6 text-accent/25 mb-4" aria-hidden="true" />
                     <div className="flex gap-1 mb-4" role="img" aria-label="5 étoiles">
                       {[...Array(5)].map((_, i) => (

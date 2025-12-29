@@ -8,34 +8,51 @@ import { useParallax } from "@/hooks/useParallax";
 // import emilieHero from "@/assets/emilie-hero.webp"; // Now using /assets/emilie-hero.webp
 // import plantDecoration from "@/assets/plant-decoration.webp"; // Now using /assets/plant-decoration.webp
 
-// Memoize stars to prevent re-renders
-const StarDecorations = memo(() => {
+// CelestialStars - Étoiles scintillantes améliorées (Lovable)
+const CelestialStars = memo(() => {
 	const stars = useMemo(
-		() =>
-			[...Array(8)].map((_, i) => ({
-				id: i,
-				left: `${15 + i * 10}%`,
-				top: `${15 + i * 8}%`,
-				delay: `${i * 0.4}s`,
-				duration: `${3 + (i % 3)}s`,
-			})),
+		() => [
+			{ id: 0, left: "15%", top: "10%", size: 2, delay: "0s", duration: "3s" },
+			{ id: 1, left: "85%", top: "20%", size: 1, delay: "0.5s", duration: "3.5s" },
+			{ id: 2, left: "25%", top: "35%", size: 3, delay: "1s", duration: "2.8s" },
+			{ id: 3, left: "70%", top: "45%", size: 1, delay: "1.5s", duration: "4s" },
+			{ id: 4, left: "50%", top: "15%", size: 2, delay: "2s", duration: "3.2s" },
+			{ id: 5, left: "10%", top: "60%", size: 1, delay: "2.5s", duration: "3.8s" },
+			{ id: 6, left: "90%", top: "70%", size: 3, delay: "3s", duration: "2.5s" },
+			{ id: 7, left: "40%", top: "80%", size: 2, delay: "3.5s", duration: "3.6s" },
+			{ id: 8, left: "65%", top: "25%", size: 1, delay: "0.8s", duration: "4.2s" },
+			{ id: 9, left: "30%", top: "50%", size: 2, delay: "1.2s", duration: "3.4s" },
+			{ id: 10, left: "80%", top: "65%", size: 1, delay: "1.8s", duration: "3s" },
+			{ id: 11, left: "20%", top: "75%", size: 3, delay: "2.2s", duration: "3.7s" },
+			{ id: 12, left: "55%", top: "40%", size: 2, delay: "2.8s", duration: "2.9s" },
+			{ id: 13, left: "75%", top: "55%", size: 1, delay: "3.2s", duration: "3.3s" },
+			{ id: 14, left: "35%", top: "20%", size: 2, delay: "0.3s", duration: "3.9s" },
+			{ id: 15, left: "60%", top: "85%", size: 1, delay: "0.7s", duration: "3.1s" },
+			{ id: 16, left: "45%", top: "30%", size: 3, delay: "1.3s", duration: "2.7s" },
+			{ id: 17, left: "12%", top: "42%", size: 2, delay: "1.7s", duration: "3.5s" },
+			{ id: 18, left: "88%", top: "52%", size: 1, delay: "2.3s", duration: "4.1s" },
+			{ id: 19, left: "52%", top: "68%", size: 2, delay: "2.9s", duration: "2.6s" },
+		],
 		[]
 	);
 
 	return (
-		<div
-			className="absolute inset-0 pointer-events-none hidden sm:block"
-			aria-hidden="true"
-		>
+		<div className="absolute inset-0 pointer-events-none" aria-hidden="true">
 			{stars.map((star) => (
 				<div
 					key={star.id}
-					className="absolute w-1 h-1 bg-gold/20 rounded-full animate-twinkle will-change-opacity"
+					className="absolute rounded-full bg-gold/40 animate-twinkle will-change-opacity"
 					style={{
 						left: star.left,
 						top: star.top,
+						width: `${star.size}px`,
+						height: `${star.size}px`,
 						animationDelay: star.delay,
 						animationDuration: star.duration,
+						boxShadow:
+							star.size > 2
+								? "0 0 6px hsl(var(--gold) / 0.5)"
+								: "none",
 					}}
 				/>
 			))}
@@ -43,7 +60,35 @@ const StarDecorations = memo(() => {
 	);
 });
 
-StarDecorations.displayName = "StarDecorations";
+CelestialStars.displayName = "CelestialStars";
+
+// SoftClouds - Nuages flottants avec parallax (Lovable)
+const SoftClouds = memo(({ parallaxOffset }: { parallaxOffset: number }) => (
+	<div
+		className="absolute inset-0 pointer-events-none overflow-hidden"
+		aria-hidden="true"
+	>
+		{/* Cloud 1 - top right */}
+		<div
+			className="absolute -top-10 right-[10%] w-80 h-40 bg-white/30 rounded-full blur-3xl will-change-transform"
+			style={{ transform: `translate3d(0, ${parallaxOffset * 0.2}px, 0)` }}
+		/>
+		{/* Cloud 2 - top left */}
+		<div
+			className="absolute top-[5%] -left-10 w-60 h-32 bg-white/25 rounded-full blur-3xl will-change-transform"
+			style={{ transform: `translate3d(0, ${parallaxOffset * 0.3}px, 0)` }}
+		/>
+		{/* Cloud 3 - middle */}
+		<div
+			className="absolute top-[30%] right-[30%] w-48 h-24 bg-sky/40 rounded-full blur-2xl will-change-transform hidden md:block"
+			style={{
+				transform: `translate3d(0, ${parallaxOffset * 0.15}px, 0)`,
+			}}
+		/>
+	</div>
+));
+
+SoftClouds.displayName = "SoftClouds";
 
 // Signature SVG mémorisée pour optimisation
 const HandwrittenSignature = memo(
@@ -71,7 +116,7 @@ const HandwrittenSignature = memo(
 					textAnchor="middle"
 					dominantBaseline="middle"
 					filter="url(#signature-blur)"
-					className="fill-navy/40 dark:fill-gold/30 animate-handwriting"
+					className="fill-navy/30 dark:fill-gold/20 animate-handwriting"
 					style={{
 						fontSize: "100px",
 						fontFamily: "Dancing Script, cursive",
@@ -113,15 +158,15 @@ const OrganicShapes = memo(({ parallaxOffset }: { parallaxOffset: number }) => (
 
 OrganicShapes.displayName = "OrganicShapes";
 
-// Cercles décoratifs avec animations CSS pures
+// DecorativeCircles - Cercles tournants autour de la photo (Lovable)
 const DecorativeCircles = memo(() => (
 	<div className="hidden sm:block">
 		<div
-			className="absolute -inset-12 -z-20 w-full h-full border-2 border-gold/20 rounded-[50%_45%_55%_50%] rotate-6 opacity-30 will-change-transform"
+			className="absolute -inset-12 -z-20 w-full h-full border-2 border-gold/25 rounded-[50%_45%_55%_50%] rotate-6 opacity-40 will-change-transform"
 			style={{ animation: "spin 40s linear infinite" }}
 		/>
 		<div
-			className="absolute -inset-16 -z-30 w-full h-full border-2 border-amber-400/20 rounded-[55%_50%_50%_55%] -rotate-6 opacity-25 will-change-transform"
+			className="absolute -inset-16 -z-30 w-full h-full border-2 border-gold-light/20 rounded-[55%_50%_50%_55%] -rotate-6 opacity-30 will-change-transform"
 			style={{ animation: "spin 50s linear infinite reverse" }}
 		/>
 	</div>
@@ -150,14 +195,17 @@ const HeroSection = () => {
 	return (
 		<section
 			id="accueil"
-			className="relative min-h-[80svh] sm:min-h-[90svh] lg:min-h-[100svh] flex items-center overflow-hidden bg-gradient-to-br from-background via-cream/30 to-sand/20"
+			className="relative min-h-[80svh] sm:min-h-[90svh] lg:min-h-[100svh] flex items-center overflow-hidden"
+			style={{
+				background:
+					"linear-gradient(180deg, hsl(225 33% 97%) 0%, hsl(210 50% 96%) 30%, hsl(32 100% 97%) 100%)",
+			}}
 			aria-labelledby="hero-title"
 		>
-			{/* Signature animée en arrière-plan */}
+			{/* Éléments célestes */}
+			<CelestialStars />
+			<SoftClouds parallaxOffset={parallaxOffset} />
 			<HandwrittenSignature parallaxOffset={parallaxOffset} />
-
-			{/* Étoiles décoratives */}
-			<StarDecorations />
 
 			{/* Formes organiques d'arrière-plan */}
 			<OrganicShapes parallaxOffset={parallaxOffset} />
@@ -223,17 +271,7 @@ const HeroSection = () => {
 						<Button
 							asChild
 							size="lg"
-							className="
-		bg-navy text-white
-		hover:bg-navy
-		hover:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.35)]
-		hover:ring-2 hover:ring-white/20
-		font-medium px-8 shadow-elegant
-		transition-all duration-300
-		hover:scale-105 active:scale-100
-		focus-visible:outline-none
-		focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-2
-	"
+							className="bg-gold text-foreground hover:bg-gold-light font-medium px-8 shadow-gold transition-all duration-300 hover:scale-105 hover:shadow-glow active:scale-100 animate-gold-glow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2"
 							aria-label="Réserver une séance de consultation sur Calendly"
 						>
 							<a
@@ -247,11 +285,9 @@ const HeroSection = () => {
 					</div>
 
 					<p
-						className="mt-8 sm:mt-10 font-calligraphic text-xl sm:text-2xl md:text-3xl text-navy/90 dark:text-gold/50 animate-fade-up animate-handwriting"
+						className="mt-8 sm:mt-10 font-calligraphic text-xl sm:text-2xl md:text-3xl text-navy/40 dark:text-gold/40 animate-fade-up animate-handwriting"
 						style={{
 							animationDelay: "1.5s",
-							textShadow:
-								"1px 1px 2px rgba(0,0,0,0.15), -1px -1px 2px rgba(0,0,0,0.08)",
 						}}
 						aria-hidden="true"
 					>
@@ -269,20 +305,21 @@ const HeroSection = () => {
 						}px, 0)`,
 					}}
 				>
-					<div className="relative mx-auto max-w-[180px] sm:max-w-[220px] md:max-w-[260px] lg:max-w-[280px]">
+					<div className="relative mx-auto max-w-[200px] sm:max-w-[240px]">
 						{/* Cercles décoratifs */}
 						<DecorativeCircles />
 
 						{/* Photo principale avec effet hover */}
-						<div className="aspect-square rounded-full overflow-hidden shadow-soft border-2 border-accent/15 relative group">
+						<div className="aspect-square rounded-full overflow-hidden shadow-gold border-2 border-gold/20 relative group">
 							<Image
 								src="/assets/emilie-hero.webp"
 								alt="Émilie Perez - Astrologue et praticienne Reiki 3ème degré à Toulouse"
-								className="w-full h-full object-cover opacity-90 transition-transform duration-700 group-hover:scale-105"
-					width={240}
-											height={240}
+								fill
+								sizes="(max-width: 640px) 200px, 240px"
+								className="object-cover opacity-90 transition-transform duration-700 group-hover:scale-105"
 								priority
-					/>
+								quality={95}
+							/>
 							<div
 								className="absolute inset-0 bg-gradient-to-t from-background/15 via-transparent to-cream/8 pointer-events-none"
 								aria-hidden="true"
