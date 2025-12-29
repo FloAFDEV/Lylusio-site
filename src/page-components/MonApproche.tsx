@@ -325,11 +325,11 @@ const MonApproche = () => {
 							</p>
 						</div>
 
-						<div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+						<div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-4 lg:gap-6">
 							{pillars.map((pillar, index) => (
 								<article
 									key={pillar.title}
-									className={`group ml-4 mr-4 bg-card/80 backdrop-blur-sm rounded-2xl p-6 md:p-7 lg:p-8 text-center border border-border/20 hover:border-gold/30 hover:shadow-medium transition-all duration-500 ${
+									className={`group bg-card/80 backdrop-blur-sm rounded-2xl p-6 md:p-5 lg:p-6 text-center border border-border/20 hover:border-gold/30 hover:shadow-medium transition-all duration-500 ${
 										pillarsInView
 											? "opacity-100 translate-y-0"
 											: "opacity-0 translate-y-12"
@@ -569,7 +569,7 @@ const MonApproche = () => {
 												<obj.icon className="w-5 h-5 text-accent" />
 											</div>
 											<div>
-												<h3 className="font-display text-foreground mb-1">
+												<h3 className="font-display text-lg md:text-xl text-foreground mb-1">
 													{obj.title}
 												</h3>
 												<p className="text-sm text-muted-foreground">

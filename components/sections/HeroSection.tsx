@@ -363,7 +363,7 @@ const HeroSection = () => {
 			{/* Indicateur de scroll avec interactions améliorées */}
 			<button
 				onClick={scrollToNext}
-				className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2 text-muted-foreground/60 hover:text-accent transition-all duration-300 animate-fade-in group focus:outline-none focus:ring-2 focus:ring-accent/50 rounded-lg p-2"
+				className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2 text-muted-foreground/70 hover:text-accent transition-all duration-300 animate-fade-in group focus:outline-none focus:ring-2 focus:ring-accent/50 rounded-lg p-2"
 				style={{ animationDelay: "1s" }}
 				aria-label="Défiler vers la section suivante"
 			>

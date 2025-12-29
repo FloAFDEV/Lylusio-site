@@ -411,7 +411,7 @@ const Blog = () => {
 						{totalPosts > 0 && (
 							<div className="flex items-center justify-center gap-2 mb-8" aria-live="polite">
 								<div className="h-px w-10 bg-gradient-to-r from-transparent via-accent/30 to-accent/20" />
-								<p className="text-[10px] text-muted-foreground/50 font-thin tracking-[0.15em]">
+								<p className="text-[10px] text-muted-foreground/80 font-thin tracking-[0.15em]">
 									{filteredPosts.length} {filteredPosts.length > 1 ? "articles trouvés" : "article trouvé"}
 									{displayedPosts.length < filteredPosts.length && (
 										<>

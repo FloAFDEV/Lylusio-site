@@ -34,7 +34,8 @@ const ProcessSection = memo(function ProcessSection() {
   return (
     <section
       ref={ref}
-      className="relative overflow-hidden py-20 md:py-28 bg-sand"
+      className="relative overflow-hidden py-20 md:py-28"
+      style={{ background: 'hsl(var(--sand))' }}
       aria-labelledby="process-title"
     >
       {/* Background decoration */}

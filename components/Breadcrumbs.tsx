@@ -175,7 +175,7 @@ const Breadcrumbs = ({ showPlant = true, customTitle }: BreadcrumbsProps) => {
 
 				{breadcrumbs.map((crumb, index) => (
 					<li key={index} className="flex items-center gap-2 min-w-0">
-						<ChevronRight className="w-4 h-4 text-muted-foreground/50" />
+						<ChevronRight className="w-4 h-4 text-muted-foreground/70" />
 
 						{crumb.isLast ? (
 							<span className="font-medium text-foreground truncate max-w-[200px]">
@@ -205,7 +205,7 @@ const Breadcrumbs = ({ showPlant = true, customTitle }: BreadcrumbsProps) => {
 					</Link>
 				</li>
 
-				<ChevronRight className="w-3 h-3 text-muted-foreground/50 flex-shrink-0" />
+				<ChevronRight className="w-3 h-3 text-muted-foreground/70 flex-shrink-0" />
 
 				{/* 1 seul breadcrumb → afficher uniquement le dernier */}
 				{breadcrumbs.length === 1 ? (
@@ -219,7 +219,7 @@ const Breadcrumbs = ({ showPlant = true, customTitle }: BreadcrumbsProps) => {
 							{breadcrumbs[0].name}
 						</span>
 
-						<ChevronRight className="w-3 h-3 text-muted-foreground/50 flex-shrink-0" />
+						<ChevronRight className="w-3 h-3 text-muted-foreground/70 flex-shrink-0" />
 
 						{/* Dernier élément */}
 						<span className="font-medium text-foreground truncate max-w-[40vw]">

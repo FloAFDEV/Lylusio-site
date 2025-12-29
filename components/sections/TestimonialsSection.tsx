@@ -138,14 +138,14 @@ const TestimonialsSection = () => {
         >
           <button
             onClick={scrollPrev}
-            className="hidden md:flex absolute -left-2 lg:-left-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 items-center justify-center bg-card/90 backdrop-blur-sm shadow-soft rounded-full text-foreground/50 hover:text-accent transition-all"
+            className="hidden md:flex absolute -left-2 lg:-left-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 items-center justify-center bg-card/90 backdrop-blur-sm shadow-soft rounded-full text-foreground/70 hover:text-accent transition-all"
             aria-label="Témoignage précédent"
           >
             <ChevronLeft className="w-5 h-5" aria-hidden="true" />
           </button>
           <button
             onClick={scrollNext}
-            className="hidden md:flex absolute -right-2 lg:-right-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 items-center justify-center bg-card/90 backdrop-blur-sm shadow-soft rounded-full text-foreground/50 hover:text-accent transition-all"
+            className="hidden md:flex absolute -right-2 lg:-right-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 items-center justify-center bg-card/90 backdrop-blur-sm shadow-soft rounded-full text-foreground/70 hover:text-accent transition-all"
             aria-label="Témoignage suivant"
           >
             <ChevronRight className="w-5 h-5" aria-hidden="true" />

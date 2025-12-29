@@ -83,7 +83,7 @@ const FloatingCTA = () => {
 				<Button
 					asChild
 					size="default"
-					className="relative bg-gold hover:brightness-110 text-white shadow-gold hover:shadow-glow group px-3 sm:px-4 py-2.5 transition-all duration-300 hover:scale-105 active:scale-95 animate-gold-glow"
+					className="relative bg-gold hover:brightness-110 text-white shadow-gold group px-3 sm:px-4 py-2.5 transition-all duration-300 hover:scale-105 active:scale-95"
 					aria-label="Réserver une séance (ouvre Calendly)"
 					data-cta="true"
 				>

@@ -130,8 +130,11 @@ const ServicesPreview = () => {
 
 								{/* Card inner container */}
 								<div className="relative rounded-2xl md:rounded-3xl overflow-hidden">
-									{/* Animated golden border on hover */}
-									<div className="absolute inset-0 rounded-2xl md:rounded-3xl border-2 border-transparent group-hover:border-gold/40 transition-all duration-500 z-10 pointer-events-none" />
+									{/* Animated golden border on hover - using box-shadow inset */}
+									<div
+										className="absolute inset-0 rounded-2xl md:rounded-3xl opacity-0 group-hover:opacity-100 transition-all duration-500 pointer-events-none"
+										style={{ boxShadow: 'inset 0 0 0 2px hsl(var(--gold) / 0.3)' }}
+									/>
 
 									{/* Shadow on hover */}
 									<div className="absolute inset-0 rounded-2xl md:rounded-3xl shadow-[0_16px_48px_-12px_hsl(var(--gold)/0.25)] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
@@ -169,7 +172,7 @@ const ServicesPreview = () => {
 									</div>
 
 									{/* Content section */}
-									<div className="relative p-4 sm:p-5 md:p-6 pt-3 md:pt-4">
+									<div className="relative p-6 md:p-7 lg:p-8 pt-3 md:pt-4">
 										<h3 className="font-display text-lg md:text-xl text-foreground mb-1.5 md:mb-2 group-hover:text-gold/90 transition-colors duration-500">
 											{service.title}
 										</h3>
