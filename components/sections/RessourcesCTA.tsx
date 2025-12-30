@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { useInView } from "@/hooks/useInView";
-import { FaYoutube, FaInstagram } from "react-icons/fa";
+import { FaYoutube, FaInstagram, FaFacebook } from "react-icons/fa";
 import { BookOpen, ArrowRight, Sparkles } from "lucide-react";
 
 /**
@@ -15,19 +15,28 @@ const RessourcesCTA = () => {
 
 	const features = [
 		{
-			icon: FaYoutube,
-			label: "Vidéos pédagogiques",
-			color: "text-red-500",
-		},
-		{
 			icon: FaInstagram,
 			label: "Ateliers & Lives",
 			color: "text-pink-500",
+			href: "https://www.instagram.com/emilie.perez_astroreiki_/",
+		},
+		{
+			icon: FaFacebook,
+			label: "Facebook",
+			color: "text-blue-600",
+			href: "https://www.facebook.com/share/16cEgpLgk9/",
+		},
+		{
+			icon: FaYoutube,
+			label: "Vidéos pédagogiques",
+			color: "text-red-500",
+			href: "https://www.youtube.com/@emilielylusio6206",
 		},
 		{
 			icon: BookOpen,
 			label: "Articles approfondis",
 			color: "text-accent",
+			href: "/blog",
 		},
 	];
 
@@ -58,53 +67,83 @@ const RessourcesCTA = () => {
 							: "opacity-0 translate-y-8"
 					}`}
 				>
-					<div className="bg-card/80 backdrop-blur-sm rounded-2xl md:rounded-3xl p-8 md:p-12 text-center border border-border/30 shadow-medium">
+					<div
+						role="region"
+						aria-labelledby="free-resources-title"
+						className="bg-card/80 backdrop-blur-sm rounded-2xl md:rounded-3xl p-8 md:p-12 text-center border border-border/30 shadow-medium"
+					>
 						{/* Icon badge */}
 						<div className="inline-flex items-center justify-center w-16 h-16 bg-gold/10 rounded-full mb-6">
 							<Sparkles
 								className="w-8 h-8 text-gold"
 								aria-hidden="true"
 							/>
+							<span className="sr-only">
+								Badge Contenus gratuits
+							</span>
 						</div>
 
-						<h2 className="font-display text-2xl md:text-3xl lg:text-4xl text-foreground mb-4">
+						<h2
+							id="free-resources-title"
+							className="font-display text-2xl md:text-3xl lg:text-4xl text-foreground mb-4"
+						>
 							Découvrez mes contenus gratuits
 						</h2>
 
 						<p className="text-muted-foreground mb-8 max-w-2xl mx-auto text-base md:text-lg leading-relaxed">
-							Vidéos pédagogiques, ateliers lives et articles approfondis
-							pour enrichir votre chemin
+							Vidéos pédagogiques, ateliers lives et articles
+							approfondis pour enrichir votre chemin
 						</p>
 
 						{/* Features grid */}
 						<div className="flex flex-wrap justify-center gap-4 md:gap-6 mb-8">
-							{features.map((feature, index) => (
-								<div
-									key={feature.label}
-									className={`flex items-center gap-3 px-4 py-3 bg-gradient-sky-center/30 rounded-full transition-all duration-500 delay-${
-										index * 100
-									} ${
-										isInView
-											? "opacity-100 translate-y-0"
-											: "opacity-0 translate-y-4"
-									}`}
-								>
-									<feature.icon
-										className={`w-5 h-5 ${feature.color}`}
-										aria-hidden="true"
-									/>
-									<span className="text-sm md:text-base font-medium text-foreground">
-										{feature.label}
-									</span>
-								</div>
-							))}
+							{features.map((feature, index) => {
+								const Component = feature.href ? "a" : "div";
+								return (
+									<Component
+										key={feature.label}
+										href={feature.href}
+										target={
+											feature.href ? "_blank" : undefined
+										}
+										rel={
+											feature.href
+												? "noopener noreferrer"
+												: undefined
+										}
+										className={`flex items-center gap-3 px-4 py-3 bg-gradient-sky-center/30 rounded-full transition-all duration-500 delay-${
+											index * 100
+										} ${
+											isInView
+												? "opacity-100 translate-y-0"
+												: "opacity-0 translate-y-4"
+										} ${
+											feature.href
+												? "hover:brightness-105 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
+												: ""
+										}`}
+									>
+										<feature.icon
+											className={`w-5 h-5 ${feature.color}`}
+											aria-hidden="true"
+										/>
+										<span className="text-sm md:text-base font-medium text-foreground">
+											{feature.label}
+										</span>
+									</Component>
+								);
+							})}
 						</div>
 
 						{/* CTA Button */}
-						<Button asChild size="lg" className="group">
+						<Button
+							asChild
+							size="lg"
+							className="group w-full md:w-auto"
+						>
 							<Link
 								href="/ressources"
-								className="inline-flex items-center gap-2 bg-gold hover:brightness-110 text-white shadow-gold"
+								className="inline-flex items-center justify-center gap-2 bg-gold hover:brightness-110 text-white font-medium rounded-md px-6 py-3 shadow-gold focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 transition-transform motion-safe:hover:-translate-y-1"
 							>
 								<span>Voir toutes les ressources</span>
 								<ArrowRight
