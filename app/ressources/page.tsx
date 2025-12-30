@@ -2,7 +2,13 @@ import { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { FaInstagram, FaYoutube, FaFacebook } from "react-icons/fa";
-import { BookOpen, ArrowRight, ExternalLink, Sparkles, Calendar } from "lucide-react";
+import {
+	BookOpen,
+	ArrowRight,
+	ExternalLink,
+	Sparkles,
+	Calendar,
+} from "lucide-react";
 
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
@@ -63,92 +69,97 @@ const YOUTUBE_VIDEOS = [
 ];
 
 // WordPress API
-const WP_API_URL = process.env.NEXT_PUBLIC_WP_API_URL || 'https://lylusio.fr/wp-json/wp/v2';
+const WP_API_URL =
+	process.env.NEXT_PUBLIC_WP_API_URL || "https://lylusio.fr/wp-json/wp/v2";
 
 interface WPPost {
-  id: number;
-  date: string;
-  title: { rendered: string };
-  excerpt: { rendered: string };
-  slug: string;
-  _embedded?: {
-    'wp:featuredmedia'?: Array<{
-      source_url: string;
-      alt_text: string;
-    }>;
-    'wp:term'?: Array<
-      Array<{
-        id: number;
-        name: string;
-        slug: string;
-      }>
-    >;
-  };
+	id: number;
+	date: string;
+	title: { rendered: string };
+	excerpt: { rendered: string };
+	slug: string;
+	_embedded?: {
+		"wp:featuredmedia"?: Array<{
+			source_url: string;
+			alt_text: string;
+		}>;
+		"wp:term"?: Array<
+			Array<{
+				id: number;
+				name: string;
+				slug: string;
+			}>
+		>;
+	};
 }
 
 // Server-safe HTML stripping
 const stripHtml = (html: string): string => {
-  return html
-    .replace(/<[^>]*>/g, '')
-    .replace(/&nbsp;/g, ' ')
-    .replace(/&amp;/g, '&')
-    .replace(/&lt;/g, '<')
-    .replace(/&gt;/g, '>')
-    .replace(/&quot;/g, '"')
-    .replace(/&#039;/g, "'")
-    .replace(/\s+/g, ' ')
-    .trim();
+	return html
+		.replace(/<[^>]*>/g, "")
+		.replace(/&nbsp;/g, " ")
+		.replace(/&amp;/g, "&")
+		.replace(/&lt;/g, "<")
+		.replace(/&gt;/g, ">")
+		.replace(/&quot;/g, '"')
+		.replace(/&#039;/g, "'")
+		.replace(/\s+/g, " ")
+		.trim();
 };
 
 const formatDate = (dateString: string): string => {
-  const date = new Date(dateString);
-  return date.toLocaleDateString('fr-FR', {
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric',
-  });
+	const date = new Date(dateString);
+	return date.toLocaleDateString("fr-FR", {
+		day: "numeric",
+		month: "long",
+		year: "numeric",
+	});
 };
 
 async function fetchLatestBlogPosts() {
-  try {
-    const res = await fetch(`${WP_API_URL}/posts?_embed&per_page=3&orderby=date&order=desc`, {
-      next: { revalidate: 3600 },
-    });
+	try {
+		const res = await fetch(
+			`${WP_API_URL}/posts?_embed&per_page=3&orderby=date&order=desc`,
+			{
+				next: { revalidate: 3600 },
+			}
+		);
 
-    if (!res.ok) {
-      console.error('Failed to fetch blog posts:', res.status);
-      return [];
-    }
+		if (!res.ok) {
+			console.error("Failed to fetch blog posts:", res.status);
+			return [];
+		}
 
-    const wpPosts: WPPost[] = await res.json();
+		const wpPosts: WPPost[] = await res.json();
 
-    return wpPosts.map((post) => {
-      const imageObj = post._embedded?.['wp:featuredmedia']?.[0];
-      const imageUrl = imageObj?.source_url || '/placeholder.svg';
-      const imageAlt = imageObj?.alt_text || stripHtml(post.title.rendered);
+		return wpPosts.map((post) => {
+			const imageObj = post._embedded?.["wp:featuredmedia"]?.[0];
+			const imageUrl = imageObj?.source_url || "/placeholder.svg";
+			const imageAlt =
+				imageObj?.alt_text || stripHtml(post.title.rendered);
 
-      const categories =
-        post._embedded?.['wp:term']?.[0]?.map((term) => ({
-          id: term.id,
-          name: term.name,
-          slug: term.slug,
-        })) || [];
+			const categories =
+				post._embedded?.["wp:term"]?.[0]?.map((term) => ({
+					id: term.id,
+					name: term.name,
+					slug: term.slug,
+				})) || [];
 
-      return {
-        id: post.id,
-        title: stripHtml(post.title.rendered),
-        excerpt: stripHtml(post.excerpt.rendered).slice(0, 120) + '...',
-        date: formatDate(post.date),
-        slug: post.slug,
-        image: imageUrl,
-        imageAlt,
-        categories,
-      };
-    });
-  } catch (error) {
-    console.error('Error fetching blog posts:', error);
-    return [];
-  }
+			return {
+				id: post.id,
+				title: stripHtml(post.title.rendered),
+				excerpt: stripHtml(post.excerpt.rendered).slice(0, 120) + "...",
+				date: formatDate(post.date),
+				slug: post.slug,
+				image: imageUrl,
+				imageAlt,
+				categories,
+			};
+		});
+	} catch (error) {
+		console.error("Error fetching blog posts:", error);
+		return [];
+	}
 }
 
 export default async function RessourcesPage() {
@@ -207,14 +218,6 @@ export default async function RessourcesPage() {
 					__html: JSON.stringify(structuredData),
 				}}
 			/>
-
-			{/* Skip Link */}
-			<a
-				href="#main-content"
-				className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:bg-accent focus:text-white px-3 py-2 rounded z-50"
-			>
-				Passer au contenu
-			</a>
 
 			<Header />
 			<FloatingCTA />
@@ -279,7 +282,10 @@ export default async function RessourcesPage() {
 					<div className="container mx-auto px-4 sm:px-6 lg:px-8">
 						<div className="text-center mb-12 md:mb-16">
 							<p className="section-label">Sur les réseaux</p>
-							<h2 id="social-section-title" className="text-foreground mb-6 text-2xl sm:text-3xl md:text-4xl">
+							<h2
+								id="social-section-title"
+								className="text-foreground mb-6 text-2xl sm:text-3xl md:text-4xl"
+							>
 								<span className="font-calligraphic text-accent text-3xl sm:text-4xl md:text-5xl inline-block align-baseline">
 									S
 								</span>
@@ -479,7 +485,10 @@ export default async function RessourcesPage() {
 					<div className="container mx-auto px-4 sm:px-6 lg:px-8">
 						<div className="text-center mb-12 md:mb-16">
 							<p className="section-label">Sur YouTube</p>
-							<h2 id="youtube-section-title" className="text-foreground mb-6 text-2xl sm:text-3xl md:text-4xl">
+							<h2
+								id="youtube-section-title"
+								className="text-foreground mb-6 text-2xl sm:text-3xl md:text-4xl"
+							>
 								<span className="font-calligraphic text-accent text-3xl sm:text-4xl md:text-5xl inline-block align-baseline">
 									V
 								</span>
@@ -521,7 +530,10 @@ export default async function RessourcesPage() {
 						</div>
 
 						{/* CTA YouTube Channel */}
-						<nav className="text-center" aria-label="Navigation vers YouTube">
+						<nav
+							className="text-center"
+							aria-label="Navigation vers YouTube"
+						>
 							<Button
 								asChild
 								variant="elegant"
@@ -560,7 +572,10 @@ export default async function RessourcesPage() {
 					<div className="container mx-auto px-4 sm:px-6 lg:px-8">
 						<div className="text-center mb-12 md:mb-14">
 							<p className="section-label">Sur le blog</p>
-							<h2 id="blog-section-title" className="text-foreground mb-6 text-2xl sm:text-3xl md:text-4xl">
+							<h2
+								id="blog-section-title"
+								className="text-foreground mb-6 text-2xl sm:text-3xl md:text-4xl"
+							>
 								<span className="font-calligraphic text-accent text-3xl sm:text-4xl md:text-5xl inline-block align-baseline">
 									B
 								</span>
@@ -576,8 +591,12 @@ export default async function RessourcesPage() {
 						<div className="grid md:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto mb-12">
 							{latestPosts.map((post, index) => {
 								// Première lettre en majuscule, reste en minuscule (sentence case)
-								const firstLetter = post.title.charAt(0).toUpperCase();
-								const restOfTitle = post.title.slice(1).toLowerCase();
+								const firstLetter = post.title
+									.charAt(0)
+									.toUpperCase();
+								const restOfTitle = post.title
+									.slice(1)
+									.toLowerCase();
 
 								return (
 									<article
@@ -593,11 +612,18 @@ export default async function RessourcesPage() {
 											<div className="aspect-[16/10] overflow-hidden relative bg-muted">
 												<Image
 													src={post.image}
-													alt={post.imageAlt || `Image de l'article ${post.title}`}
+													alt={
+														post.imageAlt ||
+														`Image de l'article ${post.title}`
+													}
 													fill
 													className="object-cover group-hover:scale-105 transition-transform duration-500"
 													sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-													loading={index === 0 ? "eager" : "lazy"}
+													loading={
+														index === 0
+															? "eager"
+															: "lazy"
+													}
 													priority={index === 0}
 												/>
 											</div>
@@ -606,7 +632,10 @@ export default async function RessourcesPage() {
 											<div className="p-6 flex flex-col flex-grow">
 												{/* Date */}
 												<div className="flex items-center gap-2 text-xs text-muted-foreground mb-3 uppercase tracking-wide">
-													<Calendar className="h-3.5 w-3.5" aria-hidden="true" />
+													<Calendar
+														className="h-3.5 w-3.5"
+														aria-hidden="true"
+													/>
 													<time dateTime={post.slug}>
 														{post.date}
 													</time>
@@ -628,7 +657,10 @@ export default async function RessourcesPage() {
 												{/* Lire la suite */}
 												<div className="flex items-center gap-2 text-accent font-semibold text-sm mt-auto pt-2 border-t border-border/10">
 													Lire l'article
-													<ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
+													<ArrowRight
+														className="h-4 w-4 group-hover:translate-x-1 transition-transform"
+														aria-hidden="true"
+													/>
 												</div>
 											</div>
 										</Link>
@@ -638,8 +670,16 @@ export default async function RessourcesPage() {
 						</div>
 
 						{/* CTA Voir tous les articles */}
-						<nav className="text-center" aria-label="Navigation vers le blog">
-							<Button asChild variant="elegant" size="lg" className="group">
+						<nav
+							className="text-center"
+							aria-label="Navigation vers le blog"
+						>
+							<Button
+								asChild
+								variant="elegant"
+								size="lg"
+								className="group"
+							>
 								<Link
 									href="/blog"
 									aria-label="Voir tous les articles du blog sur l'astrologie et le Reiki"

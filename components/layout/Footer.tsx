@@ -110,6 +110,7 @@ const Footer = () => {
 		{ href: "/reiki-toulouse", label: "Reiki" },
 		{ href: "/emilie-perez", label: "Qui suis-je" },
 		{ href: "/blog", label: "Blog" },
+		{ href: "/ressources", label: "Ressources" },
 		{ href: "/faq", label: "FAQ" },
 		{ href: "/contact", label: "Contact" },
 		{
