@@ -116,6 +116,14 @@ export default async function RessourcesPage() {
 				}}
 			/>
 
+			{/* Skip Link */}
+			<a
+				href="#main-content"
+				className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:bg-accent focus:text-white px-3 py-2 rounded z-50"
+			>
+				Passer au contenu
+			</a>
+
 			<Header />
 			<FloatingCTA />
 
@@ -124,7 +132,10 @@ export default async function RessourcesPage() {
 				className="min-h-screen bg-background relative overflow-hidden"
 			>
 				{/* Hero Section */}
-				<section className="relative py-20 md:py-32 overflow-hidden">
+				<section
+					aria-label="Hero - Ateliers et ressources gratuites"
+					className="relative py-20 md:py-32 overflow-hidden"
+				>
 					{/* Background decoration */}
 					<div
 						className="absolute inset-0 bg-gradient-to-b from-transparent via-secondary/20 to-transparent"
@@ -169,7 +180,10 @@ export default async function RessourcesPage() {
 				</section>
 
 				{/* Section 1: Instagram + Facebook (2 cards côte à côte) */}
-				<section className="py-16 bg-gradient-to-b from-transparent via-accent/5 to-transparent relative overflow-hidden">
+				<section
+					aria-label="Réseaux sociaux - Instagram et Facebook"
+					className="py-16 bg-gradient-to-b from-transparent via-accent/5 to-transparent relative overflow-hidden"
+				>
 					<div className="container mx-auto px-4 sm:px-6 lg:px-8">
 						<div className="text-center mb-12 md:mb-16">
 							<p className="section-label">Sur les réseaux</p>
@@ -185,178 +199,191 @@ export default async function RessourcesPage() {
 							</p>
 						</div>
 
-						<div className="grid md:grid-cols-2 gap-8 lg:gap-12 max-w-5xl mx-auto">
+						<div className="grid md:grid-cols-2 gap-8 lg:gap-12 max-w-5xl mx-auto items-stretch">
 							{/* CARD INSTAGRAM */}
-							<article className="glass-card p-6 md:p-8 hover:shadow-medium transition-all duration-500">
-								<div className="flex flex-col items-center gap-6 mb-8">
-									{/* Photo de profil */}
-									<div className="relative group/profile">
-										{/* Glow effect */}
-										<div className="absolute -inset-2 bg-gradient-to-br from-pink-500/30 via-purple-600/30 to-gold/30 rounded-full blur-xl opacity-0 group-hover/profile:opacity-100 transition-opacity duration-500" />
-
-										<div className="relative w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden border-4 border-gradient-to-br from-pink-500 to-purple-600 shadow-medium">
-											<Image
-												src="/assets/emilie-portrait.webp"
-												alt="Émilie Perez - Instagram"
-												width={128}
-												height={128}
-												className="object-cover w-full h-full"
-												quality={90}
-											/>
+							<article
+								className="group relative bg-[#f7f5ee] p-6 md:p-8 h-full flex flex-col justify-between
+               border border-black/5 shadow-sm origin-left
+               transition-all duration-700 ease-out
+               hover:[transform:perspective(1200px)_rotateY(-4deg)_rotateX(1deg)]
+               hover:-translate-y-1 hover:shadow-xl
+               before:absolute before:inset-0 before:bg-[url('https://www.transparenttextures.com/patterns/felt.png')] before:opacity-15 before:pointer-events-none"
+							>
+								<div className="relative z-10 flex flex-col justify-between h-full">
+									<div className="flex flex-col items-center gap-6 mb-8">
+										{/* Portrait */}
+										<div className="relative group/profile">
+											<div className="absolute -inset-2 bg-gradient-to-br from-pink-500/30 via-purple-600/30 to-gold/30 rounded-full blur-xl opacity-0 group-hover/profile:opacity-100 transition-opacity duration-500" />
+											<div className="relative w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden border-4 border-gradient-to-br bg-pink-500 shadow-medium">
+												<Image
+													src="/assets/emilie-portrait.webp"
+													alt="Émilie Perez - Instagram"
+													width={128}
+													height={128}
+													className="object-cover w-full h-full"
+													quality={90}
+												/>
+											</div>
+											<div className="absolute -bottom-1 -right-1 w-10 h-10 bg-gradient-to-br from-pink-500 to-purple-600 rounded-full flex items-center justify-center border-4 border-card shadow-medium">
+												<FaInstagram
+													className="w-5 h-5 text-white"
+													aria-hidden="true"
+												/>
+											</div>
 										</div>
 
-										{/* Badge Instagram */}
-										<div className="absolute -bottom-1 -right-1 w-10 h-10 bg-gradient-to-br from-pink-500 to-purple-600 rounded-full flex items-center justify-center border-4 border-card shadow-medium">
+										{/* Texte */}
+										<div className="text-center">
+											<h3 className="font-display text-2xl md:text-3xl font-semibold text-foreground mb-2">
+												@emilie.perez_astroreiki_
+											</h3>
+											<p className="text-muted-foreground mb-4 text-sm md:text-base">
+												Astrologue / Praticienne Reiki /
+												Accompagnement professionnel
+											</p>
+											<div className="flex items-center gap-4 justify-center text-sm text-muted-foreground/70">
+												<span>
+													<strong className="text-foreground">
+														273
+													</strong>{" "}
+													publications
+												</span>
+												<span className="text-border">
+													·
+												</span>
+												<span>
+													<strong className="text-foreground">
+														405
+													</strong>{" "}
+													followers
+												</span>
+											</div>
+										</div>
+									</div>
+
+									{/* CTA */}
+									<Button
+										asChild
+										size="lg"
+										className="w-full group focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
+									>
+										<a
+											href="https://www.instagram.com/emilie.perez_astroreiki_/"
+											target="_blank"
+											rel="noopener noreferrer"
+											aria-label="Suivre Émilie Perez sur Instagram (nouvelle fenêtre)"
+											className="inline-flex items-center justify-center gap-2 bg-pink-500 hover:bg-pink-600 text-white font-medium rounded-md px-4 py-2 shadow-sm transition-colors duration-300 motion-safe:hover:-translate-y-1 motion-safe:hover:rotate-y-1 motion-safe:hover:rotate-x-0.5"
+										>
 											<FaInstagram
-												className="w-5 h-5 text-white"
+												className="w-5 h-5"
 												aria-hidden="true"
 											/>
-										</div>
-									</div>
-
-									<div className="text-center">
-										<h3 className="font-display text-2xl md:text-3xl font-semibold text-foreground mb-2">
-											@emilie.perez_astroreiki_
-										</h3>
-										<p className="text-muted-foreground mb-4 text-sm md:text-base">
-											Astrologue / Praticienne Reiki /
-											Accompagnement professionnel
-										</p>
-										<div className="flex items-center gap-4 justify-center text-sm text-muted-foreground/70">
-											<span>
-												<strong className="text-foreground">
-													273
-												</strong>{" "}
-												publications
-											</span>
-											<span className="text-border">
-												·
-											</span>
-											<span>
-												<strong className="text-foreground">
-													405
-												</strong>{" "}
-												followers
-											</span>
-										</div>
-									</div>
+											<span>Suivre</span>
+											<ExternalLink
+												className="w-4 h-4 group-hover:translate-x-1 transition-transform"
+												aria-hidden="true"
+											/>
+										</a>
+									</Button>
 								</div>
-
-								{/* CTA Instagram */}
-								<Button
-									asChild
-									size="lg"
-									className="w-full group"
-								>
-									<a
-										href="https://www.instagram.com/emilie.perez_astroreiki_/"
-										target="_blank"
-										rel="noopener noreferrer"
-										className="inline-flex items-center justify-center gap-3 bg-gradient-to-r from-pink-500 via-purple-600 to-gold hover:brightness-110 text-white font-medium shadow-gold transition-all duration-300"
-									>
-										<FaInstagram
-											className="w-6 h-6"
-											aria-hidden="true"
-										/>
-										<span className="text-lg">
-											Suivre sur Instagram
-										</span>
-										<ExternalLink
-											className="w-4 h-4 group-hover:translate-x-1 transition-transform"
-											aria-hidden="true"
-										/>
-									</a>
-								</Button>
 							</article>
 
 							{/* CARD FACEBOOK */}
-							<article className="glass-card p-6 md:p-8 hover:shadow-medium transition-all duration-500">
-								<div className="flex flex-col items-center gap-6 mb-8">
-									{/* Photo de profil (même qu'Instagram) */}
-									<div className="relative group/profile">
-										{/* Glow effect */}
-										<div className="absolute -inset-2 bg-gradient-to-br from-blue-500/30 to-blue-700/30 rounded-full blur-xl opacity-0 group-hover/profile:opacity-100 transition-opacity duration-500" />
-
-										<div className="relative w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden border-4 border-blue-500 shadow-medium">
-											<Image
-												src="/assets/emilie-portrait.webp"
-												alt="Émilie Perez Lylusio - Facebook"
-												width={128}
-												height={128}
-												className="object-cover w-full h-full"
-												quality={90}
-											/>
+							<article
+								className="group relative bg-[#f7f5ee] p-6 md:p-8 h-full flex flex-col justify-between
+               border border-black/5 shadow-sm origin-right
+               transition-all duration-700 ease-out
+               hover:[transform:perspective(1200px)_rotateY(4deg)_rotateX(1deg)]
+               hover:-translate-y-1 hover:shadow-xl
+               before:absolute before:inset-0 before:bg-[url('https://www.transparenttextures.com/patterns/felt.png')] before:opacity-15 before:pointer-events-none"
+							>
+								<div className="relative z-10 flex flex-col justify-between h-full">
+									<div className="flex flex-col items-center gap-6 mb-8">
+										{/* Portrait */}
+										<div className="relative group/profile">
+											<div className="absolute -inset-2 bg-gradient-to-br from-blue-500/30 to-blue-700/30 rounded-full blur-xl opacity-0 group-hover/profile:opacity-100 transition-opacity duration-500" />
+											<div className="relative w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden border-4 border-blue-500 shadow-medium">
+												<Image
+													src="/assets/emilie-portrait.webp"
+													alt="Émilie Perez Lylusio - Facebook"
+													width={128}
+													height={128}
+													className="object-cover w-full h-full"
+													quality={90}
+												/>
+											</div>
+											<div className="absolute -bottom-1 -right-1 w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center border-4 border-card shadow-medium">
+												<FaFacebook
+													className="w-5 h-5 text-white"
+													aria-hidden="true"
+												/>
+											</div>
 										</div>
 
-										{/* Badge Facebook */}
-										<div className="absolute -bottom-1 -right-1 w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center border-4 border-card shadow-medium">
+										{/* Texte */}
+										<div className="text-center">
+											<h3 className="font-display text-2xl md:text-3xl font-semibold text-foreground mb-2">
+												Emilie Perez Lylusio
+											</h3>
+											<p className="text-muted-foreground mb-4 text-sm md:text-base">
+												Exploratrice passionnée de
+												l'astrologie et du Reiki
+											</p>
+											<div className="flex items-center gap-4 justify-center text-sm text-muted-foreground/70">
+												<span>
+													<strong className="text-foreground">
+														100
+													</strong>{" "}
+													abonnés
+												</span>
+												<span className="text-border">
+													·
+												</span>
+												<span>
+													<strong className="text-foreground">
+														474
+													</strong>{" "}
+													publications
+												</span>
+											</div>
+										</div>
+									</div>
+
+									{/* CTA */}
+									<Button
+										asChild
+										size="lg"
+										className="w-full group focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
+									>
+										<a
+											href="https://www.facebook.com/share/16cEgpLgk9/"
+											target="_blank"
+											rel="noopener noreferrer"
+											aria-label="Suivre Émilie Perez sur Facebook (nouvelle fenêtre)"
+											className="inline-flex items-center justify-center gap-2 bg-blue-500 hover:bg-blue-600 text-white font-medium rounded-md px-4 py-2 shadow-sm transition-colors duration-300 motion-safe:hover:-translate-y-1 motion-safe:hover:rotate-y-1 motion-safe:hover:rotate-x-0.5"
+										>
 											<FaFacebook
-												className="w-5 h-5 text-white"
+												className="w-5 h-5"
 												aria-hidden="true"
 											/>
-										</div>
-									</div>
-
-									<div className="text-center">
-										<h3 className="font-display text-2xl md:text-3xl font-semibold text-foreground mb-2">
-											Emilie Perez Lylusio
-										</h3>
-										<p className="text-muted-foreground mb-4 text-sm md:text-base">
-											Exploratrice passionnée de
-											l'astrologie et du Reiki
-										</p>
-										<div className="flex items-center gap-4 justify-center text-sm text-muted-foreground/70">
-											<span>
-												<strong className="text-foreground">
-													100
-												</strong>{" "}
-												abonnés
-											</span>
-											<span className="text-border">
-												·
-											</span>
-											<span>
-												<strong className="text-foreground">
-													474
-												</strong>{" "}
-												publications
-											</span>
-										</div>
-									</div>
+											<span>Suivre</span>
+											<ExternalLink
+												className="w-4 h-4 group-hover:translate-x-1 transition-transform"
+												aria-hidden="true"
+											/>
+										</a>
+									</Button>
 								</div>
-
-								{/* CTA Facebook */}
-								<Button
-									asChild
-									size="lg"
-									className="w-full group"
-								>
-									<a
-										href="https://www.facebook.com/share/16cEgpLgk9/"
-										target="_blank"
-										rel="noopener noreferrer"
-										className="inline-flex items-center justify-center gap-3 bg-gradient-to-r from-blue-600 to-blue-800 hover:brightness-110 text-white font-medium shadow-[0_0_30px_rgba(59,130,246,0.3)] transition-all duration-300"
-									>
-										<FaFacebook
-											className="w-6 h-6"
-											aria-hidden="true"
-										/>
-										<span className="text-lg">
-											Suivre sur Facebook
-										</span>
-										<ExternalLink
-											className="w-4 h-4 group-hover:translate-x-1 transition-transform"
-											aria-hidden="true"
-										/>
-									</a>
-								</Button>
 							</article>
 						</div>
 					</div>
 				</section>
 
 				{/* Section 2: Vidéos YouTube */}
-				<section className="py-18 md:py-24">
+				<section
+					aria-label="Vidéos pédagogiques YouTube"
+					className="py-18 md:py-24"
+				>
 					<div className="container mx-auto px-4 sm:px-6 lg:px-8">
 						<div className="text-center mb-12 md:mb-16">
 							<p className="section-label">Sur YouTube</p>
@@ -413,6 +440,7 @@ export default async function RessourcesPage() {
 									href="https://www.youtube.com/@emilielylusio6206"
 									target="_blank"
 									rel="noopener noreferrer"
+									aria-label="Voir toutes mes vidéos sur YouTube (nouvelle fenêtre)"
 									className="inline-flex items-center gap-2"
 								>
 									<FaYoutube
@@ -433,7 +461,10 @@ export default async function RessourcesPage() {
 				</section>
 
 				{/* Section 3: Articles Blog */}
-				<section className="py-20 md:py-28 bg-gradient-to-b from-transparent to-accent/5">
+				<section
+					aria-label="Articles de blog - astrologie, Reiki et développement personnel"
+					className="py-20 md:py-28 bg-gradient-to-b from-transparent to-accent/5"
+				>
 					<div className="container mx-auto px-4 sm:px-6 lg:px-8">
 						<div className="text-center mb-12">
 							<p className="section-label">Sur le blog</p>
@@ -451,6 +482,7 @@ export default async function RessourcesPage() {
 							<Button asChild size="lg" className="group">
 								<Link
 									href="/blog"
+									aria-label="Découvrir tous les articles du blog"
 									className="inline-flex items-center gap-2 bg-gold hover:brightness-110 text-white shadow-gold"
 								>
 									<BookOpen
