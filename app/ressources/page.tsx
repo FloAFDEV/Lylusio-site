@@ -139,7 +139,7 @@ export default async function RessourcesPage() {
 						aria-hidden="true"
 					/>
 
-					<div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+					<div className="container mx-auto pt-10 px-4 sm:px-6 lg:px-8 text-center relative z-10">
 						<div className="max-w-4xl mx-auto">
 							{/* Badge */}
 							<div className="inline-flex items-center gap-2 px-4 py-2 bg-card/50 backdrop-blur-sm border border-border/30 rounded-full mb-8">
@@ -169,7 +169,7 @@ export default async function RessourcesPage() {
 				</section>
 
 				{/* Section 1: Instagram + Facebook (2 cards côte à côte) */}
-				<section className="py-16 md:py-24 bg-gradient-to-b from-transparent via-accent/5 to-transparent relative overflow-hidden">
+				<section className="py-16 bg-gradient-to-b from-transparent via-accent/5 to-transparent relative overflow-hidden">
 					<div className="container mx-auto px-4 sm:px-6 lg:px-8">
 						<div className="text-center mb-12 md:mb-16">
 							<p className="section-label">Sur les réseaux</p>
@@ -180,7 +180,8 @@ export default async function RessourcesPage() {
 								uivez-moi sur les réseaux
 							</h2>
 							<p className="text-muted-foreground max-w-2xl mx-auto text-base md:text-lg">
-								Ateliers, lives, cercles de paroles et échanges avec la communauté
+								Ateliers, lives, cercles de paroles et échanges
+								avec la communauté
 							</p>
 						</div>
 
@@ -301,7 +302,8 @@ export default async function RessourcesPage() {
 											Emilie Perez Lylusio
 										</h3>
 										<p className="text-muted-foreground mb-4 text-sm md:text-base">
-											Exploratrice passionnée de l'astrologie et du Reiki
+											Exploratrice passionnée de
+											l'astrologie et du Reiki
 										</p>
 										<div className="flex items-center gap-4 justify-center text-sm text-muted-foreground/70">
 											<span>
