@@ -160,6 +160,19 @@ export const pageMetadata = {
     },
   },
 
+  ressources: {
+    title: 'Ressources Gratuites - Vidéos, Ateliers & Articles | Lylusio',
+    description: 'Découvrez mes contenus gratuits : vidéos pédagogiques sur YouTube, ateliers lives sur Instagram, articles de blog approfondis sur l\'astrologie et le Reiki.',
+    canonical: `${baseUrl}/ressources`,
+    keywords: ['ressources astrologie', 'vidéos reiki', 'ateliers lives', 'contenus gratuits astrologie', 'youtube astrologie toulouse'],
+    openGraph: {
+      url: `${baseUrl}/ressources`,
+      title: 'Ressources Gratuites - Vidéos, Ateliers & Articles',
+      description: 'Vidéos pédagogiques, ateliers lives et articles approfondis pour enrichir votre chemin',
+      images: [{ url: '/assets/logo-lylusio.webp', width: 1200, height: 630 }],
+    },
+  },
+
   faq: {
     title: 'Questions Fréquentes - Astrologie & Reiki | Lylusio',
     description: 'Réponses aux questions fréquentes sur les consultations d\'astrologie, les soins Reiki, les tarifs et le déroulement des séances.',

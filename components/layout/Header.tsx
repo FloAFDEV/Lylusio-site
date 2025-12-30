@@ -290,51 +290,85 @@ export const Header = () => {
 
 			{/* ================= Mobile menu ================= */}
 			<div
-				className={`lg:hidden fixed top-0 right-0 h-full w-3/4 max-w-xs bg-card/95 shadow-lg border-l border-accent/20 z-50 transition-all duration-500 ease-out ${
+				className={`lg:hidden fixed top-0 right-0 h-full w-3/4 max-w-xs bg-card/95 backdrop-blur-md shadow-lg border-l border-accent/20 z-50 transition-all duration-500 ease-in-out ${
 					isMobileOpen ? "translate-x-0" : "translate-x-full"
 				}`}
 				role="dialog"
 				aria-label="Menu de navigation mobile"
 			>
 				<nav
-					className="p-6 flex flex-col gap-3"
+					className="p-6 flex flex-col gap-3 h-full"
 					aria-label="Navigation mobile"
 				>
-					{mainLinks.map((link) =>
-						link.hasSubmenu ? (
-							<div key={link.label}>
+					<div className="flex-1">
+						{mainLinks.map((link, index) =>
+							link.hasSubmenu ? (
+								<div
+									key={link.label}
+									className="transition-all duration-500 ease-out"
+									style={{
+										opacity: isMobileOpen ? 1 : 0,
+										transform: isMobileOpen ? "translateX(0)" : "translateX(20px)",
+										transitionDelay: isMobileOpen ? `${index * 80}ms` : "0ms",
+									}}
+								>
+									<Link
+										href={link.href}
+										onClick={handleNavClick}
+										className="block font-medium text-foreground/80 hover:text-accent py-3 transition-colors duration-300"
+									>
+										<MenuLabel label={link.label} />
+									</Link>
+
+									<div className="pl-4 py-2 space-y-1 border-l-2 border-accent/30 ml-2">
+										{subItems.map((item, subIndex) => (
+											<Link
+												key={item.href}
+												href={item.href}
+												onClick={handleNavClick}
+												className="block font-medium text-sm text-foreground/80 hover:text-accent hover:bg-accent/5 rounded-lg px-3 py-2 transition-all duration-300"
+												style={{
+													opacity: isMobileOpen ? 1 : 0,
+													transform: isMobileOpen ? "translateX(0)" : "translateX(15px)",
+													transitionDelay: isMobileOpen ? `${index * 80 + 150 + subIndex * 100}ms` : "0ms",
+												}}
+											>
+												<MenuLabel label={item.label} />
+											</Link>
+										))}
+									</div>
+								</div>
+							) : (
 								<Link
+									key={link.href}
 									href={link.href}
 									onClick={handleNavClick}
-									className="block font-medium text-foreground/80 hover:text-accent py-3 transition-colors duration-300"
+									className="block font-medium text-foreground/80 hover:text-accent py-3 transition-all duration-500 ease-out"
+									style={{
+										opacity: isMobileOpen ? 1 : 0,
+										transform: isMobileOpen ? "translateX(0)" : "translateX(20px)",
+										transitionDelay: isMobileOpen ? `${index * 80}ms` : "0ms",
+									}}
 								>
 									<MenuLabel label={link.label} />
 								</Link>
+							)
+						)}
+					</div>
 
-								<div className="pl-4 py-2 space-y-1 border-l-2 border-accent/30 ml-2">
-									{subItems.map((item) => (
-										<Link
-											key={item.href}
-											href={item.href}
-											onClick={handleNavClick}
-											className="block font-medium text-sm text-foreground/80 hover:text-accent hover:bg-accent/5 rounded-lg px-3 py-2 transition-all duration-300"
-										>
-											<MenuLabel label={item.label} />
-										</Link>
-									))}
-								</div>
-							</div>
-						) : (
-							<Link
-								key={link.href}
-								href={link.href}
-								onClick={handleNavClick}
-								className="font-medium text-foreground/80 hover:text-accent py-3 transition-colors duration-300"
-							>
-								<MenuLabel label={link.label} />
-							</Link>
-						)
-					)}
+					{/* Texte en bas du menu */}
+					<div
+						className="border-t border-border/30 pt-4 transition-all duration-500 ease-out"
+						style={{
+							opacity: isMobileOpen ? 1 : 0,
+							transform: isMobileOpen ? "translateY(0)" : "translateY(10px)",
+							transitionDelay: isMobileOpen ? `${mainLinks.length * 80 + 200}ms` : "0ms",
+						}}
+					>
+						<p className="text-xs text-muted-foreground text-center leading-relaxed">
+							Consultations en cabinet<br/>à Cépet ou en ligne
+						</p>
+					</div>
 				</nav>
 			</div>
 		</>

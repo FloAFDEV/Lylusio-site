@@ -1,4 +1,3 @@
-import { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { FaInstagram, FaYoutube, FaFacebook } from "react-icons/fa";
@@ -15,46 +14,10 @@ import Footer from "@/components/layout/Footer";
 import FloatingCTA from "@/components/FloatingCTA";
 import { Button } from "@/components/ui/button";
 import { getYouTubeVideoInfo } from "@/lib/youtube";
+import { generateMetadata as genMeta } from "@/content/seo";
 
 // SEO Metadata
-export const metadata: Metadata = {
-	title: "Ressources Gratuites - Ateliers, Vidéos & Articles | Lylusio",
-	description:
-		"Découvrez mes vidéos pédagogiques sur l'astrologie et le Reiki, suivez mes ateliers lives sur Instagram et Facebook, et approfondissez vos connaissances avec mes articles de fond.",
-	keywords: [
-		"ressources astrologie",
-		"vidéos reiki",
-		"ateliers lives",
-		"articles développement personnel",
-		"Émilie Perez",
-		"Lylusio",
-		"Toulouse",
-	],
-	openGraph: {
-		title: "Ressources Gratuites - Lylusio",
-		description:
-			"Vidéos, ateliers lives et articles pour approfondir votre chemin personnel",
-		url: "https://lylusio.fr/ressources",
-		siteName: "Lylusio - Émilie Perez",
-		images: [
-			{
-				url: "https://lylusio.fr/og-image.jpg",
-				width: 1200,
-				height: 630,
-				alt: "Lylusio - Ressources Gratuites",
-			},
-		],
-		locale: "fr_FR",
-		type: "website",
-	},
-	twitter: {
-		card: "summary_large_image",
-		title: "Ressources Gratuites - Lylusio",
-		description:
-			"Vidéos, ateliers lives et articles pour approfondir votre chemin personnel",
-		images: ["https://lylusio.fr/og-image.jpg"],
-	},
-};
+export const metadata = genMeta("ressources");
 
 // Revalidate every 24 hours
 export const revalidate = 86400;
