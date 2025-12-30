@@ -13,6 +13,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import FloatingCTA from "@/components/FloatingCTA";
 import { Button } from "@/components/ui/button";
+import { YouTubeEmbed } from "@/components/YouTubeEmbed";
 import { getYouTubeVideoInfo } from "@/lib/youtube";
 import { generateMetadata as genMeta } from "@/content/seo";
 
@@ -468,23 +469,18 @@ export default async function RessourcesPage() {
 							{videoInfos.map((video) => (
 								<article
 									key={video.id}
-									className="group glass-card overflow-hidden hover:shadow-medium transition-all duration-500"
+									className="group bg-card rounded-2xl md:rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 border border-border/20"
 								>
-									<div className="aspect-video relative">
-										<iframe
-											src={`https://www.youtube.com/embed/${video.id}`}
-											title={video.title}
-											allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-											allowFullScreen
-											loading="lazy"
-											className="w-full h-full rounded-t-2xl md:rounded-t-3xl border-0"
-										/>
-									</div>
-									<div className="p-6 md:p-7">
-										<h3 className="font-display text-lg md:text-xl text-foreground mb-2">
+									<YouTubeEmbed
+										videoId={video.id}
+										title={video.title}
+										thumbnailUrl={video.thumbnailUrl}
+									/>
+									<div className="p-6 md:p-7 bg-card">
+										<h3 className="font-heading text-lg md:text-xl font-bold text-foreground mb-2 line-clamp-2">
 											{video.title}
 										</h3>
-										<p className="text-sm text-muted-foreground/70">
+										<p className="text-sm text-muted-foreground">
 											Par {video.author}
 										</p>
 									</div>

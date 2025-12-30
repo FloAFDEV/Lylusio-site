@@ -121,12 +121,15 @@ const RessourcesCTA = () => {
 					<div
 						role="region"
 						aria-labelledby="free-resources-title"
-						className="bg-card/80 backdrop-blur-sm rounded-2xl md:rounded-3xl p-8 md:p-12 text-center border border-border/30 shadow-medium"
+						className="relative bg-gradient-to-br from-card via-card/95 to-card/90 backdrop-blur-md rounded-3xl md:rounded-[2rem] p-8 md:p-12 lg:p-16 text-center border-2 border-accent/20 shadow-lg overflow-hidden"
 					>
+						{/* Decorative glow effects */}
+						<div className="absolute -top-20 -right-20 w-40 h-40 bg-accent/20 rounded-full blur-3xl" aria-hidden="true" />
+						<div className="absolute -bottom-20 -left-20 w-40 h-40 bg-gold/15 rounded-full blur-3xl" aria-hidden="true" />
 						{/* Icon badge */}
-						<div className="inline-flex items-center justify-center w-16 h-16 bg-gold/10 rounded-full mb-6 shadow-md">
+						<div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-gold/20 to-accent/20 rounded-2xl mb-6 shadow-lg ring-2 ring-accent/30 relative">
 							<Sparkles
-								className="w-8 h-8 text-gold"
+								className="w-10 h-10 text-gold drop-shadow-md"
 								aria-hidden="true"
 							/>
 							<span className="sr-only">
@@ -136,12 +139,12 @@ const RessourcesCTA = () => {
 
 						<h2
 							id="free-resources-title"
-							className="font-display text-2xl md:text-3xl lg:text-4xl text-foreground mb-4"
+							className="font-display text-2xl md:text-3xl lg:text-4xl text-foreground mb-5 relative"
 						>
 							{renderTitle("Découvrez mes contenus gratuits")}
 						</h2>
 
-						<p className="text-muted-foreground mb-8 max-w-2xl mx-auto text-base md:text-lg leading-relaxed">
+						<p className="text-muted-foreground mb-10 max-w-2xl mx-auto text-base md:text-lg lg:text-xl leading-relaxed relative">
 							Vidéos pédagogiques, ateliers lives et articles
 							approfondis pour enrichir votre chemin
 						</p>

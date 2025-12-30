@@ -242,7 +242,7 @@ export const Header = () => {
 					{/* ================= Mobile toggle ================= */}
 					<button
 						onClick={() => setIsMobileOpen((v) => !v)}
-						className="lg:hidden p-2 flex flex-col items-center justify-center gap-1.5 w-10 h-10 relative group"
+						className="lg:hidden p-2 flex flex-col items-center justify-center gap-1.5 w-12 h-12 relative group bg-card/50 rounded-lg border border-border/30"
 						aria-label={
 							isMobileOpen ? "Fermer le menu" : "Ouvrir le menu"
 						}
@@ -251,14 +251,14 @@ export const Header = () => {
 						{/* Glow effect on open */}
 						{isMobileOpen && (
 							<span
-								className="absolute inset-0 bg-accent/10 rounded-lg blur-sm"
+								className="absolute inset-0 bg-accent/20 rounded-lg blur-sm ring-2 ring-accent/40"
 								aria-hidden="true"
 							/>
 						)}
 						<span
 							className={`relative block w-6 h-[3px] transition-all duration-300 ${
 								isMobileOpen
-									? "rotate-45 translate-y-2 bg-accent shadow-[0_0_8px_hsl(var(--accent)/0.6)]"
+									? "rotate-45 translate-y-2 bg-accent shadow-[0_0_12px_hsl(var(--accent)/0.8)] scale-110"
 									: "bg-foreground shadow-sm"
 							}`}
 						/>
@@ -270,7 +270,7 @@ export const Header = () => {
 						<span
 							className={`relative block w-6 h-[3px] transition-all duration-300 ${
 								isMobileOpen
-									? "-rotate-45 -translate-y-2 bg-accent shadow-[0_0_8px_hsl(var(--accent)/0.6)]"
+									? "-rotate-45 -translate-y-2 bg-accent shadow-[0_0_12px_hsl(var(--accent)/0.8)] scale-110"
 									: "bg-foreground shadow-sm"
 							}`}
 						/>

@@ -250,9 +250,7 @@ const Footer = () => {
 						/>
 					</svg>
 				</div>
-				{/* Soft glow orbs */}
-				<div className="absolute top-1/4 left-1/4 w-64 h-64 bg-gold/5 rounded-full blur-xl" />
-				<div className="absolute bottom-1/3 right-1/4 w-48 h-48 bg-sky/5 rounded-full blur-xl" />
+				{/* Soft glow orbs - effet nuit étoilée */}
 			</div>
 			{/* CTA Section */}
 			<div className="border-b border-primary-foreground/20 relative overflow-hidden">
@@ -268,7 +266,7 @@ const Footer = () => {
 					{stars.map((star, i) => (
 						<div
 							key={i}
-							className="absolute w-1.5 h-1.5 bg-gold/30 rounded-full animate-gentle-pulse shadow-[0_0_8px_hsl(var(--gold)/0.4)]"
+							className="absolute w-1.5 h-1.5 bg-gold/30 rounded-full animate-gentle-pulse"
 							style={{
 								top: `${star.top}%`,
 								left: `${star.left}%`,
@@ -306,10 +304,6 @@ const Footer = () => {
 					{/* Brand - Optimisation du Spacing vertical pour la hiérarchie */}
 					<div className="lg:col-span-3 relative">
 						<div className="relative h-11 md:h-14 w-[132px] md:w-[168px] mb-6 group">
-							<div
-								className="absolute inset-0 bg-gold/40 rounded-xl blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-								aria-hidden="true"
-							/>
 							<Image
 								src="/assets/logo-lylusio.webp"
 								alt="Lylusio"
@@ -333,18 +327,10 @@ const Footer = () => {
 									href={link.href}
 									target="_blank"
 									rel="noopener noreferrer"
-									className="relative w-11 h-11 md:w-12 md:h-12 flex items-center justify-center bg-primary-foreground/15 border-2 border-primary-foreground/30 text-primary-foreground transition-all duration-500 rounded-full group overflow-hidden hover:border-gold hover:bg-primary-foreground/25"
+									className="relative w-11 h-11 md:w-12 md:h-12 flex items-center justify-center bg-primary-foreground/15 border-2 border-primary-foreground/30 text-primary-foreground transition-all duration-300 rounded-full group overflow-hidden hover:border-accent hover:bg-primary-foreground/25 hover:scale-105"
 									aria-label={link.label}
 								>
-									<div
-										className="absolute inset-0 bg-gradient-to-br from-gold/20 via-accent/15 to-gold/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-										aria-hidden="true"
-									/>
-									<div
-										className="absolute inset-0 bg-gold/30 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-										aria-hidden="true"
-									/>
-									<link.icon className="w-5 h-5 md:w-5 md:h-5 group-hover:scale-125 group-hover:rotate-12 transition-all duration-300 relative z-10" />
+									<link.icon className="w-5 h-5 md:w-5 md:h-5 group-hover:scale-110 transition-transform duration-300 relative z-10" />
 								</a>
 							))}
 						</div>
@@ -364,7 +350,7 @@ const Footer = () => {
 							>
 								<h4
 									id="footer-navigation-title"
-									className="font-calligraphic text-base md:text-2xl font-bold text-gold-glow flex items-center mb-1"
+									className="font-calligraphic text-xl md:text-2xl font-bold text-gold-light flex items-center mb-1"
 								>
 									<TitleIconSpacer /> Navigation
 								</h4>
@@ -392,7 +378,7 @@ const Footer = () => {
 												className="text-left text-primary-foreground/70 hover:text-primary-foreground transition-all duration-300 text-sm md:text-base relative group inline-flex items-center gap-2.5"
 											>
 												<span
-													className="w-1.5 h-1.5 rounded-full bg-gold/60 group-hover:bg-gold group-hover:shadow-[0_0_12px_hsl(var(--gold)/0.8)] transition-all duration-300"
+													className="w-1.5 h-1.5 rounded-full bg-gold/60 group-hover:bg-gold transition-all duration-300"
 													aria-hidden="true"
 												/>
 												<span className="group-hover:translate-x-1.5 transition-transform duration-300">
@@ -407,7 +393,7 @@ const Footer = () => {
 												className="text-left text-primary-foreground/70 hover:text-primary-foreground transition-all duration-300 text-sm md:text-base relative group inline-flex items-center gap-2.5"
 											>
 												<span
-													className="w-1.5 h-1.5 rounded-full bg-gold/60 group-hover:bg-gold group-hover:shadow-[0_0_12px_hsl(var(--gold)/0.8)] transition-all duration-300"
+													className="w-1.5 h-1.5 rounded-full bg-gold/60 group-hover:bg-gold transition-all duration-300"
 													aria-hidden="true"
 												/>
 												<span className="group-hover:translate-x-1.5 transition-transform duration-300">
@@ -422,7 +408,7 @@ const Footer = () => {
 
 						{/* Contact */}
 						<div className="flex-1">
-							<h4 className="font-calligraphic text-base md:text-2xl font-bold text-gold-glow flex items-center mb-1">
+							<h4 className="font-calligraphic text-xl md:text-2xl font-bold text-gold-light flex items-center mb-1">
 								<TitleIconSpacer /> Contact
 							</h4>
 							<ul className="space-y-4 md:space-y-5 mt-4 md:mt-6">
@@ -438,10 +424,6 @@ const Footer = () => {
 											aria-label="Afficher le numéro de téléphone"
 										>
 											<div className="relative w-8 h-8 md:w-9 md:h-9 rounded-full bg-primary-foreground/10 flex items-center justify-center shrink-0 group-hover:bg-primary-foreground/20 transition-colors duration-300">
-												<div
-													className="absolute inset-0 bg-gold/20 rounded-full blur-md opacity-0 group-hover:opacity-60 transition-opacity duration-300"
-													aria-hidden="true"
-												/>
 												<Phone
 													className="w-4 h-4 text-primary-foreground/70 relative z-10 group-hover:text-primary-foreground group-hover:scale-110 transition-all duration-300"
 													aria-hidden="true"
@@ -461,10 +443,6 @@ const Footer = () => {
 											className="flex items-center gap-3 text-primary-foreground/70 hover:text-primary-foreground transition-colors duration-300 text-sm md:text-base animate-reveal-contact group"
 										>
 											<div className="relative w-8 h-8 md:w-9 md:h-9 rounded-full bg-primary-foreground/15 flex items-center justify-center shrink-0 group-hover:bg-primary-foreground/25 transition-colors duration-300">
-												<div
-													className="absolute inset-0 bg-gold/30 rounded-full blur-md opacity-60 group-hover:opacity-100 transition-opacity duration-300"
-													aria-hidden="true"
-												/>
 												<Phone
 													className="w-4 h-4 text-primary-foreground relative z-10 group-hover:scale-110 transition-transform duration-300"
 													aria-hidden="true"
@@ -488,10 +466,6 @@ const Footer = () => {
 											aria-label="Afficher l'email de contact"
 										>
 											<div className="relative w-8 h-8 md:w-9 md:h-9 rounded-full bg-primary-foreground/10 flex items-center justify-center shrink-0 group-hover:bg-primary-foreground/20 transition-colors duration-300">
-												<div
-													className="absolute inset-0 bg-gold/20 rounded-full blur-md opacity-0 group-hover:opacity-60 transition-opacity duration-300"
-													aria-hidden="true"
-												/>
 												<Mail
 													className="w-4 h-4 text-primary-foreground/70 relative z-10 group-hover:text-primary-foreground group-hover:scale-110 transition-all duration-300"
 													aria-hidden="true"
@@ -511,10 +485,6 @@ const Footer = () => {
 											className="flex items-center gap-3 text-primary-foreground/70 hover:text-primary-foreground transition-colors duration-300 text-sm md:text-base animate-reveal-contact group"
 										>
 											<div className="relative w-8 h-8 md:w-9 md:h-9 rounded-full bg-primary-foreground/15 flex items-center justify-center shrink-0 group-hover:bg-primary-foreground/25 transition-colors duration-300">
-												<div
-													className="absolute inset-0 bg-gold/30 rounded-full blur-md opacity-60 group-hover:opacity-100 transition-opacity duration-300"
-													aria-hidden="true"
-												/>
 												<Mail
 													className="w-4 h-4 text-primary-foreground relative z-10 group-hover:scale-110 transition-transform duration-300"
 													aria-hidden="true"
@@ -569,15 +539,10 @@ const Footer = () => {
 
 					{/* Map */}
 					<div className="lg:col-span-4 mt-8 lg:mt-0">
-						<h4 className="font-calligraphic text-base md:text-2xl font-bold mb-5 md:mb-6 text-gold-glow flex items-center">
+						<h4 className="font-calligraphic text-xl md:text-2xl font-bold mb-5 md:mb-6 text-gold-light flex items-center">
 							<TitleIconSpacer /> Localisation
 						</h4>
-						<div className="relative group/map rounded-2xl overflow-hidden border border-gold/30 shadow-[0_4px_20px_-4px_hsl(var(--gold)/0.2)] hover:shadow-[0_8px_30px_-4px_hsl(var(--gold)/0.4),0_0_20px_-4px_hsl(var(--accent)/0.2)] transition-all duration-500">
-							{/* Golden glow effect */}
-							<div
-								className="absolute inset-0 bg-gradient-to-br from-gold/5 via-transparent to-accent/5 opacity-0 group-hover/map:opacity-100 transition-opacity duration-500 pointer-events-none z-10"
-								aria-hidden="true"
-							/>
+						<div className="relative group/map rounded-2xl overflow-hidden border border-border/30 shadow-sm hover:shadow-md transition-all duration-300">
 
 							<iframe
 								src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2897.188229409235!2d1.4298480117613777!3d43.748421570977264!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12aea7de29a6bfcf%3A0xe7a375cbe60d1076!2sEmilie%20Perez%20Astrologue%2C%20Praticienne%20Reiki%2C%20Coaching%20professionnel%20-%20Lylusio!5e1!3m2!1sfr!2sfr!4v1765194360692!5m2!1sfr!2sfr"
