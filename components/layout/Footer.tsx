@@ -38,6 +38,12 @@ const Footer = () => {
 	const [stars, setStars] = useState<
 		Array<{ top: number; left: number; delay: number }>
 	>([]);
+	const [backgroundStars, setBackgroundStars] = useState<
+		Array<{ left: number; top: number; delay: number; duration: number }>
+	>([]);
+	const [accentStars, setAccentStars] = useState<
+		Array<{ left: number; top: number; delay: number }>
+	>([]);
 
 	useEffect(() => {
 		// Generate random positions only after component mounts (client-side only)
@@ -46,6 +52,23 @@ const Footer = () => {
 				top: 15 + Math.random() * 70,
 				left: 10 + Math.random() * 80,
 				delay: Math.random() * 3,
+			}))
+		);
+		// Generate background decorative stars
+		setBackgroundStars(
+			Array.from({ length: 30 }, () => ({
+				left: Math.random() * 100,
+				top: Math.random() * 100,
+				delay: Math.random() * 3,
+				duration: 2 + Math.random() * 2,
+			}))
+		);
+		// Generate larger accent stars
+		setAccentStars(
+			Array.from({ length: 8 }, () => ({
+				left: 10 + Math.random() * 80,
+				top: 10 + Math.random() * 80,
+				delay: Math.random() * 4,
 			}))
 		);
 	}, []);
@@ -145,27 +168,27 @@ const Footer = () => {
 				aria-hidden="true"
 			>
 				{/* Stars */}
-				{[...Array(30)].map((_, i) => (
+				{backgroundStars.map((star, i) => (
 					<div
 						key={i}
 						className="absolute w-1 h-1 bg-gold-light/30 rounded-full animate-twinkle"
 						style={{
-							left: `${Math.random() * 100}%`,
-							top: `${Math.random() * 100}%`,
-							animationDelay: `${Math.random() * 3}s`,
-							animationDuration: `${2 + Math.random() * 2}s`,
+							left: `${star.left}%`,
+							top: `${star.top}%`,
+							animationDelay: `${star.delay}s`,
+							animationDuration: `${star.duration}s`,
 						}}
 					/>
 				))}
 				{/* Larger accent stars */}
-				{[...Array(8)].map((_, i) => (
+				{accentStars.map((star, i) => (
 					<div
 						key={`star-lg-${i}`}
 						className="absolute w-1.5 h-1.5 bg-gold/40 rounded-full animate-pulse-slow"
 						style={{
-							left: `${10 + Math.random() * 80}%`,
-							top: `${10 + Math.random() * 80}%`,
-							animationDelay: `${Math.random() * 4}s`,
+							left: `${star.left}%`,
+							top: `${star.top}%`,
+							animationDelay: `${star.delay}s`,
 						}}
 					/>
 				))}
