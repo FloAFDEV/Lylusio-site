@@ -103,7 +103,7 @@ const Footer = () => {
 				asChild
 				size="lg"
 				aria-label="Réserver une séance avec Émilie Perez via Calendly"
-				className="relative w-full sm:w-auto bg-gold hover:bg-gold-light text-foreground font-medium shadow-gold hover:scale-105 transition-all duration-300"
+				className="relative w-full sm:w-auto bg-gold hover:bg-gold text-black font-medium hover:scale-105 transition-all duration-300"
 				onClick={() => trackBookingClick("footer_cta")}
 			>
 				<a
@@ -133,16 +133,112 @@ const Footer = () => {
 
 	return (
 		<footer
-			className="bg-primary text-primary-foreground"
+			className="relative bg-gradient-to-b from-primary via-primary to-[hsl(213,40%,25%)] text-primary-foreground overflow-hidden"
 			role="contentinfo"
+			aria-label="Pied de page du site Lylusio"
 			itemScope
 			itemType="https://schema.org/LocalBusiness"
 		>
+			{/* Celestial Background Decorations */}
+			<div
+				className="absolute inset-0 pointer-events-none overflow-hidden"
+				aria-hidden="true"
+			>
+				{/* Stars */}
+				{[...Array(30)].map((_, i) => (
+					<div
+						key={i}
+						className="absolute w-1 h-1 bg-gold-light/30 rounded-full animate-twinkle"
+						style={{
+							left: `${Math.random() * 100}%`,
+							top: `${Math.random() * 100}%`,
+							animationDelay: `${Math.random() * 3}s`,
+							animationDuration: `${2 + Math.random() * 2}s`,
+						}}
+					/>
+				))}
+				{/* Larger accent stars */}
+				{[...Array(8)].map((_, i) => (
+					<div
+						key={`star-lg-${i}`}
+						className="absolute w-1.5 h-1.5 bg-gold/40 rounded-full animate-pulse-slow"
+						style={{
+							left: `${10 + Math.random() * 80}%`,
+							top: `${10 + Math.random() * 80}%`,
+							animationDelay: `${Math.random() * 4}s`,
+						}}
+					/>
+				))}
+				{/* Subtle constellation lines */}
+				<div className="absolute top-20 left-10 w-32 h-32 opacity-10">
+					<svg viewBox="0 0 100 100" className="w-full h-full">
+						<line
+							x1="20"
+							y1="30"
+							x2="50"
+							y2="20"
+							stroke="hsl(var(--gold))"
+							strokeWidth="0.5"
+						/>
+						<line
+							x1="50"
+							y1="20"
+							x2="80"
+							y2="40"
+							stroke="hsl(var(--gold))"
+							strokeWidth="0.5"
+						/>
+						<line
+							x1="80"
+							y1="40"
+							x2="60"
+							y2="70"
+							stroke="hsl(var(--gold))"
+							strokeWidth="0.5"
+						/>
+					</svg>
+				</div>
+				<div className="absolute bottom-40 right-20 w-40 h-40 opacity-10">
+					<svg viewBox="0 0 100 100" className="w-full h-full">
+						<line
+							x1="10"
+							y1="50"
+							x2="40"
+							y2="30"
+							stroke="hsl(var(--gold))"
+							strokeWidth="0.5"
+						/>
+						<line
+							x1="40"
+							y1="30"
+							x2="70"
+							y2="50"
+							stroke="hsl(var(--gold))"
+							strokeWidth="0.5"
+						/>
+						<line
+							x1="70"
+							y1="50"
+							x2="90"
+							y2="20"
+							stroke="hsl(var(--gold))"
+							strokeWidth="0.5"
+						/>
+					</svg>
+				</div>
+				{/* Soft glow orbs */}
+				<div className="absolute top-1/4 left-1/4 w-64 h-64 bg-gold/5 rounded-full blur-xl" />
+				<div className="absolute bottom-1/3 right-1/4 w-48 h-48 bg-sky/5 rounded-full blur-xl" />
+			</div>
 			{/* CTA Section */}
-			<div className="relative overflow-hidden">
-				{/* Decorative background with stars */}
+			<div className="border-b border-primary-foreground/20 relative overflow-hidden">
+				{/* Decorative background with gradient and stars */}
 				<div
-					className="absolute inset-0 pointer-events-none"
+					className="absolute inset-0 bg-gradient-to-br from-primary via-primary to-primary/95"
+					aria-hidden="true"
+				/>
+				<div
+					className="absolute inset-0 overflow-hidden pointer-events-none"
 					aria-hidden="true"
 				>
 					{stars.map((star, i) => (
@@ -158,11 +254,7 @@ const Footer = () => {
 					))}
 				</div>
 
-				{/* Golden glow behind title */}
-				<div
-					className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-gold/15 rounded-full blur-[140px] opacity-60"
-					aria-hidden="true"
-				/>
+				{/* Golden glow behind title - REINFORCED */}
 
 				<div className="container mx-auto px-5 md:px-8 lg:px-10 py-12 md:py-24 lg:py-32 text-center relative z-10">
 					<GoldenPlantBadge
@@ -173,7 +265,7 @@ const Footer = () => {
 						Prendre rendez-vous
 					</p>
 					<h3 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-normal mb-4 md:mb-6 leading-tight text-primary-foreground group inline-block">
-						<span className="group-hover:text-gold-light transition-colors duration-500">
+						<span className="group-hover:text-gold-light transition-colors duration-500 font-calligraphic">
 							Prête à vous reconnecter à vous-même ?
 						</span>
 					</h3>
@@ -188,7 +280,7 @@ const Footer = () => {
 			{/* Main Footer */}
 			<div className="container mx-auto px-5 md:px-8 lg:px-12 py-12 md:py-20 lg:py-24">
 				<div className="grid gap-10 md:gap-14 lg:grid-cols-12">
-					{/* Brand */}
+					{/* Brand - Optimisation du Spacing vertical pour la hiérarchie */}
 					<div className="lg:col-span-3 relative">
 						<div className="relative h-11 md:h-14 w-[132px] md:w-[168px] mb-6 group">
 							<div
@@ -210,6 +302,7 @@ const Footer = () => {
 							transitions de vie. Un espace pour traverser vos
 							transitions avec lucidité et douceur.
 						</p>
+
 						<div className="flex gap-3">
 							{socialLinks.map((link) => (
 								<a
@@ -248,7 +341,7 @@ const Footer = () => {
 							>
 								<h4
 									id="footer-navigation-title"
-									className="font-display text-base md:text-lg font-bold text-white flex items-center mb-1"
+									className="font-calligraphic text-base md:text-2xl font-bold text-gold-glow flex items-center mb-1"
 								>
 									<TitleIconSpacer /> Navigation
 								</h4>
@@ -306,7 +399,7 @@ const Footer = () => {
 
 						{/* Contact */}
 						<div className="flex-1">
-							<h4 className="font-display text-base md:text-lg font-bold text-white flex items-center mb-1">
+							<h4 className="font-calligraphic text-base md:text-2xl font-bold text-gold-glow flex items-center mb-1">
 								<TitleIconSpacer /> Contact
 							</h4>
 							<ul className="space-y-4 md:space-y-5 mt-4 md:mt-6">
@@ -360,7 +453,6 @@ const Footer = () => {
 										</a>
 									)}
 								</li>
-
 								{/* EMAIL */}
 								<li itemProp="email">
 									{!showEmail ? (
@@ -411,7 +503,6 @@ const Footer = () => {
 										</a>
 									)}
 								</li>
-
 								{/* ADDRESS */}
 								<li
 									className="flex items-start gap-3 text-primary-foreground/70 text-sm md:text-base group"
@@ -455,14 +546,16 @@ const Footer = () => {
 
 					{/* Map */}
 					<div className="lg:col-span-4 mt-8 lg:mt-0">
-						<h4 className="font-display text-base md:text-lg font-bold mb-5 md:mb-6 text-white flex items-center">
+						<h4 className="font-calligraphic text-base md:text-2xl font-bold mb-5 md:mb-6 text-gold-glow flex items-center">
 							<TitleIconSpacer /> Localisation
 						</h4>
 						<div className="relative group/map rounded-2xl overflow-hidden border border-gold/30 shadow-[0_4px_20px_-4px_hsl(var(--gold)/0.2)] hover:shadow-[0_8px_30px_-4px_hsl(var(--gold)/0.4),0_0_20px_-4px_hsl(var(--accent)/0.2)] transition-all duration-500">
+							{/* Golden glow effect */}
 							<div
 								className="absolute inset-0 bg-gradient-to-br from-gold/5 via-transparent to-accent/5 opacity-0 group-hover/map:opacity-100 transition-opacity duration-500 pointer-events-none z-10"
 								aria-hidden="true"
 							/>
+
 							<iframe
 								src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2897.188229409235!2d1.4298480117613777!3d43.748421570977264!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12aea7de29a6bfcf%3A0xe7a375cbe60d1076!2sEmilie%20Perez%20Astrologue%2C%20Praticienne%20Reiki%2C%20Coaching%20professionnel%20-%20Lylusio!5e1!3m2!1sfr!2sfr!4v1765194360692!5m2!1sfr!2sfr"
 								width="100%"
@@ -480,7 +573,7 @@ const Footer = () => {
 			</div>
 
 			{/* Bottom */}
-			<div className="relative border-t border-primary-foreground/20">
+			<div className="relative border-t border-gold/30">
 				<div className="container mx-auto px-5 md:px-8 lg:px-12 py-7 md:py-9 flex flex-col sm:flex-row justify-between items-center gap-4">
 					<p className="text-primary-foreground/80 text-xs md:text-sm flex items-center gap-2.5 tracking-wide">
 						<span
@@ -489,25 +582,34 @@ const Footer = () => {
 						/>
 						© {currentYear} Lylusio · Tous droits réservés
 					</p>
-					<div className="flex flex-wrap justify-center sm:justify-end gap-4 md:gap-6 text-primary-foreground/70 text-xs md:text-sm">
-						<a
-							href="/cgu"
-							className="hover:text-primary-foreground transition-colors duration-300"
-						>
-							CGU
-						</a>
-						<a
+					<div className="flex flex-wrap justify-center gap-5 md:gap-7 text-xs md:text-sm">
+						<Link
 							href="/mentions-legales"
-							className="hover:text-primary-foreground transition-colors duration-300"
+							className="text-primary-foreground/80 hover:text-primary-foreground transition-all duration-300 relative group"
 						>
-							Mentions légales
-						</a>
-						<a
-							href="/politique-de-confidentialite"
-							className="hover:text-primary-foreground transition-colors duration-300"
+							<span className="group-hover:translate-x-1 inline-block transition-transform duration-300">
+								Mentions légales
+							</span>
+							<span className="absolute -bottom-0.5 left-0 w-0 h-[2px] bg-gradient-to-r from-gold via-gold-light to-gold group-hover:w-full transition-all duration-400 ease-out shadow-[0_0_12px_hsl(var(--gold)/0.7)]" />
+						</Link>
+						<Link
+							href="/cgu"
+							className="text-primary-foreground/80 hover:text-primary-foreground transition-all duration-300 relative group"
 						>
-							Politique de confidentialité
-						</a>
+							<span className="group-hover:translate-x-1 inline-block transition-transform duration-300">
+								CGU
+							</span>
+							<span className="absolute -bottom-0.5 left-0 w-0 h-[2px] bg-gradient-to-r from-gold via-gold-light to-gold group-hover:w-full transition-all duration-400 ease-out shadow-[0_0_12px_hsl(var(--gold)/0.7)]" />
+						</Link>
+						<Link
+							href="/confidentialite"
+							className="text-primary-foreground/80 hover:text-primary-foreground transition-all duration-300 relative group"
+						>
+							<span className="group-hover:translate-x-1 inline-block transition-transform duration-300">
+								Confidentialité
+							</span>
+							<span className="absolute -bottom-0.5 left-0 w-0 h-[2px] bg-gradient-to-r from-gold via-gold-light to-gold group-hover:w-full transition-all duration-400 ease-out shadow-[0_0_12px_hsl(var(--gold)/0.7)]" />
+						</Link>
 					</div>
 				</div>
 			</div>
