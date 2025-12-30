@@ -71,21 +71,21 @@ const FloatingCTA = () => {
 
 	return (
 		<div
-			className={`fixed bottom-6 left-4 sm:left-6 z-50 transition-all duration-700 ease-out ${
+			className={`fixed bottom-20 right-6 z-40 transition-all duration-700 ease-out ${
 				shouldShow
 					? "opacity-100 translate-y-0"
 					: "opacity-0 translate-y-8 pointer-events-none"
 			}`}
+			role="complementary"
+			aria-label="Bouton de réservation flottant"
 		>
 			{/* Glow effect autour du bouton */}
 			<div className="relative group/floating">
-	
+
 				<Button
 					asChild
 					size="default"
 					className="relative bg-gold hover:brightness-110 text-white shadow-gold group px-3 sm:px-4 py-2.5 transition-all duration-300 hover:scale-105 active:scale-95"
-					aria-label="Réserver une séance (ouvre Calendly)"
-					data-cta="true"
 				>
 					<a
 						href="https://calendly.com/lylusio-fr"
@@ -93,9 +93,10 @@ const FloatingCTA = () => {
 						rel="noopener noreferrer"
 						onClick={handleLinkClick}
 						className="relative overflow-hidden flex items-center gap-2"
+						aria-label="Réserver une séance d'astrologie ou de Reiki avec Émilie Perez (ouvre Calendly dans un nouvel onglet)"
 					>
 						{/* Effet de shine animé au hover */}
-						<span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out" />
+						<span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out" aria-hidden="true" />
 
 						<Calendar
 							className="w-4 h-4 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6 relative z-10 text-white"

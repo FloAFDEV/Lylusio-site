@@ -273,13 +273,13 @@ export default async function RessourcesPage() {
 
 				{/* Section 1: Instagram + Facebook (2 cards côte à côte) */}
 				<section
-					aria-label="Réseaux sociaux - Instagram et Facebook"
+					aria-labelledby="social-section-title"
 					className="py-16 bg-gradient-to-b from-transparent via-accent/5 to-transparent relative overflow-hidden"
 				>
 					<div className="container mx-auto px-4 sm:px-6 lg:px-8">
 						<div className="text-center mb-12 md:mb-16">
 							<p className="section-label">Sur les réseaux</p>
-							<h2 className="text-foreground mb-6 text-2xl sm:text-3xl md:text-4xl">
+							<h2 id="social-section-title" className="text-foreground mb-6 text-2xl sm:text-3xl md:text-4xl">
 								<span className="font-calligraphic text-accent text-3xl sm:text-4xl md:text-5xl inline-block align-baseline">
 									S
 								</span>
@@ -473,13 +473,13 @@ export default async function RessourcesPage() {
 
 				{/* Section 2: Vidéos YouTube */}
 				<section
-					aria-label="Vidéos pédagogiques YouTube"
+					aria-labelledby="youtube-section-title"
 					className="py-18 md:py-24"
 				>
 					<div className="container mx-auto px-4 sm:px-6 lg:px-8">
 						<div className="text-center mb-12 md:mb-16">
 							<p className="section-label">Sur YouTube</p>
-							<h2 className="text-foreground mb-6 text-2xl sm:text-3xl md:text-4xl">
+							<h2 id="youtube-section-title" className="text-foreground mb-6 text-2xl sm:text-3xl md:text-4xl">
 								<span className="font-calligraphic text-accent text-3xl sm:text-4xl md:text-5xl inline-block align-baseline">
 									V
 								</span>
@@ -521,7 +521,7 @@ export default async function RessourcesPage() {
 						</div>
 
 						{/* CTA YouTube Channel */}
-						<div className="text-center">
+						<nav className="text-center" aria-label="Navigation vers YouTube">
 							<Button
 								asChild
 								variant="elegant"
@@ -532,7 +532,7 @@ export default async function RessourcesPage() {
 									href="https://www.youtube.com/@emilielylusio6206"
 									target="_blank"
 									rel="noopener noreferrer"
-									aria-label="Voir toutes mes vidéos sur YouTube (nouvelle fenêtre)"
+									aria-label="Voir toutes mes vidéos sur la chaîne YouTube d'Émilie Perez (ouvre dans un nouvel onglet)"
 									className="inline-flex items-center gap-2"
 								>
 									<FaYoutube
@@ -548,19 +548,19 @@ export default async function RessourcesPage() {
 									/>
 								</a>
 							</Button>
-						</div>
+						</nav>
 					</div>
 				</section>
 
 				{/* Section 3: Articles Blog */}
 				<section
-					aria-label="Articles de blog - astrologie, Reiki et développement personnel"
-					className="py-20 md:py-28 bg-gradient-to-b from-transparent to-accent/5"
+					aria-labelledby="blog-section-title"
+					className="py-12 md:py-16 bg-gradient-to-b from-transparent to-accent/5"
 				>
 					<div className="container mx-auto px-4 sm:px-6 lg:px-8">
-						<div className="text-center mb-12 md:mb-16">
+						<div className="text-center mb-12 md:mb-14">
 							<p className="section-label">Sur le blog</p>
-							<h2 className="text-foreground mb-6 text-2xl sm:text-3xl md:text-4xl">
+							<h2 id="blog-section-title" className="text-foreground mb-6 text-2xl sm:text-3xl md:text-4xl">
 								<span className="font-calligraphic text-accent text-3xl sm:text-4xl md:text-5xl inline-block align-baseline">
 									B
 								</span>
@@ -574,67 +574,80 @@ export default async function RessourcesPage() {
 
 						{/* Grid des 3 derniers articles */}
 						<div className="grid md:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto mb-12">
-							{latestPosts.map((post) => (
-								<Link
-									key={post.id}
-									href={`/blog/${post.slug}`}
-									className="group glass-card overflow-hidden hover:shadow-medium transition-all duration-500 flex flex-col"
-								>
-									{/* Image */}
-									<div className="aspect-[4/3] relative overflow-hidden">
-										<Image
-											src={post.image}
-											alt={post.imageAlt}
-											fill
-											className="object-cover transition-transform duration-700 group-hover:scale-105"
-											sizes="(max-width: 768px) 100vw, 33vw"
-										/>
-										{/* Catégorie badge */}
-										{post.categories.length > 0 && (
-											<div className="absolute top-4 left-4 px-3 py-1 bg-gold/90 backdrop-blur-sm rounded-full">
-												<span className="text-xs font-medium text-white">
-													{post.categories[0].name}
-												</span>
+							{latestPosts.map((post, index) => {
+								// Première lettre en majuscule, reste en minuscule
+								const firstLetter = post.title.charAt(0).toUpperCase();
+								const restOfTitle = post.title.slice(1).toLowerCase();
+
+								return (
+									<article
+										key={post.id}
+										className="group glass-card overflow-hidden hover:shadow-medium transition-all duration-500 flex flex-col"
+									>
+										<Link
+											href={`/blog/${post.slug}`}
+											className="flex flex-col h-full"
+											aria-label={`Lire l'article : ${post.title}`}
+										>
+											{/* Image */}
+											<div className="aspect-[4/3] relative overflow-hidden">
+												<Image
+													src={post.image}
+													alt={post.imageAlt || `Image de l'article ${post.title}`}
+													fill
+													className="object-cover transition-transform duration-700 group-hover:scale-105"
+													sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+													loading={index === 0 ? "eager" : "lazy"}
+													priority={index === 0}
+												/>
+												{/* Catégorie badge */}
+												{post.categories.length > 0 && (
+													<div className="absolute top-4 left-4 px-3 py-1 bg-gold/90 backdrop-blur-sm rounded-full" aria-hidden="true">
+														<span className="text-xs font-medium text-white">
+															{post.categories[0].name}
+														</span>
+													</div>
+												)}
 											</div>
-										)}
-									</div>
 
-									{/* Contenu */}
-									<div className="p-6 flex flex-col flex-grow">
-										{/* Date */}
-										<p className="text-xs text-muted-foreground/70 mb-3">
-											{post.date}
-										</p>
+											{/* Contenu */}
+											<div className="p-6 flex flex-col flex-grow">
+												{/* Date */}
+												<time dateTime={post.slug} className="text-xs text-muted-foreground/70 mb-3">
+													{post.date}
+												</time>
 
-										{/* Titre avec première lettre dorée */}
-										<h3 className="font-display text-lg md:text-xl text-foreground mb-3 group-hover:text-accent transition-colors duration-300">
-											<span className="font-calligraphic text-gold text-2xl inline-block align-baseline mr-0.5">
-												{post.title.charAt(0)}
-											</span>
-											{post.title.slice(1)}
-										</h3>
+												{/* Titre avec première lettre dorée */}
+												<h3 className="font-display text-lg md:text-xl text-foreground mb-3 group-hover:text-accent transition-colors duration-300">
+													<span className="font-calligraphic text-gold text-2xl inline-block align-baseline mr-0.5">
+														{firstLetter}
+													</span>
+													{restOfTitle}
+												</h3>
 
-										{/* Excerpt */}
-										<p className="text-sm text-muted-foreground leading-relaxed mb-4 flex-grow">
-											{post.excerpt}
-										</p>
+												{/* Excerpt */}
+												<p className="text-sm text-muted-foreground leading-relaxed mb-4 flex-grow">
+													{post.excerpt}
+												</p>
 
-										{/* Lire la suite */}
-										<div className="flex items-center text-accent text-sm font-medium group-hover:gap-2 transition-all duration-300">
-											<span>Lire la suite</span>
-											<ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-										</div>
-									</div>
-								</Link>
-							))}
+												{/* Lire la suite */}
+												<div className="flex items-center text-accent text-sm font-medium group-hover:gap-2 transition-all duration-300">
+													<span>Lire la suite</span>
+													<ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
+												</div>
+											</div>
+										</Link>
+									</article>
+								);
+							})}
 						</div>
 
 						{/* CTA Voir tous les articles */}
-						<div className="text-center">
+						<nav className="text-center" aria-label="Navigation vers le blog">
 							<Button asChild variant="elegant" size="lg" className="group">
 								<Link
 									href="/blog"
-									aria-label="Découvrir tous les articles du blog"
+									aria-label="Voir tous les articles du blog sur l'astrologie et le Reiki"
 									className="inline-flex items-center gap-2"
 								>
 									<BookOpen
@@ -648,7 +661,7 @@ export default async function RessourcesPage() {
 									/>
 								</Link>
 							</Button>
-						</div>
+						</nav>
 					</div>
 				</section>
 			</main>
