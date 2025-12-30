@@ -54,10 +54,10 @@ export function YouTubeEmbed({
 						<div className="absolute inset-0 bg-gold/30 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
 						{/* Play button circle */}
-						<div className="relative w-20 h-20 md:w-24 md:h-24 bg-gold rounded-full flex items-center justify-center group-hover:scale-110 transition-all duration-300 shadow-gold">
+						<div className="relative w-10 h-10 md:w-14 md:h-14 bg-gold/70 rounded-full flex items-center justify-center group-hover:scale-110 transition-all duration-300 shadow-gold">
 							{/* Play icon */}
 							<svg
-								className="w-8 h-8 md:w-10 md:h-10 text-foreground ml-1"
+								className="w-8 h-8 md:w-10 md:h-10 text-white ml-1"
 								fill="currentColor"
 								viewBox="0 0 24 24"
 								aria-hidden="true"
@@ -70,7 +70,7 @@ export function YouTubeEmbed({
 
 				{/* Title overlay at bottom */}
 				<div className="absolute bottom-0 left-0 right-0 p-4 md:p-6">
-					<div className="bg-card/80 backdrop-blur-sm rounded-xl p-3 md:p-4 border border-border/30">
+					<div className="bg-card/80 backdrop-blur-sm rounded-xl p-1 md:p-2 border border-border/30">
 						<p className="text-sm md:text-base font-medium text-foreground line-clamp-2">
 							{title}
 						</p>

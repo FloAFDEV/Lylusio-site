@@ -82,6 +82,22 @@ export const Header = () => {
 		setMobileSubmenuOpen(false);
 	}, [pathname]);
 
+	/* Block scroll when mobile menu is open */
+	useEffect(() => {
+		if (isMobileOpen) {
+			document.body.style.overflow = 'hidden';
+			document.body.classList.add('menu-open');
+		} else {
+			document.body.style.overflow = 'unset';
+			document.body.classList.remove('menu-open');
+		}
+
+		return () => {
+			document.body.style.overflow = 'unset';
+			document.body.classList.remove('menu-open');
+		};
+	}, [isMobileOpen]);
+
 	const handleNavClick = () => {
 		setIsMobileOpen(false);
 		setIsDropdownOpen(false);
@@ -260,7 +276,7 @@ export const Header = () => {
 
 			{/* ================= Mobile menu ================= */}
 			<div
-				className={`lg:hidden fixed top-0 right-0 h-full w-3/4 max-w-xs bg-card/95 shadow-lg border-l border-accent/20 z-50 transition-transform duration-300 ${
+				className={`lg:hidden fixed top-0 right-0 h-full w-3/4 max-w-xs bg-card/95 shadow-lg border-l border-accent/20 z-50 transition-all duration-500 ease-out ${
 					isMobileOpen ? "translate-x-0" : "translate-x-full"
 				}`}
 				role="dialog"

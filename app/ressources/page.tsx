@@ -132,13 +132,30 @@ export default async function RessourcesPage() {
 			>
 				{/* Hero Section */}
 				<section className="relative py-20 md:py-32 overflow-hidden">
+					{/* Plant decoration */}
+					<div
+						className="rounded-full items-center justify-center overflow-hidden bg-background/90 border-2 border-gold/40 shadow-[0_0_15px_hsl(var(--gold)/0.25)] animate-float w-16 h-16 absolute top-20 right-10 opacity-80 hidden sm:flex"
+						aria-hidden="true"
+					>
+						<Image
+							src="/assets/plant-decoration.webp"
+							alt=""
+							width={64}
+							height={64}
+							className="rounded-full object-cover w-10 h-10"
+							loading="lazy"
+							quality={80}
+							aria-hidden="true"
+						/>
+					</div>
+
 					{/* Background decoration */}
 					<div
 						className="absolute inset-0 bg-gradient-to-b from-transparent via-secondary/20 to-transparent"
 						aria-hidden="true"
 					/>
 					<div
-						className="absolute top-20 right-10 w-64 h-64 bg-accent/10 rounded-full blur-3xl"
+						className="absolute top-20 left-10 w-64 h-64 bg-accent/10 rounded-full blur-3xl"
 						aria-hidden="true"
 					/>
 					<div
@@ -193,7 +210,7 @@ export default async function RessourcesPage() {
 							</p>
 						</div>
 
-						<div className="grid md:grid-cols-2 gap-8 lg:gap-10 max-w-6xl mx-auto mb-12">
+						<div className="grid md:grid-cols-2 gap-8 lg:gap-10 max-w-5xl mx-auto mb-12">
 							{videoInfos.map((video, index) => (
 								<article
 									key={video.id}
@@ -204,7 +221,7 @@ export default async function RessourcesPage() {
 										title={video.title}
 										thumbnailUrl={video.thumbnailUrl}
 									/>
-									<div className="p-6 md:p-7">
+									<div className="p-4 md:p-5">
 										<h3 className="font-display text-lg md:text-xl text-foreground mb-2">
 											{video.title}
 										</h3>

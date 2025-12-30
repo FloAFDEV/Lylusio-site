@@ -162,6 +162,7 @@ const MonApproche = () => {
 									transform: `translate3d(0, ${parallaxOffset}px, 0)`,
 								}}
 								priority
+								quality={95}
 								aria-hidden="true"
 							/>
 						</div>
@@ -302,7 +303,7 @@ const MonApproche = () => {
 				{/* Philosophy Section with Pillars */}
 				<section
 					ref={pillarsRef}
-					className="relative py-20 md:py-28 bg-gradient-sand-center/30"
+					className="relative py-20 md:py-28 bg-sand/30"
 				>
 					<div className="container mx-auto px-4 sm:px-6 lg:px-8">
 						<div
@@ -325,37 +326,37 @@ const MonApproche = () => {
 							</p>
 						</div>
 
-						<div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-4 lg:gap-6">
+						<div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
 							{pillars.map((pillar, index) => (
 								<article
 									key={pillar.title}
-									className={`group bg-card/80 backdrop-blur-sm rounded-2xl p-6 md:p-5 lg:p-6 text-center border border-border/20 hover:border-gold/30 hover:shadow-medium transition-all duration-500 ${
+									className={`group bg-card/80 backdrop-blur-sm rounded-2xl p-8 text-center border border-border/20 hover:border-gold/30 hover:shadow-medium transition-all duration-500 ${
 										pillarsInView
 											? "opacity-100 translate-y-0"
 											: "opacity-0 translate-y-12"
 									}`}
 									style={{
 										transitionDelay: pillarsInView
-											? `${100 + index * 100}ms`
+											? `${200 + index * 100}ms`
 											: "0ms",
 										transform: pillarsInView
 											? `translateY(0)`
 											: `translateY(${20 + index * 5}px)`,
 									}}
 								>
-									<div className="w-16 h-16 mx-auto mb-4 md:mb-5 rounded-full bg-gradient-sand-center/60 flex items-center justify-center shadow-soft group-hover:scale-110 group-hover:bg-gold/10 transition-all duration-500">
+									<div className="w-16 h-16 mx-auto mb-5 rounded-full bg-sand/60 flex items-center justify-center shadow-soft group-hover:scale-110 group-hover:bg-gold/10 transition-all duration-500">
 										<pillar.icon
 											className="w-7 h-7 text-accent group-hover:text-gold transition-colors duration-500"
 											strokeWidth={1.5}
 										/>
 									</div>
-									<h3 className="font-display text-lg md:text-xl text-navy mb-3 md:mb-4">
-										<span className="font-calligraphic text-accent text-3xl inline-block align-baseline">
+									<h3 className="font-display text-lg text-navy mb-3">
+										<span className="font-calligraphic text-accent text-3xl inline-block align-baseline mr-1">
 											{pillar.title.charAt(0)}
 										</span>
 										{pillar.title.slice(1)}
 									</h3>
-									<p className="text-sm md:text-base text-muted-foreground leading-relaxed">
+									<p className="text-sm text-muted-foreground leading-relaxed">
 										{pillar.description}
 									</p>
 								</article>

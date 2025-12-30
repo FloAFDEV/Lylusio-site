@@ -285,7 +285,7 @@ const HeroSection = () => {
 					</div>
 
 					<p
-						className="mt-8 sm:mt-10 font-calligraphic text-xl sm:text-2xl md:text-3xl text-navy/40 dark:text-gold/40 animate-fade-up animate-handwriting"
+						className="mt-8 sm:mt-10 font-calligraphic text-xl sm:text-2xl md:text-3xl text-navy/70 animate-fade-up animate-handwriting"
 						style={{
 							animationDelay: "1.5s",
 						}}
