@@ -80,7 +80,7 @@ const SoftClouds = memo(({ parallaxOffset }: { parallaxOffset: number }) => (
 		/>
 		{/* Cloud 3 - middle */}
 		<div
-			className="absolute top-[30%] right-[30%] w-48 h-24 bg-sky/40 rounded-full blur-2xl will-change-transform hidden md:block"
+			className="absolute top-[30%] right-[30%] w-48 h-24 bg-gradient-sky-center/40 rounded-full blur-2xl will-change-transform hidden md:block"
 			style={{
 				transform: `translate3d(0, ${parallaxOffset * 0.15}px, 0)`,
 			}}

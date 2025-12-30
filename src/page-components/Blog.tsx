@@ -611,7 +611,7 @@ const Blog = () => {
 						)}
 
 						{/* Internal links */}
-						<div className="mt-16 p-8 bg-sand/30 rounded-2xl text-center max-w-3xl mx-auto">
+						<div className="mt-16 p-8 bg-gradient-sand-center/30 rounded-2xl text-center max-w-3xl mx-auto">
 							<h3 className="font-display text-xl text-navy mb-4">
 								Découvrez mes accompagnements
 							</h3>

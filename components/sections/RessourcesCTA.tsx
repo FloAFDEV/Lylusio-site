@@ -81,7 +81,7 @@ const RessourcesCTA = () => {
 							{features.map((feature, index) => (
 								<div
 									key={feature.label}
-									className={`flex items-center gap-3 px-4 py-3 bg-secondary/30 rounded-full transition-all duration-500 delay-${
+									className={`flex items-center gap-3 px-4 py-3 bg-gradient-sky-center/30 rounded-full transition-all duration-500 delay-${
 										index * 100
 									} ${
 										isInView

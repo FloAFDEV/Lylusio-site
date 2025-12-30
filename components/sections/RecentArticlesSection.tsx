@@ -66,8 +66,7 @@ const RecentArticlesSection = () => {
 	return (
 		<section
 			ref={ref}
-			className="py-20 md:py-28"
-			style={{ background: 'hsl(var(--sky))' }}
+			className="py-20 md:py-28 bg-gradient-sky-center"
 			aria-labelledby="recent-articles-title"
 		>
 			<div className="container mx-auto px-4 sm:px-6 lg:px-8">

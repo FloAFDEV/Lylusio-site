@@ -15,8 +15,7 @@ const ApprochSection = () => {
 	return (
 		<section
 			id="approche"
-			className="relative overflow-hidden min-h-[600px] md:min-h-[700px] py-16 md:py-24 lg:py-32"
-			style={{ background: 'linear-gradient(180deg, hsl(var(--cream)) 0%, hsl(var(--sky-light)) 100%)' }}
+			className="relative overflow-hidden min-h-[600px] md:min-h-[700px] py-16 md:py-24 lg:py-32 bg-gradient-sky-cream"
 			aria-labelledby="approche-title"
 			ref={ref}
 		>

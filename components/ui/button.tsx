@@ -11,9 +11,9 @@ const buttonVariants = cva(
       variant: {
         default: "bg-primary text-primary-foreground hover:bg-primary/90 shadow-soft hover:shadow-medium text-[15px] before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-white/10 before:to-transparent before:-translate-x-full hover:before:translate-x-full before:transition-transform before:duration-700",
         destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90 text-[15px]",
-        outline: "border border-border bg-transparent text-foreground hover:bg-secondary hover:text-secondary-foreground hover:border-accent/30 text-[15px]",
-        secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80 text-[15px]",
-        ghost: "hover:bg-secondary hover:text-secondary-foreground text-sm",
+        outline: "border border-border bg-transparent text-foreground hover:bg-gradient-sky-center hover:text-secondary-foreground hover:border-accent/30 text-[15px]",
+        secondary: "bg-gradient-sky-center text-secondary-foreground hover:bg-gradient-sky-center/80 text-[15px]",
+        ghost: "hover:bg-gradient-sky-center hover:text-secondary-foreground text-sm",
         link: "text-accent underline-offset-4 hover:underline hover:translate-y-0 text-sm",
         // Golden accent button - premium gold with glow & shimmer effect
         accent: "bg-accent text-accent-foreground font-medium hover:bg-accent/90 shadow-soft hover:shadow-glow text-base before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent before:-translate-x-full hover:before:translate-x-full before:transition-transform before:duration-1000",

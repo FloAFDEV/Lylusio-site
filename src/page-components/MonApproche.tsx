@@ -302,7 +302,7 @@ const MonApproche = () => {
 				{/* Philosophy Section with Pillars */}
 				<section
 					ref={pillarsRef}
-					className="relative py-20 md:py-28 bg-sand/30"
+					className="relative py-20 md:py-28 bg-gradient-sand-center/30"
 				>
 					<div className="container mx-auto px-4 sm:px-6 lg:px-8">
 						<div
@@ -343,7 +343,7 @@ const MonApproche = () => {
 											: `translateY(${20 + index * 5}px)`,
 									}}
 								>
-									<div className="w-16 h-16 mx-auto mb-4 md:mb-5 rounded-full bg-sand/60 flex items-center justify-center shadow-soft group-hover:scale-110 group-hover:bg-gold/10 transition-all duration-500">
+									<div className="w-16 h-16 mx-auto mb-4 md:mb-5 rounded-full bg-gradient-sand-center/60 flex items-center justify-center shadow-soft group-hover:scale-110 group-hover:bg-gold/10 transition-all duration-500">
 										<pillar.icon
 											className="w-7 h-7 text-accent group-hover:text-gold transition-colors duration-500"
 											strokeWidth={1.5}

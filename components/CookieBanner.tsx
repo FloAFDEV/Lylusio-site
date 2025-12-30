@@ -166,7 +166,7 @@ const CookieBanner = () => {
 				aria-hidden="true"
 			>
 				{/* Backdrop blur doux et féminin */}
-				<div className="absolute inset-0 bg-sand/20 backdrop-blur-sm" />
+				<div className="absolute inset-0 bg-gradient-sand-center/20 backdrop-blur-sm" />
 				{/* Vignette légère */}
 				<div className="absolute inset-0 bg-gradient-radial from-transparent via-sand/5 to-sand/15" />
 			</div>
@@ -204,7 +204,7 @@ const CookieBanner = () => {
 									{/* Bouton fermer - facultatif si l'utilisateur veut naviguer sans choisir */}
 									<button
 										onClick={rejectAll}
-										className="absolute top-4 right-4 text-navy/40 hover:text-navy/70 transition-colors duration-200 p-2 hover:bg-sand/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold/30"
+										className="absolute top-4 right-4 text-navy/40 hover:text-navy/70 transition-colors duration-200 p-2 hover:bg-gradient-sand-center/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold/30"
 										aria-label="Refuser et fermer"
 									>
 										<X className="w-5 h-5" />
@@ -245,15 +245,15 @@ const CookieBanner = () => {
 
 										{/* Quick info badges doux */}
 										<div className="flex flex-wrap gap-2 mb-4">
-											<span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-sand/50 border border-gold/15 rounded-full text-xs font-medium text-navy/70">
+											<span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gradient-sand-center/50 border border-gold/15 rounded-full text-xs font-medium text-navy/70">
 												<CheckCircle2 className="w-3 h-3 text-gold" />
 												Données sécurisées
 											</span>
-											<span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-sand/50 border border-gold/15 rounded-full text-xs font-medium text-navy/70">
+											<span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gradient-sand-center/50 border border-gold/15 rounded-full text-xs font-medium text-navy/70">
 												<CheckCircle2 className="w-3 h-3 text-gold" />
 												RGPD Conforme
 											</span>
-											<span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-sand/50 border border-gold/15 rounded-full text-xs font-medium text-navy/70">
+											<span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gradient-sand-center/50 border border-gold/15 rounded-full text-xs font-medium text-navy/70">
 												<CheckCircle2 className="w-3 h-3 text-gold" />
 												Conservation 6 mois
 											</span>
@@ -315,7 +315,7 @@ const CookieBanner = () => {
 								<div className="relative p-6 md:p-8 max-h-[85vh] overflow-y-auto">
 									<button
 										onClick={handleHideSettings}
-										className="absolute top-6 left-6 text-navy/50 hover:text-navy transition-colors focus:outline-none focus:ring-2 focus:ring-gold/30 rounded-lg p-2 hover:bg-sand/30"
+										className="absolute top-6 left-6 text-navy/50 hover:text-navy transition-colors focus:outline-none focus:ring-2 focus:ring-gold/30 rounded-lg p-2 hover:bg-gradient-sand-center/30"
 										aria-label="Retour"
 									>
 										← Retour

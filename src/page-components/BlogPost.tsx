@@ -614,7 +614,7 @@ const BlogPost = () => {
 							prose-a:text-accent prose-a:font-medium prose-a:no-underline hover:prose-a:underline hover:prose-a:decoration-2
 							prose-strong:text-foreground prose-strong:font-semibold
 							prose-em:text-foreground/80 prose-em:italic
-							prose-blockquote:border-l-4 prose-blockquote:border-accent prose-blockquote:italic prose-blockquote:text-foreground/80 prose-blockquote:bg-sand/30 prose-blockquote:py-4 prose-blockquote:px-6 prose-blockquote:rounded-r-xl prose-blockquote:my-8 prose-blockquote:not-italic
+							prose-blockquote:border-l-4 prose-blockquote:border-accent prose-blockquote:italic prose-blockquote:text-foreground/80 prose-blockquote:bg-gradient-sand-center/30 prose-blockquote:py-4 prose-blockquote:px-6 prose-blockquote:rounded-r-xl prose-blockquote:my-8 prose-blockquote:not-italic
 							prose-ul:list-disc prose-ul:pl-6 prose-ul:my-6 prose-ul:space-y-2
 							prose-ol:list-decimal prose-ol:pl-6 prose-ol:my-6 prose-ol:space-y-2
 							prose-li:text-foreground/90 prose-li:leading-relaxed prose-li:mb-2

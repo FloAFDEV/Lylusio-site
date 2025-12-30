@@ -299,16 +299,101 @@ html {
 		color: hsl(var(--gold));
 	}
 
-	/* Section backgrounds */
+	/* ═══════════════════════════════════════════
+	   GRADIENT BACKGROUNDS - Céleste Poudré
+	   ⚠️ RÈGLE ABSOLUE : Jamais de bg-sand ou bg-sky uni
+	═══════════════════════════════════════════ */
+
+	.bg-gradient-sky-center {
+		background: linear-gradient(
+			180deg,
+			hsl(var(--background)) 0%,
+			hsl(var(--sky)) 50%,
+			hsl(var(--background)) 100%
+		);
+	}
+
+	.bg-gradient-sand-center {
+		background: linear-gradient(
+			180deg,
+			hsl(var(--background)) 0%,
+			hsl(var(--sand)) 50%,
+			hsl(var(--background)) 100%
+		);
+	}
+
+	.bg-gradient-cream-sand {
+		background: linear-gradient(
+			180deg,
+			hsl(var(--cream)) 0%,
+			hsl(var(--sand)) 50%,
+			hsl(var(--cream)) 100%
+		);
+	}
+
+	.bg-gradient-sky-cream {
+		background: linear-gradient(
+			180deg,
+			hsl(var(--sky)) 0%,
+			hsl(var(--cream)) 50%,
+			hsl(var(--sky)) 100%
+		);
+	}
+
+	.bg-gradient-celestial-hero {
+		background: linear-gradient(
+			180deg,
+			hsl(var(--background)) 0%,
+			hsl(var(--cream)) 100%
+		);
+	}
+
+	.bg-gradient-sand-to-sky {
+		background: linear-gradient(
+			180deg,
+			hsl(var(--sand)) 0%,
+			hsl(var(--sky)) 50%,
+			hsl(var(--background)) 100%
+		);
+	}
+
+	.bg-gradient-cream-to-bg {
+		background: linear-gradient(
+			180deg,
+			hsl(var(--cream)) 0%,
+			hsl(var(--background)) 100%
+		);
+	}
+
+	.bg-gradient-bg-sand-cream {
+		background: linear-gradient(
+			180deg,
+			hsl(var(--background)) 0%,
+			hsl(var(--sand)) 50%,
+			hsl(var(--cream)) 100%
+		);
+	}
+
+	/* ⚠️ Classes dépréciées - conservées pour compatibilité temporaire */
 	.section-sky {
-		background: hsl(var(--sky));
+		background: linear-gradient(
+			180deg,
+			hsl(var(--background)) 0%,
+			hsl(var(--sky)) 50%,
+			hsl(var(--background)) 100%
+		);
 	}
 
 	.section-sand {
-		background: hsl(var(--sand));
+		background: linear-gradient(
+			180deg,
+			hsl(var(--background)) 0%,
+			hsl(var(--sand)) 50%,
+			hsl(var(--background)) 100%
+		);
 	}
 
-	/* Gradient backgrounds */
+	/* Gradient backgrounds - legacy */
 	.bg-celestial-gradient {
 		background: linear-gradient(
 			180deg,

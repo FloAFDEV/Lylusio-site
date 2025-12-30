@@ -206,7 +206,7 @@ const Accompagnement = () => {
 								}}
 							/>
 							<div
-								className="absolute top-1/3 -left-24 w-72 h-72 bg-secondary/20 rounded-full blur-3xl"
+								className="absolute top-1/3 -left-24 w-72 h-72 bg-gradient-sky-center/20 rounded-full blur-3xl"
 								style={{
 									transform: `translateY(${
 										-parallaxOffset * 0.6

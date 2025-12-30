@@ -68,7 +68,7 @@ const ServicesPreview = () => {
 		<section
 			id="services-preview"
 			ref={ref}
-			className="py-20 md:py-28 lg:py-32 overflow-hidden relative bg-sky"
+			className="py-20 md:py-28 lg:py-32 overflow-hidden relative bg-gradient-sky-center"
 			aria-labelledby="services-title"
 		>
 			{/* Decorative abstract shapes with floating animation */}
@@ -183,11 +183,11 @@ const ServicesPreview = () => {
 
 										{/* Meta info */}
 										<div className="flex flex-wrap gap-1.5 md:gap-2 mb-3 md:mb-4">
-											<span className="inline-flex items-center gap-1 px-2 py-0.5 md:px-2.5 md:py-1 bg-secondary/50 rounded-full text-[10px] md:text-xs text-muted-foreground">
+											<span className="inline-flex items-center gap-1 px-2 py-0.5 md:px-2.5 md:py-1 bg-gradient-sky-center/50 rounded-full text-[10px] md:text-xs text-muted-foreground">
 												<Clock className="w-2.5 h-2.5 md:w-3 md:h-3" />
 												{service.duration}
 											</span>
-											<span className="inline-flex items-center gap-1 px-2 py-0.5 md:px-2.5 md:py-1 bg-secondary/50 rounded-full text-[10px] md:text-xs text-muted-foreground">
+											<span className="inline-flex items-center gap-1 px-2 py-0.5 md:px-2.5 md:py-1 bg-gradient-sky-center/50 rounded-full text-[10px] md:text-xs text-muted-foreground">
 												<MapPin className="w-2.5 h-2.5 md:w-3 md:h-3" />
 												{service.format}
 											</span>

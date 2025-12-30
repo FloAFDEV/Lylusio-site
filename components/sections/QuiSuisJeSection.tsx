@@ -12,8 +12,7 @@ const QuiSuisJeSection = () => {
 	return (
 		<section
 			ref={ref}
-			className="py-16 md:py-24 overflow-hidden"
-			style={{ background: 'linear-gradient(180deg, hsl(var(--cream)) 0%, hsl(var(--background)) 100%)' }}
+			className="py-16 md:py-24 overflow-hidden bg-gradient-cream-to-bg"
 			aria-labelledby="qui-suis-je-title"
 		>
 			<div className="absolute inset-0 pointer-events-none" aria-hidden="true">
