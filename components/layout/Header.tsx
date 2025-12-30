@@ -85,16 +85,16 @@ export const Header = () => {
 	/* Block scroll when mobile menu is open */
 	useEffect(() => {
 		if (isMobileOpen) {
-			document.body.style.overflow = 'hidden';
-			document.body.classList.add('menu-open');
+			document.body.style.overflow = "hidden";
+			document.body.classList.add("menu-open");
 		} else {
-			document.body.style.overflow = 'unset';
-			document.body.classList.remove('menu-open');
+			document.body.style.overflow = "unset";
+			document.body.classList.remove("menu-open");
 		}
 
 		return () => {
-			document.body.style.overflow = 'unset';
-			document.body.classList.remove('menu-open');
+			document.body.style.overflow = "unset";
+			document.body.classList.remove("menu-open");
 		};
 	}, [isMobileOpen]);
 
@@ -108,12 +108,12 @@ export const Header = () => {
 	return (
 		<>
 			<header
-				role="banner"
-				className={`fixed top-0 left-0 right-0 z-50 backdrop-blur-md transition-all duration-300 ${
+				className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
 					isScrolled
-						? "bg-background/80 shadow-sm py-3.5"
-						: "bg-transparent py-5"
+						? "bg-background/98 backdrop-blur-xl shadow-[0_2px_20px_rgba(0,0,0,0.08)] py-3"
+						: "bg-background/90 backdrop-blur-md py-4 md:py-5"
 				}`}
+				role="banner"
 			>
 				<div className="container mx-auto px-4 flex items-center justify-between">
 					{/* Logo */}
@@ -122,9 +122,11 @@ export const Header = () => {
 						onClick={handleNavClick}
 						className="relative z-50 group"
 					>
-						<div className={`relative transition-all duration-300 ${
+						<div
+							className={`relative transition-all duration-300 ${
 								isScrolled ? "h-11 w-[132px]" : "h-14 w-[168px]"
-							}`}>
+							}`}
+						>
 							<Image
 								src="/assets/logo-lylusio.webp"
 								alt="Lylusio – Astrologie et Reiki à Toulouse"
@@ -136,7 +138,10 @@ export const Header = () => {
 					</Link>
 
 					{/* ================= Desktop ================= */}
-					<nav className="hidden lg:flex items-center gap-8" aria-label="Navigation principale">
+					<nav
+						className="hidden lg:flex items-center gap-8"
+						aria-label="Navigation principale"
+					>
 						{mainLinks.map((link) =>
 							link.hasSubmenu ? (
 								<div
@@ -161,7 +166,11 @@ export const Header = () => {
 									{/* Dropdown toggle */}
 									<button
 										type="button"
-										aria-label={isDropdownOpen ? "Fermer le sous-menu" : "Ouvrir le sous-menu"}
+										aria-label={
+											isDropdownOpen
+												? "Fermer le sous-menu"
+												: "Ouvrir le sous-menu"
+										}
 										aria-expanded={isDropdownOpen}
 										className="p-1"
 									>
@@ -234,12 +243,17 @@ export const Header = () => {
 					<button
 						onClick={() => setIsMobileOpen((v) => !v)}
 						className="lg:hidden p-2 flex flex-col items-center justify-center gap-1.5 w-10 h-10 relative group"
-						aria-label={isMobileOpen ? "Fermer le menu" : "Ouvrir le menu"}
+						aria-label={
+							isMobileOpen ? "Fermer le menu" : "Ouvrir le menu"
+						}
 						aria-expanded={isMobileOpen}
 					>
 						{/* Glow effect on open */}
 						{isMobileOpen && (
-							<span className="absolute inset-0 bg-accent/10 rounded-lg blur-sm" aria-hidden="true" />
+							<span
+								className="absolute inset-0 bg-accent/10 rounded-lg blur-sm"
+								aria-hidden="true"
+							/>
 						)}
 						<span
 							className={`relative block w-6 h-[3px] transition-all duration-300 ${
@@ -282,7 +296,10 @@ export const Header = () => {
 				role="dialog"
 				aria-label="Menu de navigation mobile"
 			>
-				<nav className="p-6 flex flex-col gap-3" aria-label="Navigation mobile">
+				<nav
+					className="p-6 flex flex-col gap-3"
+					aria-label="Navigation mobile"
+				>
 					{mainLinks.map((link) =>
 						link.hasSubmenu ? (
 							<div key={link.label}>

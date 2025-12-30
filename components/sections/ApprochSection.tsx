@@ -15,7 +15,11 @@ const ApprochSection = () => {
 	return (
 		<section
 			id="approche"
-			className="relative overflow-hidden min-h-[600px] md:min-h-[700px] py-16 md:py-24 lg:py-32 bg-gradient-sky-cream"
+			className="relative overflow-hidden min-h-[600px] md:min-h-[700px] py-16 md:py-24 lg:py-32"
+			style={{
+				background:
+					"linear-gradient(180deg, hsl(225 33% 97%) 0%, hsl(210 50% 96%) 30%, hsl(32 100% 97%) 100%)",
+			}}
 			aria-labelledby="approche-title"
 			ref={ref}
 		>
@@ -47,8 +51,8 @@ const ApprochSection = () => {
 				className="absolute inset-0 overflow-hidden pointer-events-none"
 				aria-hidden="true"
 			>
-				<div className="absolute top-10 right-10 w-24 h-24 border border-gold/10 rounded-full opacity-30 animate-float" />
-				<div className="absolute bottom-20 right-1/4 w-16 h-16 border border-accent/10 rotate-12 opacity-25 animate-float-delayed" />
+				<div className="absolute top-10 right-10 w-24 h-24 border border-gold rounded-full opacity-30 animate-float" />
+
 				{/* Golden plant badge decoration */}
 				<GoldenPlantBadge
 					size="lg"
@@ -70,7 +74,12 @@ const ApprochSection = () => {
 								: "opacity-0 translate-y-12"
 						}`}
 					>
-						<div className="bg-background/95 sm:bg-background/93 lg:bg-background/90 backdrop-blur-lg rounded-2xl lg:rounded-3xl p-6 sm:p-8 md:p-10 shadow-medium border border-border/40 lg:border-border/30 hover:border-gold/30 transition-all duration-500">
+						<div
+							className="sm:bg-opacity-93 lg:bg-opacity-90 backdrop-blur-lg rounded-2xl lg:rounded-3xl p-6 sm:p-8 md:p-10 shadow-medium border border-border/40 lg:border-border/30 hover:border-gold/30 transition-all duration-500"
+							style={{
+								backgroundColor: "rgba(255, 252, 251, 0.95)",
+							}}
+						>
 							<p className="section-label text-left">
 								Ma philosophie
 							</p>

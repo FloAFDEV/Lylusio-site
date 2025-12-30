@@ -241,7 +241,7 @@ export default async function RessourcesPage() {
 						aria-hidden="true"
 					/>
 					<div
-						className="absolute bottom-20 left-10 w-48 h-48 bg-gold/10 rounded-full blur-3xl"
+						className="absolute bottom-20 left-10 w-48 h-48 bg-gold/10 rounded-full blur-3xl "
 						aria-hidden="true"
 					/>
 

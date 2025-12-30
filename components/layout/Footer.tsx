@@ -279,11 +279,10 @@ const Footer = () => {
 				</div>
 
 				{/* Golden glow behind title - REINFORCED */}
-
 				<div className="container mx-auto px-5 md:px-8 lg:px-10 py-12 md:py-24 lg:py-32 text-center relative z-10">
 					<GoldenPlantBadge
 						size="lg"
-						className="absolute -top-4 right-2 opacity-80 hidden sm:flex"
+						className="absolute -top-4 right-2 opacity-90 hidden sm:flex"
 					/>
 					<p className="text-primary-foreground/75 text-xs uppercase tracking-[0.25em] mb-4 font-semibold">
 						Prendre rendez-vous

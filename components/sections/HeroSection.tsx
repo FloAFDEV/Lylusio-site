@@ -1,6 +1,6 @@
 "use client";
 
-import { memo, useMemo, useCallback } from "react";
+import { memo, useEffect, useState, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import { ChevronDown, MapPin } from "lucide-react";
 import Image from "next/image";
@@ -8,40 +8,40 @@ import { useParallax } from "@/hooks/useParallax";
 // import emilieHero from "@/assets/emilie-hero.webp"; // Now using /assets/emilie-hero.webp
 // import plantDecoration from "@/assets/plant-decoration.webp"; // Now using /assets/plant-decoration.webp
 
-// CelestialStars - Étoiles scintillantes améliorées (Lovable)
+// CelestialStars - Étoiles scintillantes aléatoires côté client
 const CelestialStars = memo(() => {
-	const stars = useMemo(
-		() => [
-			{ id: 0, left: "15%", top: "10%", size: 2, delay: "0s", duration: "3s" },
-			{ id: 1, left: "85%", top: "20%", size: 1, delay: "0.5s", duration: "3.5s" },
-			{ id: 2, left: "25%", top: "35%", size: 3, delay: "1s", duration: "2.8s" },
-			{ id: 3, left: "70%", top: "45%", size: 1, delay: "1.5s", duration: "4s" },
-			{ id: 4, left: "50%", top: "15%", size: 2, delay: "2s", duration: "3.2s" },
-			{ id: 5, left: "10%", top: "60%", size: 1, delay: "2.5s", duration: "3.8s" },
-			{ id: 6, left: "90%", top: "70%", size: 3, delay: "3s", duration: "2.5s" },
-			{ id: 7, left: "40%", top: "80%", size: 2, delay: "3.5s", duration: "3.6s" },
-			{ id: 8, left: "65%", top: "25%", size: 1, delay: "0.8s", duration: "4.2s" },
-			{ id: 9, left: "30%", top: "50%", size: 2, delay: "1.2s", duration: "3.4s" },
-			{ id: 10, left: "80%", top: "65%", size: 1, delay: "1.8s", duration: "3s" },
-			{ id: 11, left: "20%", top: "75%", size: 3, delay: "2.2s", duration: "3.7s" },
-			{ id: 12, left: "55%", top: "40%", size: 2, delay: "2.8s", duration: "2.9s" },
-			{ id: 13, left: "75%", top: "55%", size: 1, delay: "3.2s", duration: "3.3s" },
-			{ id: 14, left: "35%", top: "20%", size: 2, delay: "0.3s", duration: "3.9s" },
-			{ id: 15, left: "60%", top: "85%", size: 1, delay: "0.7s", duration: "3.1s" },
-			{ id: 16, left: "45%", top: "30%", size: 3, delay: "1.3s", duration: "2.7s" },
-			{ id: 17, left: "12%", top: "42%", size: 2, delay: "1.7s", duration: "3.5s" },
-			{ id: 18, left: "88%", top: "52%", size: 1, delay: "2.3s", duration: "4.1s" },
-			{ id: 19, left: "52%", top: "68%", size: 2, delay: "2.9s", duration: "2.6s" },
-		],
-		[]
-	);
+	const [stars, setStars] = useState<
+		{
+			id: number;
+			left: string;
+			top: string;
+			size: number;
+			delay: string;
+			duration: string;
+		}[]
+	>([]);
+
+	useEffect(() => {
+		const generatedStars = [...Array(20)].map((_, i) => ({
+			id: i,
+			left: `${5 + Math.random() * 90}%`,
+			top: `${5 + Math.random() * 80}%`,
+			size: Math.random() > 0.7 ? 3 : Math.random() > 0.4 ? 2 : 1,
+			delay: `${Math.random() * 4}s`,
+			duration: `${2.5 + Math.random() * 2}s`,
+		}));
+		setStars(generatedStars);
+	}, []);
 
 	return (
-		<div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+		<div
+			className="absolute inset-0 pointer-events-none"
+			aria-hidden="true"
+		>
 			{stars.map((star) => (
 				<div
 					key={star.id}
-					className="absolute rounded-full bg-gold/40 animate-twinkle will-change-opacity"
+					className="absolute rounded-full bg-gold/90 animate-twinkle will-change-opacity"
 					style={{
 						left: star.left,
 						top: star.top,
@@ -51,7 +51,7 @@ const CelestialStars = memo(() => {
 						animationDuration: star.duration,
 						boxShadow:
 							star.size > 2
-								? "0 0 6px hsl(var(--gold) / 0.5)"
+								? "0 0 6px hsl(var(--gold)/0.5)"
 								: "none",
 					}}
 				/>
@@ -70,13 +70,17 @@ const SoftClouds = memo(({ parallaxOffset }: { parallaxOffset: number }) => (
 	>
 		{/* Cloud 1 - top right */}
 		<div
-			className="absolute -top-10 right-[10%] w-80 h-40 bg-white/30 rounded-full blur-3xl will-change-transform"
-			style={{ transform: `translate3d(0, ${parallaxOffset * 0.2}px, 0)` }}
+			className="absolute -top-10 right-[10%] w-80 h-40 bg-red/30 rounded-full blur-3xl will-change-transform"
+			style={{
+				transform: `translate3d(0, ${parallaxOffset * 0.2}px, 0)`,
+			}}
 		/>
 		{/* Cloud 2 - top left */}
 		<div
 			className="absolute top-[5%] -left-10 w-60 h-32 bg-white/25 rounded-full blur-3xl will-change-transform"
-			style={{ transform: `translate3d(0, ${parallaxOffset * 0.3}px, 0)` }}
+			style={{
+				transform: `translate3d(0, ${parallaxOffset * 0.3}px, 0)`,
+			}}
 		/>
 		{/* Cloud 3 - middle */}
 		<div
@@ -142,13 +146,13 @@ const OrganicShapes = memo(({ parallaxOffset }: { parallaxOffset: number }) => (
 		aria-hidden="true"
 	>
 		<div
-			className="absolute -top-32 -right-32 w-72 md:w-96 h-72 md:h-96 bg-gold/4 rounded-full blur-3xl will-change-transform"
+			className="absolute -top-32 -right-32 w-72 md:w-96 h-72 md:h-96 bg-gold/20 rounded-full blur-3xl will-change-transform"
 			style={{
 				transform: `translate3d(0, ${parallaxOffset * 0.5}px, 0)`,
 			}}
 		/>
 		<div
-			className="absolute -bottom-32 -left-32 w-60 md:w-80 h-60 md:h-80 bg-accent/4 rounded-full blur-3xl will-change-transform"
+			className="absolute -bottom-32 -left-32 w-60 md:w-80 h-60 md:h-80 bg-accent/20 rounded-full blur-3xl will-change-transform"
 			style={{
 				transform: `translate3d(0, ${-parallaxOffset * 0.3}px, 0)`,
 			}}
@@ -162,11 +166,11 @@ OrganicShapes.displayName = "OrganicShapes";
 const DecorativeCircles = memo(() => (
 	<div className="hidden sm:block">
 		<div
-			className="absolute -inset-12 -z-20 w-full h-full border-2 border-gold/25 rounded-[50%_45%_55%_50%] rotate-6 opacity-40 will-change-transform"
+			className="absolute -inset-12 -z-20 w-full h-full border-2 border-gold/35 rounded-[50%_45%_55%_50%] rotate-6 opacity-40 will-change-transform motion-safe:animate-spin-slow"
 			style={{ animation: "spin 40s linear infinite" }}
 		/>
 		<div
-			className="absolute -inset-16 -z-30 w-full h-full border-2 border-gold-light/20 rounded-[55%_50%_50%_55%] -rotate-6 opacity-30 will-change-transform"
+			className="absolute -inset-16 -z-30 w-full h-full border-2 border-gold-light/35 rounded-[55%_50%_50%_55%] -rotate-6 opacity-90 will-change-transform"
 			style={{ animation: "spin 50s linear infinite reverse" }}
 		/>
 	</div>
@@ -285,7 +289,7 @@ const HeroSection = () => {
 					</div>
 
 					<p
-						className="mt-8 sm:mt-10 font-calligraphic text-xl sm:text-2xl md:text-3xl text-navy/70 animate-fade-up animate-handwriting"
+						className="mt-8 sm:mt-10 font-calligraphic text-xl sm:text-2xl md:text-3xl text-navy/80 animate-fade-up animate-handwriting"
 						style={{
 							animationDelay: "1.5s",
 						}}
@@ -337,7 +341,7 @@ const HeroSection = () => {
 								alt=""
 								className="w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 rounded-full object-cover"
 								width={40}
-							height={40}
+								height={40}
 								aria-hidden="true"
 							/>
 						</div>

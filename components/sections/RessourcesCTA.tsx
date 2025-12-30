@@ -5,11 +5,50 @@ import { Button } from "@/components/ui/button";
 import { useInView } from "@/hooks/useInView";
 import { FaYoutube, FaInstagram, FaFacebook } from "react-icons/fa";
 import { BookOpen, ArrowRight, Sparkles } from "lucide-react";
+import { memo, useMemo } from "react";
 
-/**
- * CTA Banner for resources page
- * Positioned between "Qui suis-je" section and Footer on homepage
- */
+// 🌟 Étoiles scintillantes dynamiques
+const CelestialStars = memo(() => {
+	const stars = useMemo(
+		() =>
+			Array.from({ length: 20 }).map((_, i) => ({
+				id: i,
+				left: `${Math.random() * 100}%`,
+				top: `${Math.random() * 100}%`,
+				size: Math.floor(Math.random() * 4) + 1,
+				delay: `${Math.random() * 3}s`,
+				duration: `${Math.random() * 2 + 2}s`,
+			})),
+		[]
+	);
+
+	return (
+		<div
+			className="absolute inset-0 pointer-events-none"
+			aria-hidden="true"
+		>
+			{stars.map((star) => (
+				<div
+					key={star.id}
+					className="absolute rounded-full bg-gold/80 animate-twinkle will-change-opacity"
+					style={{
+						left: star.left,
+						top: star.top,
+						width: `${star.size}px`,
+						height: `${star.size}px`,
+						animationDelay: star.delay,
+						animationDuration: star.duration,
+						boxShadow:
+							star.size > 2
+								? "0 0 6px hsl(var(--gold) / 0.5)"
+								: "none",
+					}}
+				/>
+			))}
+		</div>
+	);
+});
+
 const RessourcesCTA = () => {
 	const { ref, isInView } = useInView({ threshold: 0.2 });
 
@@ -40,11 +79,23 @@ const RessourcesCTA = () => {
 		},
 	];
 
+	const renderTitle = (text: string) => (
+		<>
+			<span className="font-calligraphic text-gold text-4xl md:text-5xl lg:text-6xl inline-block align-baseline">
+				{text.charAt(0)}
+			</span>
+			{text.slice(1)}
+		</>
+	);
+
 	return (
 		<section
 			ref={ref}
-			className="relative py-16 md:py-20 overflow-hidden bg-gradient-sand-center"
+			className="relative py-16 md:py-20 overflow-hidden bg-gradient-sand-top-bottom"
 		>
+			{/* Étoiles */}
+			<CelestialStars />
+
 			{/* Background decoration */}
 			<div
 				className="absolute inset-0 bg-gradient-to-r from-transparent via-secondary/20 to-transparent"
@@ -73,7 +124,7 @@ const RessourcesCTA = () => {
 						className="bg-card/80 backdrop-blur-sm rounded-2xl md:rounded-3xl p-8 md:p-12 text-center border border-border/30 shadow-medium"
 					>
 						{/* Icon badge */}
-						<div className="inline-flex items-center justify-center w-16 h-16 bg-gold/10 rounded-full mb-6">
+						<div className="inline-flex items-center justify-center w-16 h-16 bg-gold/10 rounded-full mb-6 shadow-md">
 							<Sparkles
 								className="w-8 h-8 text-gold"
 								aria-hidden="true"
@@ -87,7 +138,7 @@ const RessourcesCTA = () => {
 							id="free-resources-title"
 							className="font-display text-2xl md:text-3xl lg:text-4xl text-foreground mb-4"
 						>
-							Découvrez mes contenus gratuits
+							{renderTitle("Découvrez mes contenus gratuits")}
 						</h2>
 
 						<p className="text-muted-foreground mb-8 max-w-2xl mx-auto text-base md:text-lg leading-relaxed">
@@ -95,8 +146,8 @@ const RessourcesCTA = () => {
 							approfondis pour enrichir votre chemin
 						</p>
 
-						{/* Features grid */}
-						<div className="flex flex-wrap justify-center gap-4 md:gap-6 mb-8">
+						{/* Features badges */}
+						<div className="flex flex-wrap justify-center gap-3 md:gap-4 mb-8">
 							{features.map((feature, index) => {
 								const Component = feature.href ? "a" : "div";
 								return (
@@ -111,17 +162,13 @@ const RessourcesCTA = () => {
 												? "noopener noreferrer"
 												: undefined
 										}
-										className={`flex items-center gap-3 px-4 py-3 bg-gradient-sky-center/30 rounded-full transition-all duration-500 delay-${
+										className={`flex items-center gap-2 md:gap-3 px-4 py-3 bg-gradient-sky-center/30 rounded-full shadow-md transition-all duration-500 delay-${
 											index * 100
 										} ${
 											isInView
 												? "opacity-100 translate-y-0"
 												: "opacity-0 translate-y-4"
-										} ${
-											feature.href
-												? "hover:brightness-105 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
-												: ""
-										}`}
+										} hover:scale-105 hover:rotate-[3deg] hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2`}
 									>
 										<feature.icon
 											className={`w-5 h-5 ${feature.color}`}
@@ -143,7 +190,7 @@ const RessourcesCTA = () => {
 						>
 							<Link
 								href="/ressources"
-								className="inline-flex items-center justify-center gap-2 bg-gold hover:brightness-110 text-white font-medium rounded-md px-6 py-3 shadow-gold focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 transition-transform motion-safe:hover:-translate-y-1"
+								className="inline-flex items-center justify-center gap-2 text-white font-medium rounded-md px-6 py-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 transition-transform motion-safe:hover:-translate-y-1 hover:shadow-lg"
 							>
 								<span>Voir toutes les ressources</span>
 								<ArrowRight
