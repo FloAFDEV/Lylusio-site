@@ -33,8 +33,7 @@ const RessourcesCTA = () => {
 	return (
 		<section
 			ref={ref}
-			className="relative py-16 md:py-20 overflow-hidden"
-			style={{ background: "hsl(var(--sand))" }}
+			className="relative py-16 md:py-20 overflow-hidden bg-gradient-sand-center"
 		>
 			{/* Background decoration */}
 			<div

@@ -81,8 +81,7 @@ const TestimonialsSection = () => {
   return (
     <section
     id="temoignages"
-    className="py-20 md:py-28 overflow-hidden relative"
-    style={{ background: 'hsl(var(--sand))' }}
+    className="py-20 md:py-28 overflow-hidden relative bg-gradient-sand-center"
     aria-labelledby="temoignages-title"
     ref={ref}
     >

@@ -249,8 +249,7 @@ export default async function RessourcesPage() {
 
 				{/* Instagram Section */}
 				<section
-					className="py-20 md:py-28 relative overflow-hidden"
-					style={{ background: "hsl(var(--sky))" }}
+					className="py-20 md:py-28 relative overflow-hidden bg-gradient-sky-center"
 				>
 					{/* Background decoration */}
 					<div
