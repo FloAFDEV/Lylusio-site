@@ -762,7 +762,7 @@ const Astrologie = () => {
 										</div>
 
 										<Button
-											variant="elegant"
+											variant="accent"
 											className="w-full group/btn relative overflow-hidden shadow-[0_4px_20px_-4px_hsl(var(--gold)/0.3)] hover:shadow-[0_8px_30px_-4px_hsl(var(--gold)/0.5),0_0_20px_-4px_hsl(var(--accent)/0.3)] hover:scale-105 transition-all duration-300"
 											onClick={() =>
 												window.open(
@@ -899,7 +899,7 @@ const Astrologie = () => {
 								<div className="flex flex-col sm:flex-row gap-4 justify-center">
 									<Link href="/blog">
 										<Button
-											variant="accent"
+											variant="elegant"
 											size="lg"
 											className="group"
 										>

@@ -150,8 +150,9 @@ const ApprochSection = () => {
 									aria-label="Découvrir mon approche thérapeutique"
 								>
 									<Button
+										variant="elegant"
 										size="lg"
-										className="w-full sm:w-auto bg-gold hover:brightness-110 text-white shadow-gold"
+										className="w-full sm:w-auto"
 									>
 										Découvrir mon approche
 									</Button>

@@ -846,7 +846,7 @@ const Reiki = () => {
 										</div>
 
 										<Button
-											variant="elegant"
+											variant="accent"
 											className="w-full group/btn"
 											size="lg"
 											onClick={() =>
@@ -990,7 +990,7 @@ const Reiki = () => {
 									<div className="flex flex-col sm:flex-row gap-4 justify-center">
 										<Link href="/blog">
 											<Button
-												variant="accent"
+												variant="elegant"
 												size="lg"
 												className="group"
 											>

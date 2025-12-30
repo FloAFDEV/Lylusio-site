@@ -256,11 +256,12 @@ const ServicesPreview = () => {
 						aria-label="Voir tous les services proposés"
 					>
 						<Button
+							variant="elegant"
 							size="lg"
-							className="w-full sm:w-auto group/btn bg-gold hover:brightness-110 text-white shadow-gold"
+							className="w-full sm:w-auto group/btn"
 						>
 							Voir tous les tarifs
-							<ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover/btn:translate-x-1 text-white" />
+							<ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover/btn:translate-x-1" />
 						</Button>
 					</Link>
 				</div>
