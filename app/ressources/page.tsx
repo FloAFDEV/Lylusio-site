@@ -1,28 +1,20 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
-import {
-	BookOpen,
-	Instagram,
-	Youtube,
-	ArrowRight,
-	ExternalLink,
-	Sparkles,
-} from "lucide-react";
+import { FaInstagram, FaYoutube, FaFacebook } from "react-icons/fa";
+import { BookOpen, ArrowRight, ExternalLink, Sparkles } from "lucide-react";
 
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import FloatingCTA from "@/components/FloatingCTA";
 import { Button } from "@/components/ui/button";
-import { YouTubeEmbed } from "@/components/YouTubeEmbed";
 import { getYouTubeVideoInfo } from "@/lib/youtube";
-import { useInView } from "@/hooks/useInView";
 
 // SEO Metadata
 export const metadata: Metadata = {
 	title: "Ressources Gratuites - Ateliers, Vidéos & Articles | Lylusio",
 	description:
-		"Découvrez mes vidéos pédagogiques sur l'astrologie et le Reiki, suivez mes ateliers lives sur Instagram et approfondissez vos connaissances avec mes articles de fond.",
+		"Découvrez mes vidéos pédagogiques sur l'astrologie et le Reiki, suivez mes ateliers lives sur Instagram et Facebook, et approfondissez vos connaissances avec mes articles de fond.",
 	keywords: [
 		"ressources astrologie",
 		"vidéos reiki",
@@ -53,7 +45,7 @@ export const metadata: Metadata = {
 		card: "summary_large_image",
 		title: "Ressources Gratuites - Lylusio",
 		description:
-			"Vidéos, ateliers lives et articles pour approfondir votre chemin personal",
+			"Vidéos, ateliers lives et articles pour approfondir votre chemin personnel",
 		images: ["https://lylusio.fr/og-image.jpg"],
 	},
 };
@@ -98,6 +90,7 @@ export default async function RessourcesPage() {
 			sameAs: [
 				"https://www.instagram.com/emilie.perez_astroreiki_/",
 				"https://www.youtube.com/@emilielylusio6206",
+				"https://www.facebook.com/share/16cEgpLgk9/",
 			],
 		},
 		mainEntity: {
@@ -132,30 +125,13 @@ export default async function RessourcesPage() {
 			>
 				{/* Hero Section */}
 				<section className="relative py-20 md:py-32 overflow-hidden">
-					{/* Plant decoration */}
-					<div
-						className="rounded-full items-center justify-center overflow-hidden bg-background/90 border-2 border-gold/40 shadow-[0_0_15px_hsl(var(--gold)/0.25)] animate-float w-16 h-16 absolute top-20 right-10 opacity-80 hidden sm:flex"
-						aria-hidden="true"
-					>
-						<Image
-							src="/assets/plant-decoration.webp"
-							alt=""
-							width={64}
-							height={64}
-							className="rounded-full object-cover w-10 h-10"
-							loading="lazy"
-							quality={80}
-							aria-hidden="true"
-						/>
-					</div>
-
 					{/* Background decoration */}
 					<div
 						className="absolute inset-0 bg-gradient-to-b from-transparent via-secondary/20 to-transparent"
 						aria-hidden="true"
 					/>
 					<div
-						className="absolute top-20 left-10 w-64 h-64 bg-accent/10 rounded-full blur-3xl"
+						className="absolute top-20 right-10 w-64 h-64 bg-accent/10 rounded-full blur-3xl"
 						aria-hidden="true"
 					/>
 					<div
@@ -192,130 +168,52 @@ export default async function RessourcesPage() {
 					</div>
 				</section>
 
-				{/* YouTube Videos Section */}
-				<section className="py-18 md:py-24">
+				{/* Section 1: Instagram + Facebook (2 cards côte à côte) */}
+				<section className="py-16 md:py-24 bg-gradient-to-b from-transparent via-accent/5 to-transparent relative overflow-hidden">
 					<div className="container mx-auto px-4 sm:px-6 lg:px-8">
 						<div className="text-center mb-12 md:mb-16">
-							<p className="section-label">Sur YouTube</p>
-							<h2 className="text-foreground mb-6 text-2xl sm:text-3xl md:text-4xl">
-								<span className="font-calligraphic text-accent text-3xl sm:text-4xl md:text-5xl inline-block align-baseline">
-									V
-								</span>
-								idéos Pédagogiques
-							</h2>
-							<p className="text-muted-foreground max-w-2xl mx-auto text-base md:text-lg">
-								Explorez mes vidéos pour mieux comprendre les
-								cycles astrologiques et les pratiques
-								énergétiques
-							</p>
-						</div>
-
-						<div className="grid md:grid-cols-2 gap-8 lg:gap-10 max-w-5xl mx-auto mb-12">
-							{videoInfos.map((video, index) => (
-								<article
-									key={video.id}
-									className="group bg-card/50 backdrop-blur-sm rounded-2xl md:rounded-3xl overflow-hidden border border-border/30 hover:border-accent/40 hover:shadow-medium transition-all duration-500"
-								>
-									<YouTubeEmbed
-										videoId={video.id}
-										title={video.title}
-										thumbnailUrl={video.thumbnailUrl}
-									/>
-									<div className="p-4 md:p-5">
-										<h3 className="font-display text-lg md:text-xl text-foreground mb-2">
-											{video.title}
-										</h3>
-										<p className="text-sm text-muted-foreground/70">
-											Par {video.author}
-										</p>
-									</div>
-								</article>
-							))}
-						</div>
-
-						{/* CTA YouTube Channel */}
-						<div className="text-center">
-							<Button
-								asChild
-								variant="elegant"
-								size="lg"
-								className="group"
-							>
-								<a
-									href="https://www.youtube.com/@emilielylusio6206"
-									target="_blank"
-									rel="noopener noreferrer"
-									className="inline-flex items-center gap-2"
-								>
-									<Youtube
-										className="w-5 h-5 text-red-500"
-										aria-hidden="true"
-									/>
-									<span>
-										Voir toutes mes vidéos sur YouTube
-									</span>
-									<ExternalLink
-										className="w-4 h-4 group-hover:translate-x-1 transition-transform"
-										aria-hidden="true"
-									/>
-								</a>
-							</Button>
-						</div>
-					</div>
-				</section>
-
-				{/* Instagram Section */}
-				<section
-					className="py-20 md:py-28 relative overflow-hidden bg-gradient-sky-center"
-				>
-					{/* Background decoration */}
-					<div
-						className="absolute inset-0 bg-gradient-to-b from-transparent via-secondary/30 to-transparent"
-						aria-hidden="true"
-					/>
-
-					<div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-						<div className="text-center mb-12 md:mb-16">
-							<p className="section-label">Sur Instagram</p>
+							<p className="section-label">Sur les réseaux</p>
 							<h2 className="text-foreground mb-6 text-2xl sm:text-3xl md:text-4xl">
 								<span className="font-calligraphic text-accent text-3xl sm:text-4xl md:text-5xl inline-block align-baseline">
 									S
 								</span>
-								uivez-moi sur Instagram
+								uivez-moi sur les réseaux
 							</h2>
 							<p className="text-muted-foreground max-w-2xl mx-auto text-base md:text-lg">
-								Ateliers, lives, cercles de paroles et contenus
-								exclusifs au quotidien
+								Ateliers, lives, cercles de paroles et échanges avec la communauté
 							</p>
 						</div>
 
-						<div className="max-w-2xl mx-auto">
-							<div className="bg-card/80 backdrop-blur-sm rounded-2xl md:rounded-3xl p-8 md:p-12 border border-border/30 shadow-medium">
-								<div className="flex flex-col md:flex-row items-center gap-6 mb-8">
-									{/* Instagram Profile Photo */}
+						<div className="grid md:grid-cols-2 gap-8 lg:gap-12 max-w-5xl mx-auto">
+							{/* CARD INSTAGRAM */}
+							<article className="glass-card p-6 md:p-8 hover:shadow-medium transition-all duration-500">
+								<div className="flex flex-col items-center gap-6 mb-8">
+									{/* Photo de profil */}
 									<div className="relative group/profile">
 										{/* Glow effect */}
 										<div className="absolute -inset-2 bg-gradient-to-br from-pink-500/30 via-purple-600/30 to-gold/30 rounded-full blur-xl opacity-0 group-hover/profile:opacity-100 transition-opacity duration-500" />
 
 										<div className="relative w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden border-4 border-gradient-to-br from-pink-500 to-purple-600 shadow-medium">
-											<div className="w-full h-full bg-gradient-to-br from-accent/20 to-gold/20 flex items-center justify-center">
-												<Instagram
-													className="w-12 h-12 md:w-16 md:h-16 text-accent"
-													aria-hidden="true"
-												/>
-											</div>
+											<Image
+												src="/assets/emilie-portrait.webp"
+												alt="Émilie Perez - Instagram"
+												width={128}
+												height={128}
+												className="object-cover w-full h-full"
+												quality={90}
+											/>
 										</div>
 
-										{/* Instagram badge */}
+										{/* Badge Instagram */}
 										<div className="absolute -bottom-1 -right-1 w-10 h-10 bg-gradient-to-br from-pink-500 to-purple-600 rounded-full flex items-center justify-center border-4 border-card shadow-medium">
-											<Instagram
+											<FaInstagram
 												className="w-5 h-5 text-white"
 												aria-hidden="true"
 											/>
 										</div>
 									</div>
 
-									<div className="text-center md:text-left flex-1">
+									<div className="text-center">
 										<h3 className="font-display text-2xl md:text-3xl font-semibold text-foreground mb-2">
 											@emilie.perez_astroreiki_
 										</h3>
@@ -323,7 +221,7 @@ export default async function RessourcesPage() {
 											Astrologue / Praticienne Reiki /
 											Accompagnement professionnel
 										</p>
-										<div className="flex items-center gap-4 justify-center md:justify-start text-sm text-muted-foreground/70">
+										<div className="flex items-center gap-4 justify-center text-sm text-muted-foreground/70">
 											<span>
 												<strong className="text-foreground">
 													273
@@ -355,7 +253,7 @@ export default async function RessourcesPage() {
 										rel="noopener noreferrer"
 										className="inline-flex items-center justify-center gap-3 bg-gradient-to-r from-pink-500 via-purple-600 to-gold hover:brightness-110 text-white font-medium shadow-gold transition-all duration-300"
 									>
-										<Instagram
+										<FaInstagram
 											className="w-6 h-6"
 											aria-hidden="true"
 										/>
@@ -368,13 +266,172 @@ export default async function RessourcesPage() {
 										/>
 									</a>
 								</Button>
-							</div>
+							</article>
+
+							{/* CARD FACEBOOK */}
+							<article className="glass-card p-6 md:p-8 hover:shadow-medium transition-all duration-500">
+								<div className="flex flex-col items-center gap-6 mb-8">
+									{/* Photo de profil (même qu'Instagram) */}
+									<div className="relative group/profile">
+										{/* Glow effect */}
+										<div className="absolute -inset-2 bg-gradient-to-br from-blue-500/30 to-blue-700/30 rounded-full blur-xl opacity-0 group-hover/profile:opacity-100 transition-opacity duration-500" />
+
+										<div className="relative w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden border-4 border-blue-500 shadow-medium">
+											<Image
+												src="/assets/emilie-portrait.webp"
+												alt="Émilie Perez Lylusio - Facebook"
+												width={128}
+												height={128}
+												className="object-cover w-full h-full"
+												quality={90}
+											/>
+										</div>
+
+										{/* Badge Facebook */}
+										<div className="absolute -bottom-1 -right-1 w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center border-4 border-card shadow-medium">
+											<FaFacebook
+												className="w-5 h-5 text-white"
+												aria-hidden="true"
+											/>
+										</div>
+									</div>
+
+									<div className="text-center">
+										<h3 className="font-display text-2xl md:text-3xl font-semibold text-foreground mb-2">
+											Emilie Perez Lylusio
+										</h3>
+										<p className="text-muted-foreground mb-4 text-sm md:text-base">
+											Exploratrice passionnée de l'astrologie et du Reiki
+										</p>
+										<div className="flex items-center gap-4 justify-center text-sm text-muted-foreground/70">
+											<span>
+												<strong className="text-foreground">
+													100
+												</strong>{" "}
+												abonnés
+											</span>
+											<span className="text-border">
+												·
+											</span>
+											<span>
+												<strong className="text-foreground">
+													474
+												</strong>{" "}
+												publications
+											</span>
+										</div>
+									</div>
+								</div>
+
+								{/* CTA Facebook */}
+								<Button
+									asChild
+									size="lg"
+									className="w-full group"
+								>
+									<a
+										href="https://www.facebook.com/share/16cEgpLgk9/"
+										target="_blank"
+										rel="noopener noreferrer"
+										className="inline-flex items-center justify-center gap-3 bg-gradient-to-r from-blue-600 to-blue-800 hover:brightness-110 text-white font-medium shadow-[0_0_30px_rgba(59,130,246,0.3)] transition-all duration-300"
+									>
+										<FaFacebook
+											className="w-6 h-6"
+											aria-hidden="true"
+										/>
+										<span className="text-lg">
+											Suivre sur Facebook
+										</span>
+										<ExternalLink
+											className="w-4 h-4 group-hover:translate-x-1 transition-transform"
+											aria-hidden="true"
+										/>
+									</a>
+								</Button>
+							</article>
 						</div>
 					</div>
 				</section>
 
-				{/* Blog Articles Section */}
-				<section className="py-20 md:py-28">
+				{/* Section 2: Vidéos YouTube */}
+				<section className="py-18 md:py-24">
+					<div className="container mx-auto px-4 sm:px-6 lg:px-8">
+						<div className="text-center mb-12 md:mb-16">
+							<p className="section-label">Sur YouTube</p>
+							<h2 className="text-foreground mb-6 text-2xl sm:text-3xl md:text-4xl">
+								<span className="font-calligraphic text-accent text-3xl sm:text-4xl md:text-5xl inline-block align-baseline">
+									V
+								</span>
+								idéos Pédagogiques
+							</h2>
+							<p className="text-muted-foreground max-w-2xl mx-auto text-base md:text-lg">
+								Explorez mes vidéos pour mieux comprendre les
+								cycles astrologiques et les pratiques
+								énergétiques
+							</p>
+						</div>
+
+						<div className="grid md:grid-cols-2 gap-8 lg:gap-12 max-w-6xl mx-auto mb-12">
+							{videoInfos.map((video) => (
+								<article
+									key={video.id}
+									className="group glass-card overflow-hidden hover:shadow-medium transition-all duration-500"
+								>
+									<div className="aspect-video relative">
+										<iframe
+											src={`https://www.youtube.com/embed/${video.id}`}
+											title={video.title}
+											allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+											allowFullScreen
+											loading="lazy"
+											className="w-full h-full rounded-t-2xl md:rounded-t-3xl border-0"
+										/>
+									</div>
+									<div className="p-6 md:p-7">
+										<h3 className="font-display text-lg md:text-xl text-foreground mb-2">
+											{video.title}
+										</h3>
+										<p className="text-sm text-muted-foreground/70">
+											Par {video.author}
+										</p>
+									</div>
+								</article>
+							))}
+						</div>
+
+						{/* CTA YouTube Channel */}
+						<div className="text-center">
+							<Button
+								asChild
+								variant="elegant"
+								size="lg"
+								className="group"
+							>
+								<a
+									href="https://www.youtube.com/@emilielylusio6206"
+									target="_blank"
+									rel="noopener noreferrer"
+									className="inline-flex items-center gap-2"
+								>
+									<FaYoutube
+										className="w-5 h-5 text-red-500"
+										aria-hidden="true"
+									/>
+									<span>
+										Voir toutes mes vidéos sur YouTube
+									</span>
+									<ExternalLink
+										className="w-4 h-4 group-hover:translate-x-1 transition-transform"
+										aria-hidden="true"
+									/>
+								</a>
+							</Button>
+						</div>
+					</div>
+				</section>
+
+				{/* Section 3: Articles Blog */}
+				<section className="py-20 md:py-28 bg-gradient-to-b from-transparent to-accent/5">
 					<div className="container mx-auto px-4 sm:px-6 lg:px-8">
 						<div className="text-center mb-12">
 							<p className="section-label">Sur le blog</p>

@@ -3,7 +3,8 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { useInView } from "@/hooks/useInView";
-import { Youtube, Instagram, BookOpen, ArrowRight, Sparkles } from "lucide-react";
+import { FaYoutube, FaInstagram } from "react-icons/fa";
+import { BookOpen, ArrowRight, Sparkles } from "lucide-react";
 
 /**
  * CTA Banner for resources page
@@ -14,12 +15,12 @@ const RessourcesCTA = () => {
 
 	const features = [
 		{
-			icon: Youtube,
+			icon: FaYoutube,
 			label: "Vidéos pédagogiques",
 			color: "text-red-500",
 		},
 		{
-			icon: Instagram,
+			icon: FaInstagram,
 			label: "Ateliers & Lives",
 			color: "text-pink-500",
 		},

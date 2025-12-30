@@ -5,14 +5,13 @@ import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import {
-	Facebook,
-	Instagram,
 	Mail,
 	Phone,
 	MapPin,
 	Eye,
 	ChevronDown,
 } from "lucide-react";
+import { FaFacebook, FaInstagram, FaYoutube } from "react-icons/fa";
 // NOTE: Nous supposons que le composant Button supporte l'attribut `asChild` pour le rendre en tant que <a>
 import { Button } from "@/components/ui/button";
 // import logo from "@/assets/logo-lylusio.webp"; // Now using /assets/logo-lylusio.webp
@@ -67,14 +66,19 @@ const Footer = () => {
 
 	const socialLinks = [
 		{
-			icon: Facebook,
+			icon: FaFacebook,
 			href: "https://www.facebook.com/lylusio/",
 			label: "Facebook",
 		},
 		{
-			icon: Instagram,
+			icon: FaInstagram,
 			href: "https://www.instagram.com/emilie.perez_astroreiki_/",
 			label: "Instagram",
+		},
+		{
+			icon: FaYoutube,
+			href: "https://www.youtube.com/@EmiliePerez-AstroReiki",
+			label: "YouTube",
 		},
 		{ icon: Mail, href: "mailto:contact@lylusio.fr", label: "Email" },
 	];
