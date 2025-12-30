@@ -62,18 +62,110 @@ const YOUTUBE_VIDEOS = [
 	},
 ];
 
+// WordPress API
+const WP_API_URL = process.env.NEXT_PUBLIC_WP_API_URL || 'https://lylusio.fr/wp-json/wp/v2';
+
+interface WPPost {
+  id: number;
+  date: string;
+  title: { rendered: string };
+  excerpt: { rendered: string };
+  slug: string;
+  _embedded?: {
+    'wp:featuredmedia'?: Array<{
+      source_url: string;
+      alt_text: string;
+    }>;
+    'wp:term'?: Array<
+      Array<{
+        id: number;
+        name: string;
+        slug: string;
+      }>
+    >;
+  };
+}
+
+// Server-safe HTML stripping
+const stripHtml = (html: string): string => {
+  return html
+    .replace(/<[^>]*>/g, '')
+    .replace(/&nbsp;/g, ' ')
+    .replace(/&amp;/g, '&')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&quot;/g, '"')
+    .replace(/&#039;/g, "'")
+    .replace(/\s+/g, ' ')
+    .trim();
+};
+
+const formatDate = (dateString: string): string => {
+  const date = new Date(dateString);
+  return date.toLocaleDateString('fr-FR', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  });
+};
+
+async function fetchLatestBlogPosts() {
+  try {
+    const res = await fetch(`${WP_API_URL}/posts?_embed&per_page=3&orderby=date&order=desc`, {
+      next: { revalidate: 3600 },
+    });
+
+    if (!res.ok) {
+      console.error('Failed to fetch blog posts:', res.status);
+      return [];
+    }
+
+    const wpPosts: WPPost[] = await res.json();
+
+    return wpPosts.map((post) => {
+      const imageObj = post._embedded?.['wp:featuredmedia']?.[0];
+      const imageUrl = imageObj?.source_url || '/placeholder.svg';
+      const imageAlt = imageObj?.alt_text || stripHtml(post.title.rendered);
+
+      const categories =
+        post._embedded?.['wp:term']?.[0]?.map((term) => ({
+          id: term.id,
+          name: term.name,
+          slug: term.slug,
+        })) || [];
+
+      return {
+        id: post.id,
+        title: stripHtml(post.title.rendered),
+        excerpt: stripHtml(post.excerpt.rendered).slice(0, 120) + '...',
+        date: formatDate(post.date),
+        slug: post.slug,
+        image: imageUrl,
+        imageAlt,
+        categories,
+      };
+    });
+  } catch (error) {
+    console.error('Error fetching blog posts:', error);
+    return [];
+  }
+}
+
 export default async function RessourcesPage() {
-	// Fetch YouTube video info server-side
-	const videoInfos = await Promise.all(
-		YOUTUBE_VIDEOS.map(async (video) => {
-			const info = await getYouTubeVideoInfo(video.id);
-			return {
-				id: video.id,
-				...info,
-				title: info.title || video.fallbackTitle,
-			};
-		})
-	);
+	// Fetch YouTube video info and latest blog posts server-side
+	const [videoInfos, latestPosts] = await Promise.all([
+		Promise.all(
+			YOUTUBE_VIDEOS.map(async (video) => {
+				const info = await getYouTubeVideoInfo(video.id);
+				return {
+					id: video.id,
+					...info,
+					title: info.title || video.fallbackTitle,
+				};
+			})
+		),
+		fetchLatestBlogPosts(),
+	]);
 
 	// JSON-LD Structured Data
 	const structuredData = {
@@ -466,7 +558,7 @@ export default async function RessourcesPage() {
 					className="py-20 md:py-28 bg-gradient-to-b from-transparent to-accent/5"
 				>
 					<div className="container mx-auto px-4 sm:px-6 lg:px-8">
-						<div className="text-center mb-12">
+						<div className="text-center mb-12 md:mb-16">
 							<p className="section-label">Sur le blog</p>
 							<h2 className="text-foreground mb-6 text-2xl sm:text-3xl md:text-4xl">
 								<span className="font-calligraphic text-accent text-3xl sm:text-4xl md:text-5xl inline-block align-baseline">
@@ -474,24 +566,84 @@ export default async function RessourcesPage() {
 								</span>
 								log & Articles
 							</h2>
-							<p className="text-muted-foreground max-w-2xl mx-auto mb-10 text-base md:text-lg">
+							<p className="text-muted-foreground max-w-2xl mx-auto text-base md:text-lg">
 								Approfondissez vos connaissances en astrologie,
 								Reiki et développement personnel
 							</p>
+						</div>
 
-							<Button asChild size="lg" className="group">
+						{/* Grid des 3 derniers articles */}
+						<div className="grid md:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto mb-12">
+							{latestPosts.map((post) => (
+								<Link
+									key={post.id}
+									href={`/blog/${post.slug}`}
+									className="group glass-card overflow-hidden hover:shadow-medium transition-all duration-500 flex flex-col"
+								>
+									{/* Image */}
+									<div className="aspect-[4/3] relative overflow-hidden">
+										<Image
+											src={post.image}
+											alt={post.imageAlt}
+											fill
+											className="object-cover transition-transform duration-700 group-hover:scale-105"
+											sizes="(max-width: 768px) 100vw, 33vw"
+										/>
+										{/* Catégorie badge */}
+										{post.categories.length > 0 && (
+											<div className="absolute top-4 left-4 px-3 py-1 bg-gold/90 backdrop-blur-sm rounded-full">
+												<span className="text-xs font-medium text-white">
+													{post.categories[0].name}
+												</span>
+											</div>
+										)}
+									</div>
+
+									{/* Contenu */}
+									<div className="p-6 flex flex-col flex-grow">
+										{/* Date */}
+										<p className="text-xs text-muted-foreground/70 mb-3">
+											{post.date}
+										</p>
+
+										{/* Titre avec première lettre dorée */}
+										<h3 className="font-display text-lg md:text-xl text-foreground mb-3 group-hover:text-accent transition-colors duration-300">
+											<span className="font-calligraphic text-gold text-2xl inline-block align-baseline mr-0.5">
+												{post.title.charAt(0)}
+											</span>
+											{post.title.slice(1)}
+										</h3>
+
+										{/* Excerpt */}
+										<p className="text-sm text-muted-foreground leading-relaxed mb-4 flex-grow">
+											{post.excerpt}
+										</p>
+
+										{/* Lire la suite */}
+										<div className="flex items-center text-accent text-sm font-medium group-hover:gap-2 transition-all duration-300">
+											<span>Lire la suite</span>
+											<ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+										</div>
+									</div>
+								</Link>
+							))}
+						</div>
+
+						{/* CTA Voir tous les articles */}
+						<div className="text-center">
+							<Button asChild variant="elegant" size="lg" className="group">
 								<Link
 									href="/blog"
 									aria-label="Découvrir tous les articles du blog"
-									className="inline-flex items-center gap-2 bg-gold hover:brightness-110 text-white shadow-gold"
+									className="inline-flex items-center gap-2"
 								>
 									<BookOpen
 										className="w-5 h-5"
 										aria-hidden="true"
 									/>
-									<span>Découvrir tous mes articles</span>
+									<span>Voir tous les articles</span>
 									<ArrowRight
-										className="w-5 h-5 group-hover:translate-x-1 transition-transform"
+										className="w-4 h-4 group-hover:translate-x-1 transition-transform"
 										aria-hidden="true"
 									/>
 								</Link>
