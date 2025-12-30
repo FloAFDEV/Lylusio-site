@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { FaInstagram, FaYoutube, FaFacebook } from "react-icons/fa";
-import { BookOpen, ArrowRight, ExternalLink, Sparkles } from "lucide-react";
+import { BookOpen, ArrowRight, ExternalLink, Sparkles, Calendar } from "lucide-react";
 
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
@@ -573,16 +573,16 @@ export default async function RessourcesPage() {
 						</div>
 
 						{/* Grid des 3 derniers articles */}
-						<div className="grid md:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto mb-12">
+						<div className="grid md:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto mb-12">
 							{latestPosts.map((post, index) => {
-								// Première lettre en majuscule, reste en minuscule
+								// Première lettre en majuscule, reste en minuscule (sentence case)
 								const firstLetter = post.title.charAt(0).toUpperCase();
 								const restOfTitle = post.title.slice(1).toLowerCase();
 
 								return (
 									<article
 										key={post.id}
-										className="group glass-card overflow-hidden hover:shadow-medium transition-all duration-500 flex flex-col"
+										className="group bg-card rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 flex flex-col"
 									>
 										<Link
 											href={`/blog/${post.slug}`}
@@ -590,50 +590,45 @@ export default async function RessourcesPage() {
 											aria-label={`Lire l'article : ${post.title}`}
 										>
 											{/* Image */}
-											<div className="aspect-[4/3] relative overflow-hidden">
+											<div className="aspect-[16/10] overflow-hidden relative bg-muted">
 												<Image
 													src={post.image}
 													alt={post.imageAlt || `Image de l'article ${post.title}`}
 													fill
-													className="object-cover transition-transform duration-700 group-hover:scale-105"
+													className="object-cover group-hover:scale-105 transition-transform duration-500"
 													sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
 													loading={index === 0 ? "eager" : "lazy"}
 													priority={index === 0}
 												/>
-												{/* Catégorie badge */}
-												{post.categories.length > 0 && (
-													<div className="absolute top-4 left-4 px-3 py-1 bg-gold/90 backdrop-blur-sm rounded-full" aria-hidden="true">
-														<span className="text-xs font-medium text-white">
-															{post.categories[0].name}
-														</span>
-													</div>
-												)}
 											</div>
 
 											{/* Contenu */}
 											<div className="p-6 flex flex-col flex-grow">
 												{/* Date */}
-												<time dateTime={post.slug} className="text-xs text-muted-foreground/70 mb-3">
-													{post.date}
-												</time>
+												<div className="flex items-center gap-2 text-xs text-muted-foreground mb-3 uppercase tracking-wide">
+													<Calendar className="h-3.5 w-3.5" aria-hidden="true" />
+													<time dateTime={post.slug}>
+														{post.date}
+													</time>
+												</div>
 
 												{/* Titre avec première lettre dorée */}
-												<h3 className="font-display text-lg md:text-xl text-foreground mb-3 group-hover:text-accent transition-colors duration-300">
-													<span className="font-calligraphic text-gold text-2xl inline-block align-baseline mr-0.5">
+												<h3 className="font-heading text-lg md:text-xl font-bold mb-3 group-hover:text-accent transition-colors line-clamp-2 min-h-[3.5rem] leading-tight">
+													<span className="font-calligraphic text-accent inline-block align-baseline text-2xl md:text-3xl">
 														{firstLetter}
 													</span>
 													{restOfTitle}
 												</h3>
 
 												{/* Excerpt */}
-												<p className="text-sm text-muted-foreground leading-relaxed mb-4 flex-grow">
+												<p className="text-muted-foreground text-sm leading-relaxed line-clamp-3 mb-4 flex-grow">
 													{post.excerpt}
 												</p>
 
 												{/* Lire la suite */}
-												<div className="flex items-center text-accent text-sm font-medium group-hover:gap-2 transition-all duration-300">
-													<span>Lire la suite</span>
-													<ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
+												<div className="flex items-center gap-2 text-accent font-semibold text-sm mt-auto pt-2 border-t border-border/10">
+													Lire l'article
+													<ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
 												</div>
 											</div>
 										</Link>
