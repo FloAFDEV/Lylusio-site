@@ -86,8 +86,8 @@ const RecentArticlesSection = () => {
 					</h2>
 
 					<p className="text-muted-foreground text-base md:text-lg leading-relaxed">
-						Articles inspirants sur l'astrologie humaniste, le
-						Reiki et votre cheminement personnel
+						Articles inspirants sur l'astrologie humaniste, le Reiki
+						et votre cheminement personnel
 					</p>
 				</div>
 
@@ -168,12 +168,24 @@ const RecentArticlesSection = () => {
 											</div>
 
 											{/* Title */}
-											<h3
-												className="text-lg md:text-xl font-display text-foreground mb-3 group-hover:text-accent transition-colors duration-300 line-clamp-2"
-												dangerouslySetInnerHTML={{
-													__html: post.title.rendered,
-												}}
-											/>
+											<h3 className="text-lg md:text-xl font-display text-foreground mb-3 group-hover:text-accent transition-colors duration-300 line-clamp-2">
+												{(() => {
+													const title = stripHtml(
+														post.title.rendered
+													).toLowerCase();
+													const firstLetter = title
+														.charAt(0)
+														.toUpperCase(); // première lettre en majuscule
+													return (
+														<>
+															<span className="text-gold font-calligraphic">
+																{firstLetter}
+															</span>
+															{title.slice(1)}
+														</>
+													);
+												})()}
+											</h3>
 
 											{/* Excerpt */}
 											<p className="text-sm text-muted-foreground leading-relaxed mb-4 line-clamp-3">

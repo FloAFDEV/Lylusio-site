@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useParams } from "next/navigation";
+import { FaFacebook, FaInstagram, FaLinkedin, FaLink } from "react-icons/fa";
 
 import { useEffect, useState } from "react";
 // import { useParams, Link } from "react-router-dom"; // Replaced by Next.js
@@ -69,7 +70,8 @@ interface RelatedPost {
 	excerpt: string;
 }
 
-const WP_API_URL = process.env.NEXT_PUBLIC_WP_API_URL || "https://lylusio.fr/wp-json/wp/v2";
+const WP_API_URL =
+	process.env.NEXT_PUBLIC_WP_API_URL || "https://lylusio.fr/wp-json/wp/v2";
 
 const formatDate = (dateString: string): string => {
 	const date = new Date(dateString);
@@ -99,21 +101,36 @@ const calculateReadTime = (content: string): number => {
 };
 
 // Calendly URLs for article internal links
-const CALENDLY_ASTROLOGIE = "https://calendly.com/lylusio-fr/themenatal?month=2025-12";
-const CALENDLY_REIKI = "https://calendly.com/lylusio-fr/soin-energetique-reiki?month=2025-12";
+const CALENDLY_ASTROLOGIE =
+	"https://calendly.com/lylusio-fr/themenatal?month=2025-12";
+const CALENDLY_REIKI =
+	"https://calendly.com/lylusio-fr/soin-energetique-reiki?month=2025-12";
 const CALENDLY_GENERAL = "https://calendly.com/lylusio-fr";
 
 // Helper to determine Calendly URL based on article categories
-const getCalendlyUrlFromCategories = (categories: { id: number; name: string; slug: string }[]): string => {
-	const categorySlugs = categories.map(cat => cat.slug.toLowerCase());
+const getCalendlyUrlFromCategories = (
+	categories: { id: number; name: string; slug: string }[]
+): string => {
+	const categorySlugs = categories.map((cat) => cat.slug.toLowerCase());
 
 	// Check if article is about astrology
-	if (categorySlugs.some(slug => slug.includes('astrologie') || slug.includes('astro'))) {
+	if (
+		categorySlugs.some(
+			(slug) => slug.includes("astrologie") || slug.includes("astro")
+		)
+	) {
 		return CALENDLY_ASTROLOGIE;
 	}
 
 	// Check if article is about reiki
-	if (categorySlugs.some(slug => slug.includes('reiki') || slug.includes('energie') || slug.includes('energetique'))) {
+	if (
+		categorySlugs.some(
+			(slug) =>
+				slug.includes("reiki") ||
+				slug.includes("energie") ||
+				slug.includes("energetique")
+		)
+	) {
 		return CALENDLY_REIKI;
 	}
 
@@ -352,7 +369,7 @@ const BlogPost = () => {
 							staleTime: 1000 * 60 * 10,
 						});
 
-						const img = document.createElement('img');
+						const img = document.createElement("img");
 						img.src =
 							rp._embedded?.["wp:featuredmedia"]?.[0]
 								?.source_url || "/placeholder.svg";
@@ -393,17 +410,18 @@ const BlogPost = () => {
 
 		const handleArticleLinksClick = (e: MouseEvent) => {
 			const target = e.target as HTMLElement;
-			const link = target.closest('a');
+			const link = target.closest("a");
 
 			// Only intercept links inside the article content
-			if (link && link.closest('.prose')) {
+			if (link && link.closest(".prose")) {
 				e.preventDefault();
-				window.open(calendlyUrl, '_blank', 'noopener,noreferrer');
+				window.open(calendlyUrl, "_blank", "noopener,noreferrer");
 			}
 		};
 
-		document.addEventListener('click', handleArticleLinksClick);
-		return () => document.removeEventListener('click', handleArticleLinksClick);
+		document.addEventListener("click", handleArticleLinksClick);
+		return () =>
+			document.removeEventListener("click", handleArticleLinksClick);
 	}, [post]);
 
 	const handleShare = async (platform?: string) => {
@@ -569,7 +587,9 @@ const BlogPost = () => {
 						<header className="mb-8">
 							<h1 className="font-display text-4xl md:text-5xl font-bold leading-snug mb-6 text-foreground">
 								<span className="font-calligraphic text-accent inline-block align-baseline text-5xl md:text-6xl">
-									{toSentenceCase(stripHtml(post.title)).charAt(0)}
+									{toSentenceCase(
+										stripHtml(post.title)
+									).charAt(0)}
 								</span>
 								{toSentenceCase(stripHtml(post.title)).slice(1)}
 							</h1>
@@ -619,7 +639,7 @@ const BlogPost = () => {
 							prose-a:text-accent prose-a:font-medium prose-a:no-underline hover:prose-a:underline hover:prose-a:decoration-2
 							prose-strong:text-foreground prose-strong:font-semibold
 							prose-em:text-foreground/80 prose-em:italic
-							prose-blockquote:border-l-4 prose-blockquote:border-accent prose-blockquote:italic prose-blockquote:text-foreground/80 prose-blockquote:bg-gradient-sand-center/30 prose-blockquote:py-4 prose-blockquote:px-6 prose-blockquote:rounded-r-xl prose-blockquote:my-8 prose-blockquote:not-italic
+							prose-blockquote:border-l-4 prose-blockquote:border-accent prose-blockquote:italic prose-blockquote:text-foreground/80 prose-blockquote:bg-gradient-sand-center/30 prose-blockquote:py-4 prose-blockquote:px-6 prose-blockquote:rounded-r-xl prose-blockquote:my-8 
 							prose-ul:list-disc prose-ul:pl-6 prose-ul:my-6 prose-ul:space-y-2
 							prose-ol:list-decimal prose-ol:pl-6 prose-ol:my-6 prose-ol:space-y-2
 							prose-li:text-foreground/90 prose-li:leading-relaxed prose-li:mb-2
@@ -631,36 +651,52 @@ const BlogPost = () => {
 						/>
 
 						<div className="flex flex-wrap items-center justify-center gap-3 mt-12 pt-8 border-t border-border/30">
-							<span className="text-sm text-muted-foreground mr-2">
-								Partager :
-							</span>
 							<Button
 								variant="outline"
 								size="sm"
 								onClick={() => handleShare("facebook")}
 							>
-								<Facebook className="w-4 h-4 mr-2" /> Facebook
+								<FaFacebook
+									className="w-4 h-4 mr-2 text-blue-500"
+									aria-hidden="true"
+								/>{" "}
+								Facebook
 							</Button>
+
 							<Button
 								variant="outline"
 								size="sm"
 								onClick={() => handleShare("instagram")}
 							>
-								<Instagram className="w-4 h-4 mr-2" /> Instagram
+								<FaInstagram
+									className="w-4 h-4 mr-2 text-pink-500"
+									aria-hidden="true"
+								/>{" "}
+								Instagram
 							</Button>
+
 							<Button
 								variant="outline"
 								size="sm"
 								onClick={() => handleShare("linkedin")}
 							>
-								<Linkedin className="w-4 h-4 mr-2" /> LinkedIn
+								<FaLinkedin
+									className="w-4 h-4 mr-2 text-blue-400"
+									aria-hidden="true"
+								/>{" "}
+								LinkedIn
 							</Button>
+
 							<Button
 								variant="outline"
 								size="sm"
 								onClick={() => handleShare()}
 							>
-								<LinkIcon className="w-4 h-4 mr-2" /> Copier
+								<FaLink
+									className="w-4 h-4 mr-2"
+									aria-hidden="true"
+								/>{" "}
+								Copier
 							</Button>
 						</div>
 
