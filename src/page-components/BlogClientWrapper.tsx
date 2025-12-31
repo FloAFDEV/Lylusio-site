@@ -94,6 +94,11 @@ const BlogClientWrapper = ({ initialPosts, initialCategories }: Props) => {
 
 	const handleLoadMore = () => setPostsToShow((prev) => prev + 12);
 
+	const categoryOrder = ["Développement personnel", "Astrologie", "Reiki"];
+	const sortedCategories = categoryOrder
+		.map((name) => initialCategories.find((c) => c.name === name))
+		.filter(Boolean) as WPCategory[];
+
 	return (
 		<div className="min-h-screen bg-background relative">
 			<a href="#main-content" className="skip-link">
@@ -108,7 +113,7 @@ const BlogClientWrapper = ({ initialPosts, initialCategories }: Props) => {
 					aria-labelledby="blog-title"
 				>
 					{/* Header */}
-					<header className="max-w-4xl mx-auto text-center mb-12 md:mb-16 relative">
+					<header className="max-w-4xl mx-auto text-center mb-12 mt-12 md:mb-16 relative">
 						<p className="section-label">Blog & Inspiration</p>
 						<h1
 							id="blog-title"
@@ -127,7 +132,7 @@ const BlogClientWrapper = ({ initialPosts, initialCategories }: Props) => {
 					</header>
 					{/* Filters avec compteurs intégrés */}
 					<div className="max-w-5xl mx-auto mb-2">
-						<div className="bg-card/50 rounded-xl border border-border/20 p-4 space-y-4">
+						<div className=" rounded-xl border border-border/20 p-4 space-y-4">
 							<div className="flex flex-col sm:flex-row gap-4 justify-between items-start sm:items-center">
 								{/* Category Filters avec compteurs */}
 
@@ -150,14 +155,14 @@ const BlogClientWrapper = ({ initialPosts, initialCategories }: Props) => {
 											({totalPosts})
 										</span>
 									</button>
-
-									{initialCategories.map((category) => (
+									{sortedCategories.map((category) => (
 										<button
 											key={category.id}
 											onClick={() =>
 												setSelectedCategory(category.id)
 											}
-											className={`px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-full text-xs sm:text-sm font-semibold transition-colors focus-visible:ring-2 focus-visible:ring-accent leading-tight ${
+											className={`px-2 py-0.5 text-xs sm:px-3 sm:py-1.5 sm:text-sm
+font-semibold transition-colors focus-visible:ring-2 focus-visible:ring-accent leading-tight ${
 												selectedCategory === category.id
 													? "bg-navy text-white shadow-sm"
 													: "bg-muted/50 text-muted-foreground hover:bg-muted"
@@ -209,7 +214,7 @@ const BlogClientWrapper = ({ initialPosts, initialCategories }: Props) => {
 					{/* Compteurs articles */}
 
 					<div
-						className="max-w-5xl mx-auto mb-8 text-left px-4 py-2 text-sm text-muted-foreground"
+						className="max-w-5xl mx-auto mb-4 text-left px-4 py-2 text-sm text-muted-foreground"
 						aria-live="polite"
 					>
 						{selectedCategory !== null || searchQuery ? (
