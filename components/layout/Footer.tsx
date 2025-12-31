@@ -516,7 +516,7 @@ const Footer = () => {
 										href="https://www.google.com/maps?q=49+route+de+Labastide+31620+Cépet"
 										target="_blank"
 										rel="noopener noreferrer"
-										className="hover:text-primary-foreground transition-colors duration-300 leading-relaxed group-hover:translate-x-1.5 transition-transform duration-300 inline-block"
+										className="hover:text-primary-foreground leading-relaxed group-hover:translate-x-1.5 transition-transform duration-300 inline-block"
 									>
 										<span itemProp="streetAddress">
 											49 route de Labastide
@@ -543,7 +543,6 @@ const Footer = () => {
 							<TitleIconSpacer /> Localisation
 						</h4>
 						<div className="relative group/map rounded-2xl overflow-hidden border border-border/30 shadow-sm hover:shadow-md transition-all duration-300">
-
 							<iframe
 								src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2897.188229409235!2d1.4298480117613777!3d43.748421570977264!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12aea7de29a6bfcf%3A0xe7a375cbe60d1076!2sEmilie%20Perez%20Astrologue%2C%20Praticienne%20Reiki%2C%20Coaching%20professionnel%20-%20Lylusio!5e1!3m2!1sfr!2sfr!4v1765194360692!5m2!1sfr!2sfr"
 								width="100%"
