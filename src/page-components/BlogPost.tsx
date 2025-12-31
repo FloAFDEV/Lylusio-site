@@ -230,20 +230,25 @@ const FeaturedImage = ({ src, alt }: { src: string; alt: string }) => {
 			{!isLoaded && (
 				<div className="w-full h-[300px] sm:h-[400px] lg:h-[450px] rounded-2xl shimmer-loading" />
 			)}
-			<img
-				src={src}
-				alt={alt}
-				className={
-					"w-full h-auto max-h-[500px] object-cover rounded-2xl shadow-elegant transition-opacity duration-500 " +
-					(isLoaded ? "opacity-100" : "opacity-0 absolute inset-0")
-				}
-				loading="eager"
-				decoding="async"
-				onLoad={() => setIsLoaded(true)}
-			/>
+			<div className="relative w-full aspect-[16/9] max-h-[500px]">
+				<Image
+					src={src}
+					alt={alt}
+					fill
+					sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
+					className={
+						"object-cover rounded-2xl shadow-elegant transition-opacity duration-500 " +
+						(isLoaded ? "opacity-100" : "opacity-0")
+					}
+					priority
+					quality={90}
+					onLoad={() => setIsLoaded(true)}
+				/>
+			</div>
 			<GoldenPlantBadge
 				size="md"
 				className="absolute -bottom-3 -right-3"
+				aria-hidden="true"
 			/>
 		</figure>
 	);

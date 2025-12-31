@@ -16,6 +16,7 @@ import { Button } from "@/components/ui/button";
 import { YouTubeEmbed } from "@/components/YouTubeEmbed";
 import { getYouTubeVideoInfo } from "@/lib/youtube";
 import { generateMetadata as genMeta } from "@/content/seo";
+import CALENDLY_URLS from "@/lib/calendly";
 
 // SEO Metadata
 export const metadata = genMeta("ressources");
@@ -520,6 +521,98 @@ export default async function RessourcesPage() {
 								</a>
 							</Button>
 						</nav>
+					</div>
+				</section>
+
+				{/* CTA Section - Transition vers accompagnement */}
+				<section
+					aria-label="Appel à l'action - Séance découverte"
+					className="py-16 md:py-20 bg-gradient-to-b from-accent/5 via-gold/5 to-transparent relative overflow-hidden"
+				>
+					{/* Background decoration */}
+					<div
+						className="absolute inset-0 bg-gradient-to-r from-transparent via-secondary/10 to-transparent"
+						aria-hidden="true"
+					/>
+					<div
+						className="absolute top-10 right-10 w-32 h-32 bg-accent/10 rounded-full blur-3xl"
+						aria-hidden="true"
+					/>
+					<div
+						className="absolute bottom-10 left-10 w-48 h-48 bg-gold/10 rounded-full blur-2xl"
+						aria-hidden="true"
+					/>
+
+					<div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+						<div className="max-w-3xl mx-auto text-center">
+							{/* Badge Icon */}
+							<div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-gold/20 to-accent/15 rounded-2xl mb-6 shadow-sm ring-1 ring-accent/20">
+								<Sparkles
+									className="w-8 h-8 text-gold"
+									aria-hidden="true"
+								/>
+							</div>
+
+							{/* Titre */}
+							<h2 className="font-display text-2xl sm:text-3xl md:text-4xl text-foreground mb-6">
+								<span className="font-calligraphic text-accent text-3xl sm:text-4xl md:text-5xl inline-block align-baseline">
+									C
+								</span>
+								es contenus vous inspirent ?
+							</h2>
+
+							{/* Description */}
+							<p className="text-lg md:text-xl text-muted-foreground mb-8 leading-relaxed">
+								Passons à l'action ensemble. Réservez une séance d'astrologie ou de Reiki pour approfondir votre cheminement personnel.
+							</p>
+
+							{/* CTA Buttons */}
+							<div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+								<Button
+									asChild
+									variant="accent"
+									size="lg"
+									className="w-full sm:w-auto group"
+								>
+									<a
+										href={CALENDLY_URLS.GENERAL}
+										target="_blank"
+										rel="noopener noreferrer"
+										aria-label="Réserver une séance avec Émilie Perez (ouvre Calendly dans un nouvel onglet)"
+										className="inline-flex items-center gap-2"
+									>
+										<Calendar
+											className="w-5 h-5"
+											aria-hidden="true"
+										/>
+										<span>Réserver une séance</span>
+										<ArrowRight
+											className="w-4 h-4 group-hover:translate-x-1 transition-transform"
+											aria-hidden="true"
+										/>
+									</a>
+								</Button>
+
+								<Button
+									asChild
+									variant="outline"
+									size="lg"
+									className="w-full sm:w-auto group"
+								>
+									<Link
+										href="/accompagnement-toulouse"
+										aria-label="Découvrir toutes les prestations d'accompagnement"
+										className="inline-flex items-center gap-2"
+									>
+										<span>Découvrir mes accompagnements</span>
+										<ArrowRight
+											className="w-4 h-4 group-hover:translate-x-1 transition-transform"
+											aria-hidden="true"
+										/>
+									</Link>
+								</Button>
+							</div>
+						</div>
 					</div>
 				</section>
 

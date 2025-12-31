@@ -139,7 +139,7 @@ const fetchAllBlogPosts = async (): Promise<BlogPost[]> => {
 			date: formatDate(post.date),
 			rawDate: post.date,
 			slug: post.slug,
-			image: "/assets/tarif-LimageUrl.webp",
+			image: imageUrl,
 			imageAlt,
 			categories,
 		};
@@ -518,6 +518,8 @@ const Blog = () => {
 															priority={index < 3}
 															width={400}
 															height={400}
+															sizes="(max-width: 640px) 100vw, (max-width: 1024px) 40vw, 33vw"
+															quality={85}
 														/>
 													</div>
 													<GoldenPlantBadge

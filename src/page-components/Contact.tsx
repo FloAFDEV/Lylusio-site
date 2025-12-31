@@ -222,10 +222,10 @@ const Contact = () => {
               <header className="text-center mb-12 md:mb-16">
                 <p className="section-label">Contact</p>
                 <h1 id="contact-title" className="text-foreground mb-6 first-letter-fancy-lg">
-                  Prenons contact
+                  Contactez Émilie Perez - Astrologue Toulouse
                 </h1>
                 <p className="text-muted-foreground text-base sm:text-lg leading-relaxed max-w-xl mx-auto">
-                  Une question, une envie d'échanger ou de réserver une séance ? Je serai ravie de vous répondre.
+                  Une question sur l'astrologie, le Reiki ou mon accompagnement ? Envie de réserver une séance ? Je serai ravie de vous répondre.
                 </p>
               </header>
 

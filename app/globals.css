@@ -44,7 +44,7 @@ html {
 
 		/* Muted */
 		--muted: 213 30% 94%;
-		--muted-foreground: 0 0% 42%; /* #6B6B6B - gris doux */
+		--muted-foreground: 220 20% 32%; /* #4A5568 - gris plus foncé pour WCAG AAA (7:1) */
 
 		/* Accent / CTA / Or - #C6B58A */
 		--accent: 42 31% 66%; /* #C6B58A */

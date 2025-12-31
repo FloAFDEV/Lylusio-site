@@ -166,18 +166,6 @@ const ApprochSection = () => {
 										Découvrir mon approche
 									</Button>
 								</Link>
-								<Link
-									href="/emilie-perez"
-									aria-label="En savoir plus sur mon parcours"
-								>
-									<Button
-										variant="outline"
-										size="lg"
-										className="w-full sm:w-auto border-border/50"
-									>
-										Qui suis-je
-									</Button>
-								</Link>
 							</div>
 						</div>
 					</article>

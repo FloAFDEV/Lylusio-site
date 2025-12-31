@@ -5,12 +5,24 @@ import { Button } from "@/components/ui/button";
 import { useInView } from "@/hooks/useInView";
 import { FaYoutube, FaInstagram, FaFacebook } from "react-icons/fa";
 import { BookOpen, ArrowRight, Sparkles } from "lucide-react";
-import { memo, useMemo } from "react";
+import { memo, useEffect, useState } from "react";
 
 // 🌟 Étoiles scintillantes dynamiques
 const CelestialStars = memo(() => {
-	const stars = useMemo(
-		() =>
+	const [stars, setStars] = useState<
+		{
+			id: number;
+			left: string;
+			top: string;
+			size: number;
+			delay: string;
+			duration: string;
+		}[]
+	>([]);
+
+	useEffect(() => {
+		// Générer les étoiles uniquement côté client pour éviter l'hydration mismatch
+		setStars(
 			Array.from({ length: 20 }).map((_, i) => ({
 				id: i,
 				left: `${Math.random() * 100}%`,
@@ -18,9 +30,9 @@ const CelestialStars = memo(() => {
 				size: Math.floor(Math.random() * 4) + 1,
 				delay: `${Math.random() * 3}s`,
 				duration: `${Math.random() * 2 + 2}s`,
-			})),
-		[]
-	);
+			}))
+		);
+	}, []);
 
 	return (
 		<div
@@ -30,7 +42,7 @@ const CelestialStars = memo(() => {
 			{stars.map((star) => (
 				<div
 					key={star.id}
-					className="absolute rounded-full bg-gold/80 animate-twinkle will-change-opacity"
+					className="absolute rounded-full bg-gold/80 motion-safe:animate-twinkle will-change-opacity"
 					style={{
 						left: star.left,
 						top: star.top,
@@ -121,15 +133,15 @@ const RessourcesCTA = () => {
 					<div
 						role="region"
 						aria-labelledby="free-resources-title"
-						className="relative bg-gradient-to-br from-card via-card/95 to-card/90 backdrop-blur-md rounded-3xl md:rounded-[2rem] p-8 md:p-12 lg:p-16 text-center border-2 border-accent/20 shadow-lg overflow-hidden"
+						className="relative bg-gradient-to-br from-card via-card/95 to-card/90 backdrop-blur-md rounded-2xl md:rounded-3xl p-6 md:p-8 lg:p-10 text-center border border-accent/15 shadow-md overflow-hidden"
 					>
-						{/* Decorative glow effects */}
-						<div className="absolute -top-20 -right-20 w-40 h-40 bg-accent/20 rounded-full blur-3xl" aria-hidden="true" />
-						<div className="absolute -bottom-20 -left-20 w-40 h-40 bg-gold/15 rounded-full blur-3xl" aria-hidden="true" />
-						{/* Icon badge */}
-						<div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-gold/20 to-accent/20 rounded-2xl mb-6 shadow-lg ring-2 ring-accent/30 relative">
+						{/* Decorative glow effects - softer and smaller */}
+						<div className="absolute -top-16 -right-16 w-32 h-32 bg-accent/15 rounded-full blur-2xl" aria-hidden="true" />
+						<div className="absolute -bottom-16 -left-16 w-32 h-32 bg-gold/10 rounded-full blur-2xl" aria-hidden="true" />
+						{/* Icon badge - smaller and more delicate */}
+						<div className="inline-flex items-center justify-center w-14 h-14 bg-gradient-to-br from-gold/15 to-accent/15 rounded-xl mb-5 shadow-md ring-1 ring-accent/20 relative">
 							<Sparkles
-								className="w-10 h-10 text-gold drop-shadow-md"
+								className="w-7 h-7 text-gold drop-shadow-sm"
 								aria-hidden="true"
 							/>
 							<span className="sr-only">
@@ -139,12 +151,12 @@ const RessourcesCTA = () => {
 
 						<h2
 							id="free-resources-title"
-							className="font-display text-2xl md:text-3xl lg:text-4xl text-foreground mb-5 relative"
+							className="font-display text-xl md:text-2xl lg:text-3xl text-foreground mb-4 relative"
 						>
 							{renderTitle("Découvrez mes contenus gratuits")}
 						</h2>
 
-						<p className="text-muted-foreground mb-10 max-w-2xl mx-auto text-base md:text-lg lg:text-xl leading-relaxed relative">
+						<p className="text-muted-foreground mb-8 max-w-xl mx-auto text-sm md:text-base lg:text-lg leading-relaxed relative">
 							Vidéos pédagogiques, ateliers lives et articles
 							approfondis pour enrichir votre chemin
 						</p>

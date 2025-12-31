@@ -8,7 +8,8 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Calendar } from "lucide-react";
 
 // WordPress API URL from environment
-const WP_API_URL = process.env.NEXT_PUBLIC_WP_API_URL || "https://lylusio.fr/wp-json/wp/v2";
+const WP_API_URL =
+	process.env.NEXT_PUBLIC_WP_API_URL || "https://lylusio.fr/wp-json/wp/v2";
 
 interface WPPost {
 	id: number;
@@ -72,7 +73,7 @@ const RecentArticlesSection = () => {
 			<div className="container mx-auto px-4 sm:px-6 lg:px-8">
 				{/* Header */}
 				<div className="text-center max-w-3xl mx-auto mb-16">
-					<p className="section-label">Du blog</p>
+					<p className="section-label">Le blog</p>
 
 					<h2
 						id="recent-articles-title"
@@ -85,7 +86,8 @@ const RecentArticlesSection = () => {
 					</h2>
 
 					<p className="text-muted-foreground text-base md:text-lg leading-relaxed">
-						Découvrez mes derniers articles sur l'astrologie, le Reiki et le développement personnel
+						Découvrez mes derniers articles sur l'astrologie, le
+						Reiki et le développement personnel
 					</p>
 				</div>
 
@@ -121,15 +123,30 @@ const RecentArticlesSection = () => {
 									transitionDelay: `${index * 150}ms`,
 								}}
 							>
-								<Link href={`/blog/${post.slug}`} className="block h-full">
+								<Link
+									href={`/blog/${post.slug}`}
+									className="block h-full"
+								>
 									<div className="relative h-full bg-card/50 backdrop-blur-sm border border-border/30 rounded-2xl overflow-hidden hover:border-accent/40 transition-all duration-300 hover:shadow-lg">
 										{/* Image */}
 										<div className="relative aspect-[16/10] overflow-hidden">
-											{post._embedded?.["wp:featuredmedia"]?.[0] ? (
+											{post._embedded?.[
+												"wp:featuredmedia"
+											]?.[0] ? (
 												<Image
-													src={post._embedded["wp:featuredmedia"][0].source_url}
-													alt={post._embedded["wp:featuredmedia"][0].alt_text || post.title.rendered}
+													src={
+														post._embedded[
+															"wp:featuredmedia"
+														][0].source_url
+													}
+													alt={
+														post._embedded[
+															"wp:featuredmedia"
+														][0].alt_text ||
+														post.title.rendered
+													}
 													fill
+													sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
 													className="object-cover group-hover:scale-105 transition-transform duration-500"
 													quality={75}
 												/>
@@ -145,18 +162,24 @@ const RecentArticlesSection = () => {
 											{/* Date */}
 											<div className="flex items-center gap-2 text-xs text-muted-foreground/70 mb-3">
 												<Calendar className="w-3.5 h-3.5" />
-												<time dateTime={post.date}>{formatDate(post.date)}</time>
+												<time dateTime={post.date}>
+													{formatDate(post.date)}
+												</time>
 											</div>
 
 											{/* Title */}
 											<h3
 												className="text-lg md:text-xl font-display text-foreground mb-3 group-hover:text-accent transition-colors duration-300 line-clamp-2"
-												dangerouslySetInnerHTML={{ __html: post.title.rendered }}
+												dangerouslySetInnerHTML={{
+													__html: post.title.rendered,
+												}}
 											/>
 
 											{/* Excerpt */}
 											<p className="text-sm text-muted-foreground leading-relaxed mb-4 line-clamp-3">
-												{stripHtml(post.excerpt.rendered)}
+												{stripHtml(
+													post.excerpt.rendered
+												)}
 											</p>
 
 											{/* Read more link */}
@@ -174,7 +197,10 @@ const RecentArticlesSection = () => {
 
 				{/* CTA Button */}
 				<div className="text-center mt-12">
-					<Link href="/blog" aria-label="Voir tous les articles du blog">
+					<Link
+						href="/blog"
+						aria-label="Voir tous les articles du blog"
+					>
 						<Button variant="elegant" size="lg" className="group">
 							Voir tous les articles
 							<ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />

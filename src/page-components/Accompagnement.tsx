@@ -43,13 +43,7 @@ import { useIsMobile } from "@/hooks/use-mobile";
 // import tarifAccompagnement from "@/assets/tarif-accompagnement.webp"; // Now using /assets/tarif-accompagnement.webp
 // import tarifBilanPro from "@/assets/tarif-bilan-pro.webp"; // Now using /assets/tarif-bilan-pro.webp
 
-const CALENDLY_THEME_NATAL = "https://calendly.com/lylusio-fr/themenatal?month=2025-12";
-const CALENDLY_TRANSITS =
-	"https://calendly.com/lylusio-fr/themenatal?month=2025-12";
-const CALENDLY_REIKI = "https://calendly.com/lylusio-fr/soin-energetique-reiki?month=2025-12";
-const CALENDLY_GLOBAL = "https://calendly.com/lylusio-fr";
-const CALENDLY_BILAN_PRO =
-	"https://calendly.com/lylusio-fr/themenatal?month=2025-12";
+import CALENDLY_URLS from "@/lib/calendly";
 
 const Accompagnement = () => {
 	const isMobile = useIsMobile();
@@ -93,7 +87,7 @@ const Accompagnement = () => {
 				"Échange approfondi",
 				"Délaoi de préparation",
 			],
-			calendlyLink: CALENDLY_THEME_NATAL,
+			calendlyLink: CALENDLY_URLS.THEME_NATAL,
 		},
 		{
 			id: "transits",
@@ -113,7 +107,7 @@ const Accompagnement = () => {
 				"Mettre du sens",
 				"Ressources cachées",
 			],
-			calendlyLink: CALENDLY_TRANSITS,
+			calendlyLink: CALENDLY_URLS.TRANSITS,
 		},
 	];
 
@@ -134,7 +128,7 @@ const Accompagnement = () => {
 			"Libération blocages",
 			"Relaxation profonde",
 		],
-		calendlyLink: CALENDLY_REIKI,
+		calendlyLink: CALENDLY_URLS.REIKI,
 		isHighlighted: true,
 	};
 
@@ -154,7 +148,7 @@ const Accompagnement = () => {
 			"Aspirations profondes",
 			"Plan d'action aligné",
 		],
-		calendlyLink: CALENDLY_BILAN_PRO,
+		calendlyLink: CALENDLY_URLS.BILAN_PRO,
 	};
 
 	const structuredData = {
@@ -656,7 +650,7 @@ const Accompagnement = () => {
 											className="w-full max-w-sm mx-auto group/btn"
 											onClick={() =>
 												window.open(
-													CALENDLY_REIKI,
+													CALENDLY_URLS.REIKI,
 													"_blank"
 												)
 											}
@@ -803,7 +797,7 @@ const Accompagnement = () => {
 													className="sm:ml-auto group/btn"
 													onClick={() =>
 														window.open(
-															CALENDLY_GLOBAL,
+															CALENDLY_URLS.ACCOMPAGNEMENT_GLOBAL,
 															"_blank"
 														)
 													}

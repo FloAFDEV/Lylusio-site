@@ -119,13 +119,12 @@ const BlogClientWrapper = ({ initialPosts, initialCategories }: Props) => {
 							className="text-foreground mb-6 text-center"
 						>
 							<span className="font-calligraphic text-accent inline-block align-baseline  ">
-								A
+								B
 							</span>
-							rticles & Réflexions
+							log Astrologie & Reiki à Toulouse
 						</h1>
 						<p className="text-muted-foreground text-base sm:text-lg leading-relaxed max-w-2xl mx-auto">
-							Explorations autour de l'astrologie, du Reiki et du
-							développement personnel.
+							Articles et réflexions autour de l'astrologie humaniste, du Reiki et du développement personnel par Émilie Perez.
 						</p>
 					</header>
 					{/* Filters avec compteurs intégrés */}

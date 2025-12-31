@@ -63,16 +63,35 @@ const formatDate = (dateString: string): string => {
 
 async function fetchBlogPosts() {
   try {
-    const res = await fetch(`${WP_API_URL}/posts?_embed&per_page=100`, {
+    // Fetch first page to get total count
+    const firstRes = await fetch(`${WP_API_URL}/posts?_embed&per_page=20&page=1`, {
       next: { revalidate: 3600 }, // ISR: revalidate every hour
     });
 
-    if (!res.ok) {
-      console.error('Failed to fetch blog posts:', res.status);
+    if (!firstRes.ok) {
+      console.error('Failed to fetch blog posts:', firstRes.status);
       return [];
     }
 
-    const wpPosts: WPPost[] = await res.json();
+    const totalPages = parseInt(firstRes.headers.get('X-WP-TotalPages') || '1', 10);
+    let wpPosts: WPPost[] = await firstRes.json();
+
+    // Fetch remaining pages if there are more (up to 100 total posts = 5 pages)
+    if (totalPages > 1) {
+      const maxPages = Math.min(totalPages, 5); // Limit to 100 posts max
+      const pagePromises = [];
+
+      for (let page = 2; page <= maxPages; page++) {
+        pagePromises.push(
+          fetch(`${WP_API_URL}/posts?_embed&per_page=20&page=${page}`, {
+            next: { revalidate: 3600 },
+          }).then(res => res.ok ? res.json() : [])
+        );
+      }
+
+      const additionalPages = await Promise.all(pagePromises);
+      additionalPages.forEach((posts) => wpPosts.push(...posts));
+    }
 
     return wpPosts.map((post) => {
       const imageObj = post._embedded?.['wp:featuredmedia']?.[0];
