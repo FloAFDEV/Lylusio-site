@@ -73,21 +73,21 @@ const RecentArticlesSection = () => {
 			<div className="container mx-auto px-4 sm:px-6 lg:px-8">
 				{/* Header */}
 				<div className="text-center max-w-3xl mx-auto mb-16">
-					<p className="section-label">Le blog</p>
+					<p className="section-label">Blog & Inspiration</p>
 
 					<h2
 						id="recent-articles-title"
 						className="text-foreground mb-6 text-2xl sm:text-3xl md:text-4xl"
 					>
 						<span className="font-calligraphic text-accent text-3xl sm:text-4xl md:text-5xl inline-block align-baseline">
-							R
+							L
 						</span>
-						essources & Réflexions
+						ectures & Réflexions
 					</h2>
 
 					<p className="text-muted-foreground text-base md:text-lg leading-relaxed">
-						Découvrez mes derniers articles sur l'astrologie, le
-						Reiki et le développement personnel
+						Articles inspirants sur l'astrologie humaniste, le
+						Reiki et votre cheminement personnel
 					</p>
 				</div>
 

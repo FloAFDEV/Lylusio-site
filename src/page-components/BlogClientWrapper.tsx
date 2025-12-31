@@ -389,7 +389,7 @@ const BlogClientWrapper = ({ initialPosts, initialCategories }: Props) => {
 								href="/ressources"
 								className="text-accent hover:text-gold transition-colors font-medium underline decoration-accent/30 hover:decoration-gold/50 underline-offset-2"
 							>
-								Découvrir les vidéos et ateliers gratuits
+								Découvrir les ressources gratuites
 							</Link>
 						</p>
 					</div>

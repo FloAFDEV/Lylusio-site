@@ -324,19 +324,18 @@ const Blog = () => {
 								size="lg"
 								className="absolute -top-4 right-0 md:right-12 opacity-60"
 							/>
-							<p className="section-label">Blog</p>
+							<p className="section-label">Blog & Inspiration</p>
 							<h1
 								id="blog-title"
-								className="text-foreground mb-6 text-center"
+								className="text-foreground mb-6 text-center text-3xl sm:text-4xl md:text-5xl"
 							>
-								<span className="font-calligraphic text-accent inline-block align-baseline  ">
-									A
+								<span className="font-calligraphic text-accent inline-block align-baseline text-4xl sm:text-5xl md:text-6xl">
+									L
 								</span>
-								rticles & Réflexions
+								ectures & Réflexions
 							</h1>
 							<p className="text-muted-foreground text-base sm:text-lg leading-relaxed max-w-2xl mx-auto">
-								Explorations autour de l'astrologie, du Reiki et
-								du développement personnel.
+								Articles inspirants et analyses approfondies sur l'astrologie humaniste, le Reiki et votre cheminement personnel.
 							</p>
 						</header>
 
@@ -647,6 +646,19 @@ const Blog = () => {
 									Voir toutes les prestations
 								</Button>
 							</Link>
+						</div>
+
+						{/* CTA Secondaire - Ressources */}
+						<div className="mt-8 text-center">
+							<p className="text-sm text-muted-foreground">
+								Envie de contenus pratiques ?{" "}
+								<Link
+									href="/ressources"
+									className="text-accent hover:text-gold transition-colors font-medium underline decoration-accent/30 hover:decoration-gold/50 underline-offset-2"
+								>
+									Découvrir les vidéos et ateliers gratuits
+								</Link>
+							</p>
 						</div>
 					</section>
 				</main>

@@ -51,9 +51,9 @@ export default async function RessourcesPage() {
 	const structuredData = {
 		"@context": "https://schema.org",
 		"@type": "CollectionPage",
-		name: "Ressources Gratuites - Ateliers, Lives & Vidéos",
+		name: "Ressources Gratuites & Contenus Pratiques",
 		description:
-			"Vidéos pédagogiques, ateliers lives et contenus pratiques gratuits sur l'astrologie et le Reiki par Émilie Perez",
+			"Vidéos pédagogiques, ateliers & lives pour enrichir votre chemin - Astrologie et Reiki par Émilie Perez",
 		url: "https://lylusio.fr/ressources",
 		publisher: {
 			"@type": "Person",
@@ -97,7 +97,7 @@ export default async function RessourcesPage() {
 			>
 				{/* Hero Section */}
 				<section
-					aria-label="Hero - Ateliers et ressources gratuites"
+					aria-label="Hero - Ressources gratuites et contenus pratiques"
 					className="relative py-20 md:py-32 overflow-hidden"
 				>
 					{/* Background decoration */}
@@ -123,21 +123,19 @@ export default async function RessourcesPage() {
 									aria-hidden="true"
 								/>
 								<span className="text-sm font-medium text-muted-foreground">
-									Contenus gratuits
+									Ressources gratuites
 								</span>
 							</div>
 
 							<h1 className="text-foreground mb-6 text-3xl sm:text-4xl md:text-5xl lg:text-6xl">
 								<span className="font-calligraphic text-accent text-4xl sm:text-5xl md:text-6xl lg:text-7xl inline-block align-baseline">
-									A
+									R
 								</span>
-								teliers, Lives & Ressources
+								essources gratuites & contenus pratiques
 							</h1>
 
 							<p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-								Retrouvez mes contenus gratuits pour approfondir
-								votre compréhension de l'astrologie, du Reiki et
-								de votre chemin personnel
+								Vidéos pédagogiques, ateliers & lives pour enrichir votre chemin
 							</p>
 						</div>
 					</div>
@@ -516,6 +514,23 @@ export default async function RessourcesPage() {
 									</Link>
 								</Button>
 							</div>
+						</div>
+					</div>
+				</section>
+
+				{/* CTA Secondaire - Blog */}
+				<section className="pb-16 md:pb-20">
+					<div className="container mx-auto px-4 sm:px-6 lg:px-8">
+						<div className="text-center">
+							<p className="text-sm text-muted-foreground">
+								Envie de lectures inspirantes ?{" "}
+								<Link
+									href="/blog"
+									className="text-accent hover:text-gold transition-colors font-medium underline decoration-accent/30 hover:decoration-gold/50 underline-offset-2"
+								>
+									Découvrir les articles et réflexions
+								</Link>
+							</p>
 						</div>
 					</div>
 				</section>

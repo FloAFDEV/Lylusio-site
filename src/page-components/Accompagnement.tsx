@@ -924,7 +924,7 @@ const Accompagnement = () => {
 													className="sm:ml-auto group/btn"
 													onClick={() =>
 														window.open(
-															CALENDLY_BILAN_PRO,
+															CALENDLY_URLS.BILAN_PRO,
 															"_blank"
 														)
 													}
