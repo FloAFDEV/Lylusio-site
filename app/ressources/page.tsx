@@ -1,12 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { FaInstagram, FaYoutube, FaFacebook } from "react-icons/fa";
-import {
-	ArrowRight,
-	ExternalLink,
-	Sparkles,
-	Calendar,
-} from "lucide-react";
+import { ArrowRight, ExternalLink, Sparkles, Calendar } from "lucide-react";
 
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
@@ -31,8 +26,6 @@ const YOUTUBE_VIDEOS = [
 		fallbackTitle: "Introduction au Reiki et pratiques énergétiques",
 	},
 ];
-
-
 
 export default async function RessourcesPage() {
 	// Fetch YouTube video info server-side
@@ -135,7 +128,8 @@ export default async function RessourcesPage() {
 							</h1>
 
 							<p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-								Vidéos pédagogiques, ateliers & lives pour enrichir votre chemin
+								Vidéos pédagogiques, ateliers & lives pour
+								enrichir votre chemin
 							</p>
 						</div>
 					</div>
@@ -237,7 +231,7 @@ export default async function RessourcesPage() {
 											target="_blank"
 											rel="noopener noreferrer"
 											aria-label="Suivre Émilie Perez sur Instagram (nouvelle fenêtre)"
-											className="inline-flex items-center justify-center gap-2 bg-pink-500 hover:bg-pink-600 text-white font-medium rounded-md px-4 py-2 shadow-sm transition-colors duration-300 motion-safe:hover:-translate-y-1 motion-safe:hover:rotate-y-1 motion-safe:hover:rotate-x-0.5"
+											className="inline-flex items-center justify-center gap-2 !bg-pink-500 hover:bg-pink-600 text-white font-medium rounded-md px-4 py-2 shadow-sm transition-colors duration-300 motion-safe:hover:-translate-y-1 motion-safe:hover:rotate-y-1 motion-safe:hover:rotate-x-0.5"
 										>
 											<FaInstagram
 												className="w-5 h-5"
@@ -465,7 +459,9 @@ export default async function RessourcesPage() {
 
 							{/* Description */}
 							<p className="text-lg md:text-xl text-muted-foreground mb-8 leading-relaxed">
-								Passons à l'action ensemble. Réservez une séance d'astrologie ou de Reiki pour approfondir votre cheminement personnel.
+								Passons à l'action ensemble. Réservez une séance
+								d'astrologie ou de Reiki pour approfondir votre
+								cheminement personnel.
 							</p>
 
 							{/* CTA Buttons */}
@@ -506,7 +502,9 @@ export default async function RessourcesPage() {
 										aria-label="Découvrir toutes les prestations d'accompagnement"
 										className="inline-flex items-center gap-2"
 									>
-										<span>Découvrir mes accompagnements</span>
+										<span>
+											Découvrir mes accompagnements
+										</span>
 										<ArrowRight
 											className="w-4 h-4 group-hover:translate-x-1 transition-transform"
 											aria-hidden="true"
@@ -526,7 +524,7 @@ export default async function RessourcesPage() {
 								Envie de lectures inspirantes ?{" "}
 								<Link
 									href="/blog"
-									className="text-accent hover:text-gold transition-colors font-medium underline decoration-accent/30 hover:decoration-gold/50 underline-offset-2"
+									className="text-navy hover:text-navy transition-colors font-semibold underline decoration-accent/50 hover:decoration-navy/50 underline-offset-2"
 								>
 									Découvrir les articles et réflexions
 								</Link>
@@ -534,7 +532,6 @@ export default async function RessourcesPage() {
 						</div>
 					</div>
 				</section>
-
 			</main>
 
 			<Footer />
