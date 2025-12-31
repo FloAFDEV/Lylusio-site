@@ -138,7 +138,7 @@ const BlogClientWrapper = ({ initialPosts, initialCategories }: Props) => {
 										onClick={() =>
 											setSelectedCategory(null)
 										}
-										className={`px-3 py-1.5 rounded-full text-sm font-semibold transition-colors focus-visible:ring-2 focus-visible:ring-accent ${
+										className={`px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-full text-xs sm:text-sm font-semibold transition-colors focus-visible:ring-2 focus-visible:ring-accent leading-tight ${
 											selectedCategory === null
 												? "bg-navy text-white shadow-sm"
 												: "bg-muted/50 text-muted-foreground hover:bg-muted"
@@ -157,7 +157,7 @@ const BlogClientWrapper = ({ initialPosts, initialCategories }: Props) => {
 											onClick={() =>
 												setSelectedCategory(category.id)
 											}
-											className={`px-3 py-1.5 rounded-full text-sm font-semibold transition-colors focus-visible:ring-2 focus-visible:ring-accent ${
+											className={`px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-full text-xs sm:text-sm font-semibold transition-colors focus-visible:ring-2 focus-visible:ring-accent leading-tight ${
 												selectedCategory === category.id
 													? "bg-navy text-white shadow-sm"
 													: "bg-muted/50 text-muted-foreground hover:bg-muted"

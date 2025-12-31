@@ -1,11 +1,9 @@
 import { Metadata } from 'next';
 import BlogClientWrapper from '@/src/page-components/BlogClientWrapper';
 import { generateMetadata as genMeta } from '@/content/seo';
+import { fetchPosts, fetchCategories, CACHE_DURATIONS } from '@/lib/wordpress-cache';
 
-const WP_API_URL = process.env.NEXT_PUBLIC_WP_API_URL || 'https://lylusio.fr/wp-json/wp/v2';
-
-export const dynamic = 'force-dynamic';
-export const revalidate = 3600; // Revalidate every hour (ISR)
+// ISR: 1 hour - configured via fetch options
 
 export const metadata: Metadata = genMeta('blog');
 
@@ -63,37 +61,37 @@ const formatDate = (dateString: string): string => {
 
 async function fetchBlogPosts() {
   try {
-    // Fetch first page to get total count
-    const firstRes = await fetch(`${WP_API_URL}/posts?_embed&per_page=20&page=1`, {
-      next: { revalidate: 3600 }, // ISR: revalidate every hour
+    // Fetch first page to get total count - using optimized cache
+    const firstPage = await fetchPosts({
+      perPage: 20,
+      page: 1,
+      embed: true,
+      revalidate: CACHE_DURATIONS.POSTS,
     });
 
-    if (!firstRes.ok) {
-      console.error('Failed to fetch blog posts:', firstRes.status);
-      return [];
-    }
-
-    const totalPages = parseInt(firstRes.headers.get('X-WP-TotalPages') || '1', 10);
-    let wpPosts: WPPost[] = await firstRes.json();
+    let allPosts = firstPage.posts;
 
     // Fetch remaining pages if there are more (up to 100 total posts = 5 pages)
-    if (totalPages > 1) {
-      const maxPages = Math.min(totalPages, 5); // Limit to 100 posts max
+    if (firstPage.totalPages > 1) {
+      const maxPages = Math.min(firstPage.totalPages, 5);
       const pagePromises = [];
 
       for (let page = 2; page <= maxPages; page++) {
         pagePromises.push(
-          fetch(`${WP_API_URL}/posts?_embed&per_page=20&page=${page}`, {
-            next: { revalidate: 3600 },
-          }).then(res => res.ok ? res.json() : [])
+          fetchPosts({
+            perPage: 20,
+            page,
+            embed: true,
+            revalidate: CACHE_DURATIONS.POSTS,
+          })
         );
       }
 
       const additionalPages = await Promise.all(pagePromises);
-      additionalPages.forEach((posts) => wpPosts.push(...posts));
+      additionalPages.forEach(({ posts }) => allPosts.push(...posts));
     }
 
-    return wpPosts.map((post) => {
+    return allPosts.map((post: WPPost) => {
       const imageObj = post._embedded?.['wp:featuredmedia']?.[0];
       const imageUrl = imageObj?.source_url || '/placeholder.svg';
       const imageAlt = imageObj?.alt_text || stripHtml(post.title.rendered);
@@ -123,18 +121,12 @@ async function fetchBlogPosts() {
   }
 }
 
-async function fetchCategories() {
+async function fetchBlogCategories() {
   try {
-    const res = await fetch(`${WP_API_URL}/categories?per_page=50`, {
-      next: { revalidate: 3600 },
+    const wpCategories: WPCategory[] = await fetchCategories({
+      perPage: 50,
+      revalidate: CACHE_DURATIONS.CATEGORIES,
     });
-
-    if (!res.ok) {
-      console.error('Failed to fetch categories:', res.status);
-      return [];
-    }
-
-    const wpCategories: WPCategory[] = await res.json();
     return wpCategories.filter((cat) => cat.count > 0);
   } catch (error) {
     console.error('Error fetching categories:', error);
@@ -143,8 +135,8 @@ async function fetchCategories() {
 }
 
 export default async function BlogPage() {
-  // Server-side data fetching
-  const [posts, categories] = await Promise.all([fetchBlogPosts(), fetchCategories()]);
+  // Server-side data fetching with parallel deduplication
+  const [posts, categories] = await Promise.all([fetchBlogPosts(), fetchBlogCategories()]);
 
   return <BlogClientWrapper initialPosts={posts} initialCategories={categories} />;
 }

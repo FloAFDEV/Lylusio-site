@@ -1,8 +1,9 @@
 import { Metadata } from 'next';
 import BlogPost from '@/src/page-components/BlogPost';
 import { generateBlogPostSchema } from '@/content/schema';
+import { fetchPostBySlug, CACHE_DURATIONS } from '@/lib/wordpress-cache';
 
-const WP_API_URL = process.env.NEXT_PUBLIC_WP_API_URL || 'https://lylusio.fr/wp-json/wp/v2';
+// ISR: 2 hours - configured via fetch options
 
 interface WPPost {
   id: number;
@@ -49,27 +50,14 @@ export async function generateMetadata({
   const { slug } = await params;
 
   try {
-    const res = await fetch(`${WP_API_URL}/posts?slug=${slug}&_embed`, {
-      next: { revalidate: 3600 }, // Cache 1h
-    });
+    const post = await fetchPostBySlug(slug, CACHE_DURATIONS.POST_SINGLE);
 
-    if (!res.ok) {
+    if (!post) {
       return {
         title: 'Article non trouvé | Lylusio',
         description: 'Cet article n\'existe pas ou a été supprimé.',
       };
     }
-
-    const posts: WPPost[] = await res.json();
-
-    if (posts.length === 0) {
-      return {
-        title: 'Article non trouvé | Lylusio',
-        description: 'Cet article n\'existe pas ou a été supprimé.',
-      };
-    }
-
-    const post = posts[0];
     const title = stripHtml(post.title.rendered);
     const description = stripHtml(post.excerpt.rendered).substring(0, 160);
     const featuredImage = post._embedded?.['wp:featuredmedia']?.[0];
@@ -129,31 +117,24 @@ export default async function BlogPostPage({
   let blogPostSchema = null;
 
   try {
-    const res = await fetch(`${WP_API_URL}/posts?slug=${slug}&_embed`, {
-      next: { revalidate: 3600 },
-    });
+    const post = await fetchPostBySlug(slug, CACHE_DURATIONS.POST_SINGLE);
 
-    if (res.ok) {
-      const posts: WPPost[] = await res.json();
+    if (post) {
+      const title = stripHtml(post.title.rendered);
+      const description = stripHtml(post.excerpt.rendered).substring(0, 300);
+      const featuredImage = post._embedded?.['wp:featuredmedia']?.[0];
+      const imageUrl = featuredImage?.source_url;
+      const authorName = post._embedded?.author?.[0]?.name || 'Émilie Perez';
 
-      if (posts.length > 0) {
-        const post = posts[0];
-        const title = stripHtml(post.title.rendered);
-        const description = stripHtml(post.excerpt.rendered).substring(0, 300);
-        const featuredImage = post._embedded?.['wp:featuredmedia']?.[0];
-        const imageUrl = featuredImage?.source_url;
-        const authorName = post._embedded?.author?.[0]?.name || 'Émilie Perez';
-
-        blogPostSchema = generateBlogPostSchema({
-          title,
-          description,
-          url: `https://lylusio.fr/${slug}/`,
-          image: imageUrl,
-          datePublished: post.date,
-          dateModified: post.modified,
-          author: authorName,
-        });
-      }
+      blogPostSchema = generateBlogPostSchema({
+        title,
+        description,
+        url: `https://lylusio.fr/${slug}/`,
+        image: imageUrl,
+        datePublished: post.date,
+        dateModified: post.modified,
+        author: authorName,
+      });
     }
   } catch (error) {
     console.error('Error generating blog post schema:', error);

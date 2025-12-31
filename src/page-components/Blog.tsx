@@ -77,7 +77,8 @@ interface RelatedPost {
 }
 
 // WordPress API URL from environment
-const WP_API_URL = process.env.NEXT_PUBLIC_WP_API_URL || "https://lylusio.fr/wp-json/wp/v2";
+const WP_API_URL =
+	process.env.NEXT_PUBLIC_WP_API_URL || "https://lylusio.fr/wp-json/wp/v2";
 
 const formatDate = (dateString: string): string => {
 	const date = new Date(dateString);
@@ -216,8 +217,8 @@ const Blog = () => {
 				staleTime: 1000 * 60 * 10,
 			});
 			// Preload image using native HTMLImageElement (not Next.js Image component)
-			if (typeof window !== 'undefined') {
-				const img = document.createElement('img');
+			if (typeof window !== "undefined") {
+				const img = document.createElement("img");
 				img.src = post.image;
 			}
 		});
@@ -335,87 +336,105 @@ const Blog = () => {
 								ectures & Réflexions
 							</h1>
 							<p className="text-muted-foreground text-base sm:text-lg leading-relaxed max-w-2xl mx-auto">
-								Articles inspirants et analyses approfondies sur l'astrologie humaniste, le Reiki et votre cheminement personnel.
+								Articles inspirants et analyses approfondies sur
+								l'astrologie humaniste, le Reiki et votre
+								cheminement personnel.
 							</p>
 						</header>
 
 						{/* Filters & Sort */}
 						<div className="max-w-5xl mx-auto mb-8 flex flex-col sm:flex-row gap-4 justify-between items-start sm:items-center p-4 bg-card/50 rounded-xl border border-border/20">
-								<div className="flex flex-wrap items-center gap-2">
-									<Filter className="w-4 h-4 text-muted-foreground" />
+							{/* Badges / Categories */}
+							<div className="flex flex-wrap items-center gap-2">
+								<Filter className="w-4 h-4 text-muted-foreground" />
+
+								{/* Bouton Tous */}
+								<button
+									onClick={() => setSelectedCategory(null)}
+									className={`px-2 py-1 rounded-full text-xs md:px-3 md:py-1.5 md:text-sm transition-colors focus-visible:ring-2 focus-visible:ring-accent ${
+										selectedCategory === null
+											? "bg-accent text-white"
+											: "bg-muted/50 text-muted-foreground hover:bg-muted"
+									}`}
+									aria-pressed={selectedCategory === null}
+								>
+									Tous
+								</button>
+
+								{/* Boutons catégories */}
+								{categories.map((cat) => (
 									<button
+										key={cat.id}
 										onClick={() =>
-											setSelectedCategory(null)
+											setSelectedCategory(cat.id)
 										}
-										className={`px-3 py-1.5 rounded-full text-sm transition-colors focus-visible:ring-2 focus-visible:ring-accent ${
-											selectedCategory === null
+										className={`px-2 py-1 rounded-full text-xs md:px-3 md:py-1.5 md:text-sm transition-colors focus-visible:ring-2 focus-visible:ring-accent ${
+											selectedCategory === cat.id
 												? "bg-accent text-white"
 												: "bg-muted/50 text-muted-foreground hover:bg-muted"
 										}`}
-										aria-pressed={selectedCategory === null}
-									>
-										Tous
-									</button>
-									{categories.map((cat) => (
-										<button
-											key={cat.id}
-											onClick={() =>
-												setSelectedCategory(cat.id)
-											}
-											className={`px-3 py-1.5 rounded-full text-sm transition-colors focus-visible:ring-2 focus-visible:ring-accent ${
-												selectedCategory === cat.id
-													? "bg-accent text-white"
-													: "bg-muted/50 text-muted-foreground hover:bg-muted"
-											}`}
-											aria-pressed={
-												selectedCategory === cat.id
-											}
-										>
-											{cat.name} ({cat.count})
-										</button>
-									))}
-								</div>
-								<div className="flex items-center gap-2">
-									<button
-										onClick={() =>
-											setSortOrder(
-												sortOrder === "newest"
-													? "oldest"
-													: "newest"
-											)
+										aria-pressed={
+											selectedCategory === cat.id
 										}
-										className="flex items-center gap-2 px-3 py-1.5 rounded-full text-sm bg-muted/50 text-muted-foreground hover:bg-muted transition-colors focus-visible:ring-2 focus-visible:ring-accent"
-										aria-label={`Trier par date : ${
-											sortOrder === "newest"
-												? "plus récent"
-												: "plus ancien"
-										}`}
 									>
-										{sortOrder === "newest" ? (
-											<>
-												<SortDesc className="w-4 h-4" />{" "}
-												Plus récent
-											</>
-										) : (
-											<>
-												<SortAsc className="w-4 h-4" />{" "}
-												Plus ancien
-											</>
-										)}
+										{cat.name} ({cat.count})
 									</button>
-								</div>
+								))}
+							</div>
+
+							{/* Bouton tri */}
+							<div className="flex items-center gap-2 mt-2 sm:mt-0">
+								<button
+									onClick={() =>
+										setSortOrder(
+											sortOrder === "newest"
+												? "oldest"
+												: "newest"
+										)
+									}
+									className="flex items-center gap-2 px-3 py-1.5 rounded-full text-sm bg-muted/50 text-muted-foreground hover:bg-muted transition-colors focus-visible:ring-2 focus-visible:ring-accent"
+									aria-label={`Trier par date : ${
+										sortOrder === "newest"
+											? "plus récent"
+											: "plus ancien"
+									}`}
+								>
+									{sortOrder === "newest" ? (
+										<>
+											<SortDesc className="w-4 h-4" />{" "}
+											Plus récent
+										</>
+									) : (
+										<>
+											<SortAsc className="w-4 h-4" /> Plus
+											ancien
+										</>
+									)}
+								</button>
+							</div>
 						</div>
 
 						{/* Compteur d'articles trouvés/affichés - sous les sélecteurs */}
 						{totalPosts > 0 && (
-							<div className="flex items-center justify-center gap-2 mb-8" aria-live="polite">
+							<div
+								className="flex items-center justify-center gap-2 mb-8"
+								aria-live="polite"
+							>
 								<div className="h-px w-10 bg-gradient-to-r from-transparent via-accent/30 to-accent/20" />
 								<p className="text-[10px] text-muted-foreground/80 font-thin tracking-[0.15em]">
-									{filteredPosts.length} {filteredPosts.length > 1 ? "articles trouvés" : "article trouvé"}
-									{displayedPosts.length < filteredPosts.length && (
+									{filteredPosts.length}{" "}
+									{filteredPosts.length > 1
+										? "articles trouvés"
+										: "article trouvé"}
+									{displayedPosts.length <
+										filteredPosts.length && (
 										<>
-											<span className="mx-1.5 text-accent/40">·</span>
-											<span className="text-accent/60 font-light">{displayedPosts.length} affichés</span>
+											<span className="mx-1.5 text-accent/40">
+												·
+											</span>
+											<span className="text-accent/60 font-light">
+												{displayedPosts.length} affichés
+											</span>
 										</>
 									)}
 								</p>

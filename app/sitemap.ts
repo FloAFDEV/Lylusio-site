@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next';
+import { fetchPosts, fetchCategories, CACHE_DURATIONS } from '@/lib/wordpress-cache';
 
 const baseUrl = 'https://lylusio.fr';
-const WP_API_URL = process.env.NEXT_PUBLIC_WP_API_URL || 'https://lylusio.fr/wp-json/wp/v2';
 
 interface WPPost {
   slug: string;
@@ -101,53 +101,51 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ];
 
-  // Fetch blog posts from WordPress
+  // Fetch blog posts from WordPress - using optimized cache
   let blogPostRoutes: MetadataRoute.Sitemap = [];
   try {
-    const postsRes = await fetch(`${WP_API_URL}/posts?per_page=100&_fields=slug,modified`, {
-      next: { revalidate: 3600 }, // Revalidate every hour
+    const result = await fetchPosts({
+      perPage: 100,
+      fields: 'slug,modified',
+      embed: false,
+      revalidate: CACHE_DURATIONS.SITEMAP,
     });
 
-    if (postsRes.ok) {
-      const posts: WPPost[] = await postsRes.json();
-      blogPostRoutes = posts.map((post) => ({
-        url: `${baseUrl}/${post.slug}/`,
-        lastModified: new Date(post.modified),
-        changeFrequency: 'monthly' as const,
-        priority: 0.7,
-      }));
-    }
+    blogPostRoutes = result.posts.map((post: WPPost) => ({
+      url: `${baseUrl}/${post.slug}/`,
+      lastModified: new Date(post.modified),
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
+    }));
   } catch (error) {
     console.error('Error fetching blog posts for sitemap:', error);
   }
 
-  // Fetch blog categories from WordPress
+  // Fetch blog categories from WordPress - using optimized cache
   let categoryRoutes: MetadataRoute.Sitemap = [];
   try {
-    const categoriesRes = await fetch(`${WP_API_URL}/categories?per_page=100&_fields=slug,count`, {
-      next: { revalidate: 3600 },
+    const categories: WPCategory[] = await fetchCategories({
+      perPage: 100,
+      fields: 'slug,count',
+      revalidate: CACHE_DURATIONS.SITEMAP,
     });
 
-    if (categoriesRes.ok) {
-      const categories: WPCategory[] = await categoriesRes.json();
+    // Only include categories with posts and that are in our mapping
+    categoryRoutes = categories
+      .filter((cat) => cat.count > 0 && Object.values(CATEGORY_SLUG_MAP).includes(cat.slug))
+      .map((cat) => {
+        // Find the front-end slug that maps to this WP slug
+        const frontendSlug = Object.keys(CATEGORY_SLUG_MAP).find(
+          (key) => CATEGORY_SLUG_MAP[key] === cat.slug
+        ) || cat.slug;
 
-      // Only include categories with posts and that are in our mapping
-      categoryRoutes = categories
-        .filter((cat) => cat.count > 0 && Object.values(CATEGORY_SLUG_MAP).includes(cat.slug))
-        .map((cat) => {
-          // Find the front-end slug that maps to this WP slug
-          const frontendSlug = Object.keys(CATEGORY_SLUG_MAP).find(
-            (key) => CATEGORY_SLUG_MAP[key] === cat.slug
-          ) || cat.slug;
-
-          return {
-            url: `${baseUrl}/category/blog/${frontendSlug}/`,
-            lastModified: new Date(),
-            changeFrequency: 'weekly' as const,
-            priority: 0.6,
-          };
-        });
-    }
+        return {
+          url: `${baseUrl}/category/blog/${frontendSlug}/`,
+          lastModified: new Date(),
+          changeFrequency: 'weekly' as const,
+          priority: 0.6,
+        };
+      });
   } catch (error) {
     console.error('Error fetching categories for sitemap:', error);
   }
