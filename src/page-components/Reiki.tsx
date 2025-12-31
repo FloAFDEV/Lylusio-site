@@ -202,8 +202,8 @@ const Reiki = () => {
 										</span>
 									</div>
 
-									<h1 className="text-foreground text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl mb-4 sm:mb-6 leading-tight">
-										<span className="font-calligraphic text-accent inline-block align-baseline  ">
+									<h1 className="text-foreground text-4xl md:text-5xl mb-4 sm:mb-6 leading-tight">
+										<span className="font-calligraphic text-accent text-5xl md:text-6xl inline-block align-baseline">
 											E
 										</span>
 										nvie de découvrir le Reiki ?
