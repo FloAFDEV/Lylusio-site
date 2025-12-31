@@ -194,37 +194,48 @@ const Breadcrumbs = ({ showPlant = true, customTitle }: BreadcrumbsProps) => {
 			</ol>
 
 			{/* MOBILE */}
-			<ol className="flex sm:hidden items-center gap-1 text-xs text-muted-foreground flex-nowrap overflow-x-auto no-scrollbar">
+			<ol
+				className="
+    flex sm:hidden items-center
+    text-xs text-muted-foreground
+    flex-nowrap overflow-x-auto no-scrollbar
+    list-none p-0 m-0 mt-4
+  "
+			>
 				{/* Home */}
 				<li className="flex-shrink-0">
 					<Link
 						href="/"
-						className="flex items-center gap-1 hover:text-accent transition"
+						className="hover:text-accent transition"
+						aria-label="Accueil"
 					>
-						<Home className="w-3.5 h-3.5" />
+						<Home className="w-3.5 h-3.5" aria-hidden="true" />
 					</Link>
 				</li>
 
-				<ChevronRight className="w-3 h-3 text-muted-foreground/70 flex-shrink-0" />
+				{/* Chevron */}
+				<li className="flex-shrink-0 flex items-center">
+					<ChevronRight className="mx-0.5 w-3 h-3 text-muted-foreground/70" />
+				</li>
 
-				{/* 1 seul breadcrumb → afficher uniquement le dernier */}
+				{/* 1 seul breadcrumb */}
 				{breadcrumbs.length === 1 ? (
-					<span className="font-medium text-foreground truncate max-w-[70vw]">
+					<li className="font-medium text-foreground truncate max-w-[70vw]">
 						{breadcrumbs[0].name}
-					</span>
+					</li>
 				) : (
 					<>
-						{/* Parent */}
-						<span className="truncate max-w-[35vw] flex-shrink">
+						<li className="truncate max-w-[35vw] flex-shrink">
 							{breadcrumbs[0].name}
-						</span>
+						</li>
 
-						<ChevronRight className="w-3 h-3 text-muted-foreground/70 flex-shrink-0" />
+						<li className="flex-shrink-0 flex items-center">
+							<ChevronRight className="mx-0.5 w-3 h-3 text-muted-foreground/70" />
+						</li>
 
-						{/* Dernier élément */}
-						<span className="font-medium text-foreground truncate max-w-[40vw]">
+						<li className="font-medium text-foreground truncate max-w-[40vw]">
 							{breadcrumbs[breadcrumbs.length - 1].name}
-						</span>
+						</li>
 					</>
 				)}
 			</ol>

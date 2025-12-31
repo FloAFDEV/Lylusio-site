@@ -130,8 +130,14 @@ const RessourcesCTA = () => {
 						className="relative bg-gradient-to-br from-card via-card/95 to-card/90 backdrop-blur-md rounded-2xl md:rounded-3xl p-6 md:p-8 lg:p-10 text-center border border-accent/15 shadow-md overflow-hidden"
 					>
 						{/* Decorative glow effects - softer and smaller */}
-						<div className="absolute -top-16 -right-16 w-32 h-32 bg-accent/15 rounded-full blur-2xl" aria-hidden="true" />
-						<div className="absolute -bottom-16 -left-16 w-32 h-32 bg-gold/10 rounded-full blur-2xl" aria-hidden="true" />
+						<div
+							className="absolute -top-16 -right-16 w-32 h-32 bg-accent/15 rounded-full blur-2xl"
+							aria-hidden="true"
+						/>
+						<div
+							className="absolute -bottom-16 -left-16 w-32 h-32 bg-gold/10 rounded-full blur-2xl"
+							aria-hidden="true"
+						/>
 						{/* Icon badge - smaller and more delicate */}
 						<div className="inline-flex items-center justify-center w-14 h-14 bg-gradient-to-br from-gold/15 to-accent/15 rounded-xl mb-5 shadow-md ring-1 ring-accent/20 relative">
 							<Sparkles
@@ -147,12 +153,14 @@ const RessourcesCTA = () => {
 							id="free-resources-title"
 							className="font-display text-xl md:text-2xl lg:text-3xl text-foreground mb-4 relative"
 						>
-							{renderTitle("Découvrez mes contenus gratuits")}
+							{renderTitle(
+								"Ressources gratuites & contenus pratiques"
+							)}
 						</h2>
 
 						<p className="text-muted-foreground mb-8 max-w-xl mx-auto text-sm md:text-base lg:text-lg leading-relaxed relative">
-							Vidéos pédagogiques, ateliers lives et contenus pratiques
-							pour enrichir votre chemin
+							Vidéos pédagogiques, ateliers lives et contenus
+							pratiques pour enrichir votre chemin
 						</p>
 
 						{/* Features badges */}
@@ -192,18 +200,14 @@ const RessourcesCTA = () => {
 						</div>
 
 						{/* CTA Button */}
-						<Button
-							asChild
-							size="lg"
-							className="group w-full md:w-auto"
-						>
+						<Button variant="elegant" size="lg" className="group">
 							<Link
 								href="/ressources"
-								className="inline-flex items-center justify-center gap-2 text-white font-medium rounded-md px-6 py-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 transition-transform motion-safe:hover:-translate-y-1 hover:shadow-lg"
+								className="inline-flex items-center"
 							>
-								<span>Voir toutes les ressources</span>
+								Voir toutes les ressources
 								<ArrowRight
-									className="w-5 h-5 group-hover:translate-x-1 transition-transform"
+									className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform duration-300"
 									aria-hidden="true"
 								/>
 							</Link>

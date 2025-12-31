@@ -158,17 +158,17 @@ const CookieBanner = () => {
 
 	return (
 		<>
-			{/* Overlay bloquant avec blur - RGPD Compliant - Apparition ultra-douce */}
+			{/* Overlay bloquant avec blur renforcé - RGPD Compliant - Apparition ultra-douce */}
 			<div
 				className={`fixed inset-0 z-[60] transition-all duration-700 ease-out ${
 					isClosing ? "opacity-0" : "opacity-100"
 				}`}
 				aria-hidden="true"
 			>
-				{/* Backdrop blur doux et féminin */}
-				<div className="absolute inset-0 bg-gradient-sand-center/20 backdrop-blur-sm" />
-				{/* Vignette légère */}
-				<div className="absolute inset-0 bg-gradient-radial from-transparent via-sand/5 to-sand/15" />
+				{/* Backdrop blur plus profond et chaud */}
+				<div className="absolute inset-0 bg-navy/40 backdrop-blur-md" />
+				{/* Vignette dorée subtile */}
+				<div className="absolute inset-0 bg-gradient-radial from-transparent via-sand/10 to-navy/20" />
 			</div>
 
 			{/* Cookie Banner - Apparition ultra-douce avec fade + scale */}
@@ -182,14 +182,14 @@ const CookieBanner = () => {
 				aria-describedby="cookie-description"
 			>
 				<div className="w-full max-w-2xl">
-					{/* Background doux et féminin */}
-					<div className="relative bg-gradient-to-br from-cream via-background to-sand/50 backdrop-blur-xl border border-gold/20 rounded-3xl shadow-[0_20px_60px_-16px_rgba(0,0,0,0.12)] overflow-hidden">
-						{/* Halos dorés très subtils */}
-						<div className="absolute -top-24 -right-24 w-48 h-48 bg-gradient-radial from-gold/8 via-gold/3 to-transparent rounded-full blur-3xl" />
-						<div className="absolute -bottom-24 -left-24 w-48 h-48 bg-gradient-radial from-accent/6 via-accent/2 to-transparent rounded-full blur-3xl" />
+					{/* Background plus riche et profond */}
+					<div className="relative bg-gradient-to-br from-cream/95 via-sand/90 to-background/95 backdrop-blur-xl border border-gold/40 rounded-3xl shadow-[0_25px_70px_-20px_rgba(0,0,0,0.25)] overflow-hidden">
+						{/* Halos dorés renforcés */}
+						<div className="absolute -top-24 -right-24 w-56 h-56 bg-gradient-radial from-gold/20 via-gold/8 to-transparent rounded-full blur-3xl" />
+						<div className="absolute -bottom-24 -left-24 w-56 h-56 bg-gradient-radial from-accent/15 via-accent/5 to-transparent rounded-full blur-3xl" />
 
-						{/* Ligne supérieure délicate */}
-						<div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/30 to-transparent" />
+						{/* Ligne supérieure dorée visible */}
+						<div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/60 to-transparent" />
 
 						{/* Contenu principal avec transition douce */}
 						<div
@@ -201,40 +201,40 @@ const CookieBanner = () => {
 						>
 							{!showSettings ? (
 								<div className="relative p-6 md:p-8">
-									{/* Bouton fermer - facultatif si l'utilisateur veut naviguer sans choisir */}
+									{/* Bouton fermer visible */}
 									<button
 										onClick={rejectAll}
-										className="absolute top-4 right-4 text-navy/40 hover:text-navy/70 transition-colors duration-200 p-2 hover:bg-gradient-sand-center/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold/30"
+										className="absolute top-4 right-4 text-navy/60 hover:text-navy transition-colors duration-200 p-2 hover:bg-sand/40 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold/50 focus:ring-offset-2 focus:ring-offset-cream"
 										aria-label="Refuser et fermer"
 									>
 										<X className="w-5 h-5" />
 									</button>
 
-									{/* Header avec icône douce */}
+									{/* Header avec icône visible */}
 									<div className="flex items-start gap-4 mb-5 pr-8">
-										{/* Icône douce et féminine */}
-										<div className="relative flex items-center justify-center w-14 h-14 bg-gradient-to-br from-gold/15 to-accent/10 rounded-2xl flex-shrink-0 border border-gold/20 shadow-sm">
-											<Cookie className="w-7 h-7 text-gold" />
-											<Shield className="w-3.5 h-3.5 text-accent absolute bottom-1.5 right-1.5" />
+										{/* Icône plus contrastée */}
+										<div className="relative flex items-center justify-center w-14 h-14 bg-gradient-to-br from-gold/30 to-accent/20 rounded-2xl flex-shrink-0 border border-gold/40 shadow-md">
+											<Cookie className="w-7 h-7 text-gold drop-shadow-sm" />
+											<Shield className="w-3.5 h-3.5 text-accent absolute bottom-1.5 right-1.5 drop-shadow-sm" />
 										</div>
 
-										{/* Texte */}
+										{/* Texte plus contrasté */}
 										<div className="flex-1">
-											<h3 className="font-display text-2xl md:text-3xl font-normal text-navy mb-1.5 leading-tight">
+											<h3 className="font-display text-2xl md:text-3xl font-normal text-navy mb-1.5 leading-tight drop-shadow-sm">
 												Respect de votre vie privée
 											</h3>
-											<p className="text-sm text-navy/50 font-normal">
+											<p className="text-sm text-navy/70 font-normal drop-shadow-sm">
 												Votre consentement est requis
 												pour continuer
 											</p>
 										</div>
 									</div>
 
-									{/* Description */}
+									{/* Description plus lisible */}
 									<div className="mb-6">
 										<p
 											id="cookie-description"
-											className="text-base text-navy/95 leading-relaxed mb-4 font-light"
+											className="text-base text-navy/90 leading-relaxed mb-4 font-normal drop-shadow-sm"
 										>
 											Nous utilisons des cookies pour
 											améliorer votre expérience et
@@ -243,25 +243,25 @@ const CookieBanner = () => {
 											personnaliser selon vos préférences.
 										</p>
 
-										{/* Quick info badges doux */}
+										{/* Quick info badges plus visibles */}
 										<div className="flex flex-wrap gap-2 mb-4">
-											<span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gradient-sand-center/50 border border-gold/15 rounded-full text-xs font-medium text-navy/70">
-												<CheckCircle2 className="w-3 h-3 text-gold" />
+											<span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-sand/70 border border-gold/30 rounded-full text-xs font-semibold text-navy/80 shadow-sm">
+												<CheckCircle2 className="w-3.5 h-3.5 text-gold drop-shadow-sm" />
 												Données sécurisées
 											</span>
-											<span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gradient-sand-center/50 border border-gold/15 rounded-full text-xs font-medium text-navy/70">
-												<CheckCircle2 className="w-3 h-3 text-gold" />
+											<span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-sand/70 border border-gold/30 rounded-full text-xs font-semibold text-navy/80 shadow-sm">
+												<CheckCircle2 className="w-3.5 h-3.5 text-gold drop-shadow-sm" />
 												RGPD Conforme
 											</span>
-											<span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gradient-sand-center/50 border border-gold/15 rounded-full text-xs font-medium text-navy/70">
-												<CheckCircle2 className="w-3 h-3 text-gold" />
+											<span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-sand/70 border border-gold/30 rounded-full text-xs font-semibold text-navy/80 shadow-sm">
+												<CheckCircle2 className="w-3.5 h-3.5 text-gold drop-shadow-sm" />
 												Conservation 6 mois
 											</span>
 										</div>
 
 										<a
 											href="/confidentialite"
-											className="text-sm text-gold font-medium hover:text-gold-light inline-flex items-center gap-2 group transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-gold/30 rounded-lg px-2 py-1 -ml-2"
+											className="text-sm text-gold font-semibold hover:text-gold-light inline-flex items-center gap-2 group transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-gold/50 focus:ring-offset-2 focus:ring-offset-cream rounded-lg px-2 py-1 -ml-2 drop-shadow-sm"
 										>
 											<Info className="w-3.5 h-3.5" />
 											<span className="relative">
@@ -272,29 +272,29 @@ const CookieBanner = () => {
 										</a>
 									</div>
 
-									{/* Buttons - Stack mobile, row desktop */}
+									{/* Buttons - Plus visibles et contrastés */}
 									<div className="flex flex-col gap-3">
-										{/* Primary CTA - Doux et féminin avec effet de shimmer */}
+										{/* Primary CTA - Plus visible avec shimmer */}
 										<Button
 											size="lg"
 											onClick={acceptAll}
-											className="w-full bg-gradient-to-r from-gold/90 to-gold-light/90 text-white hover:from-gold hover:to-gold-light shadow-md hover:shadow-glow transition-all duration-300 hover:scale-[1.01] active:scale-[0.99] focus:ring-2 focus:ring-gold/30 font-medium text-base border border-gold-light/20 relative overflow-hidden group"
+											className="w-full bg-gradient-to-r from-gold to-gold-light text-white hover:from-gold-light hover:to-gold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] focus:ring-2 focus:ring-gold/60 focus:ring-offset-2 focus:ring-offset-cream font-semibold text-base border border-white/20 relative overflow-hidden group"
 										>
 											{/* Effet shimmer au hover */}
-											<span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+											<span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
 											<CheckCircle2 className="w-4 h-4 mr-2 relative z-10" />
 											<span className="relative z-10">
 												Tout accepter et continuer
 											</span>
 										</Button>
 
-										{/* Secondary actions */}
+										{/* Secondary actions - Plus visibles */}
 										<div className="grid grid-cols-2 gap-3">
 											<Button
 												variant="outline"
 												size="lg"
 												onClick={handleShowSettings}
-												className="border border-navy/20 text-navy bg-white/70 hover:bg-white hover:border-navy/30 transition-all duration-300 hover:scale-[1.01] active:scale-[0.99] focus:ring-2 focus:ring-accent/30 font-medium shadow-sm"
+												className="border-2 border-navy/30 text-navy bg-white/90 hover:bg-white hover:border-navy/50 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] focus:ring-2 focus:ring-accent/50 focus:ring-offset-2 focus:ring-offset-cream font-semibold shadow-md hover:shadow-lg"
 											>
 												<Settings className="w-3.5 h-3.5 mr-2" />
 												Personnaliser
@@ -303,7 +303,7 @@ const CookieBanner = () => {
 												variant="outline"
 												size="lg"
 												onClick={rejectAll}
-												className="border border-navy/15 text-navy/60 bg-white/50 hover:bg-white/80 hover:border-navy/25 hover:text-navy transition-all duration-300 hover:scale-[1.01] active:scale-[0.99] focus:ring-2 focus:ring-accent/30 font-medium"
+												className="border-2 border-navy/20 text-navy/70 bg-white/80 hover:bg-white hover:border-navy/30 hover:text-navy transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] focus:ring-2 focus:ring-accent/50 focus:ring-offset-2 focus:ring-offset-cream font-semibold shadow-sm hover:shadow-md"
 											>
 												Tout refuser
 											</Button>
@@ -315,17 +315,17 @@ const CookieBanner = () => {
 								<div className="relative p-6 md:p-8 max-h-[85vh] overflow-y-auto">
 									<button
 										onClick={handleHideSettings}
-										className="absolute top-6 left-6 text-navy/50 hover:text-navy transition-colors focus:outline-none focus:ring-2 focus:ring-gold/30 rounded-lg p-2 hover:bg-gradient-sand-center/30"
+										className="absolute top-6 left-6 text-navy/70 hover:text-navy transition-colors focus:outline-none focus:ring-2 focus:ring-gold/50 focus:ring-offset-2 focus:ring-offset-cream rounded-lg px-3 py-2 hover:bg-sand/40 font-semibold text-sm"
 										aria-label="Retour"
 									>
 										← Retour
 									</button>
 
 									<div className="pt-12">
-										<h3 className="font-display text-2xl md:text-3xl font-normal text-navy mb-2">
+										<h3 className="font-display text-2xl md:text-3xl font-normal text-navy mb-2 drop-shadow-sm">
 											Préférences des cookies
 										</h3>
-										<p className="text-sm text-navy/90 mb-8 leading-relaxed font-light">
+										<p className="text-sm text-navy/80 mb-8 leading-relaxed font-normal drop-shadow-sm">
 											Gérez vos préférences en matière de
 											cookies. Les cookies nécessaires
 											sont toujours activés car ils sont
@@ -336,25 +336,25 @@ const CookieBanner = () => {
 										{/* Cookie categories */}
 										<div className="space-y-4 mb-8">
 											{/* Nécessaires */}
-											<div className="p-5 bg-gradient-to-br from-sand/40 to-cream/30 rounded-2xl border border-gold/15 shadow-sm">
+											<div className="p-5 bg-gradient-to-br from-sand/80 to-cream/70 rounded-2xl border-2 border-gold/30 shadow-md">
 												<div className="flex items-start justify-between gap-4">
 													<div className="flex-1">
 														<div className="flex items-center gap-2.5 mb-3">
-															<div className="w-9 h-9 bg-gold/15 rounded-xl flex items-center justify-center">
-																<Shield className="w-4 h-4 text-gold" />
+															<div className="w-9 h-9 bg-gold/25 rounded-xl flex items-center justify-center shadow-sm">
+																<Shield className="w-4.5 h-4.5 text-gold drop-shadow-sm" />
 															</div>
 															<div className="flex-1">
-																<h4 className="font-display font-medium text-navy text-base">
+																<h4 className="font-display font-semibold text-navy text-base drop-shadow-sm">
 																	Cookies
 																	nécessaires
 																</h4>
-																<span className="inline-block text-xs bg-gold/20 text-gold px-2.5 py-0.5 rounded-full font-medium mt-1">
+																<span className="inline-block text-xs bg-gold/30 text-navy px-2.5 py-0.5 rounded-full font-semibold mt-1 shadow-sm">
 																	Toujours
 																	actif
 																</span>
 															</div>
 														</div>
-														<p className="text-sm text-navy/95 leading-relaxed mb-2 font-light">
+														<p className="text-sm text-navy/85 leading-relaxed mb-2 font-normal">
 															Essentiels au
 															fonctionnement du
 															site. Permettent la
@@ -362,8 +362,8 @@ const CookieBanner = () => {
 															et l'accès aux
 															zones sécurisées.
 														</p>
-														<p className="text-xs text-navy/50 font-normal">
-															<strong className="text-navy/70">
+														<p className="text-xs text-navy/60 font-normal">
+															<strong className="text-navy/80">
 																Durée :
 															</strong>{" "}
 															Session ou 1 an
@@ -377,26 +377,26 @@ const CookieBanner = () => {
 															disabled
 															className="sr-only"
 														/>
-														<div className="w-11 h-6 bg-gold/30 rounded-full opacity-60 cursor-not-allowed border border-gold/20" />
-														<div className="absolute w-4 h-4 bg-gold rounded-full left-1 top-1 shadow-sm" />
+														<div className="w-11 h-6 bg-gold/40 rounded-full opacity-70 cursor-not-allowed border-2 border-gold/30 shadow-sm" />
+														<div className="absolute w-4 h-4 bg-gold rounded-full left-1 top-1 shadow-md" />
 													</div>
 												</div>
 											</div>
 
 											{/* Analytiques */}
-											<div className="p-5 bg-white/60 rounded-2xl border border-navy/10 hover:border-navy/20 transition-all duration-300 shadow-sm">
+											<div className="p-5 bg-white/90 rounded-2xl border-2 border-navy/20 hover:border-navy/30 transition-all duration-300 shadow-md hover:shadow-lg">
 												<div className="flex items-start justify-between gap-4">
 													<div className="flex-1">
 														<div className="flex items-center gap-2.5 mb-3">
-															<div className="w-9 h-9 bg-accent/10 rounded-xl flex items-center justify-center">
-																<Cookie className="w-4 h-4 text-accent" />
+															<div className="w-9 h-9 bg-accent/15 rounded-xl flex items-center justify-center shadow-sm">
+																<Cookie className="w-4.5 h-4.5 text-accent drop-shadow-sm" />
 															</div>
-															<h4 className="font-display font-medium text-navy text-base">
+															<h4 className="font-display font-semibold text-navy text-base drop-shadow-sm">
 																Cookies
 																analytiques
 															</h4>
 														</div>
-														<p className="text-sm text-navy/95 leading-relaxed mb-2 font-light">
+														<p className="text-sm text-navy/85 leading-relaxed mb-2 font-normal">
 															Nous aident à
 															comprendre comment
 															vous utilisez notre
@@ -404,8 +404,8 @@ const CookieBanner = () => {
 															l'améliorer (Google
 															Analytics).
 														</p>
-														<p className="text-xs text-navy/50 font-normal">
-															<strong className="text-navy/70">
+														<p className="text-xs text-navy/60 font-normal">
+															<strong className="text-navy/80">
 																Durée :
 															</strong>{" "}
 															13 mois maximum
@@ -417,18 +417,19 @@ const CookieBanner = () => {
 																"analytics"
 															)
 														}
-														className={`relative inline-flex items-center h-6 rounded-full w-11 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-gold/30 border ${
+														className={`relative inline-flex items-center h-6 rounded-full w-11 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-gold/60 focus:ring-offset-2 focus:ring-offset-cream border-2 shadow-sm ${
 															preferences.analytics
-																? "bg-gradient-to-r from-accent/80 to-accent/70 border-accent/40 shadow-sm"
-																: "bg-navy/10 border-navy/15"
+																? "bg-gradient-to-r from-accent to-accent/80 border-accent/50"
+																: "bg-navy/15 border-navy/25"
 														}`}
 														role="switch"
 														aria-checked={
 															preferences.analytics
 														}
+														aria-label="Activer/désactiver les cookies analytiques"
 													>
 														<span
-															className={`inline-block w-4 h-4 transform rounded-full bg-white shadow-sm transition-transform duration-300 ${
+															className={`inline-block w-4 h-4 transform rounded-full bg-white shadow-md transition-transform duration-300 ${
 																preferences.analytics
 																	? "translate-x-6"
 																	: "translate-x-1"
@@ -439,18 +440,18 @@ const CookieBanner = () => {
 											</div>
 
 											{/* Marketing */}
-											<div className="p-5 bg-white/60 rounded-2xl border border-navy/10 hover:border-navy/20 transition-all duration-300 shadow-sm">
+											<div className="p-5 bg-white/90 rounded-2xl border-2 border-navy/20 hover:border-navy/30 transition-all duration-300 shadow-md hover:shadow-lg">
 												<div className="flex items-start justify-between gap-4">
 													<div className="flex-1">
 														<div className="flex items-center gap-2.5 mb-3">
-															<div className="w-9 h-9 bg-accent/10 rounded-xl flex items-center justify-center">
-																<Cookie className="w-4 h-4 text-accent" />
+															<div className="w-9 h-9 bg-accent/15 rounded-xl flex items-center justify-center shadow-sm">
+																<Cookie className="w-4.5 h-4.5 text-accent drop-shadow-sm" />
 															</div>
-															<h4 className="font-display font-medium text-navy text-base">
+															<h4 className="font-display font-semibold text-navy text-base drop-shadow-sm">
 																Cookies marketing
 															</h4>
 														</div>
-														<p className="text-sm text-navy/95 leading-relaxed mb-2 font-light">
+														<p className="text-sm text-navy/85 leading-relaxed mb-2 font-normal">
 															Utilisés pour
 															personnaliser les
 															publicités et
@@ -458,8 +459,8 @@ const CookieBanner = () => {
 															l'efficacité des
 															campagnes.
 														</p>
-														<p className="text-xs text-navy/50 font-normal">
-															<strong className="text-navy/70">
+														<p className="text-xs text-navy/60 font-normal">
+															<strong className="text-navy/80">
 																Durée :
 															</strong>{" "}
 															Variable selon le
@@ -473,18 +474,19 @@ const CookieBanner = () => {
 																"marketing"
 															)
 														}
-														className={`relative inline-flex items-center h-6 rounded-full w-11 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-gold/30 border ${
+														className={`relative inline-flex items-center h-6 rounded-full w-11 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-gold/60 focus:ring-offset-2 focus:ring-offset-cream border-2 shadow-sm ${
 															preferences.marketing
-																? "bg-gradient-to-r from-accent/80 to-accent/70 border-accent/40 shadow-sm"
-																: "bg-navy/10 border-navy/15"
+																? "bg-gradient-to-r from-accent to-accent/80 border-accent/50"
+																: "bg-navy/15 border-navy/25"
 														}`}
 														role="switch"
 														aria-checked={
 															preferences.marketing
 														}
+														aria-label="Activer/désactiver les cookies marketing"
 													>
 														<span
-															className={`inline-block w-4 h-4 transform rounded-full bg-white shadow-sm transition-transform duration-300 ${
+															className={`inline-block w-4 h-4 transform rounded-full bg-white shadow-md transition-transform duration-300 ${
 																preferences.marketing
 																	? "translate-x-6"
 																	: "translate-x-1"
@@ -496,14 +498,14 @@ const CookieBanner = () => {
 										</div>
 
 										{/* Action buttons */}
-										<div className="flex flex-col gap-3 pt-6 border-t border-navy/10">
+										<div className="flex flex-col gap-3 pt-6 border-t-2 border-navy/15">
 											<Button
 												size="lg"
 												onClick={saveCustom}
-												className="w-full bg-gradient-to-r from-gold/90 to-gold-light/90 text-white hover:from-gold hover:to-gold-light shadow-md hover:shadow-glow transition-all duration-300 hover:scale-[1.01] active:scale-[0.99] focus:ring-2 focus:ring-gold/30 font-medium border border-gold-light/20 relative overflow-hidden group"
+												className="w-full bg-gradient-to-r from-gold to-gold-light text-white hover:from-gold-light hover:to-gold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] focus:ring-2 focus:ring-gold/60 focus:ring-offset-2 focus:ring-offset-cream font-semibold border border-white/20 relative overflow-hidden group"
 											>
 												{/* Effet shimmer au hover */}
-												<span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+												<span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
 												<CheckCircle2 className="w-4 h-4 mr-2 relative z-10" />
 												<span className="relative z-10">
 													Enregistrer mes choix
@@ -513,14 +515,14 @@ const CookieBanner = () => {
 												variant="outline"
 												size="lg"
 												onClick={acceptAll}
-												className="w-full border border-navy/20 text-navy bg-white/70 hover:bg-white hover:border-navy/30 transition-all duration-300 hover:scale-[1.01] active:scale-[0.99] focus:ring-2 focus:ring-accent/30 font-medium"
+												className="w-full border-2 border-navy/30 text-navy bg-white/90 hover:bg-white hover:border-navy/50 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] focus:ring-2 focus:ring-accent/50 focus:ring-offset-2 focus:ring-offset-cream font-semibold shadow-md hover:shadow-lg"
 											>
 												Tout accepter
 											</Button>
 										</div>
 
 										{/* Info durée de conservation */}
-										<p className="text-xs text-center text-navy/40 mt-5 font-normal">
+										<p className="text-xs text-center text-navy/60 mt-5 font-normal drop-shadow-sm">
 											🔒 Vos préférences seront conservées
 											pendant {COOKIE_EXPIRY_DAYS} jours
 										</p>
@@ -529,8 +531,8 @@ const CookieBanner = () => {
 							)}
 						</div>
 
-						{/* Ligne inférieure délicate */}
-						<div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/30 to-transparent" />
+						{/* Ligne inférieure dorée visible */}
+						<div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/60 to-transparent" />
 					</div>
 				</div>
 			</div>
