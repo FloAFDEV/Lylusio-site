@@ -149,26 +149,27 @@ export const pageMetadata = {
   },
 
   blog: {
-    title: 'Blog Astrologie & Reiki - Articles & Conseils | Lylusio',
-    description: 'Articles sur l\'astrologie psychologique, le Reiki, la spiritualité et le développement personnel. Conseils pratiques et réflexions.',
+    title: 'Articles & Réflexions - Blog Astrologie & Reiki Toulouse | Lylusio',
+    description: 'Lectures inspirantes et analyses approfondies sur l\'astrologie humaniste, le Reiki et votre développement personnel. Articles par Émilie Perez à Toulouse.',
     canonical: `${baseUrl}/blog`,
+    keywords: ['blog astrologie toulouse', 'articles reiki', 'réflexions spirituelles', 'développement personnel', 'lectures astrologie'],
     openGraph: {
       url: `${baseUrl}/blog`,
-      title: 'Blog Astrologie & Reiki',
-      description: 'Articles, conseils et réflexions sur l\'astrologie et le Reiki',
+      title: 'Articles & Réflexions - Blog Astrologie & Reiki',
+      description: 'Lectures inspirantes et analyses approfondies sur l\'astrologie, le Reiki et le développement personnel',
       images: [{ url: '/assets/logo-lylusio.webp', width: 1200, height: 630 }],
     },
   },
 
   ressources: {
-    title: 'Ressources Gratuites - Vidéos, Ateliers & Articles | Lylusio',
-    description: 'Découvrez mes contenus gratuits : vidéos pédagogiques sur YouTube, ateliers lives sur Instagram, articles de blog approfondis sur l\'astrologie et le Reiki.',
+    title: 'Contenus Gratuits - Vidéos, Ateliers & Lives Astrologie Reiki | Lylusio',
+    description: 'Découvrez mes contenus pratiques gratuits : vidéos pédagogiques YouTube, ateliers lives Instagram, formations gratuites sur l\'astrologie et le Reiki à Toulouse.',
     canonical: `${baseUrl}/ressources`,
-    keywords: ['ressources astrologie', 'vidéos reiki', 'ateliers lives', 'contenus gratuits astrologie', 'youtube astrologie toulouse'],
+    keywords: ['vidéos astrologie gratuites', 'ateliers reiki toulouse', 'lives instagram astrologie', 'contenus pratiques gratuits', 'youtube reiki toulouse'],
     openGraph: {
       url: `${baseUrl}/ressources`,
-      title: 'Ressources Gratuites - Vidéos, Ateliers & Articles',
-      description: 'Vidéos pédagogiques, ateliers lives et articles approfondis pour enrichir votre chemin',
+      title: 'Contenus Gratuits - Vidéos, Ateliers & Lives',
+      description: 'Vidéos pédagogiques, ateliers lives et contenus pratiques gratuits pour enrichir votre chemin',
       images: [{ url: '/assets/logo-lylusio.webp', width: 1200, height: 630 }],
     },
   },

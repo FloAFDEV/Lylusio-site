@@ -109,22 +109,20 @@ const BlogClientWrapper = ({ initialPosts, initialCategories }: Props) => {
 				>
 					{/* Header */}
 					<header className="max-w-4xl mx-auto text-center mb-12 md:mb-16 relative">
-						<div className="absolute -top-4 right-0 md:right-12">
-							<GoldenPlantBadge size="md" />
-						</div>
-
-						<p className="section-label">Blog</p>
+						<p className="section-label">Blog & Inspiration</p>
 						<h1
 							id="blog-title"
-							className="text-foreground mb-6 text-center"
+							className="text-foreground mb-6 text-center text-3xl sm:text-4xl md:text-5xl"
 						>
-							<span className="font-calligraphic text-accent inline-block align-baseline  ">
-								B
+							<span className="font-calligraphic text-accent inline-block align-baseline text-4xl sm:text-5xl md:text-6xl">
+								A
 							</span>
-							log Astrologie & Reiki à Toulouse
+							rticles & Réflexions
 						</h1>
 						<p className="text-muted-foreground text-base sm:text-lg leading-relaxed max-w-2xl mx-auto">
-							Articles et réflexions autour de l'astrologie humaniste, du Reiki et du développement personnel par Émilie Perez.
+							Lectures inspirantes et analyses approfondies sur
+							l'astrologie humaniste, le Reiki et votre chemin de
+							développement personnel.
 						</p>
 					</header>
 					{/* Filters avec compteurs intégrés */}
@@ -329,7 +327,9 @@ const BlogClientWrapper = ({ initialPosts, initialCategories }: Props) => {
 									</article>
 								))}
 							</div>
-
+							<div className="absolute center-22 right-0 md:right-12">
+								<GoldenPlantBadge size="md" />
+							</div>
 							{/* Load More */}
 							{hasMore && (
 								<div className="text-center mt-12">
@@ -344,7 +344,7 @@ const BlogClientWrapper = ({ initialPosts, initialCategories }: Props) => {
 							)}
 						</>
 					)}
-					{/* CTA */}
+					{/* CTA Principal */}
 					<div className="mt-16 p-8 bg-gradient-sand-center/30 rounded-2xl text-center max-w-3xl mx-auto">
 						<h3 className="font-display text-xl text-navy mb-4">
 							Découvrez mes accompagnements
@@ -352,33 +352,46 @@ const BlogClientWrapper = ({ initialPosts, initialCategories }: Props) => {
 						<p className="text-muted-foreground mb-6">
 							Vous souhaitez aller plus loin dans votre
 							cheminement ? Je propose des séances d'{" "}
-							<a
+							<Link
 								className="text-accent hover:underline"
-								href="/astrologie"
+								href="/astrologie-toulouse"
 							>
 								astrologie consciente
-							</a>
+							</Link>
 							, de{" "}
-							<a
+							<Link
 								className="text-accent hover:underline"
-								href="/reiki"
+								href="/reiki-toulouse"
 							>
 								thérapie énergétique Reiki
-							</a>{" "}
+							</Link>{" "}
 							et d'{" "}
-							<a
+							<Link
 								className="text-accent hover:underline"
-								href="/accompagnement"
+								href="/accompagnement-toulouse"
 							>
 								accompagnement personnalisé
-							</a>
+							</Link>
 							.
 						</p>
-						<Link href="/services">
+						<Link href="/accompagnement-toulouse">
 							<Button variant="outline">
 								Voir toutes les prestations
 							</Button>
 						</Link>
+					</div>
+
+					{/* CTA Secondaire - Ressources */}
+					<div className="mt-8 text-center">
+						<p className="text-sm text-muted-foreground">
+							Envie de contenus pratiques ?{" "}
+							<Link
+								href="/ressources"
+								className="text-accent hover:text-gold transition-colors font-medium underline decoration-accent/30 hover:decoration-gold/50 underline-offset-2"
+							>
+								Découvrir les vidéos et ateliers gratuits
+							</Link>
+						</p>
 					</div>
 				</section>
 			</main>

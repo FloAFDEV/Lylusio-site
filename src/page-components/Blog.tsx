@@ -530,14 +530,14 @@ const Blog = () => {
 												<div className="flex-1 p-5 sm:p-6 lg:p-8 flex flex-col justify-center">
 													{post.categories.length >
 														0 && (
-														<div className="flex flex-wrap gap-2 mb-3">
+														<div className="flex flex-wrap gap-1.5 mb-2">
 															{post.categories.map(
 																(cat) => (
 																	<span
 																		key={
 																			cat.id
 																		}
-																		className="px-2 py-0.5 text-xs bg-accent/10 text-accent rounded-full"
+																		className="px-1.5 py-0.5 text-[10px] sm:text-xs bg-accent/10 text-accent rounded-full leading-tight"
 																	>
 																		{
 																			cat.name

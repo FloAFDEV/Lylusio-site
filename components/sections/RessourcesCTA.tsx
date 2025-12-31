@@ -73,7 +73,7 @@ const RessourcesCTA = () => {
 		},
 		{
 			icon: FaFacebook,
-			label: "Facebook",
+			label: "Communauté",
 			color: "text-blue-600",
 			href: "https://www.facebook.com/share/16cEgpLgk9/",
 		},
@@ -82,12 +82,6 @@ const RessourcesCTA = () => {
 			label: "Vidéos pédagogiques",
 			color: "text-red-500",
 			href: "https://www.youtube.com/@emilielylusio6206",
-		},
-		{
-			icon: BookOpen,
-			label: "Articles approfondis",
-			color: "text-accent",
-			href: "/blog",
 		},
 	];
 
@@ -157,8 +151,8 @@ const RessourcesCTA = () => {
 						</h2>
 
 						<p className="text-muted-foreground mb-8 max-w-xl mx-auto text-sm md:text-base lg:text-lg leading-relaxed relative">
-							Vidéos pédagogiques, ateliers lives et articles
-							approfondis pour enrichir votre chemin
+							Vidéos pédagogiques, ateliers lives et contenus pratiques
+							pour enrichir votre chemin
 						</p>
 
 						{/* Features badges */}
