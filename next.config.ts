@@ -10,9 +10,16 @@ const nextConfig: NextConfig = {
 
 	// Experimental features pour meilleures performances
 	experimental: {
-		optimizePackageImports: ["lucide-react", "@radix-ui/react-icons"],
+		optimizePackageImports: [
+			"lucide-react",
+			"@radix-ui/react-icons",
+			"react-icons/fa",
+		],
 		webpackBuildWorker: true,
 	},
+
+	// Turbopack configuration (Next.js 16+)
+	turbopack: {},
 
 	// Support des images externes
 	images: {
@@ -203,6 +210,16 @@ const nextConfig: NextConfig = {
 			},
 			{
 				source: "/:all*(svg|jpg|jpeg|png|webp|avif|ico|woff|woff2)",
+				headers: [
+					{
+						key: "Cache-Control",
+						value: "public, max-age=31536000, immutable",
+					},
+				],
+			},
+			// Cache headers for JS and CSS chunks
+			{
+				source: "/_next/static/:path*",
 				headers: [
 					{
 						key: "Cache-Control",

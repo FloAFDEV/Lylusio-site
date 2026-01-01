@@ -5,11 +5,9 @@ import { Toaster } from '@/components/ui/toaster';
 import { Toaster as Sonner } from '@/components/ui/sonner';
 import { QueryProvider } from '@/components/providers/query-provider';
 import { ThemeProvider } from '@/components/providers/theme-provider';
-import ScrollToTop from '@/components/ScrollToTop';
-import FloatingCTA from '@/components/FloatingCTA';
-import CookieBanner from '@/components/CookieBanner';
 import { AnalyticsProvider } from '@/components/providers/analytics-provider';
 import { LocalBusinessSchema, WebsiteSchema } from '@/components/SEO/StructuredData';
+import ClientComponents from '@/components/ClientComponents';
 import '@/app/globals.css';
 
 // next/font/google - Optimized for zero CLS
@@ -157,10 +155,8 @@ export default function RootLayout({
   return (
     <html lang="fr" suppressHydrationWarning>
       <head>
-        {/* Preconnect to external resources for performance */}
-        <link rel="preconnect" href="https://www.youtube.com" />
-        <link rel="preconnect" href="https://i.ytimg.com" />
-        <link rel="preconnect" href="https://www.instagram.com" />
+        {/* Preconnect only to critical external resources */}
+        <link rel="dns-prefetch" href="https://calendly.com" />
 
         {/* Structured Data for SEO */}
         <LocalBusinessSchema />
@@ -187,9 +183,7 @@ export default function RootLayout({
             <TooltipProvider>
               <AnalyticsProvider>
                 {children}
-                <ScrollToTop />
-                <FloatingCTA />
-                <CookieBanner />
+                <ClientComponents />
                 <Toaster />
                 <Sonner />
               </AnalyticsProvider>
