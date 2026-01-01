@@ -1,6 +1,7 @@
 "use client";
 
 import dynamic from 'next/dynamic';
+import CookieBanner from '@/components/CookieBanner';
 
 // Lazy-load non-critical UI components client-side only
 const ScrollToTop = dynamic(() => import('@/components/ScrollToTop'), {
@@ -11,9 +12,8 @@ const FloatingCTA = dynamic(() => import('@/components/FloatingCTA'), {
   ssr: false,
 });
 
-const CookieBanner = dynamic(() => import('@/components/CookieBanner'), {
-  ssr: false,
-});
+// CookieBanner: Import direct (non lazy-loaded) pour conformité RGPD
+// Le bandeau doit s'afficher immédiatement selon les recommandations CNIL
 
 export default function ClientComponents() {
   return (
