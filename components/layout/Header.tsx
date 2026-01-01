@@ -31,7 +31,7 @@ const mainLinks = [
 	{ label: "Accueil", href: "/" },
 	{ label: "Mon Approche", href: "/approche-therapeutique" },
 	{
-		label: "Accompagnement",
+		label: "Accompagnements",
 		href: "/accompagnement-toulouse",
 		hasSubmenu: true,
 	},
@@ -290,7 +290,7 @@ export const Header = () => {
 
 			{/* ================= Mobile menu ================= */}
 			<div
-				className={`lg:hidden fixed top-0 right-0 h-full w-3/4 max-w-xs bg-card/95 backdrop-blur-md shadow-lg border-l border-accent/20 z-50 transition-all duration-500 ease-in-out ${
+				className={`lg:hidden fixed top-0 right-0 h-full w-3/4 max-w-xs bg-card/95 backdrop-blur-md shadow-lg border-l border-accent/20 z-50 transition-transform duration-500 ease-out ${
 					isMobileOpen ? "translate-x-0" : "translate-x-full"
 				}`}
 				role="dialog"
@@ -312,38 +312,69 @@ export const Header = () => {
 										transitionDelay: isMobileOpen ? `${index * 80}ms` : "0ms",
 									}}
 								>
-									<Link
-										href={link.href}
-										onClick={handleNavClick}
-										className="block font-medium text-foreground/80 hover:text-accent py-3 transition-colors duration-300"
+									{/* Bouton toggle pour le sous-menu */}
+									<button
+										type="button"
+										onClick={() => setMobileSubmenuOpen(!mobileSubmenuOpen)}
+										className="w-full flex items-center justify-between font-medium text-foreground/80 hover:text-accent py-3 transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 min-h-[44px]"
+										aria-expanded={mobileSubmenuOpen}
+										aria-controls="mobile-submenu-accompagnements"
 									>
 										<MenuLabel label={link.label} />
-									</Link>
+										<ChevronDown
+											className={`w-4 h-4 transition-transform duration-300 ${
+												mobileSubmenuOpen ? 'rotate-180' : ''
+											}`}
+											aria-hidden="true"
+										/>
+									</button>
 
-									<div className="pl-4 py-2 space-y-1 border-l-2 border-accent/30 ml-2">
-										{subItems.map((item, subIndex) => (
-											<Link
-												key={item.href}
-												href={item.href}
-												onClick={handleNavClick}
-												className="block font-medium text-sm text-foreground/80 hover:text-accent hover:bg-accent/5 rounded-lg px-3 py-2 transition-all duration-300"
-												style={{
-													opacity: isMobileOpen ? 1 : 0,
-													transform: isMobileOpen ? "translateX(0)" : "translateX(15px)",
-													transitionDelay: isMobileOpen ? `${index * 80 + 150 + subIndex * 100}ms` : "0ms",
-												}}
-											>
-												<MenuLabel label={item.label} />
-											</Link>
-										))}
+									{/* Sous-menu collapsible */}
+									<div
+										id="mobile-submenu-accompagnements"
+										aria-hidden={!mobileSubmenuOpen}
+										className={`overflow-hidden transition-all duration-300 ease-out ${
+											mobileSubmenuOpen
+												? 'max-h-40 opacity-100'
+												: 'max-h-0 opacity-0'
+										}`}
+									>
+										<div className="pl-4 py-2 space-y-1 border-l-2 border-accent/30 ml-2">
+											{subItems.map((item, subIndex) => (
+												<Link
+													key={item.href}
+													href={item.href}
+													onClick={handleNavClick}
+													className="block font-medium text-sm text-foreground/80 hover:text-accent hover:bg-accent/5 rounded-lg px-3 py-2 transition-all duration-300 min-h-[44px] flex items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+													style={{
+														opacity: mobileSubmenuOpen ? 1 : 0,
+														transform: mobileSubmenuOpen ? 'translateY(0)' : 'translateY(-8px)',
+														transitionDelay: mobileSubmenuOpen ? `${subIndex * 80}ms` : '0ms',
+													}}
+												>
+													<MenuLabel label={item.label} />
+												</Link>
+											))}
+										</div>
 									</div>
+
+									{/* Lien direct vers la page Accompagnements */}
+									{mobileSubmenuOpen && (
+										<Link
+											href={link.href}
+											onClick={handleNavClick}
+											className="block text-sm text-muted-foreground hover:text-accent py-2 pl-2 transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+										>
+											→ Voir tous les accompagnements
+										</Link>
+									)}
 								</div>
 							) : (
 								<Link
 									key={link.href}
 									href={link.href}
 									onClick={handleNavClick}
-									className="block font-medium text-foreground/80 hover:text-accent py-3 transition-all duration-500 ease-out"
+									className="block font-medium text-foreground/80 hover:text-accent py-3 transition-all duration-500 ease-out min-h-[44px] flex items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
 									style={{
 										opacity: isMobileOpen ? 1 : 0,
 										transform: isMobileOpen ? "translateX(0)" : "translateX(20px)",
