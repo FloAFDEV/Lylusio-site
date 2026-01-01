@@ -559,45 +559,56 @@ const Footer = () => {
 				</div>
 			</div>
 
-			{/* Bottom */}
+			{/* Bottom - Optimisé Mobile */}
 			<div className="relative border-t border-gold/30">
-				<div className="container mx-auto px-5 md:px-8 lg:px-12 py-7 md:py-9 flex flex-col sm:flex-row justify-between items-center gap-4">
-					<p className="text-primary-foreground/80 text-xs md:text-sm flex items-center gap-2.5 tracking-wide">
+				<div className="container mx-auto px-5 md:px-8 lg:px-12 py-7 md:py-9 flex flex-col sm:flex-row justify-between items-center gap-6 md:gap-4">
+					{/* Copyright */}
+					<p className="text-primary-foreground/90 text-sm md:text-sm flex items-center gap-2.5 tracking-wide text-center sm:text-left">
 						<span
 							className="w-1.5 h-1.5 rounded-full bg-gold/70 shadow-[0_0_6px_hsl(var(--gold)/0.6)]"
 							aria-hidden="true"
 						/>
 						© {currentYear} Lylusio · Tous droits réservés
 					</p>
-					<div className="flex flex-wrap justify-center gap-5 md:gap-7 text-xs md:text-sm">
+
+					{/* Liens légaux - Navigation sémantique */}
+					<nav
+						className="flex flex-col sm:flex-row gap-4 md:gap-6 items-center"
+						aria-label="Liens légaux et réglementaires"
+					>
 						<Link
 							href="/mentions-legales"
-							className="text-primary-foreground/80 hover:text-primary-foreground transition-all duration-300 relative group"
+							aria-label="Consulter les mentions légales du site Lylusio"
+							className="text-primary-foreground/90 hover:text-primary-foreground transition-all duration-300 relative group text-sm md:text-sm min-h-[44px] flex items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-primary px-2"
 						>
 							<span className="group-hover:translate-x-1 inline-block transition-transform duration-300">
 								Mentions légales
 							</span>
 							<span className="absolute -bottom-0.5 left-0 w-0 h-[2px] bg-gradient-to-r from-gold via-gold-light to-gold group-hover:w-full transition-all duration-400 ease-out shadow-[0_0_12px_hsl(var(--gold)/0.7)]" />
 						</Link>
+
 						<Link
 							href="/cgu"
-							className="text-primary-foreground/80 hover:text-primary-foreground transition-all duration-300 relative group"
+							aria-label="Consulter les conditions générales d'utilisation"
+							className="text-primary-foreground/90 hover:text-primary-foreground transition-all duration-300 relative group text-sm md:text-sm min-h-[44px] flex items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-primary px-2"
 						>
 							<span className="group-hover:translate-x-1 inline-block transition-transform duration-300">
 								CGU
 							</span>
 							<span className="absolute -bottom-0.5 left-0 w-0 h-[2px] bg-gradient-to-r from-gold via-gold-light to-gold group-hover:w-full transition-all duration-400 ease-out shadow-[0_0_12px_hsl(var(--gold)/0.7)]" />
 						</Link>
+
 						<Link
 							href="/confidentialite"
-							className="text-primary-foreground/80 hover:text-primary-foreground transition-all duration-300 relative group"
+							aria-label="Consulter la politique de confidentialité"
+							className="text-primary-foreground/90 hover:text-primary-foreground transition-all duration-300 relative group text-sm md:text-sm min-h-[44px] flex items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-primary px-2"
 						>
 							<span className="group-hover:translate-x-1 inline-block transition-transform duration-300">
 								Confidentialité
 							</span>
 							<span className="absolute -bottom-0.5 left-0 w-0 h-[2px] bg-gradient-to-r from-gold via-gold-light to-gold group-hover:w-full transition-all duration-400 ease-out shadow-[0_0_12px_hsl(var(--gold)/0.7)]" />
 						</Link>
-					</div>
+					</nav>
 				</div>
 			</div>
 		</footer>
