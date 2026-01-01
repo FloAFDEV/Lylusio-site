@@ -230,14 +230,14 @@ export default async function RessourcesPage() {
 											href="https://www.instagram.com/emilie.perez_astroreiki_/"
 											target="_blank"
 											rel="noopener noreferrer"
-											aria-label="Suivre Émilie Perez sur Instagram (nouvelle fenêtre)"
+											aria-label="Rejoindre la communauté Instagram d'Émilie Perez (nouvelle fenêtre)"
 											className="inline-flex items-center justify-center gap-2 !bg-pink-500 hover:bg-pink-600 text-white font-medium rounded-md px-4 py-2 shadow-sm transition-colors duration-300 motion-safe:hover:-translate-y-1 motion-safe:hover:rotate-y-1 motion-safe:hover:rotate-x-0.5"
 										>
 											<FaInstagram
 												className="w-5 h-5"
 												aria-hidden="true"
 											/>
-											<span>Suivre</span>
+											<span>Rejoindre la communauté Instagram</span>
 											<ExternalLink
 												className="w-4 h-4 group-hover:translate-x-1 transition-transform"
 												aria-hidden="true"
@@ -318,14 +318,14 @@ export default async function RessourcesPage() {
 											href="https://www.facebook.com/share/16cEgpLgk9/"
 											target="_blank"
 											rel="noopener noreferrer"
-											aria-label="Suivre Émilie Perez sur Facebook (nouvelle fenêtre)"
+											aria-label="Rejoindre la communauté Facebook d'Émilie Perez (nouvelle fenêtre)"
 											className="inline-flex items-center justify-center gap-2 bg-blue-500 hover:bg-blue-600 text-white font-medium rounded-md px-4 py-2 shadow-sm transition-colors duration-300 motion-safe:hover:-translate-y-1 motion-safe:hover:rotate-y-1 motion-safe:hover:rotate-x-0.5"
 										>
 											<FaFacebook
 												className="w-5 h-5"
 												aria-hidden="true"
 											/>
-											<span>Suivre</span>
+											<span>Rejoindre la communauté Facebook</span>
 											<ExternalLink
 												className="w-4 h-4 group-hover:translate-x-1 transition-transform"
 												aria-hidden="true"
@@ -476,14 +476,14 @@ export default async function RessourcesPage() {
 										href={CALENDLY_URLS.GENERAL}
 										target="_blank"
 										rel="noopener noreferrer"
-										aria-label="Réserver une séance avec Émilie Perez (ouvre Calendly dans un nouvel onglet)"
+										aria-label="Réserver votre séance avec Émilie Perez (ouvre Calendly dans un nouvel onglet)"
 										className="inline-flex items-center gap-2"
 									>
 										<Calendar
 											className="w-5 h-5"
 											aria-hidden="true"
 										/>
-										<span>Réserver une séance</span>
+										<span>Réserver votre séance</span>
 										<ArrowRight
 											className="w-4 h-4 group-hover:translate-x-1 transition-transform"
 											aria-hidden="true"
@@ -526,7 +526,7 @@ export default async function RessourcesPage() {
 									href="/blog"
 									className="text-navy hover:text-navy transition-colors font-semibold underline decoration-accent/50 hover:decoration-navy/50 underline-offset-2"
 								>
-									Découvrir les articles et réflexions
+									Découvrir mes articles
 								</Link>
 							</p>
 						</div>
