@@ -143,7 +143,7 @@ const BlogClientWrapper = ({ initialPosts, initialCategories }: Props) => {
 										onClick={() =>
 											setSelectedCategory(null)
 										}
-										className={`px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-full text-xs sm:text-sm font-semibold transition-colors focus-visible:ring-2 focus-visible:ring-accent leading-tight ${
+										className={`px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-colors focus-visible:ring-2 focus-visible:ring-accent leading-tight ${
 											selectedCategory === null
 												? "bg-navy text-white shadow-sm"
 												: "bg-muted/50 text-muted-foreground hover:bg-muted"
@@ -161,8 +161,7 @@ const BlogClientWrapper = ({ initialPosts, initialCategories }: Props) => {
 											onClick={() =>
 												setSelectedCategory(category.id)
 											}
-											className={`px-2 py-0.5 text-xs sm:px-3 sm:py-1.5 sm:text-sm
-font-semibold transition-colors focus-visible:ring-2 focus-visible:ring-accent leading-tight ${
+											className={`px-2 py-0.5 text-xs sm:px-3 sm:py-1.5 sm:text-sm rounded-xl font-semibold transition-colors focus-visible:ring-2 focus-visible:ring-accent leading-tight ${
 												selectedCategory === category.id
 													? "bg-navy text-white shadow-sm"
 													: "bg-muted/50 text-muted-foreground hover:bg-muted"
@@ -257,17 +256,8 @@ font-semibold transition-colors focus-visible:ring-2 focus-visible:ring-accent l
 							className="w-full max-w-xl mx-auto block px-4 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent"
 							value={searchQuery}
 							onChange={(e) => setSearchQuery(e.target.value)}
+							aria-label="Rechercher des articles par titre ou contenu"
 						/>
-						{searchQuery && (
-							<p
-								className="text-center text-sm text-accent mt-3 font-medium"
-								aria-live="polite"
-							>
-								{displayedPosts.length} article
-								{displayedPosts.length > 1 ? "s" : ""} trouvé
-								{displayedPosts.length > 1 ? "s" : ""}
-							</p>
-						)}
 					</div>
 					{/* Posts Grid */}
 					{paginatedPosts.length === 0 ? (
