@@ -61,7 +61,22 @@ const RecentArticlesSection = () => {
 	};
 
 	const stripHtml = (html: string) => {
-		return html.replace(/<[^>]*>/g, "").substring(0, 120) + "...";
+		return html
+			.replace(/<[^>]*>/g, "")
+			.replace(/&nbsp;/g, " ")
+			.replace(/&amp;/g, "&")
+			.replace(/&lt;/g, "<")
+			.replace(/&gt;/g, ">")
+			.replace(/&quot;/g, '"')
+			.replace(/&#039;/g, "'")
+			.replace(/&rsquo;/g, "'")
+			.replace(/&lsquo;/g, "'")
+			.replace(/&rdquo;/g, '"')
+			.replace(/&ldquo;/g, '"')
+			.replace(/&hellip;/g, "...")
+			.replace(/&ndash;/g, "–")
+			.replace(/&mdash;/g, "—")
+			.substring(0, 120) + "...";
 	};
 
 	return (
