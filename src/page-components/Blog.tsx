@@ -540,7 +540,7 @@ const Blog = () => {
 															width={400}
 															height={400}
 															sizes="(max-width: 640px) 100vw, (max-width: 1024px) 40vw, 33vw"
-															quality={85}
+															quality={75}
 														/>
 													</div>
 													<GoldenPlantBadge

@@ -11,6 +11,7 @@ interface LazyImageProps {
 	priority?: boolean;
 	sizes?: string;
 	quality?: number;
+	fetchPriority?: 'high' | 'low' | 'auto';
 }
 
 const LazyImage = ({
@@ -22,7 +23,8 @@ const LazyImage = ({
 	height,
 	priority = false,
 	sizes = "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw",
-	quality = 85,
+	quality = 75,
+	fetchPriority = 'low',
 }: LazyImageProps) => {
 	const [isLoaded, setIsLoaded] = useState(false);
 	const [isInView, setIsInView] = useState(priority);
@@ -77,6 +79,7 @@ const LazyImage = ({
 					sizes={sizes}
 					quality={quality}
 					priority={priority}
+					fetchPriority={priority ? 'high' : fetchPriority}
 					onLoad={() => setIsLoaded(true)}
 					className={`transition-opacity duration-500 ${
 						isLoaded ? "opacity-100" : "opacity-0 absolute inset-0"

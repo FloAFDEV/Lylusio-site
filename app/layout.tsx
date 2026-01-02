@@ -155,7 +155,12 @@ export default function RootLayout({
   return (
     <html lang="fr" suppressHydrationWarning>
       <head>
-        {/* Preconnect only to critical external resources */}
+        {/* Preconnect to critical external resources for faster DNS/TLS */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+
+        {/* DNS prefetch for non-critical but frequent domains */}
+        <link rel="dns-prefetch" href="https://lylusio.fr" />
         <link rel="dns-prefetch" href="https://calendly.com" />
 
         {/* Structured Data for SEO */}
