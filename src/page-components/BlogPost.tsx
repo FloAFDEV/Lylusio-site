@@ -17,10 +17,6 @@ import * as utils from "@/lib/utils";
 import { WP_API_URL } from "@/lib/wordpress";
 import { CALENDLY_URLS } from "@/lib/calendly";
 
-const toSentenceCase = utils.toSentenceCase;
-const formatDate = utils.formatDate;
-const stripHtml = utils.stripHtml;
-const calculateReadTime = utils.calculateReadTime;
 import {
 	ArrowLeft,
 	Calendar,
@@ -287,15 +283,15 @@ const BlogPost = () => {
 					slug: wpPost.slug,
 					title: wpPost.title.rendered,
 					content: content,
-					excerpt: stripHtml(wpPost.excerpt.rendered),
+					excerpt: utils.stripHtml(wpPost.excerpt.rendered),
 					date: wpPost.date,
 					imageUrl: imageUrl,
 					imageAlt:
 						featuredMedia?.alt_text ||
-						stripHtml(wpPost.title.rendered),
+						utils.stripHtml(wpPost.title.rendered),
 					author:
 						wpPost._embedded?.author?.[0]?.name || "Émilie Perez",
-					readTime: calculateReadTime(wpPost.content.rendered),
+					readTime: utils.calculateReadTime(wpPost.content.rendered),
 					categories:
 						wpPost._embedded?.["wp:term"]?.[0]?.map((term) => ({
 							id: term.id,
@@ -348,13 +344,13 @@ const BlogPost = () => {
 						related.map((rp) => ({
 							id: rp.id,
 							slug: rp.slug,
-							title: stripHtml(rp.title.rendered),
+							title: utils.stripHtml(rp.title.rendered),
 							image:
 								rp._embedded?.["wp:featuredmedia"]?.[0]
 									?.source_url || "/placeholder.svg",
-							date: formatDate(rp.date),
+							date: utils.formatDate(rp.date),
 							excerpt:
-								stripHtml(rp.excerpt.rendered).slice(0, 100) +
+								utils.stripHtml(rp.excerpt.rendered).slice(0, 100) +
 								"...",
 						}))
 					);
@@ -429,7 +425,7 @@ const BlogPost = () => {
 		if (!post) return;
 
 		const url = window.location.href;
-		const title = stripHtml(post.title);
+		const title = utils.stripHtml(post.title);
 
 		if (platform === "facebook") {
 			window.open(
@@ -462,7 +458,7 @@ const BlogPost = () => {
 		? {
 				"@context": "https://schema.org",
 				"@type": "BlogPosting",
-				headline: stripHtml(post.title),
+				headline: utils.stripHtml(post.title),
 				description: post.excerpt,
 				datePublished: post.date,
 				dateModified: post.date,
@@ -490,7 +486,7 @@ const BlogPost = () => {
 						url: post.imageUrl,
 					},
 				}),
-				wordCount: stripHtml(post.content).split(/\s+/).length,
+				wordCount: utils.stripHtml(post.content).split(/\s+/).length,
 				articleSection: post.categories[0]?.name || "Blog",
 		  }
 		: null;
@@ -573,7 +569,7 @@ const BlogPost = () => {
 
 			<Header />
 			<main id="main-content" className="min-h-screen bg-background">
-				<Breadcrumbs customTitle={stripHtml(post.title)} />
+				<Breadcrumbs customTitle={utils.stripHtml(post.title)} />
 
 				<article className="container mx-auto px-4 sm:px-6 lg:px-8 pb-16">
 					<div className="max-w-3xl mx-auto mt-2 sm:mt-4 lg:mt-8">
@@ -588,11 +584,11 @@ const BlogPost = () => {
 						<header className="mb-8">
 							<h1 className="font-display text-4xl md:text-5xl font-bold leading-snug mb-6 text-foreground">
 								<span className="font-calligraphic text-accent inline-block align-baseline text-5xl md:text-6xl">
-									{toSentenceCase(
-										stripHtml(post.title)
+									{utils.toSentenceCase(
+										utils.stripHtml(post.title)
 									).charAt(0)}
 								</span>
-								{toSentenceCase(stripHtml(post.title)).slice(1)}
+								{utils.toSentenceCase(utils.stripHtml(post.title)).slice(1)}
 							</h1>
 
 							<div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground mb-6">
@@ -607,7 +603,7 @@ const BlogPost = () => {
 								<span className="flex items-center gap-1.5">
 									<Calendar className="w-4 h-4 text-accent" />
 									<time dateTime={post.date}>
-										{formatDate(post.date)}
+										{utils.formatDate(post.date)}
 									</time>
 								</span>
 								{post.categories.map((cat) => (

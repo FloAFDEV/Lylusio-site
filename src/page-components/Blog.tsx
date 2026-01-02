@@ -22,10 +22,6 @@ import {
 } from "lucide-react";
 import * as utils from "@/lib/utils";
 import { WP_API_URL } from "@/lib/wordpress";
-
-const formatDate = utils.formatDate;
-const stripHtml = utils.stripHtml;
-
 // Types WordPress API
 interface WPPost {
 	id: number;
@@ -110,7 +106,7 @@ const fetchAllBlogPosts = async (): Promise<BlogPost[]> => {
 	return allPosts.map((post) => {
 		const imageObj = post._embedded?.["wp:featuredmedia"]?.[0];
 		const imageUrl = imageObj?.source_url || "/placeholder.svg";
-		const imageAlt = imageObj?.alt_text || stripHtml(post.title.rendered);
+		const imageAlt = imageObj?.alt_text || utils.stripHtml(post.title.rendered);
 
 		const categories =
 			post._embedded?.["wp:term"]?.[0]?.map((term) => ({
@@ -121,9 +117,9 @@ const fetchAllBlogPosts = async (): Promise<BlogPost[]> => {
 
 		return {
 			id: post.id,
-			title: stripHtml(post.title.rendered),
-			excerpt: stripHtml(post.excerpt.rendered).slice(0, 150) + "...",
-			date: formatDate(post.date),
+			title: utils.stripHtml(post.title.rendered),
+			excerpt: utils.stripHtml(post.excerpt.rendered).slice(0, 150) + "...",
+			date: utils.formatDate(post.date),
 			rawDate: post.date,
 			slug: post.slug,
 			image: imageUrl,
@@ -245,13 +241,13 @@ const Blog = () => {
 				const results: RelatedPost[] = posts.map((p) => ({
 					id: p.id,
 					slug: p.slug,
-					title: stripHtml(p.title.rendered),
+					title: utils.stripHtml(p.title.rendered),
 					excerpt:
-						stripHtml(p.excerpt.rendered).slice(0, 100) + "...",
+						utils.stripHtml(p.excerpt.rendered).slice(0, 100) + "...",
 					image:
 						p._embedded?.["wp:featuredmedia"]?.[0]?.source_url ||
 						"/placeholder.svg",
-					date: formatDate(p.date),
+					date: utils.formatDate(p.date),
 				}));
 				setSearchResults(results);
 			} catch (err) {

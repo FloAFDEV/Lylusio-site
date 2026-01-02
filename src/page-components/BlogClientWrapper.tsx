@@ -13,8 +13,6 @@ import { Button } from "@/components/ui/button";
 import { Calendar, ArrowRight, Filter, SortAsc, SortDesc } from "lucide-react";
 import * as utils from "@/lib/utils";
 
-const toSentenceCase = utils.toSentenceCase;
-
 interface BlogPost {
 	id: number;
 	title: string;
@@ -301,11 +299,11 @@ const BlogClientWrapper = ({ initialPosts, initialCategories }: Props) => {
 												</div>
 												<h2 className="font-heading text-lg md:text-xl font-bold mb-3 group-hover:text-accent transition-colors line-clamp-2 min-h-[3.5rem] leading-tight">
 													<span className="font-calligraphic text-accent inline-block align-baseline text-2xl md:text-3xl">
-														{toSentenceCase(
+														{utils.toSentenceCase(
 															post.title
 														).charAt(0)}
 													</span>
-													{toSentenceCase(
+													{utils.toSentenceCase(
 														post.title
 													).slice(1)}
 												</h2>

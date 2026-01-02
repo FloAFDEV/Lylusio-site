@@ -15,10 +15,6 @@ import { Calendar, ArrowRight, Loader2, SortAsc, SortDesc } from "lucide-react";
 import * as utils from "@/lib/utils";
 import { WP_API_URL } from "@/lib/wordpress";
 
-const toSentenceCase = utils.toSentenceCase;
-const formatDate = utils.formatDate;
-const stripHtml = utils.stripHtml;
-
 interface WPPost {
 	id: number;
 	date: string;
@@ -111,8 +107,8 @@ const BlogCategory = () => {
 				id: p.id,
 				title: p.title.rendered,
 				excerpt:
-					stripHtml(p.excerpt.rendered).substring(0, 150) + "...",
-				date: formatDate(p.date),
+					utils.stripHtml(p.excerpt.rendered).substring(0, 150) + "...",
+				date: utils.formatDate(p.date),
 				rawDate: p.date,
 				slug: p.slug,
 				image:
@@ -170,7 +166,7 @@ const BlogCategory = () => {
 
 	const categoryTitle = category?.name || "Catégorie";
 	const categoryDescription = category?.description
-		? stripHtml(category.description)
+		? utils.stripHtml(category.description)
 		: `Découvrez tous nos articles sur ${categoryTitle.toLowerCase()}`;
 
 	const structuredData = {
@@ -300,9 +296,9 @@ const BlogCategory = () => {
 												</div>
 												<h2 className="font-heading text-lg md:text-xl font-bold mb-3 group-hover:text-accent transition-colors line-clamp-2 min-h-[3.5rem] leading-tight">
 													<span className="font-calligraphic text-accent inline-block align-baseline text-2xl md:text-3xl">
-														{toSentenceCase(stripHtml(post.title)).charAt(0)}
+														{utils.toSentenceCase(utils.stripHtml(post.title)).charAt(0)}
 													</span>
-													{toSentenceCase(stripHtml(post.title)).slice(1)}
+													{utils.toSentenceCase(utils.stripHtml(post.title)).slice(1)}
 												</h2>
 												<p className="text-muted-foreground text-sm leading-relaxed line-clamp-3 mb-4 flex-grow">
 													{post.excerpt}
