@@ -127,9 +127,9 @@ const RecentArticlesSection = () => {
 									href={`/blog/${post.slug}`}
 									className="block h-full"
 								>
-									<div className="relative h-full bg-card/50 backdrop-blur-sm border border-border/30 rounded-2xl overflow-hidden hover:border-accent/40 transition-all duration-300 hover:shadow-lg">
+									<div className="relative h-full bg-card/50 backdrop-blur-sm border border-border/20 md:border-border/30 rounded-2xl overflow-hidden hover:border-accent/40 transition-all duration-300 hover:shadow-md md:hover:shadow-lg">
 										{/* Image */}
-										<div className="relative aspect-[16/10] overflow-hidden">
+										<div className="relative aspect-[4/3] md:aspect-[16/10] overflow-hidden">
 											{post._embedded?.[
 												"wp:featuredmedia"
 											]?.[0] ? (
@@ -158,7 +158,7 @@ const RecentArticlesSection = () => {
 										</div>
 
 										{/* Content */}
-										<div className="p-6">
+										<div className="p-4 md:p-6">
 											{/* Date */}
 											<div className="flex items-center gap-2 text-xs text-muted-foreground/70 mb-3">
 												<Calendar className="w-3.5 h-3.5" />
@@ -168,7 +168,7 @@ const RecentArticlesSection = () => {
 											</div>
 
 											{/* Title */}
-											<h3 className="text-lg md:text-xl font-display text-foreground mb-3 group-hover:text-accent transition-colors duration-300 line-clamp-2">
+											<h3 className="text-base md:text-lg lg:text-xl font-display text-foreground mb-3 group-hover:text-accent transition-colors duration-300 line-clamp-2">
 												{(() => {
 													const title = stripHtml(
 														post.title.rendered
