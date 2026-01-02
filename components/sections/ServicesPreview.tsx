@@ -155,7 +155,9 @@ const ServicesPreview = () => {
 													WebkitBackfaceVisibility: "hidden",
 												}}
 												fill
-																							/>
+												sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+												quality={85}
+											/>
 										</div>
 										<div className="absolute inset-0 bg-gradient-to-t from-card via-card/40 to-transparent pointer-events-none" />
 

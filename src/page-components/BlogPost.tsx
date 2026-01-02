@@ -424,6 +424,38 @@ const BlogPost = () => {
 			document.removeEventListener("click", handleArticleLinksClick);
 	}, [post]);
 
+	// Optimize WordPress content images with native lazy loading
+	useEffect(() => {
+		if (!post) return;
+
+		const proseElement = document.querySelector(".prose");
+		if (!proseElement) return;
+
+		const images = proseElement.querySelectorAll("img");
+		images.forEach((img) => {
+			// Add native lazy loading
+			if (!img.hasAttribute("loading")) {
+				img.setAttribute("loading", "lazy");
+			}
+
+			// Add decoding async for better performance
+			if (!img.hasAttribute("decoding")) {
+				img.setAttribute("decoding", "async");
+			}
+
+			// Ensure images are responsive
+			if (!img.style.maxWidth) {
+				img.style.maxWidth = "100%";
+				img.style.height = "auto";
+			}
+
+			// Add fetchpriority low for better LCP
+			if (!img.hasAttribute("fetchpriority")) {
+				img.setAttribute("fetchpriority", "low");
+			}
+		});
+	}, [post]);
+
 	const handleShare = async (platform?: string) => {
 		if (!post) return;
 
@@ -698,6 +730,19 @@ const BlogPost = () => {
 								/>{" "}
 								Copier
 							</Button>
+						</div>
+
+						{/* Signature manuscrite Emilie Perez */}
+						<div className="text-center mt-12 mb-8">
+							<p
+								className="font-calligraphic text-2xl md:text-3xl text-gold/80 animate-fade-in animate-handwriting"
+								style={{
+									animationDelay: "0.3s",
+								}}
+								aria-hidden="true"
+							>
+								— Émilie Perez —
+							</p>
 						</div>
 
 						{relatedPosts.length > 0 && (
