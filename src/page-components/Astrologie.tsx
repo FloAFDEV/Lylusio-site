@@ -3,8 +3,6 @@
 import Link from "next/link";
 import Image from "next/image";
 
-// import { Helmet } from "react-helmet-async"; // Replaced by Next.js Metadata API
-// import SEOHead from "@/components/SEO/SEOHead"; // Replaced by Next.js Metadata API
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -31,17 +29,9 @@ import {
 	BookOpen,
 	HelpCircle,
 } from "lucide-react";
-// import { Link } from "react-router-dom"; // Replaced by Next.js Link
 import { useParallax } from "@/hooks/useParallax";
 import { useInView } from "@/hooks/useInView";
-// import travailAstro from "@/assets/travail-astro.webp"; // Now using /assets/travail-astro.webp
-// import astroProfondeurs from "@/assets/astro-profondeurs.webp"; // Now using /assets/astro-profondeurs.webp
-// import zodiacWheel from "@/assets/zodiac-wheel.webp"; // Now using /assets/zodiac-wheel.webp
-
-const CALENDLY_THEME_NATAL =
-	"https://calendly.com/lylusio-fr/themenatal?month=2025-12";
-const CALENDLY_TRANSITS =
-	"https://calendly.com/lylusio-fr/themenatal?month=2025-12";
+import { CALENDLY_URLS } from "@/lib/calendly";
 
 const Astrologie = () => {
 	const parallaxOffset = useParallax(0.15);
@@ -263,7 +253,7 @@ const Astrologie = () => {
 											className="group"
 											onClick={() =>
 												window.open(
-													CALENDLY_THEME_NATAL,
+													CALENDLY_URLS.THEME_NATAL,
 													"_blank"
 												)
 											}
@@ -671,7 +661,7 @@ const Astrologie = () => {
 											className="w-full group/btn relative overflow-hidden shadow-[0_4px_20px_-4px_hsl(var(--accent)/0.3)] hover:shadow-[0_8px_30px_-4px_hsl(var(--accent)/0.5),0_0_20px_-4px_hsl(var(--gold)/0.3)] hover:scale-105 transition-all duration-300"
 											onClick={() =>
 												window.open(
-													CALENDLY_THEME_NATAL,
+													CALENDLY_URLS.THEME_NATAL,
 													"_blank"
 												)
 											}
@@ -766,7 +756,7 @@ const Astrologie = () => {
 											className="w-full group/btn relative overflow-hidden shadow-[0_4px_20px_-4px_hsl(var(--gold)/0.3)] hover:shadow-[0_8px_30px_-4px_hsl(var(--gold)/0.5),0_0_20px_-4px_hsl(var(--accent)/0.3)] hover:scale-105 transition-all duration-300"
 											onClick={() =>
 												window.open(
-													CALENDLY_TRANSITS,
+													CALENDLY_URLS.TRANSITS,
 													"_blank"
 												)
 											}

@@ -5,14 +5,13 @@ import Image from "next/image";
 import { useParams, useRouter } from "next/navigation";
 
 import { useEffect, useState } from "react";
+import { WP_API_URL } from "@/lib/wordpress";
 
 /**
  * This component handles WordPress-style article URLs at the root level.
  * It checks if the slug corresponds to a WordPress article and renders
  * the BlogPost page directly, preserving the original URL structure.
  */
-
-const WP_API_URL = process.env.NEXT_PUBLIC_WP_API_URL || "https://lylusio.fr/wp-json/wp/v2";
 
 const ArticleRedirect = () => {
   const params = useParams();

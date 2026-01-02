@@ -3,8 +3,6 @@
 import Link from "next/link";
 import Image from "next/image";
 
-// import { Helmet } from "react-helmet-async"; // Replaced by Next.js Metadata API
-// import SEOHead from "@/components/SEO/SEOHead"; // Replaced by Next.js Metadata API
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -29,19 +27,9 @@ import {
 	ArrowRight,
 	Zap,
 } from "lucide-react";
-// import { Link } from "react-router-dom"; // Replaced by Next.js Link
 import { useParallax } from "@/hooks/useParallax";
 import { useInView } from "@/hooks/useInView";
 import { useIsMobile } from "@/hooks/use-mobile";
-// import seanceAccompagnement from "@/assets/seance-accompagnement.webp"; // Now using /assets/seance-accompagnement.webp
-// import seanceAstro from "@/assets/seance-astro.webp"; // Now using /assets/seance-astro.webp
-// import seanceReiki from "@/assets/seance-reiki.webp"; // Now using /assets/seance-reiki.webp
-// import cascadeZen from "@/assets/cascade-zen.webp"; // Now using /assets/cascade-zen.webp
-// import tarifThemeNatal from "@/assets/tarif-theme-natal.webp"; // Now using /assets/tarif-theme-natal.webp
-// import tarifTransits from "@/assets/tarif-transits.webp"; // Now using /assets/tarif-transits.webp
-// import tarifReiki from "@/assets/tarif-reiki.webp"; // Now using /assets/tarif-reiki.webp
-// import tarifAccompagnement from "@/assets/tarif-accompagnement.webp"; // Now using /assets/tarif-accompagnement.webp
-// import tarifBilanPro from "@/assets/tarif-bilan-pro.webp"; // Now using /assets/tarif-bilan-pro.webp
 
 import CALENDLY_URLS from "@/lib/calendly";
 

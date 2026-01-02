@@ -3,8 +3,6 @@
 import Link from "next/link";
 import Image from "next/image";
 
-// import { Helmet } from "react-helmet-async"; // Replaced by Next.js Metadata API
-// import SEOHead from "@/components/SEO/SEOHead"; // Replaced by Next.js Metadata API
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -33,16 +31,9 @@ import {
 	Leaf,
 	HelpCircle,
 } from "lucide-react";
-// import { Link } from "react-router-dom"; // Replaced by Next.js Link
 import { useParallax } from "@/hooks/useParallax";
 import { useInView } from "@/hooks/useInView";
-// import kundaliniEveil from "@/assets/kundalini-eveil.webp"; // Now using /assets/kundalini-eveil.webp
-// import reikiHistoire from "@/assets/reiki-histoire.webp"; // Now using /assets/reiki-histoire.webp
-
-const CALENDLY_REIKI_PRESENTIEL =
-	"https://calendly.com/lylusio-fr/soin-energetique-reiki?month=2025-12";
-const CALENDLY_REIKI_DISTANCE =
-	"https://calendly.com/lylusio-fr/soin-energetique-reiki?month=2025-12";
+import { CALENDLY_URLS } from "@/lib/calendly";
 
 const Reiki = () => {
 	const parallaxOffset = useParallax(0.12);
@@ -233,7 +224,7 @@ const Reiki = () => {
 											className="group"
 											onClick={() =>
 												window.open(
-													CALENDLY_REIKI_PRESENTIEL,
+													CALENDLY_URLS.REIKI,
 													"_blank"
 												)
 											}
@@ -768,7 +759,7 @@ const Reiki = () => {
 											size="lg"
 											onClick={() =>
 												window.open(
-													CALENDLY_REIKI_PRESENTIEL,
+													CALENDLY_URLS.REIKI,
 													"_blank"
 												)
 											}
@@ -851,7 +842,7 @@ const Reiki = () => {
 											size="lg"
 											onClick={() =>
 												window.open(
-													CALENDLY_REIKI_DISTANCE,
+													CALENDLY_URLS.REIKI,
 													"_blank"
 												)
 											}

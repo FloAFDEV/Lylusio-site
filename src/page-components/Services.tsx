@@ -3,15 +3,10 @@
 import Link from "next/link";
 import Image from "next/image";
 
-// import { Helmet } from "react-helmet-async"; // Replaced by Next.js Metadata API
-// import { Link } from "react-router-dom"; // Replaced by Next.js Link
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { ArrowRight, Star, Heart, Compass } from "lucide-react";
-// import seanceAstro from "@/assets/seance-astro.webp"; // Now using /assets/seance-astro.webp
-// import seanceReiki from "@/assets/seance-reiki.webp"; // Now using /assets/seance-reiki.webp
-// import seanceAccompagnement from "@/assets/seance-accompagnement.webp"; // Now using /assets/seance-accompagnement.webp
 import { useInView } from "@/hooks/useInView";
 import { useParallax } from "@/hooks/useParallax";
 

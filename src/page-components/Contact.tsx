@@ -3,12 +3,10 @@
 import Link from "next/link";
 
 import { useState } from "react";
-// import { Helmet } from "react-helmet-async"; // Replaced by Next.js Metadata API
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { Button } from "@/components/ui/button";
-// import { Link } from "react-router-dom"; // Replaced by Next.js Link
 import { Phone, Mail, MapPin, Calendar, Eye } from "lucide-react";
 import { useInView } from "@/hooks/useInView";
 import { HoneypotContact } from "@/components/ClickToReveal";

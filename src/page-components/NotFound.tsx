@@ -3,8 +3,6 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useEffect } from "react";
-// import { useLocation, Link } from "react-router-dom"; // Replaced by Next.js - useLocation not needed in this context
-// import { Helmet } from "react-helmet-async"; // Replaced by Next.js Metadata API
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import GoldenPlantBadge from "@/components/GoldenPlantBadge";

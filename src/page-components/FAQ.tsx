@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
-// import { Helmet } from "react-helmet-async"; // Replaced by Next.js Metadata API
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -15,7 +14,6 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-// import { Link } from "react-router-dom"; // Replaced by Next.js Link
 import { Button } from "@/components/ui/button";
 import { Star, Hand, Heart, FileText } from "lucide-react";
 

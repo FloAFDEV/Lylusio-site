@@ -4,8 +4,6 @@ import Link from "next/link";
 import Image from "next/image";
 
 import { useState, useEffect } from "react";
-// import { Helmet } from "react-helmet-async"; // Replaced by Next.js Metadata API
-// import { Link } from "react-router-dom"; // Replaced by Next.js Link
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
@@ -13,6 +11,7 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import GoldenPlantBadge from "@/components/GoldenPlantBadge";
 import LazyImage from "@/components/LazyImage";
 import { Button } from "@/components/ui/button";
+import ServicesDiscoveryCTA from "@/components/sections/ServicesDiscoveryCTA";
 import {
 	Calendar,
 	ArrowRight,
@@ -21,6 +20,8 @@ import {
 	SortAsc,
 	SortDesc,
 } from "lucide-react";
+import { formatDate, stripHtml } from "@/lib/utils";
+import { WP_API_URL } from "@/lib/wordpress";
 
 // Types WordPress API
 interface WPPost {
@@ -75,24 +76,6 @@ interface RelatedPost {
 	date: string;
 	image: string;
 }
-
-// WordPress API URL from environment
-const WP_API_URL =
-	process.env.NEXT_PUBLIC_WP_API_URL || "https://lylusio.fr/wp-json/wp/v2";
-
-const formatDate = (dateString: string): string => {
-	const date = new Date(dateString);
-	return date.toLocaleDateString("fr-FR", {
-		day: "numeric",
-		month: "short",
-		year: "numeric",
-	});
-};
-
-const stripHtml = (html: string): string => {
-	const doc = new DOMParser().parseFromString(html, "text/html");
-	return doc.body.textContent || "";
-};
 
 type SortOrder = "newest" | "oldest";
 
@@ -634,54 +617,7 @@ const Blog = () => {
 						)}
 
 						{/* Internal links */}
-						<div className="mt-16 p-8 bg-gradient-sand-center/30 rounded-2xl text-center max-w-3xl mx-auto">
-							<h3 className="font-display text-xl text-navy mb-4">
-								Découvrez mes accompagnements
-							</h3>
-							<p className="text-muted-foreground mb-6">
-								Vous souhaitez aller plus loin dans votre
-								cheminement ? Je propose des séances d'{" "}
-								<Link
-									href="/astrologie"
-									className="text-accent hover:underline"
-								>
-									astrologie consciente
-								</Link>
-								, de{" "}
-								<Link
-									href="/reiki"
-									className="text-accent hover:underline"
-								>
-									thérapie énergétique Reiki
-								</Link>{" "}
-								et d'{" "}
-								<Link
-									href="/accompagnement"
-									className="text-accent hover:underline"
-								>
-									accompagnement personnalisé
-								</Link>
-								.
-							</p>
-							<Link href="/services">
-								<Button variant="elegant" size="default">
-									Voir toutes les prestations
-								</Button>
-							</Link>
-						</div>
-
-						{/* CTA Secondaire - Ressources */}
-						<div className="mt-8 text-center">
-							<p className="text-sm text-muted-foreground">
-								Envie de contenus pratiques ?{" "}
-								<Link
-									href="/ressources"
-									className="text-accent hover:text-gold transition-colors font-medium underline decoration-accent/30 hover:decoration-gold/50 underline-offset-2"
-								>
-									Découvrir les vidéos et ateliers gratuits
-								</Link>
-							</p>
-						</div>
+						<ServicesDiscoveryCTA variant="standard" buttonVariant="elegant" />
 					</section>
 				</main>
 

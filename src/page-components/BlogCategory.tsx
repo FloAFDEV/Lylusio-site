@@ -5,8 +5,6 @@ import Image from "next/image";
 import { useParams, useRouter } from "next/navigation";
 
 import { useState, useEffect, useCallback } from "react";
-// import { Helmet } from "react-helmet-async"; // Replaced by Next.js Metadata API
-// import { Link, useParams } from "react-router-dom"; // Replaced by Next.js
 import { useQueryClient, useQuery } from "@tanstack/react-query";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
@@ -14,6 +12,8 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import GoldenPlantBadge from "@/components/GoldenPlantBadge";
 import { Button } from "@/components/ui/button";
 import { Calendar, ArrowRight, Loader2, SortAsc, SortDesc } from "lucide-react";
+import { toSentenceCase, formatDate, stripHtml } from "@/lib/utils";
+import { WP_API_URL } from "@/lib/wordpress";
 
 interface WPPost {
 	id: number;
@@ -45,26 +45,6 @@ interface BlogPost {
 	image: string;
 	imageAlt: string;
 }
-
-const WP_API_URL = process.env.NEXT_PUBLIC_WP_API_URL || "https://lylusio.fr/wp-json/wp/v2";
-
-const formatDate = (dateString: string) =>
-	new Date(dateString).toLocaleDateString("fr-FR", {
-		day: "numeric",
-		month: "short",
-		year: "numeric",
-	});
-
-// Strip HTML tags (server-safe)
-const stripHtml = (html: string): string => {
-	return html.replace(/<[^>]*>/g, '').replace(/&nbsp;/g, ' ').replace(/&amp;/g, '&').trim();
-};
-
-// Convert to Sentence case
-const toSentenceCase = (text: string): string => {
-	if (!text) return text;
-	return text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
-};
 
 type SortOrder = "newest" | "oldest";
 

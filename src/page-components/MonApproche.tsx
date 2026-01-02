@@ -3,8 +3,6 @@
 import Link from "next/link";
 import Image from "next/image";
 
-// import { Helmet } from "react-helmet-async"; // Replaced by Next.js Metadata API
-// import { Link } from "react-router-dom"; // Replaced by Next.js Link
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -22,10 +20,6 @@ import {
 	Key,
 	Target,
 } from "lucide-react";
-// import approcheArbre from "@/assets/approche-arbre.webp"; // Now using /assets/approche-arbre.webp
-// import approcheLunettes from "@/assets/approche-lunettes.webp"; // Now using /assets/approche-lunettes.webp
-// import mainTendue from "@/assets/main-tendue.webp"; // Now using /assets/main-tendue.webp
-// import youAreImportant from "@/assets/you-are-important.webp"; // Now using /assets/you-are-important.webp
 import { useParallax } from "@/hooks/useParallax";
 import { useInView } from "@/hooks/useInView";
 

@@ -8,8 +8,10 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import GoldenPlantBadge from "@/components/GoldenPlantBadge";
+import ServicesDiscoveryCTA from "@/components/sections/ServicesDiscoveryCTA";
 import { Button } from "@/components/ui/button";
 import { Calendar, ArrowRight, Filter, SortAsc, SortDesc } from "lucide-react";
+import { toSentenceCase } from "@/lib/utils";
 
 interface BlogPost {
 	id: number;
@@ -36,12 +38,6 @@ interface Props {
 }
 
 type SortOrder = "newest" | "oldest";
-
-// Convert to Sentence case
-const toSentenceCase = (text: string): string => {
-	if (!text) return text;
-	return text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
-};
 
 const BlogClientWrapper = ({ initialPosts, initialCategories }: Props) => {
 	const router = useRouter();
@@ -340,55 +336,8 @@ const BlogClientWrapper = ({ initialPosts, initialCategories }: Props) => {
 							)}
 						</>
 					)}
-					{/* CTA Principal */}
-					<div className="mt-16 p-8 bg-gradient-sand-center/30 rounded-2xl text-center max-w-3xl mx-auto">
-						<h3 className="font-display text-xl text-navy mb-4">
-							Découvrez mes accompagnements
-						</h3>
-						<p className="text-muted-foreground mb-6">
-							Vous souhaitez aller plus loin dans votre
-							cheminement ? Je propose des séances d'{" "}
-							<Link
-								className="text-accent hover:underline"
-								href="/astrologie-toulouse"
-							>
-								astrologie consciente
-							</Link>
-							, de{" "}
-							<Link
-								className="text-accent hover:underline"
-								href="/reiki-toulouse"
-							>
-								thérapie énergétique Reiki
-							</Link>{" "}
-							et d'{" "}
-							<Link
-								className="text-accent hover:underline"
-								href="/accompagnement-toulouse"
-							>
-								accompagnement personnalisé
-							</Link>
-							.
-						</p>
-						<Link href="/accompagnement-toulouse">
-							<Button variant="outline">
-								Voir toutes les prestations
-							</Button>
-						</Link>
-					</div>
-
-					{/* CTA Secondaire - Ressources */}
-					<div className="mt-8 text-center">
-						<p className="text-sm text-muted-foreground">
-							Envie de contenus pratiques ?{" "}
-							<Link
-								href="/ressources"
-								className="text-accent hover:text-gold transition-colors font-medium underline decoration-accent/30 hover:decoration-gold/50 underline-offset-2"
-							>
-								Découvrir les ressources gratuites
-							</Link>
-						</p>
-					</div>
+					{/* CTA Principal et Secondaire */}
+					<ServicesDiscoveryCTA variant="toulouse" buttonVariant="outline" />
 				</section>
 			</main>
 

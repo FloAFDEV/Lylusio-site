@@ -6,8 +6,6 @@ import { useParams } from "next/navigation";
 import { FaFacebook, FaInstagram, FaLinkedin, FaLink } from "react-icons/fa";
 
 import { useEffect, useState } from "react";
-// import { useParams, Link } from "react-router-dom"; // Replaced by Next.js
-// import { Helmet } from "react-helmet-async"; // Replaced by Next.js Metadata API
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
@@ -15,6 +13,9 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import GoldenPlantBadge from "@/components/GoldenPlantBadge";
 import LazyImage from "@/components/LazyImage";
 import { Button } from "@/components/ui/button";
+import { toSentenceCase, formatDate, stripHtml, calculateReadTime } from "@/lib/utils";
+import { WP_API_URL } from "@/lib/wordpress";
+import { CALENDLY_URLS } from "@/lib/calendly";
 import {
 	ArrowLeft,
 	Calendar,
@@ -70,43 +71,6 @@ interface RelatedPost {
 	excerpt: string;
 }
 
-const WP_API_URL =
-	process.env.NEXT_PUBLIC_WP_API_URL || "https://lylusio.fr/wp-json/wp/v2";
-
-const formatDate = (dateString: string): string => {
-	const date = new Date(dateString);
-	return date.toLocaleDateString("fr-FR", {
-		day: "numeric",
-		month: "long",
-		year: "numeric",
-	});
-};
-
-const stripHtml = (html: string): string => {
-	const tmp = document.createElement("div");
-	tmp.innerHTML = html;
-	return tmp.textContent || tmp.innerText || "";
-};
-
-const toSentenceCase = (text: string): string => {
-	if (!text) return text;
-	// Convert to lowercase then capitalize first letter
-	return text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
-};
-
-const calculateReadTime = (content: string): number => {
-	const wordsPerMinute = 200;
-	const words = stripHtml(content).split(/\s+/).length;
-	return Math.max(1, Math.ceil(words / wordsPerMinute));
-};
-
-// Calendly URLs for article internal links
-const CALENDLY_ASTROLOGIE =
-	"https://calendly.com/lylusio-fr/themenatal?month=2025-12";
-const CALENDLY_REIKI =
-	"https://calendly.com/lylusio-fr/soin-energetique-reiki?month=2025-12";
-const CALENDLY_GENERAL = "https://calendly.com/lylusio-fr";
-
 // Helper to determine Calendly URL based on article categories
 const getCalendlyUrlFromCategories = (
 	categories: { id: number; name: string; slug: string }[]
@@ -119,7 +83,7 @@ const getCalendlyUrlFromCategories = (
 			(slug) => slug.includes("astrologie") || slug.includes("astro")
 		)
 	) {
-		return CALENDLY_ASTROLOGIE;
+		return CALENDLY_URLS.THEME_NATAL;
 	}
 
 	// Check if article is about reiki
@@ -131,11 +95,11 @@ const getCalendlyUrlFromCategories = (
 				slug.includes("energetique")
 		)
 	) {
-		return CALENDLY_REIKI;
+		return CALENDLY_URLS.REIKI;
 	}
 
 	// Default to general Calendly
-	return CALENDLY_GENERAL;
+	return CALENDLY_URLS.GENERAL;
 };
 
 const removeFeaturedImageFromContent = (
