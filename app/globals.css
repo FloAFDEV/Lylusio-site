@@ -808,15 +808,8 @@ html {
 	opacity: 0;
 }
 
-/* Menu mobile blur background */
-body.menu-open::before {
-	content: '';
-	position: fixed;
-	inset: 0;
-	background: hsl(var(--background) / 0.5);
-	z-index: 40;
-	animation: fadeIn 0.3s ease-out;
-}
+/* Menu mobile blur background - DISABLED (Header has its own overlay) */
+/* body.menu-open::before removed - redundant with Header overlay at z-40 */
 
 @keyframes fadeIn {
 	from { opacity: 0; }
