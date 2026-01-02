@@ -682,7 +682,20 @@ const BlogPost = () => {
 							dangerouslySetInnerHTML={{ __html: post.content }}
 						/>
 
-						<div className="flex flex-wrap items-center justify-center gap-3 mt-12 pt-8 border-t border-border/30">
+						{/* Signature manuscrite Emilie Perez */}
+						<div className="text-center mt-12 mb-8">
+							<p
+								className="font-calligraphic text-2xl md:text-3xl text-navy/80 animate-fade-in animate-handwriting"
+								style={{
+									animationDelay: "0.3s",
+								}}
+								aria-hidden="true"
+							>
+								— Émilie Perez —
+							</p>
+						</div>
+
+						<div className="flex flex-wrap items-center justify-center gap-3 mt-8 pt-8 border-t border-border/30">
 							<Button
 								variant="outline"
 								size="sm"
@@ -730,19 +743,6 @@ const BlogPost = () => {
 								/>{" "}
 								Copier
 							</Button>
-						</div>
-
-						{/* Signature manuscrite Emilie Perez */}
-						<div className="text-center mt-12 mb-8">
-							<p
-								className="font-calligraphic text-2xl md:text-3xl text-gold/80 animate-fade-in animate-handwriting"
-								style={{
-									animationDelay: "0.3s",
-								}}
-								aria-hidden="true"
-							>
-								— Émilie Perez —
-							</p>
 						</div>
 
 						{relatedPosts.length > 0 && (
