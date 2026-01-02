@@ -1,9 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -41,6 +41,7 @@ type SortOrder = "newest" | "oldest";
 
 const BlogClientWrapper = ({ initialPosts, initialCategories }: Props) => {
 	const router = useRouter();
+	const searchParams = useSearchParams();
 	const [selectedCategory, setSelectedCategory] = useState<number | null>(
 		null
 	);
@@ -49,6 +50,19 @@ const BlogClientWrapper = ({ initialPosts, initialCategories }: Props) => {
 	const [searchQuery, setSearchQuery] = useState("");
 
 	const totalPosts = initialPosts.length;
+
+	// Sync URL theme param with category filter on mount
+	useEffect(() => {
+		const themeParam = searchParams.get('theme');
+		if (themeParam) {
+			const matchedCategory = initialCategories.find(
+				cat => cat.slug === themeParam.toLowerCase()
+			);
+			if (matchedCategory) {
+				setSelectedCategory(matchedCategory.id);
+			}
+		}
+	}, [searchParams, initialCategories]);
 
 	// Prefetch article on hover for instant navigation
 	const handlePrefetch = (slug: string) => {
@@ -95,6 +109,42 @@ const BlogClientWrapper = ({ initialPosts, initialCategories }: Props) => {
 		.map((name) => initialCategories.find((c) => c.name === name))
 		.filter(Boolean) as WPCategory[];
 
+	// Dynamic title and subtitle based on URL theme parameter
+	const themeParam = searchParams.get('theme');
+	const selectedCategoryData = selectedCategory
+		? initialCategories.find(cat => cat.id === selectedCategory)
+		: null;
+
+	const getContextualContent = () => {
+		if (themeParam && selectedCategoryData) {
+			const themeMap: Record<string, { title: string; subtitle: string; firstLetter: string }> = {
+				'astrologie': {
+					firstLetter: 'A',
+					title: 'rticles autour de l\'astrologie',
+					subtitle: 'Explorez mes réflexions sur l\'astrologie humaniste, les dominantes planétaires, les transits et bien plus encore. D\'autres thématiques sont également disponibles ci-dessous.'
+				},
+				'reiki': {
+					firstLetter: 'A',
+					title: 'rticles autour du Reiki',
+					subtitle: 'Découvrez mes articles sur le Reiki, l\'énergie vitale, les chakras et cette pratique millénaire de guérison. D\'autres thématiques sont également disponibles ci-dessous.'
+				},
+				'developpement-personnel': {
+					firstLetter: 'D',
+					title: 'éveloppement personnel',
+					subtitle: 'Parcourez mes réflexions sur le chemin de développement personnel, la connaissance de soi et l\'évolution spirituelle. D\'autres thématiques sont également disponibles ci-dessous.'
+				}
+			};
+			return themeMap[themeParam.toLowerCase()] || null;
+		}
+		return null;
+	};
+
+	const contextualContent = getContextualContent();
+	const titleFirstLetter = contextualContent?.firstLetter || 'A';
+	const titleText = contextualContent?.title || 'rticles & Réflexions';
+	const subtitleText = contextualContent?.subtitle ||
+		'Lectures inspirantes et analyses approfondies sur l\'astrologie humaniste, le Reiki et votre chemin de développement personnel.';
+
 	return (
 		<div className="min-h-screen bg-background relative">
 			<a href="#main-content" className="skip-link">
@@ -116,14 +166,12 @@ const BlogClientWrapper = ({ initialPosts, initialCategories }: Props) => {
 							className="text-foreground mb-6 text-center text-3xl sm:text-4xl md:text-5xl"
 						>
 							<span className="font-calligraphic text-accent inline-block align-baseline text-4xl sm:text-5xl md:text-6xl">
-								A
+								{titleFirstLetter}
 							</span>
-							rticles & Réflexions
+							{titleText}
 						</h1>
 						<p className="text-muted-foreground text-base sm:text-lg leading-relaxed max-w-2xl mx-auto">
-							Lectures inspirantes et analyses approfondies sur
-							l'astrologie humaniste, le Reiki et votre chemin de
-							développement personnel.
+						{subtitleText}
 						</p>
 					</header>
 					{/* Filters avec compteurs intégrés */}

@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import { Suspense } from 'react';
 import BlogClientWrapper from '@/src/page-components/BlogClientWrapper';
 import { generateMetadata as genMeta } from '@/content/seo';
 import { fetchPosts, fetchCategories, CACHE_DURATIONS } from '@/lib/wordpress-cache';
@@ -145,5 +146,9 @@ export default async function BlogPage() {
   // Server-side data fetching with parallel deduplication
   const [posts, categories] = await Promise.all([fetchBlogPosts(), fetchBlogCategories()]);
 
-  return <BlogClientWrapper initialPosts={posts} initialCategories={categories} />;
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-background" />}>
+      <BlogClientWrapper initialPosts={posts} initialCategories={categories} />
+    </Suspense>
+  );
 }

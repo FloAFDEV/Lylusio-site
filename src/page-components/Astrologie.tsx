@@ -262,7 +262,7 @@ const Astrologie = () => {
 											Réserver ma consultation
 											<ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
 										</Button>
-										<Link href="/blog">
+										<Link href="/blog?theme=astrologie">
 											<Button
 												variant="elegant"
 												size="lg"
@@ -542,7 +542,7 @@ const Astrologie = () => {
 										/>
 										<div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent flex items-end p-4">
 											<Link
-												href="/blog"
+												href="/blog?theme=astrologie"
 												className="text-sm text-foreground hover:text-accent transition-colors flex items-center gap-2"
 											>
 												<BookOpen className="w-4 h-4" />
@@ -887,7 +887,7 @@ const Astrologie = () => {
 									bien plus encore.
 								</p>
 								<div className="flex flex-col sm:flex-row gap-4 justify-center">
-									<Link href="/blog">
+									<Link href="/blog?theme=astrologie">
 										<Button
 											variant="elegant"
 											size="lg"
