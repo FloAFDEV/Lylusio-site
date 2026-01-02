@@ -352,7 +352,7 @@ const Blog = () => {
 								{/* Bouton Tous */}
 								<button
 									onClick={() => setSelectedCategory(null)}
-									className={`px-2 py-1 rounded-full text-xs md:px-3 md:py-1.5 md:text-sm transition-colors focus-visible:ring-2 focus-visible:ring-accent ${
+									className={`px-3 py-1.5 rounded-xl text-xs md:px-4 md:py-2 md:text-sm transition-colors focus-visible:ring-2 focus-visible:ring-accent ${
 										selectedCategory === null
 											? "bg-accent text-white"
 											: "bg-muted/50 text-muted-foreground hover:bg-muted"
@@ -369,7 +369,7 @@ const Blog = () => {
 										onClick={() =>
 											setSelectedCategory(cat.id)
 										}
-										className={`px-2 py-1 rounded-full text-xs md:px-3 md:py-1.5 md:text-sm transition-colors focus-visible:ring-2 focus-visible:ring-accent whitespace-nowrap ${
+										className={`px-3 py-1.5 rounded-xl text-xs md:px-4 md:py-2 md:text-sm transition-colors focus-visible:ring-2 focus-visible:ring-accent whitespace-nowrap ${
 											selectedCategory === cat.id
 												? "bg-accent text-white"
 												: "bg-muted/50 text-muted-foreground hover:bg-muted"
