@@ -133,6 +133,7 @@ export const Header = () => {
 								fill
 								className="object-contain group-hover:scale-105 transition-transform duration-300"
 								priority
+								quality={75}
 							/>
 						</div>
 					</Link>

@@ -309,6 +309,7 @@ const Footer = () => {
 								alt="Lylusio"
 								fill
 								className="object-contain brightness-0 invert opacity-100 group-hover:scale-105 transition-all duration-300 relative z-10 drop-shadow-[0_2px_8px_rgba(255,255,255,0.1)]"
+								quality={75}
 							/>
 						</div>
 						<p

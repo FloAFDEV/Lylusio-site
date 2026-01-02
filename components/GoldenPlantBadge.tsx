@@ -49,6 +49,7 @@ const GoldenPlantBadge = ({
           innerSizeClasses[size]
         )}
         aria-hidden="true"
+        quality={75}
       />
     </div>
   );
