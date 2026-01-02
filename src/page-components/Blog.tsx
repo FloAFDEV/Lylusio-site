@@ -166,8 +166,9 @@ const Blog = () => {
 	} = useQuery({
 		queryKey: ["blogPosts"],
 		queryFn: fetchAllBlogPosts,
-		staleTime: 1000 * 60 * 10,
+		staleTime: 1000 * 60 * 5, // Réduire à 5 minutes pour voir les nouveaux articles plus vite
 		gcTime: 1000 * 60 * 30,
+		refetchOnMount: true, // Toujours refetch au montage pour avoir les derniers articles
 	});
 
 	const totalPosts = posts.length;

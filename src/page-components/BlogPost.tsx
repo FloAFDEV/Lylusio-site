@@ -630,19 +630,19 @@ const BlogPost = () => {
 						)}
 
 						<div
-							className="prose prose-lg max-w-2xl mx-auto text-left
-							prose-headings:font-display prose-headings:text-foreground prose-headings:scroll-mt-24 prose-headings:text-left
+							className="prose prose-lg max-w-2xl mx-auto !text-left
+							prose-headings:font-display prose-headings:text-foreground prose-headings:scroll-mt-24 prose-headings:!text-left
 							prose-h1:text-4xl prose-h1:font-semibold prose-h1:mt-12 prose-h1:mb-6 prose-h1:leading-tight
 							prose-h2:text-2xl md:prose-h2:text-3xl prose-h2:font-semibold prose-h2:mt-8 prose-h2:mb-3 prose-h2:leading-snug
 							prose-h3:text-xl md:prose-h3:text-2xl prose-h3:font-medium prose-h3:mt-6 prose-h3:mb-2 prose-h3:leading-snug
-							prose-p:text-base md:prose-p:text-lg prose-p:font-body prose-p:leading-relaxed prose-p:mb-4 prose-p:max-w-prose prose-p:text-left prose-p:text-foreground/90
+							prose-p:text-base md:prose-p:text-lg prose-p:font-body prose-p:leading-relaxed prose-p:mb-4 prose-p:max-w-prose prose-p:!text-left prose-p:text-foreground/90
 							prose-a:text-accent prose-a:font-medium prose-a:no-underline hover:prose-a:underline hover:prose-a:decoration-2
 							prose-strong:text-foreground prose-strong:font-semibold
 							prose-em:text-foreground/80 prose-em:italic
-							prose-blockquote:border-l-4 prose-blockquote:border-accent prose-blockquote:italic prose-blockquote:text-foreground/80 prose-blockquote:bg-gradient-sand-center/30 prose-blockquote:py-4 prose-blockquote:px-6 prose-blockquote:rounded-r-xl prose-blockquote:my-8 
+							prose-blockquote:border-l-4 prose-blockquote:border-accent prose-blockquote:italic prose-blockquote:text-foreground/80 prose-blockquote:bg-gradient-sand-center/30 prose-blockquote:py-4 prose-blockquote:px-6 prose-blockquote:rounded-r-xl prose-blockquote:my-8 prose-blockquote:!text-left
 							prose-ul:list-disc prose-ul:pl-6 prose-ul:my-6 prose-ul:space-y-2
 							prose-ol:list-decimal prose-ol:pl-6 prose-ol:my-6 prose-ol:space-y-2
-							prose-li:text-foreground/90 prose-li:leading-relaxed prose-li:mb-2
+							prose-li:text-foreground/90 prose-li:leading-relaxed prose-li:mb-2 prose-li:!text-left
 							prose-img:rounded-xl prose-img:shadow-md prose-img:mx-auto prose-img:my-8
 							prose-figure:my-8
 							prose-code:text-accent prose-code:bg-muted prose-code:px-2 prose-code:py-1 prose-code:rounded prose-code:text-sm
