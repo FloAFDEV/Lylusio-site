@@ -232,7 +232,7 @@ const Contact = () => {
 			{/* SEO metadata handled by Next.js Metadata API */}
 
 			<div
-				className="min-h-screen bg-background animate-fade-in"
+				className="min-h-screen bg-background animate-fade-in overflow-x-hidden lg:overflow-x-visible"
 				style={{ animationDuration: "0.6s" }}
 			>
 				<a href="#main-content" className="skip-link">
