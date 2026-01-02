@@ -20,8 +20,11 @@ import {
 	SortAsc,
 	SortDesc,
 } from "lucide-react";
-import { formatDate, stripHtml } from "@/lib/utils";
+import * as utils from "@/lib/utils";
 import { WP_API_URL } from "@/lib/wordpress";
+
+const formatDate = utils.formatDate;
+const stripHtml = utils.stripHtml;
 
 // Types WordPress API
 interface WPPost {

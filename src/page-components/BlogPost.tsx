@@ -13,9 +13,14 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import GoldenPlantBadge from "@/components/GoldenPlantBadge";
 import LazyImage from "@/components/LazyImage";
 import { Button } from "@/components/ui/button";
-import { toSentenceCase, formatDate, stripHtml, calculateReadTime } from "@/lib/utils";
+import * as utils from "@/lib/utils";
 import { WP_API_URL } from "@/lib/wordpress";
 import { CALENDLY_URLS } from "@/lib/calendly";
+
+const toSentenceCase = utils.toSentenceCase;
+const formatDate = utils.formatDate;
+const stripHtml = utils.stripHtml;
+const calculateReadTime = utils.calculateReadTime;
 import {
 	ArrowLeft,
 	Calendar,

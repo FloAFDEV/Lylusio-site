@@ -12,8 +12,12 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import GoldenPlantBadge from "@/components/GoldenPlantBadge";
 import { Button } from "@/components/ui/button";
 import { Calendar, ArrowRight, Loader2, SortAsc, SortDesc } from "lucide-react";
-import { toSentenceCase, formatDate, stripHtml } from "@/lib/utils";
+import * as utils from "@/lib/utils";
 import { WP_API_URL } from "@/lib/wordpress";
+
+const toSentenceCase = utils.toSentenceCase;
+const formatDate = utils.formatDate;
+const stripHtml = utils.stripHtml;
 
 interface WPPost {
 	id: number;
