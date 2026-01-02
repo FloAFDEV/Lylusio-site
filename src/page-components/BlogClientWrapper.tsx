@@ -11,7 +11,9 @@ import GoldenPlantBadge from "@/components/GoldenPlantBadge";
 import ServicesDiscoveryCTA from "@/components/sections/ServicesDiscoveryCTA";
 import { Button } from "@/components/ui/button";
 import { Calendar, ArrowRight, Filter, SortAsc, SortDesc } from "lucide-react";
-import { toSentenceCase } from "@/lib/utils";
+import * as utils from "@/lib/utils";
+
+const toSentenceCase = utils.toSentenceCase;
 
 interface BlogPost {
 	id: number;
