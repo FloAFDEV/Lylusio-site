@@ -319,7 +319,7 @@ const HeroSection = () => {
 								src="/assets/emilie-hero.webp"
 								alt="Émilie Perez - Astrologue et praticienne Reiki 3ème degré à Toulouse"
 								fill
-								sizes="(max-width: 640px) 200px, 240px"
+								sizes="(max-width: 640px) 280px, (max-width: 1024px) 360px, 472px"
 								className="object-cover opacity-90 transition-transform duration-700 group-hover:scale-105"
 								priority
 								quality={95}
