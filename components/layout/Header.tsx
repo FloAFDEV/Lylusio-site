@@ -290,7 +290,7 @@ export const Header = () => {
 
 			{/* ================= Mobile menu ================= */}
 			<div
-				className={`lg:hidden fixed top-0 right-0 h-full w-3/4 max-w-xs bg-card/95 backdrop-blur-md shadow-lg border-l border-accent/20 z-50 transition-transform duration-500 ease-out ${
+				className={`lg:hidden fixed top-0 right-0 h-full w-3/4 max-w-xs bg-card shadow-lg border-l border-accent/20 z-50 transition-transform duration-500 ease-out ${
 					isMobileOpen ? "translate-x-0" : "translate-x-full"
 				}`}
 				role="dialog"
