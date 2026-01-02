@@ -54,7 +54,7 @@ const nextConfig: NextConfig = {
 		contentSecurityPolicy:
 			"default-src 'self'; script-src 'none'; sandbox;",
 		// Configure custom quality levels
-		qualities: [40, 65, 80, 85, 95],
+		qualities: [40, 65, 75, 80, 85, 95],
 		unoptimized: false,
 	},
 
