@@ -573,7 +573,7 @@ const Footer = () => {
 
 					{/* Liens légaux - Navigation sémantique */}
 					<nav
-						className="flex flex-col sm:flex-row gap-4 md:gap-6 items-center"
+						className="flex flex-row flex-wrap gap-3 md:gap-6 items-center justify-center"
 						aria-label="Liens légaux et réglementaires"
 					>
 						<Link
