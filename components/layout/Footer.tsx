@@ -96,7 +96,7 @@ const Footer = () => {
 		},
 		{
 			icon: FaYoutube,
-			href: "https://www.youtube.com/@EmiliePerez-AstroReiki",
+			href: "https://www.youtube.com/@emilielylusio6206",
 			label: "YouTube",
 		},
 		{ icon: Mail, href: "mailto:contact@lylusio.fr", label: "Email" },
