@@ -369,7 +369,7 @@ const Blog = () => {
 										onClick={() =>
 											setSelectedCategory(cat.id)
 										}
-										className={`px-2 py-1 rounded-full text-xs md:px-3 md:py-1.5 md:text-sm transition-colors focus-visible:ring-2 focus-visible:ring-accent ${
+										className={`px-2 py-1 rounded-full text-xs md:px-3 md:py-1.5 md:text-sm transition-colors focus-visible:ring-2 focus-visible:ring-accent whitespace-nowrap ${
 											selectedCategory === cat.id
 												? "bg-accent text-white"
 												: "bg-muted/50 text-muted-foreground hover:bg-muted"
@@ -378,7 +378,9 @@ const Blog = () => {
 											selectedCategory === cat.id
 										}
 									>
-										{cat.name} ({cat.count})
+										<span dangerouslySetInnerHTML={{
+											__html: cat.name.replace(/\s+/g, '<br />') + ` (${cat.count})`
+										}} />
 									</button>
 								))}
 							</div>
