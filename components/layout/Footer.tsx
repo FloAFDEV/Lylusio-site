@@ -117,7 +117,7 @@ const Footer = () => {
 				asChild
 				size="lg"
 				aria-label="Réserver une séance avec Émilie Perez via Calendly"
-				className="relative w-full sm:w-auto bg-gold hover:bg-gold text-black font-medium hover:scale-105 transition-all duration-300"
+				className="relative w-full sm:w-auto bg-gold hover:bg-gold text-white font-medium hover:scale-105 transition-all duration-300"
 				onClick={() => trackBookingClick("footer_cta")}
 			>
 				<a
