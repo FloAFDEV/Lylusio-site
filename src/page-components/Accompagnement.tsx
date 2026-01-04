@@ -692,7 +692,10 @@ const Accompagnement = () => {
 									Accompagnement Complet
 								</p>
 								<h2 className="font-display text-xl sm:text-2xl lg:text-3xl text-navy mb-2">
-									Accompagnement Global
+									<span className="font-calligraphic text-accent text-2xl sm:text-3xl lg:text-4xl inline-block align-baseline">
+										A
+									</span>
+									ccompagnement Global
 								</h2>
 								<p className="text-muted-foreground text-sm sm:text-base">
 									Astrologie • Reiki • Thérapie
@@ -819,7 +822,10 @@ const Accompagnement = () => {
 							>
 								<p className="section-label">Orientation</p>
 								<h2 className="font-display text-xl sm:text-2xl lg:text-3xl text-navy mb-2">
-									Bilan & Orientation Pro
+									<span className="font-calligraphic text-accent text-2xl sm:text-3xl lg:text-4xl inline-block align-baseline">
+										B
+									</span>
+									ilan & Orientation Pro
 								</h2>
 								<p className="text-muted-foreground text-sm">
 									Astrologie • Coaching • Reconversion

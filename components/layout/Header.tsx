@@ -321,7 +321,7 @@ export const Header = () => {
 										aria-hidden={!mobileSubmenuOpen}
 										className={`overflow-hidden motion-safe:transition-all duration-500 ease-smooth ${
 											mobileSubmenuOpen
-												? "max-h-40 opacity-100"
+												? "max-h-52 opacity-100"
 												: "max-h-0 opacity-0"
 										}`}
 									>
@@ -352,6 +352,26 @@ export const Header = () => {
 													/>
 												</Link>
 											))}
+
+											{/* Lien direct vers la page Accompagnements */}
+											{mobileSubmenuOpen && (
+												<Link
+													href={link.href}
+													onClick={handleNavClick}
+													className="block text-sm text-muted-foreground hover:text-accent py-2 pl-2 motion-safe:transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-lg"
+													style={{
+														opacity: mobileSubmenuOpen ? 1 : 0,
+														transform: mobileSubmenuOpen
+															? "translateY(0)"
+															: "translateY(-8px)",
+														transitionDelay: mobileSubmenuOpen
+															? `${(link.subItems?.length || 0) * 120}ms`
+															: "0ms",
+													}}
+												>
+													→ Voir tous les accompagnements
+												</Link>
+											)}
 										</div>
 									</div>
 								</div>
