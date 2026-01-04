@@ -34,6 +34,7 @@ const accompagnementsSubItems = [
 
 const mainLinks = [
 	{ label: "Accueil", href: "/" },
+	{ label: "Qui suis-je", href: "/emilie-perez" },
 	{ label: "Mon Approche", href: "/approche-therapeutique" },
 	{
 		label: "Accompagnements",
