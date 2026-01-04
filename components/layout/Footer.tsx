@@ -104,12 +104,13 @@ const Footer = () => {
 
 	const navLinks = [
 		{ href: "/", label: "Accueil" },
+		{ href: "/emilie-perez", label: "Qui suis-je" },
 		{ href: "/approche-therapeutique", label: "Mon Approche" },
 		{ href: "/accompagnement-toulouse", label: "Accompagnement" },
 		{ href: "/astrologie-toulouse", label: "Astrologie" },
 		{ href: "/reiki-toulouse", label: "Reiki" },
 		{ href: "/therapie-holistique", label: "Thérapie Holistique" },
-		{ href: "/emilie-perez", label: "Qui suis-je" },
+
 		{ href: "/blog", label: "Blog" },
 		{ href: "/ressources", label: "Ressources" },
 		{ href: "/faq", label: "FAQ" },
