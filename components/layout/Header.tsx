@@ -25,7 +25,6 @@ const accompagnementsSubItems = [
 	{ label: "Thérapie Holistique", href: "/therapie-holistique" },
 	{ label: "Reiki", href: "/reiki-toulouse" },
 ];
-
 const mainLinks = [
 	{ label: "Accueil", href: "/" },
 	{ label: "Qui suis-je", href: "/emilie-perez" },
@@ -183,26 +182,32 @@ export const Header = () => {
 
 									{/* Dropdown menu - Smooth animations avec translateY + scale + cascade */}
 									<div className="absolute top-full left-1/2 -translate-x-1/2 pt-3 w-52 opacity-0 invisible translate-y-3 scale-95 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 group-hover:scale-100 group-focus-within:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:scale-100 motion-safe:transition-all duration-400 ease-out pointer-events-none group-hover:pointer-events-auto group-focus-within:pointer-events-auto z-50">
-										<div className="bg-card/98 backdrop-blur-md rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] border border-accent/25 overflow-hidden ring-1 ring-black/5">
-											{link.subItems?.map((item, index) => (
-												<Link
-													key={item.href}
-													href={item.href}
-													onClick={handleNavClick}
-													className="block px-5 py-3.5 text-[15px] font-medium text-foreground/85 hover:text-accent hover:bg-accent/8 motion-safe:transition-all duration-350 ease-out focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-inset group/item relative overflow-hidden"
-													style={{
-														animation: `fadeInDown 0.4s ease-out ${index * 0.08}s both`,
-													}}
-												>
-													<span className="relative z-10">
-														<MenuLabel
-															label={item.label}
-														/>
-													</span>
-													{/* Effet de glow au hover */}
-													<span className="absolute inset-0 bg-gradient-to-r from-transparent via-accent/5 to-transparent -translate-x-full group-hover/item:translate-x-full motion-safe:transition-transform duration-700 ease-out" />
-												</Link>
-											))}
+										<div className="bg-card/70 backdrop-blur-lg rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] border border-accent/20 overflow-hidden ring-1 ring-black/5">
+											{link.subItems?.map(
+												(item, index) => (
+													<Link
+														key={item.href}
+														href={item.href}
+														onClick={handleNavClick}
+														className="block px-5 py-3.5 text-[15px] font-medium text-foreground/85 hover:text-accent hover:bg-accent/8 motion-safe:transition-all duration-350 ease-out focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-inset group/item relative overflow-hidden"
+														style={{
+															animation: `fadeInDown 0.4s ease-out ${
+																index * 0.08
+															}s both`,
+														}}
+													>
+														<span className="relative z-10">
+															<MenuLabel
+																label={
+																	item.label
+																}
+															/>
+														</span>
+														{/* Effet de glow au hover */}
+														<span className="absolute inset-0 bg-gradient-to-r from-transparent via-accent/5 to-transparent -translate-x-full group-hover/item:translate-x-full motion-safe:transition-transform duration-700 ease-out" />
+													</Link>
+												)
+											)}
 
 											{/* Lien direct vers la page Accompagnements - Desktop */}
 											<Link
@@ -210,12 +215,19 @@ export const Header = () => {
 												onClick={handleNavClick}
 												className="block px-5 py-3 text-[13px] font-medium text-muted-foreground hover:text-accent hover:bg-accent/5 motion-safe:transition-all duration-350 ease-out focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-inset border-t border-accent/15 group/all relative overflow-hidden"
 												style={{
-													animation: `fadeInDown 0.4s ease-out ${(link.subItems?.length || 0) * 0.08}s both`,
+													animation: `fadeInDown 0.4s ease-out ${
+														(link.subItems
+															?.length || 0) *
+														0.08
+													}s both`,
 												}}
 											>
 												<span className="relative z-10 flex items-center gap-1.5">
 													<span>→</span>
-													<span>Voir tous les accompagnements</span>
+													<span>
+														Voir tous les
+														accompagnements
+													</span>
 												</span>
 												<span className="absolute inset-0 bg-gradient-to-r from-transparent via-accent/5 to-transparent -translate-x-full group-hover/all:translate-x-full motion-safe:transition-transform duration-700 ease-out" />
 											</Link>
@@ -255,7 +267,9 @@ export const Header = () => {
 						/>
 						<span
 							className={`block h-0.5 w-6 bg-foreground rounded-full motion-safe:transition-all duration-300 ${
-								isMobileOpen ? "opacity-0 scale-0" : "opacity-100"
+								isMobileOpen
+									? "opacity-0 scale-0"
+									: "opacity-100"
 							}`}
 						/>
 						<span
@@ -277,7 +291,7 @@ export const Header = () => {
 
 			{/* ================= Mobile Overlay ================= */}
 			<div
-				className={`xl:hidden fixed inset-0 bg-black/30 backdrop-blur-sm z-40 motion-safe:transition-opacity duration-300 ${
+				className={`xl:hidden fixed inset-0 bg-black/30 backdrop-blur-sm z-40 motion-safe:transition-opacity duration-400 ease-in-out ${
 					isMobileOpen
 						? "opacity-100 visible"
 						: "opacity-0 invisible pointer-events-none"
@@ -289,7 +303,7 @@ export const Header = () => {
 			{/* ================= Mobile Menu ================= */}
 			<div
 				id="mobile-menu"
-				className={`xl:hidden fixed top-0 right-0 h-full w-3/4 max-w-xs bg-card shadow-lg border-l border-accent/20 z-50 motion-safe:transition-transform duration-800 ease-bounce-smooth ${
+				className={`xl:hidden fixed top-0 right-0 h-full w-3/4 max-w-xs bg-card shadow-lg border-l border-accent/20 z-50 motion-safe:transition-transform duration-500 ease-in-out ${
 					isMobileOpen ? "translate-x-0" : "translate-x-full"
 				}`}
 				role="dialog"
@@ -305,7 +319,7 @@ export const Header = () => {
 							link.hasSubmenu ? (
 								<div
 									key={link.label}
-									className="motion-safe:transition-all duration-600 ease-smooth"
+									className="motion-safe:transition-all duration-400 ease-out"
 									style={{
 										opacity: isMobileOpen ? 1 : 0,
 										transform: isMobileOpen
@@ -325,11 +339,13 @@ export const Header = () => {
 										}
 										className="w-full flex items-center justify-between font-medium text-foreground/80 hover:text-accent py-3 motion-safe:transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 min-h-[44px]"
 										aria-expanded={mobileSubmenuOpen}
-										aria-controls={`mobile-submenu-${link.label.toLowerCase().replace(/\s+/g, '-')}`}
+										aria-controls={`mobile-submenu-${link.label
+											.toLowerCase()
+											.replace(/\s+/g, "-")}`}
 									>
 										<MenuLabel label={link.label} />
 										<ChevronDown
-											className={`w-4 h-4 motion-safe:transition-transform duration-400 ease-smooth ${
+											className={`w-4 h-4 motion-safe:transition-transform duration-400 ease-in-out ${
 												mobileSubmenuOpen
 													? "rotate-180"
 													: ""
@@ -340,41 +356,48 @@ export const Header = () => {
 
 									{/* Sous-menu mobile smooth avec translateY + scale */}
 									<div
-										id={`mobile-submenu-${link.label.toLowerCase().replace(/\s+/g, '-')}`}
+										id={`mobile-submenu-${link.label
+											.toLowerCase()
+											.replace(/\s+/g, "-")}`}
 										aria-hidden={!mobileSubmenuOpen}
-										className={`overflow-hidden motion-safe:transition-all duration-500 ease-smooth ${
+										className={`overflow-hidden motion-safe:transition-all duration-450 ease-in-out ${
 											mobileSubmenuOpen
 												? "max-h-52 opacity-100"
 												: "max-h-0 opacity-0"
 										}`}
 									>
 										<div className="pl-4 py-2 space-y-1 border-l-2 border-accent/30 ml-2">
-											{link.subItems?.map((item, subIndex) => (
-												<Link
-													key={item.href}
-													href={item.href}
-													onClick={handleNavClick}
-													className="block font-medium text-sm text-foreground/80 hover:text-accent hover:bg-accent/5 rounded-lg px-3 py-2 motion-safe:transition-all duration-450 ease-smooth min-h-[44px] flex items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
-													style={{
-														opacity:
-															mobileSubmenuOpen
-																? 1
-																: 0,
-														transform:
-															mobileSubmenuOpen
-																? "translateY(0) scale(1)"
-																: "translateY(-8px) scale(0.98)",
-														transitionDelay:
-															mobileSubmenuOpen
-																? `${subIndex * 120}ms`
-																: "0ms",
-													}}
-												>
-													<MenuLabel
-														label={item.label}
-													/>
-												</Link>
-											))}
+											{link.subItems?.map(
+												(item, subIndex) => (
+													<Link
+														key={item.href}
+														href={item.href}
+														onClick={handleNavClick}
+														className="block font-medium text-sm text-foreground/80 hover:text-accent hover:bg-accent/5 rounded-lg px-3 py-2 motion-safe:transition-all duration-350 ease-out min-h-[44px] flex items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+														style={{
+															opacity:
+																mobileSubmenuOpen
+																	? 1
+																	: 0,
+															transform:
+																mobileSubmenuOpen
+																	? "translateY(0) scale(1)"
+																	: "translateY(-8px) scale(0.98)",
+															transitionDelay:
+																mobileSubmenuOpen
+																	? `${
+																			subIndex *
+																			120
+																	  }ms`
+																	: "0ms",
+														}}
+													>
+														<MenuLabel
+															label={item.label}
+														/>
+													</Link>
+												)
+											)}
 
 											{/* Lien direct vers la page Accompagnements */}
 											{mobileSubmenuOpen && (
@@ -383,16 +406,28 @@ export const Header = () => {
 													onClick={handleNavClick}
 													className="block text-sm text-muted-foreground hover:text-accent py-2 pl-2 motion-safe:transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-lg"
 													style={{
-														opacity: mobileSubmenuOpen ? 1 : 0,
-														transform: mobileSubmenuOpen
-															? "translateY(0)"
-															: "translateY(-8px)",
-														transitionDelay: mobileSubmenuOpen
-															? `${(link.subItems?.length || 0) * 120}ms`
-															: "0ms",
+														opacity:
+															mobileSubmenuOpen
+																? 1
+																: 0,
+														transform:
+															mobileSubmenuOpen
+																? "translateY(0)"
+																: "translateY(-8px)",
+														transitionDelay:
+															mobileSubmenuOpen
+																? `${
+																		(link
+																			.subItems
+																			?.length ||
+																			0) *
+																		120
+																  }ms`
+																: "0ms",
 													}}
 												>
-													→ Voir tous les accompagnements
+													→ Voir tous les
+													accompagnements
 												</Link>
 											)}
 										</div>
@@ -403,7 +438,7 @@ export const Header = () => {
 									key={link.href}
 									href={link.href}
 									onClick={handleNavClick}
-									className="flex items-center font-medium text-foreground/80 hover:text-accent py-3 motion-safe:transition-all duration-600 ease-smooth min-h-[44px] focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 rounded-md"
+									className="flex items-center font-medium text-foreground/80 hover:text-accent py-3 motion-safe:transition-all duration-400 ease-out min-h-[44px] focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 rounded-md"
 									style={{
 										opacity: isMobileOpen ? 1 : 0,
 										transform: isMobileOpen
