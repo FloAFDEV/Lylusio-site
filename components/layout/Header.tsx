@@ -366,7 +366,7 @@ export const Header = () => {
 												: "max-h-0 opacity-0"
 										}`}
 									>
-										<div className="pl-4 py-2 space-y-1 border-l-2 border-accent/30 ml-2">
+										<div className="pl-4 py-2 space-y-1 border-l-2 backdrop-blur-lg border-accent/30 ml-2">
 											{link.subItems?.map(
 												(item, subIndex) => (
 													<Link
