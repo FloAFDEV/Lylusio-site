@@ -47,7 +47,9 @@ const mainLinks = [
 export const Header = () => {
 	const [isScrolled, setIsScrolled] = useState(false);
 	const [isMobileOpen, setIsMobileOpen] = useState(false);
-	const [mobileSubmenuOpen, setMobileSubmenuOpen] = useState<Record<string, boolean>>({});
+	const [mobileSubmenuOpen, setMobileSubmenuOpen] = useState<
+		Record<string, boolean>
+	>({});
 	const [desktopSubmenuOpen, setDesktopSubmenuOpen] = useState(false);
 
 	const pathname = usePathname();
@@ -167,8 +169,12 @@ export const Header = () => {
 								<div
 									key={link.label}
 									className="relative group"
-									onMouseEnter={() => setDesktopSubmenuOpen(true)}
-									onMouseLeave={() => setDesktopSubmenuOpen(false)}
+									onMouseEnter={() =>
+										setDesktopSubmenuOpen(true)
+									}
+									onMouseLeave={() =>
+										setDesktopSubmenuOpen(false)
+									}
 								>
 									<button
 										type="button"
@@ -176,29 +182,42 @@ export const Header = () => {
 										aria-expanded={desktopSubmenuOpen}
 										aria-haspopup="true"
 										className="flex items-center gap-1 font-medium text-foreground/80 hover:text-accent motion-safe:transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 rounded-md"
-										onClick={() => setDesktopSubmenuOpen(!desktopSubmenuOpen)}
+										onClick={() =>
+											setDesktopSubmenuOpen(
+												!desktopSubmenuOpen
+											)
+										}
 										onKeyDown={(e) => {
-											if (e.key === 'Enter' || e.key === ' ') {
+											if (
+												e.key === "Enter" ||
+												e.key === " "
+											) {
 												e.preventDefault();
-												setDesktopSubmenuOpen(!desktopSubmenuOpen);
+												setDesktopSubmenuOpen(
+													!desktopSubmenuOpen
+												);
 											}
 										}}
 									>
 										<MenuLabel label={link.label} />
 										<ChevronDown
 											className={`w-4 h-4 motion-safe:transition-transform duration-400 ease-out ${
-												desktopSubmenuOpen ? "rotate-180" : ""
+												desktopSubmenuOpen
+													? "rotate-180"
+													: ""
 											}`}
 											aria-hidden="true"
 										/>
 									</button>
 
 									{/* Dropdown menu - Smooth animations avec translateY + scale + cascade */}
-									<div className={`absolute top-full left-1/2 -translate-x-1/2 pt-3 w-52 motion-safe:transition-all duration-400 ease-out z-50 ${
-										desktopSubmenuOpen
-											? "opacity-100 visible translate-y-0 scale-100 pointer-events-auto"
-											: "opacity-0 invisible translate-y-3 scale-95 pointer-events-none"
-									}`}>
+									<div
+										className={`absolute top-full left-1/2 -translate-x-1/2 pt-3 w-52 motion-safe:transition-all duration-400 ease-out z-50 ${
+											desktopSubmenuOpen
+												? "opacity-100 visible translate-y-0 scale-100 pointer-events-auto"
+												: "opacity-0 invisible translate-y-3 scale-95 pointer-events-none"
+										}`}
+									>
 										<div className="bg-card/70 backdrop-blur-lg rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] border border-accent/20 overflow-hidden ring-1 ring-black/5">
 											{link.subItems?.map(
 												(item, index) => (
@@ -320,8 +339,10 @@ export const Header = () => {
 			{/* ================= Mobile Menu ================= */}
 			<div
 				id="mobile-menu"
-				className={`xl:hidden fixed top-0 right-0 h-full w-3/4 max-w-xs bg-card shadow-lg border-l border-accent/20 z-50 motion-safe:transition-transform duration-500 ease-in-out ${
-					isMobileOpen ? "translate-x-0" : "translate-x-full"
+				className={`xl:hidden fixed top-0 right-0 h-full w-3/4 max-w-xs bg-card shadow-lg border-l border-accent/20 z-50 motion-safe:transition-all duration-500 ease-out ${
+					isMobileOpen
+						? "translate-x-0 opacity-100"
+						: "translate-x-12 opacity-0"
 				}`}
 				role="dialog"
 				aria-label="Menu de navigation mobile"
@@ -349,9 +370,14 @@ export const Header = () => {
 								>
 									<button
 										type="button"
-										onClick={() => toggleMobileSubmenu(link.label)}
+										onClick={() =>
+											toggleMobileSubmenu(link.label)
+										}
 										className="w-full flex items-center justify-between font-medium text-foreground/80 hover:text-accent py-3 motion-safe:transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 min-h-[44px]"
-										aria-expanded={mobileSubmenuOpen[link.label] || false}
+										aria-expanded={
+											mobileSubmenuOpen[link.label] ||
+											false
+										}
 										aria-controls={`mobile-submenu-${link.label
 											.toLowerCase()
 											.replace(/\s+/g, "-")}`}
@@ -372,7 +398,9 @@ export const Header = () => {
 										id={`mobile-submenu-${link.label
 											.toLowerCase()
 											.replace(/\s+/g, "-")}`}
-										aria-hidden={!mobileSubmenuOpen[link.label]}
+										aria-hidden={
+											!mobileSubmenuOpen[link.label]
+										}
 										className={`overflow-hidden motion-safe:transition-all duration-450 ease-in-out ${
 											mobileSubmenuOpen[link.label]
 												? "max-h-52 opacity-100"
@@ -389,15 +417,21 @@ export const Header = () => {
 														className="block font-medium text-sm text-foreground/80 hover:text-accent hover:bg-accent/5 rounded-lg px-3 py-2 motion-safe:transition-all duration-350 ease-out min-h-[44px] flex items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
 														style={{
 															opacity:
-																mobileSubmenuOpen[link.label]
+																mobileSubmenuOpen[
+																	link.label
+																]
 																	? 1
 																	: 0,
 															transform:
-																mobileSubmenuOpen[link.label]
+																mobileSubmenuOpen[
+																	link.label
+																]
 																	? "translateY(0) scale(1)"
 																	: "translateY(-8px) scale(0.98)",
 															transitionDelay:
-																mobileSubmenuOpen[link.label]
+																mobileSubmenuOpen[
+																	link.label
+																]
 																	? `${
 																			subIndex *
 																			120
@@ -420,15 +454,21 @@ export const Header = () => {
 													className="block text-sm text-muted-foreground hover:text-accent py-2 pl-2 motion-safe:transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-lg"
 													style={{
 														opacity:
-															mobileSubmenuOpen[link.label]
+															mobileSubmenuOpen[
+																link.label
+															]
 																? 1
 																: 0,
 														transform:
-															mobileSubmenuOpen[link.label]
+															mobileSubmenuOpen[
+																link.label
+															]
 																? "translateY(0)"
 																: "translateY(-8px)",
 														transitionDelay:
-															mobileSubmenuOpen[link.label]
+															mobileSubmenuOpen[
+																link.label
+															]
 																? `${
 																		(link
 																			.subItems
