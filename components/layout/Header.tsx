@@ -21,14 +21,13 @@ const MenuLabel = ({ label }: { label: string }) => (
 
 /* =========================
    Navigation data
+
+   Structure:
+   - Astrologie: Lien direct autonome (PAS de sous-menu)
+   - Accompagnements: Sous-menu contenant UNIQUEMENT Reiki + Thérapie Holistique
+   - Pas de duplication, pas de doublon
 ========================= */
 const accompagnementsSubItems = [
-	{ label: "Astrologie", href: "/astrologie-toulouse" },
-	{ label: "Reiki", href: "/reiki-toulouse" },
-	{ label: "Thérapie Holistique", href: "/therapie-holistique" },
-];
-
-const approcheEnergetiqueSubItems = [
 	{ label: "Reiki", href: "/reiki-toulouse" },
 	{ label: "Thérapie Holistique", href: "/therapie-holistique" },
 ];
@@ -43,12 +42,6 @@ const mainLinks = [
 		subItems: accompagnementsSubItems,
 	},
 	{ label: "Astrologie", href: "/astrologie-toulouse" },
-	{
-		label: "Approche énergétique",
-		href: "/reiki-toulouse",
-		hasSubmenu: true,
-		subItems: approcheEnergetiqueSubItems,
-	},
 	{ label: "Ressources", href: "/ressources" },
 	{ label: "Blog", href: "/blog" },
 	{ label: "Contact", href: "/contact" },
@@ -110,11 +103,12 @@ export const Header = () => {
 				role="banner"
 			>
 				<div className="container mx-auto px-4 flex items-center justify-between">
-					{/* Logo */}
+					{/* ================= Logo ================= */}
 					<Link
 						href="/"
 						onClick={handleNavClick}
-						className="relative z-50 group"
+						className="relative z-50 group focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 rounded-lg"
+						aria-label="Retour à l'accueil - Lylusio"
 					>
 						<div
 							className={`relative transition-all duration-300 ${
@@ -127,11 +121,15 @@ export const Header = () => {
 								fill
 								className="object-contain group-hover:scale-105 transition-transform duration-300"
 								priority
+								sizes="(max-width: 768px) 132px, 168px"
 							/>
 						</div>
 					</Link>
 
-					{/* ================= Desktop ================= */}
+					{/* ================= Desktop Navigation =================
+						Pure CSS hover pour performance optimale.
+						aria-expanded statique car contrôlé par CSS :hover uniquement.
+					*/}
 					<nav
 						className="hidden lg:flex items-center gap-8"
 						aria-label="Navigation principale"
@@ -142,38 +140,40 @@ export const Header = () => {
 									key={link.label}
 									className="relative flex items-center gap-1 group"
 								>
-									{/* ✅ NAVIGATION */}
+									{/* Lien principal du sous-menu */}
 									<Link
 										href={link.href}
 										onClick={handleNavClick}
-										className="font-medium text-[15px] text-foreground/80 hover:text-foreground transition-colors duration-300 relative group/link"
+										className="font-medium text-[15px] text-foreground/80 hover:text-foreground motion-safe:transition-colors duration-300 relative group/link focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 rounded-md px-1"
 									>
 										<MenuLabel label={link.label} />
-										<span className="absolute -bottom-1 left-0 w-0 h-[3px] bg-gradient-to-r from-accent via-gold to-accent opacity-0 group-hover/link:w-full group-hover/link:opacity-100 transition-all duration-300 shadow-[0_0_8px_hsl(var(--gold)/0.6)]" />
+										{/* Gradient underline avec glow */}
+										<span className="absolute -bottom-1 left-0 w-0 h-[3px] bg-gradient-to-r from-accent via-gold to-accent opacity-0 group-hover/link:w-full group-hover/link:opacity-100 motion-safe:transition-all duration-300 shadow-[0_0_8px_hsl(var(--gold)/0.6)]" />
 									</Link>
 
-									{/* Dropdown toggle */}
+									{/* Icône dropdown (pure CSS) */}
 									<button
 										type="button"
-										aria-label="Ouvrir le sous-menu"
+										aria-label={`Voir les options de ${link.label}`}
 										aria-expanded="false"
-										className="p-1"
+										aria-haspopup="true"
+										className="p-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 rounded-md"
 									>
 										<ChevronDown
-											className="w-4 h-4 transition-transform duration-300 group-hover:rotate-180"
+											className="w-4 h-4 motion-safe:transition-transform duration-300 group-hover:rotate-180"
 											aria-hidden="true"
 										/>
 									</button>
 
-									{/* Dropdown - Pure CSS hover */}
-									<div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 w-48 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 pointer-events-none group-hover:pointer-events-auto">
-										<div className="bg-card/95 rounded-xl shadow-md border border-accent/20 overflow-hidden">
+									{/* Dropdown menu - Pure CSS hover (performance maximale) */}
+									<div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 w-48 opacity-0 invisible group-hover:opacity-100 group-hover:visible motion-safe:transition-all duration-300 pointer-events-none group-hover:pointer-events-auto">
+										<div className="bg-card/95 backdrop-blur-sm rounded-xl shadow-lg border border-accent/20 overflow-hidden">
 											{link.subItems?.map((item) => (
 												<Link
 													key={item.href}
 													href={item.href}
 													onClick={handleNavClick}
-													className="block px-4 py-3 text-[16px] font-medium text-foreground/90 hover:text-accent hover:bg-accent/5 transition-all duration-300"
+													className="block px-4 py-3 text-[16px] font-medium text-foreground/90 hover:text-accent hover:bg-accent/5 motion-safe:transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-inset"
 												>
 													<MenuLabel
 														label={item.label}
@@ -184,49 +184,57 @@ export const Header = () => {
 									</div>
 								</div>
 							) : (
+								/* Lien direct sans sous-menu */
 								<Link
 									key={link.href}
 									href={link.href}
 									onClick={handleNavClick}
-									className="font-medium text-[15px] text-foreground/80 hover:text-foreground transition-colors duration-300 relative group/link"
+									className="font-medium text-[15px] text-foreground/80 hover:text-foreground motion-safe:transition-colors duration-300 relative group/link focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 rounded-md px-1"
 								>
 									<MenuLabel label={link.label} />
-									<span className="absolute -bottom-1 left-0 w-0 h-[3px] bg-gradient-to-r from-accent via-gold to-accent opacity-0 group-hover/link:w-full group-hover/link:opacity-100 transition-all duration-300 shadow-[0_0_8px_hsl(var(--gold)/0.6)]" />
+									{/* Gradient underline avec glow */}
+									<span className="absolute -bottom-1 left-0 w-0 h-[3px] bg-gradient-to-r from-accent via-gold to-accent opacity-0 group-hover/link:w-full group-hover/link:opacity-100 motion-safe:transition-all duration-300 shadow-[0_0_8px_hsl(var(--gold)/0.6)]" />
 								</Link>
 							)
 						)}
 					</nav>
 
-					{/* ================= Mobile toggle ================= */}
+					{/* ================= Mobile Toggle Button =================
+						Hamburger animé avec effet glow au clic.
+					*/}
 					<button
 						onClick={() => setIsMobileOpen((v) => !v)}
-						className="lg:hidden p-2 flex flex-col items-center justify-center gap-1.5 w-12 h-12 relative group bg-card/50 rounded-lg border border-border/30"
+						className="lg:hidden p-2 flex flex-col items-center justify-center gap-1.5 w-12 h-12 relative group bg-card/50 rounded-lg border border-border/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
 						aria-label={
 							isMobileOpen ? "Fermer le menu" : "Ouvrir le menu"
 						}
 						aria-expanded={isMobileOpen}
+						aria-controls="mobile-menu"
 					>
-						{/* Glow effect on open */}
+						{/* Glow effect when open */}
 						{isMobileOpen && (
 							<span
-								className="absolute inset-0 bg-accent/20 rounded-lg blur-sm ring-2 ring-accent/40"
+								className="absolute inset-0 bg-accent/20 rounded-lg blur-sm ring-2 ring-accent/40 motion-safe:transition-opacity duration-300"
 								aria-hidden="true"
 							/>
 						)}
+						{/* Ligne 1 (devient \ du X) */}
 						<span
-							className={`relative block w-6 h-[3px] transition-all duration-300 ${
+							className={`relative block w-6 h-[3px] motion-safe:transition-all duration-300 ${
 								isMobileOpen
 									? "rotate-45 translate-y-2 bg-accent shadow-[0_0_12px_hsl(var(--accent)/0.8)] scale-110"
 									: "bg-foreground shadow-sm"
 							}`}
 						/>
+						{/* Ligne 2 (disparaît) */}
 						<span
-							className={`relative block w-6 h-[3px] bg-foreground shadow-sm transition-all duration-300 ${
+							className={`relative block w-6 h-[3px] bg-foreground shadow-sm motion-safe:transition-all duration-300 ${
 								isMobileOpen ? "opacity-0" : ""
 							}`}
 						/>
+						{/* Ligne 3 (devient / du X) */}
 						<span
-							className={`relative block w-6 h-[3px] transition-all duration-300 ${
+							className={`relative block w-6 h-[3px] motion-safe:transition-all duration-300 ${
 								isMobileOpen
 									? "-rotate-45 -translate-y-2 bg-accent shadow-[0_0_12px_hsl(var(--accent)/0.8)] scale-110"
 									: "bg-foreground shadow-sm"
@@ -236,26 +244,34 @@ export const Header = () => {
 				</div>
 			</header>
 
-			{/* ================= Mobile overlay ================= */}
+			{/* ================= Mobile Overlay =================
+				Backdrop semi-transparent avec fermeture au clic.
+			*/}
 			<div
-				className={`lg:hidden fixed inset-0 bg-black/10 z-40 transition-opacity duration-300 ${
+				className={`lg:hidden fixed inset-0 bg-black/10 z-40 motion-safe:transition-opacity duration-300 ${
 					isMobileOpen
 						? "opacity-100 visible"
 						: "opacity-0 invisible pointer-events-none"
 				}`}
 				onClick={() => setIsMobileOpen(false)}
+				aria-hidden="true"
 			/>
 
-			{/* ================= Mobile menu ================= */}
+			{/* ================= Mobile Menu =================
+				Slide-in depuis la droite avec animations cascadées.
+				Sous-menus collapsibles avec aria-controls dynamique.
+			*/}
 			<div
-				className={`lg:hidden fixed top-0 right-0 h-full w-3/4 max-w-xs bg-card shadow-lg border-l border-accent/20 z-50 transition-transform duration-500 ease-out ${
+				id="mobile-menu"
+				className={`lg:hidden fixed top-0 right-0 h-full w-3/4 max-w-xs bg-card shadow-lg border-l border-accent/20 z-50 motion-safe:transition-transform duration-500 ease-out ${
 					isMobileOpen ? "translate-x-0" : "translate-x-full"
 				}`}
 				role="dialog"
 				aria-label="Menu de navigation mobile"
+				aria-hidden={!isMobileOpen}
 			>
 				<nav
-					className="p-6 flex flex-col gap-3 h-full"
+					className="p-6 flex flex-col gap-3 h-full overflow-y-auto overscroll-contain"
 					aria-label="Navigation mobile"
 				>
 					<div className="flex-1">
@@ -263,7 +279,7 @@ export const Header = () => {
 							link.hasSubmenu ? (
 								<div
 									key={link.label}
-									className="transition-all duration-500 ease-out"
+									className="motion-safe:transition-all duration-500 ease-out"
 									style={{
 										opacity: isMobileOpen ? 1 : 0,
 										transform: isMobileOpen
@@ -274,7 +290,7 @@ export const Header = () => {
 											: "0ms",
 									}}
 								>
-									{/* Bouton toggle pour le sous-menu */}
+									{/* Toggle button pour le sous-menu */}
 									<button
 										type="button"
 										onClick={() =>
@@ -282,13 +298,13 @@ export const Header = () => {
 												!mobileSubmenuOpen
 											)
 										}
-										className="w-full flex items-center justify-between font-medium text-foreground/80 hover:text-accent py-3 transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 min-h-[44px]"
+										className="w-full flex items-center justify-between font-medium text-foreground/80 hover:text-accent py-3 motion-safe:transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 min-h-[44px]"
 										aria-expanded={mobileSubmenuOpen}
-										aria-controls="mobile-submenu-accompagnements"
+										aria-controls={`mobile-submenu-${link.label.toLowerCase().replace(/\s+/g, '-')}`}
 									>
 										<MenuLabel label={link.label} />
 										<ChevronDown
-											className={`w-4 h-4 transition-transform duration-300 ${
+											className={`w-4 h-4 motion-safe:transition-transform duration-300 ${
 												mobileSubmenuOpen
 													? "rotate-180"
 													: ""
@@ -297,11 +313,11 @@ export const Header = () => {
 										/>
 									</button>
 
-									{/* Sous-menu collapsible */}
+									{/* Sous-menu collapsible avec animations cascadées */}
 									<div
-										id="mobile-submenu-accompagnements"
+										id={`mobile-submenu-${link.label.toLowerCase().replace(/\s+/g, '-')}`}
 										aria-hidden={!mobileSubmenuOpen}
-										className={`overflow-hidden transition-all duration-300 ease-out ${
+										className={`overflow-hidden motion-safe:transition-all duration-300 ease-out ${
 											mobileSubmenuOpen
 												? "max-h-40 opacity-100"
 												: "max-h-0 opacity-0"
@@ -313,7 +329,7 @@ export const Header = () => {
 													key={item.href}
 													href={item.href}
 													onClick={handleNavClick}
-													className="block font-medium text-sm text-foreground/80 hover:text-accent hover:bg-accent/5 rounded-lg px-3 py-2 transition-all duration-300 min-h-[44px] flex items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+													className="block font-medium text-sm text-foreground/80 hover:text-accent hover:bg-accent/5 rounded-lg px-3 py-2 motion-safe:transition-all duration-300 min-h-[44px] flex items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
 													style={{
 														opacity:
 															mobileSubmenuOpen
@@ -340,23 +356,24 @@ export const Header = () => {
 										</div>
 									</div>
 
-									{/* Lien direct vers la page Accompagnements */}
+									{/* Lien direct vers la page parent (affichage conditionnel) */}
 									{mobileSubmenuOpen && (
 										<Link
 											href={link.href}
 											onClick={handleNavClick}
-											className="block text-sm text-muted-foreground hover:text-accent py-2 pl-2 transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+											className="block text-sm text-muted-foreground hover:text-accent py-2 pl-2 motion-safe:transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
 										>
 											→ Voir tous les accompagnements
 										</Link>
 									)}
 								</div>
 							) : (
+								/* Lien direct sans sous-menu */
 								<Link
 									key={link.href}
 									href={link.href}
 									onClick={handleNavClick}
-									className="block font-medium text-foreground/80 hover:text-accent py-3 transition-all duration-500 ease-out min-h-[44px] flex items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+									className="block font-medium text-foreground/80 hover:text-accent py-3 motion-safe:transition-all duration-500 ease-out min-h-[44px] flex items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
 									style={{
 										opacity: isMobileOpen ? 1 : 0,
 										transform: isMobileOpen
@@ -373,9 +390,9 @@ export const Header = () => {
 						)}
 					</div>
 
-					{/* Texte en bas du menu */}
+					{/* Footer du menu mobile */}
 					<div
-						className="border-t border-border/30 pt-4 transition-all duration-500 ease-out"
+						className="border-t border-border/30 pt-4 motion-safe:transition-all duration-500 ease-out"
 						style={{
 							opacity: isMobileOpen ? 1 : 0,
 							transform: isMobileOpen
