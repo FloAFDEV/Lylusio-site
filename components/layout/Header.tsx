@@ -166,7 +166,7 @@ export const Header = () => {
 							link.hasSubmenu ? (
 								<div
 									key={link.label}
-									className="relative flex items-center gap-1 group"
+									className="relative group"
 									onMouseEnter={() => setDesktopSubmenuOpen(true)}
 									onMouseLeave={() => setDesktopSubmenuOpen(false)}
 								>
@@ -175,7 +175,7 @@ export const Header = () => {
 										aria-label={`Voir les options de ${link.label}`}
 										aria-expanded={desktopSubmenuOpen}
 										aria-haspopup="true"
-										className="p-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 rounded-md motion-safe:transition-transform duration-300 group-hover:scale-110"
+										className="flex items-center gap-1 font-medium text-foreground/80 hover:text-accent motion-safe:transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 rounded-md"
 										onClick={() => setDesktopSubmenuOpen(!desktopSubmenuOpen)}
 										onKeyDown={(e) => {
 											if (e.key === 'Enter' || e.key === ' ') {
@@ -184,8 +184,9 @@ export const Header = () => {
 											}
 										}}
 									>
+										<MenuLabel label={link.label} />
 										<ChevronDown
-											className={`w-4 h-4 text-foreground/60 motion-safe:transition-all duration-400 ease-out group-hover:text-accent ${
+											className={`w-4 h-4 motion-safe:transition-transform duration-400 ease-out ${
 												desktopSubmenuOpen ? "rotate-180" : ""
 											}`}
 											aria-hidden="true"
