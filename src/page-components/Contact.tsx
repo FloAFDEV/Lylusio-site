@@ -282,20 +282,6 @@ const Contact = () => {
 
 							{/* CTA */}
 							<div className="text-center space-y-4">
-								<Button
-									asChild
-									variant="accent"
-									size="lg"
-									aria-label="Réserver une séance sur Calendly (s'ouvre dans un nouvel onglet)"
-								>
-									<a
-										href="https://calendly.com/lylusio-fr"
-										target="_blank"
-										rel="noopener noreferrer"
-									>
-										Réserver une séance
-									</a>
-								</Button>
 								<p className="text-sm text-muted-foreground">
 									Vous avez des questions ? Consultez notre{" "}
 									<Link
