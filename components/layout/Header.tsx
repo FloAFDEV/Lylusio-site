@@ -173,29 +173,52 @@ export const Header = () => {
 										aria-label={`Voir les options de ${link.label}`}
 										aria-expanded="false"
 										aria-haspopup="true"
-										className="p-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 rounded-md"
+										className="p-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 rounded-md motion-safe:transition-transform duration-300 group-hover:scale-110"
 									>
 										<ChevronDown
-											className="w-4 h-4 motion-safe:transition-transform duration-300 group-hover:rotate-180"
+											className="w-4 h-4 text-foreground/60 motion-safe:transition-all duration-400 ease-out group-hover:rotate-180 group-hover:text-accent"
 											aria-hidden="true"
 										/>
 									</button>
 
-									{/* Dropdown menu - Smooth animations avec translateY + scale */}
-									<div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 w-48 opacity-0 invisible translate-y-2 scale-[0.98] group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 group-hover:scale-100 group-focus-within:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:scale-100 motion-safe:transition-all duration-350 ease-out pointer-events-none group-hover:pointer-events-auto group-focus-within:pointer-events-auto">
-										<div className="bg-card/95 backdrop-blur-sm rounded-xl shadow-lg border border-accent/20 overflow-hidden">
-											{link.subItems?.map((item) => (
+									{/* Dropdown menu - Smooth animations avec translateY + scale + cascade */}
+									<div className="absolute top-full left-1/2 -translate-x-1/2 pt-3 w-52 opacity-0 invisible translate-y-3 scale-95 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 group-hover:scale-100 group-focus-within:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:scale-100 motion-safe:transition-all duration-400 ease-out pointer-events-none group-hover:pointer-events-auto group-focus-within:pointer-events-auto z-50">
+										<div className="bg-card/98 backdrop-blur-md rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] border border-accent/25 overflow-hidden ring-1 ring-black/5">
+											{link.subItems?.map((item, index) => (
 												<Link
 													key={item.href}
 													href={item.href}
 													onClick={handleNavClick}
-													className="block px-4 py-3 text-[16px] font-medium text-foreground/90 hover:text-accent hover:bg-accent/5 motion-safe:transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-inset"
+													className="block px-5 py-3.5 text-[15px] font-medium text-foreground/85 hover:text-accent hover:bg-accent/8 motion-safe:transition-all duration-350 ease-out focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-inset group/item relative overflow-hidden"
+													style={{
+														animation: `fadeInDown 0.4s ease-out ${index * 0.08}s both`,
+													}}
 												>
-													<MenuLabel
-														label={item.label}
-													/>
+													<span className="relative z-10">
+														<MenuLabel
+															label={item.label}
+														/>
+													</span>
+													{/* Effet de glow au hover */}
+													<span className="absolute inset-0 bg-gradient-to-r from-transparent via-accent/5 to-transparent -translate-x-full group-hover/item:translate-x-full motion-safe:transition-transform duration-700 ease-out" />
 												</Link>
 											))}
+
+											{/* Lien direct vers la page Accompagnements - Desktop */}
+											<Link
+												href={link.href}
+												onClick={handleNavClick}
+												className="block px-5 py-3 text-[13px] font-medium text-muted-foreground hover:text-accent hover:bg-accent/5 motion-safe:transition-all duration-350 ease-out focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-inset border-t border-accent/15 group/all relative overflow-hidden"
+												style={{
+													animation: `fadeInDown 0.4s ease-out ${(link.subItems?.length || 0) * 0.08}s both`,
+												}}
+											>
+												<span className="relative z-10 flex items-center gap-1.5">
+													<span>→</span>
+													<span>Voir tous les accompagnements</span>
+												</span>
+												<span className="absolute inset-0 bg-gradient-to-r from-transparent via-accent/5 to-transparent -translate-x-full group-hover/all:translate-x-full motion-safe:transition-transform duration-700 ease-out" />
+											</Link>
 										</div>
 									</div>
 								</div>

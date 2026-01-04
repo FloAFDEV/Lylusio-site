@@ -559,6 +559,30 @@ html {
 		animation: fade-slide-in 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 	}
 
+	/* Smooth cascade animation for dropdown items - Desktop */
+	@keyframes fadeInDown {
+		0% {
+			opacity: 0;
+			transform: translateY(-8px) scale(0.96);
+		}
+		100% {
+			opacity: 1;
+			transform: translateY(0) scale(1);
+		}
+	}
+
+	/* Respecter prefers-reduced-motion */
+	@media (prefers-reduced-motion: reduce) {
+		@keyframes fadeInDown {
+			0% {
+				opacity: 0;
+			}
+			100% {
+				opacity: 1;
+			}
+		}
+	}
+
 	.bg-gradient-radial {
 		background: radial-gradient(circle, var(--tw-gradient-stops));
 	}
