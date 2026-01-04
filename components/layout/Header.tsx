@@ -173,14 +173,14 @@ export const Header = () => {
 									</button>
 
 									{/* Dropdown menu - Smooth animations avec translateY + scale */}
-									<div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 w-48 opacity-0 invisible translate-y-2 scale-[0.98] group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 group-hover:scale-100 group-focus-within:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:scale-100 motion-safe:transition-all duration-200 ease-out pointer-events-none group-hover:pointer-events-auto group-focus-within:pointer-events-auto">
+									<div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 w-48 opacity-0 invisible translate-y-2 scale-[0.98] group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 group-hover:scale-100 group-focus-within:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:scale-100 motion-safe:transition-all duration-350 ease-out pointer-events-none group-hover:pointer-events-auto group-focus-within:pointer-events-auto">
 										<div className="bg-card/95 backdrop-blur-sm rounded-xl shadow-lg border border-accent/20 overflow-hidden">
 											{link.subItems?.map((item) => (
 												<Link
 													key={item.href}
 													href={item.href}
 													onClick={handleNavClick}
-													className="block px-4 py-3 text-[16px] font-medium text-foreground/90 hover:text-accent hover:bg-accent/5 motion-safe:transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-inset"
+													className="block px-4 py-3 text-[16px] font-medium text-foreground/90 hover:text-accent hover:bg-accent/5 motion-safe:transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-inset"
 												>
 													<MenuLabel
 														label={item.label}
@@ -257,7 +257,7 @@ export const Header = () => {
 			{/* ================= Mobile Menu ================= */}
 			<div
 				id="mobile-menu"
-				className={`xl:hidden fixed top-0 right-0 h-full w-3/4 max-w-xs bg-card shadow-lg border-l border-accent/20 z-50 motion-safe:transition-transform duration-500 ease-out ${
+				className={`xl:hidden fixed top-0 right-0 h-full w-3/4 max-w-xs bg-card shadow-lg border-l border-accent/20 z-50 motion-safe:transition-transform duration-700 ease-out ${
 					isMobileOpen ? "translate-x-0" : "translate-x-full"
 				}`}
 				role="dialog"
@@ -310,7 +310,7 @@ export const Header = () => {
 									<div
 										id={`mobile-submenu-${link.label.toLowerCase().replace(/\s+/g, '-')}`}
 										aria-hidden={!mobileSubmenuOpen}
-										className={`overflow-hidden motion-safe:transition-all duration-300 ease-out ${
+										className={`overflow-hidden motion-safe:transition-all duration-400 ease-out ${
 											mobileSubmenuOpen
 												? "max-h-40 opacity-100"
 												: "max-h-0 opacity-0"
@@ -322,7 +322,7 @@ export const Header = () => {
 													key={item.href}
 													href={item.href}
 													onClick={handleNavClick}
-													className="block font-medium text-sm text-foreground/80 hover:text-accent hover:bg-accent/5 rounded-lg px-3 py-2 motion-safe:transition-all duration-300 min-h-[44px] flex items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+													className="block font-medium text-sm text-foreground/80 hover:text-accent hover:bg-accent/5 rounded-lg px-3 py-2 motion-safe:transition-all duration-400 min-h-[44px] flex items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
 													style={{
 														opacity:
 															mobileSubmenuOpen
@@ -334,7 +334,7 @@ export const Header = () => {
 																: "translateY(-8px) scale(0.98)",
 														transitionDelay:
 															mobileSubmenuOpen
-																? `${subIndex * 60}ms`
+																? `${subIndex * 90}ms`
 																: "0ms",
 													}}
 												>

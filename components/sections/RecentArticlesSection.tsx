@@ -129,7 +129,7 @@ const RecentArticlesSection = () => {
 						{posts.map((post, index) => (
 							<article
 								key={post.id}
-								className={`group transition-all duration-700 ${
+								className={`group motion-safe:transition-all duration-700 ${
 									isInView
 										? "opacity-100 translate-y-0"
 										: "opacity-0 translate-y-8"
@@ -142,7 +142,7 @@ const RecentArticlesSection = () => {
 									href={`/blog/${post.slug}`}
 									className="block h-full"
 								>
-									<div className="relative h-full bg-card/50 backdrop-blur-sm border border-border/20 md:border-border/30 rounded-2xl overflow-hidden hover:border-accent/40 transition-all duration-300 hover:shadow-md md:hover:shadow-lg">
+									<div className="relative h-full bg-card/50 backdrop-blur-sm border border-border/20 md:border-border/30 rounded-2xl overflow-hidden hover:border-accent/40 motion-safe:transition-all duration-300 hover:shadow-md md:hover:shadow-lg">
 										{/* Image */}
 										<div className="relative aspect-[4/3] md:aspect-[16/10] overflow-hidden">
 											{post._embedded?.[
@@ -162,14 +162,14 @@ const RecentArticlesSection = () => {
 													}
 													fill
 													sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-													className="object-cover group-hover:scale-105 transition-transform duration-500"
+													className="object-cover group-hover:scale-105 motion-safe:transition-transform duration-500"
 													quality={75}
 												/>
 											) : (
 												<div className="w-full h-full bg-gradient-to-br from-accent/20 via-gold/10 to-sand/20" />
 											)}
 											{/* Gradient overlay */}
-											<div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+											<div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 motion-safe:transition-opacity duration-300" />
 										</div>
 
 										{/* Content */}

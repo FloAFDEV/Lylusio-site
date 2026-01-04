@@ -34,7 +34,7 @@ const QuiSuisJeSection = () => {
 				<div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-8 md:gap-12 lg:gap-16">
 					{/* Image */}
 					<div
-						className={`relative transition-all duration-1000 ${
+						className={`relative motion-safe:transition-all duration-1000 ${
 							isInView
 								? "opacity-100 translate-x-0"
 								: "opacity-0 -translate-x-12"
@@ -71,7 +71,7 @@ const QuiSuisJeSection = () => {
 
 					{/* Content */}
 					<div
-						className={`flex-1 text-center md:text-left transition-all duration-1000 delay-200 ${
+						className={`flex-1 text-center md:text-left motion-safe:transition-all duration-1000 delay-200 ${
 							isInView
 								? "opacity-100 translate-x-0"
 								: "opacity-0 translate-x-12"
@@ -136,7 +136,7 @@ const QuiSuisJeSection = () => {
 								className="group/btn"
 							>
 								Découvrir mon histoire
-								<ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover/btn:translate-x-1" />
+								<ArrowRight className="w-4 h-4 ml-2 motion-safe:transition-transform group-hover/btn:translate-x-1" />
 							</Button>
 						</Link>
 					</div>

@@ -1,12 +1,20 @@
 "use client";
 
 import { memo, useEffect, useState, useCallback } from "react";
+import dynamic from "next/dynamic";
 import { Button } from "@/components/ui/button";
 import { ChevronDown, MapPin } from "lucide-react";
 import Image from "next/image";
 import { useParallax } from "@/hooks/useParallax";
 // import emilieHero from "@/assets/emilie-hero.webp"; // Now using /assets/emilie-hero.webp
 // import plantDecoration from "@/assets/plant-decoration.webp"; // Now using /assets/plant-decoration.webp
+
+// Lazy load decorative components for better LCP
+const CelestialStarsLazy = dynamic(() => Promise.resolve(CelestialStars), { ssr: false });
+const SoftCloudsLazy = dynamic(() => Promise.resolve(SoftClouds), { ssr: false });
+const HandwrittenSignatureLazy = dynamic(() => Promise.resolve(HandwrittenSignature), { ssr: false });
+const OrganicShapesLazy = dynamic(() => Promise.resolve(OrganicShapes), { ssr: false });
+const DecorativeCirclesLazy = dynamic(() => Promise.resolve(DecorativeCircles), { ssr: false });
 
 // CelestialStars - Étoiles scintillantes aléatoires côté client
 const CelestialStars = memo(() => {
@@ -207,33 +215,33 @@ const HeroSection = () => {
 			aria-labelledby="hero-title"
 		>
 			{/* Éléments célestes */}
-			<CelestialStars />
-			<SoftClouds parallaxOffset={parallaxOffset} />
-			<HandwrittenSignature parallaxOffset={parallaxOffset} />
+			<CelestialStarsLazy />
+			<SoftCloudsLazy parallaxOffset={parallaxOffset} />
+			<HandwrittenSignatureLazy parallaxOffset={parallaxOffset} />
 
 			{/* Formes organiques d'arrière-plan */}
-			<OrganicShapes parallaxOffset={parallaxOffset} />
+			<OrganicShapesLazy parallaxOffset={parallaxOffset} />
 
 			{/* Contenu principal */}
 			<div className="relative z-10 container-wide section-padding grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center">
 				{/* Contenu textuel - Gauche */}
 				<div className="lg:col-span-7 max-w-2xl mx-auto lg:mx-0 text-center lg:text-left order-2 lg:order-1">
 					<p
-						className="font-body text-xs text-muted-foreground uppercase tracking-[0.3em] mb-4 animate-fade-up"
+						className="font-body text-xs text-muted-foreground uppercase tracking-[0.3em] mb-4 motion-safe:animate-fade-up"
 						style={{ animationDelay: "0.1s" }}
 					>
 						À Toulouse & en ligne
 					</p>
 
 					<div
-						className="animate-fade-up"
+						className="motion-safe:animate-fade-up"
 						style={{ animationDelay: "0.2s" }}
 					>
 						<h1
 							id="hero-title"
 							className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-foreground leading-[1.1] mb-4 sm:mb-6"
 						>
-							<span className="font-calligraphic text-accent text-5xl sm:text-6xl md:text-7xl lg:text-8xl inline-block align-baseline transition-transform duration-300 hover:scale-110">
+							<span className="font-calligraphic text-accent text-5xl sm:text-6xl md:text-7xl lg:text-8xl inline-block align-baseline motion-safe:transition-transform duration-300 hover:scale-110">
 								A
 							</span>
 							strologie Consciente
@@ -275,7 +283,7 @@ const HeroSection = () => {
 						<Button
 							asChild
 							size="lg"
-							className="bg-gold text-foreground hover:bg-gold-light font-medium px-8 shadow-gold transition-all duration-300 hover:scale-105 hover:shadow-glow active:scale-100 animate-gold-glow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2"
+							className="bg-gold text-foreground hover:bg-gold-light font-medium px-8 shadow-gold motion-safe:transition-all duration-300 hover:scale-105 hover:shadow-glow active:scale-100 motion-safe:animate-gold-glow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2"
 							aria-label="Réserver une séance de consultation sur Calendly"
 						>
 							<a
@@ -289,7 +297,7 @@ const HeroSection = () => {
 					</div>
 
 					<p
-						className="mt-8 sm:mt-10 font-calligraphic text-xl sm:text-2xl md:text-3xl text-navy/80 animate-fade-up animate-handwriting"
+						className="mt-8 sm:mt-10 font-calligraphic text-xl sm:text-2xl md:text-3xl text-navy/80 motion-safe:animate-fade-up motion-safe:animate-handwriting"
 						style={{
 							animationDelay: "1.5s",
 						}}
@@ -311,7 +319,7 @@ const HeroSection = () => {
 				>
 					<div className="relative mx-auto max-w-[200px] sm:max-w-[240px]">
 						{/* Cercles décoratifs */}
-						<DecorativeCircles />
+						<DecorativeCirclesLazy />
 
 						{/* Photo principale avec effet hover */}
 						<div className="aspect-square rounded-full overflow-hidden shadow-gold border-2 border-gold/20 relative group">
@@ -320,9 +328,9 @@ const HeroSection = () => {
 								alt="Émilie Perez - Astrologue et praticienne Reiki 3ème degré à Toulouse"
 								fill
 								sizes="(max-width: 640px) 280px, (max-width: 1024px) 360px, 392px"
-								className="object-cover opacity-90 transition-transform duration-700 group-hover:scale-105"
+								className="object-cover opacity-90 motion-safe:transition-transform duration-700 group-hover:scale-105"
 								priority
-								quality={85}
+								quality={70}
 							/>
 							<div
 								className="absolute inset-0 bg-gradient-to-t from-background/15 via-transparent to-cream/8 pointer-events-none"
@@ -332,7 +340,7 @@ const HeroSection = () => {
 
 						{/* Badge décoratif plante - Coin inférieur gauche */}
 						<div
-							className="absolute -bottom-2 -left-2 sm:-bottom-3 sm:-left-3 w-10 h-10 sm:w-14 sm:h-14 lg:w-16 lg:h-16 bg-background/95 rounded-full flex items-center justify-center animate-float overflow-hidden border-2 border-gold/30 shadow-[0_0_20px_rgba(212,175,55,0.2)] backdrop-blur-sm hover:scale-110 transition-transform duration-300"
+							className="absolute -bottom-2 -left-2 sm:-bottom-3 sm:-left-3 w-10 h-10 sm:w-14 sm:h-14 lg:w-16 lg:h-16 bg-background/95 rounded-full flex items-center justify-center motion-safe:animate-float overflow-hidden border-2 border-gold/30 shadow-[0_0_20px_rgba(212,175,55,0.2)] backdrop-blur-sm hover:scale-110 motion-safe:transition-transform duration-300"
 							style={{ animationDelay: "0.8s" }}
 							aria-hidden="true"
 						>
@@ -342,13 +350,14 @@ const HeroSection = () => {
 								className="w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 rounded-full object-cover"
 								width={40}
 								height={40}
+								loading="lazy"
 								aria-hidden="true"
 							/>
 						</div>
 
 						{/* Badge localisation - Coin supérieur droit */}
 						<div
-							className="hidden sm:flex absolute -top-2 -right-2 sm:-top-3 sm:-right-3 px-2 py-1 sm:px-3 sm:py-1.5 bg-background/90 backdrop-blur-md rounded-full shadow-soft animate-float border border-gold/25 items-center gap-1.5 hover:scale-105 transition-transform duration-300"
+							className="hidden sm:flex absolute -top-2 -right-2 sm:-top-3 sm:-right-3 px-2 py-1 sm:px-3 sm:py-1.5 bg-background/90 backdrop-blur-md rounded-full shadow-soft motion-safe:animate-float border border-gold/25 items-center gap-1.5 hover:scale-105 motion-safe:transition-transform duration-300"
 							style={{ animationDelay: "1.2s" }}
 							aria-hidden="true"
 						>
@@ -367,15 +376,15 @@ const HeroSection = () => {
 			{/* Indicateur de scroll avec interactions améliorées */}
 			<button
 				onClick={scrollToNext}
-				className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2 text-muted-foreground/70 hover:text-accent transition-all duration-300 animate-fade-in group focus:outline-none focus:ring-2 focus:ring-accent/50 rounded-lg p-2"
+				className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2 text-muted-foreground/70 hover:text-accent motion-safe:transition-all duration-300 motion-safe:animate-fade-in group focus:outline-none focus:ring-2 focus:ring-accent/50 rounded-lg p-2"
 				style={{ animationDelay: "1s" }}
 				aria-label="Défiler vers la section suivante"
 			>
-				<span className="text-[10px] uppercase tracking-widest font-medium group-hover:tracking-[0.25em] transition-all duration-300">
+				<span className="text-[10px] uppercase tracking-widest font-medium group-hover:tracking-[0.25em] motion-safe:transition-all duration-300">
 					Découvrir
 				</span>
 				<ChevronDown
-					className="w-5 h-5 animate-bounce group-hover:translate-y-1 transition-transform"
+					className="w-5 h-5 motion-safe:animate-bounce group-hover:translate-y-1 motion-safe:transition-transform"
 					aria-hidden="true"
 				/>
 			</button>

@@ -224,7 +224,7 @@ const ContactCards = () => {
 					<p className="font-display text-lg text-foreground">
 						<CalligraphicLabel label="Rendez-vous" />
 					</p>
-					<p className="text-muted-foreground text-sm">
+					<p className="text-muted-foreground text-sm font-white">
 						Réserver une séance en ligne
 					</p>
 				</div>

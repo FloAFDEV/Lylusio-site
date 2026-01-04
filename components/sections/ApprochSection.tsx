@@ -67,14 +67,14 @@ const ApprochSection = () => {
 
 					{/* Content card - more opaque for better readability */}
 					<article
-						className={`w-full lg:w-[55%] transition-all duration-1000 delay-150 ${
+						className={`w-full lg:w-[55%] motion-safe:transition-all duration-1000 delay-150 ${
 							isInView
 								? "opacity-100 translate-y-0"
 								: "opacity-0 translate-y-12"
 						}`}
 					>
 						<div
-							className="sm:bg-opacity-93 lg:bg-opacity-90 backdrop-blur-lg rounded-2xl lg:rounded-3xl p-6 sm:p-8 md:p-10 shadow-medium border border-border/40 lg:border-border/30 hover:border-gold/30 transition-all duration-500"
+							className="sm:bg-opacity-93 lg:bg-opacity-90 backdrop-blur-lg rounded-2xl lg:rounded-3xl p-6 sm:p-8 md:p-10 shadow-medium border border-border/40 lg:border-border/30 hover:border-gold/30 motion-safe:transition-all duration-500"
 							style={{
 								backgroundColor: "rgba(255, 252, 251, 0.95)",
 							}}
@@ -112,14 +112,14 @@ const ApprochSection = () => {
 									traversé. Elle mêle{" "}
 									<Link
 										href="/astrologie-toulouse"
-										className="text-foreground font-medium hover:text-accent transition-colors"
+										className="text-foreground font-medium hover:text-accent motion-safe:transition-colors"
 									>
 										astrologie symbolique et psychologique
 									</Link>
 									,{" "}
 									<Link
 										href="/reiki-toulouse"
-										className="text-foreground font-medium hover:text-accent transition-colors"
+										className="text-foreground font-medium hover:text-accent motion-safe:transition-colors"
 									>
 										thérapie énergétique Reiki
 									</Link>{" "}

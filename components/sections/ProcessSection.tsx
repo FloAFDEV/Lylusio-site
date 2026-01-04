@@ -46,7 +46,7 @@ const ProcessSection = memo(function ProcessSection() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div
-          className={`mb-12 text-center transition-all duration-700 md:mb-16 ${
+          className={`mb-12 text-center motion-safe:transition-all duration-700 md:mb-16 ${
             isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
@@ -71,7 +71,7 @@ const ProcessSection = memo(function ProcessSection() {
               return (
                 <div
                   key={step.title}
-                  className={`relative text-center transition-all duration-700 ${
+                  className={`relative text-center motion-safe:transition-all duration-700 ${
                     isInView
                       ? "opacity-100 translate-y-0"
                       : "opacity-0 translate-y-8"
@@ -116,7 +116,7 @@ const ProcessSection = memo(function ProcessSection() {
 
         {/* CTA */}
         <div
-          className={`mt-12 text-center transition-all duration-700 delay-500 ${
+          className={`mt-12 text-center motion-safe:transition-all duration-700 delay-500 ${
             isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
@@ -126,7 +126,7 @@ const ProcessSection = memo(function ProcessSection() {
               className="inline-flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
             >
               Prendre contact
-              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1 text-white" />
+              <ArrowRight className="h-4 w-4 motion-safe:transition-transform group-hover:translate-x-1 text-white" />
             </Link>
           </Button>
         </div>
