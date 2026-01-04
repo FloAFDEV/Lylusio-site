@@ -24,12 +24,13 @@ const MenuLabel = ({ label }: { label: string }) => (
 
    Structure:
    - Astrologie: Lien direct autonome (PAS de sous-menu)
-   - Accompagnements: Sous-menu contenant UNIQUEMENT Reiki + Thérapie Holistique
+   - Accompagnements: Sous-menu contenant UNIQUEMENT Thérapie Holistique + Reiki
    - Pas de duplication, pas de doublon
+   - Ordre: Thérapie Holistique en premier (approche globale), puis Reiki (technique spécifique)
 ========================= */
 const accompagnementsSubItems = [
-	{ label: "Reiki", href: "/reiki-toulouse" },
 	{ label: "Thérapie Holistique", href: "/therapie-holistique" },
+	{ label: "Reiki", href: "/reiki-toulouse" },
 ];
 
 const mainLinks = [
