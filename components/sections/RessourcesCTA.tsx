@@ -124,10 +124,11 @@ const RessourcesCTA = () => {
 							: "opacity-0 translate-y-8"
 					}`}
 				>
+					{/* Card principale */}
 					<div
 						role="region"
 						aria-labelledby="free-resources-title"
-						className="relative bg-gradient-to-br from-card via-card/95 to-card/90 backdrop-blur-md rounded-2xl md:rounded-3xl p-6 md:p-8 lg:p-10 text-center border border-accent/15 shadow-md overflow-hidden"
+						className="relative bg-gradient-to-br from-card via-card/95 to-card/90 backdrop-blur-md rounded-2xl md:rounded-3xl p-6 md:p-8 lg:p-10 text-center border border-accent/15 shadow-md overflow-hidden mb-8"
 					>
 						{/* Decorative glow effects - softer and smaller */}
 						<div
@@ -164,7 +165,7 @@ const RessourcesCTA = () => {
 						</p>
 
 						{/* Features badges */}
-						<div className="flex flex-wrap justify-center gap-3 md:gap-4 mb-8">
+						<div className="flex flex-wrap justify-center gap-3 md:gap-4">
 							{features.map((feature, index) => {
 								const Component = feature.href ? "a" : "div";
 								return (
@@ -198,9 +199,11 @@ const RessourcesCTA = () => {
 								);
 							})}
 						</div>
+					</div>
 
-						{/* CTA Button */}
-						<Button variant="elegant" size="lg" className="group">
+					{/* CTA Button - En dehors de la card */}
+					<div className="text-center">
+						<Button variant="elegant" size="lg" className="group" asChild>
 							<Link
 								href="/ressources"
 								className="inline-flex items-center"
