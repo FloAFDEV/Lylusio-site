@@ -65,7 +65,7 @@ html {
 		--radius: 1.25rem;
 
 		/* Custom design tokens - Céleste */
-		--gold: 42 31% 66%; /* #C6B58A */
+		--gold: 42 31% 48%; /* Assombri pour WCAG AA (ratio 3.11:1) */
 		--gold-light: 42 40% 75%;
 		--gold-glow: 42 50% 70%;
 		--navy: 215 42% 39%; /* #3A5F8F */

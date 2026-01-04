@@ -155,7 +155,8 @@ export const Header = () => {
 									{/* Dropdown toggle */}
 									<button
 										type="button"
-										aria-label="Voir le sous-menu"
+										aria-label="Ouvrir le sous-menu"
+										aria-expanded="false"
 										className="p-1"
 									>
 										<ChevronDown
