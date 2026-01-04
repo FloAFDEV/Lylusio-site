@@ -72,19 +72,40 @@ export const Header = () => {
 		setMobileSubmenuOpen(false);
 	}, [pathname]);
 
-	/* Block scroll when mobile menu is open */
+	/* Block scroll and add blur when mobile menu is open */
 	useEffect(() => {
+		const mainContent = document.getElementById("main-content");
+		const footer = document.querySelector("footer");
+
 		if (isMobileOpen) {
 			document.body.style.overflow = "hidden";
 			document.body.classList.add("menu-open");
+			// Add blur to main content and footer
+			if (mainContent) {
+				mainContent.style.filter = "blur(8px)";
+				mainContent.style.transition = "filter 300ms ease-out";
+			}
+			if (footer) {
+				footer.style.filter = "blur(8px)";
+				footer.style.transition = "filter 300ms ease-out";
+			}
 		} else {
 			document.body.style.overflow = "unset";
 			document.body.classList.remove("menu-open");
+			// Remove blur
+			if (mainContent) {
+				mainContent.style.filter = "none";
+			}
+			if (footer) {
+				footer.style.filter = "none";
+			}
 		}
 
 		return () => {
 			document.body.style.overflow = "unset";
 			document.body.classList.remove("menu-open");
+			if (mainContent) mainContent.style.filter = "none";
+			if (footer) footer.style.filter = "none";
 		};
 	}, [isMobileOpen]);
 
@@ -248,9 +269,10 @@ export const Header = () => {
 
 			{/* ================= Mobile Overlay =================
 				Backdrop semi-transparent avec fermeture au clic.
+				Ajout d'un backdrop-filter pour navigateurs compatibles.
 			*/}
 			<div
-				className={`lg:hidden fixed inset-0 bg-black/10 z-40 motion-safe:transition-opacity duration-300 ${
+				className={`lg:hidden fixed inset-0 bg-black/30 backdrop-blur-sm z-40 motion-safe:transition-opacity duration-300 ${
 					isMobileOpen
 						? "opacity-100 visible"
 						: "opacity-0 invisible pointer-events-none"
@@ -363,7 +385,8 @@ export const Header = () => {
 										<Link
 											href={link.href}
 											onClick={handleNavClick}
-											className="block text-sm text-muted-foreground hover:text-accent py-2 pl-2 motion-safe:transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+											className="block text-sm text-muted-foreground hover:text-accent py-2 pl-2 motion-safe:transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-md min-h-[44px] flex items-center"
+											aria-label={`Voir toutes les pages de la section ${link.label}`}
 										>
 											→ Voir tous les accompagnements
 										</Link>
