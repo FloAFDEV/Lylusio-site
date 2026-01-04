@@ -131,8 +131,7 @@ export const Header = () => {
 						href="/"
 						onClick={handleNavClick}
 						className="relative z-50 group focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 rounded-lg"
-						aria-label="Retour à l'accueil - Lylusio"
-					>
+						>
 						<div
 							className={`relative transition-all duration-300 ${
 								isScrolled ? "h-11 w-[132px]" : "h-14 w-[168px]"
@@ -140,7 +139,7 @@ export const Header = () => {
 						>
 							<Image
 								src="/assets/logo-lylusio.webp"
-								alt="Lylusio – Astrologie et Reiki à Toulouse"
+								alt="Lylusio – Astrologie et Reiki à Toulouse - Retour à l'accueil"
 								fill
 								className="object-contain group-hover:scale-105 transition-transform duration-300"
 								priority

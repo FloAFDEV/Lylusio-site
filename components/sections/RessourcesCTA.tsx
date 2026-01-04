@@ -23,7 +23,7 @@ const CelestialStars = memo(() => {
 	useEffect(() => {
 		// Générer les étoiles uniquement côté client pour éviter l'hydration mismatch
 		setStars(
-			Array.from({ length: 20 }).map((_, i) => ({
+			Array.from({ length: 12 }).map((_, i) => ({
 				id: i,
 				left: `${Math.random() * 100}%`,
 				top: `${Math.random() * 100}%`,
@@ -128,25 +128,31 @@ const RessourcesCTA = () => {
 					<div
 						role="region"
 						aria-labelledby="free-resources-title"
-						className="relative bg-gradient-to-br from-card via-card/95 to-card/90 backdrop-blur-md rounded-2xl md:rounded-3xl p-6 md:p-8 lg:p-10 text-center border border-accent/15 shadow-md overflow-hidden mb-8"
+						className="relative bg-gradient-to-br from-card via-card/95 to-card/90 backdrop-blur-md rounded-2xl md:rounded-3xl p-6 md:p-8 lg:p-10 text-center border border-accent/15 shadow-md motion-safe:hover:shadow-lg motion-safe:hover:scale-[1.01] overflow-hidden mb-8 motion-safe:transition-all duration-300"
 					>
 						{/* Decorative glow effects - softer and smaller */}
 						<div
-							className="absolute -top-16 -right-16 w-32 h-32 bg-accent/15 rounded-full blur-2xl"
+							className="absolute -top-16 -right-16 w-32 h-32 bg-accent/15 rounded-full blur-2xl motion-safe:group-hover:bg-accent/20 motion-safe:transition-colors duration-500"
 							aria-hidden="true"
 						/>
 						<div
-							className="absolute -bottom-16 -left-16 w-32 h-32 bg-gold/10 rounded-full blur-2xl"
+							className="absolute -bottom-16 -left-16 w-32 h-32 bg-gold/10 rounded-full blur-2xl motion-safe:group-hover:bg-gold/15 motion-safe:transition-colors duration-500"
 							aria-hidden="true"
 						/>
-						{/* Icon badge - smaller and more delicate */}
-						<div className="inline-flex items-center justify-center w-14 h-14 bg-gradient-to-br from-gold/15 to-accent/15 rounded-xl mb-5 shadow-md ring-1 ring-accent/20 relative">
-							<Sparkles
-								className="w-7 h-7 text-gold drop-shadow-sm"
-								aria-hidden="true"
-							/>
-							<span className="sr-only">
-								Badge Contenus gratuits
+						{/* Icon badge - smaller and more delicate with FREE tag */}
+						<div className="inline-flex flex-col items-center gap-2 mb-5">
+							<div className="relative inline-flex items-center justify-center w-14 h-14 bg-gradient-to-br from-gold/15 to-accent/15 rounded-xl shadow-md ring-1 ring-accent/20">
+								<Sparkles
+									className="w-7 h-7 text-gold drop-shadow-sm"
+									aria-hidden="true"
+								/>
+								<span className="sr-only">
+									Badge Contenus gratuits
+								</span>
+							</div>
+							{/* Badge "GRATUIT" visible */}
+							<span className="inline-flex items-center px-3 py-1 text-xs font-semibold tracking-wide text-gold bg-gold/10 border border-gold/20 rounded-full shadow-sm">
+								100% GRATUIT
 							</span>
 						</div>
 
@@ -203,7 +209,12 @@ const RessourcesCTA = () => {
 
 					{/* CTA Button - En dehors de la card */}
 					<div className="text-center">
-						<Button variant="elegant" size="lg" className="group" asChild>
+						<Button
+							variant="elegant"
+							size="lg"
+							className="group"
+							asChild
+						>
 							<Link
 								href="/ressources"
 								className="inline-flex items-center"
