@@ -339,10 +339,10 @@ export const Header = () => {
 			{/* ================= Mobile Menu ================= */}
 			<div
 				id="mobile-menu"
-				className={`xl:hidden fixed top-0 right-0 h-full w-3/4 max-w-xs bg-card shadow-lg border-l border-accent/20 z-50 motion-safe:transition-all duration-500 ease-out ${
+				className={`xl:hidden fixed top-0 right-0 h-full w-3/4 max-w-xs bg-card shadow-lg border-l border-accent/20 z-50 motion-safe:transition-transform duration-500 ${
 					isMobileOpen
-						? "translate-x-0 opacity-100"
-						: "translate-x-12 opacity-0"
+						? "translate-x-0"
+						: "translate-x-full"
 				}`}
 				role="dialog"
 				aria-label="Menu de navigation mobile"
