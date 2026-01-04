@@ -28,9 +28,9 @@ const accompagnementsSubItems = [
 	{ label: "Thérapie Holistique", href: "/therapie-holistique" },
 ];
 
-const holistiqueSubItems = [
-	{ label: "Thérapie Holistique", href: "/therapie-holistique" },
+const approcheEnergetiqueSubItems = [
 	{ label: "Reiki", href: "/reiki-toulouse" },
+	{ label: "Thérapie Holistique", href: "/therapie-holistique" },
 ];
 
 const mainLinks = [
@@ -44,10 +44,10 @@ const mainLinks = [
 	},
 	{ label: "Astrologie", href: "/astrologie-toulouse" },
 	{
-		label: "Holistique",
-		href: "/therapie-holistique",
+		label: "Approche énergétique",
+		href: "/reiki-toulouse",
 		hasSubmenu: true,
-		subItems: holistiqueSubItems,
+		subItems: approcheEnergetiqueSubItems,
 	},
 	{ label: "Ressources", href: "/ressources" },
 	{ label: "Blog", href: "/blog" },
