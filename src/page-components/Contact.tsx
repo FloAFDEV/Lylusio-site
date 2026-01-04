@@ -286,7 +286,7 @@ const Contact = () => {
 									Vous avez des questions ? Consultez notre{" "}
 									<Link
 										href="/faq"
-										className="text-accent hover:underline"
+										className="text-accent text-xl hover:underline"
 									>
 										FAQ
 									</Link>
