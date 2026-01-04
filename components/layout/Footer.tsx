@@ -6,18 +6,12 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { Mail, Phone, MapPin, Eye, ChevronDown } from "lucide-react";
 import { FaFacebook, FaInstagram, FaYoutube } from "react-icons/fa";
-// NOTE: Nous supposons que le composant Button supporte l'attribut `asChild` pour le rendre en tant que <a>
 import { Button } from "@/components/ui/button";
-// import logo from "@/assets/logo-lylusio.webp"; // Now using /assets/logo-lylusio.webp
 import GoldenPlantBadge from "@/components/GoldenPlantBadge";
 import { HoneypotContact } from "@/components/ClickToReveal";
 import { useAnalyticsEvent } from "@/hooks/useAnalytics";
 
-// Composant pour l'espace d'alignement du titre.
-// Il crée un "bloc" de la même largeur que les icônes de contact pour aligner le texte du titre.
 const TitleIconSpacer = () => (
-	// w-5 h-5 (ou w-6 h-6 en md) correspond à la taille des icônes de contact.
-	// mr-3 correspond au gap-3 utilisé dans les listes de contact.
 	<span
 		className="w-5 h-5 md:w-6 md:h-6 shrink-0 inline-flex items-center justify-center mr-3"
 		aria-hidden="true"
@@ -27,14 +21,11 @@ const TitleIconSpacer = () => (
 );
 
 const Footer = () => {
-	const currentYear = new Date().getFullYear();
 	const [showPhone, setShowPhone] = useState(false);
 	const [showEmail, setShowEmail] = useState(false);
 	const [navOpen, setNavOpen] = useState(false);
-	// Supprimé contactOpen state car il n'est plus un accordéon dans la structure desktop/mobile
 	const { trackBookingClick, trackContactClick } = useAnalyticsEvent();
 
-	// Generate star positions only on client side to avoid hydration mismatch
 	const [stars, setStars] = useState<
 		Array<{ top: number; left: number; delay: number }>
 	>([]);
@@ -46,7 +37,6 @@ const Footer = () => {
 	>([]);
 
 	useEffect(() => {
-		// Generate random positions only after component mounts (client-side only)
 		setStars(
 			Array.from({ length: 12 }, () => ({
 				top: 15 + Math.random() * 70,
@@ -54,7 +44,6 @@ const Footer = () => {
 				delay: Math.random() * 3,
 			}))
 		);
-		// Generate background decorative stars
 		setBackgroundStars(
 			Array.from({ length: 30 }, () => ({
 				left: Math.random() * 100,
@@ -63,7 +52,6 @@ const Footer = () => {
 				duration: 2 + Math.random() * 2,
 			}))
 		);
-		// Generate larger accent stars
 		setAccentStars(
 			Array.from({ length: 8 }, () => ({
 				left: 10 + Math.random() * 80,
@@ -106,23 +94,15 @@ const Footer = () => {
 		{ href: "/", label: "Accueil" },
 		{ href: "/emilie-perez", label: "Qui suis-je" },
 		{ href: "/approche-therapeutique", label: "Mon Approche" },
-		{ href: "/accompagnement-toulouse", label: "Accompagnement" },
+		{ href: "/accompagnement-toulouse", label: "Accompagnements" },
+		{ href: "/therapie-holistique", label: "Thérapie Holistique", indent: true },
+		{ href: "/reiki-toulouse", label: "Reiki", indent: true },
 		{ href: "/astrologie-toulouse", label: "Astrologie" },
-		{ href: "/reiki-toulouse", label: "Reiki" },
-		{ href: "/therapie-holistique", label: "Thérapie Holistique" },
-
-		{ href: "/blog", label: "Blog" },
 		{ href: "/ressources", label: "Ressources" },
-		{ href: "/faq", label: "FAQ" },
+		{ href: "/blog", label: "Blog" },
 		{ href: "/contact", label: "Contact" },
-		{
-			href: "https://calendly.com/lylusio-fr",
-			label: "Prendre rendez-vous",
-			external: true,
-		},
 	];
 
-	// Composant LinkButton pour le CTA du footer (meilleur SEO/Accessibilité)
 	const LinkButton = (
 		<div className="relative group/cta">
 			<Button
@@ -165,12 +145,10 @@ const Footer = () => {
 			itemScope
 			itemType="https://schema.org/LocalBusiness"
 		>
-			{/* Celestial Background Decorations */}
 			<div
 				className="absolute inset-0 pointer-events-none overflow-hidden"
 				aria-hidden="true"
 			>
-				{/* Stars */}
 				{backgroundStars.map((star, i) => (
 					<div
 						key={i}
@@ -183,7 +161,6 @@ const Footer = () => {
 						}}
 					/>
 				))}
-				{/* Larger accent stars */}
 				{accentStars.map((star, i) => (
 					<div
 						key={`star-lg-${i}`}
@@ -195,7 +172,6 @@ const Footer = () => {
 						}}
 					/>
 				))}
-				{/* Subtle constellation lines */}
 				<div className="absolute top-20 left-10 w-32 h-32 opacity-10">
 					<svg viewBox="0 0 100 100" className="w-full h-full">
 						<line
@@ -252,11 +228,8 @@ const Footer = () => {
 						/>
 					</svg>
 				</div>
-				{/* Soft glow orbs - effet nuit étoilée */}
 			</div>
-			{/* CTA Section */}
 			<div className="border-b border-primary-foreground/20 relative overflow-hidden">
-				{/* Decorative background with gradient and stars */}
 				<div
 					className="absolute inset-0 bg-gradient-to-br from-primary via-primary to-primary/95"
 					aria-hidden="true"
@@ -278,7 +251,6 @@ const Footer = () => {
 					))}
 				</div>
 
-				{/* Golden glow behind title - REINFORCED */}
 				<div className="container mx-auto px-5 md:px-8 lg:px-10 py-12 md:py-24 lg:py-32 text-center relative z-10">
 					<GoldenPlantBadge
 						size="lg"
@@ -300,10 +272,8 @@ const Footer = () => {
 				</div>
 			</div>
 
-			{/* Main Footer */}
 			<div className="container mx-auto px-5 md:px-8 lg:px-12 py-12 md:py-20 lg:py-24">
 				<div className="grid gap-10 md:gap-14 lg:grid-cols-12">
-					{/* Brand - Optimisation du Spacing vertical pour la hiérarchie */}
 					<div className="lg:col-span-3 relative">
 						<div className="relative h-11 md:h-14 w-[132px] md:w-[168px] mb-6 group">
 							<Image
@@ -339,9 +309,7 @@ const Footer = () => {
 						</div>
 					</div>
 
-					{/* Navigation & Contact */}
 					<div className="lg:col-span-5 flex flex-col md:flex-row md:gap-12 relative">
-						{/* Navigation */}
 						<nav
 							className="flex-1 mb-8 md:mb-0"
 							aria-labelledby="footer-navigation-title"
@@ -373,49 +341,32 @@ const Footer = () => {
 							>
 								{navLinks.map((link) => (
 									<li key={link.href}>
-										{link.external ? (
-											<a
-												href={link.href}
-												target="_blank"
-												rel="noopener noreferrer"
-												className="text-left text-primary-foreground/70 hover:text-primary-foreground transition-all duration-300 text-sm md:text-base relative group inline-flex items-center gap-2.5"
-											>
-												<span
-													className="w-1.5 h-1.5 rounded-full bg-gold/60 group-hover:bg-gold transition-all duration-300"
-													aria-hidden="true"
-												/>
-												<span className="group-hover:translate-x-1.5 transition-transform duration-300">
-													{link.label}
-												</span>
-											</a>
-										) : (
-											<button
-												onClick={() =>
-													handleNavigation(link.href)
-												}
-												className="text-left text-primary-foreground/70 hover:text-primary-foreground transition-all duration-300 text-sm md:text-base relative group inline-flex items-center gap-2.5"
-											>
-												<span
-													className="w-1.5 h-1.5 rounded-full bg-gold/60 group-hover:bg-gold transition-all duration-300"
-													aria-hidden="true"
-												/>
-												<span className="group-hover:translate-x-1.5 transition-transform duration-300">
-													{link.label}
-												</span>
-											</button>
-										)}
+										<button
+											onClick={() =>
+												handleNavigation(link.href)
+											}
+											className={`text-left text-primary-foreground/70 hover:text-primary-foreground transition-all duration-300 text-sm md:text-base relative group inline-flex items-center gap-2.5 ${
+												link.indent ? "pl-4" : ""
+											}`}
+										>
+											<span
+												className="w-1.5 h-1.5 rounded-full bg-gold/60 group-hover:bg-gold transition-all duration-300"
+												aria-hidden="true"
+											/>
+											<span className="group-hover:translate-x-1.5 transition-transform duration-300">
+												{link.label}
+											</span>
+										</button>
 									</li>
 								))}
 							</ul>
 						</nav>
 
-						{/* Contact */}
 						<div className="flex-1">
 							<h4 className="font-calligraphic text-xl md:text-2xl font-bold text-gold-light flex items-center mb-1">
 								<TitleIconSpacer /> Contact
 							</h4>
 							<ul className="space-y-4 md:space-y-5 mt-4 md:mt-6">
-								{/* PHONE */}
 								<li itemProp="telephone">
 									{!showPhone ? (
 										<button
@@ -457,7 +408,6 @@ const Footer = () => {
 										</a>
 									)}
 								</li>
-								{/* EMAIL */}
 								<li itemProp="email">
 									{!showEmail ? (
 										<button
@@ -499,7 +449,6 @@ const Footer = () => {
 										</a>
 									)}
 								</li>
-								{/* ADDRESS */}
 								<li
 									className="flex items-start gap-3 text-primary-foreground/70 text-sm md:text-base group"
 									itemScope
@@ -540,7 +489,6 @@ const Footer = () => {
 						</div>
 					</div>
 
-					{/* Map */}
 					<div className="lg:col-span-4 mt-8 lg:mt-0">
 						<h4 className="font-calligraphic text-xl md:text-2xl font-bold mb-5 md:mb-6 text-gold-light flex items-center">
 							<TitleIconSpacer /> Localisation
@@ -562,19 +510,16 @@ const Footer = () => {
 				</div>
 			</div>
 
-			{/* Bottom - Optimisé Mobile */}
 			<div className="relative border-t border-gold/30">
 				<div className="container mx-auto px-5 md:px-8 lg:px-12 py-7 md:py-9 flex flex-col sm:flex-row justify-between items-center gap-6 md:gap-4">
-					{/* Copyright */}
 					<p className="text-primary-foreground/90 text-sm md:text-sm flex items-center gap-2.5 tracking-wide text-center sm:text-left">
 						<span
 							className="w-1.5 h-1.5 rounded-full bg-gold/70 shadow-[0_0_6px_hsl(var(--gold)/0.6)]"
 							aria-hidden="true"
 						/>
-						© {currentYear} Lylusio · Tous droits réservés
+						© 2025 Lylusio · Tous droits réservés
 					</p>
 
-					{/* Liens légaux - Navigation sémantique */}
 					<nav
 						className="flex flex-row flex-wrap gap-3 md:gap-6 items-center justify-center"
 						aria-label="Liens légaux et réglementaires"
