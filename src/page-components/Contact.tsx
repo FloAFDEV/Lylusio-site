@@ -11,6 +11,16 @@ import { Phone, Mail, MapPin, Calendar, Eye } from "lucide-react";
 import { useInView } from "@/hooks/useInView";
 import { HoneypotContact } from "@/components/ClickToReveal";
 
+/* Composant pour afficher la première lettre en calligraphie */
+const CalligraphicLabel = ({ label }: { label: string }) => (
+	<span className="inline-flex items-baseline">
+		<span className="font-calligraphic text-[1.4em] leading-none -mr-0.5">
+			{label.charAt(0)}
+		</span>
+		<span>{label.slice(1)}</span>
+	</span>
+);
+
 interface ContactCardProps {
 	icon: React.ElementType;
 	title: string;
@@ -60,7 +70,7 @@ const ContactCard = ({
 				{iconContent}
 				<div>
 					<p className="font-display text-lg text-foreground">
-						{title}
+						<CalligraphicLabel label={title} />
 					</p>
 					{revealedContent}
 				</div>
@@ -75,7 +85,7 @@ const ContactCard = ({
 				{iconContent}
 				<div>
 					<p className="font-display text-lg text-foreground">
-						{title}
+						<CalligraphicLabel label={title} />
 					</p>
 					{revealedContent}
 				</div>
@@ -95,7 +105,7 @@ const ContactCard = ({
 				{iconContent}
 				<div>
 					<p className="font-display text-lg text-foreground">
-						{title}
+						<CalligraphicLabel label={title} />
 					</p>
 					<p className="text-muted-foreground flex items-center gap-1.5">
 						<Eye className="w-3 h-3 opacity-60 group-hover:opacity-100 transition-opacity" />
@@ -117,7 +127,9 @@ const ContactCard = ({
 		>
 			{iconContent}
 			<div>
-				<p className="font-display text-lg text-foreground">{title}</p>
+				<p className="font-display text-lg text-foreground">
+					<CalligraphicLabel label={title} />
+				</p>
 				{revealedContent}
 			</div>
 		</a>
@@ -178,7 +190,7 @@ const ContactCards = () => {
 				</div>
 				<div>
 					<p className="font-display text-lg text-foreground">
-						Localisation
+						<CalligraphicLabel label="Localisation" />
 					</p>
 					<p className="text-muted-foreground">
 						49 route de Labastide, 31620 Cépet
@@ -210,7 +222,7 @@ const ContactCards = () => {
 				</div>
 				<div>
 					<p className="font-display text-lg text-foreground">
-						Rendez-vous
+						<CalligraphicLabel label="Rendez-vous" />
 					</p>
 					<p className="text-muted-foreground text-sm">
 						Réserver une séance en ligne
