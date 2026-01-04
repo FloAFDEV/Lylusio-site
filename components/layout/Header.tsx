@@ -153,7 +153,7 @@ export const Header = () => {
 						aria-expanded statique car contrôlé par CSS :hover uniquement.
 					*/}
 					<nav
-						className="hidden lg:flex items-center gap-8"
+						className="hidden xl:flex items-center gap-8"
 						aria-label="Navigation principale"
 					>
 						{mainLinks.map((link) =>
@@ -226,7 +226,7 @@ export const Header = () => {
 					*/}
 					<button
 						onClick={() => setIsMobileOpen((v) => !v)}
-						className="lg:hidden p-2 flex flex-col items-center justify-center gap-1.5 w-12 h-12 relative group bg-card/50 rounded-lg border border-border/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
+						className="xl:hidden p-2 flex flex-col items-center justify-center gap-1.5 w-12 h-12 relative group bg-card/50 rounded-lg border border-border/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
 						aria-label={
 							isMobileOpen ? "Fermer le menu" : "Ouvrir le menu"
 						}
@@ -271,7 +271,7 @@ export const Header = () => {
 				Ajout d'un backdrop-filter pour navigateurs compatibles.
 			*/}
 			<div
-				className={`lg:hidden fixed inset-0 bg-black/30 backdrop-blur-sm z-40 motion-safe:transition-opacity duration-300 ${
+				className={`xl:hidden fixed inset-0 bg-black/30 backdrop-blur-sm z-40 motion-safe:transition-opacity duration-300 ${
 					isMobileOpen
 						? "opacity-100 visible"
 						: "opacity-0 invisible pointer-events-none"
@@ -286,7 +286,7 @@ export const Header = () => {
 			*/}
 			<div
 				id="mobile-menu"
-				className={`lg:hidden fixed top-0 right-0 h-full w-3/4 max-w-xs bg-card shadow-lg border-l border-accent/20 z-50 motion-safe:transition-transform duration-500 ease-out ${
+				className={`xl:hidden fixed top-0 right-0 h-full w-3/4 max-w-xs bg-card shadow-lg border-l border-accent/20 z-50 motion-safe:transition-transform duration-500 ease-out ${
 					isMobileOpen ? "translate-x-0" : "translate-x-full"
 				}`}
 				role="dialog"
