@@ -95,7 +95,11 @@ const Footer = () => {
 		{ href: "/emilie-perez", label: "Qui suis-je" },
 		{ href: "/approche-therapeutique", label: "Mon Approche" },
 		{ href: "/accompagnement-toulouse", label: "Accompagnements" },
-		{ href: "/therapie-holistique", label: "Thérapie Holistique", indent: true },
+		{
+			href: "/therapie-holistique",
+			label: "Thérapie Holistique",
+			indent: true,
+		},
 		{ href: "/reiki-toulouse", label: "Reiki", indent: true },
 		{ href: "/astrologie-toulouse", label: "Astrologie" },
 	];
@@ -122,7 +126,7 @@ const Footer = () => {
 					rel="noopener noreferrer"
 					className="flex items-center gap-2"
 				>
-					<span>Réserver une séance</span>
+					<span className="font-white">Réserver une séance</span>
 					<svg
 						className="w-5 h-5 transform group-hover/cta:translate-x-1 transition-transform duration-500"
 						fill="none"
