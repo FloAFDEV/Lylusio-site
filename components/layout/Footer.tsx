@@ -90,7 +90,7 @@ const Footer = () => {
 		{ icon: Mail, href: "mailto:contact@lylusio.fr", label: "Email" },
 	];
 
-	const navLinks = [
+	const primaryNavLinks = [
 		{ href: "/", label: "Accueil" },
 		{ href: "/emilie-perez", label: "Qui suis-je" },
 		{ href: "/approche-therapeutique", label: "Mon Approche" },
@@ -98,6 +98,10 @@ const Footer = () => {
 		{ href: "/therapie-holistique", label: "Thérapie Holistique", indent: true },
 		{ href: "/reiki-toulouse", label: "Reiki", indent: true },
 		{ href: "/astrologie-toulouse", label: "Astrologie" },
+	];
+
+	const secondaryNavLinks = [
+		{ href: "/faq", label: "FAQ" },
 		{ href: "/ressources", label: "Ressources" },
 		{ href: "/blog", label: "Blog" },
 		{ href: "/contact", label: "Contact" },
@@ -309,10 +313,10 @@ const Footer = () => {
 						</div>
 					</div>
 
-					<div className="lg:col-span-5 flex flex-col md:flex-row md:gap-12 relative">
+					<div className="lg:col-span-6 grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8 relative">
 						<nav
-							className="flex-1 mb-8 md:mb-0"
-							aria-labelledby="footer-navigation-title"
+							className="mb-8 md:mb-0"
+							aria-labelledby="footer-primary-nav-title"
 						>
 							<button
 								onClick={() => setNavOpen(!navOpen)}
@@ -320,7 +324,7 @@ const Footer = () => {
 								aria-expanded={navOpen}
 							>
 								<h4
-									id="footer-navigation-title"
+									id="footer-primary-nav-title"
 									className="font-calligraphic text-xl md:text-2xl font-bold text-gold-light flex items-center mb-1"
 								>
 									<TitleIconSpacer /> Navigation
@@ -339,7 +343,7 @@ const Footer = () => {
 										: "max-h-0 md:max-h-none opacity-0 md:opacity-100"
 								}`}
 							>
-								{navLinks.map((link) => (
+								{primaryNavLinks.map((link) => (
 									<li key={link.href}>
 										<button
 											onClick={() =>
@@ -362,7 +366,39 @@ const Footer = () => {
 							</ul>
 						</nav>
 
-						<div className="flex-1">
+						<nav
+							className="mb-8 md:mb-0"
+							aria-labelledby="footer-secondary-nav-title"
+						>
+							<h4
+								id="footer-secondary-nav-title"
+								className="font-calligraphic text-xl md:text-2xl font-bold text-gold-light flex items-center mb-1 md:cursor-default"
+							>
+								<TitleIconSpacer /> Ressources
+							</h4>
+							<ul className="space-y-3 md:space-y-3.5 mt-4 md:mt-6">
+								{secondaryNavLinks.map((link) => (
+									<li key={link.href}>
+										<button
+											onClick={() =>
+												handleNavigation(link.href)
+											}
+											className="text-left text-primary-foreground/70 hover:text-primary-foreground transition-all duration-300 text-sm md:text-base relative group inline-flex items-center gap-2.5"
+										>
+											<span
+												className="w-1.5 h-1.5 rounded-full bg-gold/60 group-hover:bg-gold transition-all duration-300"
+												aria-hidden="true"
+											/>
+											<span className="group-hover:translate-x-1.5 transition-transform duration-300">
+												{link.label}
+											</span>
+										</button>
+									</li>
+								))}
+							</ul>
+						</nav>
+
+						<div>
 							<h4 className="font-calligraphic text-xl md:text-2xl font-bold text-gold-light flex items-center mb-1">
 								<TitleIconSpacer /> Contact
 							</h4>
@@ -489,7 +525,7 @@ const Footer = () => {
 						</div>
 					</div>
 
-					<div className="lg:col-span-4 mt-8 lg:mt-0">
+					<div className="lg:col-span-3 mt-8 lg:mt-0">
 						<h4 className="font-calligraphic text-xl md:text-2xl font-bold mb-5 md:mb-6 text-gold-light flex items-center">
 							<TitleIconSpacer /> Localisation
 						</h4>
