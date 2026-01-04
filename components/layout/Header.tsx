@@ -5,7 +5,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { ChevronDown } from "lucide-react";
-// import logo from "@/assets/logo-lylusio.webp"; // Now using /assets/logo-lylusio.webp
 
 /* =========================
    MenuLabel
@@ -21,12 +20,6 @@ const MenuLabel = ({ label }: { label: string }) => (
 
 /* =========================
    Navigation data
-
-   Structure:
-   - Astrologie: Lien direct autonome (PAS de sous-menu)
-   - Accompagnements: Sous-menu contenant UNIQUEMENT Thérapie Holistique + Reiki
-   - Pas de duplication, pas de doublon
-   - Ordre: Thérapie Holistique en premier (approche globale), puis Reiki (technique spécifique)
 ========================= */
 const accompagnementsSubItems = [
 	{ label: "Thérapie Holistique", href: "/therapie-holistique" },
@@ -80,7 +73,6 @@ export const Header = () => {
 		if (isMobileOpen) {
 			document.body.style.overflow = "hidden";
 			document.body.classList.add("menu-open");
-			// Add blur to main content and footer
 			if (mainContent) {
 				mainContent.style.filter = "blur(8px)";
 				mainContent.style.transition = "filter 300ms ease-out";
@@ -92,7 +84,6 @@ export const Header = () => {
 		} else {
 			document.body.style.overflow = "unset";
 			document.body.classList.remove("menu-open");
-			// Remove blur
 			if (mainContent) {
 				mainContent.style.filter = "none";
 			}
@@ -131,7 +122,7 @@ export const Header = () => {
 						href="/"
 						onClick={handleNavClick}
 						className="relative z-50 group focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 rounded-lg"
-						>
+					>
 						<div
 							className={`relative transition-all duration-300 ${
 								isScrolled ? "h-11 w-[132px]" : "h-14 w-[168px]"
@@ -148,10 +139,7 @@ export const Header = () => {
 						</div>
 					</Link>
 
-					{/* ================= Desktop Navigation =================
-						Pure CSS hover pour performance optimale.
-						aria-expanded statique car contrôlé par CSS :hover uniquement.
-					*/}
+					{/* ================= Desktop Navigation ================= */}
 					<nav
 						className="hidden xl:flex items-center gap-8"
 						aria-label="Navigation principale"
@@ -162,18 +150,15 @@ export const Header = () => {
 									key={link.label}
 									className="relative flex items-center gap-1 group"
 								>
-									{/* Lien principal du sous-menu */}
 									<Link
 										href={link.href}
 										onClick={handleNavClick}
 										className="font-medium text-[15px] text-foreground/80 hover:text-foreground motion-safe:transition-colors duration-300 relative group/link focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 rounded-md px-1"
 									>
 										<MenuLabel label={link.label} />
-										{/* Gradient underline avec glow */}
 										<span className="absolute -bottom-1 left-0 w-0 h-[3px] bg-gradient-to-r from-accent via-gold to-accent opacity-0 group-hover/link:w-full group-hover/link:opacity-100 motion-safe:transition-all duration-300 shadow-[0_0_8px_hsl(var(--gold)/0.6)]" />
 									</Link>
 
-									{/* Icône dropdown (pure CSS) */}
 									<button
 										type="button"
 										aria-label={`Voir les options de ${link.label}`}
@@ -187,15 +172,15 @@ export const Header = () => {
 										/>
 									</button>
 
-									{/* Dropdown menu - Pure CSS hover (performance maximale) */}
-									<div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 w-48 opacity-0 invisible group-hover:opacity-100 group-hover:visible motion-safe:transition-all duration-300 pointer-events-none group-hover:pointer-events-auto">
+									{/* Dropdown menu - Smooth animations avec translateY + scale */}
+									<div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 w-48 opacity-0 invisible translate-y-2 scale-[0.98] group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 group-hover:scale-100 group-focus-within:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:scale-100 motion-safe:transition-all duration-200 ease-out pointer-events-none group-hover:pointer-events-auto group-focus-within:pointer-events-auto">
 										<div className="bg-card/95 backdrop-blur-sm rounded-xl shadow-lg border border-accent/20 overflow-hidden">
 											{link.subItems?.map((item) => (
 												<Link
 													key={item.href}
 													href={item.href}
 													onClick={handleNavClick}
-													className="block px-4 py-3 text-[16px] font-medium text-foreground/90 hover:text-accent hover:bg-accent/5 motion-safe:transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-inset"
+													className="block px-4 py-3 text-[16px] font-medium text-foreground/90 hover:text-accent hover:bg-accent/5 motion-safe:transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-inset"
 												>
 													<MenuLabel
 														label={item.label}
@@ -206,7 +191,6 @@ export const Header = () => {
 									</div>
 								</div>
 							) : (
-								/* Lien direct sans sous-menu */
 								<Link
 									key={link.href}
 									href={link.href}
@@ -214,16 +198,13 @@ export const Header = () => {
 									className="font-medium text-[15px] text-foreground/80 hover:text-foreground motion-safe:transition-colors duration-300 relative group/link focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 rounded-md px-1"
 								>
 									<MenuLabel label={link.label} />
-									{/* Gradient underline avec glow */}
 									<span className="absolute -bottom-1 left-0 w-0 h-[3px] bg-gradient-to-r from-accent via-gold to-accent opacity-0 group-hover/link:w-full group-hover/link:opacity-100 motion-safe:transition-all duration-300 shadow-[0_0_8px_hsl(var(--gold)/0.6)]" />
 								</Link>
 							)
 						)}
 					</nav>
 
-					{/* ================= Mobile Toggle Button =================
-						Hamburger animé avec effet glow au clic.
-					*/}
+					{/* ================= Mobile Toggle Button ================= */}
 					<button
 						onClick={() => setIsMobileOpen((v) => !v)}
 						className="xl:hidden p-2 flex flex-col items-center justify-center gap-1.5 w-12 h-12 relative group bg-card/50 rounded-lg border border-border/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
@@ -233,43 +214,36 @@ export const Header = () => {
 						aria-expanded={isMobileOpen}
 						aria-controls="mobile-menu"
 					>
-						{/* Glow effect when open */}
-						{isMobileOpen && (
-							<span
-								className="absolute inset-0 bg-accent/20 rounded-lg blur-sm ring-2 ring-accent/40 motion-safe:transition-opacity duration-300"
-								aria-hidden="true"
-							/>
-						)}
-						{/* Ligne 1 (devient \ du X) */}
 						<span
-							className={`relative block w-6 h-[3px] motion-safe:transition-all duration-300 ${
+							className={`block h-0.5 w-6 bg-foreground rounded-full motion-safe:transition-all duration-300 ${
 								isMobileOpen
-									? "rotate-45 translate-y-2 bg-accent shadow-[0_0_12px_hsl(var(--accent)/0.8)] scale-110"
-									: "bg-foreground shadow-sm"
+									? "rotate-45 translate-y-2"
+									: "rotate-0"
 							}`}
 						/>
-						{/* Ligne 2 (disparaît) */}
 						<span
-							className={`relative block w-6 h-[3px] bg-foreground shadow-sm motion-safe:transition-all duration-300 ${
-								isMobileOpen ? "opacity-0" : ""
+							className={`block h-0.5 w-6 bg-foreground rounded-full motion-safe:transition-all duration-300 ${
+								isMobileOpen ? "opacity-0 scale-0" : "opacity-100"
 							}`}
 						/>
-						{/* Ligne 3 (devient / du X) */}
 						<span
-							className={`relative block w-6 h-[3px] motion-safe:transition-all duration-300 ${
+							className={`block h-0.5 w-6 bg-foreground rounded-full motion-safe:transition-all duration-300 ${
 								isMobileOpen
-									? "-rotate-45 -translate-y-2 bg-accent shadow-[0_0_12px_hsl(var(--accent)/0.8)] scale-110"
-									: "bg-foreground shadow-sm"
+									? "-rotate-45 -translate-y-2"
+									: "rotate-0"
 							}`}
+						/>
+						<div
+							className={`absolute inset-0 rounded-lg bg-accent/20 opacity-0 group-hover:opacity-100 motion-safe:transition-opacity duration-300 ${
+								isMobileOpen ? "opacity-100" : ""
+							}`}
+							aria-hidden="true"
 						/>
 					</button>
 				</div>
 			</header>
 
-			{/* ================= Mobile Overlay =================
-				Backdrop semi-transparent avec fermeture au clic.
-				Ajout d'un backdrop-filter pour navigateurs compatibles.
-			*/}
+			{/* ================= Mobile Overlay ================= */}
 			<div
 				className={`xl:hidden fixed inset-0 bg-black/30 backdrop-blur-sm z-40 motion-safe:transition-opacity duration-300 ${
 					isMobileOpen
@@ -280,10 +254,7 @@ export const Header = () => {
 				aria-hidden="true"
 			/>
 
-			{/* ================= Mobile Menu =================
-				Slide-in depuis la droite avec animations cascadées.
-				Sous-menus collapsibles avec aria-controls dynamique.
-			*/}
+			{/* ================= Mobile Menu ================= */}
 			<div
 				id="mobile-menu"
 				className={`xl:hidden fixed top-0 right-0 h-full w-3/4 max-w-xs bg-card shadow-lg border-l border-accent/20 z-50 motion-safe:transition-transform duration-500 ease-out ${
@@ -313,7 +284,6 @@ export const Header = () => {
 											: "0ms",
 									}}
 								>
-									{/* Toggle button pour le sous-menu */}
 									<button
 										type="button"
 										onClick={() =>
@@ -336,7 +306,7 @@ export const Header = () => {
 										/>
 									</button>
 
-									{/* Sous-menu collapsible avec animations cascadées */}
+									{/* Sous-menu mobile smooth avec translateY + scale */}
 									<div
 										id={`mobile-submenu-${link.label.toLowerCase().replace(/\s+/g, '-')}`}
 										aria-hidden={!mobileSubmenuOpen}
@@ -360,14 +330,11 @@ export const Header = () => {
 																: 0,
 														transform:
 															mobileSubmenuOpen
-																? "translateY(0)"
-																: "translateY(-8px)",
+																? "translateY(0) scale(1)"
+																: "translateY(-8px) scale(0.98)",
 														transitionDelay:
 															mobileSubmenuOpen
-																? `${
-																		subIndex *
-																		80
-																  }ms`
+																? `${subIndex * 60}ms`
 																: "0ms",
 													}}
 												>
@@ -378,26 +345,13 @@ export const Header = () => {
 											))}
 										</div>
 									</div>
-
-									{/* Lien direct vers la page parent (affichage conditionnel) */}
-									{mobileSubmenuOpen && (
-										<Link
-											href={link.href}
-											onClick={handleNavClick}
-											className="block text-sm text-muted-foreground hover:text-accent py-2 pl-2 motion-safe:transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-md min-h-[44px] flex items-center"
-											aria-label={`Voir toutes les pages de la section ${link.label}`}
-										>
-											→ Voir tous les accompagnements
-										</Link>
-									)}
 								</div>
 							) : (
-								/* Lien direct sans sous-menu */
 								<Link
 									key={link.href}
 									href={link.href}
 									onClick={handleNavClick}
-									className="block font-medium text-foreground/80 hover:text-accent py-3 motion-safe:transition-all duration-500 ease-out min-h-[44px] flex items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+									className="flex items-center font-medium text-foreground/80 hover:text-accent py-3 motion-safe:transition-all duration-300 min-h-[44px] focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 rounded-md"
 									style={{
 										opacity: isMobileOpen ? 1 : 0,
 										transform: isMobileOpen
@@ -413,28 +367,10 @@ export const Header = () => {
 							)
 						)}
 					</div>
-
-					{/* Footer du menu mobile */}
-					<div
-						className="border-t border-border/30 pt-4 motion-safe:transition-all duration-500 ease-out"
-						style={{
-							opacity: isMobileOpen ? 1 : 0,
-							transform: isMobileOpen
-								? "translateY(0)"
-								: "translateY(10px)",
-							transitionDelay: isMobileOpen
-								? `${mainLinks.length * 80 + 200}ms`
-								: "0ms",
-						}}
-					>
-						<p className="text-xs text-muted-foreground text-center leading-relaxed">
-							Consultations en cabinet
-							<br />à Cépet ou en ligne
-						</p>
-					</div>
 				</nav>
 			</div>
 		</>
 	);
 };
+
 export default Header;
