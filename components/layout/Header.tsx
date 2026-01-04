@@ -181,7 +181,7 @@ export const Header = () => {
 										aria-label={`Voir les options de ${link.label}`}
 										aria-expanded={desktopSubmenuOpen}
 										aria-haspopup="true"
-										className="flex items-center gap-1 font-medium text-foreground/80 hover:text-accent motion-safe:transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 rounded-md"
+										className="flex items-center gap-1 font-medium text-foreground/80 hover:text-accent motion-safe:transition-colors duration-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 rounded-md"
 										onClick={() =>
 											setDesktopSubmenuOpen(
 												!desktopSubmenuOpen
@@ -201,7 +201,7 @@ export const Header = () => {
 									>
 										<MenuLabel label={link.label} />
 										<ChevronDown
-											className={`w-4 h-4 motion-safe:transition-transform duration-400 ease-out ${
+											className={`w-4 h-4 motion-safe:transition-transform duration-500 ease-out ${
 												desktopSubmenuOpen
 													? "rotate-180"
 													: ""
@@ -212,7 +212,7 @@ export const Header = () => {
 
 									{/* Dropdown menu - Smooth animations avec translateY + scale + cascade */}
 									<div
-										className={`absolute top-full left-1/2 -translate-x-1/2 pt-3 w-52 motion-safe:transition-all duration-400 ease-out z-50 ${
+										className={`absolute top-full left-1/2 -translate-x-1/2 pt-3 w-52 motion-safe:transition-all duration-500 ease-out z-50 ${
 											desktopSubmenuOpen
 												? "opacity-100 visible translate-y-0 scale-100 pointer-events-auto"
 												: "opacity-0 invisible translate-y-3 scale-95 pointer-events-none"
@@ -225,7 +225,7 @@ export const Header = () => {
 														key={item.href}
 														href={item.href}
 														onClick={handleNavClick}
-														className="block px-5 py-3.5 text-[15px] font-medium text-foreground/85 hover:text-accent hover:bg-accent/8 motion-safe:transition-all duration-350 ease-out focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-inset group/item relative overflow-hidden"
+														className="block px-5 py-3.5 text-[15px] font-medium text-foreground/85 hover:text-accent hover:bg-accent/8 motion-safe:transition-all duration-450 ease-out focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-inset group/item relative overflow-hidden"
 														style={{
 															animation: `fadeInDown 0.4s ease-out ${
 																index * 0.08
@@ -339,10 +339,8 @@ export const Header = () => {
 			{/* ================= Mobile Menu ================= */}
 			<div
 				id="mobile-menu"
-				className={`xl:hidden fixed top-0 right-0 h-full w-3/4 max-w-xs bg-card shadow-lg border-l border-accent/20 z-50 motion-safe:transition-transform duration-500 ${
-					isMobileOpen
-						? "translate-x-0"
-						: "translate-x-full"
+				className={`xl:hidden fixed top-0 right-0 h-full w-3/4 max-w-xs bg-card shadow-lg border-l border-accent/20 z-50 motion-safe:transition-transform duration-700 ${
+					isMobileOpen ? "translate-x-0" : "translate-x-full"
 				}`}
 				role="dialog"
 				aria-label="Menu de navigation mobile"
@@ -357,7 +355,7 @@ export const Header = () => {
 							link.hasSubmenu ? (
 								<div
 									key={link.label}
-									className="motion-safe:transition-all duration-400 ease-out"
+									className="motion-safe:transition-all duration-600 ease-out"
 									style={{
 										opacity: isMobileOpen ? 1 : 0,
 										transform: isMobileOpen
@@ -373,7 +371,7 @@ export const Header = () => {
 										onClick={() =>
 											toggleMobileSubmenu(link.label)
 										}
-										className="w-full flex items-center justify-between font-medium text-foreground/80 hover:text-accent py-3 motion-safe:transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 min-h-[44px]"
+										className="w-full flex items-center justify-between font-medium text-foreground/80 hover:text-accent py-3 motion-safe:transition-colors duration-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 min-h-[44px]"
 										aria-expanded={
 											mobileSubmenuOpen[link.label] ||
 											false
@@ -384,7 +382,7 @@ export const Header = () => {
 									>
 										<MenuLabel label={link.label} />
 										<ChevronDown
-											className={`w-4 h-4 motion-safe:transition-transform duration-400 ease-in-out ${
+											className={`w-4 h-4 motion-safe:transition-transform duration-500 ease-in-out ${
 												mobileSubmenuOpen[link.label]
 													? "rotate-180"
 													: ""
@@ -401,7 +399,7 @@ export const Header = () => {
 										aria-hidden={
 											!mobileSubmenuOpen[link.label]
 										}
-										className={`overflow-hidden motion-safe:transition-all duration-450 ease-in-out ${
+										className={`overflow-hidden motion-safe:transition-all duration-550 ease-in-out ${
 											mobileSubmenuOpen[link.label]
 												? "max-h-52 opacity-100"
 												: "max-h-0 opacity-0"
@@ -414,7 +412,7 @@ export const Header = () => {
 														key={item.href}
 														href={item.href}
 														onClick={handleNavClick}
-														className="block font-medium text-sm text-foreground/80 hover:text-accent hover:bg-accent/5 rounded-lg px-3 py-2 motion-safe:transition-all duration-350 ease-out min-h-[44px] flex items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+														className="block font-medium text-sm text-foreground/80 hover:text-accent hover:bg-accent/5 rounded-lg px-3 py-2 motion-safe:transition-all duration-450 ease-out min-h-[44px] flex items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
 														style={{
 															opacity:
 																mobileSubmenuOpen[
@@ -451,7 +449,7 @@ export const Header = () => {
 												<Link
 													href={link.href}
 													onClick={handleNavClick}
-													className="block text-sm text-muted-foreground hover:text-accent py-2 pl-2 motion-safe:transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-lg"
+													className="block text-sm text-muted-foreground hover:text-accent py-2 pl-2 motion-safe:transition-colors duration-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-lg"
 													style={{
 														opacity:
 															mobileSubmenuOpen[
@@ -491,7 +489,7 @@ export const Header = () => {
 									key={link.href}
 									href={link.href}
 									onClick={handleNavClick}
-									className="flex items-center font-medium text-foreground/80 hover:text-accent py-3 motion-safe:transition-all duration-400 ease-out min-h-[44px] focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 rounded-md"
+									className="flex items-center font-medium text-foreground/80 hover:text-accent py-3 motion-safe:transition-all duration-500 ease-out min-h-[44px] focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 rounded-md"
 									style={{
 										opacity: isMobileOpen ? 1 : 0,
 										transform: isMobileOpen
