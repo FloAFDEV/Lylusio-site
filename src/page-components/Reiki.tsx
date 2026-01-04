@@ -299,7 +299,10 @@ const Reiki = () => {
 								<div className="text-center mb-12">
 									<p className="section-label">Origines</p>
 									<h2 className="font-display text-2xl sm:text-3xl md:text-4xl text-foreground">
-										Petite histoire du Reiki...
+										<span className="font-calligraphic text-accent text-3xl sm:text-4xl md:text-5xl inline-block align-baseline">
+											P
+										</span>
+										etite histoire du Reiki...
 									</h2>
 								</div>
 
@@ -462,7 +465,10 @@ const Reiki = () => {
 												<Zap className="w-10 h-10 text-gold" />
 											</div>
 											<h2 className="font-display text-2xl sm:text-3xl md:text-4xl text-foreground">
-												C'est quoi le Reiki ?
+												<span className="font-calligraphic text-accent text-3xl sm:text-4xl md:text-5xl inline-block align-baseline">
+													C
+												</span>
+												'est quoi le Reiki ?
 											</h2>
 										</div>
 
@@ -578,7 +584,10 @@ const Reiki = () => {
 							<div className="text-center mb-12">
 								<p className="section-label">Bienfaits</p>
 								<h2 className="font-display text-2xl sm:text-3xl md:text-4xl text-foreground">
-									Les bienfaits du Reiki
+									<span className="font-calligraphic text-accent text-3xl sm:text-4xl md:text-5xl inline-block align-baseline">
+										L
+									</span>
+									es bienfaits du Reiki
 								</h2>
 							</div>
 
