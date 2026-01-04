@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
@@ -47,7 +47,8 @@ const mainLinks = [
 export const Header = () => {
 	const [isScrolled, setIsScrolled] = useState(false);
 	const [isMobileOpen, setIsMobileOpen] = useState(false);
-	const [mobileSubmenuOpen, setMobileSubmenuOpen] = useState(false);
+	const [mobileSubmenuOpen, setMobileSubmenuOpen] = useState<Record<string, boolean>>({});
+	const [desktopSubmenuOpen, setDesktopSubmenuOpen] = useState(false);
 
 	const pathname = usePathname();
 
@@ -61,7 +62,8 @@ export const Header = () => {
 	/* Close menus on route change */
 	useEffect(() => {
 		setIsMobileOpen(false);
-		setMobileSubmenuOpen(false);
+		setMobileSubmenuOpen({});
+		setDesktopSubmenuOpen(false);
 	}, [pathname]);
 
 	/* Block scroll and add blur when mobile menu is open */
@@ -110,8 +112,16 @@ export const Header = () => {
 
 	const handleNavClick = () => {
 		setIsMobileOpen(false);
-		setMobileSubmenuOpen(false);
+		setMobileSubmenuOpen({});
+		setDesktopSubmenuOpen(false);
 		window.scrollTo({ top: 0, behavior: "instant" });
+	};
+
+	const toggleMobileSubmenu = (label: string) => {
+		setMobileSubmenuOpen((prev) => ({
+			...prev,
+			[label]: !prev[label],
+		}));
 	};
 
 	return (
@@ -157,31 +167,37 @@ export const Header = () => {
 								<div
 									key={link.label}
 									className="relative flex items-center gap-1 group"
+									onMouseEnter={() => setDesktopSubmenuOpen(true)}
+									onMouseLeave={() => setDesktopSubmenuOpen(false)}
 								>
-									<Link
-										href={link.href}
-										onClick={handleNavClick}
-										className="font-medium text-[15px] text-foreground/80 hover:text-foreground motion-safe:transition-colors duration-300 relative group/link focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 rounded-md px-1"
-									>
-										<MenuLabel label={link.label} />
-										<span className="absolute -bottom-1 left-0 w-0 h-[3px] bg-gradient-to-r from-accent via-gold to-accent opacity-0 group-hover/link:w-full group-hover/link:opacity-100 motion-safe:transition-all duration-300 shadow-[0_0_8px_hsl(var(--gold)/0.6)]" />
-									</Link>
-
 									<button
 										type="button"
 										aria-label={`Voir les options de ${link.label}`}
-										aria-expanded="false"
+										aria-expanded={desktopSubmenuOpen}
 										aria-haspopup="true"
 										className="p-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 rounded-md motion-safe:transition-transform duration-300 group-hover:scale-110"
+										onClick={() => setDesktopSubmenuOpen(!desktopSubmenuOpen)}
+										onKeyDown={(e) => {
+											if (e.key === 'Enter' || e.key === ' ') {
+												e.preventDefault();
+												setDesktopSubmenuOpen(!desktopSubmenuOpen);
+											}
+										}}
 									>
 										<ChevronDown
-											className="w-4 h-4 text-foreground/60 motion-safe:transition-all duration-400 ease-out group-hover:rotate-180 group-hover:text-accent"
+											className={`w-4 h-4 text-foreground/60 motion-safe:transition-all duration-400 ease-out group-hover:text-accent ${
+												desktopSubmenuOpen ? "rotate-180" : ""
+											}`}
 											aria-hidden="true"
 										/>
 									</button>
 
 									{/* Dropdown menu - Smooth animations avec translateY + scale + cascade */}
-									<div className="absolute top-full left-1/2 -translate-x-1/2 pt-3 w-52 opacity-0 invisible translate-y-3 scale-95 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 group-hover:scale-100 group-focus-within:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:scale-100 motion-safe:transition-all duration-400 ease-out pointer-events-none group-hover:pointer-events-auto group-focus-within:pointer-events-auto z-50">
+									<div className={`absolute top-full left-1/2 -translate-x-1/2 pt-3 w-52 motion-safe:transition-all duration-400 ease-out z-50 ${
+										desktopSubmenuOpen
+											? "opacity-100 visible translate-y-0 scale-100 pointer-events-auto"
+											: "opacity-0 invisible translate-y-3 scale-95 pointer-events-none"
+									}`}>
 										<div className="bg-card/70 backdrop-blur-lg rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] border border-accent/20 overflow-hidden ring-1 ring-black/5">
 											{link.subItems?.map(
 												(item, index) => (
@@ -332,13 +348,9 @@ export const Header = () => {
 								>
 									<button
 										type="button"
-										onClick={() =>
-											setMobileSubmenuOpen(
-												!mobileSubmenuOpen
-											)
-										}
+										onClick={() => toggleMobileSubmenu(link.label)}
 										className="w-full flex items-center justify-between font-medium text-foreground/80 hover:text-accent py-3 motion-safe:transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 min-h-[44px]"
-										aria-expanded={mobileSubmenuOpen}
+										aria-expanded={mobileSubmenuOpen[link.label] || false}
 										aria-controls={`mobile-submenu-${link.label
 											.toLowerCase()
 											.replace(/\s+/g, "-")}`}
@@ -346,7 +358,7 @@ export const Header = () => {
 										<MenuLabel label={link.label} />
 										<ChevronDown
 											className={`w-4 h-4 motion-safe:transition-transform duration-400 ease-in-out ${
-												mobileSubmenuOpen
+												mobileSubmenuOpen[link.label]
 													? "rotate-180"
 													: ""
 											}`}
@@ -359,9 +371,9 @@ export const Header = () => {
 										id={`mobile-submenu-${link.label
 											.toLowerCase()
 											.replace(/\s+/g, "-")}`}
-										aria-hidden={!mobileSubmenuOpen}
+										aria-hidden={!mobileSubmenuOpen[link.label]}
 										className={`overflow-hidden motion-safe:transition-all duration-450 ease-in-out ${
-											mobileSubmenuOpen
+											mobileSubmenuOpen[link.label]
 												? "max-h-52 opacity-100"
 												: "max-h-0 opacity-0"
 										}`}
@@ -376,15 +388,15 @@ export const Header = () => {
 														className="block font-medium text-sm text-foreground/80 hover:text-accent hover:bg-accent/5 rounded-lg px-3 py-2 motion-safe:transition-all duration-350 ease-out min-h-[44px] flex items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
 														style={{
 															opacity:
-																mobileSubmenuOpen
+																mobileSubmenuOpen[link.label]
 																	? 1
 																	: 0,
 															transform:
-																mobileSubmenuOpen
+																mobileSubmenuOpen[link.label]
 																	? "translateY(0) scale(1)"
 																	: "translateY(-8px) scale(0.98)",
 															transitionDelay:
-																mobileSubmenuOpen
+																mobileSubmenuOpen[link.label]
 																	? `${
 																			subIndex *
 																			120
@@ -400,22 +412,22 @@ export const Header = () => {
 											)}
 
 											{/* Lien direct vers la page Accompagnements */}
-											{mobileSubmenuOpen && (
+											{mobileSubmenuOpen[link.label] && (
 												<Link
 													href={link.href}
 													onClick={handleNavClick}
 													className="block text-sm text-muted-foreground hover:text-accent py-2 pl-2 motion-safe:transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-lg"
 													style={{
 														opacity:
-															mobileSubmenuOpen
+															mobileSubmenuOpen[link.label]
 																? 1
 																: 0,
 														transform:
-															mobileSubmenuOpen
+															mobileSubmenuOpen[link.label]
 																? "translateY(0)"
 																: "translateY(-8px)",
 														transitionDelay:
-															mobileSubmenuOpen
+															mobileSubmenuOpen[link.label]
 																? `${
 																		(link
 																			.subItems
