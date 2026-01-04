@@ -23,7 +23,7 @@ const routeConfig: Record<
 	"/astrologie-toulouse": {
 		name: "Astrologie",
 		seoName: "Astrologie Toulouse",
-		parent: "/accompagnement-toulouse",
+		// Pas de parent - page autonome
 	},
 	"/reiki-toulouse": {
 		name: "Reiki",
@@ -36,6 +36,7 @@ const routeConfig: Record<
 		parent: "/accompagnement-toulouse",
 	},
 	"/emilie-perez": { name: "Qui suis-je", seoName: "Émilie Perez" },
+	"/ressources": { name: "Ressources", seoName: "Ressources" },
 	"/blog": { name: "Blog", seoName: "Blog Astrologie & Bien-être" },
 	"/contact": { name: "Contact", seoName: "Contact" },
 	"/faq": { name: "FAQ", seoName: "Questions Fréquentes" },
