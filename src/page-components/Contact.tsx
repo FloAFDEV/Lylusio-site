@@ -252,7 +252,11 @@ const Contact = () => {
 									id="contact-title"
 									className="text-foreground mb-6 first-letter-fancy-lg"
 								>
-									Contactez Émilie Perez - Astrologue Toulouse
+									{" "}
+									<span className="font-calligraphic text-accent inline-block align-baseline text-4xl sm:text-5xl md:text-6xl">
+										C
+									</span>
+									ontactez Émilie Perez - Astrologue Toulouse
 								</h1>
 								<p className="text-muted-foreground text-base sm:text-lg leading-relaxed max-w-xl mx-auto">
 									Une question sur l'astrologie, le Reiki ou
