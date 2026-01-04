@@ -69,6 +69,7 @@ export const Header = () => {
 	useEffect(() => {
 		const mainContent = document.getElementById("main-content");
 		const footer = document.querySelector("footer");
+		const header = document.querySelector("header");
 
 		if (isMobileOpen) {
 			document.body.style.overflow = "hidden";
@@ -81,6 +82,10 @@ export const Header = () => {
 				footer.style.filter = "blur(8px)";
 				footer.style.transition = "filter 300ms ease-out";
 			}
+			if (header) {
+				header.style.filter = "blur(8px)";
+				header.style.transition = "filter 300ms ease-out";
+			}
 		} else {
 			document.body.style.overflow = "unset";
 			document.body.classList.remove("menu-open");
@@ -90,6 +95,9 @@ export const Header = () => {
 			if (footer) {
 				footer.style.filter = "none";
 			}
+			if (header) {
+				header.style.filter = "none";
+			}
 		}
 
 		return () => {
@@ -97,6 +105,7 @@ export const Header = () => {
 			document.body.classList.remove("menu-open");
 			if (mainContent) mainContent.style.filter = "none";
 			if (footer) footer.style.filter = "none";
+			if (header) header.style.filter = "none";
 		};
 	}, [isMobileOpen]);
 
@@ -257,7 +266,7 @@ export const Header = () => {
 			{/* ================= Mobile Menu ================= */}
 			<div
 				id="mobile-menu"
-				className={`xl:hidden fixed top-0 right-0 h-full w-3/4 max-w-xs bg-card shadow-lg border-l border-accent/20 z-50 motion-safe:transition-transform duration-700 ease-out ${
+				className={`xl:hidden fixed top-0 right-0 h-full w-3/4 max-w-xs bg-card shadow-lg border-l border-accent/20 z-50 motion-safe:transition-transform duration-800 ease-bounce-smooth ${
 					isMobileOpen ? "translate-x-0" : "translate-x-full"
 				}`}
 				role="dialog"
@@ -273,14 +282,14 @@ export const Header = () => {
 							link.hasSubmenu ? (
 								<div
 									key={link.label}
-									className="motion-safe:transition-all duration-500 ease-out"
+									className="motion-safe:transition-all duration-600 ease-smooth"
 									style={{
 										opacity: isMobileOpen ? 1 : 0,
 										transform: isMobileOpen
 											? "translateX(0)"
 											: "translateX(20px)",
 										transitionDelay: isMobileOpen
-											? `${index * 80}ms`
+											? `${index * 100}ms`
 											: "0ms",
 									}}
 								>
@@ -297,7 +306,7 @@ export const Header = () => {
 									>
 										<MenuLabel label={link.label} />
 										<ChevronDown
-											className={`w-4 h-4 motion-safe:transition-transform duration-300 ${
+											className={`w-4 h-4 motion-safe:transition-transform duration-400 ease-smooth ${
 												mobileSubmenuOpen
 													? "rotate-180"
 													: ""
@@ -310,7 +319,7 @@ export const Header = () => {
 									<div
 										id={`mobile-submenu-${link.label.toLowerCase().replace(/\s+/g, '-')}`}
 										aria-hidden={!mobileSubmenuOpen}
-										className={`overflow-hidden motion-safe:transition-all duration-400 ease-out ${
+										className={`overflow-hidden motion-safe:transition-all duration-500 ease-smooth ${
 											mobileSubmenuOpen
 												? "max-h-40 opacity-100"
 												: "max-h-0 opacity-0"
@@ -322,7 +331,7 @@ export const Header = () => {
 													key={item.href}
 													href={item.href}
 													onClick={handleNavClick}
-													className="block font-medium text-sm text-foreground/80 hover:text-accent hover:bg-accent/5 rounded-lg px-3 py-2 motion-safe:transition-all duration-400 min-h-[44px] flex items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+													className="block font-medium text-sm text-foreground/80 hover:text-accent hover:bg-accent/5 rounded-lg px-3 py-2 motion-safe:transition-all duration-450 ease-smooth min-h-[44px] flex items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
 													style={{
 														opacity:
 															mobileSubmenuOpen
@@ -334,7 +343,7 @@ export const Header = () => {
 																: "translateY(-8px) scale(0.98)",
 														transitionDelay:
 															mobileSubmenuOpen
-																? `${subIndex * 90}ms`
+																? `${subIndex * 120}ms`
 																: "0ms",
 													}}
 												>
@@ -351,14 +360,14 @@ export const Header = () => {
 									key={link.href}
 									href={link.href}
 									onClick={handleNavClick}
-									className="flex items-center font-medium text-foreground/80 hover:text-accent py-3 motion-safe:transition-all duration-300 min-h-[44px] focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 rounded-md"
+									className="flex items-center font-medium text-foreground/80 hover:text-accent py-3 motion-safe:transition-all duration-600 ease-smooth min-h-[44px] focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 rounded-md"
 									style={{
 										opacity: isMobileOpen ? 1 : 0,
 										transform: isMobileOpen
 											? "translateX(0)"
 											: "translateX(20px)",
 										transitionDelay: isMobileOpen
-											? `${index * 80}ms`
+											? `${index * 100}ms`
 											: "0ms",
 									}}
 								>

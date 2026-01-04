@@ -136,6 +136,14 @@ export default {
 			},
 			transitionDuration: {
 				"400": "400ms",
+				"450": "450ms",
+				"500": "500ms",
+				"600": "600ms",
+				"800": "800ms",
+			},
+			transitionTimingFunction: {
+				"smooth": "cubic-bezier(0.16, 1, 0.3, 1)",
+				"bounce-smooth": "cubic-bezier(0.34, 1.56, 0.64, 1)",
 			},
 			keyframes: {
 				"accordion-down": {
