@@ -15,7 +15,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
-import { Star, Hand, Heart, FileText } from "lucide-react";
+import { Star, Hand, Heart, FileText, Sparkles } from "lucide-react";
 
 // Animated FAQ Category Component
 const AnimatedFAQCategory = ({ category, categoryIndex }: { category: typeof faqCategories[0], categoryIndex: number }) => {
@@ -98,6 +98,53 @@ const faqCategories = [
       {
         question: "Combien de séances de Reiki sont recommandées ?",
         answer: "Cela dépend de vos besoins et objectifs. Une seule séance peut déjà apporter du bienfait, notamment pour la relaxation. Pour un travail plus profond (stress chronique, période de transition...), 3 à 4 séances espacées de 2-3 semaines peuvent être bénéfiques. Nous en discutons ensemble lors de notre première rencontre."
+      }
+    ]
+  },
+  {
+    title: "Thérapie Holistique",
+    icon: Sparkles,
+    questions: [
+      {
+        question: "Qu'est-ce qu'une thérapie holistique ?",
+        answer: "La thérapie holistique est une approche globale qui considère l'être humain dans sa totalité : physique, émotionnel, mental et énergétique. Elle associe différentes pratiques pour vous accompagner vers un bien-être profond et durable."
+      },
+      {
+        question: "Pour qui est-elle recommandée ?",
+        answer: (
+          <div className="space-y-2">
+            <p>La thérapie holistique est particulièrement adaptée si vous souffrez de :</p>
+            <ul className="list-disc pl-5 space-y-1">
+              <li>Anxiété, stress</li>
+              <li>Surcharge émotionnelle</li>
+              <li>Difficulté à lâcher prise sur les événements ou les personnes</li>
+              <li>Troubles du sommeil</li>
+              <li>Épuisement, fatigue, manque d'entrain</li>
+              <li>Manque de confiance en soi, blocages pour avancer ou décider</li>
+              <li>Peurs, phobies</li>
+            </ul>
+          </div>
+        )
+      },
+      {
+        question: "La thérapie holistique remplace-t-elle un suivi médical ?",
+        answer: "Non. Il ne s'agit ni d'un diagnostic ni d'un traitement médical. C'est un accompagnement complémentaire."
+      },
+      {
+        question: "Le Reiki fait-il partie de la thérapie holistique ?",
+        answer: (
+          <span>
+            Oui, le Reiki fait partie des approches énergétiques intégrées. Découvrez-en plus sur la{" "}
+            <Link href="/reiki-toulouse" className="text-accent hover:underline">
+              page Reiki
+            </Link>
+            .
+          </span>
+        )
+      },
+      {
+        question: "Combien de séances sont nécessaires ?",
+        answer: "Chaque parcours est unique. Le nombre de séances dépend des besoins, objectifs et blocages de la personne."
       }
     ]
   },

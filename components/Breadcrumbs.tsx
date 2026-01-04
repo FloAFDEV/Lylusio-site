@@ -30,6 +30,11 @@ const routeConfig: Record<
 		seoName: "Reiki Toulouse",
 		parent: "/accompagnement-toulouse",
 	},
+	"/therapie-holistique": {
+		name: "Thérapie Holistique",
+		seoName: "Thérapie Holistique",
+		parent: "/accompagnement-toulouse",
+	},
 	"/emilie-perez": { name: "Qui suis-je", seoName: "Émilie Perez" },
 	"/blog": { name: "Blog", seoName: "Blog Astrologie & Bien-être" },
 	"/contact": { name: "Contact", seoName: "Contact" },
@@ -153,6 +158,7 @@ const Breadcrumbs = ({ showPlant = true, customTitle }: BreadcrumbsProps) => {
 					: "opacity-0 h-0 pb-0 pointer-events-none overflow-hidden"
 			}`}
 			aria-label="Fil d'Ariane"
+			suppressHydrationWarning
 		>
 			{showPlant && (
 				<GoldenPlantBadge

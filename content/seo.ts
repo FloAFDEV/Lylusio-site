@@ -111,6 +111,25 @@ export const pageMetadata = {
     },
   },
 
+  therapieHolistique: {
+    title: 'Thérapeute Holistique à Toulouse - Thérapie Holistique',
+    description: 'Thérapie holistique à Toulouse : approche globale corps-esprit combinant Reiki, astrologie et accompagnement personnalisé. Émilie Perez, thérapeute holistique certifiée, vous accompagne avec bienveillance.',
+    canonical: `${baseUrl}/therapie-holistique`,
+    keywords: ['thérapie holistique toulouse', 'thérapeute holistique toulouse', 'soins holistiques toulouse', 'accompagnement holistique', 'thérapie énergétique holistique', 'approche holistique corps-esprit'],
+    openGraph: {
+      url: `${baseUrl}/therapie-holistique`,
+      title: 'Thérapeute Holistique à Toulouse - Thérapie Holistique',
+      description: 'Approche globale corps-esprit combinant Reiki, astrologie et accompagnement personnalisé pour retrouver équilibre et harmonie',
+      images: [{ url: '/assets/golden-mandala-holistic.webp', width: 1200, height: 630 }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: 'Thérapeute Holistique à Toulouse - Thérapie Holistique',
+      description: 'Approche globale corps-esprit combinant Reiki, astrologie et accompagnement personnalisé pour retrouver équilibre et harmonie',
+      images: ['/assets/golden-mandala-holistic.webp'],
+    },
+  },
+
   approche: {
     title: 'Mon Approche Thérapeutique - Astrologie & Reiki Holistique',
     description: 'Découvrez mon approche holistique combinant astrologie psychologique et Reiki pour un accompagnement global et bienveillant.',

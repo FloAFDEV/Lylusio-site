@@ -22,8 +22,14 @@ const MenuLabel = ({ label }: { label: string }) => (
 /* =========================
    Navigation data
 ========================= */
-const subItems = [
+const accompagnementsSubItems = [
 	{ label: "Astrologie", href: "/astrologie-toulouse" },
+	{ label: "Reiki", href: "/reiki-toulouse" },
+	{ label: "Thérapie Holistique", href: "/therapie-holistique" },
+];
+
+const holistiqueSubItems = [
+	{ label: "Thérapie Holistique", href: "/therapie-holistique" },
 	{ label: "Reiki", href: "/reiki-toulouse" },
 ];
 
@@ -34,8 +40,15 @@ const mainLinks = [
 		label: "Accompagnements",
 		href: "/accompagnement-toulouse",
 		hasSubmenu: true,
+		subItems: accompagnementsSubItems,
 	},
-	{ label: "Qui suis-je", href: "/emilie-perez" },
+	{ label: "Astrologie", href: "/astrologie-toulouse" },
+	{
+		label: "Holistique",
+		href: "/therapie-holistique",
+		hasSubmenu: true,
+		subItems: holistiqueSubItems,
+	},
 	{ label: "Ressources", href: "/ressources" },
 	{ label: "Blog", href: "/blog" },
 	{ label: "Contact", href: "/contact" },
@@ -46,11 +59,9 @@ const mainLinks = [
 ========================= */
 export const Header = () => {
 	const [isScrolled, setIsScrolled] = useState(false);
-	const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 	const [isMobileOpen, setIsMobileOpen] = useState(false);
 	const [mobileSubmenuOpen, setMobileSubmenuOpen] = useState(false);
 
-	const dropdownRef = useRef<HTMLDivElement>(null);
 	const pathname = usePathname();
 
 	/* Scroll state */
@@ -60,25 +71,9 @@ export const Header = () => {
 		return () => window.removeEventListener("scroll", handleScroll);
 	}, []);
 
-	/* Close dropdown on outside click */
-	useEffect(() => {
-		const handleClickOutside = (event: MouseEvent) => {
-			if (
-				dropdownRef.current &&
-				!dropdownRef.current.contains(event.target as Node)
-			) {
-				setIsDropdownOpen(false);
-			}
-		};
-		document.addEventListener("mousedown", handleClickOutside);
-		return () =>
-			document.removeEventListener("mousedown", handleClickOutside);
-	}, []);
-
 	/* Close menus on route change */
 	useEffect(() => {
 		setIsMobileOpen(false);
-		setIsDropdownOpen(false);
 		setMobileSubmenuOpen(false);
 	}, [pathname]);
 
@@ -100,7 +95,6 @@ export const Header = () => {
 
 	const handleNavClick = () => {
 		setIsMobileOpen(false);
-		setIsDropdownOpen(false);
 		setMobileSubmenuOpen(false);
 		window.scrollTo({ top: 0, behavior: "instant" });
 	};
@@ -133,7 +127,6 @@ export const Header = () => {
 								fill
 								className="object-contain group-hover:scale-105 transition-transform duration-300"
 								priority
-								quality={75}
 							/>
 						</div>
 					</Link>
@@ -147,12 +140,7 @@ export const Header = () => {
 							link.hasSubmenu ? (
 								<div
 									key={link.label}
-									ref={dropdownRef}
-									className="relative flex items-center gap-1"
-									onMouseEnter={() => setIsDropdownOpen(true)}
-									onMouseLeave={() =>
-										setIsDropdownOpen(false)
-									}
+									className="relative flex items-center gap-1 group"
 								>
 									{/* ✅ NAVIGATION */}
 									<Link
@@ -167,56 +155,24 @@ export const Header = () => {
 									{/* Dropdown toggle */}
 									<button
 										type="button"
-										aria-label={
-											isDropdownOpen
-												? "Fermer le sous-menu"
-												: "Ouvrir le sous-menu"
-										}
-										aria-expanded={isDropdownOpen}
+										aria-label="Voir le sous-menu"
 										className="p-1"
 									>
 										<ChevronDown
-											className={`w-4 h-4 transition-transform duration-300 ${
-												isDropdownOpen
-													? "rotate-180"
-													: ""
-											}`}
+											className="w-4 h-4 transition-transform duration-300 group-hover:rotate-180"
 											aria-hidden="true"
 										/>
 									</button>
 
-									{/* Dropdown */}
-									<div
-										className={`absolute top-full left-1/2 -translate-x-1/2 pt-2 w-48 transition-all duration-300 ${
-											isDropdownOpen
-												? "opacity-100 visible translate-y-0 scale-100"
-												: "opacity-0 invisible -translate-y-3 scale-95 pointer-events-none"
-										}`}
-									>
+									{/* Dropdown - Pure CSS hover */}
+									<div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 w-48 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 pointer-events-none group-hover:pointer-events-auto">
 										<div className="bg-card/95 rounded-xl shadow-md border border-accent/20 overflow-hidden">
-											{subItems.map((item, idx) => (
+											{link.subItems?.map((item) => (
 												<Link
 													key={item.href}
 													href={item.href}
 													onClick={handleNavClick}
 													className="block px-4 py-3 text-[16px] font-medium text-foreground/90 hover:text-accent hover:bg-accent/5 transition-all duration-300"
-													style={{
-														opacity: isDropdownOpen
-															? 1
-															: 0,
-														transform:
-															isDropdownOpen
-																? "translateX(0)"
-																: "translateX(-8px)",
-														transitionDelay:
-															isDropdownOpen
-																? `${
-																		idx *
-																			50 +
-																		100
-																  }ms`
-																: "0ms",
-													}}
 												>
 													<MenuLabel
 														label={item.label}
@@ -309,14 +265,22 @@ export const Header = () => {
 									className="transition-all duration-500 ease-out"
 									style={{
 										opacity: isMobileOpen ? 1 : 0,
-										transform: isMobileOpen ? "translateX(0)" : "translateX(20px)",
-										transitionDelay: isMobileOpen ? `${index * 80}ms` : "0ms",
+										transform: isMobileOpen
+											? "translateX(0)"
+											: "translateX(20px)",
+										transitionDelay: isMobileOpen
+											? `${index * 80}ms`
+											: "0ms",
 									}}
 								>
 									{/* Bouton toggle pour le sous-menu */}
 									<button
 										type="button"
-										onClick={() => setMobileSubmenuOpen(!mobileSubmenuOpen)}
+										onClick={() =>
+											setMobileSubmenuOpen(
+												!mobileSubmenuOpen
+											)
+										}
 										className="w-full flex items-center justify-between font-medium text-foreground/80 hover:text-accent py-3 transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 min-h-[44px]"
 										aria-expanded={mobileSubmenuOpen}
 										aria-controls="mobile-submenu-accompagnements"
@@ -324,7 +288,9 @@ export const Header = () => {
 										<MenuLabel label={link.label} />
 										<ChevronDown
 											className={`w-4 h-4 transition-transform duration-300 ${
-												mobileSubmenuOpen ? 'rotate-180' : ''
+												mobileSubmenuOpen
+													? "rotate-180"
+													: ""
 											}`}
 											aria-hidden="true"
 										/>
@@ -336,24 +302,38 @@ export const Header = () => {
 										aria-hidden={!mobileSubmenuOpen}
 										className={`overflow-hidden transition-all duration-300 ease-out ${
 											mobileSubmenuOpen
-												? 'max-h-40 opacity-100'
-												: 'max-h-0 opacity-0'
+												? "max-h-40 opacity-100"
+												: "max-h-0 opacity-0"
 										}`}
 									>
 										<div className="pl-4 py-2 space-y-1 border-l-2 border-accent/30 ml-2">
-											{subItems.map((item, subIndex) => (
+											{link.subItems?.map((item, subIndex) => (
 												<Link
 													key={item.href}
 													href={item.href}
 													onClick={handleNavClick}
 													className="block font-medium text-sm text-foreground/80 hover:text-accent hover:bg-accent/5 rounded-lg px-3 py-2 transition-all duration-300 min-h-[44px] flex items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
 													style={{
-														opacity: mobileSubmenuOpen ? 1 : 0,
-														transform: mobileSubmenuOpen ? 'translateY(0)' : 'translateY(-8px)',
-														transitionDelay: mobileSubmenuOpen ? `${subIndex * 80}ms` : '0ms',
+														opacity:
+															mobileSubmenuOpen
+																? 1
+																: 0,
+														transform:
+															mobileSubmenuOpen
+																? "translateY(0)"
+																: "translateY(-8px)",
+														transitionDelay:
+															mobileSubmenuOpen
+																? `${
+																		subIndex *
+																		80
+																  }ms`
+																: "0ms",
 													}}
 												>
-													<MenuLabel label={item.label} />
+													<MenuLabel
+														label={item.label}
+													/>
 												</Link>
 											))}
 										</div>
@@ -378,8 +358,12 @@ export const Header = () => {
 									className="block font-medium text-foreground/80 hover:text-accent py-3 transition-all duration-500 ease-out min-h-[44px] flex items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
 									style={{
 										opacity: isMobileOpen ? 1 : 0,
-										transform: isMobileOpen ? "translateX(0)" : "translateX(20px)",
-										transitionDelay: isMobileOpen ? `${index * 80}ms` : "0ms",
+										transform: isMobileOpen
+											? "translateX(0)"
+											: "translateX(20px)",
+										transitionDelay: isMobileOpen
+											? `${index * 80}ms`
+											: "0ms",
 									}}
 								>
 									<MenuLabel label={link.label} />
@@ -393,12 +377,17 @@ export const Header = () => {
 						className="border-t border-border/30 pt-4 transition-all duration-500 ease-out"
 						style={{
 							opacity: isMobileOpen ? 1 : 0,
-							transform: isMobileOpen ? "translateY(0)" : "translateY(10px)",
-							transitionDelay: isMobileOpen ? `${mainLinks.length * 80 + 200}ms` : "0ms",
+							transform: isMobileOpen
+								? "translateY(0)"
+								: "translateY(10px)",
+							transitionDelay: isMobileOpen
+								? `${mainLinks.length * 80 + 200}ms`
+								: "0ms",
 						}}
 					>
 						<p className="text-xs text-muted-foreground text-center leading-relaxed">
-							Consultations en cabinet<br/>à Cépet ou en ligne
+							Consultations en cabinet
+							<br />à Cépet ou en ligne
 						</p>
 					</div>
 				</nav>

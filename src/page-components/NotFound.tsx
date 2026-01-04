@@ -83,17 +83,24 @@ const NotFound = () => {
               </p>
               <nav className="flex flex-wrap justify-center gap-3">
                 <Link
-                  href="/astrologie"
+                  href="/astrologie-toulouse"
                   className="text-accent hover:underline text-sm"
                 >
                   Astrologie
                 </Link>
                 <span className="text-border">•</span>
                 <Link
-                  href="/reiki"
+                  href="/reiki-toulouse"
                   className="text-accent hover:underline text-sm"
                 >
                   Reiki
+                </Link>
+                <span className="text-border">•</span>
+                <Link
+                  href="/therapie-holistique"
+                  className="text-accent hover:underline text-sm"
+                >
+                  Thérapie Holistique
                 </Link>
                 <span className="text-border">•</span>
                 <Link

@@ -108,6 +108,7 @@ const Footer = () => {
 		{ href: "/accompagnement-toulouse", label: "Accompagnement" },
 		{ href: "/astrologie-toulouse", label: "Astrologie" },
 		{ href: "/reiki-toulouse", label: "Reiki" },
+		{ href: "/therapie-holistique", label: "Thérapie Holistique" },
 		{ href: "/emilie-perez", label: "Qui suis-je" },
 		{ href: "/blog", label: "Blog" },
 		{ href: "/ressources", label: "Ressources" },

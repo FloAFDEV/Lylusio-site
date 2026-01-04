@@ -13,10 +13,8 @@ import {
 	MapPin,
 	ArrowRight,
 	Calendar,
+	Sparkles,
 } from "lucide-react";
-// import seanceAstro from "@/assets/seance-astro.webp"; // Now using /assets/seance-astro.webp
-// import seanceReiki from "@/assets/seance-reiki.webp"; // Now using /assets/seance-reiki.webp
-// import seanceAccompagnement from "@/assets/seance-accompagnement.webp"; // Now using /assets/seance-accompagnement.webp
 
 const services = [
 	{
@@ -108,8 +106,9 @@ const ServicesPreview = () => {
 				</header>
 
 				{/* Services Grid */}
-				<div className="grid gap-4 sm:gap-5 md:grid-cols-2 lg:grid-cols-3 lg:gap-6 mb-10 md:mb-14 max-w-5xl mx-auto">
-					{services.map((service, index) => {
+				<div className="max-w-5xl mx-auto">
+					<div className="grid gap-4 sm:gap-5 md:grid-cols-2 lg:grid-cols-3 lg:gap-6 mb-8 md:mb-10">
+						{services.map((service, index) => {
 						const IconComponent = service.icon;
 
 						return (
@@ -155,7 +154,7 @@ const ServicesPreview = () => {
 													WebkitBackfaceVisibility: "hidden",
 												}}
 												fill
-												sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+												sizes="(max-width: 768px) 100vw, 50vw"
 												quality={85}
 											/>
 										</div>
@@ -243,29 +242,104 @@ const ServicesPreview = () => {
 							</article>
 						);
 					})}
-				</div>
+					</div>
 
-				{/* CTA */}
-				<div
-					className={`text-center transition-all duration-1000 delay-500 ${
-						isInView
-							? "opacity-100 translate-y-0"
-							: "opacity-0 translate-y-8"
-					}`}
-				>
-					<Link
-						href="/accompagnement-toulouse"
-						aria-label="Voir tous les services proposés"
-					>
-						<Button
-							variant="elegant"
-							size="lg"
-							className="w-full sm:w-auto group/btn"
+					{/* Teaser Thérapie Holistique */}
+					<Link href="/therapie-holistique" onClick={() => trackServiceView("Thérapie Holistique")}>
+						<article
+							className={`group relative card-celestial hover:border-gold/40 transition-all duration-700 hover:-translate-y-2 hover:shadow-glow transform-gpu overflow-hidden ${
+								isInView
+									? "opacity-100 translate-y-0"
+									: "opacity-0 translate-y-12"
+							}`}
+							style={{
+								transitionDelay: "450ms",
+							}}
 						>
-							Voir tous les tarifs
-							<ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover/btn:translate-x-1" />
-						</Button>
+							{/* Glow effect */}
+							<div className="absolute -inset-4 rounded-[2rem] md:rounded-[2.5rem] opacity-0 group-hover:opacity-100 bg-gradient-to-br from-gold/15 via-transparent to-accent/10 blur-2xl transition-opacity duration-700 pointer-events-none" />
+
+							{/* Card inner container */}
+							<div className="relative rounded-2xl md:rounded-3xl overflow-hidden">
+								{/* Animated golden border on hover */}
+								<div
+									className="absolute inset-0 rounded-2xl md:rounded-3xl opacity-0 group-hover:opacity-100 transition-all duration-500 pointer-events-none"
+									style={{ boxShadow: 'inset 0 0 0 2px hsl(var(--gold) / 0.3)' }}
+								/>
+
+								{/* Shadow on hover */}
+								<div className="absolute inset-0 rounded-2xl md:rounded-3xl shadow-[0_16px_48px_-12px_hsl(var(--gold)/0.25)] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+
+								{/* Flex layout: horizontal on desktop, vertical on mobile */}
+								<div className="flex flex-col md:flex-row items-center gap-6 p-6 md:p-8">
+									{/* Image section */}
+									<div className="relative w-full md:w-1/3 aspect-square md:aspect-auto md:h-48 overflow-hidden rounded-xl flex-shrink-0">
+										<Image
+											src="/assets/golden-mandala-holistic.webp"
+											alt=""
+											fill
+											className="object-cover transition-transform duration-700 ease-out group-hover:scale-105 transform-gpu"
+											sizes="(max-width: 768px) 100vw, 300px"
+											quality={85}
+											aria-hidden="true"
+										/>
+										<div className="absolute inset-0 bg-gradient-to-t from-card/40 via-transparent to-transparent pointer-events-none" />
+									</div>
+
+									{/* Content section */}
+									<div className="flex-1 text-center md:text-left space-y-4">
+										<div className="flex items-center justify-center md:justify-start gap-2">
+											<Sparkles className="w-5 h-5 text-gold" />
+											<h3 className="font-display text-xl md:text-2xl text-foreground group-hover:text-gold/90 transition-colors duration-500">
+												Thérapie Holistique
+											</h3>
+										</div>
+
+										<p className="text-muted-foreground text-sm md:text-base leading-relaxed">
+											Approche globale combinant Reiki, astrologie et accompagnement personnalisé pour un bien-être corps-esprit profond.
+										</p>
+
+										<div className="flex items-center justify-center md:justify-start">
+											<Button
+												variant="elegant"
+												size="sm"
+												className="group/btn"
+												asChild
+											>
+												<span className="inline-flex items-center">
+													En savoir plus
+													<ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover/btn:translate-x-1" />
+												</span>
+											</Button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</article>
 					</Link>
+
+					{/* CTA */}
+					<div
+						className={`text-center mt-10 md:mt-14 transition-all duration-1000 delay-600 ${
+							isInView
+								? "opacity-100 translate-y-0"
+								: "opacity-0 translate-y-8"
+						}`}
+					>
+						<Link
+							href="/accompagnement-toulouse"
+							aria-label="Voir tous les services proposés"
+						>
+							<Button
+								variant="elegant"
+								size="lg"
+								className="w-full sm:w-auto group/btn"
+							>
+								Voir tous les tarifs
+								<ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover/btn:translate-x-1" />
+							</Button>
+						</Link>
+					</div>
 				</div>
 			</div>
 		</section>

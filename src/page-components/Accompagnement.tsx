@@ -163,7 +163,9 @@ const Accompagnement = () => {
 			{/* SEO metadata handled by Next.js Metadata API */}
 			<script
 				type="application/ld+json"
-				dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+				dangerouslySetInnerHTML={{
+					__html: JSON.stringify(structuredData),
+				}}
 			/>
 
 			<div className="min-h-screen bg-background relative overflow-hidden">
@@ -256,7 +258,7 @@ const Accompagnement = () => {
 									<Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-accent/60 animate-float hidden sm:block" />
 								</div>
 
-								<p className="section-label">
+								<p className="section-label text-md sm:text-lg mb-2 sm:mb-3 px-2">
 									Prestations & Tarifs
 								</p>
 								<h1 className="text-foreground text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-4 sm:mb-6 px-2">

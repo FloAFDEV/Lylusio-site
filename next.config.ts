@@ -79,7 +79,7 @@ const nextConfig: NextConfig = {
 			},
 			{
 				source: "/astrologue-cepet-toulouse/therapie_energetique_therapie_holistique/:path*",
-				destination: "/accompagnement-toulouse",
+				destination: "/therapie-holistique",
 				permanent: true,
 			},
 			{
