@@ -223,7 +223,7 @@ export const Header = () => {
 									{/* Dropdown menu - Smooth animations avec translateY + scale + cascade */}
 									{mounted && (
 										<div
-											className={`absolute top-full left-1/2 -translate-x-1/2 pt-3 w-52 motion-safe:transition-all duration-&lsqb;1100ms&rsqb; ease-out z-50 ${
+											className={`absolute top-full left-1/2 -translate-x-1/2 pt-3 w-52 ... ${
 												desktopSubmenuOpen
 													? "opacity-100 visible translate-y-0 scale-100 pointer-events-auto"
 													: "opacity-0 invisible translate-y-3 scale-95 pointer-events-none"
@@ -379,8 +379,8 @@ export const Header = () => {
 			{mounted && (
 				<div
 					id="mobile-menu"
-					className={`xl:hidden fixed top-0 right-0 h-full w-3/4 max-w-xs bg-card shadow-lg border-l border-accent/20 z-50 motion-safe:transition-transform duration-&lsqb;800ms&rsqb; ease-&lsqb;cubic-bezier(0.23,1,0.32,1)&rsqb; ${
-						isMobileOpen ? "translate-x-0" : "translate-x-[110%]" // légèrement au-delà de 100% pour un glide plus doux
+					className={`xl:hidden fixed top-0 right-0 h-full w-3/4 max-w-xs ... ${
+						isMobileOpen ? "translate-x-0" : "translate-x-[110%]"
 					}`}
 					role="dialog"
 					aria-label="Menu de navigation mobile"
