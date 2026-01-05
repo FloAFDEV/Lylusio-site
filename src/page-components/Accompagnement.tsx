@@ -73,7 +73,7 @@ const Accompagnement = () => {
 			features: [
 				"Analyse complète écrite",
 				"Échange approfondi",
-				"Délaoi de préparation",
+				"Délai de préparation",
 			],
 			calendlyLink: CALENDLY_URLS.THEME_NATAL,
 		},

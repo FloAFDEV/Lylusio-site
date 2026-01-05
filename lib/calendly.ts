@@ -14,37 +14,37 @@ const CALENDLY_BASE = "https://calendly.com/lylusio-fr";
 
 // Get current month parameter (format: YYYY-MM)
 const getCurrentMonth = (): string => {
-  const now = new Date();
-  const year = now.getFullYear();
-  const month = String(now.getMonth() + 1).padStart(2, '0');
-  return `${year}-${month}`;
+	const now = new Date();
+	const year = now.getFullYear();
+	const month = String(now.getMonth() + 1).padStart(2, "0");
+	return `${year}-${month}`;
 };
 
 /**
  * Calendly URLs for different services
  */
 export const CALENDLY_URLS = {
-  /**
-   * General booking page (shows all available services)
-   */
-  GENERAL: CALENDLY_BASE,
+	/**
+	 * General booking page (shows all available services)
+	 */
+	GENERAL: CALENDLY_BASE,
 
-  /**
-   * Astrology Services
-   */
-  THEME_NATAL: `${CALENDLY_BASE}/themenatal?month=${getCurrentMonth()}`,
-  TRANSITS: `${CALENDLY_BASE}/themenatal?month=${getCurrentMonth()}`, // Same as Theme Natal for now
-  BILAN_PRO: `${CALENDLY_BASE}/themenatal?month=${getCurrentMonth()}`, // Same as Theme Natal for now
+	/**
+	 * Astrology Services
+	 */
+	THEME_NATAL: `${CALENDLY_BASE}/themenatal?month=${getCurrentMonth()}`,
+	TRANSITS: `${CALENDLY_BASE}/consultation-d-astrologie-energies-de-l-annee?month=${getCurrentMonth()}`, // Same as Theme Natal for now
+	BILAN_PRO: `${CALENDLY_BASE}/bilan-astro-orientationpro?month=${getCurrentMonth()}`, // Same as Theme Natal for now
 
-  /**
-   * Reiki Energy Healing
-   */
-  REIKI: `${CALENDLY_BASE}/soin-energetique-reiki?month=${getCurrentMonth()}`,
+	/**
+	 * Reiki Energy Healing
+	 */
+	REIKI: `${CALENDLY_BASE}/soin-energetique-reiki?month=${getCurrentMonth()}`,
 
-  /**
-   * Holistic Accompaniment (combines Astrology + Reiki)
-   */
-  ACCOMPAGNEMENT_GLOBAL: CALENDLY_BASE,
+	/**
+	 * Holistic Accompaniment (combines Astrology + Reiki)
+	 */
+	ACCOMPAGNEMENT_GLOBAL: `${CALENDLY_BASE}/accompagnement-global?month=${getCurrentMonth()}`,
 } as const;
 
 /**
@@ -52,10 +52,8 @@ export const CALENDLY_URLS = {
  * @param service - The service type
  * @returns The complete Calendly booking URL
  */
-export const getCalendlyUrl = (
-  service: keyof typeof CALENDLY_URLS
-): string => {
-  return CALENDLY_URLS[service];
+export const getCalendlyUrl = (service: keyof typeof CALENDLY_URLS): string => {
+	return CALENDLY_URLS[service];
 };
 
 /**
@@ -63,9 +61,9 @@ export const getCalendlyUrl = (
  * @param service - The service type
  */
 export const openCalendly = (service: keyof typeof CALENDLY_URLS): void => {
-  if (typeof window !== 'undefined') {
-    window.open(getCalendlyUrl(service), '_blank', 'noopener,noreferrer');
-  }
+	if (typeof window !== "undefined") {
+		window.open(getCalendlyUrl(service), "_blank", "noopener,noreferrer");
+	}
 };
 
 // Export for convenience

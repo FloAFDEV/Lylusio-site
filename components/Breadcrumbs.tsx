@@ -17,8 +17,8 @@ const routeConfig: Record<
 		seoName: "Approche Thérapeutique",
 	},
 	"/accompagnement-toulouse": {
-		name: "Accompagnement",
-		seoName: "Accompagnement Toulouse",
+		name: "Consultations & Tarifs",
+		seoName: "Consultations & Tarifs Toulouse",
 	},
 	"/astrologie-toulouse": {
 		name: "Astrologie",
