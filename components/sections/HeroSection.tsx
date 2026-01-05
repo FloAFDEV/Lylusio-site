@@ -263,15 +263,16 @@ const HeroSection = () => {
 					</div>
 
 					<div
-						className="space-y-4 mb-8 animate-fade-up"
+						className="space-y-4 mb-8 animate-fade-up text-left"
 						style={{ animationDelay: "0.3s" }}
 					>
-						<p className="text-muted-foreground text-base md:text-lg leading-relaxed max-w-xl mx-auto lg:mx-0">
+						<p className="text-muted-foreground text-base md:text-lg lg:text-xl leading-relaxed max-w-prose mx-auto lg:mx-0">
 							Vous traversez peut-être un moment de bascule, une
 							période où les repères s'effritent, où ce que vous
 							croyiez dépassé revient frapper à la porte.
 						</p>
-						<p className="text-muted-foreground/80 text-sm md:text-base leading-relaxed max-w-xl mx-auto lg:mx-0">
+
+						<p className="text-muted-foreground text-sm md:text-base lg:text-lg leading-relaxed max-w-prose mx-auto lg:mx-0">
 							Ici, vous trouverez un lieu pour{" "}
 							<span className="text-accent font-semibold">
 								déposer
@@ -284,7 +285,48 @@ const HeroSection = () => {
 							<span className="text-accent font-semibold">
 								transmuter
 							</span>{" "}
-							ce que vous vivez.
+							ce que vous vivez. Sans jugement, sans masque, sans
+							devoir aller bien.
+						</p>
+
+						<p className="text-muted-foreground/80 text-sm md:text-base lg:text-lg leading-relaxed max-w-prose mx-auto lg:mx-0">
+							Je suis{" "}
+							<strong className="font-semibold lg:font-bold">
+								Émilie
+							</strong>
+							, astrologue et praticienne Reiki 3ème degré et
+							coach en évolution professionnelle à{" "}
+							<strong className="font-semibold lg:font-bold">
+								Toulouse
+							</strong>
+							.
+						</p>
+
+						<p className="text-muted-foreground/80 text-sm md:text-base lg:text-lg leading-relaxed max-w-prose mx-auto lg:mx-0">
+							J'accompagne les femmes à retrouver sens, apaisement
+							et confiance, à travers une approche qui unit un
+							travail de conscience émotionnelle, de l’astrologie
+							symbolique et du Reiki.
+						</p>
+
+						<p className="text-muted-foreground/70 text-sm md:text-base lg:text-lg leading-relaxed max-w-prose mx-auto lg:mx-0">
+							Mon intention : vous offrir un espace vrai, humain
+							et sécurisant, pour vous reconnecter à vous-même et
+							traverser vos transitions avec lucidité et douceur.
+						</p>
+
+						<p className="text-muted-foreground/70 text-sm md:text-base lg:text-lg leading-relaxed max-w-prose mx-auto lg:mx-0">
+							Parce que ce dont on a besoin dans ce moment, ce
+							n'est pas du développement personnel positif, mais{" "}
+							<strong className="font-semibold lg:font-bold">
+								du vrai, du concret et du lien
+							</strong>
+							.
+						</p>
+
+						<p className="text-primary italic text-sm md:text-base leading-relaxed max-w-prose mx-auto lg:mx-0">
+							Si vous ressentez qu'un cycle s'achève et qu'un
+							autre vous appelle, vous êtes au bon endroit.
 						</p>
 					</div>
 

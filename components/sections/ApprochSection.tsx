@@ -5,6 +5,7 @@ import { useInView } from "@/hooks/useInView";
 import { useParallax } from "@/hooks/useParallax";
 import Link from "next/link";
 import Image from "next/image";
+import { Quote } from "lucide-react";
 import GoldenPlantBadge from "@/components/GoldenPlantBadge";
 // import approcheArbre from "@/assets/approche-arbre.webp"; // Now using /assets/approche-arbre.webp
 
@@ -93,64 +94,69 @@ const ApprochSection = () => {
 								on approche
 							</h2>
 
-							<div className="space-y-4 text-muted-foreground text-sm sm:text-base md:text-lg leading-relaxed mb-6 text-left">
-								<p>
-									<span className="font-calligraphic text-accent text-xl sm:text-2xl md:text-3xl inline-block align-baselinex">
-										J
-									</span>
-									'accompagne les{" "}
-									<strong className="text-foreground">
-										femmes
-									</strong>{" "}
-									dans leurs périodes de transition et de
-									transformation intérieure. Celles qui
-									sentent que quelque chose doit évoluer mais
-									qui ne savent plus par où commencer.
-								</p>
-								<p>
-									Mon approche est née de ce que j'ai moi-même
-									traversé. Elle mêle{" "}
-									<Link
-										href="/astrologie-toulouse"
-										className="text-foreground font-medium hover:text-accent motion-safe:transition-colors"
-									>
-										astrologie symbolique et psychologique
-									</Link>
-									,{" "}
-									<Link
-										href="/reiki-toulouse"
-										className="text-foreground font-medium hover:text-accent motion-safe:transition-colors"
-									>
-										thérapie énergétique Reiki
-									</Link>{" "}
-									et{" "}
-									<strong className="text-foreground font-medium">
-										écoute profonde
-									</strong>
-									.
-								</p>
-								<p>
-									Mon intention : offrir un espace où l'on
-									peut déposer ce que l'on vit sans peur du
-									jugement, pour se comprendre autrement et
-									retrouver du sens.
-								</p>
+							<div
+								className="space-y-4 mb-8 animate-fade-up"
+								style={{ animationDelay: "0.3s" }}
+							>
+								{/* Text content */}
+								<div className="space-y-5 text-foreground/90 font-body leading-relaxed max-w-prose mx-auto lg:mx-0">
+									<p>
+										Mon approche est née de ce que j'ai
+										moi-même traversé. Elle mêle{" "}
+										<span className="font-semibold">
+											astrologie symbolique et
+											psychologique
+										</span>
+										,{" "}
+										<span className="font-semibold">
+											thérapie énergétique Reiki
+										</span>{" "}
+										et{" "}
+										<span className="font-semibold">
+											écoute profonde
+										</span>
+										.
+									</p>
+
+									<p>
+										Mon intention est simple : offrir un
+										espace où l'on peut déposer ce que l'on
+										vit sans peur du jugement, pour se
+										comprendre autrement et retrouver du
+										sens à ce que l'on traverse.
+									</p>
+
+									<p className="text-primary font-medium">
+										Je ne promets pas de miracles.
+									</p>
+
+									{/* Signature quote - continuity with ApprochSection */}
+									<blockquote className="relative py-5 my-8 border-l-2 border-accent/40 pl-5">
+										<Quote className="absolute -top-2 -left-3 w-6 h-6 text-accent/30" />
+										<p className="font-display text-lg sm:text-xl md:text-2xl italic text-foreground/90 text-left">
+											"On ne se change pas, on s'ajuste à
+											ce qui est déjà là."
+										</p>
+									</blockquote>
+
+									<p>
+										Je crée des espaces où la parole devient
+										action, où la compréhension ouvre sur le
+										mouvement et où la lucidité mène vers
+										l'apaisement. Parce que la lucidité sur
+										soi-même et sur son parcours, c'est pour
+										moi le début de la liberté. Et que
+										chaque étape de vie, même les plus
+										inconfortables, peut devenir un tremplin
+										pour la suite.
+									</p>
+
+									<p className="text-lg font-medium text-primary">
+										"La vérité, quand elle est dite avec
+										justesse, ouvre toutes les portes."
+									</p>
+								</div>
 							</div>
-
-							{/* Quote */}
-							<blockquote className="relative py-4 md:py-5 my-5 md:my-6 border-l-2 border-gold/40 pl-4 md:pl-5">
-								<p className="font-calligraphic text-lg sm:text-xl md:text-2xl text-navy font-normal text-left">
-									"On ne se change pas, on s'ajuste à ce qui
-									est déjà là."
-								</p>
-							</blockquote>
-
-							<p className="text-muted-foreground text-sm sm:text-base md:text-lg leading-relaxed mb-6 text-left">
-								<strong className="text-foreground">
-									La vérité, quand elle est dite avec
-									justesse, ouvre toutes les portes.
-								</strong>
-							</p>
 
 							<div className="flex flex-wrap gap-3 text-left">
 								<Link

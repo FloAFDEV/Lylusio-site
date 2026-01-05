@@ -15,7 +15,10 @@ const QuiSuisJeSection = () => {
 			className="py-16 md:py-24 overflow-hidden bg-gradient-cream-to-bg"
 			aria-labelledby="qui-suis-je-title"
 		>
-			<div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+			<div
+				className="absolute inset-0 pointer-events-none"
+				aria-hidden="true"
+			>
 				{[...Array(5)].map((_, i) => (
 					<div
 						key={i}
@@ -64,8 +67,14 @@ const QuiSuisJeSection = () => {
 								<Sparkles className="w-4 h-4 text-gold" />
 							</div>
 							{/* Small stars around image */}
-							<div className="absolute top-4 -left-2 w-1.5 h-1.5 bg-gold/40 rounded-full animate-twinkle" style={{ animationDelay: '0.3s' }} />
-							<div className="absolute bottom-8 -right-3 w-1 h-1 bg-gold/30 rounded-full animate-twinkle" style={{ animationDelay: '1s' }} />
+							<div
+								className="absolute top-4 -left-2 w-1.5 h-1.5 bg-gold/40 rounded-full animate-twinkle"
+								style={{ animationDelay: "0.3s" }}
+							/>
+							<div
+								className="absolute bottom-8 -right-3 w-1 h-1 bg-gold/30 rounded-full animate-twinkle"
+								style={{ animationDelay: "1s" }}
+							/>
 						</div>
 					</div>
 
@@ -83,46 +92,58 @@ const QuiSuisJeSection = () => {
 							id="qui-suis-je-title"
 							className="font-display text-2xl sm:text-3xl lg:text-4xl text-foreground mb-4"
 						>
-							<span className="font-calligraphic text-gold">Émilie</span> Perez
+							Je suis{" "}
+							<span className="font-calligraphic text-gold">
+								Émilie Perez
+							</span>
 						</h2>
 
 						<div className="space-y-4 text-muted-foreground text-base md:text-lg leading-relaxed mb-8">
 							<p>
 								<span className="font-calligraphic text-accent text-2xl md:text-3xl inline-block align-baseline">
-									N
+									E
 								</span>
-								ée sous le signe des{" "}
-								<strong className="text-foreground">
-									Gémeaux avec Soleil et Mercure conjoint à
-									Chiron
+								t pour me définir je dirais que je suis avant
+								tout une communicante passionnée, profondément
+								curieuse de l'humain et de ses infinies
+								complexités.
+							</p>
+
+							<p>
+								Née sous le signe des <strong>Gémeaux</strong>{" "}
+								avec le{" "}
+								<strong>
+									Soleil et Mercure conjoint à Chiron
 								</strong>{" "}
 								en Maison 8 et un{" "}
-								<strong className="text-foreground">
+								<strong>
 									ascendant Scorpion conjoint à Pluton
 								</strong>
-								, la transformation a toujours fait partie de
-								mon ADN.
+								… tel un Phœnix la notion de transformation et
+								de résilience a toujours fait partie de ma vie
+								du plus loin que je m'en souvienne.
 							</p>
+
 							<p>
+								Comme si je devais expérimenter toujours dans
+								une profondeur totale chacune des parties de ma
+								vie.
+							</p>
+
+							<p className="text-primary font-medium">
 								Tel un Phœnix, j'ai appris que chaque fin porte
 								en elle une renaissance. Mon parcours m'a guidée
 								de la{" "}
-								<strong className="text-foreground">
-									psychologie à l'énergétique
-								</strong>
-								, du{" "}
-								<strong className="text-foreground">
-									coaching professionnel
-								</strong>{" "}
-								à l'astrologie symbolique.
+								<strong>psychologie à l'énergétique</strong>, du{" "}
+								<strong>coaching professionnel</strong> à
+								l'astrologie symbolique.
 							</p>
-							<p>
-								<strong className="text-foreground">
-									Ce que j'ai vécu m'a façonnée : aujourd'hui,
-									je transforme ces expériences en un espace
-									sûr où vous pouvez vous déposer, vous
-									comprendre et vous réinventer.
-								</strong>
+
+							<p className="italic">
+								Ce que j'ai vécu m'a façonnée : aujourd'hui, je
+								transforme ces expériences en un espace sûr où
+								vous pouvez vous déposer, vous comprendre et
+								vous réinventer.
 							</p>
 						</div>
 
@@ -135,7 +156,7 @@ const QuiSuisJeSection = () => {
 								size="lg"
 								className="group/btn"
 							>
-								Découvrir mon histoire
+								Lire mon histoire
 								<ArrowRight className="w-4 h-4 ml-2 motion-safe:transition-transform group-hover/btn:translate-x-1" />
 							</Button>
 						</Link>
