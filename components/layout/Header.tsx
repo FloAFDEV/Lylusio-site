@@ -139,7 +139,7 @@ export const Header = () => {
 	return (
 		<>
 			<header
-				className={`fixed top-0 left-0 right-0 z-50 transition-all duration-[550ms] ${
+				className={`fixed top-0 left-0 right-0 z-50 transition-all duration-&lsqb;550ms&rsqb; ${
 					isScrolled
 						? "bg-background/98 backdrop-blur-xl shadow-[0_2px_20px_rgba(0,0,0,0.08)] py-3"
 						: "bg-background/90 backdrop-blur-md py-4 md:py-5"
@@ -154,7 +154,7 @@ export const Header = () => {
 						className="relative z-50 group focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 rounded-lg"
 					>
 						<div
-							className={`relative transition-all duration-[550ms] ${
+							className={`relative transition-all duration-&lsqb;550ms&rsqb; ${
 								isScrolled ? "h-11 w-[132px]" : "h-14 w-[168px]"
 							}`}
 						>
@@ -162,7 +162,7 @@ export const Header = () => {
 								src="/assets/logo-lylusio.webp"
 								alt="Lylusio – Astrologie et Reiki à Toulouse - Retour à l'accueil"
 								fill
-								className="object-contain group-hover:scale-105 transition-transform duration-[650ms]"
+								className="object-contain group-hover:scale-105 transition-transform duration-&lsqb;650ms&rsqb;"
 								priority
 								sizes="(max-width: 768px) 132px, 168px"
 							/>
@@ -191,7 +191,7 @@ export const Header = () => {
 										aria-label={`Voir les options de ${link.label}`}
 										aria-expanded={desktopSubmenuOpen}
 										aria-haspopup="true"
-										className="flex items-center gap-1 font-medium text-foreground/80 hover:text-accent motion-safe:transition-colors duration-[450ms] focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 rounded-md"
+										className="flex items-center gap-1 font-medium text-foreground/80 hover:text-accent motion-safe:transition-colors duration-&lsqb;450ms&rsqb; focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 rounded-md"
 										onClick={() =>
 											setDesktopSubmenuOpen(
 												!desktopSubmenuOpen
@@ -211,7 +211,7 @@ export const Header = () => {
 									>
 										<MenuLabel label={link.label} />
 										<ChevronDown
-											className={`w-4 h-4 motion-safe:transition-transform duration-[1100ms] ease-out ${
+											className={`w-4 h-4 motion-safe:transition-transform duration-&lsqb;1100ms&rsqb; ease-out ${
 												desktopSubmenuOpen
 													? "rotate-180"
 													: ""
@@ -223,13 +223,13 @@ export const Header = () => {
 									{/* Dropdown menu - Smooth animations avec translateY + scale + cascade */}
 									{mounted && (
 										<div
-											className={`absolute top-full left-1/2 -translate-x-1/2 pt-3 w-52 motion-safe:transition-all duration-[1100ms] ease-out z-50 ${
+											className={`absolute top-full left-1/2 -translate-x-1/2 pt-3 w-52 motion-safe:transition-all duration-&lsqb;1100ms&rsqb; ease-out z-50 ${
 												desktopSubmenuOpen
 													? "opacity-100 visible translate-y-0 scale-100 pointer-events-auto"
 													: "opacity-0 invisible translate-y-3 scale-95 pointer-events-none"
 											}`}
 										>
-											<div className="bg-card/70 backdrop-blur-lg rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] border border-accent/20 overflow-hidden ring-1 ring-black/5">
+											<div className="bg-card/90 backdrop-blur-xl rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] border border-accent/20 overflow-hidden ring-1 ring-black/5">
 												{link.subItems?.map(
 													(item, index) => (
 														<Link
@@ -238,7 +238,7 @@ export const Header = () => {
 															onClick={
 																handleNavClick
 															}
-															className="block px-5 py-3.5 text-[15px] font-medium text-foreground/85 hover:text-accent hover:bg-accent/8 motion-safe:transition-all duration-[750ms] ease-out focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-inset group/item relative overflow-hidden"
+															className="block px-5 py-3.5 text-[15px] font-medium text-foreground/85 hover:text-accent hover:bg-accent/8 motion-safe:transition-all duration-&lsqb;750ms&rsqb; ease-out focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-inset group/item relative overflow-hidden"
 															style={{
 																// cascade uniforme avec delay global
 																transitionDelay:
@@ -265,7 +265,7 @@ export const Header = () => {
 																	}
 																/>
 															</span>
-															<span className="absolute inset-0 bg-gradient-to-r from-transparent via-accent/5 to-transparent -translate-x-full group-hover/item:translate-x-full motion-safe:transition-transform duration-[800ms] ease-out" />
+															<span className="absolute inset-0 bg-gradient-to-r from-transparent via-accent/5 to-transparent -translate-x-full group-hover/item:translate-x-full motion-safe:transition-transform duration-&lsqb;800ms&rsqb; ease-out" />
 														</Link>
 													)
 												)}
@@ -274,7 +274,7 @@ export const Header = () => {
 												<Link
 													href={link.href}
 													onClick={handleNavClick}
-													className="block px-5 py-3 text-[13px] font-medium text-muted-foreground hover:text-accent hover:bg-accent/5 motion-safe:transition-all duration-[750ms] ease-out focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-inset border-t border-accent/15 group/all relative overflow-hidden"
+													className="block px-5 py-3 text-[13px] font-medium text-muted-foreground hover:text-accent hover:bg-accent/5 motion-safe:transition-all duration-&lsqb;750ms&rsqb; ease-out focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-inset border-t border-accent/15 group/all relative overflow-hidden"
 													style={{
 														transitionDelay:
 															desktopSubmenuOpen
@@ -303,7 +303,7 @@ export const Header = () => {
 															accompagnements
 														</span>
 													</span>
-													<span className="absolute inset-0 bg-gradient-to-r from-transparent via-accent/5 to-transparent -translate-x-full group-hover/all:translate-x-full motion-safe:transition-transform duration-[800ms] ease-out" />
+													<span className="absolute inset-0 bg-gradient-to-r from-transparent via-accent/5 to-transparent -translate-x-full group-hover/all:translate-x-full motion-safe:transition-transform duration-&lsqb;800ms&rsqb; ease-out" />
 												</Link>
 											</div>
 										</div>
@@ -314,10 +314,10 @@ export const Header = () => {
 									key={link.href}
 									href={link.href}
 									onClick={handleNavClick}
-									className="font-medium text-[15px] text-foreground/80 hover:text-foreground motion-safe:transition-colors duration-[850ms] relative group/link focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 rounded-md px-1"
+									className="font-medium text-[15px] text-foreground/80 hover:text-foreground motion-safe:transition-colors duration-&lsqb;850ms&rsqb; relative group/link focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 rounded-md px-1"
 								>
 									<MenuLabel label={link.label} />
-									<span className="absolute -bottom-0.5 left-0 w-full h-[2px] bg-gradient-to-r from-accent/90 via-gold/80 to-accent/90 opacity-0 group-hover/link:opacity-100 motion-safe:transition-opacity duration-[700ms] shadow-[0_0_6px_hsl(var(--gold)/0.4)]" />
+									<span className="absolute -bottom-0.5 left-0 w-full h-[2px] bg-gradient-to-r from-accent/90 via-gold/80 to-accent/90 opacity-0 group-hover/link:opacity-100 motion-safe:transition-opacity duration-&lsqb;700ms&rsqb; shadow-[0_0_6px_hsl(var(--gold)/0.4)]" />
 								</Link>
 							)
 						)}
@@ -334,28 +334,28 @@ export const Header = () => {
 						aria-controls="mobile-menu"
 					>
 						<span
-							className={`block h-0.5 w-6 bg-foreground rounded-full motion-safe:transition-all duration-[650ms] ${
+							className={`block h-0.5 w-6 bg-foreground rounded-full motion-safe:transition-all duration-&lsqb;650ms&rsqb; ${
 								isMobileOpen
 									? "rotate-45 translate-y-2"
 									: "rotate-0"
 							}`}
 						/>
 						<span
-							className={`block h-0.5 w-6 bg-foreground rounded-full motion-safe:transition-all duration-[650ms] ${
+							className={`block h-0.5 w-6 bg-foreground rounded-full motion-safe:transition-all duration-&lsqb;650ms&rsqb; ${
 								isMobileOpen
 									? "opacity-0 scale-0"
 									: "opacity-100"
 							}`}
 						/>
 						<span
-							className={`block h-0.5 w-6 bg-foreground rounded-full motion-safe:transition-all duration-[650ms] ${
+							className={`block h-0.5 w-6 bg-foreground rounded-full motion-safe:transition-all duration-&lsqb;650ms&rsqb; ${
 								isMobileOpen
 									? "-rotate-45 -translate-y-2"
 									: "rotate-0"
 							}`}
 						/>
 						<div
-							className={`absolute inset-0 rounded-lg bg-accent/20 opacity-0 group-hover:opacity-100 motion-safe:transition-opacity duration-[550ms] ${
+							className={`absolute inset-0 rounded-lg bg-accent/20 opacity-0 group-hover:opacity-100 motion-safe:transition-opacity duration-&lsqb;550ms&rsqb; ${
 								isMobileOpen ? "opacity-100" : ""
 							}`}
 							aria-hidden="true"
@@ -366,7 +366,7 @@ export const Header = () => {
 
 			{/* ================= Mobile Overlay ================= */}
 			<div
-				className={`xl:hidden fixed inset-0 bg-black/30 backdrop-blur-sm z-40 motion-safe:transition-opacity duration-[700ms] ease-out ${
+				className={`xl:hidden fixed inset-0 bg-black/30 backdrop-blur-sm z-40 motion-safe:transition-opacity duration-&lsqb;700ms&rsqb; ease-out ${
 					isMobileOpen
 						? "opacity-100 visible"
 						: "opacity-0 invisible pointer-events-none"
@@ -379,7 +379,7 @@ export const Header = () => {
 			{mounted && (
 				<div
 					id="mobile-menu"
-					className={`xl:hidden fixed top-0 right-0 h-full w-3/4 max-w-xs bg-card shadow-lg border-l border-accent/20 z-50 motion-safe:transition-transform duration-[800ms] ease-[cubic-bezier(0.23,1,0.32,1)] ${
+					className={`xl:hidden fixed top-0 right-0 h-full w-3/4 max-w-xs bg-card shadow-lg border-l border-accent/20 z-50 motion-safe:transition-transform duration-&lsqb;800ms&rsqb; ease-&lsqb;cubic-bezier(0.23,1,0.32,1)&rsqb; ${
 						isMobileOpen ? "translate-x-0" : "translate-x-[110%]" // légèrement au-delà de 100% pour un glide plus doux
 					}`}
 					role="dialog"
@@ -395,7 +395,7 @@ export const Header = () => {
 								link.hasSubmenu ? (
 									<div
 										key={link.label}
-										className="motion-safe:transition-all duration-[700ms] ease-out will-change-transform"
+										className="motion-safe:transition-all duration-&lsqb;700ms&rsqb; ease-out will-change-transform"
 										style={{
 											opacity: isMobileOpen ? 1 : 0,
 											transform: isMobileOpen
@@ -411,7 +411,7 @@ export const Header = () => {
 											onClick={() =>
 												toggleMobileSubmenu(link.label)
 											}
-											className="w-full flex items-center justify-between font-medium text-foreground/80 hover:text-accent py-3 motion-safe:transition-colors duration-[550ms] focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 min-h-[44px]"
+											className="w-full flex items-center justify-between font-medium text-foreground/80 hover:text-accent py-3 motion-safe:transition-colors duration-&lsqb;550ms&rsqb; focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 min-h-[44px]"
 											aria-expanded={
 												mobileSubmenuOpen[link.label] ||
 												false
@@ -422,7 +422,7 @@ export const Header = () => {
 										>
 											<MenuLabel label={link.label} />
 											<ChevronDown
-												className={`w-4 h-4 motion-safe:transition-transform duration-[900ms] ease-in-out ${
+												className={`w-4 h-4 motion-safe:transition-transform duration-&lsqb;900ms&rsqb; ease-in-out ${
 													mobileSubmenuOpen[
 														link.label
 													]
@@ -456,7 +456,7 @@ export const Header = () => {
 															onClick={
 																handleNavClick
 															}
-															className="block font-medium text-sm text-foreground/80 hover:text-accent hover:bg-accent/5 rounded-lg px-3 py-2 motion-safe:transition-all duration-[400ms] ease-out min-h-[44px] flex items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-accent will-change-transform"
+															className="block font-medium text-sm text-foreground/80 hover:text-accent hover:bg-accent/5 rounded-lg px-3 py-2 motion-safe:transition-all duration-&lsqb;400ms&rsqb; ease-out min-h-[44px] flex items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-accent will-change-transform"
 															style={{
 																opacity:
 																	mobileSubmenuOpen[
@@ -500,7 +500,7 @@ export const Header = () => {
 													<Link
 														href={link.href}
 														onClick={handleNavClick}
-														className="block text-sm text-muted-foreground hover:text-accent py-2 pl-2 motion-safe:transition-all duration-[400ms] ease-out focus:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-lg will-change-transform"
+														className="block text-sm text-muted-foreground hover:text-accent py-2 pl-2 motion-safe:transition-all duration-&lsqb;400ms&rsqb; ease-out focus:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-lg will-change-transform"
 														style={{
 															opacity:
 																mobileSubmenuOpen[
@@ -540,7 +540,7 @@ export const Header = () => {
 										key={link.href}
 										href={link.href}
 										onClick={handleNavClick}
-										className="flex items-center font-medium text-foreground/80 hover:text-accent py-3 motion-safe:transition-all duration-[500ms] ease-out min-h-[44px] focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 rounded-md will-change-transform"
+										className="flex items-center font-medium text-foreground/80 hover:text-accent py-3 motion-safe:transition-all duration-&lsqb;500ms&rsqb; ease-out min-h-[44px] focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 rounded-md will-change-transform"
 										style={{
 											opacity: isMobileOpen ? 1 : 0,
 											transform: isMobileOpen

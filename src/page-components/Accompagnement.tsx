@@ -128,8 +128,9 @@ const Accompagnement = () => {
 		subtitle: "Vie pro alignée",
 		description:
 			"Tu te poses des questions sur ta vie professionnelle ? Tu envisages une reconversion, tu veux reprendre des études ou te lancer dans l'entrepreneuriat ?",
-		price: "150€",
-		duration: "2 à 3h",
+		price: "290€",
+		duration:
+			"4 séances d'1h30 complétées par des rdv téléphoniques réguliers",
 		format: "Présentiel ou distance",
 		features: [
 			"Talents innés",
@@ -904,20 +905,23 @@ const Accompagnement = () => {
 											<div className="flex flex-col sm:flex-row sm:items-center gap-4 pt-5 border-t border-accent/15">
 												<div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
 													<span className="font-display text-xl font-bold text-gold">
-														150€
+														290€
 													</span>
 													<span className="flex items-center gap-1">
 														<Clock className="w-4 h-4 text-accent" />
-														2-3h
+														4 séances d'1h30
+														complétées par des rdv
+														téléphoniques réguliers
 													</span>
 													<span className="flex items-center gap-1">
 														<MapPin className="w-4 h-4 text-accent" />
 														Présentiel/Distance
 													</span>
 												</div>
+
 												<Button
 													variant="accent"
-													className="sm:ml-auto group/btn"
+													className="w-full sm:w-auto flex-shrink-0 group/btn"
 													onClick={() =>
 														window.open(
 															CALENDLY_URLS.BILAN_PRO,
