@@ -93,46 +93,41 @@ const ContactCard = ({
 		);
 	}
 
-	// Click-to-reveal card
-	if (!isRevealed) {
-		return (
-			<button
-				onClick={onReveal}
-				className={`${cardClasses} w-full text-left cursor-pointer`}
-				style={cardStyle}
-				aria-label={revealText}
-			>
-				{iconContent}
-				<div>
-					<p className="font-display text-lg text-foreground">
-						<CalligraphicLabel label={title} />
-					</p>
-					<p className="text-muted-foreground flex items-center gap-1.5">
-						<Eye className="w-3 h-3 opacity-60 group-hover:opacity-100 transition-opacity" />
-						<span className="text-sm">{revealText}</span>
-					</p>
-				</div>
-			</button>
-		);
-	}
-
-	// Revealed state
+	// Click-to-reveal card with smooth transition
 	return (
-		<a
-			href={href}
-			target={external ? "_blank" : undefined}
-			rel={external ? "noopener noreferrer" : undefined}
-			className={`${cardClasses} animate-fade-in`}
+		<div
+			className={cardClasses}
 			style={cardStyle}
 		>
 			{iconContent}
-			<div>
+			<div className="flex-1">
 				<p className="font-display text-lg text-foreground">
 					<CalligraphicLabel label={title} />
 				</p>
-				{revealedContent}
+				{!isRevealed ? (
+					<button
+						onClick={onReveal}
+						className="text-muted-foreground flex items-center gap-1.5 hover:text-accent transition-colors duration-300 text-left"
+						aria-label={revealText}
+					>
+						<Eye className="w-3 h-3 opacity-60 group-hover:opacity-100 transition-opacity" />
+						<span className="text-sm">{revealText}</span>
+					</button>
+				) : (
+					<a
+						href={href}
+						target={external ? "_blank" : undefined}
+						rel={external ? "noopener noreferrer" : undefined}
+						className="text-muted-foreground hover:text-accent transition-colors duration-300 inline-block"
+						style={{
+							animation: "revealSlideUp 0.25s ease-out forwards",
+						}}
+					>
+						{revealedContent}
+					</a>
+				)}
 			</div>
-		</a>
+		</div>
 	);
 };
 
@@ -258,7 +253,7 @@ const Contact = () => {
 					>
 						<div className="max-w-3xl mx-auto">
 							{/* Header */}
-							<header className="text-center mb-12 md:mb-16">
+							<header className="text-center mb-12 md:mb-16 pt-8 sm:pt-4">
 								<p className="section-label">Contact</p>
 								<h1
 									id="contact-title"

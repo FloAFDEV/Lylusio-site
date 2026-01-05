@@ -120,13 +120,13 @@ const ProcessSection = memo(function ProcessSection() {
             isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
-          <Button asChild size="lg" className="group bg-gold hover:brightness-110 text-white shadow-gold">
+          <Button asChild size="lg" className="group bg-gold-light hover:bg-navy text-foreground hover:text-white shadow-gold">
             <Link
               href="/contact"
               className="inline-flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
             >
               Prendre contact
-              <ArrowRight className="h-4 w-4 motion-safe:transition-transform group-hover:translate-x-1 text-white" />
+              <ArrowRight className="h-4 w-4 motion-safe:transition-transform group-hover:translate-x-1" />
             </Link>
           </Button>
         </div>

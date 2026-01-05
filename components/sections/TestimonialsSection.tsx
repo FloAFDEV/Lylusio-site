@@ -57,6 +57,10 @@ const TestimonialsSection = () => {
   });
   const [selectedIndex, setSelectedIndex] = useState(0);
 
+  // FIX HYDRATION: Track if component is mounted (client-side only)
+  // This prevents SSR/client mismatch for animations and parallax
+  const [mounted, setMounted] = useState(false);
+
   const scrollPrev = useCallback(() => emblaApi?.scrollPrev(), [emblaApi]);
   const scrollNext = useCallback(() => emblaApi?.scrollNext(), [emblaApi]);
 
@@ -64,6 +68,12 @@ const TestimonialsSection = () => {
     if (!emblaApi) return;
     setSelectedIndex(emblaApi.selectedScrollSnap());
   }, [emblaApi]);
+
+  // FIX HYDRATION: Set mounted after first render
+  // This ensures SSR and initial client render are identical
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     if (!emblaApi) return;
@@ -78,49 +88,80 @@ const TestimonialsSection = () => {
     return () => clearInterval(interval);
   }, [emblaApi]);
 
+  // FIX HYDRATION: Compute animation classes only after mount
+  // SSR always renders with opacity-0, client activates animation after hydration
+  const headerClasses = mounted
+    ? `text-center max-w-xl mx-auto mb-10 md:mb-14 transition-all duration-1000 ${
+        isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+      }`
+    : "text-center max-w-xl mx-auto mb-10 md:mb-14 opacity-0 translate-y-8";
+
+  const carouselClasses = mounted
+    ? `relative transition-all duration-1000 delay-200 ${isInView ? "opacity-100" : "opacity-0"}`
+    : "relative opacity-0";
+
+  // FIX HYDRATION: Always show all dots during SSR, optimize after mount
+  // This prevents mismatch in number of rendered elements
+  const visibleDots = mounted && testimonials.length > 5
+    ? [
+        0,
+        Math.max(1, selectedIndex - 1),
+        selectedIndex,
+        Math.min(testimonials.length - 2, selectedIndex + 1),
+        testimonials.length - 1,
+      ]
+    : testimonials.map((_, i) => i);
+
   return (
     <section
-    id="temoignages"
-    className="py-20 md:py-28 overflow-hidden relative bg-gradient-sand-center"
-    aria-labelledby="temoignages-title"
-    ref={ref}
+      id="temoignages"
+      className="py-20 md:py-28 overflow-hidden relative bg-gradient-sand-center"
+      aria-labelledby="temoignages-title"
+      ref={ref}
     >
       {/* Decorative abstract shapes + stars with enhanced parallax */}
+      {/* FIX HYDRATION: Parallax only active after mount to avoid SSR/client mismatch */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
         <div
           className="absolute top-5 sm:top-10 left-5 sm:left-10 w-36 sm:w-48 h-36 sm:h-48 bg-accent/8 rounded-full blur-3xl transition-transform duration-100"
-          style={{ transform: `translateY(${parallaxOffset}px)` }}
+          style={mounted ? { transform: `translateY(${parallaxOffset}px)` } : undefined}
         />
         <div
           className="absolute bottom-10 sm:bottom-20 right-10 sm:right-20 w-28 sm:w-36 h-28 sm:h-36 bg-gold/8 rounded-full blur-2xl transition-transform duration-100"
-          style={{ transform: `translateY(${-parallaxOffset * 0.8}px)` }}
+          style={mounted ? { transform: `translateY(${-parallaxOffset * 0.8}px)` } : undefined}
         />
         <div
           className="absolute top-1/4 right-[15%] w-16 sm:w-24 h-16 sm:h-24 border border-accent/12 rounded-full opacity-35 transition-transform duration-100"
-          style={{ transform: `translateY(${parallaxOffset * 0.7}px)` }}
+          style={mounted ? { transform: `translateY(${parallaxOffset * 0.7}px)` } : undefined}
         />
         <div
           className="absolute bottom-1/4 left-[20%] w-10 sm:w-14 h-10 sm:h-14 border border-gold/12 rotate-45 opacity-30 transition-transform duration-100"
-          style={{ transform: `translateY(${-parallaxOffset * 0.6}px) rotate(45deg)` }}
+          style={mounted ? { transform: `translateY(${-parallaxOffset * 0.6}px) rotate(45deg)` } : { transform: 'rotate(45deg)' }}
         />
         {[...Array(8)].map((_, i) => (
           <div
             key={i}
             className="absolute w-0.5 h-0.5 bg-accent/12 rounded-full transition-transform duration-100"
-            style={{
-              top: `${15 + ((i * 9) % 70)}%`,
-              left: `${10 + ((i * 12) % 80)}%`,
-              boxShadow: "0 0 3px hsl(var(--accent) / 0.15)",
-              transform: `translateY(${parallaxOffset * 0.3 * (i % 2 === 0 ? 1 : -1)}px)`,
-            }}
+            style={
+              mounted
+                ? {
+                    top: `${15 + ((i * 9) % 70)}%`,
+                    left: `${10 + ((i * 12) % 80)}%`,
+                    boxShadow: "0 0 3px hsl(var(--accent) / 0.15)",
+                    transform: `translateY(${parallaxOffset * 0.3 * (i % 2 === 0 ? 1 : -1)}px)`,
+                  }
+                : {
+                    top: `${15 + ((i * 9) % 70)}%`,
+                    left: `${10 + ((i * 12) % 80)}%`,
+                    boxShadow: "0 0 3px hsl(var(--accent) / 0.15)",
+                  }
+            }
           />
         ))}
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <header
-          className={`text-center max-w-xl mx-auto mb-10 md:mb-14 transition-all duration-1000 ${isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
-        >
+        <header className={headerClasses}>
           <p className="section-label">Témoignages</p>
           <h2 id="temoignages-title" className="text-foreground mb-4">
             Ce qu'elles en disent
@@ -131,7 +172,7 @@ const TestimonialsSection = () => {
         </header>
 
         <div
-          className={`relative transition-all duration-1000 delay-200 ${isInView ? "opacity-100" : "opacity-0"}`}
+          className={carouselClasses}
           role="region"
           aria-label="Carrousel de témoignages"
         >
@@ -184,22 +225,13 @@ const TestimonialsSection = () => {
           </div>
 
           <nav className="flex justify-center items-center gap-1 md:gap-1.5 mt-6 md:mt-8" aria-label="Navigation témoignages">
-            {(testimonials.length <= 5
-              ? testimonials.map((_, i) => i)
-              : [
-                  0,
-                  Math.max(1, selectedIndex - 1),
-                  selectedIndex,
-                  Math.min(testimonials.length - 2, selectedIndex + 1),
-                  testimonials.length - 1,
-                ]
-            ).map((index, i) => (
+            {visibleDots.map((index, i) => (
               <button
                 key={i}
                 onClick={() => emblaApi?.scrollTo(index)}
                 className={`rounded-full transition-all duration-500 ease-out p-0 border-0 min-w-0 min-h-0 ${
-                  selectedIndex === index 
-                    ? "bg-gold/50 w-3 h-[3px] md:w-4 md:h-1 lg:w-5 lg:h-1" 
+                  selectedIndex === index
+                    ? "bg-gold/50 w-3 h-[3px] md:w-4 md:h-1 lg:w-5 lg:h-1"
                     : "bg-accent/20 w-[3px] h-[3px] md:w-1 md:h-1 lg:w-1.5 lg:h-1.5 hover:bg-accent/30"
                 }`}
                 style={{ padding: 0, minWidth: 0, minHeight: 0 }}

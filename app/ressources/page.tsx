@@ -6,6 +6,7 @@ import { ArrowRight, ExternalLink, Sparkles, Calendar } from "lucide-react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import FloatingCTA from "@/components/FloatingCTA";
+import Breadcrumbs from "@/components/Breadcrumbs";
 import { Button } from "@/components/ui/button";
 import { YouTubeEmbed } from "@/components/YouTubeEmbed";
 import { getYouTubeVideoInfo } from "@/lib/youtube";
@@ -83,6 +84,7 @@ export default async function RessourcesPage() {
 
 			<Header />
 			<FloatingCTA />
+			<Breadcrumbs />
 
 			<main
 				id="main-content"

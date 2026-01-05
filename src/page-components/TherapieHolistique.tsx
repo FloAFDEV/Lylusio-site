@@ -196,12 +196,12 @@ const TherapieHolistique = () => {
 										Découvrez une approche qui considère
 										l'être humain dans sa globalité.
 										<br />
-										<strong className="text-foreground">
+										<span className="text-foreground font-semibold mt-2">
 											La thérapie holistique associe
 											différentes pratiques pour vous
 											accompagner vers un bien-être
 											profond et durable.
-										</strong>
+										</span>
 									</p>
 
 									<div className="flex flex-col sm:flex-row gap-4">

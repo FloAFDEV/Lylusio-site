@@ -295,7 +295,7 @@ const HeroSection = () => {
 						<Button
 							asChild
 							size="lg"
-							className="bg-gold text-white hover:bg-gold-light font-medium px-8 shadow-gold motion-safe:transition-all duration-300 hover:scale-105 hover:shadow-glow active:scale-100 motion-safe:animate-gold-glow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2"
+							className="bg-gold-light text-foreground hover:bg-navy hover:text-white font-medium px-8 shadow-gold motion-safe:transition-all duration-300 hover:scale-105 hover:shadow-glow active:scale-100 motion-safe:animate-gold-glow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2"
 							aria-label="Réserver une séance de consultation sur Calendly"
 						>
 							<a

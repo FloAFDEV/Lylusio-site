@@ -85,7 +85,7 @@ const FloatingCTA = () => {
 				<Button
 					asChild
 					size="default"
-					className="relative bg-gold hover:brightness-110 text-white shadow-gold group px-3 sm:px-4 py-2.5 transition-all duration-300 hover:scale-105 active:scale-95"
+					className="relative bg-gold-light hover:bg-navy text-foreground hover:text-white shadow-gold group px-3 sm:px-4 py-2.5 transition-all duration-300 hover:scale-105 active:scale-95"
 				>
 					<a
 						href="https://calendly.com/lylusio-fr"
@@ -99,10 +99,10 @@ const FloatingCTA = () => {
 						<span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out" aria-hidden="true" />
 
 						<Calendar
-							className="w-4 h-4 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6 relative z-10 text-white"
+							className="w-4 h-4 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6 relative z-10 text-foreground"
 							aria-hidden="true"
 						/>
-						<span className="hidden sm:inline relative z-10 font-medium text-white">Réserver</span>
+						<span className="hidden sm:inline relative z-10 font-medium text-foreground">Réserver</span>
 					</a>
 				</Button>
 			</div>

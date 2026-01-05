@@ -16,7 +16,7 @@ const buttonVariants = cva(
         ghost: "hover:bg-gradient-sky-center hover:text-secondary-foreground text-sm",
         link: "text-accent underline-offset-4 hover:underline hover:translate-y-0 text-sm",
         // Golden accent button - premium gold with glow & shimmer effect
-        accent: "bg-accent text-accent-foreground font-medium hover:bg-accent/90 shadow-soft hover:shadow-glow text-base before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent before:-translate-x-full hover:before:translate-x-full before:transition-transform before:duration-1000",
+        accent: "bg-gold-light text-foreground font-medium hover:bg-navy hover:text-white shadow-soft hover:shadow-glow text-base before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent before:-translate-x-full hover:before:translate-x-full before:transition-transform before:duration-1000",
         // Soft hero button - gentle blush with subtle glow & shimmer effect
         hero: "bg-cta text-cta-foreground font-medium hover:bg-cta-hover shadow-soft hover:shadow-glow text-base before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent before:-translate-x-full hover:before:translate-x-full before:transition-transform before:duration-1000",
         // Elegant soft outline variant with shimmer
