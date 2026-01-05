@@ -130,6 +130,13 @@ const MonApproche = () => {
 			{/* SEO metadata handled by Next.js Metadata API */}
 
 			<Header />
+			{/* Structured Data */}
+			<script
+				type="application/ld+json"
+				dangerouslySetInnerHTML={{
+					__html: JSON.stringify(structuredData),
+				}}
+			/>
 			<main
 				id="main-content"
 				className="min-h-screen bg-background relative overflow-hidden"
@@ -345,7 +352,7 @@ const MonApproche = () => {
 										/>
 									</div>
 									<h3 className="font-display text-lg text-navy mb-3">
-										<span className="font-calligraphic text-accent text-3xl inline-block align-baseline mr-1">
+										<span className="font-calligraphic text-accent text-3xl inline-block align-baseline ">
 											{pillar.title.charAt(0)}
 										</span>
 										{pillar.title.slice(1)}
