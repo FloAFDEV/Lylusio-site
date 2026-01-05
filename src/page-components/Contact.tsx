@@ -95,10 +95,7 @@ const ContactCard = ({
 
 	// Click-to-reveal card with smooth transition
 	return (
-		<div
-			className={cardClasses}
-			style={cardStyle}
-		>
+		<div className={cardClasses} style={cardStyle}>
 			{iconContent}
 			<div className="flex-1">
 				<p className="font-display text-lg text-foreground">
@@ -254,7 +251,7 @@ const Contact = () => {
 						<div className="max-w-3xl mx-auto">
 							{/* Header */}
 							<header className="text-center mb-12 md:mb-16 pt-8 sm:pt-4">
-								<p className="section-label">Contact</p>
+								<p className="section-label mt-12">Contact</p>
 								<h1
 									id="contact-title"
 									className="text-foreground mb-6 first-letter-fancy-lg"
