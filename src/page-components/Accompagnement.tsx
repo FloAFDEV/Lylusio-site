@@ -773,7 +773,7 @@ const Accompagnement = () => {
 											{/* Price & CTA */}
 											<div className="flex flex-col sm:flex-row sm:items-center gap-4 pt-5 border-t border-gold/15">
 												<div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
-													<span className="font-display text-2xl font-bold text-gold">
+													<span className="font-display text-xl font-bold text-gold">
 														75€
 													</span>
 													<span className="flex items-center gap-1">
@@ -903,7 +903,7 @@ const Accompagnement = () => {
 											{/* Price & CTA */}
 											<div className="flex flex-col sm:flex-row sm:items-center gap-4 pt-5 border-t border-accent/15">
 												<div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
-													<span className="font-display text-2xl font-bold text-gold">
+													<span className="font-display text-xl font-bold text-gold">
 														150€
 													</span>
 													<span className="flex items-center gap-1">

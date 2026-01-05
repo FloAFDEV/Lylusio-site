@@ -10,11 +10,23 @@ import { useParallax } from "@/hooks/useParallax";
 // import plantDecoration from "@/assets/plant-decoration.webp"; // Now using /assets/plant-decoration.webp
 
 // Lazy load decorative components for better LCP
-const CelestialStarsLazy = dynamic(() => Promise.resolve(CelestialStars), { ssr: false });
-const SoftCloudsLazy = dynamic(() => Promise.resolve(SoftClouds), { ssr: false });
-const HandwrittenSignatureLazy = dynamic(() => Promise.resolve(HandwrittenSignature), { ssr: false });
-const OrganicShapesLazy = dynamic(() => Promise.resolve(OrganicShapes), { ssr: false });
-const DecorativeCirclesLazy = dynamic(() => Promise.resolve(DecorativeCircles), { ssr: false });
+const CelestialStarsLazy = dynamic(() => Promise.resolve(CelestialStars), {
+	ssr: false,
+});
+const SoftCloudsLazy = dynamic(() => Promise.resolve(SoftClouds), {
+	ssr: false,
+});
+const HandwrittenSignatureLazy = dynamic(
+	() => Promise.resolve(HandwrittenSignature),
+	{ ssr: false }
+);
+const OrganicShapesLazy = dynamic(() => Promise.resolve(OrganicShapes), {
+	ssr: false,
+});
+const DecorativeCirclesLazy = dynamic(
+	() => Promise.resolve(DecorativeCircles),
+	{ ssr: false }
+);
 
 // CelestialStars - Étoiles scintillantes aléatoires côté client
 const CelestialStars = memo(() => {
@@ -296,10 +308,13 @@ const HeroSection = () => {
 						</Button>
 					</div>
 
+					{/* Pied manuscrit - Émilie Perez */}
 					<p
-						className="mt-8 sm:mt-10 font-calligraphic text-xl sm:text-2xl md:text-3xl text-navy/80 motion-safe:animate-fade-up motion-safe:animate-handwriting"
+						className="mt-8 sm:mt-10 font-calligraphic text-xl sm:text-2xl md:text-3xl text-navy/90 dark:text-gold/50 animate-fade-up animate-handwriting"
 						style={{
 							animationDelay: "1.5s",
+							textShadow:
+								"1px 1px 2px rgba(0,0,0,0.15), -1px -1px 2px rgba(0,0,0,0.08)",
 						}}
 						aria-hidden="true"
 					>

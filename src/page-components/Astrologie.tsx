@@ -111,9 +111,12 @@ const Astrologie = () => {
 	return (
 		<>
 			{/* SEO metadata handled by Next.js Metadata API */}
-			<script type="application/ld+json" dangerouslySetInnerHTML={{ __html: 
-					JSON.stringify(structuredData)
-				 }} />
+			<script
+				type="application/ld+json"
+				dangerouslySetInnerHTML={{
+					__html: JSON.stringify(structuredData),
+				}}
+			/>
 
 			<div className="min-h-screen bg-background relative">
 				<FloatingParticles count={25} />
@@ -606,7 +609,9 @@ const Astrologie = () => {
 											Lecture de Thème Natal
 										</h3>
 										<div className="inline-flex items-center gap-1.5 px-3 py-1 bg-gradient-to-r from-gold/10 via-accent/5 to-gold/10 border border-gold/20 rounded-full mb-4 shadow-[0_0_12px_-4px_hsl(var(--gold)/0.3)] group-hover:shadow-[0_0_20px_-4px_hsl(var(--gold)/0.5)] transition-all duration-300">
-											<span className="text-xs uppercase tracking-widest text-gold font-semibold">Astrologie symbolique</span>
+											<span className="text-xs uppercase tracking-widest text-gold font-semibold">
+												Astrologie symbolique
+											</span>
 										</div>
 
 										<p className="text-muted-foreground text-sm leading-relaxed mb-6">
@@ -624,13 +629,19 @@ const Astrologie = () => {
 												<li
 													key={item}
 													className="group/item flex items-center gap-3 text-sm text-foreground/70 hover:text-foreground transition-colors duration-300 p-2 rounded-lg hover:bg-accent/5"
-													style={{ transitionDelay: `${index * 50}ms` }}
+													style={{
+														transitionDelay: `${
+															index * 50
+														}ms`,
+													}}
 												>
 													<div className="relative">
 														<div className="absolute inset-0 bg-accent/30 rounded-full blur-md opacity-0 group-hover/item:opacity-100 transition-opacity duration-300" />
 														<Check className="w-4 h-4 text-accent flex-shrink-0 relative z-10 group-hover/item:scale-110 transition-transform duration-300" />
 													</div>
-													<span className="group-hover/item:translate-x-0.5 transition-transform duration-300">{item}</span>
+													<span className="group-hover/item:translate-x-0.5 transition-transform duration-300">
+														{item}
+													</span>
 												</li>
 											))}
 										</ul>
@@ -670,7 +681,9 @@ const Astrologie = () => {
 											<span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover/btn:translate-x-[100%] transition-transform duration-700 ease-out" />
 
 											<Calendar className="w-4 h-4 mr-2 group-hover/btn:rotate-12 transition-transform duration-300" />
-											<span className="relative">Réserver</span>
+											<span className="relative">
+												Réserver
+											</span>
 											<ArrowRight className="w-4 h-4 ml-2 group-hover/btn:translate-x-2 transition-transform duration-300" />
 										</Button>
 									</div>
@@ -701,7 +714,9 @@ const Astrologie = () => {
 											Lecture des Transits
 										</h3>
 										<div className="inline-flex items-center gap-1.5 px-3 py-1 bg-gradient-to-r from-gold/10 via-accent/5 to-gold/10 border border-gold/20 rounded-full mb-4 shadow-[0_0_12px_-4px_hsl(var(--gold)/0.3)] group-hover:shadow-[0_0_20px_-4px_hsl(var(--gold)/0.5)] transition-all duration-300">
-											<span className="text-xs uppercase tracking-widest text-gold font-semibold">Suivi des cycles</span>
+											<span className="text-xs uppercase tracking-widest text-gold font-semibold">
+												Suivi des cycles
+											</span>
 										</div>
 
 										<p className="text-muted-foreground text-sm leading-relaxed mb-6 text-left">
@@ -719,13 +734,19 @@ const Astrologie = () => {
 												<li
 													key={item}
 													className="group/item flex items-center gap-3 text-sm text-foreground/70 hover:text-foreground transition-colors duration-300 p-2 rounded-lg hover:bg-gold/5"
-													style={{ transitionDelay: `${index * 50}ms` }}
+													style={{
+														transitionDelay: `${
+															index * 50
+														}ms`,
+													}}
 												>
 													<div className="relative">
 														<div className="absolute inset-0 bg-gold/30 rounded-full blur-md opacity-0 group-hover/item:opacity-100 transition-opacity duration-300" />
 														<Check className="w-4 h-4 text-gold flex-shrink-0 relative z-10 group-hover/item:scale-110 transition-transform duration-300" />
 													</div>
-													<span className="group-hover/item:translate-x-0.5 transition-transform duration-300">{item}</span>
+													<span className="group-hover/item:translate-x-0.5 transition-transform duration-300">
+														{item}
+													</span>
 												</li>
 											))}
 										</ul>
@@ -765,7 +786,9 @@ const Astrologie = () => {
 											<span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover/btn:translate-x-[100%] transition-transform duration-700 ease-out" />
 
 											<Calendar className="w-4 h-4 mr-2 group-hover/btn:rotate-12 transition-transform duration-300" />
-											<span className="relative">Réserver</span>
+											<span className="relative">
+												Réserver
+											</span>
 											<ArrowRight className="w-4 h-4 ml-2 group-hover/btn:translate-x-2 transition-transform duration-300" />
 										</Button>
 									</div>
