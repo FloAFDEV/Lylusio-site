@@ -844,13 +844,12 @@ const Astrologie = () => {
 										naissance ?
 									</AccordionTrigger>
 									<AccordionContent className="text-muted-foreground text-sm leading-relaxed pb-4">
-										L'heure exacte est idéale pour une
-										analyse complète car elle détermine
-										l'Ascendant. Si vous ne la connaissez
-										pas, je peux établir un thème partiel.
-										Vous pouvez aussi demander votre acte de
-										naissance complet à la mairie de votre
-										lieu de naissance.
+										L'heure exacte de naissance est
+										essentielle pour une analyse complète
+										car elle détermine l'Ascendant et les
+										maisons astrologiques. Vous pouvez aussi
+										demander votre acte de naissance complet
+										à la mairie de votre lieu de naissance.
 									</AccordionContent>
 								</AccordionItem>
 
