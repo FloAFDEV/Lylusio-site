@@ -98,7 +98,7 @@ const QuiSuisJeSection = () => {
 							</span>
 						</h2>
 
-						<div className="space-y-4 text-muted-foreground text-base md:text-lg leading-relaxed mb-8">
+						<div className="space-y-4 text-muted-foreground text-base md:text-lg leading-relaxed mb-8 text-left">
 							<p>
 								<span className="font-calligraphic text-accent text-2xl md:text-3xl inline-block align-baseline">
 									E
