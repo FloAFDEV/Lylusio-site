@@ -81,7 +81,6 @@ const FloatingCTA = () => {
 		>
 			{/* Glow effect autour du bouton */}
 			<div className="relative group/floating">
-
 				<Button
 					asChild
 					size="default"
@@ -96,13 +95,18 @@ const FloatingCTA = () => {
 						aria-label="Réserver une séance d'astrologie ou de Reiki avec Émilie Perez (ouvre Calendly dans un nouvel onglet)"
 					>
 						{/* Effet de shine animé au hover */}
-						<span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out" aria-hidden="true" />
+						<span
+							className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out"
+							aria-hidden="true"
+						/>
 
 						<Calendar
 							className="w-4 h-4 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6 relative z-10 text-foreground"
 							aria-hidden="true"
 						/>
-						<span className="hidden sm:inline relative z-10 font-medium text-foreground">Réserver</span>
+						<span className="hidden sm:inline relative z-10 font-medium text-foreground">
+							Réserver
+						</span>
 					</a>
 				</Button>
 			</div>

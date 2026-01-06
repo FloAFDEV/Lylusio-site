@@ -319,7 +319,7 @@ const Accompagnement = () => {
 									<div className="absolute inset-0 rounded-full bg-gradient-to-br from-gold/20 to-accent/10 animate-gentle-pulse" />
 									<div className="absolute inset-1 sm:inset-2 rounded-full overflow-hidden border-2 border-gold/20 shadow-elegant">
 										<Image
-											src="/assets/seance-astro.webp"
+											src="/assets/seance-astro-zen.webp"
 											alt="Consultation astrologique"
 											fill
 											className="object-cover"
@@ -524,7 +524,7 @@ const Accompagnement = () => {
 									<div className="absolute inset-0 rounded-full bg-gradient-to-br from-gold/20 to-accent/10 animate-gentle-pulse" />
 									<div className="absolute inset-1 sm:inset-2 rounded-full overflow-hidden border-2 border-gold/20 shadow-elegant">
 										<Image
-											src="/assets/seance-reiki.webp"
+											src="/assets/seance-reiki-zen.webp"
 											alt="Soin Reiki"
 											fill
 											className="object-cover"

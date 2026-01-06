@@ -125,7 +125,7 @@ const TherapieHolistique = () => {
 								}}
 							>
 								<Image
-									src="/assets/golden-mandala-holistic.webp"
+									src="/assets/therapie-holistique-card.webp"
 									alt=""
 									fill
 									className="object-cover"
@@ -383,7 +383,7 @@ const TherapieHolistique = () => {
 											: "opacity-0 translate-y-8"
 									}`}
 								>
-									<p className="text-muted-foreground mb-4 leading-relaxed">
+									<p className="text-muted-foreground text-left mb-4 leading-relaxed">
 										La <strong>Thérapie holistique</strong>{" "}
 										s'adresse à toute personne désireuse de
 										découvrir une autre approche et{" "}

@@ -94,7 +94,7 @@ const QuiSuisJeSection = () => {
 						>
 							Je suis{" "}
 							<span className="font-calligraphic text-gold">
-								Émilie Perez
+								Émilie
 							</span>
 						</h2>
 

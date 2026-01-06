@@ -232,12 +232,12 @@ const Astrologie = () => {
 										onnaissez-vous l'Astrologie ?
 									</h1>
 
-									<p className="text-xl sm:text-2xl text-accent/80 font-display mb-6">
+									<p className="text-xl sm:text-2xl text-accent font-display mb-6">
 										Découvrons ensemble ce qui nous lie aux
 										étoiles
 									</p>
 
-									<p className="text-muted-foreground text-base sm:text-lg leading-relaxed mb-8 max-w-xl mx-auto lg:mx-0">
+									<p className="text-muted-foreground text-left text-base sm:text-lg leading-relaxed mb-8 max-w-xl mx-auto lg:mx-0">
 										<strong className="text-foreground">
 											50%
 										</strong>{" "}
@@ -902,7 +902,7 @@ const Astrologie = () => {
 								<h2 className="font-display text-2xl sm:text-3xl text-foreground mb-4">
 									Explorez mes articles sur l'Astrologie
 								</h2>
-								<p className="text-muted-foreground mb-8 max-w-xl mx-auto">
+								<p className="text-muted-foreground text-left mb-8 max-w-xl mx-auto">
 									Découvrez les secrets des astres à travers
 									mes articles sur les dominantes planétaires,
 									les transits, l'histoire de l'astrologie et

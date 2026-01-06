@@ -18,7 +18,7 @@ import {
 
 const services = [
 	{
-		image: "/assets/seance-astro.webp",
+		image: "/assets/seance-astro-zen.webp",
 		icon: Star,
 		title: "Consultation Astrologique",
 		alt: "Symbole astrologique avec roue du zodiaque et livre ouvert",
@@ -32,7 +32,7 @@ const services = [
 			"https://calendly.com/lylusio-fr/themenatal?month=2025-12",
 	},
 	{
-		image: "/assets/seance-reiki.webp",
+		image: "/assets/seance-reiki-zen.webp",
 		icon: Zap,
 		title: "Séance Reiki",
 		alt: "Symbole Reiki avec lotus et mains énergétiques",
@@ -288,7 +288,7 @@ const ServicesPreview = () => {
 									{/* Image section */}
 									<div className="relative w-full md:w-1/3 aspect-square md:aspect-auto md:h-48 overflow-hidden rounded-xl flex-shrink-0">
 										<Image
-											src="/assets/golden-mandala-holistic.webp"
+											src="/assets/therapie-holistique-card.webp"
 											alt=""
 											fill
 											className="object-cover transition-transform duration-700 ease-out group-hover:scale-105 transform-gpu"
