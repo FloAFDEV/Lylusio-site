@@ -170,7 +170,7 @@ const Accompagnement = () => {
 			/>
 
 			<div className="min-h-screen bg-background relative overflow-hidden">
-				<FloatingParticles count={isMobile ? 12 : 25} />
+				<FloatingParticles count={120} />
 				<a href="#main-content" className="skip-link">
 					Aller au contenu principal
 				</a>

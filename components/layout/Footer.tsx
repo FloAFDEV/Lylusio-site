@@ -24,7 +24,7 @@ const Footer = () => {
 	const [showPhone, setShowPhone] = useState(false);
 	const [showEmail, setShowEmail] = useState(false);
 	const [navOpen, setNavOpen] = useState(false);
-	const { trackBookingClick, trackContactClick } = useAnalyticsEvent();
+	const [mounted, setMounted] = useState(false);
 
 	const [stars, setStars] = useState<
 		Array<{ top: number; left: number; delay: number }>
@@ -36,32 +36,9 @@ const Footer = () => {
 		Array<{ left: number; top: number; delay: number }>
 	>([]);
 
-	useEffect(() => {
-		setStars(
-			Array.from({ length: 12 }, () => ({
-				top: 15 + Math.random() * 70,
-				left: 10 + Math.random() * 80,
-				delay: Math.random() * 3,
-			}))
-		);
-		setBackgroundStars(
-			Array.from({ length: 30 }, () => ({
-				left: Math.random() * 100,
-				top: Math.random() * 100,
-				delay: Math.random() * 3,
-				duration: 2 + Math.random() * 2,
-			}))
-		);
-		setAccentStars(
-			Array.from({ length: 8 }, () => ({
-				left: 10 + Math.random() * 80,
-				top: 10 + Math.random() * 80,
-				delay: Math.random() * 4,
-			}))
-		);
-	}, []);
-
+	const { trackBookingClick, trackContactClick } = useAnalyticsEvent();
 	const router = useRouter();
+
 	const handleNavigation = (path: string) => {
 		if (path === "/") {
 			window.scrollTo({ top: 0, behavior: "smooth" });
@@ -94,7 +71,7 @@ const Footer = () => {
 		{ href: "/", label: "Accueil" },
 		{ href: "/emilie-perez", label: "Qui suis-je" },
 		{ href: "/approche-therapeutique", label: "Mon Approche" },
-		{ href: "/accompagnement-toulouse", label: "Accompagnements" },
+		{ href: "/accompagnement-toulouse", label: "Consultations & Tarifs" },
 		{
 			href: "/therapie-holistique",
 			label: "Thérapie Holistique",
@@ -117,15 +94,7 @@ const Footer = () => {
 				asChild
 				size="lg"
 				aria-label="Réserver une séance avec Émilie Perez via Calendly"
-				className="
-        relative w-full sm:w-auto 
-        bg-gold-light text-foreground 
-        font-medium 
-        border-2 border-transparent 
-        hover:bg-navy hover:text-white hover:border-white 
-        hover:scale-105 
-        transition-all duration-300
-      "
+				className="relative w-full sm:w-auto bg-gold-light text-foreground font-medium border-2 border-transparent hover:bg-navy hover:text-white hover:border-white hover:scale-105 transition-all duration-300"
 				onClick={() => trackBookingClick("footer_cta")}
 			>
 				<a
@@ -153,6 +122,36 @@ const Footer = () => {
 		</div>
 	);
 
+	// Génération aléatoire uniquement côté client après montage
+	useEffect(() => {
+		setMounted(true);
+
+		setStars(
+			Array.from({ length: 12 }, () => ({
+				top: 15 + Math.random() * 70,
+				left: 10 + Math.random() * 80,
+				delay: Math.random() * 3,
+			}))
+		);
+
+		setBackgroundStars(
+			Array.from({ length: 30 }, () => ({
+				left: Math.random() * 100,
+				top: Math.random() * 100,
+				delay: Math.random() * 3,
+				duration: 2 + Math.random() * 2,
+			}))
+		);
+
+		setAccentStars(
+			Array.from({ length: 8 }, () => ({
+				left: 10 + Math.random() * 80,
+				top: 10 + Math.random() * 80,
+				delay: Math.random() * 4,
+			}))
+		);
+	}, []);
+
 	return (
 		<footer
 			className="relative bg-gradient-to-b from-primary via-primary to-[hsl(213,40%,25%)] text-primary-foreground overflow-hidden"
@@ -161,99 +160,91 @@ const Footer = () => {
 			itemScope
 			itemType="https://schema.org/LocalBusiness"
 		>
-			<div
-				className="absolute inset-0 pointer-events-none overflow-hidden"
-				aria-hidden="true"
-			>
-				{backgroundStars.map((star, i) => (
-					<div
-						key={i}
-						className="absolute w-1 h-1 bg-gold-light/30 rounded-full animate-twinkle"
-						style={{
-							left: `${star.left}%`,
-							top: `${star.top}%`,
-							animationDelay: `${star.delay}s`,
-							animationDuration: `${star.duration}s`,
-						}}
-					/>
-				))}
-				{accentStars.map((star, i) => (
-					<div
-						key={`star-lg-${i}`}
-						className="absolute w-1.5 h-1.5 bg-gold/40 rounded-full animate-pulse-slow"
-						style={{
-							left: `${star.left}%`,
-							top: `${star.top}%`,
-							animationDelay: `${star.delay}s`,
-						}}
-					/>
-				))}
-				<div className="absolute top-20 left-10 w-32 h-32 opacity-10">
-					<svg viewBox="0 0 100 100" className="w-full h-full">
-						<line
-							x1="20"
-							y1="30"
-							x2="50"
-							y2="20"
-							stroke="hsl(var(--gold))"
-							strokeWidth="0.5"
-						/>
-						<line
-							x1="50"
-							y1="20"
-							x2="80"
-							y2="40"
-							stroke="hsl(var(--gold))"
-							strokeWidth="0.5"
-						/>
-						<line
-							x1="80"
-							y1="40"
-							x2="60"
-							y2="70"
-							stroke="hsl(var(--gold))"
-							strokeWidth="0.5"
-						/>
-					</svg>
-				</div>
-				<div className="absolute bottom-40 right-20 w-40 h-40 opacity-10">
-					<svg viewBox="0 0 100 100" className="w-full h-full">
-						<line
-							x1="10"
-							y1="50"
-							x2="40"
-							y2="30"
-							stroke="hsl(var(--gold))"
-							strokeWidth="0.5"
-						/>
-						<line
-							x1="40"
-							y1="30"
-							x2="70"
-							y2="50"
-							stroke="hsl(var(--gold))"
-							strokeWidth="0.5"
-						/>
-						<line
-							x1="70"
-							y1="50"
-							x2="90"
-							y2="20"
-							stroke="hsl(var(--gold))"
-							strokeWidth="0.5"
-						/>
-					</svg>
-				</div>
-			</div>
-			<div className="border-b border-primary-foreground/20 relative overflow-hidden">
+			{/* Fond animé */}
+			{mounted && (
 				<div
-					className="absolute inset-0 bg-gradient-to-br from-primary via-primary to-primary/95"
-					aria-hidden="true"
-				/>
-				<div
-					className="absolute inset-0 overflow-hidden pointer-events-none"
+					className="absolute inset-0 pointer-events-none overflow-hidden"
 					aria-hidden="true"
 				>
+					{backgroundStars.map((star, i) => (
+						<div
+							key={i}
+							className="absolute w-1 h-1 bg-gold-light/30 rounded-full animate-twinkle"
+							style={{
+								left: `${star.left}%`,
+								top: `${star.top}%`,
+								animationDelay: `${star.delay}s`,
+								animationDuration: `${star.duration}s`,
+							}}
+						/>
+					))}
+					{accentStars.map((star, i) => (
+						<div
+							key={`star-lg-${i}`}
+							className="absolute w-1.5 h-1.5 bg-gold/40 rounded-full animate-pulse-slow"
+							style={{
+								left: `${star.left}%`,
+								top: `${star.top}%`,
+								animationDelay: `${star.delay}s`,
+							}}
+						/>
+					))}
+					<div className="absolute top-20 left-10 w-32 h-32 opacity-10">
+						<svg viewBox="0 0 100 100" className="w-full h-full">
+							<line
+								x1="20"
+								y1="30"
+								x2="50"
+								y2="20"
+								stroke="hsl(var(--gold))"
+								strokeWidth="0.5"
+							/>
+							<line
+								x1="50"
+								y1="20"
+								x2="80"
+								y2="40"
+								stroke="hsl(var(--gold))"
+								strokeWidth="0.5"
+							/>
+							<line
+								x1="80"
+								y1="40"
+								x2="60"
+								y2="70"
+								stroke="hsl(var(--gold))"
+								strokeWidth="0.5"
+							/>
+						</svg>
+					</div>
+					<div className="absolute bottom-40 right-20 w-40 h-40 opacity-10">
+						<svg viewBox="0 0 100 100" className="w-full h-full">
+							<line
+								x1="10"
+								y1="50"
+								x2="40"
+								y2="30"
+								stroke="hsl(var(--gold))"
+								strokeWidth="0.5"
+							/>
+							<line
+								x1="40"
+								y1="30"
+								x2="70"
+								y2="50"
+								stroke="hsl(var(--gold))"
+								strokeWidth="0.5"
+							/>
+							<line
+								x1="70"
+								y1="50"
+								x2="90"
+								y2="20"
+								stroke="hsl(var(--gold))"
+								strokeWidth="0.5"
+							/>
+						</svg>
+					</div>
 					{stars.map((star, i) => (
 						<div
 							key={i}
@@ -266,7 +257,10 @@ const Footer = () => {
 						/>
 					))}
 				</div>
+			)}
 
+			{/* Contenu principal du footer */}
+			<div className="border-b border-primary-foreground/20 relative overflow-hidden">
 				<div className="container mx-auto px-5 md:px-8 lg:px-10 py-12 md:py-24 lg:py-32 text-center relative z-10">
 					<GoldenPlantBadge
 						size="lg"
