@@ -231,12 +231,6 @@ const Astrologie = () => {
 										</span>
 										onnaissez-vous l'Astrologie ?
 									</h1>
-
-									<p className="text-xl sm:text-2xl text-accent font-display mb-6">
-										Découvrons ensemble ce qui nous lie aux
-										étoiles
-									</p>
-
 									<p className="text-muted-foreground text-left text-base sm:text-lg leading-relaxed mb-8 max-w-xl mx-auto lg:mx-0">
 										<strong className="text-foreground">
 											50%
