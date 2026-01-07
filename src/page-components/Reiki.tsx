@@ -586,14 +586,14 @@ const Reiki = () => {
 									className="absolute inset-0 pointer-events-none"
 									aria-hidden="true"
 								>
-									<div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-bl from-gold/10 to-transparent rounded-bl-full" />
-									<div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-accent/10 to-transparent rounded-tr-full" />
+									<div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-bl from-gold/10 to-transparent rounded-bl-full blur-2xl" />
+									<div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-accent/10 to-transparent rounded-tr-full blur-2xl" />
 								</div>
 
 								<div className="relative z-10">
 									<div className="text-center mb-10">
 										<div className="w-20 h-20 rounded-full bg-gradient-to-br from-gold/20 to-accent/10 flex items-center justify-center mx-auto mb-6 shadow-lg">
-											<HelpCircle className="w-10 h-10 text-gold" />
+											<HelpCircle className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-gold" />
 										</div>
 										<h2 className="font-display text-2xl sm:text-3xl md:text-4xl text-foreground">
 											<span className="font-calligraphic text-accent text-3xl sm:text-4xl md:text-5xl inline-block align-baseline">
