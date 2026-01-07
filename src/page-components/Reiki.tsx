@@ -108,9 +108,12 @@ const Reiki = () => {
 	return (
 		<>
 			{/* SEO metadata handled by Next.js Metadata API */}
-			<script type="application/ld+json" dangerouslySetInnerHTML={{ __html: 
-					JSON.stringify(structuredData)
-				 }} />
+			<script
+				type="application/ld+json"
+				dangerouslySetInnerHTML={{
+					__html: JSON.stringify(structuredData),
+				}}
+			/>
 
 			<div className="min-h-screen bg-background relative">
 				<FloatingParticles count={20} />
@@ -566,6 +569,176 @@ const Reiki = () => {
 									</div>
 								</article>
 							</div>
+						</div>
+					</section>
+					{/* Pourquoi faire un soin Reiki */}
+					<section className="container mx-auto px-4 sm:px-6 lg:px-8 mb-20 md:mb-28 relative z-10">
+						<div
+							className="
+    max-w-5xl mx-auto
+    motion-safe:animate-fade-up
+  "
+						>
+							{" "}
+							<article className="relative bg-card/60 backdrop-blur-xl rounded-[2rem] p-8 md:p-12 border border-border/30 shadow-2xl overflow-hidden">
+								{/* Décors */}
+								<div
+									className="absolute inset-0 pointer-events-none"
+									aria-hidden="true"
+								>
+									<div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-bl from-gold/10 to-transparent rounded-bl-full" />
+									<div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-accent/10 to-transparent rounded-tr-full" />
+								</div>
+
+								<div className="relative z-10">
+									<div className="text-center mb-10">
+										<div className="w-20 h-20 rounded-full bg-gradient-to-br from-gold/20 to-accent/10 flex items-center justify-center mx-auto mb-6 shadow-lg">
+											<HelpCircle className="w-10 h-10 text-gold" />
+										</div>
+										<h2 className="font-display text-2xl sm:text-3xl md:text-4xl text-foreground">
+											<span className="font-calligraphic text-accent text-3xl sm:text-4xl md:text-5xl inline-block align-baseline">
+												P
+											</span>
+											our quelles raisons aurais-je besoin
+											d’un soin Reiki ?
+										</h2>
+									</div>
+
+									<p className="text-muted-foreground text-center leading-relaxed mb-8 max-w-3xl mx-auto text-lg">
+										Parce que le corps envoie parfois des
+										signaux pour exprimer un mal-être, qu’il
+										soit émotionnel, mental ou physique.
+									</p>
+
+									<ul className="grid sm:grid-cols-2 gap-4 mb-10">
+										{[
+											"Crises d’angoisse (boule dans la gorge, le ventre ou la poitrine)",
+											"Maux de tête à répétition",
+											"Problèmes de sommeil",
+											"Blocages sans raison apparente",
+											"Problèmes relationnels et/ou émotionnels",
+											"Sensation de fatigue ou de surcharge intérieure",
+										].map((item) => (
+											<li
+												key={item}
+												className="
+		group
+		pointer-events-auto
+		flex items-start gap-3
+		bg-gradient-to-br from-card/80 to-card/60
+		backdrop-blur-sm
+		rounded-xl
+		p-4
+		border border-border/20
+		transition-all duration-300
+		hover:-translate-y-0.5
+		hover:border-gold/40
+		hover:shadow-[0_0_0_1px_hsl(var(--gold)/0.25),0_10px_30px_-10px_hsl(var(--gold)/0.35)]
+	"
+											>
+												<Check className="w-5 h-5 text-accent mt-0.5 flex-shrink-0" />
+												<span className="text-muted-foreground text-sm leading-relaxed">
+													{item}
+												</span>
+											</li>
+										))}
+									</ul>
+
+									<div className="space-y-5 text-muted-foreground leading-relaxed text-base">
+										<p>
+											Le Reiki aide à{" "}
+											<strong className="text-foreground">
+												libérer les énergies bloquées
+											</strong>{" "}
+											au niveau du corps et de l’esprit.
+											C’est une pratique qui stimule
+											l’auto-guérison.
+										</p>
+
+										<p>
+											Le Reiki ne soigne pas les maladies
+											mais agit sur leurs origines. C’est
+											pourquoi certaines manifestations
+											psychosomatiques liées aux tensions
+											ou aux blocages peuvent disparaître
+											naturellement.
+										</p>
+
+										<p>
+											Il active l’ensemble du système
+											énergétique, rééquilibre le corps
+											dans sa globalité, agit sur les
+											plans{" "}
+											<strong className="text-foreground">
+												physique, émotionnel et mental
+											</strong>{" "}
+											et contribue à diminuer le stress.
+										</p>
+									</div>
+
+									<blockquote className="mt-10 text-center text-lg md:text-xl text-foreground font-display italic border-y border-gold/30 py-6">
+										Le Reiki accompagne le corps et l’esprit
+										vers un état de bien-être profond et
+										durable.
+									</blockquote>
+								</div>
+							</article>
+						</div>
+					</section>
+					<section className="relative py-16 md:py-24">
+						<div className="max-w-5xl mx-auto px-4">
+							{/* Titre */}
+							<h2 className="text-2xl md:text-3xl font-semibold text-center mb-4">
+								<span className="font-calligraphic text-accent text-3xl sm:text-4xl md:text-5xl inline-block align-baseline">
+									L
+								</span>
+								es{" "}
+								<span className="font-calligraphic text-accent text-3xl sm:text-4xl md:text-5xl inline-block align-baseline">
+									5
+								</span>{" "}
+								principes du{" "}
+								<span className="font-calligraphic text-accent text-3xl sm:text-4xl md:text-5xl inline-block align-baseline">
+									R
+								</span>
+								eiki
+							</h2>
+
+							<p className="text-center text-muted-foreground max-w-2xl mx-auto mb-12">
+								Des principes simples, transmis comme une
+								invitation à revenir à l’essentiel, ici et
+								maintenant.
+							</p>
+
+							{/* Blockquote */}
+							<blockquote className="relative py-5 my-8 border-l-2 border-accent/40 pl-5">
+								{/* Guillemets décoratifs */}
+								<Quote className="absolute -top-2 -left-3 w-6 h-6 text-gold" />
+
+								{/* Liste des principes */}
+								<ul className="font-calligraphic text-lg sm:text-xl md:text-2xl  text-accent/90 space-y-4">
+									<li>
+										"Juste pour aujourd’hui, je me libère de
+										toute colère."
+									</li>
+									<li>
+										"Juste pour aujourd’hui, je me libère de
+										tout souci."
+									</li>
+									<li>
+										"Juste pour aujourd’hui, j’exprime ma
+										profonde gratitude et je rends grâce à
+										mes parents et mes aïeux."
+									</li>
+									<li>
+										"Juste pour aujourd’hui, je vis ma vie
+										honnêtement."
+									</li>
+									<li>
+										"Juste pour aujourd’hui, j’exprime de la
+										bienveillance pour tout ce qui vit."
+									</li>
+								</ul>
+							</blockquote>
 						</div>
 					</section>
 
