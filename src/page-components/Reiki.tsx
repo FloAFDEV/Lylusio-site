@@ -1082,12 +1082,14 @@ const Reiki = () => {
 									</AccordionTrigger>
 									<AccordionContent className="text-muted-foreground text-sm leading-relaxed pb-4">
 										La séance dure environ 1h. Vous restez
-										habillé(e), allongé(e) confortablement.
-										Je pose délicatement mes mains sur
-										différentes parties du corps. Vous
+										habillé(e), allongé(e) confortablement
+										sur une table de massage. Je pose
+										délicatement mes mains sur différentes
+										parties du corps (ou légèrement
+										au-dessus selon votre préférence). Vous
 										pouvez ressentir de la chaleur, des
 										picotements, ou simplement une profonde
-										détente.
+										détente. Chaque expérience est unique.
 									</AccordionContent>
 								</AccordionItem>
 
