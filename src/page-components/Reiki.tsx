@@ -1099,12 +1099,14 @@ const Reiki = () => {
 										Combien de séances sont recommandées ?
 									</AccordionTrigger>
 									<AccordionContent className="text-muted-foreground text-sm leading-relaxed pb-4">
+										Cela dépend de vos besoins et objectifs.
 										Une seule séance peut déjà apporter du
-										bienfait. Pour un travail plus profond
-										(stress chronique, période de
-										transition...), 3 à 4 séances espacées
-										de 2-3 semaines peuvent être bénéfiques.
-										Nous en discutons ensemble lors de notre
+										bienfait, notamment pour la relaxation.
+										Pour un travail plus profond (stress
+										chronique, période de transition...), 3
+										à 4 séances espacées de 3 semaines à 1
+										mois peuvent être bénéfiques. Nous en
+										discutons ensemble lors de notre
 										première rencontre.
 									</AccordionContent>
 								</AccordionItem>
