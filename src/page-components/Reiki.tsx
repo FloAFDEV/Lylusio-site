@@ -580,7 +580,7 @@ const Reiki = () => {
   "
 						>
 							{" "}
-							<article className="relative bg-card/60 backdrop-blur-xl rounded-[2rem] p-8 md:p-12 border border-border/30 shadow-2xl overflow-hidden">
+							<article className="relative bg-card/20 backdrop-blur-xl rounded-[2rem] p-8 md:p-12 border border-border/30 shadow-2xl overflow-hidden">
 								{/* Décors */}
 								<div
 									className="absolute inset-0 pointer-events-none"
