@@ -696,11 +696,7 @@ const Reiki = () => {
 								<span className="font-calligraphic text-accent text-3xl sm:text-4xl md:text-5xl inline-block align-baseline">
 									5
 								</span>{" "}
-								principes du{" "}
-								<span className="font-calligraphic text-accent text-3xl sm:text-4xl md:text-5xl inline-block align-baseline">
-									R
-								</span>
-								eiki
+								principes du Reiki
 							</h2>
 
 							<p className="text-center text-muted-foreground max-w-2xl mx-auto mb-12">
@@ -715,7 +711,7 @@ const Reiki = () => {
 								<Quote className="absolute -top-2 -left-3 w-6 h-6 text-gold-light" />
 
 								{/* Liste des principes */}
-								<ul className="font-calligraphic text-lg sm:text-xl md:text-2xl  text-accent/90 space-y-4">
+								<ul className="font-calligraphic text-lg sm:text-xl md:text-2xl  text-gold space-y-4">
 									<li>
 										"Juste pour aujourd’hui, je me libère de
 										toute colère."
@@ -830,7 +826,7 @@ const Reiki = () => {
 							</div>
 
 							<blockquote className="mt-12 relative bg-gradient-to-br from-gold/5 via-card/80 to-accent/5 backdrop-blur-sm rounded-3xl p-8 md:p-10 border border-border/30 text-center shadow-lg">
-								<Quote className="absolute top-4 left-4 w-8 h-8 text-gold/20" />
+								<Quote className="absolute top-4 left-4 w-8 h-8 text-gold-light" />
 								<p className="text-lg md:text-xl text-foreground font-display italic max-w-2xl mx-auto leading-relaxed">
 									Je suis formée en Reiki Usui Shiki Ryoho,
 									dans le respect de la déontologie et de

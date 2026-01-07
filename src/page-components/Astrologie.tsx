@@ -748,19 +748,19 @@ const Astrologie = () => {
 										<div className="pt-5 border-t border-gold/15">
 											<div className="flex items-center justify-center gap-3 mb-4">
 												<p className="font-display text-xl font-bold text-gold">
-													60€
+													70€ / 90€
 												</p>
-												<span className="text-xs text-muted-foreground bg-accent/10 px-2 py-0.5 rounded-full">
-													Clients thème natal
+												<span className="text-xs text-muted-foreground">
+													(support écrit)
 												</span>
 											</div>
 											<div className="flex flex-wrap justify-center gap-3 text-xs text-muted-foreground mb-4">
 												<span className="flex items-center gap-1">
-													<Clock className="w-3.5 h-3.5 text-gold" />
-													1h
+													<Clock className="w-3.5 h-3.5 text-accent" />
+													1h30
 												</span>
 												<span className="flex items-center gap-1">
-													<MapPin className="w-3.5 h-3.5 text-gold" />
+													<MapPin className="w-3.5 h-3.5 text-accent" />
 													Présentiel/Distance
 												</span>
 											</div>

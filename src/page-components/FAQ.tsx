@@ -77,7 +77,7 @@ const faqCategories = [
 			},
 			{
 				question: "Comment se déroule une consultation d'astrologie ?",
-				answer: "La séance dure environ 1h30. Je prépare votre thème avant notre rendez-vous à partir de vos données de naissance (date, heure exacte, lieu). Pendant la consultation, nous explorons ensemble les grandes lignes de votre thème : votre personnalité profonde, vos besoins émotionnels, votre façon de communiquer, vos talents... Vous repartez avec un enregistrement audio de la séance.",
+				answer: "La séance dure environ 1h30 à 2h. Je prépare votre thème avant notre rendez-vous à partir de vos données de naissance (date, heure exacte, lieu). Pendant la consultation, nous explorons ensemble les grandes lignes de votre thème : votre personnalité profonde, vos besoins émotionnels, votre façon de communiquer, vos talents... Je réponds aussi à vos questions spécifiques.",
 			},
 			{
 				question:
@@ -109,7 +109,7 @@ const faqCategories = [
 			},
 			{
 				question: "Combien de séances de Reiki sont recommandées ?",
-				answer: "Cela dépend de vos besoins et objectifs. Une seule séance peut déjà apporter du bienfait, notamment pour la relaxation. Pour un travail plus profond (stress chronique, période de transition...), 3 à 4 séances espacées de 2-3 semaines peuvent être bénéfiques. Nous en discutons ensemble lors de notre première rencontre.",
+				answer: "Cela dépend de vos besoins et objectifs. Une seule séance peut déjà apporter du bienfait, notamment pour la relaxation. Pour un travail plus profond (stress chronique, période de transition...), 3 à 4 séances espacées de 3 semaines à 1 mois peuvent être bénéfiques. Nous en discutons ensemble lors de notre première rencontre.",
 			},
 		],
 	},
@@ -199,11 +199,11 @@ const faqCategories = [
 			{
 				question:
 					"Les consultations se font-elles en présentiel ou à distance ?",
-				answer: "Je propose les deux formules. Les consultations en présentiel ont lieu à Toulouse. Les séances à distance se font par visioconférence (Zoom ou Google Meet) et sont tout aussi efficaces pour l'astrologie et le coaching. Pour le Reiki, le présentiel est privilégié, mais des séances à distance sont également possibles.",
+				answer: "Je propose les deux formules. Les consultations en présentiel ont lieu à Toulouse-nord. Les séances à distance se font par visioconférence (WhatsApp ou Google Meet) et sont tout aussi efficaces pour l'astrologie et le coaching. Pour le Reiki, le présentiel est privilégié, mais des séances à distance sont également possibles.",
 			},
 			{
 				question: "Comment prendre rendez-vous ?",
-				answer: "Vous pouvez réserver directement en ligne via les liens Calendly disponibles sur chaque page de service, ou me contacter par email ou téléphone pour échanger avant de réserver. Je vous répondrai dans les 48h ouvrées.",
+				answer: "Vous pouvez réserver directement en ligne via les liens Calendly disponibles sur chaque page de service, ou me contacter par email ou téléphone pour échanger avant de réserver.",
 			},
 			{
 				question: "Quelle est votre politique d'annulation ?",

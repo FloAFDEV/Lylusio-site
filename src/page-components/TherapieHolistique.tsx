@@ -394,7 +394,7 @@ const TherapieHolistique = () => {
 											conscience.
 										</strong>
 									</p>
-									<p className="font-display text-xl md:text-2xl text-accent italic mt-6">
+									<p className="font-display text-xl md:text-2xl text-gold italic mt-6">
 										Qu'ai-je donc réellement besoin pour me
 										sentir épanouie ?
 									</p>

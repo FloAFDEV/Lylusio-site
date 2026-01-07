@@ -191,7 +191,7 @@ const ContactCards = () => {
 							(Toulouse Nord) – en présentiel & en ligne
 						</span>
 					</p>
-					<span className="text-xs text-accent/70 mt-1 inline-block">
+					<span className="text-xs text-accent mt-1 inline-block">
 						Ouvrir dans Maps →
 					</span>
 				</div>

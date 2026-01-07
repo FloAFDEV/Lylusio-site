@@ -26,6 +26,7 @@ import {
 	Infinity,
 	ArrowRight,
 	Zap,
+	CreditCard,
 } from "lucide-react";
 import { useParallax } from "@/hooks/useParallax";
 import { useInView } from "@/hooks/useInView";
@@ -914,7 +915,7 @@ const Accompagnement = () => {
 														téléphoniques réguliers
 													</span>
 													<span className="flex items-center gap-1">
-														<MapPin className="w-4 h-4 text-accent" />
+														<MapPin className="w-4 h-4 text-gold" />
 														Présentiel/Distance
 													</span>
 												</div>
