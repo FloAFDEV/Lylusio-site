@@ -712,7 +712,7 @@ const Reiki = () => {
 							{/* Blockquote */}
 							<blockquote className="relative py-5 my-8 border-l-2 border-accent/40 pl-5">
 								{/* Guillemets décoratifs */}
-								<Quote className="absolute -top-2 -left-3 w-6 h-6 text-gold" />
+								<Quote className="absolute -top-2 -left-3 w-6 h-6 text-gold-light" />
 
 								{/* Liste des principes */}
 								<ul className="font-calligraphic text-lg sm:text-xl md:text-2xl  text-accent/90 space-y-4">
