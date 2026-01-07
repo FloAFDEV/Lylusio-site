@@ -106,7 +106,8 @@ const fetchAllBlogPosts = async (): Promise<BlogPost[]> => {
 	return allPosts.map((post) => {
 		const imageObj = post._embedded?.["wp:featuredmedia"]?.[0];
 		const imageUrl = imageObj?.source_url || "/placeholder.svg";
-		const imageAlt = imageObj?.alt_text || utils.stripHtml(post.title.rendered);
+		const imageAlt =
+			imageObj?.alt_text || utils.stripHtml(post.title.rendered);
 
 		const categories =
 			post._embedded?.["wp:term"]?.[0]?.map((term) => ({
@@ -118,7 +119,8 @@ const fetchAllBlogPosts = async (): Promise<BlogPost[]> => {
 		return {
 			id: post.id,
 			title: utils.stripHtml(post.title.rendered),
-			excerpt: utils.stripHtml(post.excerpt.rendered).slice(0, 150) + "...",
+			excerpt:
+				utils.stripHtml(post.excerpt.rendered).slice(0, 150) + "...",
 			date: utils.formatDate(post.date),
 			rawDate: post.date,
 			slug: post.slug,
@@ -243,7 +245,8 @@ const Blog = () => {
 					slug: p.slug,
 					title: utils.stripHtml(p.title.rendered),
 					excerpt:
-						utils.stripHtml(p.excerpt.rendered).slice(0, 100) + "...",
+						utils.stripHtml(p.excerpt.rendered).slice(0, 100) +
+						"...",
 					image:
 						p._embedded?.["wp:featuredmedia"]?.[0]?.source_url ||
 						"/placeholder.svg",
@@ -360,9 +363,15 @@ const Blog = () => {
 											selectedCategory === cat.id
 										}
 									>
-										<span dangerouslySetInnerHTML={{
-											__html: cat.name.replace(/\s+/g, '<br />') + ` (${cat.count})`
-										}} />
+										<span
+											dangerouslySetInnerHTML={{
+												__html:
+													cat.name.replace(
+														/\s+/g,
+														"<br />"
+													) + ` (${cat.count})`,
+											}}
+										/>
 									</button>
 								))}
 							</div>
@@ -616,7 +625,10 @@ const Blog = () => {
 						)}
 
 						{/* Internal links */}
-						<ServicesDiscoveryCTA variant="standard" buttonVariant="elegant" />
+						<ServicesDiscoveryCTA
+							variant="standard"
+							buttonVariant="elegant"
+						/>
 					</section>
 				</main>
 

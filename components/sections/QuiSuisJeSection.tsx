@@ -92,7 +92,10 @@ const QuiSuisJeSection = () => {
 							id="qui-suis-je-title"
 							className="font-display text-2xl sm:text-3xl lg:text-4xl text-foreground mb-4"
 						>
-							Je suis{" "}
+							<span className="font-calligraphic text-gold">
+								J
+							</span>
+							e suis{" "}
 							<span className="font-calligraphic text-gold">
 								Émilie
 							</span>
@@ -128,22 +131,6 @@ const QuiSuisJeSection = () => {
 								Comme si je devais expérimenter toujours dans
 								une profondeur totale chacune des parties de ma
 								vie.
-							</p>
-
-							<p className="text-primary font-medium">
-								Tel un Phœnix, j'ai appris que chaque fin porte
-								en elle une renaissance. Mon parcours m'a guidée
-								de la{" "}
-								<strong>psychologie à l'énergétique</strong>, du{" "}
-								<strong>coaching professionnel</strong> à
-								l'astrologie symbolique.
-							</p>
-
-							<p className="italic">
-								Ce que j'ai vécu m'a façonnée : aujourd'hui, je
-								transforme ces expériences en un espace sûr où
-								vous pouvez vous déposer, vous comprendre et
-								vous réinventer.
 							</p>
 						</div>
 

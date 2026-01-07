@@ -5,6 +5,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import FloatingParticles from "@/components/FloatingParticles";
+import GoldenPlantBadge from "@/components/GoldenPlantBadge";
 import { useInView } from "@/hooks/useInView";
 import { useParallax } from "@/hooks/useParallax";
 import { useMemo, useState, useEffect } from "react";
@@ -29,7 +30,9 @@ const AstroStars = ({ count = 15 }: { count?: number }) => {
 	);
 
 	if (!mounted) {
-		return <div className="absolute inset-0 overflow-hidden pointer-events-none" />;
+		return (
+			<div className="absolute inset-0 overflow-hidden pointer-events-none" />
+		);
 	}
 
 	return (
@@ -116,22 +119,8 @@ const About = () => {
 						aria-labelledby="about-title"
 					>
 						{/* Plant decoration with parallax */}
-						<div
-							className="absolute top-0 right-4 md:right-12 w-14 md:w-20 aspect-square relative opacity-25 rounded-xl animate-float pointer-events-none"
-							style={{
-								animationDuration: "10s",
-								transform: `translate3d(0, ${
-									parallaxOffset * 0.2
-								}px, 0)`,
-							}}
-						>
-							<Image
-								src="/assets/plant-decoration.webp"
-								alt=""
-								fill
-								className="object-contain"
-								aria-hidden="true"
-							/>
+						<div className="absolute -bottom-4 -right-4 pointer-events-none">
+							<GoldenPlantBadge size="md" animate />
 						</div>
 
 						<AnimatedSection>
@@ -191,13 +180,11 @@ const About = () => {
 											/>
 										</div>
 										{/* Plant badge on photo */}
-										<div className="absolute -bottom-4 -right-4 w-10 md:w-12 aspect-square relative opacity-50 rounded-full pointer-events-none">
-											<Image
-												src="/assets/plant-decoration.webp"
-												alt=""
-												fill
-												className="object-contain"
-												aria-hidden="true"
+										<div className="absolute -bottom-4 -right-4 pointer-events-none">
+											<GoldenPlantBadge
+												size="sm"
+												animate
+												className="opacity-60"
 											/>
 										</div>
 									</div>
@@ -254,19 +241,11 @@ const About = () => {
 						<div className="absolute inset-0 bg-gradient-to-b from-secondary/30 via-secondary/20 to-transparent" />
 						<AstroStars count={12} />
 						{/* Plant decoration */}
-						<div
-							className="absolute bottom-8 left-4 md:left-12 w-12 md:w-16 aspect-square relative opacity-15 rounded-xl animate-float pointer-events-none transform -rotate-12"
-							style={{
-								animationDuration: "14s",
-								animationDelay: "2s",
-							}}
-						>
-							<Image
-								src="/assets/plant-decoration.webp"
-								alt=""
-								fill
-								className="object-contain"
-								aria-hidden="true"
+						<div className="absolute bottom-8 right-6 pointer-events-none">
+							<GoldenPlantBadge
+								size="md"
+								animate
+								className="opacity-60"
 							/>
 						</div>
 
@@ -303,13 +282,11 @@ const About = () => {
 											</div>
 										</div>
 										{/* Plant badge */}
-										<div className="absolute -top-3 -left-3 w-10 md:w-12 aspect-square relative opacity-40 rounded-full pointer-events-none">
-											<Image
-												src="/assets/plant-decoration.webp"
-												alt=""
-												fill
-												className="object-contain"
-												aria-hidden="true"
+										<div className="absolute -bottom-2 -right-4 pointer-events-none">
+											<GoldenPlantBadge
+												size="sm"
+												animate
+												className="opacity-60"
 											/>
 										</div>
 									</figure>
@@ -445,19 +422,11 @@ const About = () => {
 					>
 						<div className="absolute inset-0 bg-gradient-to-t from-secondary/25 via-secondary/15 to-transparent" />
 						<AstroStars count={12} />
-						<div
-							className="absolute top-8 right-4 md:right-16 w-10 md:w-14 aspect-square relative opacity-20 rounded-lg animate-float pointer-events-none"
-							style={{
-								animationDuration: "11s",
-								animationDelay: "1s",
-							}}
-						>
-							<Image
-								src="/assets/plant-decoration.webp"
-								alt=""
-								fill
-								className="object-contain"
-								aria-hidden="true"
+						<div className="absolute -bottom-4 -right-4 pointer-events-none">
+							<GoldenPlantBadge
+								size="sm"
+								animate
+								className="opacity-60"
 							/>
 						</div>
 
@@ -526,13 +495,11 @@ const About = () => {
 											<div className="absolute inset-0 rounded-2xl md:rounded-3xl bg-gradient-to-t from-background/20 via-transparent to-transparent pointer-events-none" />
 										</div>
 										{/* Plant badge */}
-										<div className="absolute -bottom-3 -left-3 w-10 md:w-12 aspect-square relative opacity-50 rounded-full pointer-events-none">
-											<Image
-												src="/assets/plant-decoration.webp"
-												alt=""
-												fill
-												className="object-contain"
-												aria-hidden="true"
+										<div className="absolute -bottom-4 -right-4 pointer-events-none">
+											<GoldenPlantBadge
+												size="sm"
+												animate
+												className="opacity-60"
 											/>
 										</div>
 									</figure>
@@ -580,13 +547,11 @@ const About = () => {
 											</div>
 										</div>
 										{/* Plant badge */}
-										<div className="absolute -bottom-3 -right-3 w-10 md:w-12 aspect-square relative opacity-50 rounded-full pointer-events-none">
-											<Image
-												src="/assets/plant-decoration.webp"
-												alt=""
-												fill
-												className="object-contain"
-												aria-hidden="true"
+										<div className="absolute -bottom-4 -right-4 pointer-events-none">
+											<GoldenPlantBadge
+												size="sm"
+												animate
+												className="opacity-60"
 											/>
 										</div>
 									</figure>
@@ -636,16 +601,11 @@ const About = () => {
 					>
 						<div className="absolute inset-0 bg-gradient-to-b from-transparent via-secondary/20 to-secondary/40" />
 						<AstroStars count={18} />
-						<div
-							className="absolute bottom-4 right-8 md:right-20 w-12 md:w-16 aspect-square relative opacity-15 rounded-full animate-float pointer-events-none"
-							style={{ animationDuration: "13s" }}
-						>
-							<Image
-								src="/assets/plant-decoration.webp"
-								alt=""
-								fill
-								className="object-contain"
-								aria-hidden="true"
+						<div className="absolute -bottom-4 -right-4 pointer-events-none">
+							<GoldenPlantBadge
+								size="sm"
+								animate
+								className="opacity-60"
 							/>
 						</div>
 
