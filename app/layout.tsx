@@ -171,7 +171,7 @@ export default function RootLayout({
 	children: React.ReactNode;
 }) {
 	return (
-		<html lang="fr" suppressHydrationWarning>
+		<html lang="fr" suppressHydrationWarning data-scroll-behavior="smooth">
 			<head>
 				{/* Preconnect for critical third-party origins */}
 				<link rel="preconnect" href="https://fonts.googleapis.com" />

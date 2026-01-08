@@ -34,10 +34,10 @@ const GoldenPlantBadge = ({
 				"rounded-full flex items-center justify-center overflow-hidden",
 				// Background with slight transparency
 				"bg-background/95 backdrop-blur-sm",
-				// Golden border - IMPORTANT: Increased border width for visibility
-				"border-[3px] border-gold shadow-[0_0_15px_hsl(var(--gold)/0.4)]",
-				// Animation
-				animate && "hover:animate-float hover:shadow-[0_0_25px_hsl(var(--gold)/0.6)] transition-all duration-500",
+				// Soft golden border - Reduced border width and softer shadow
+				"border-2 border-gold/60 shadow-[0_0_12px_hsl(var(--gold)/0.25)]",
+				// Animation with softer glow
+				animate && "hover:animate-float hover:shadow-[0_0_20px_hsl(var(--gold)/0.4)] transition-all duration-500",
 				// Size
 				sizeClasses[size],
 				className

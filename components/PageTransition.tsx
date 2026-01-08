@@ -9,26 +9,30 @@ interface PageTransitionProps {
 
 /**
  * Page Transition Component
- * Provides smooth, feminine fade-in transitions between pages
- * Hydration-safe with CSS-only animation
+ * Provides smooth transitions between route changes only
+ * No initial flash - only animates on navigation
  */
 const PageTransition = ({ children }: PageTransitionProps) => {
 	const pathname = usePathname();
-	const [isMounted, setIsMounted] = useState(false);
+	const [displayPath, setDisplayPath] = useState(pathname);
+	const [isTransitioning, setIsTransitioning] = useState(false);
 
 	useEffect(() => {
-		// Reset animation on route change
-		setIsMounted(false);
-		const timer = setTimeout(() => setIsMounted(true), 10);
-		return () => clearTimeout(timer);
-	}, [pathname]);
+		// Only animate on route changes, not on initial load
+		if (displayPath !== pathname) {
+			setIsTransitioning(true);
+			const timer = setTimeout(() => {
+				setDisplayPath(pathname);
+				setIsTransitioning(false);
+			}, 300);
+			return () => clearTimeout(timer);
+		}
+	}, [pathname, displayPath]);
 
 	return (
 		<div
-			className={`transition-all duration-700 ease-out ${
-				isMounted
-					? "opacity-100 translate-y-0"
-					: "opacity-0 translate-y-2"
+			className={`transition-opacity duration-300 ease-out ${
+				isTransitioning ? "opacity-0" : "opacity-100"
 			}`}
 		>
 			{children}
