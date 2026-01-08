@@ -700,15 +700,15 @@ const Accompagnement = () => {
 						<div className="container mx-auto px-4 sm:px-6 lg:px-8">
 							{/* Section Header avec image ronde et parallax */}
 							<div
-								className={`flex flex-col items-center gap-6 lg:flex-row lg:gap-12 mb-10 sm:mb-14 transition-all duration-1000 ${
+								className={`flex flex-col items-center gap-6 lg:flex-row lg:items-start lg:gap-12 mb-10 sm:mb-14 transition-all duration-1000 ${
 									accompInView
 										? "opacity-100 translate-y-0"
 										: "opacity-0 translate-y-8"
 								}`}
 							>
-								{/* Image ronde avec effet parallax */}
+								{/* Image ronde avec effet parallax - alignée avec le titre */}
 								<div
-									className="relative w-32 h-32 sm:w-40 sm:h-40 lg:w-56 lg:h-56 flex-shrink-0"
+									className="relative w-32 h-32 sm:w-40 sm:h-40 lg:w-56 lg:h-56 flex-shrink-0 lg:mt-8"
 									style={{
 										transform:
 											!mounted || isMobile
@@ -731,7 +731,7 @@ const Accompagnement = () => {
 									</div>
 								</div>
 
-								<div className="text-center lg:text-left flex-1">
+								<div className="text-center flex-1">
 									<p className="section-label">
 										Accompagnement Complet
 									</p>
@@ -741,7 +741,7 @@ const Accompagnement = () => {
 										</span>
 										ccompagnement Global
 									</h2>
-									<p className="text-muted-foreground text-sm sm:text-base leading-relaxed max-w-xl mx-auto lg:mx-0">
+									<p className="text-muted-foreground text-sm sm:text-base leading-relaxed max-w-xl mx-auto">
 										Astrologie • Reiki • Thérapie pour traverser vos transitions de vie
 									</p>
 								</div>
