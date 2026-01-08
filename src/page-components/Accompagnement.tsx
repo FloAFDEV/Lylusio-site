@@ -566,14 +566,14 @@ const Accompagnement = () => {
 							</div>
 
 							{/* Mobile: Carousel */}
-							<div className="lg:hidden">
+							<div className="md:hidden">
 								<MobileServiceCarousel
 									services={[reikiService]}
 								/>
 							</div>
 
 							{/* Desktop: Single card */}
-							<div className="hidden lg:block max-w-3xl mx-auto">
+							<div className="hidden md:block max-w-3xl mx-auto">
 								<article
 									className={`group relative bg-gradient-to-b from-card/90 to-card/60 backdrop-blur-md rounded-[2rem] overflow-hidden border border-border/20 shadow-soft hover:shadow-[0_20px_50px_-15px_hsl(var(--gold)/0.25)] hover:border-gold/40 hover:-translate-y-3 transition-all duration-500 ${
 										reikiInView
@@ -878,14 +878,14 @@ const Accompagnement = () => {
 							</div>
 
 							{/* Mobile: Carousel / Desktop: Card */}
-							<div className="lg:hidden">
+							<div className="md:hidden">
 								<MobileServiceCarousel
 									services={[bilanService]}
 								/>
 							</div>
 
 							{/* Desktop */}
-							<div className="hidden lg:block max-w-4xl mx-auto">
+							<div className="hidden md:block max-w-4xl mx-auto">
 								<article
 									className={`group relative bg-card/80 backdrop-blur-sm rounded-3xl overflow-hidden border border-border/30 shadow-soft hover:shadow-elegant hover:border-accent/30 transition-all duration-700 ${
 										bilanInView
