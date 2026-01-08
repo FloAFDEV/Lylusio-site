@@ -247,7 +247,7 @@ const MonApproche = () => {
 
 							<div className="space-y-5 text-muted-foreground text-base sm:text-lg md:text-xl leading-relaxed mb-8 text-left">
 								<p>
-									<span className="font-calligraphic text-gold text-mdinline-block align-baseline  ">
+									<span className="font-calligraphic text-gold text-md inline-block align-baseline  ">
 										J
 									</span>
 									'accompagne les{" "}
@@ -359,20 +359,19 @@ const MonApproche = () => {
 									devenir un tremplin pour la suite.
 								</p>
 
+								<p className="indent-4">
+									Mes clientes me disent souvent :
+								</p>
+
 								{/* Quote avec icône */}
 								<blockquote className="relative py-5 my-8 border-l-2 border-accent/40 pl-5">
 									<Quote className="absolute -top-2 -left-3 w-6 h-6 text-accent/30" />
 									<p className="font-display text-lg sm:text-xl md:text-2xl italic text-foreground/90 text-left">
-										"La vérité, quand elle est dite avec
-										justesse, ouvre toutes les portes."
+										"Vous mettez des mots là où tout
+										était flou. Et d'un coup, tout
+										devient simple."
 									</p>
 								</blockquote>
-
-								<p className="indent-4">
-									Mes clientes me disent souvent : « Vous
-									mettez des mots là où tout était flou. Et
-									d'un coup, tout devient simple. »
-								</p>
 
 								<p className="indent-4">
 									C'est exactement ça, mon travail :{" "}
@@ -424,12 +423,16 @@ const MonApproche = () => {
 											: "opacity-0 translate-y-12"
 									}`}
 									style={{
-										transitionDelay: mounted && pillarsInView
-											? `${200 + index * 100}ms`
-											: "0ms",
-										transform: mounted && pillarsInView
-											? `translateY(0)`
-											: `translateY(${20 + index * 5}px)`,
+										transitionDelay:
+											mounted && pillarsInView
+												? `${200 + index * 100}ms`
+												: "0ms",
+										transform:
+											mounted && pillarsInView
+												? `translateY(0)`
+												: `translateY(${
+														20 + index * 5
+												  }px)`,
 									}}
 								>
 									<div className="w-16 h-16 mx-auto mb-5 rounded-full bg-sand/60 flex items-center justify-center shadow-soft group-hover:scale-110 group-hover:bg-gold/10 transition-all duration-500">
@@ -506,9 +509,10 @@ const MonApproche = () => {
 								<div
 									className="relative overflow-hidden rounded-2xl shadow-2xl"
 									style={{
-										clipPath: mounted && quoteInView
-											? "polygon(0 0, 100% 0, 100% 100%, 0 100%)"
-											: "polygon(0 50%, 100% 50%, 100% 50%, 0 50%)",
+										clipPath:
+											mounted && quoteInView
+												? "polygon(0 0, 100% 0, 100% 100%, 0 100%)"
+												: "polygon(0 50%, 100% 50%, 100% 50%, 0 50%)",
 										transition:
 											"clip-path 1.2s cubic-bezier(0.65, 0, 0.35, 1)",
 									}}
@@ -518,11 +522,13 @@ const MonApproche = () => {
 											src="/assets/approche-lunettes.webp"
 											alt="Un lever de soleil au travers de lunettes de vue - métaphore d'une nouvelle perspective"
 											fill
+											sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 40vw"
 											className="object-cover transition-transform duration-&lsqb;2s&rsqb; ease-out hover:scale-105"
 											style={{
-												transform: mounted && quoteInView
-													? "scale(1)"
-													: "scale(1.15)",
+												transform:
+													mounted && quoteInView
+														? "scale(1)"
+														: "scale(1.15)",
 											}}
 										/>
 									</div>
@@ -730,6 +736,7 @@ const MonApproche = () => {
 											src="/assets/main-tendue.webp"
 											alt="Une main tendue vers une autre - symbole d'accompagnement"
 											fill
+											sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 40vw"
 											className="object-cover transition-transform duration-700 group-hover:scale-105"
 										/>
 										{/* Subtle overlay */}
@@ -774,7 +781,7 @@ const MonApproche = () => {
 							<div className="absolute -top-4 -right-4 w-12 h-12 border-t-2 border-r-2 border-gold/30 rounded-tr-xl transition-opacity duration-500" />
 
 							{/* Optional floating icon (like a small sparkle) */}
-							<Sparkles className="absolute -bottom-6 right-8 w-8 h-8 text-gold-light animate-float pointer-events-none" />
+							<Sparkles className="absolute top-6 right-6 w-7 h-7 text-gold/70 animate-float pointer-events-none" />
 
 							{/* Content */}
 							<p className="text-gold text-md sm:text-base leading-relaxed max-w-6xl mx-auto relative z-10">
