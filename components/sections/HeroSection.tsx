@@ -9,23 +9,39 @@ import { useParallax } from "@/hooks/useParallax";
 // import emilieHero from "@/assets/emilie-hero.webp"; // Now using /assets/emilie-hero.webp
 // import plantDecoration from "@/assets/plant-decoration.webp"; // Now using /assets/plant-decoration.webp
 
+// Smooth wrapper for client-only decorative elements
+const SmoothWrapper = ({ children }: { children: React.ReactNode }) => {
+	const [mounted, setMounted] = useState(false);
+	useEffect(() => {
+		requestAnimationFrame(() => setMounted(true));
+	}, []);
+	return (
+		<div className="transition-opacity duration-700" style={{ opacity: mounted ? 1 : 0 }}>
+			{children}
+		</div>
+	);
+};
+
 // Lazy load decorative components for better LCP
 const CelestialStarsLazy = dynamic(() => Promise.resolve(CelestialStars), {
 	ssr: false,
+	loading: () => <div className="absolute inset-0" />,
 });
 const SoftCloudsLazy = dynamic(() => Promise.resolve(SoftClouds), {
 	ssr: false,
+	loading: () => <div className="absolute inset-0" />,
 });
 const HandwrittenSignatureLazy = dynamic(
 	() => Promise.resolve(HandwrittenSignature),
-	{ ssr: false }
+	{ ssr: false, loading: () => <div className="absolute inset-0" /> }
 );
 const OrganicShapesLazy = dynamic(() => Promise.resolve(OrganicShapes), {
 	ssr: false,
+	loading: () => <div className="absolute inset-0" />,
 });
 const DecorativeCirclesLazy = dynamic(
 	() => Promise.resolve(DecorativeCircles),
-	{ ssr: false }
+	{ ssr: false, loading: () => <div /> }
 );
 
 // CelestialStars - Étoiles scintillantes aléatoires côté client
@@ -40,6 +56,7 @@ const CelestialStars = memo(() => {
 			duration: string;
 		}[]
 	>([]);
+	const [mounted, setMounted] = useState(false);
 
 	useEffect(() => {
 		const generatedStars = [...Array(20)].map((_, i) => ({
@@ -51,11 +68,14 @@ const CelestialStars = memo(() => {
 			duration: `${2.5 + Math.random() * 2}s`,
 		}));
 		setStars(generatedStars);
+		// Fade in after mount
+		requestAnimationFrame(() => setMounted(true));
 	}, []);
 
 	return (
 		<div
-			className="absolute inset-0 pointer-events-none"
+			className="absolute inset-0 pointer-events-none transition-opacity duration-1000"
+			style={{ opacity: mounted ? 1 : 0 }}
 			aria-hidden="true"
 		>
 			{stars.map((star) => (
@@ -226,13 +246,21 @@ const HeroSection = () => {
 			}}
 			aria-labelledby="hero-title"
 		>
-			{/* Éléments célestes */}
-			<CelestialStarsLazy />
-			<SoftCloudsLazy parallaxOffset={parallaxOffset} />
-			<HandwrittenSignatureLazy parallaxOffset={parallaxOffset} />
+			{/* Éléments célestes avec transitions douces */}
+			<SmoothWrapper>
+				<CelestialStarsLazy />
+			</SmoothWrapper>
+			<SmoothWrapper>
+				<SoftCloudsLazy parallaxOffset={parallaxOffset} />
+			</SmoothWrapper>
+			<SmoothWrapper>
+				<HandwrittenSignatureLazy parallaxOffset={parallaxOffset} />
+			</SmoothWrapper>
 
 			{/* Formes organiques d'arrière-plan */}
-			<OrganicShapesLazy parallaxOffset={parallaxOffset} />
+			<SmoothWrapper>
+				<OrganicShapesLazy parallaxOffset={parallaxOffset} />
+			</SmoothWrapper>
 
 			{/* Contenu principal */}
 			<div className="relative z-10 container-wide section-padding grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center">
@@ -376,7 +404,9 @@ const HeroSection = () => {
 				>
 					<div className="relative mx-auto max-w-[200px] sm:max-w-[240px]">
 						{/* Cercles décoratifs */}
-						<DecorativeCirclesLazy />
+						<SmoothWrapper>
+							<DecorativeCirclesLazy />
+						</SmoothWrapper>
 
 						{/* Photo principale avec effet hover */}
 						<div className="aspect-square rounded-full overflow-hidden shadow-gold border-2 border-gold/20 relative group">

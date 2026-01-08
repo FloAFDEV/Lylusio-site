@@ -45,8 +45,8 @@ const ParticleElement = memo(({ particle }: { particle: Particle }) => (
 			opacity: particle.opacity,
 			animationDuration: `${particle.duration}s`,
 			animationDelay: `${particle.delay}s`,
-			backgroundColor: "#d9c9a6",
-			boxShadow: `0 0 ${particle.size * 4}px #d9c9a6`,
+			backgroundColor: "hsl(42, 40%, 75%)", // gold-light
+			boxShadow: `0 0 ${particle.size * 4}px hsl(42, 40%, 75%)`,
 			animationName: particle.scintillate
 				? "float-particle, scintillate"
 				: "float-particle",

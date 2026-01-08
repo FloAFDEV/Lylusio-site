@@ -9,12 +9,7 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import GoldenPlantBadge from "@/components/GoldenPlantBadge";
 import FloatingParticles from "@/components/FloatingParticles";
 import { Button } from "@/components/ui/button";
-import {
-	Accordion,
-	AccordionContent,
-	AccordionItem,
-	AccordionTrigger,
-} from "@/components/ui/accordion";
+import MiniFAQ from "@/components/MiniFAQ";
 import {
 	Clock,
 	MapPin,
@@ -1035,96 +1030,8 @@ const Reiki = () => {
 						</div>
 					</section>
 
-					{/* Mini FAQ Section */}
-					<section className="container mx-auto px-4 sm:px-6 lg:px-8 mb-16 md:mb-20 relative z-10">
-						<div className="max-w-3xl mx-auto">
-							<div className="text-center mb-8">
-								<div className="inline-flex items-center gap-2 px-4 py-2 bg-accent/10 rounded-full mb-4">
-									<HelpCircle className="w-4 h-4 text-accent" />
-									<span className="text-sm text-accent font-medium">
-										Questions fréquentes
-									</span>
-								</div>
-								<h2 className="font-display text-xl sm:text-2xl text-foreground">
-									Le Reiki en quelques questions
-								</h2>
-							</div>
-
-							<Accordion
-								type="single"
-								collapsible
-								className="space-y-3"
-							>
-								<AccordionItem
-									value="item-1"
-									className="bg-card/60 backdrop-blur-sm rounded-xl border border-border/30 px-5"
-								>
-									<AccordionTrigger className="text-left font-display text-base text-foreground hover:text-accent py-4">
-										Qu'est-ce que le Reiki ?
-									</AccordionTrigger>
-									<AccordionContent className="text-muted-foreground text-sm leading-relaxed pb-4">
-										Le Reiki est une pratique énergétique
-										d'origine japonaise qui favorise la
-										relaxation profonde et l'équilibre
-										énergétique. Par l'imposition des mains,
-										le praticien canalise l'énergie
-										universelle pour harmoniser les chakras
-										et soutenir l'auto-guérison.
-									</AccordionContent>
-								</AccordionItem>
-
-								<AccordionItem
-									value="item-2"
-									className="bg-card/60 backdrop-blur-sm rounded-xl border border-border/30 px-5"
-								>
-									<AccordionTrigger className="text-left font-display text-base text-foreground hover:text-accent py-4">
-										Comment se déroule une séance ?
-									</AccordionTrigger>
-									<AccordionContent className="text-muted-foreground text-sm leading-relaxed pb-4">
-										La séance dure environ 1h. Vous restez
-										habillé(e), allongé(e) confortablement
-										sur une table de massage. Je pose
-										délicatement mes mains sur différentes
-										parties du corps (ou légèrement
-										au-dessus selon votre préférence). Vous
-										pouvez ressentir de la chaleur, des
-										picotements, ou simplement une profonde
-										détente. Chaque expérience est unique.
-									</AccordionContent>
-								</AccordionItem>
-
-								<AccordionItem
-									value="item-3"
-									className="bg-card/60 backdrop-blur-sm rounded-xl border border-border/30 px-5"
-								>
-									<AccordionTrigger className="text-left font-display text-base text-foreground hover:text-accent py-4">
-										Combien de séances sont recommandées ?
-									</AccordionTrigger>
-									<AccordionContent className="text-muted-foreground text-sm leading-relaxed pb-4">
-										Cela dépend de vos besoins et objectifs.
-										Une seule séance peut déjà apporter du
-										bienfait, notamment pour la relaxation.
-										Pour un travail plus profond (stress
-										chronique, période de transition...), 3
-										à 4 séances espacées de 3 semaines à 1
-										mois peuvent être bénéfiques. Nous en
-										discutons ensemble lors de notre
-										première rencontre.
-									</AccordionContent>
-								</AccordionItem>
-							</Accordion>
-
-							<p className="text-center mt-6 text-muted-foreground text-sm">
-								Plus de questions ?{" "}
-								<Link
-									href="/faq"
-									className="text-accent hover:text-gold transition-colors duration-300 underline decoration-accent/30 hover:decoration-gold/50 underline-offset-2"
-								>
-									Consulter la FAQ
-								</Link>
-							</p>
-						</div>
-					</section>
+					{/* Mini FAQ Section - Now using centralized FAQ data */}
+					<MiniFAQ category="Reiki" maxQuestions={3} />
 
 					{/* Articles Section - Elegant CTA */}
 					<section

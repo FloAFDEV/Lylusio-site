@@ -15,6 +15,7 @@ import {
 	WebsiteSchema,
 } from "@/components/SEO/StructuredData";
 import ClientComponents from "@/components/ClientComponents";
+import PageTransition from "@/components/PageTransition";
 import "@/app/globals.css";
 
 // next/font/google - Optimized for zero CLS
@@ -172,8 +173,13 @@ export default function RootLayout({
 	return (
 		<html lang="fr" suppressHydrationWarning>
 			<head>
+				{/* Preconnect for critical third-party origins */}
+				<link rel="preconnect" href="https://fonts.googleapis.com" />
+				<link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+
 				{/* DNS prefetch for non-critical but frequent domains */}
 				<link rel="dns-prefetch" href="https://calendly.com" />
+				<link rel="dns-prefetch" href="https://www.googletagmanager.com" />
 
 				{/* Structured Data for SEO */}
 				<LocalBusinessSchema />
@@ -199,7 +205,9 @@ export default function RootLayout({
 					<QueryProvider>
 						<TooltipProvider>
 							<AnalyticsProvider>
-								{children}
+								<PageTransition>
+									{children}
+								</PageTransition>
 								<ClientComponents />
 								<Toaster />
 								<Sonner />

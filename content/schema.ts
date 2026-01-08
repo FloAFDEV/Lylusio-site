@@ -62,11 +62,11 @@ export const localBusinessSchema = {
   image: `${baseUrl}/assets/logo-lylusio.webp`,
   '@id': baseUrl,
   url: baseUrl,
-  telephone: '+33-X-XX-XX-XX-XX', // À remplacer par le vrai numéro
+  telephone: '+33619151959',
   email: 'contact@lylusio.fr',
   address: {
     '@type': 'PostalAddress',
-    streetAddress: 'Toulouse', // À compléter si adresse publique
+    streetAddress: 'Cépet',
     addressLocality: 'Toulouse',
     postalCode: '31000',
     addressRegion: 'Occitanie',

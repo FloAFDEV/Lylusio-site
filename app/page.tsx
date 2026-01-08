@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import Index from '@/src/page-components/Index';
 import { generateMetadata as genMeta } from '@/content/seo';
-import { websiteSchema, organizationSchema, howToSchema } from '@/content/schema';
+import { websiteSchema, organizationSchema, howToSchema, localBusinessSchema } from '@/content/schema';
 
 export const dynamic = 'force-dynamic';
 
@@ -17,6 +17,10 @@ export default function HomePage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
       />
       <script
         type="application/ld+json"

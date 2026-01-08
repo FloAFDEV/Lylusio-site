@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -24,8 +24,10 @@ const Footer = () => {
 	const [showPhone, setShowPhone] = useState(false);
 	const [showEmail, setShowEmail] = useState(false);
 	const [navOpen, setNavOpen] = useState(false);
+	const [mounted, setMounted] = useState(false);
 	const { trackBookingClick, trackContactClick } = useAnalyticsEvent();
 
+	// Hydration-safe: Stars generated only on client side
 	const [stars, setStars] = useState<
 		Array<{ top: number; left: number; delay: number }>
 	>([]);
@@ -36,7 +38,11 @@ const Footer = () => {
 		Array<{ left: number; top: number; delay: number }>
 	>([]);
 
+	// Generate stars only on client-side mount to prevent hydration mismatch
 	useEffect(() => {
+		setMounted(true);
+
+		// Main stars for CTA section
 		setStars(
 			Array.from({ length: 12 }, () => ({
 				top: 15 + Math.random() * 70,
@@ -44,6 +50,8 @@ const Footer = () => {
 				delay: Math.random() * 3,
 			}))
 		);
+
+		// Background stars
 		setBackgroundStars(
 			Array.from({ length: 30 }, () => ({
 				left: Math.random() * 100,
@@ -52,6 +60,8 @@ const Footer = () => {
 				duration: 2 + Math.random() * 2,
 			}))
 		);
+
+		// Accent stars
 		setAccentStars(
 			Array.from({ length: 8 }, () => ({
 				left: 10 + Math.random() * 80,
@@ -71,7 +81,7 @@ const Footer = () => {
 		}
 	};
 
-	const socialLinks = [
+	const socialLinks = useMemo(() => [
 		{
 			icon: FaFacebook,
 			href: "https://www.facebook.com/lylusio/",
@@ -88,9 +98,9 @@ const Footer = () => {
 			label: "YouTube",
 		},
 		{ icon: Mail, href: "mailto:contact@lylusio.fr", label: "Email" },
-	];
+	], []);
 
-	const primaryNavLinks = [
+	const primaryNavLinks = useMemo(() => [
 		{ href: "/", label: "Accueil" },
 		{ href: "/emilie-perez", label: "Qui suis-je" },
 		{ href: "/approche-therapeutique", label: "Mon Approche" },
@@ -102,14 +112,14 @@ const Footer = () => {
 		},
 		{ href: "/reiki-toulouse", label: "Reiki", indent: true },
 		{ href: "/astrologie-toulouse", label: "Astrologie" },
-	];
+	], []);
 
-	const secondaryNavLinks = [
+	const secondaryNavLinks = useMemo(() => [
 		{ href: "/faq", label: "FAQ" },
 		{ href: "/ressources", label: "Ressources" },
 		{ href: "/blog", label: "Blog" },
 		{ href: "/contact", label: "Contact" },
-	];
+	], []);
 
 	const LinkButton = (
 		<div className="relative group/cta">
@@ -118,12 +128,12 @@ const Footer = () => {
 				size="lg"
 				aria-label="Réserver une séance avec Émilie Perez via Calendly"
 				className="
-        relative w-full sm:w-auto 
-        bg-gold-light text-foreground 
-        font-medium 
-        border-2 border-transparent 
-        hover:bg-navy hover:text-white hover:border-white 
-        hover:scale-105 
+        relative w-full sm:w-auto
+        bg-gold-light text-foreground
+        font-medium
+        border-2 border-transparent
+        hover:bg-navy hover:text-white hover:border-white
+        hover:scale-105
         transition-all duration-300
       "
 				onClick={() => trackBookingClick("footer_cta")}
@@ -140,6 +150,7 @@ const Footer = () => {
 						fill="none"
 						stroke="currentColor"
 						viewBox="0 0 24 24"
+						aria-hidden="true"
 					>
 						<path
 							strokeLinecap="round"
@@ -161,111 +172,121 @@ const Footer = () => {
 			itemScope
 			itemType="https://schema.org/LocalBusiness"
 		>
-			<div
-				className="absolute inset-0 pointer-events-none overflow-hidden"
-				aria-hidden="true"
-			>
-				{backgroundStars.map((star, i) => (
-					<div
-						key={i}
-						className="absolute w-1 h-1 bg-gold-light/30 rounded-full animate-twinkle"
-						style={{
-							left: `${star.left}%`,
-							top: `${star.top}%`,
-							animationDelay: `${star.delay}s`,
-							animationDuration: `${star.duration}s`,
-						}}
-					/>
-				))}
-				{accentStars.map((star, i) => (
-					<div
-						key={`star-lg-${i}`}
-						className="absolute w-1.5 h-1.5 bg-gold/40 rounded-full animate-pulse-slow"
-						style={{
-							left: `${star.left}%`,
-							top: `${star.top}%`,
-							animationDelay: `${star.delay}s`,
-						}}
-					/>
-				))}
-				<div className="absolute top-20 left-10 w-32 h-32 opacity-10">
-					<svg viewBox="0 0 100 100" className="w-full h-full">
-						<line
-							x1="20"
-							y1="30"
-							x2="50"
-							y2="20"
-							stroke="hsl(var(--gold))"
-							strokeWidth="0.5"
+			{/* Decorative background - only render when mounted to prevent hydration issues */}
+			{mounted && (
+				<div
+					className="absolute inset-0 pointer-events-none overflow-hidden"
+					aria-hidden="true"
+				>
+					{backgroundStars.map((star, i) => (
+						<div
+							key={`bg-star-${i}`}
+							className="absolute w-1 h-1 bg-gold-light/30 rounded-full animate-twinkle"
+							style={{
+								left: `${star.left}%`,
+								top: `${star.top}%`,
+								animationDelay: `${star.delay}s`,
+								animationDuration: `${star.duration}s`,
+							}}
 						/>
-						<line
-							x1="50"
-							y1="20"
-							x2="80"
-							y2="40"
-							stroke="hsl(var(--gold))"
-							strokeWidth="0.5"
+					))}
+					{accentStars.map((star, i) => (
+						<div
+							key={`accent-star-${i}`}
+							className="absolute w-1.5 h-1.5 bg-gold/40 rounded-full animate-pulse-slow"
+							style={{
+								left: `${star.left}%`,
+								top: `${star.top}%`,
+								animationDelay: `${star.delay}s`,
+							}}
 						/>
-						<line
-							x1="80"
-							y1="40"
-							x2="60"
-							y2="70"
-							stroke="hsl(var(--gold))"
-							strokeWidth="0.5"
-						/>
-					</svg>
+					))}
+					{/* Decorative constellation lines */}
+					<div className="absolute top-20 left-10 w-32 h-32 opacity-10">
+						<svg viewBox="0 0 100 100" className="w-full h-full" aria-hidden="true">
+							<line
+								x1="20"
+								y1="30"
+								x2="50"
+								y2="20"
+								stroke="hsl(var(--gold))"
+								strokeWidth="0.5"
+							/>
+							<line
+								x1="50"
+								y1="20"
+								x2="80"
+								y2="40"
+								stroke="hsl(var(--gold))"
+								strokeWidth="0.5"
+							/>
+							<line
+								x1="80"
+								y1="40"
+								x2="60"
+								y2="70"
+								stroke="hsl(var(--gold))"
+								strokeWidth="0.5"
+							/>
+						</svg>
+					</div>
+					<div className="absolute bottom-40 right-20 w-40 h-40 opacity-10">
+						<svg viewBox="0 0 100 100" className="w-full h-full" aria-hidden="true">
+							<line
+								x1="10"
+								y1="50"
+								x2="40"
+								y2="30"
+								stroke="hsl(var(--gold))"
+								strokeWidth="0.5"
+							/>
+							<line
+								x1="40"
+								y1="30"
+								x2="70"
+								y2="50"
+								stroke="hsl(var(--gold))"
+								strokeWidth="0.5"
+							/>
+							<line
+								x1="70"
+								y1="50"
+								x2="90"
+								y2="20"
+								stroke="hsl(var(--gold))"
+								strokeWidth="0.5"
+							/>
+						</svg>
+					</div>
 				</div>
-				<div className="absolute bottom-40 right-20 w-40 h-40 opacity-10">
-					<svg viewBox="0 0 100 100" className="w-full h-full">
-						<line
-							x1="10"
-							y1="50"
-							x2="40"
-							y2="30"
-							stroke="hsl(var(--gold))"
-							strokeWidth="0.5"
-						/>
-						<line
-							x1="40"
-							y1="30"
-							x2="70"
-							y2="50"
-							stroke="hsl(var(--gold))"
-							strokeWidth="0.5"
-						/>
-						<line
-							x1="70"
-							y1="50"
-							x2="90"
-							y2="20"
-							stroke="hsl(var(--gold))"
-							strokeWidth="0.5"
-						/>
-					</svg>
-				</div>
-			</div>
+			)}
+
+			{/* CTA Section */}
 			<div className="border-b border-primary-foreground/20 relative overflow-hidden">
 				<div
 					className="absolute inset-0 bg-gradient-to-br from-primary via-primary to-primary/95"
 					aria-hidden="true"
 				/>
-				<div
-					className="absolute inset-0 overflow-hidden pointer-events-none"
-					aria-hidden="true"
-				>
-					{stars.map((star, i) => (
-						<div
-							key={i}
-							className="absolute w-1.5 h-1.5 bg-gold/30 rounded-full animate-gentle-pulse"
-							style={{
-								top: `${star.top}%`,
-								left: `${star.left}%`,
-								animationDelay: `${star.delay}s`,
-							}}
-						/>
-					))}
-				</div>
+
+				{/* CTA Stars - only render when mounted */}
+				{mounted && (
+					<div
+						className="absolute inset-0 overflow-hidden pointer-events-none"
+						aria-hidden="true"
+					>
+						{stars.map((star, i) => (
+							<div
+								key={`cta-star-${i}`}
+								className="absolute w-1.5 h-1.5 bg-gold/30 rounded-full animate-gentle-pulse"
+								style={{
+									top: `${star.top}%`,
+									left: `${star.left}%`,
+									animationDelay: `${star.delay}s`,
+								}}
+							/>
+						))}
+					</div>
+				)}
 
 				<div className="container mx-auto px-5 md:px-8 lg:px-10 py-12 md:py-24 lg:py-32 text-center relative z-10">
 					<GoldenPlantBadge
@@ -288,8 +309,10 @@ const Footer = () => {
 				</div>
 			</div>
 
+			{/* Main Footer Content */}
 			<div className="container mx-auto px-5 md:px-8 lg:px-12 py-12 md:py-20 lg:py-24">
 				<div className="grid gap-10 md:gap-14 lg:grid-cols-12">
+					{/* Logo & Description */}
 					<div className="lg:col-span-3 relative">
 						<div className="relative h-11 md:h-14 w-[132px] md:w-[168px] mb-6 group">
 							<Image
@@ -298,6 +321,7 @@ const Footer = () => {
 								fill
 								className="object-contain brightness-0 invert opacity-100 group-hover:scale-105 transition-all duration-300 relative z-10 drop-shadow-[0_2px_8px_rgba(255,255,255,0.1)]"
 								quality={75}
+								sizes="(max-width: 768px) 132px, 168px"
 							/>
 						</div>
 						<p
@@ -325,7 +349,9 @@ const Footer = () => {
 						</div>
 					</div>
 
+					{/* Navigation Columns */}
 					<div className="lg:col-span-6 grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8 relative">
+						{/* Primary Navigation */}
 						<nav
 							className="mb-8 md:mb-0"
 							aria-labelledby="footer-primary-nav-title"
@@ -334,6 +360,7 @@ const Footer = () => {
 								onClick={() => setNavOpen(!navOpen)}
 								className="flex items-center justify-between w-full md:cursor-default"
 								aria-expanded={navOpen}
+								aria-label="Toggle navigation menu"
 							>
 								<h4
 									id="footer-primary-nav-title"
@@ -378,6 +405,7 @@ const Footer = () => {
 							</ul>
 						</nav>
 
+						{/* Secondary Navigation */}
 						<nav
 							className="mb-8 md:mb-0"
 							aria-labelledby="footer-secondary-nav-title"
@@ -410,6 +438,7 @@ const Footer = () => {
 							</ul>
 						</nav>
 
+						{/* Contact */}
 						<div>
 							<h4 className="font-calligraphic text-xl md:text-2xl font-bold text-gold-light flex items-center mb-1">
 								<TitleIconSpacer /> Contact
@@ -537,6 +566,7 @@ const Footer = () => {
 						</div>
 					</div>
 
+					{/* Map */}
 					<div className="lg:col-span-3 mt-8 lg:mt-0">
 						<h4 className="font-calligraphic text-xl md:text-2xl font-bold mb-5 md:mb-6 text-gold-light flex items-center">
 							<TitleIconSpacer /> Localisation
@@ -558,6 +588,7 @@ const Footer = () => {
 				</div>
 			</div>
 
+			{/* Bottom Bar */}
 			<div className="relative border-t border-gold/30">
 				<div className="container mx-auto px-5 md:px-8 lg:px-12 py-7 md:py-9 flex flex-col sm:flex-row justify-between items-center gap-6 md:gap-4">
 					<p className="text-primary-foreground/90 text-sm md:text-sm flex items-center gap-2.5 tracking-wide text-center sm:text-left">

@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -38,6 +39,13 @@ const Accompagnement = () => {
 	const isMobile = useIsMobile();
 	const parallaxOffset = useParallax(0.15);
 	const parallaxOffsetSlow = useParallax(0.08);
+
+	// Hydration fix: only show decorative elements after mount
+	const [mounted, setMounted] = useState(false);
+
+	useEffect(() => {
+		setMounted(true);
+	}, []);
 	const { ref: heroRef, isInView: heroInView } = useInView({
 		threshold: 0.1,
 	});
@@ -180,7 +188,7 @@ const Accompagnement = () => {
 
 				<main id="main-content" className="relative">
 					{/* Decorative background shapes - reduced on mobile */}
-					{!isMobile && (
+					{mounted && !isMobile && (
 						<div
 							className="fixed inset-0 pointer-events-none overflow-hidden"
 							aria-hidden="true"
@@ -211,7 +219,7 @@ const Accompagnement = () => {
 						<div
 							className="absolute inset-0 z-0"
 							style={{
-								transform: isMobile
+								transform: !mounted || isMobile
 									? "none"
 									: `translateY(${parallaxOffset * 0.5}px)`,
 							}}
@@ -312,7 +320,7 @@ const Accompagnement = () => {
 								<div
 									className="relative w-32 h-32 sm:w-40 sm:h-40 lg:w-56 lg:h-56 flex-shrink-0"
 									style={{
-										transform: isMobile
+										transform: !mounted || isMobile
 											? "none"
 											: `translateY(${-parallaxOffsetSlow}px)`,
 									}}
@@ -517,7 +525,7 @@ const Accompagnement = () => {
 								<div
 									className="relative w-32 h-32 sm:w-40 sm:h-40 lg:w-56 lg:h-56 flex-shrink-0"
 									style={{
-										transform: isMobile
+										transform: !mounted || isMobile
 											? "none"
 											: `translateY(${-parallaxOffsetSlow}px)`,
 									}}
@@ -625,14 +633,14 @@ const Accompagnement = () => {
 													(à distance)
 												</span>
 											</div>
-											<div className="flex flex-wrap justify-center gap-3 text-xs text-muted-foreground mb-4">
-												<span className="flex items-center gap-1">
-													<Clock className="w-3.5 h-3.5 text-accent" />
-													1h15-1h30
+											<div className="flex flex-wrap justify-center gap-x-4 gap-y-2 text-xs text-muted-foreground mb-4">
+												<span className="flex items-center gap-1 whitespace-nowrap">
+													<Clock className="w-3.5 h-3.5 text-accent flex-shrink-0" />
+													<span>1h15-1h30</span>
 												</span>
-												<span className="flex items-center gap-1">
-													<MapPin className="w-3.5 h-3.5 text-accent" />
-													Présentiel/Distance
+												<span className="flex items-center gap-1 whitespace-nowrap">
+													<MapPin className="w-3.5 h-3.5 text-accent flex-shrink-0" />
+													<span>Présentiel / Distance</span>
 												</span>
 											</div>
 										</div>
@@ -802,6 +810,23 @@ const Accompagnement = () => {
 													<ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover/btn:translate-x-1" />
 												</Button>
 											</div>
+
+											{/* Payment information */}
+											<div className="mt-4 pt-4 border-t border-gold/10">
+												<div className="flex items-start gap-2 text-sm text-muted-foreground/90">
+													<CreditCard className="w-4 h-4 mt-0.5 text-gold flex-shrink-0" />
+													<p className="leading-relaxed">
+														Il est possible de payer en 3 fois. Si c'est le cas, veuillez me contacter directement par{" "}
+														<a href="tel:+33619151959" className="text-accent hover:text-gold transition-colors underline underline-offset-2">
+															téléphone
+														</a>{" "}
+														ou par{" "}
+														<a href="mailto:contact@lylusio.fr" className="text-accent hover:text-gold transition-colors underline underline-offset-2">
+															mail
+														</a>.
+													</p>
+												</div>
+											</div>
 										</div>
 									</div>
 								</article>
@@ -914,9 +939,9 @@ const Accompagnement = () => {
 														complétées par des rdv
 														téléphoniques réguliers
 													</span>
-													<span className="flex items-center gap-1">
-														<MapPin className="w-4 h-4 text-gold" />
-														Présentiel/Distance
+													<span className="flex items-center gap-1 whitespace-nowrap">
+														<MapPin className="w-4 h-4 text-gold flex-shrink-0" />
+														<span>Présentiel / Distance</span>
 													</span>
 												</div>
 

@@ -16,11 +16,34 @@ export default function AccompagnementPage() {
     price: '110',
   });
 
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Accueil",
+        "item": "https://lylusio.fr"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Accompagnement Toulouse",
+        "item": "https://lylusio.fr/accompagnement-toulouse"
+      }
+    ]
+  };
+
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       <Accompagnement />
     </>

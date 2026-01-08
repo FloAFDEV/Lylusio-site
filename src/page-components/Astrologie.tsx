@@ -9,12 +9,7 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import GoldenPlantBadge from "@/components/GoldenPlantBadge";
 import FloatingParticles from "@/components/FloatingParticles";
 import { Button } from "@/components/ui/button";
-import {
-	Accordion,
-	AccordionContent,
-	AccordionItem,
-	AccordionTrigger,
-} from "@/components/ui/accordion";
+import MiniFAQ from "@/components/MiniFAQ";
 import {
 	Clock,
 	MapPin,
@@ -27,7 +22,6 @@ import {
 	Calendar,
 	ArrowRight,
 	BookOpen,
-	HelpCircle,
 } from "lucide-react";
 import { useParallax } from "@/hooks/useParallax";
 import { useInView } from "@/hooks/useInView";
@@ -791,91 +785,8 @@ const Astrologie = () => {
 						</div>
 					</section>
 
-					{/* Mini FAQ Section */}
-					<section className="container mx-auto px-4 sm:px-6 lg:px-8 mb-16 md:mb-20 relative z-10">
-						<div className="max-w-3xl mx-auto">
-							<div className="text-center mb-8">
-								<div className="inline-flex items-center gap-2 px-4 py-2 bg-accent/10 rounded-full mb-4">
-									<HelpCircle className="w-4 h-4 text-accent" />
-									<span className="text-sm text-accent font-medium">
-										Questions fréquentes
-									</span>
-								</div>
-								<h2 className="font-display text-xl sm:text-2xl text-foreground">
-									L'astrologie en quelques questions
-								</h2>
-							</div>
-
-							<Accordion
-								type="single"
-								collapsible
-								className="space-y-3"
-							>
-								<AccordionItem
-									value="item-1"
-									className="bg-card/60 backdrop-blur-sm rounded-xl border border-border/30 px-5"
-								>
-									<AccordionTrigger className="text-left font-display text-base text-foreground hover:text-accent py-4">
-										Qu'est-ce qu'un thème astral ?
-									</AccordionTrigger>
-									<AccordionContent className="text-muted-foreground text-sm leading-relaxed pb-4">
-										Le thème astral est une photographie du
-										ciel au moment précis de votre
-										naissance. Il révèle la position des
-										planètes dans les signes du zodiaque.
-										C'est un outil puissant de connaissance
-										de soi qui éclaire vos talents, défis et
-										chemins d'évolution.
-									</AccordionContent>
-								</AccordionItem>
-
-								<AccordionItem
-									value="item-2"
-									className="bg-card/60 backdrop-blur-sm rounded-xl border border-border/30 px-5"
-								>
-									<AccordionTrigger className="text-left font-display text-base text-foreground hover:text-accent py-4">
-										Ai-je besoin de connaître mon heure de
-										naissance ?
-									</AccordionTrigger>
-									<AccordionContent className="text-muted-foreground text-sm leading-relaxed pb-4">
-										L'heure exacte de naissance est
-										essentielle pour une analyse complète
-										car elle détermine l'Ascendant et les
-										maisons astrologiques. Vous pouvez aussi
-										demander votre acte de naissance complet
-										à la mairie de votre lieu de naissance.
-									</AccordionContent>
-								</AccordionItem>
-
-								<AccordionItem
-									value="item-3"
-									className="bg-card/60 backdrop-blur-sm rounded-xl border border-border/30 px-5"
-								>
-									<AccordionTrigger className="text-left font-display text-base text-foreground hover:text-accent py-4">
-										Comment se déroule une consultation ?
-									</AccordionTrigger>
-									<AccordionContent className="text-muted-foreground text-sm leading-relaxed pb-4">
-										La séance dure environ 1h30. Je prépare
-										votre thème avant notre rendez-vous.
-										Pendant la consultation, nous explorons
-										ensemble votre personnalité profonde,
-										vos besoins et vos talents. Vous
-										repartez avec un enregistrement audio.
-									</AccordionContent>
-								</AccordionItem>
-							</Accordion>
-
-							<p className="text-center mt-6 text-muted-foreground text-sm">
-								Plus de questions ?{" "}
-								<Link
-									href="/faq"
-									className="text-accent hover:text-gold transition-colors duration-300 underline decoration-accent/30 hover:decoration-gold/50 underline-offset-2"
-								>
-									Consulter la FAQ
-								</Link>
-							</p>
-						</div>
-					</section>
+					{/* Mini FAQ Section - Now using centralized FAQ data */}
+					<MiniFAQ category="Astrologie" maxQuestions={3} title="L'astrologie en quelques questions" />
 
 					{/* Articles Section */}
 					<section

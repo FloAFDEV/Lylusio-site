@@ -4,28 +4,28 @@ import * as React from "react";
 
 const MOBILE_BREAKPOINT = 768;
 
-// Initial check for SSR/hydration - avoids layout shift
-const getInitialMobileState = (): boolean => {
-  if (typeof window === "undefined") return false;
-  return window.innerWidth < MOBILE_BREAKPOINT;
-};
-
+/**
+ * Hook to detect mobile viewport
+ * Hydration-safe: Returns false during SSR and initial render,
+ * then updates to actual value after mount
+ */
 export function useIsMobile() {
-  const [isMobile, setIsMobile] = React.useState<boolean>(getInitialMobileState);
+  // Initialize with false to match SSR output
+  const [isMobile, setIsMobile] = React.useState<boolean>(false);
 
   React.useEffect(() => {
+    // Only access window in useEffect (client-side only)
     const mql = window.matchMedia(`(max-width: ${MOBILE_BREAKPOINT - 1}px)`);
-    
+
     const onChange = () => {
       setIsMobile(window.innerWidth < MOBILE_BREAKPOINT);
     };
-    
-    // Use passive listener for better scroll performance
-    mql.addEventListener("change", onChange, { passive: true } as AddEventListenerOptions);
-    
-    // Initial check
+
+    mql.addEventListener("change", onChange);
+
+    // Set initial value after mount
     setIsMobile(window.innerWidth < MOBILE_BREAKPOINT);
-    
+
     return () => mql.removeEventListener("change", onChange);
   }, []);
 
