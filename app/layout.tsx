@@ -174,8 +174,6 @@ export default function RootLayout({
 		<html lang="fr" suppressHydrationWarning data-scroll-behavior="smooth">
 			<head>
 				{/* Preconnect for critical third-party origins */}
-				<link rel="preconnect" href="https://fonts.googleapis.com" />
-				<link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
 
 				{/* DNS prefetch for non-critical but frequent domains */}
 				<link rel="dns-prefetch" href="https://calendly.com" />

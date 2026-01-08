@@ -708,7 +708,7 @@ const Accompagnement = () => {
 							>
 								{/* Image ronde avec effet parallax - alignée avec le titre */}
 								<div
-									className="relative w-32 h-32 sm:w-40 sm:h-40 lg:w-56 lg:h-56 flex-shrink-0 lg:mt-8"
+									className="relative w-32 h-32 sm:w-40 sm:h-40 lg:w-56 lg:h-56 flex-shrink-0 lg:mt-12"
 									style={{
 										transform:
 											!mounted || isMobile
