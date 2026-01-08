@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -24,6 +25,9 @@ import { useParallax } from "@/hooks/useParallax";
 import { useInView } from "@/hooks/useInView";
 
 const MonApproche = () => {
+	// FIX HYDRATION: Track if component is mounted (client-side only)
+	const [mounted, setMounted] = useState(false);
+
 	const parallaxOffset = useParallax(0.12);
 	const parallaxOffsetSlow = useParallax(0.06);
 	const { ref: heroRef, isInView: heroInView } = useInView({
@@ -42,6 +46,11 @@ const MonApproche = () => {
 		threshold: 0.1,
 	});
 	const { ref: ctaRef, isInView: ctaInView } = useInView({ threshold: 0.2 });
+
+	// FIX HYDRATION: Set mounted after first render
+	useEffect(() => {
+		setMounted(true);
+	}, []);
 
 	const structuredData = {
 		"@context": "https://schema.org",
@@ -220,7 +229,7 @@ const MonApproche = () => {
 					<div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 md:py-24">
 						<div
 							className={`max-w-2xl transition-all duration-1000 delay-150 ${
-								heroInView
+								mounted && heroInView
 									? "opacity-100 translate-y-0"
 									: "opacity-0 translate-y-12"
 							}`}
@@ -238,7 +247,7 @@ const MonApproche = () => {
 
 							<div className="space-y-5 text-muted-foreground text-base sm:text-lg md:text-xl leading-relaxed mb-8 text-left">
 								<p>
-									<span className="font-calligraphic text-accent inline-block align-baseline  ">
+									<span className="font-calligraphic text-gold text-mdinline-block align-baseline  ">
 										J
 									</span>
 									'accompagne les{" "}
@@ -250,33 +259,48 @@ const MonApproche = () => {
 									sentent que quelque chose doit évoluer mais
 									qui ne savent plus par où commencer.
 									<strong className="text-foreground">
-										{" "}
 										Celles qui veulent du sens, du concret
 										et de la cohérence.
+									</strong>
+									<br />
+									<strong className="text-foreground">
+										Celles qui veulent vraiment se
+										transformer sans renier pour autant qui
+										elles sont.
+									</strong>
+									<br />
+									<strong className="text-foreground">
+										Celles qui, un jour, se sentent à la
+										croisée des chemins : après un burn-out,
+										une séparation, un changement de vie, ou
+										simplement ce moment flou où tout ce
+										qu’on croyait solide se remet à bouger.
 									</strong>
 								</p>
 
 								<p>
-									Mon approche est née de ce que j'ai moi-même
-									traversé. Elle mêle{" "}
+									Dans mes séances, j’utilise les outils qui
+									m’ont le plus transformée :
 									<Link
 										href="/astrologie-toulouse"
 										className="text-foreground font-medium hover:text-accent transition-colors"
 									>
-										astrologie symbolique et psychologique
+										l’astrologie thérapeutique
 									</Link>
-									,{" "}
+									, le{" "}
 									<Link
 										href="/reiki-toulouse"
 										className="text-foreground font-medium hover:text-accent transition-colors"
 									>
-										thérapie énergétique Reiki
+										Reiki
 									</Link>{" "}
-									et{" "}
+									pour apaiser et réaligner le corps et
+									l’esprit, et la{" "}
 									<strong className="text-foreground font-medium">
-										écoute profonde
-									</strong>
-									.
+										parole consciente
+									</strong>{" "}
+									pour mettre des mots justes sur vos
+									ressentis.
 								</p>
 							</div>
 
@@ -300,6 +324,69 @@ const MonApproche = () => {
 						</div>
 					</div>
 				</section>
+				<section className="py-16 bg-background">
+					<div className="container mx-auto px-4 sm:px-6 lg:px-8">
+						<div className="max-w-3xl mx-auto bg-card rounded-2xl p-8 lg:p-10 shadow-lg border border-border/20">
+							{/* Titre principal */}
+							<h2 className="font-heading text-2xl md:text-3xl text-primary mb-8 text-center">
+								La clarté émotionnelle comme moteur
+							</h2>
+
+							<div className="space-y-6 text-foreground/90 font-body leading-relaxed">
+								<p className="indent-4">
+									Mon intention est simple : offrir un espace
+									où l'on peut déposer ce que l'on vit sans
+									peur du jugement, pour se comprendre
+									autrement et retrouver du sens à ce que l'on
+									traverse.
+								</p>
+
+								<blockquote className="relative py-5 my-8 border-l-2 border-accent/40 pl-5">
+									<Quote className="absolute -top-2 -left-3 w-6 h-6 text-accent/30" />
+									<p className="font-display text-lg sm:text-xl md:text-2xl italic text-foreground/90 text-left">
+										Je ne promets pas de miracles.
+									</p>
+								</blockquote>
+
+								<p className="indent-4">
+									Je crée des espaces où la parole devient
+									action, où la compréhension ouvre sur le
+									mouvement et où la lucidité mène vers
+									l'apaisement. Parce que la lucidité sur
+									soi-même et sur son parcours, c'est pour moi
+									le début de la liberté. Et que chaque étape
+									de vie, même les plus inconfortables, peut
+									devenir un tremplin pour la suite.
+								</p>
+
+								{/* Quote avec icône */}
+								<blockquote className="relative py-5 my-8 border-l-2 border-accent/40 pl-5">
+									<Quote className="absolute -top-2 -left-3 w-6 h-6 text-accent/30" />
+									<p className="font-display text-lg sm:text-xl md:text-2xl italic text-foreground/90 text-left">
+										"La vérité, quand elle est dite avec
+										justesse, ouvre toutes les portes."
+									</p>
+								</blockquote>
+
+								<p className="indent-4">
+									Mes clientes me disent souvent : « Vous
+									mettez des mots là où tout était flou. Et
+									d'un coup, tout devient simple. »
+								</p>
+
+								<p className="indent-4">
+									C'est exactement ça, mon travail :{" "}
+									<strong>relier la tête</strong> et{" "}
+									<strong>le cœur, la conscience</strong> et{" "}
+									<strong>l'action</strong>. J'aime ce que je
+									fais, parce que c'est à la fois exigeant et
+									vivant. Je ne cherche pas la perfection, je
+									cherche avant tout la justesse.
+								</p>
+							</div>
+						</div>
+					</div>
+				</section>
 
 				{/* Philosophy Section with Pillars */}
 				<section
@@ -309,7 +396,7 @@ const MonApproche = () => {
 					<div className="container mx-auto px-4 sm:px-6 lg:px-8">
 						<div
 							className={`max-w-3xl mx-auto text-center mb-14 transition-all duration-700 ${
-								pillarsInView
+								mounted && pillarsInView
 									? "opacity-100 translate-y-0"
 									: "opacity-0 translate-y-8"
 							}`}
@@ -332,15 +419,15 @@ const MonApproche = () => {
 								<article
 									key={pillar.title}
 									className={`group bg-card/80 backdrop-blur-sm rounded-2xl p-8 text-center border border-border/20 hover:border-gold/30 hover:shadow-medium transition-all duration-500 ${
-										pillarsInView
+										mounted && pillarsInView
 											? "opacity-100 translate-y-0"
 											: "opacity-0 translate-y-12"
 									}`}
 									style={{
-										transitionDelay: pillarsInView
+										transitionDelay: mounted && pillarsInView
 											? `${200 + index * 100}ms`
 											: "0ms",
-										transform: pillarsInView
+										transform: mounted && pillarsInView
 											? `translateY(0)`
 											: `translateY(${20 + index * 5}px)`,
 									}}
@@ -396,12 +483,12 @@ const MonApproche = () => {
 						/>
 					</div>
 
-					<div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+					<div className="container mx-auto px-6 sm:px-6 lg:px-12 relative z-10">
 						<div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center max-w-6xl mx-auto">
 							{/* Image with cinematic reveal effect */}
 							<figure
 								className={`relative order-2 lg:order-1 transition-all duration-&lsqb;1.5s&rsqb; ease-out ${
-									quoteInView
+									mounted && quoteInView
 										? "opacity-100 scale-100"
 										: "opacity-0 scale-95"
 								}`}
@@ -409,7 +496,7 @@ const MonApproche = () => {
 								{/* Outer glow ring */}
 								<div
 									className={`absolute -inset-3 bg-gradient-to-br from-gold/20 via-accent/10 to-transparent rounded-3xl blur-xl transition-opacity duration-1000 ${
-										quoteInView
+										mounted && quoteInView
 											? "opacity-100"
 											: "opacity-0"
 									}`}
@@ -419,7 +506,7 @@ const MonApproche = () => {
 								<div
 									className="relative overflow-hidden rounded-2xl shadow-2xl"
 									style={{
-										clipPath: quoteInView
+										clipPath: mounted && quoteInView
 											? "polygon(0 0, 100% 0, 100% 100%, 0 100%)"
 											: "polygon(0 50%, 100% 50%, 100% 50%, 0 50%)",
 										transition:
@@ -433,7 +520,7 @@ const MonApproche = () => {
 											fill
 											className="object-cover transition-transform duration-&lsqb;2s&rsqb; ease-out hover:scale-105"
 											style={{
-												transform: quoteInView
+												transform: mounted && quoteInView
 													? "scale(1)"
 													: "scale(1.15)",
 											}}
@@ -446,7 +533,7 @@ const MonApproche = () => {
 								{/* Floating golden accent */}
 								<div
 									className={`absolute -bottom-4 -right-4 w-20 h-20 rounded-full bg-gradient-to-br from-gold/30 to-accent/20 blur-2xl transition-all duration-1000 delay-500 ${
-										quoteInView
+										mounted && quoteInView
 											? "opacity-100 scale-100"
 											: "opacity-0 scale-50"
 									}`}
@@ -455,7 +542,7 @@ const MonApproche = () => {
 								{/* Corner accent line */}
 								<div
 									className={`absolute -top-2 -left-2 w-16 h-16 border-l-2 border-t-2 border-gold/40 rounded-tl-xl transition-all duration-700 delay-700 ${
-										quoteInView
+										mounted && quoteInView
 											? "opacity-100"
 											: "opacity-0"
 									}`}
@@ -466,7 +553,7 @@ const MonApproche = () => {
 							<div className="order-1 lg:order-2 space-y-6">
 								<p
 									className={`section-label transition-all duration-700 ${
-										quoteInView
+										mounted && quoteInView
 											? "opacity-100 translate-y-0"
 											: "opacity-0 translate-y-4"
 									}`}
@@ -476,7 +563,7 @@ const MonApproche = () => {
 
 								<blockquote
 									className={`relative transition-all duration-700 delay-100 ${
-										quoteInView
+										mounted && quoteInView
 											? "opacity-100 translate-y-0"
 											: "opacity-0 translate-y-4"
 									}`}
@@ -490,7 +577,7 @@ const MonApproche = () => {
 
 								<p
 									className={`text-muted-foreground text-base sm:text-lg leading-relaxed transition-all duration-700 delay-200 ${
-										quoteInView
+										mounted && quoteInView
 											? "opacity-100 translate-y-0"
 											: "opacity-0 translate-y-4"
 									}`}
@@ -504,7 +591,7 @@ const MonApproche = () => {
 
 								<p
 									className={`text-muted-foreground text-base sm:text-lg leading-relaxed transition-all duration-700 delay-300 ${
-										quoteInView
+										mounted && quoteInView
 											? "opacity-100 translate-y-0"
 											: "opacity-0 translate-y-4"
 									}`}
@@ -518,7 +605,7 @@ const MonApproche = () => {
 
 								<p
 									className={`text-foreground font-medium text-lg transition-all duration-700 delay-400 ${
-										quoteInView
+										mounted && quoteInView
 											? "opacity-100 translate-y-0"
 											: "opacity-0 translate-y-4"
 									}`}
@@ -542,7 +629,7 @@ const MonApproche = () => {
 							{/* Content */}
 							<div
 								className={`transition-all duration-1000 ${
-									objectivesInView
+									mounted && objectivesInView
 										? "opacity-100 translate-x-0"
 										: "opacity-0 -translate-x-12"
 								}`}
@@ -557,7 +644,7 @@ const MonApproche = () => {
 										<div
 											key={obj.title}
 											className={`flex items-start gap-4 p-4 bg-card/50 rounded-xl border border-border/20 transition-all duration-500 ${
-												objectivesInView
+												mounted && objectivesInView
 													? "opacity-100 translate-y-0"
 													: "opacity-0 translate-y-4"
 											}`}
@@ -588,35 +675,35 @@ const MonApproche = () => {
 										soi et permet d'oser :
 									</p>
 									<ul className="text-sm text-muted-foreground space-y-1">
+										<li>
+											📍 Apprendre à se connaître pour
+											s’affirmer sans attendre l’explosion
+										</li>
+										<li>
+											📍 Exprimer ses émotions et besoins
+											pour être pleinement entendue
+										</li>
+										<li>
+											📍 Être cohérente dans ses actes et
+											assumer ses responsabilités
+										</li>
+										<li>
+											📍 Croire en ses capacités
+											d’évolution et de réussite
+										</li>
 										<li>📍 Oser s'exprimer</li>
+
 										<li>📍 Oser agir</li>
 										<li>📍 Oser être soi-même</li>
 										<li>📍 Oser se surpasser</li>
 									</ul>
 								</div>
-
-								<p className="mt-6 text-muted-foreground text-sm sm:text-base leading-relaxed">
-									L'objectif de cet accompagnement est de vous
-									conduire vers une{" "}
-									<strong className="text-foreground">
-										autonomie
-									</strong>{" "}
-									telle qu'à la fin vous n'ayez plus à
-									systématiquement faire appel à un coach ou à
-									un thérapeute lors des moments difficiles.
-									<strong className="text-foreground">
-										{" "}
-										Vous développerez la capacité à
-										mobiliser vos propres ressources en cas
-										de besoin.
-									</strong>
-								</p>
 							</div>
 
 							{/* Image with floating card effect */}
 							<figure
 								className={`relative transition-all duration-1000 delay-200 ${
-									objectivesInView
+									mounted && objectivesInView
 										? "opacity-100 translate-y-0"
 										: "opacity-0 translate-y-12"
 								}`}
@@ -660,13 +747,57 @@ const MonApproche = () => {
 									{/* Decorative corner */}
 									<div
 										className={`absolute -top-2 -right-2 w-12 h-12 border-r-2 border-t-2 border-gold/30 rounded-tr-xl transition-opacity duration-500 ${
-											objectivesInView
+											mounted && objectivesInView
 												? "opacity-100"
 												: "opacity-0"
 										}`}
 									/>
 								</div>
 							</figure>
+						</div>
+					</div>
+				</section>
+				{/* Large full-width card under the objectives section */}
+				<section className="relative w-full">
+					<div className="container mx-auto px-4 sm:px-6 lg:px-8">
+						<div
+							className={`relative bg-white/90 dark:bg-navy/5 border border-border/20 rounded-2xl p-6 sm:p-8 overflow-hidden transition-all duration-1000 ${
+								mounted && objectivesInView
+									? "opacity-100 translate-y-0"
+									: "opacity-0 translate-y-4"
+							}`}
+						>
+							{/* Decorative vertical accent - adjusted height */}
+							<div className="absolute top-6 bottom-6 left-4 w-1 bg-gold/20 rounded-full pointer-events-none" />
+
+							{/* Decorative top-right corner */}
+							<div className="absolute -top-4 -right-4 w-12 h-12 border-t-2 border-r-2 border-gold/30 rounded-tr-xl transition-opacity duration-500" />
+
+							{/* Optional floating icon (like a small sparkle) */}
+							<Sparkles className="absolute -bottom-6 right-8 w-8 h-8 text-gold-light animate-float pointer-events-none" />
+
+							{/* Content */}
+							<p className="text-gold text-md sm:text-base leading-relaxed max-w-6xl mx-auto relative z-10">
+								<span className="font-calligraphic text-gold text-xl sm:text-md inline-block align-baseline">
+									L
+								</span>
+								'objectif de cet accompagnement est de vous
+								conduire vers une{" "}
+								<strong className="text-gold">autonomie</strong>{" "}
+								telle qu'à la fin vous n'ayez plus à
+								systématiquement faire appel à un coach ou à un
+								thérapeute lors des moments difficiles.{" "}
+								<strong className="text-gold">
+									Vous développerez la capacité à mobiliser
+									vos propres ressources en cas de besoin, à
+									travers une compréhension fine de vos
+									émotions, de vos schémas et de vos valeurs.
+								</strong>{" "}
+								Chaque pas, chaque exercice et chaque outil que
+								nous utilisons a pour objectif de vous rendre
+								plus confiante, plus lucide et pleinement
+								actrice de votre transformation.
+							</p>
 						</div>
 					</div>
 				</section>
@@ -679,7 +810,7 @@ const MonApproche = () => {
 					<div className="container mx-auto px-4 sm:px-6 lg:px-8">
 						<div
 							className={`max-w-3xl mx-auto transition-all duration-700 ${
-								deontologyInView
+								mounted && deontologyInView
 									? "opacity-100 translate-y-0"
 									: "opacity-0 translate-y-8"
 							}`}
@@ -699,7 +830,7 @@ const MonApproche = () => {
 									<div
 										key={index}
 										className={`flex items-start gap-4 p-5 bg-card/50 rounded-xl border border-border/20 transition-all duration-500 ${
-											deontologyInView
+											mounted && deontologyInView
 												? "opacity-100 translate-y-0"
 												: "opacity-0 translate-y-4"
 										}`}
@@ -740,14 +871,14 @@ const MonApproche = () => {
 					<div className="container mx-auto px-4 sm:px-6 lg:px-8">
 						<div
 							className={`max-w-2xl mx-auto text-center transition-all duration-700 ${
-								ctaInView
+								mounted && ctaInView
 									? "opacity-100 translate-y-0"
 									: "opacity-0 translate-y-8"
 							}`}
 						>
 							<GoldenPlantBadge
 								size="lg"
-								className="mx-auto mb-8 animate-pulse drop-shadow-[0_0_6px_rgba(212,175,55,0.45)]"
+								className="mx-auto mb-8 animate-gentle-pulse drop-shadow-[0_0_6px_rgba(212,175,55,0.45)]"
 							/>
 							<p className="text-muted-foreground text-base sm:text-lg leading-relaxed mb-8">
 								Découvrez mes différentes prestations ou

@@ -9,17 +9,12 @@ import { useParallax } from "@/hooks/useParallax";
 // import emilieHero from "@/assets/emilie-hero.webp"; // Now using /assets/emilie-hero.webp
 // import plantDecoration from "@/assets/plant-decoration.webp"; // Now using /assets/plant-decoration.webp
 
-// Smooth wrapper for client-only decorative elements
+// Smooth wrapper for client-only decorative elements - prevents flash
 const SmoothWrapper = ({ children }: { children: React.ReactNode }) => {
-	const [mounted, setMounted] = useState(false);
-	useEffect(() => {
-		requestAnimationFrame(() => setMounted(true));
-	}, []);
-	return (
-		<div className="transition-opacity duration-700" style={{ opacity: mounted ? 1 : 0 }}>
-			{children}
-		</div>
-	);
+	// No opacity transition - just render children directly
+	// The flash was caused by opacity: 0 → 1 transition
+	// Now elements appear naturally without visible transition
+	return <>{children}</>;
 };
 
 // Lazy load decorative components for better LCP
@@ -68,14 +63,13 @@ const CelestialStars = memo(() => {
 			duration: `${2.5 + Math.random() * 2}s`,
 		}));
 		setStars(generatedStars);
-		// Fade in after mount
-		requestAnimationFrame(() => setMounted(true));
+		// Start visible immediately to prevent flash
+		setMounted(true);
 	}, []);
 
 	return (
 		<div
-			className="absolute inset-0 pointer-events-none transition-opacity duration-1000"
-			style={{ opacity: mounted ? 1 : 0 }}
+			className="absolute inset-0 pointer-events-none"
 			aria-hidden="true"
 		>
 			{stars.map((star) => (
