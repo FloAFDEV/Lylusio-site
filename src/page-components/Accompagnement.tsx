@@ -695,28 +695,56 @@ const Accompagnement = () => {
 					{/* ===== ACCOMPAGNEMENT GLOBAL SECTION ===== */}
 					<section
 						ref={accompRef}
-						className="relative py-12 sm:py-16 md:py-24"
+						className="relative py-12 sm:py-16 md:py-24 bg-gradient-to-b from-transparent via-secondary/20 to-transparent"
 					>
 						<div className="container mx-auto px-4 sm:px-6 lg:px-8">
+							{/* Section Header avec image ronde et parallax */}
 							<div
-								className={`text-center mb-8 sm:mb-10 transition-all duration-1000 ${
+								className={`flex flex-col items-center gap-6 lg:flex-row lg:gap-12 mb-10 sm:mb-14 transition-all duration-1000 ${
 									accompInView
 										? "opacity-100 translate-y-0"
 										: "opacity-0 translate-y-8"
 								}`}
 							>
-								<p className="section-label">
-									Accompagnement Complet
-								</p>
-								<h2 className="font-display text-xl sm:text-2xl lg:text-3xl text-navy mb-2">
-									<span className="font-calligraphic text-accent text-2xl sm:text-3xl lg:text-4xl inline-block align-baseline">
-										A
-									</span>
-									ccompagnement Global
-								</h2>
-								<p className="text-muted-foreground text-sm sm:text-base">
-									Astrologie • Reiki • Thérapie
-								</p>
+								{/* Image ronde avec effet parallax */}
+								<div
+									className="relative w-32 h-32 sm:w-40 sm:h-40 lg:w-56 lg:h-56 flex-shrink-0"
+									style={{
+										transform:
+											!mounted || isMobile
+												? "none"
+												: `translateY(${-parallaxOffsetSlow}px)`,
+									}}
+								>
+									<div className="absolute inset-0 rounded-full bg-gradient-to-br from-gold/20 to-accent/10 animate-gentle-pulse" />
+									<div className="absolute inset-1 sm:inset-2 rounded-full overflow-hidden border-2 border-gold/20 shadow-elegant">
+										<Image
+											src="/assets/seance-accompagnement.webp"
+											alt="Symbole d'accompagnement"
+											fill
+											sizes="(max-width: 640px) 128px, (max-width: 768px) 160px, 224px"
+											className="object-cover"
+										/>
+									</div>
+									<div className="absolute -top-2 -right-2 sm:-top-3 sm:-right-3 w-8 h-8 sm:w-10 sm:h-10 bg-card/90 backdrop-blur-sm rounded-full border border-gold/30 flex items-center justify-center shadow-soft">
+										<Heart className="w-4 h-4 sm:w-5 sm:h-5 text-gold" />
+									</div>
+								</div>
+
+								<div className="text-center lg:text-left flex-1">
+									<p className="section-label">
+										Accompagnement Complet
+									</p>
+									<h2 className="font-display text-xl sm:text-2xl lg:text-3xl text-navy mb-3">
+										<span className="font-calligraphic text-accent text-2xl sm:text-3xl lg:text-4xl inline-block align-baseline">
+											A
+										</span>
+										ccompagnement Global
+									</h2>
+									<p className="text-muted-foreground text-sm sm:text-base leading-relaxed max-w-xl mx-auto lg:mx-0">
+										Astrologie • Reiki • Thérapie pour traverser vos transitions de vie
+									</p>
+								</div>
 							</div>
 
 							{/* Format uniforme avec les autres cartes */}
