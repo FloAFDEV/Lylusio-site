@@ -216,16 +216,38 @@ const About = () => {
 										de résilience a toujours fait partie de
 										ma vie.
 									</p>
-									<p>
-										Petite j'étais une enfant rigoureuse,
+									<p className="text-foreground leading-relaxed">
+										Petite j’étais une enfant rigoureuse,
 										sérieuse et déjà très exigeante avec
-										moi-même. J'étais de celles qui
-										observaient beaucoup les adultes.
+										moi-même. J’étais de celles qui
+										observaient beaucoup les adultes. Je
+										captais les silences, les regards, les
+										gestes imperceptibles, les mots non
+										dits.{" "}
+										<strong>
+											J’étais fascinée par ce décalage
+											entre ce que les gens disaient… et
+											ce qu’ils ressentaient vraiment et
+											j’adorais comprendre <i>pourquoi</i>
+										</strong>
+										. Très tôt, j’ai compris que la vérité
+										pouvait déranger, alors j’ai appris à me
+										taire, à “tenir bon”, à{" "}
+										<strong>contrôler mes émotions</strong>.
+										Et pourtant, j’étais déjà celle à qui
+										l’on se confiait, celle à qui on venait
+										s’épancher, vider son sac, celle qui
+										écoutait sans juger.
 									</p>
-									<p className="text-foreground font-medium italic border-l-2 border-accent/40 pl-4">
-										J'étais fascinée par ce décalage entre
-										ce que les gens disaient… et ce qu'ils
-										ressentaient vraiment.
+
+									<p className="text-foreground font-medium italic border-l-2 border-accent/40 pl-4 mt-4">
+										Avec le temps, j’ai compris que ma plus
+										grande force n’était pas d’avoir les
+										réponses, mais de{" "}
+										<strong>
+											savoir poser les bonnes questions
+										</strong>
+										.
 									</p>
 								</div>
 							</article>
@@ -310,14 +332,28 @@ const About = () => {
 												ce jour-là.
 											</p>
 
-											<p>
-												À partir de là, mon chemin n'a
-												jamais été linéaire : j'ai
-												traversé des relations toxiques,
-												des abus, des deuils difficiles,
-												des trahisons, des difficultés
-												financières, la maladie…
+											<p className="text-foreground leading-relaxed">
+												À partir de là, mon chemin n’a
+												jamais été linéaire : j’ai
+												traversé des relations toxiques
+												et de la manipulation, des abus,
+												des deuils difficiles, des
+												trahisons de toutes sortes, des
+												difficultés financières, la
+												maladie… Je suis passée par
+												toutes les émotions et tous les
+												extrêmes, et pendant des années
+												j’ai appris à mettre des
+												pansements, à performer, à
+												structurer, à tenir le cap pour
+												continuer d’avancer… J’étais
+												devenue maman et il m’était
+												impossible de laisser « tomber
+												». Je dis toujours que mon fils
+												aîné m’a sauvée de moi-même, et
+												je le pense encore aujourd’hui.
 											</p>
+
 											<p className="text-foreground font-medium text-lg md:text-xl font-display border-l-2 border-gold/40 pl-4">
 												Mais de toutes ces tempêtes,
 												j'ai tiré mes plus grandes
@@ -352,17 +388,27 @@ const About = () => {
 												D
 											</span>
 											ans la première partie de ma vie,
-											j'ai eu un parcours "classique" : 14
-											ans de salariat, dont plus de 10
-											dans{" "}
+											avant d’oser suivre ma voie, j’ai
+											donc eu un parcours « classique » où
+											je suis entrée dans la vie active
+											assez tôt : 14 ans de salariat, dont
+											plus de 10 dans{" "}
 											<strong className="text-foreground">
-												l'accompagnement
+												l’accompagnement
+											</strong>{" "}
+											dans le domaine de la création
+											d’entreprise et principalement dans{" "}
+											<strong className="text-foreground">
+												l’insertion sociale et
+												professionnelle
 											</strong>
-											.
+											. J’y ai appris à écouter, à
+											comprendre, à valoriser le potentiel
+											humain.
 										</p>
 
 										<p>
-											Formée à l'approche{" "}
+											Formée à l’approche{" "}
 											<a
 												href="https://fr.wikipedia.org/wiki/Carl_Rogers"
 												target="_blank"
@@ -371,10 +417,61 @@ const About = () => {
 											>
 												humaniste de Carl Rogers
 											</a>{" "}
-											et à certaines techniques de PNL,
-											j'ai développé une posture fondée
-											sur l'empathie, l'acceptation et le
-											non-jugement.
+											et à certaines techniques de{" "}
+											<strong>PNL</strong>, j’ai développé
+											une{" "}
+											<strong>
+												posture d’accompagnement
+											</strong>{" "}
+											fondée sur{" "}
+											<strong>l’empathie</strong>,{" "}
+											<strong>l’acceptation</strong> et le{" "}
+											<strong>non-jugement</strong>, des
+											valeurs qui m’animent encore
+											aujourd’hui dans mes séances.
+										</p>
+
+										<p>
+											Pour autant,{" "}
+											<strong>l’astrologie</strong> a
+											toujours fait partie de ma vie
+											depuis mes 17 ans… le jour où, en
+											recherchant un livre de littérature
+											dans la bibliothèque de ma mère,
+											j’ai trouvé par “hasard” un vieux
+											manuel. Ce fut alors un vrai coup de
+											foudre et le début d’une longue
+											histoire qui ne s’est jamais
+											arrêtée… Depuis, je n’ai jamais
+											cessé d’explorer ce langage
+											symbolique et fascinant,{" "}
+											<strong>
+												miroir de notre monde intérieur
+											</strong>
+											. Je m’amusais à analyser et
+											décortiquer les thèmes des membres
+											de ma famille, des amis… Je pouvais
+											passer des heures à décortiquer, à
+											reformuler, déjà fascinée par les
+											nuances du langage des astres et de
+											sa psychologie.
+										</p>
+
+										<p>
+											Après neuf années d’apprentissage
+											autodidacte, j’ai eu la chance en
+											2012 de me former auprès d’une
+											enseignante passionnée (une ancienne
+											professeure d’histoire à la retraite
+											ayant étudié l’astrologie dans une
+											école renommée à Paris, qui
+											associait astrologie et psychologie.
+											Merci Danielle). De là débute ma
+											formation avec elle pendant presque
+											2 ans, ne faisant que confirmer mon
+											élan pour cet art qui, de mon point
+											de vue, a toute sa place dans les{" "}
+											<strong>sciences humaines</strong>.
 										</p>
 
 										<p>
@@ -404,10 +501,32 @@ const About = () => {
 												className="text-foreground font-medium link-elegant hover:text-accent transition-colors"
 											>
 												Dane Rudhyar
-											</a>
-											, j'ai trouvé dans l'astrologie
-											humaniste une voie de compréhension
-											et d'évolution.
+											</a>{" "}
+											ou encore{" "}
+											<strong>Stephen Arroyo</strong>,
+											j’ai trouvé dans{" "}
+											<strong>
+												l’astrologie humaniste
+											</strong>{" "}
+											une voie de compréhension, de
+											guérison et d’évolution.
+										</p>
+
+										<p>
+											Pendant longtemps, j’ai cherché à
+											comprendre pourquoi certaines
+											personnes réussissent à se
+											transformer profondément et d’autres
+											restent coincées dans les mêmes
+											schémas, malgré toute leur bonne
+											volonté. Et l’astrologie m’a apporté
+											ces réponses. Elle m’a aidée à{" "}
+											<strong>
+												donner du sens à mes épreuves, à
+												comprendre mes émotions, à
+												accepter mes cycles intérieurs
+											</strong>
+											.
 										</p>
 									</div>
 								</article>

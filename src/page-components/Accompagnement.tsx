@@ -219,9 +219,12 @@ const Accompagnement = () => {
 						<div
 							className="absolute inset-0 z-0"
 							style={{
-								transform: !mounted || isMobile
-									? "none"
-									: `translateY(${parallaxOffset * 0.5}px)`,
+								transform:
+									!mounted || isMobile
+										? "none"
+										: `translateY(${
+												parallaxOffset * 0.5
+										  }px)`,
 							}}
 						>
 							<div className="absolute inset-0 bg-gradient-to-b from-background via-background/95 to-background" />
@@ -320,9 +323,10 @@ const Accompagnement = () => {
 								<div
 									className="relative w-32 h-32 sm:w-40 sm:h-40 lg:w-56 lg:h-56 flex-shrink-0"
 									style={{
-										transform: !mounted || isMobile
-											? "none"
-											: `translateY(${-parallaxOffsetSlow}px)`,
+										transform:
+											!mounted || isMobile
+												? "none"
+												: `translateY(${-parallaxOffsetSlow}px)`,
 									}}
 								>
 									<div className="absolute inset-0 rounded-full bg-gradient-to-br from-gold/20 to-accent/10 animate-gentle-pulse" />
@@ -525,9 +529,10 @@ const Accompagnement = () => {
 								<div
 									className="relative w-32 h-32 sm:w-40 sm:h-40 lg:w-56 lg:h-56 flex-shrink-0"
 									style={{
-										transform: !mounted || isMobile
-											? "none"
-											: `translateY(${-parallaxOffsetSlow}px)`,
+										transform:
+											!mounted || isMobile
+												? "none"
+												: `translateY(${-parallaxOffsetSlow}px)`,
 									}}
 								>
 									<div className="absolute inset-0 rounded-full bg-gradient-to-br from-gold/20 to-accent/10 animate-gentle-pulse" />
@@ -640,7 +645,9 @@ const Accompagnement = () => {
 												</span>
 												<span className="flex items-center gap-1 whitespace-nowrap">
 													<MapPin className="w-3.5 h-3.5 text-accent flex-shrink-0" />
-													<span>Présentiel / Distance</span>
+													<span>
+														Présentiel / Distance
+													</span>
 												</span>
 											</div>
 										</div>
@@ -810,23 +817,6 @@ const Accompagnement = () => {
 													<ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover/btn:translate-x-1" />
 												</Button>
 											</div>
-
-											{/* Payment information */}
-											<div className="mt-4 pt-4 border-t border-gold/10">
-												<div className="flex items-start gap-2 text-sm text-muted-foreground/90">
-													<CreditCard className="w-4 h-4 mt-0.5 text-gold flex-shrink-0" />
-													<p className="leading-relaxed">
-														Il est possible de payer en 3 fois. Si c'est le cas, veuillez me contacter directement par{" "}
-														<a href="tel:+33619151959" className="text-accent hover:text-gold transition-colors underline underline-offset-2">
-															téléphone
-														</a>{" "}
-														ou par{" "}
-														<a href="mailto:contact@lylusio.fr" className="text-accent hover:text-gold transition-colors underline underline-offset-2">
-															mail
-														</a>.
-													</p>
-												</div>
-											</div>
 										</div>
 									</div>
 								</article>
@@ -904,11 +894,12 @@ const Accompagnement = () => {
 											</p>
 
 											<p className="text-muted-foreground text-sm leading-relaxed mb-6">
-												Tu te poses des questions sur ta
-												vie professionnelle ? Tu
-												envisages une reconversion, tu
-												veux reprendre des études ou te
-												lancer dans l'entrepreneuriat ?
+												Vous vous posez des questions
+												sur votre vie professionnelle ?
+												Vous envisagez une reconversion,
+												vous voulez reprendre des études
+												ou vous lancer dans
+												l'entrepreneuriat ?
 											</p>
 
 											<ul className="space-y-2 mb-6">
@@ -941,7 +932,10 @@ const Accompagnement = () => {
 													</span>
 													<span className="flex items-center gap-1 whitespace-nowrap">
 														<MapPin className="w-4 h-4 text-gold flex-shrink-0" />
-														<span>Présentiel / Distance</span>
+														<span>
+															Présentiel /
+															Distance
+														</span>
 													</span>
 												</div>
 
@@ -959,6 +953,33 @@ const Accompagnement = () => {
 													Réserver
 													<ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover/btn:translate-x-1" />
 												</Button>
+											</div>
+											{/* Payment information */}
+											<div className="mt-4 pt-4 border-t border-gold/10">
+												<div className="flex items-start gap-2 text-sm text-muted-foreground/90">
+													<CreditCard className="w-4 h-4 mt-0.5 text-gold flex-shrink-0" />
+													<p className="leading-relaxed">
+														Il est possible de payer
+														en 3 fois. Si c'est le
+														cas, veuillez me
+														contacter directement
+														par{" "}
+														<a
+															href="tel:+33619151959"
+															className="text-accent hover:text-gold transition-colors underline underline-offset-2"
+														>
+															téléphone
+														</a>{" "}
+														ou par{" "}
+														<a
+															href="mailto:contact@lylusio.fr"
+															className="text-accent hover:text-gold transition-colors underline underline-offset-2"
+														>
+															mail
+														</a>
+														.
+													</p>
+												</div>
 											</div>
 										</div>
 									</div>
