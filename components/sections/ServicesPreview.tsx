@@ -286,7 +286,7 @@ const ServicesPreview = () => {
 											fill
 											className="object-cover transition-transform duration-700 ease-out group-hover:scale-105 transform-gpu"
 											sizes="(max-width: 768px) 100vw, 300px"
-											quality={85}
+											quality={50}
 											aria-hidden="true"
 										/>
 										<div className="absolute inset-0 bg-gradient-to-t from-card/40 via-transparent to-transparent pointer-events-none" />

@@ -1308,9 +1308,11 @@ const About = () => {
 								].map((value, valueIndex) => (
 									<AnimatedSection
 										key={value.title}
-										className={`delay-[${value.delay}ms]`}
 									>
-										<li className="text-center bg-card/70 backdrop-blur-sm rounded-2xl md:rounded-3xl p-6 md:p-8 shadow-soft border border-border/20 h-full transition-all duration-300 hover:shadow-medium hover:border-accent/20 hover:-translate-y-1">
+										<li
+											className="text-center bg-card/70 backdrop-blur-sm rounded-2xl md:rounded-3xl p-6 md:p-8 shadow-soft border border-border/20 h-full transition-all duration-300 hover:shadow-medium hover:border-accent/20 hover:-translate-y-1"
+											style={{ animationDelay: `${value.delay}ms` }}
+										>
 											<h3 className="font-display text-xl md:text-2xl text-foreground mb-3 text-center">
 												<span className="font-calligraphic text-accent text-xl md:text-2xl inline-block align-baseline">
 													{value.title.charAt(0)}
