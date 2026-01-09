@@ -169,16 +169,16 @@ const OrganicShapes = memo(({ parallaxOffset }: { parallaxOffset: number }) => (
 
 OrganicShapes.displayName = "OrganicShapes";
 
-// DecorativeCircles - Cercles tournants autour de la photo (Lovable)
+// DecorativeCircles - Cercles statiques décalés autour de la photo
 const DecorativeCircles = memo(() => (
 	<div className="hidden sm:block">
 		<div
-			className="absolute -inset-12 -z-20 w-full h-full border border-gold/20 rounded-[50%_45%_55%_50%] rotate-6 opacity-40 will-change-transform motion-safe:animate-spin-slow"
-			style={{ animation: "spin 40s linear infinite" }}
+			className="absolute -inset-12 -z-20 w-full h-full border border-gold/25 rounded-[50%_45%_55%_50%] rotate-6 opacity-50"
+			aria-hidden="true"
 		/>
 		<div
-			className="absolute -inset-16 -z-30 w-full h-full border border-gold-light/20 rounded-[55%_50%_50%_55%] -rotate-6 opacity-70 will-change-transform"
-			style={{ animation: "spin 50s linear infinite reverse" }}
+			className="absolute -inset-16 -z-30 w-full h-full border border-gold-light/25 rounded-[55%_50%_50%_55%] -rotate-6 opacity-80"
+			aria-hidden="true"
 		/>
 	</div>
 ));
@@ -356,6 +356,9 @@ const HeroSection = () => {
 								aria-hidden="true"
 							/>
 						</div>
+
+						{/* Cercles décoratifs statiques en arrière-plan */}
+						<DecorativeCircles />
 
 						{/* Badge décoratif plante - Coin inférieur gauche */}
 						<div
