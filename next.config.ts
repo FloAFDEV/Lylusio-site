@@ -172,31 +172,66 @@ const nextConfig: NextConfig = {
 			{
 				source: "/:path*",
 				headers: [
-					// Performance headers
+					// 🔒 HSTS - Force HTTPS avec preload
 					{
-						key: "X-DNS-Prefetch-Control",
-						value: "on",
+						key: "Strict-Transport-Security",
+						value: "max-age=63072000; includeSubDomains; preload",
 					},
-					// Security headers
+
+					// 🔒 CSP - Content Security Policy COMPLET
+					{
+						key: "Content-Security-Policy",
+						value: [
+							"default-src 'self'",
+							"script-src 'self' 'unsafe-eval' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://calendly.com",
+							"style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+							"font-src 'self' https://fonts.gstatic.com data:",
+							"img-src 'self' data: https: blob:",
+							"media-src 'self' https:",
+							"connect-src 'self' https://lylusio.fr https://www.google-analytics.com https://analytics.google.com",
+							"frame-src 'self' https://calendly.com https://www.youtube.com https://www.youtube-nocookie.com",
+							"object-src 'none'",
+							"base-uri 'self'",
+							"form-action 'self'",
+							"frame-ancestors 'self'",
+							"upgrade-insecure-requests",
+						].join("; "),
+					},
+
+					// 🔒 Clickjacking protection
 					{
 						key: "X-Frame-Options",
 						value: "SAMEORIGIN",
 					},
+
+					// 🔒 MIME type sniffing protection
 					{
 						key: "X-Content-Type-Options",
 						value: "nosniff",
 					},
+
+					// 🔒 XSS Filter (legacy mais utile)
+					{
+						key: "X-XSS-Protection",
+						value: "1; mode=block",
+					},
+
+					// 🔒 Referrer Policy
 					{
 						key: "Referrer-Policy",
 						value: "strict-origin-when-cross-origin",
 					},
+
+					// 🔒 Permissions Policy (étendu)
 					{
 						key: "Permissions-Policy",
-						value: "camera=(), microphone=(), geolocation=(), interest-cohort=()",
+						value: "camera=(), microphone=(), geolocation=(), interest-cohort=(), payment=(self), usb=()",
 					},
+
+					// ⚡ Performance
 					{
-						key: "Strict-Transport-Security",
-						value: "max-age=31536000; includeSubDomains",
+						key: "X-DNS-Prefetch-Control",
+						value: "on",
 					},
 				],
 			},
