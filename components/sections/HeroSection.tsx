@@ -350,27 +350,21 @@ const HeroSection = () => {
 				</div>
 
 				{/* Photo avec parallax - Droite */}
-				<div
-					suppressHydrationWarning
-					className="lg:col-span-5 relative order-1 lg:order-2 animate-fade-up pt-4 sm:pt-6 md:pt-8 lg:pt-0"
-					style={{
-						animationDelay: "0.3s",
-						transform: `translate3d(0, ${
-							parallaxOffset * 0.2
-						}px, 0)`,
-					}}
-				>
-					<div className="relative mx-auto max-w-[200px] sm:max-w-[240px]">
-						{/* Cercles décoratifs */}
-						<DecorativeCircles />
-
-						{/* Photo principale avec effet hover */}
+				<div className="lg:col-span-5 relative order-1 lg:order-2 animate-fade-up pt-4 sm:pt-6 md:pt-8 lg:pt-0">
+					{/* Container with fixed dimensions - SSR safe */}
+					<div
+						className="relative mx-auto w-[200px] sm:w-[240px] h-[200px] sm:h-[240px]"
+						style={{
+							animationDelay: "0.3s",
+						}}
+					>
+						{/* Photo principale - Pure SSR, no parallax on image container */}
 						<div className="aspect-square rounded-full overflow-hidden shadow-gold border-2 border-gold/20 relative group">
 							<Image
 								src="/assets/emilie-hero.webp"
 								alt="Émilie Perez - Astrologue et praticienne Reiki 3ème degré à Toulouse"
 								fill
-								sizes="(max-width: 640px) 280px, (max-width: 1024px) 360px, 392px"
+								sizes="(max-width: 640px) 200px, 240px"
 								className="object-cover opacity-90 motion-safe:transition-transform duration-700 group-hover:scale-105"
 								priority
 								quality={65}
@@ -379,6 +373,15 @@ const HeroSection = () => {
 								className="absolute inset-0 bg-gradient-to-t from-background/15 via-transparent to-cream/8 pointer-events-none"
 								aria-hidden="true"
 							/>
+						</div>
+
+						{/* Cercles décoratifs avec parallax séparé */}
+						<div
+							style={{
+								transform: `translate3d(0, ${parallaxOffset * 0.2}px, 0)`,
+							}}
+						>
+							<DecorativeCircles />
 						</div>
 
 						{/* Badge décoratif plante - Coin inférieur gauche */}
