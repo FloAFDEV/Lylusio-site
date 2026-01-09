@@ -173,11 +173,11 @@ OrganicShapes.displayName = "OrganicShapes";
 const DecorativeCircles = memo(() => (
 	<div className="hidden sm:block">
 		<div
-			className="absolute -inset-12 -z-20 w-full h-full border-2 border-gold/35 rounded-[50%_45%_55%_50%] rotate-6 opacity-40 will-change-transform motion-safe:animate-spin-slow"
+			className="absolute -inset-12 -z-20 w-full h-full border border-gold/15 rounded-[50%_45%_55%_50%] rotate-6 opacity-30 will-change-transform motion-safe:animate-spin-slow"
 			style={{ animation: "spin 40s linear infinite" }}
 		/>
 		<div
-			className="absolute -inset-16 -z-30 w-full h-full border-2 border-gold-light/35 rounded-[55%_50%_50%_55%] -rotate-6 opacity-90 will-change-transform"
+			className="absolute -inset-16 -z-30 w-full h-full border border-gold-light/15 rounded-[55%_50%_50%_55%] -rotate-6 opacity-60 will-change-transform"
 			style={{ animation: "spin 50s linear infinite reverse" }}
 		/>
 	</div>
@@ -359,7 +359,7 @@ const HeroSection = () => {
 						}}
 					>
 						{/* Photo principale - Pure SSR, no parallax on image container */}
-						<div className="aspect-square rounded-full overflow-hidden shadow-gold border-2 border-gold/20 relative group">
+						<div className="aspect-square rounded-full overflow-hidden shadow-gold relative group">
 							<Image
 								src="/assets/emilie-hero.webp"
 								alt="Émilie Perez - Astrologue et praticienne Reiki 3ème degré à Toulouse"

@@ -674,6 +674,18 @@ html {
 	}
 }
 
+/* Soft version - visible immediately for SSR, subtle animation */
+@keyframes fadeUpSoft {
+	from {
+		opacity: 0.8;
+		transform: translateY(10px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
 @keyframes fadeIn {
 	from {
 		opacity: 0;
@@ -794,17 +806,8 @@ html {
 }
 
 .animate-fade-up {
-	/* Start visible for SSR - prevents flash */
-	opacity: 1;
-	transform: translateY(0);
-}
-
-/* Only animate when motion is preferred (progressive enhancement) */
-@media (prefers-reduced-motion: no-preference) {
-	.animate-fade-up {
-		opacity: 0;
-		animation: fadeUp 1.2s ease-out forwards;
-	}
+	/* Removed opacity: 0 to prevent SSR flash - elements visible immediately */
+	animation: fadeUpSoft 1.2s ease-out forwards;
 }
 
 .animate-fade-in {
