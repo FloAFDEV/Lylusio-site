@@ -183,7 +183,7 @@ const nextConfig: NextConfig = {
 							"img-src 'self' data: https: blob:",
 							"media-src 'self' https:",
 							"connect-src 'self' https://lylusio.fr https://admin.lylusio.fr https://www.google-analytics.com https://analytics.google.com https://region1.google-analytics.com https://region1.analytics.google.com https://www.google.com https://www.googletagmanager.com",
-							"frame-src 'self' https://calendly.com https://www.youtube.com https://www.youtube-nocookie.com https://www.googletagmanager.com",
+							"frame-src 'self' https://calendly.com https://www.youtube.com https://www.youtube-nocookie.com https://www.googletagmanager.com https://www.google.com",
 							"object-src 'none'",
 							"base-uri 'self'",
 							"form-action 'self'",

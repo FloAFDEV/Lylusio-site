@@ -91,21 +91,30 @@ export async function GET(request: NextRequest) {
 		const imageUrl = searchParams.get("url");
 
 		if (!imageUrl) {
+			console.error("[wp-image] Missing url parameter");
 			return new NextResponse("Missing url parameter", { status: 400 });
 		}
 
+		console.log("[wp-image] Requested URL:", imageUrl);
+
 		// Validation de l'URL (doit commencer par /wp-content/)
 		if (!imageUrl.startsWith("/wp-content/")) {
+			console.error(
+				"[wp-image] Invalid path - does not start with /wp-content/:",
+				imageUrl,
+			);
 			return new NextResponse("Invalid image path", { status: 400 });
 		}
 
-		// Protection contre path traversal
-		if (imageUrl.includes("..") || imageUrl.includes("//")) {
+		// Protection contre path traversal (mais pas contre //)
+		if (imageUrl.includes("..")) {
+			console.error("[wp-image] Path traversal attempt:", imageUrl);
 			return new NextResponse("Invalid image path", { status: 400 });
 		}
 
 		// Construction de l'URL complète vers admin.lylusio.fr
 		const fullImageUrl = `https://admin.lylusio.fr${imageUrl}`;
+		console.log("[wp-image] Fetching from:", fullImageUrl);
 
 		// Fetch l'image depuis WordPress
 		const controller = new AbortController();
@@ -123,7 +132,7 @@ export async function GET(request: NextRequest) {
 		if (!response.ok) {
 			// En cas d'erreur, retourner l'image fallback (logo Lylusio)
 			console.error(
-				`Failed to fetch image from WordPress: ${response.status}`,
+				`[wp-image] Failed to fetch from WordPress: ${response.status} - ${fullImageUrl}`,
 			);
 
 			// Retourner une réponse 404 avec headers appropriés

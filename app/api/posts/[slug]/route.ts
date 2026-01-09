@@ -58,22 +58,41 @@ function checkRateLimit(key: string): {
 
 // Validation du slug
 function validateSlug(slug: string): { valid: boolean; error?: string } {
-	// Slug doit être alphanumerique avec tirets, 1-200 caractères
-	const slugRegex = /^[a-z0-9-]{1,200}$/;
+	// Décoder le slug si encodé (pour supporter les caractères Unicode)
+	let decodedSlug = slug;
+	try {
+		decodedSlug = decodeURIComponent(slug);
+	} catch (e) {
+		// Si décodage échoue, utiliser slug original
+	}
 
-	if (!slugRegex.test(slug)) {
+	// Slug peut contenir alphanumerique, tirets, underscores, et caractères Unicode
+	// Maximum 300 caractères pour supporter les slugs WordPress complexes
+	if (decodedSlug.length === 0 || decodedSlug.length > 300) {
 		return {
 			valid: false,
-			error:
-				"Invalid slug format. Must be lowercase alphanumeric with hyphens only.",
+			error: "Slug length must be between 1 and 300 characters",
 		};
 	}
 
 	// Protection contre path traversal
-	if (slug.includes("..") || slug.includes("//")) {
+	if (decodedSlug.includes("..") || decodedSlug.includes("//")) {
 		return {
 			valid: false,
 			error: "Invalid slug: path traversal detected",
+		};
+	}
+
+	// Bloquer les caractères vraiment dangereux
+	if (
+		decodedSlug.includes("<") ||
+		decodedSlug.includes(">") ||
+		decodedSlug.includes("'") ||
+		decodedSlug.includes('"')
+	) {
+		return {
+			valid: false,
+			error: "Invalid slug: contains forbidden characters",
 		};
 	}
 
