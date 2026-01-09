@@ -405,13 +405,13 @@ const Accompagnement = () => {
 										{/* Glow effect - outside card for no clipping */}
 										<div className="absolute -inset-4 rounded-[2.5rem] opacity-0 group-hover:opacity-100 bg-gradient-to-br from-gold/20 via-gold/10 to-accent/10 blur-2xl transition-all duration-700 pointer-events-none" />
 
-										{/* Card container */}
-										<div className="relative bg-gradient-to-b from-card/90 to-card/60 backdrop-blur-md rounded-[2rem] overflow-hidden border border-border/20 shadow-soft group-hover:border-gold/40 group-hover:-translate-y-3 transition-all duration-500">
+										{/* Card container - removed overflow-hidden to prevent clipping */}
+										<div className="relative bg-gradient-to-b from-card/90 to-card/60 backdrop-blur-md rounded-[2rem] border border-border/20 shadow-soft group-hover:border-gold/40 group-hover:-translate-y-3 transition-all duration-500">
 											{/* Animated border glow */}
 											<div className="absolute inset-0 rounded-[2rem] opacity-0 group-hover:opacity-100 shadow-[0_20px_50px_-15px_hsl(var(--gold)/0.3)] transition-opacity duration-500 pointer-events-none" />
 											{/* Image Header */}
 											{service.image && (
-												<div className="relative h-48 overflow-hidden">
+												<div className="relative h-48 overflow-hidden rounded-t-[2rem]">
 													<Image
 														src={service.image}
 														alt={service.title}
@@ -575,7 +575,7 @@ const Accompagnement = () => {
 							{/* Desktop: Single card */}
 							<div className="hidden md:block max-w-3xl mx-auto">
 								<article
-									className={`group relative bg-gradient-to-b from-card/90 to-card/60 backdrop-blur-md rounded-[2rem] overflow-hidden border border-border/20 shadow-soft hover:shadow-[0_20px_50px_-15px_hsl(var(--gold)/0.25)] hover:border-gold/40 hover:-translate-y-3 transition-all duration-500 ${
+									className={`group relative bg-gradient-to-b from-card/90 to-card/60 backdrop-blur-md rounded-[2rem] border border-border/20 shadow-soft hover:shadow-[0_20px_50px_-15px_hsl(var(--gold)/0.25)] hover:border-gold/40 hover:-translate-y-3 transition-all duration-500 ${
 										reikiInView
 											? "opacity-100 translate-y-0"
 											: "opacity-0 translate-y-8"
@@ -583,7 +583,7 @@ const Accompagnement = () => {
 									style={{ transitionDelay: "200ms" }}
 								>
 									{/* Image Header */}
-									<div className="relative h-56 overflow-hidden">
+									<div className="relative h-56 overflow-hidden rounded-t-[2rem]">
 										<Image
 											src="/assets/tarif-reiki.webp"
 											alt="Soin Reiki"
@@ -750,7 +750,7 @@ const Accompagnement = () => {
 							{/* Format uniforme avec les autres cartes */}
 							<div className="max-w-4xl mx-auto">
 								<article
-									className={`group relative bg-card/80 backdrop-blur-sm rounded-3xl overflow-hidden border border-border/30 shadow-soft hover:shadow-elegant hover:border-gold/30 transition-all duration-700 ${
+									className={`group relative bg-card/80 backdrop-blur-sm rounded-3xl border border-border/30 shadow-soft hover:shadow-elegant hover:border-gold/30 transition-all duration-700 ${
 										accompInView
 											? "opacity-100 translate-y-0"
 											: "opacity-0 translate-y-8"
@@ -759,7 +759,7 @@ const Accompagnement = () => {
 								>
 									<div className="flex flex-col lg:flex-row">
 										{/* Image side */}
-										<div className="relative lg:w-72 h-48 lg:h-auto overflow-hidden">
+										<div className="relative lg:w-72 h-48 lg:h-auto overflow-hidden rounded-t-3xl lg:rounded-l-3xl lg:rounded-tr-none">
 											<Image
 												src="/assets/tarif-accompagnement.webp"
 												alt="Accompagnement global"
@@ -887,7 +887,7 @@ const Accompagnement = () => {
 							{/* Desktop */}
 							<div className="hidden md:block max-w-4xl mx-auto">
 								<article
-									className={`group relative bg-card/80 backdrop-blur-sm rounded-3xl overflow-hidden border border-border/30 shadow-soft hover:shadow-elegant hover:border-accent/30 transition-all duration-700 ${
+									className={`group relative bg-card/80 backdrop-blur-sm rounded-3xl border border-border/30 shadow-soft hover:shadow-elegant hover:border-accent/30 transition-all duration-700 ${
 										bilanInView
 											? "opacity-100 translate-y-0"
 											: "opacity-0 translate-y-8"
@@ -896,7 +896,7 @@ const Accompagnement = () => {
 								>
 									<div className="flex flex-col lg:flex-row-reverse">
 										{/* Image side */}
-										<div className="relative lg:w-72 h-48 lg:h-auto overflow-hidden">
+										<div className="relative lg:w-72 h-48 lg:h-auto overflow-hidden rounded-t-3xl lg:rounded-r-3xl lg:rounded-tl-none">
 											<Image
 												src="/assets/tarif-bilan-pro.webp"
 												alt="Bilan et Orientation Professionnelle"

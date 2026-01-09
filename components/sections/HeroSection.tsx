@@ -22,6 +22,7 @@ const CelestialStars = memo(() => {
 	};
 
 	// Générer les étoiles de façon déterministe (même résultat SSR et client)
+	// Utiliser toFixed() pour éliminer les différences de précision entre SSR et client
 	const stars = [...Array(20)].map((_, i) => {
 		const r1 = seededRandom(i * 3 + 1);
 		const r2 = seededRandom(i * 3 + 2);
@@ -31,11 +32,11 @@ const CelestialStars = memo(() => {
 
 		return {
 			id: i,
-			left: `${5 + r1 * 90}%`,
-			top: `${5 + r2 * 80}%`,
+			left: `${(5 + r1 * 90).toFixed(4)}%`,
+			top: `${(5 + r2 * 80).toFixed(4)}%`,
 			size: r3 > 0.7 ? 3 : r3 > 0.4 ? 2 : 1,
-			delay: `${r4 * 4}s`,
-			duration: `${2.5 + r5 * 2}s`,
+			delay: `${(r4 * 4).toFixed(2)}s`,
+			duration: `${(2.5 + r5 * 2).toFixed(2)}s`,
 		};
 	});
 
