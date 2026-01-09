@@ -794,8 +794,17 @@ html {
 }
 
 .animate-fade-up {
-	animation: fadeUp 1.2s ease-out forwards;
-	opacity: 0;
+	/* Start visible for SSR - prevents flash */
+	opacity: 1;
+	transform: translateY(0);
+}
+
+/* Only animate when motion is preferred (progressive enhancement) */
+@media (prefers-reduced-motion: no-preference) {
+	.animate-fade-up {
+		opacity: 0;
+		animation: fadeUp 1.2s ease-out forwards;
+	}
 }
 
 .animate-fade-in {

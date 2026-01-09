@@ -7,32 +7,31 @@ import { FaYoutube, FaInstagram, FaFacebook } from "react-icons/fa";
 import { BookOpen, ArrowRight, Sparkles } from "lucide-react";
 import { memo, useEffect, useState } from "react";
 
-// 🌟 Étoiles scintillantes dynamiques
-const CelestialStars = memo(() => {
-	const [stars, setStars] = useState<
-		{
-			id: number;
-			left: string;
-			top: string;
-			size: number;
-			delay: string;
-			duration: string;
-		}[]
-	>([]);
+// seededRandom - fonction déterministe pour SSR/client sync
+const seededRandom = (seed: number): number => {
+	const x = Math.sin(seed) * 10000;
+	return x - Math.floor(x);
+};
 
-	useEffect(() => {
-		// Générer les étoiles uniquement côté client pour éviter l'hydration mismatch
-		setStars(
-			Array.from({ length: 12 }).map((_, i) => ({
-				id: i,
-				left: `${Math.random() * 100}%`,
-				top: `${Math.random() * 100}%`,
-				size: Math.floor(Math.random() * 4) + 1,
-				delay: `${Math.random() * 3}s`,
-				duration: `${Math.random() * 2 + 2}s`,
-			}))
-		);
-	}, []);
+// 🌟 Étoiles scintillantes avec positions déterministes (SSR-safe)
+const CelestialStars = memo(() => {
+	// Générer les étoiles de façon déterministe (même résultat SSR et client)
+	const stars = Array.from({ length: 12 }).map((_, i) => {
+		const r1 = seededRandom(i * 5 + 1);
+		const r2 = seededRandom(i * 5 + 2);
+		const r3 = seededRandom(i * 5 + 3);
+		const r4 = seededRandom(i * 5 + 4);
+		const r5 = seededRandom(i * 5 + 5);
+
+		return {
+			id: i,
+			left: `${(r1 * 100).toFixed(4)}%`,
+			top: `${(r2 * 100).toFixed(4)}%`,
+			size: Math.floor(r3 * 4) + 1,
+			delay: `${(r4 * 3).toFixed(2)}s`,
+			duration: `${(r5 * 2 + 2).toFixed(2)}s`,
+		};
+	});
 
 	return (
 		<div
