@@ -214,14 +214,15 @@ export const Header = () => {
 										/>
 									</button>
 
-									{/* Dropdown menu - Smooth animations avec translateY + scale + cascade */}
-									<div
-										className={`absolute top-full left-1/2 -translate-x-1/2 pt-3 w-52 motion-safe:transition-all duration-&lsqb;1100ms&rsqb; ease-out z-50 ${
-											desktopSubmenuOpen
-												? "opacity-100 visible translate-y-0 scale-100 pointer-events-auto"
-												: "opacity-0 invisible translate-y-3 scale-95 pointer-events-none"
-										}`}
-									>
+									{/* Dropdown menu - Rendu seulement quand nécessaire pour éviter hydration mismatch */}
+									{(desktopSubmenuOpen || typeof window !== 'undefined') && (
+										<div
+											className={`absolute top-full left-1/2 -translate-x-1/2 pt-3 w-52 motion-safe:transition-all duration-&lsqb;1100ms&rsqb; ease-out z-50 ${
+												desktopSubmenuOpen
+													? "opacity-100 visible translate-y-0 scale-100 pointer-events-auto"
+													: "opacity-0 invisible translate-y-3 scale-95 pointer-events-none"
+											}`}
+										>
 											<div className="bg-card/90 backdrop-blur-xl rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] border border-accent/20 overflow-hidden ring-1 ring-black/5">
 												{link.subItems?.map(
 													(item, index) => (
@@ -261,7 +262,8 @@ export const Header = () => {
 													<span className="absolute inset-0 bg-gradient-to-r from-transparent via-accent/5 to-transparent -translate-x-full group-hover/all:translate-x-full motion-safe:transition-transform duration-&lsqb;800ms&rsqb; ease-out" />
 												</Link>
 											</div>
-									</div>
+										</div>
+									)}
 								</div>
 							) : (
 								<Link
@@ -338,7 +340,7 @@ export const Header = () => {
 				role="dialog"
 				aria-label="Menu de navigation mobile"
 				aria-modal={isMobileOpen}
-				inert={!isMobileOpen ? ("" as any) : undefined}
+				inert={!isMobileOpen || undefined}
 			>
 					<nav
 						className="p-6 flex flex-col gap-3 h-full overflow-y-auto overscroll-contain"
