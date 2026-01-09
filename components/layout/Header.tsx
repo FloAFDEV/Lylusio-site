@@ -51,18 +51,26 @@ export const Header = () => {
 		Record<string, boolean>
 	>({});
 	const [desktopSubmenuOpen, setDesktopSubmenuOpen] = useState(false);
+	const [mounted, setMounted] = useState(false);
 
 	const pathname = usePathname();
 
-	/* Scroll state - initialize on mount to prevent flash */
+	/* Mark as mounted to prevent hydration mismatch */
 	useEffect(() => {
-		// Initialize scroll state immediately to prevent SSR/client mismatch
+		setMounted(true);
+	}, []);
+
+	/* Scroll state - initialize after mount to prevent flash */
+	useEffect(() => {
+		if (!mounted) return;
+
+		// Initialize scroll state after mount to prevent SSR/client mismatch
 		setIsScrolled(window.scrollY > 20);
 
 		const handleScroll = () => setIsScrolled(window.scrollY > 20);
 		window.addEventListener("scroll", handleScroll, { passive: true });
 		return () => window.removeEventListener("scroll", handleScroll);
-	}, []);
+	}, [mounted]);
 
 	/* Close menus on route change */
 	useEffect(() => {
@@ -136,6 +144,7 @@ export const Header = () => {
 	return (
 		<>
 			<header
+				suppressHydrationWarning
 				className={`fixed top-0 left-0 right-0 z-50 transition-all duration-&lsqb;550ms&rsqb; ${
 					isScrolled
 						? "bg-background/98 backdrop-blur-xl shadow-[0_2px_20px_rgba(0,0,0,0.08)] py-3"
