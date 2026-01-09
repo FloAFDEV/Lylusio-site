@@ -16,6 +16,7 @@ import {
 } from "@/components/SEO/StructuredData";
 import ClientComponents from "@/components/ClientComponents";
 import PageTransition from "@/components/PageTransition";
+import EnvChecker from "@/components/EnvChecker";
 import "@/app/globals.css";
 
 // next/font/google - Optimized for zero CLS
@@ -207,6 +208,7 @@ export default function RootLayout({
 									{children}
 								</PageTransition>
 								<ClientComponents />
+								{process.env.NODE_ENV === "development" && <EnvChecker />}
 								<Toaster />
 								<Sonner />
 							</AnalyticsProvider>
