@@ -172,7 +172,7 @@ const MonApproche = () => {
 									transform: `translate3d(0, ${parallaxOffset}px, 0)`,
 								}}
 								priority
-								quality={95}
+								quality={65}
 								aria-hidden="true"
 							/>
 						</div>

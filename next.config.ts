@@ -53,7 +53,8 @@ const nextConfig: NextConfig = {
 		contentDispositionType: "attachment",
 		contentSecurityPolicy:
 			"default-src 'self'; script-src 'none'; sandbox;",
-		// Optimized quality levels for better compression
+		// Configure quality levels used in the app
+		qualities: [65, 75, 85, 95],
 		unoptimized: false,
 	},
 

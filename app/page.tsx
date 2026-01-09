@@ -3,8 +3,6 @@ import Index from '@/src/page-components/Index';
 import { generateMetadata as genMeta } from '@/content/seo';
 import { websiteSchema, organizationSchema, howToSchema, localBusinessSchema } from '@/content/schema';
 
-export const dynamic = 'force-dynamic';
-
 export const metadata: Metadata = genMeta('home');
 
 export default function HomePage() {
