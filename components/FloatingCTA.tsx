@@ -10,6 +10,7 @@ const FloatingCTA = () => {
 	const [isVisible, setIsVisible] = useState(false);
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 	const [isNearFooter, setIsNearFooter] = useState(false);
+	const [mounted, setMounted] = useState(false);
 	const pathname = usePathname();
 	const { trackBookingClick } = useAnalyticsEvent();
 
@@ -23,7 +24,14 @@ const FloatingCTA = () => {
 	];
 	const isHiddenPage = hiddenOnPages.includes(pathname);
 
+	/* Mark as mounted to prevent hydration mismatch */
 	useEffect(() => {
+		setMounted(true);
+	}, []);
+
+	useEffect(() => {
+		if (!mounted) return;
+
 		const handleScroll = () => {
 			// Show after scrolling 400px
 			const scrollY = window.scrollY;
@@ -42,8 +50,8 @@ const FloatingCTA = () => {
 			setIsMenuOpen(event.detail.isOpen);
 		};
 
-		// Initial check
-		handleScroll();
+		// DO NOT call handleScroll immediately - wait for first scroll event to prevent flash
+		// handleScroll(); // ❌ REMOVED: Causes flash if scrollY > 400 on mount
 
 		window.addEventListener("scroll", handleScroll, { passive: true });
 		window.addEventListener(
@@ -58,16 +66,19 @@ const FloatingCTA = () => {
 				handleMenuToggle as EventListener
 			);
 		};
-	}, []);
+	}, [mounted]);
 
 	// Hide when menu is open, near footer, or on hidden pages
 	const shouldShow =
-		isVisible && !isMenuOpen && !isNearFooter && !isHiddenPage;
+		mounted && isVisible && !isMenuOpen && !isNearFooter && !isHiddenPage;
 
 	// L'action de clic ne fait plus qu'appeler l'analytics (la navigation est gérée par le href du <a>)
 	const handleLinkClick = () => {
 		trackBookingClick("floating_cta");
 	};
+
+	// Do not render anything until mounted to prevent flash
+	if (!mounted) return null;
 
 	return (
 		<div

@@ -343,6 +343,7 @@ export const Header = () => {
 
 			{/* ================= Mobile Menu ================= */}
 			<div
+				suppressHydrationWarning
 				id="mobile-menu"
 				className={`xl:hidden fixed top-0 right-0 h-full w-3/4 max-w-xs bg-card shadow-lg border-l border-accent/20 z-50 motion-safe:transition-transform duration-&lsqb;800ms&rsqb; ease-&lsqb;cubic-bezier(0.23,1,0.32,1)&rsqb; ${
 					isMobileOpen ? "translate-x-0" : "translate-x-[110%]"

@@ -6,8 +6,16 @@ import { ChevronUp } from "lucide-react";
 const ScrollToTop = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  /* Mark as mounted to prevent hydration mismatch */
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
+    if (!mounted) return;
+
     const toggleVisibility = () => {
       setIsVisible(window.scrollY > 400);
     };
@@ -18,19 +26,22 @@ const ScrollToTop = () => {
 
     window.addEventListener("scroll", toggleVisibility);
     window.addEventListener("mobileMenuToggle", handleMenuToggle as EventListener);
-    
+
     return () => {
       window.removeEventListener("scroll", toggleVisibility);
       window.removeEventListener("mobileMenuToggle", handleMenuToggle as EventListener);
     };
-  }, []);
+  }, [mounted]);
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   // Hide when menu is open
-  const shouldShow = isVisible && !isMenuOpen;
+  const shouldShow = mounted && isVisible && !isMenuOpen;
+
+  // Do not render anything until mounted to prevent flash
+  if (!mounted) return null;
 
   return (
     <button

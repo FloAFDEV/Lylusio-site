@@ -353,6 +353,7 @@ const HeroSection = () => {
 
 				{/* Photo avec parallax - Droite */}
 				<div
+					suppressHydrationWarning
 					className="lg:col-span-5 relative order-1 lg:order-2 animate-fade-up pt-4 sm:pt-6 md:pt-8 lg:pt-0"
 					style={{
 						animationDelay: "0.3s",
