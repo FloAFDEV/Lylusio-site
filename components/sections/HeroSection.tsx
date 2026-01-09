@@ -9,35 +9,8 @@ import { useParallax } from "@/hooks/useParallax";
 // import emilieHero from "@/assets/emilie-hero.webp"; // Now using /assets/emilie-hero.webp
 // import plantDecoration from "@/assets/plant-decoration.webp"; // Now using /assets/plant-decoration.webp
 
-// Smooth wrapper for client-only decorative elements - prevents flash
-const SmoothWrapper = ({ children }: { children: React.ReactNode }) => {
-	// No opacity transition - just render children directly
-	// The flash was caused by opacity: 0 → 1 transition
-	// Now elements appear naturally without visible transition
-	return <>{children}</>;
-};
-
-// Lazy load decorative components for better LCP
-const CelestialStarsLazy = dynamic(() => Promise.resolve(CelestialStars), {
-	ssr: false,
-	loading: () => <div className="absolute inset-0" />,
-});
-const SoftCloudsLazy = dynamic(() => Promise.resolve(SoftClouds), {
-	ssr: false,
-	loading: () => <div className="absolute inset-0" />,
-});
-const HandwrittenSignatureLazy = dynamic(
-	() => Promise.resolve(HandwrittenSignature),
-	{ ssr: false, loading: () => <div className="absolute inset-0" /> }
-);
-const OrganicShapesLazy = dynamic(() => Promise.resolve(OrganicShapes), {
-	ssr: false,
-	loading: () => <div className="absolute inset-0" />,
-});
-const DecorativeCirclesLazy = dynamic(
-	() => Promise.resolve(DecorativeCircles),
-	{ ssr: false, loading: () => <div /> }
-);
+// Tous les composants sont maintenant SSR-safe (pas de Math.random, pas de window)
+// Plus besoin de ssr: false - le HTML sera identique côté serveur et client
 
 // CelestialStars - Étoiles scintillantes avec positions déterministes
 // Utilise un seed fixe pour éviter l'hydration mismatch (pas de Math.random())
@@ -239,21 +212,13 @@ const HeroSection = () => {
 			}}
 			aria-labelledby="hero-title"
 		>
-			{/* Éléments célestes avec transitions douces */}
-			<SmoothWrapper>
-				<CelestialStarsLazy />
-			</SmoothWrapper>
-			<SmoothWrapper>
-				<SoftCloudsLazy parallaxOffset={parallaxOffset} />
-			</SmoothWrapper>
-			<SmoothWrapper>
-				<HandwrittenSignatureLazy parallaxOffset={parallaxOffset} />
-			</SmoothWrapper>
+			{/* Éléments célestes - rendus au SSR pour éviter le clignotement */}
+			<CelestialStars />
+			<SoftClouds parallaxOffset={parallaxOffset} />
+			<HandwrittenSignature parallaxOffset={parallaxOffset} />
 
 			{/* Formes organiques d'arrière-plan */}
-			<SmoothWrapper>
-				<OrganicShapesLazy parallaxOffset={parallaxOffset} />
-			</SmoothWrapper>
+			<OrganicShapes parallaxOffset={parallaxOffset} />
 
 			{/* Contenu principal */}
 			<div className="relative z-10 container-wide section-padding grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center">
@@ -397,9 +362,7 @@ const HeroSection = () => {
 				>
 					<div className="relative mx-auto max-w-[200px] sm:max-w-[240px]">
 						{/* Cercles décoratifs */}
-						<SmoothWrapper>
-							<DecorativeCirclesLazy />
-						</SmoothWrapper>
+						<DecorativeCircles />
 
 						{/* Photo principale avec effet hover */}
 						<div className="aspect-square rounded-full overflow-hidden shadow-gold border-2 border-gold/20 relative group">
