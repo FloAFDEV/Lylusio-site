@@ -33,6 +33,11 @@ const nextConfig: NextConfig = {
 			},
 			{
 				protocol: "https",
+				hostname: "admin.lylusio.fr",
+				pathname: "/wp-content/uploads/**",
+			},
+			{
+				protocol: "https",
 				hostname: "lylusio.fr",
 				pathname: "/assets/**",
 			},
