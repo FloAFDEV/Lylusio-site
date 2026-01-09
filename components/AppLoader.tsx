@@ -1,8 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Image from "next/image";
-// import plantLogo from "@/assets/plant-decoration.webp"; // Now using /assets/plant-decoration.webp
 
 interface AppLoaderProps {
   onComplete: () => void;
@@ -49,18 +47,14 @@ const AppLoader = ({ onComplete, minDisplayTime = 800 }: AppLoaderProps) => {
               background: "radial-gradient(circle, hsl(var(--accent) / 0.15) 0%, transparent 70%)",
             }}
           />
-          
-          {/* Logo with gentle float */}
-          <Image
-            src="/assets/plant-decoration.webp"
-            alt=""
-            width={96}
-            height={96}
-            className="w-20 h-20 md:w-24 md:h-24 rounded-full animate-float-slow"
+
+          {/* Logo with gentle float - Image décorative en background CSS */}
+          <div
+            className="w-20 h-20 md:w-24 md:h-24 rounded-full animate-float-slow bg-cover bg-center"
             style={{
+              backgroundImage: "url('/assets/plant-decoration.webp')",
               filter: "drop-shadow(0 0 24px hsl(var(--accent) / 0.3))",
             }}
-            priority
             aria-hidden="true"
           />
         </div>
@@ -76,9 +70,9 @@ const AppLoader = ({ onComplete, minDisplayTime = 800 }: AppLoaderProps) => {
               <span
                 key={i}
                 className="w-1.5 h-1.5 rounded-full bg-accent/60"
-                style={{ 
+                style={{
                   animation: "gentle-pulse 1.2s ease-in-out infinite",
-                  animationDelay: `${i * 0.15}s` 
+                  animationDelay: `${i * 0.15}s`
                 }}
               />
             ))}

@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 interface GoldenPlantBadgeProps {
@@ -45,22 +44,17 @@ const GoldenPlantBadge = ({
 			)}
 			aria-hidden="true"
 		>
+			{/* Image décorative en background CSS - protection maximale */}
 			<div
 				className={cn(
-					"relative rounded-full overflow-hidden",
+					"rounded-full bg-cover bg-center",
 					innerSizeClasses[size]
 				)}
-			>
-				<Image
-					src="/assets/plant-decoration.webp"
-					alt=""
-					fill
-					className="object-cover"
-					sizes="(max-width: 640px) 48px, (max-width: 768px) 64px, 80px"
-					quality={85}
-					aria-hidden="true"
-				/>
-			</div>
+				style={{
+					backgroundImage: "url('/assets/plant-decoration.webp')",
+				}}
+				aria-hidden="true"
+			/>
 		</div>
 	);
 };
