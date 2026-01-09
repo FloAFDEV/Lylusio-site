@@ -191,14 +191,12 @@ const HeroSection = () => {
 	const scrollToNext = useCallback(() => {
 		const element = document.querySelector("#approche");
 		if (element) {
-			const headerOffset = 80;
-			const elementPosition = element.getBoundingClientRect().top;
-			const offsetPosition =
-				elementPosition + window.scrollY - headerOffset;
-
-			window.scrollTo({
-				top: offsetPosition,
+			// ✅ Use scrollIntoView instead of getBoundingClientRect to avoid forced reflow
+			// scroll-margin-top in ApprochSection handles header offset
+			element.scrollIntoView({
 				behavior: "smooth",
+				block: "start",
+				inline: "nearest"
 			});
 		}
 	}, []);

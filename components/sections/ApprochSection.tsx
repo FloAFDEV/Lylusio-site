@@ -20,6 +20,7 @@ const ApprochSection = () => {
 			style={{
 				background:
 					"linear-gradient(180deg, hsl(225 33% 97%) 0%, hsl(210 50% 96%) 30%, hsl(32 100% 97%) 100%)",
+				scrollMarginTop: "80px", // ✅ Added: Compensates for fixed header when scrolling from Hero
 			}}
 			aria-labelledby="approche-title"
 			ref={ref}
