@@ -1,6 +1,6 @@
 "use client";
 
-import { memo, useEffect, useState, useCallback } from "react";
+import { memo, useCallback } from "react";
 import dynamic from "next/dynamic";
 import { Button } from "@/components/ui/button";
 import { ChevronDown, MapPin } from "lucide-react";
@@ -39,33 +39,32 @@ const DecorativeCirclesLazy = dynamic(
 	{ ssr: false, loading: () => <div /> }
 );
 
-// CelestialStars - Étoiles scintillantes aléatoires côté client
+// CelestialStars - Étoiles scintillantes avec positions déterministes
+// Utilise un seed fixe pour éviter l'hydration mismatch (pas de Math.random())
 const CelestialStars = memo(() => {
-	const [stars, setStars] = useState<
-		{
-			id: number;
-			left: string;
-			top: string;
-			size: number;
-			delay: string;
-			duration: string;
-		}[]
-	>([]);
-	const [mounted, setMounted] = useState(false);
+	// Générateur de nombres pseudo-aléatoires déterministe (seeded PRNG)
+	const seededRandom = (seed: number) => {
+		const x = Math.sin(seed) * 10000;
+		return x - Math.floor(x);
+	};
 
-	useEffect(() => {
-		const generatedStars = [...Array(20)].map((_, i) => ({
+	// Générer les étoiles de façon déterministe (même résultat SSR et client)
+	const stars = [...Array(20)].map((_, i) => {
+		const r1 = seededRandom(i * 3 + 1);
+		const r2 = seededRandom(i * 3 + 2);
+		const r3 = seededRandom(i * 3 + 3);
+		const r4 = seededRandom(i * 3 + 4);
+		const r5 = seededRandom(i * 3 + 5);
+
+		return {
 			id: i,
-			left: `${5 + Math.random() * 90}%`,
-			top: `${5 + Math.random() * 80}%`,
-			size: Math.random() > 0.7 ? 3 : Math.random() > 0.4 ? 2 : 1,
-			delay: `${Math.random() * 4}s`,
-			duration: `${2.5 + Math.random() * 2}s`,
-		}));
-		setStars(generatedStars);
-		// Start visible immediately to prevent flash
-		setMounted(true);
-	}, []);
+			left: `${5 + r1 * 90}%`,
+			top: `${5 + r2 * 80}%`,
+			size: r3 > 0.7 ? 3 : r3 > 0.4 ? 2 : 1,
+			delay: `${r4 * 4}s`,
+			duration: `${2.5 + r5 * 2}s`,
+		};
+	});
 
 	return (
 		<div

@@ -51,14 +51,8 @@ export const Header = () => {
 		Record<string, boolean>
 	>({});
 	const [desktopSubmenuOpen, setDesktopSubmenuOpen] = useState(false);
-	const [mounted, setMounted] = useState(false);
 
 	const pathname = usePathname();
-
-	/* Hydration fix */
-	useEffect(() => {
-		setMounted(true);
-	}, []);
 
 	/* Scroll state */
 	useEffect(() => {
@@ -221,14 +215,13 @@ export const Header = () => {
 									</button>
 
 									{/* Dropdown menu - Smooth animations avec translateY + scale + cascade */}
-									{mounted && (
-										<div
-											className={`absolute top-full left-1/2 -translate-x-1/2 pt-3 w-52 motion-safe:transition-all duration-&lsqb;1100ms&rsqb; ease-out z-50 ${
-												desktopSubmenuOpen
-													? "opacity-100 visible translate-y-0 scale-100 pointer-events-auto"
-													: "opacity-0 invisible translate-y-3 scale-95 pointer-events-none"
-											}`}
-										>
+									<div
+										className={`absolute top-full left-1/2 -translate-x-1/2 pt-3 w-52 motion-safe:transition-all duration-&lsqb;1100ms&rsqb; ease-out z-50 ${
+											desktopSubmenuOpen
+												? "opacity-100 visible translate-y-0 scale-100 pointer-events-auto"
+												: "opacity-0 invisible translate-y-3 scale-95 pointer-events-none"
+										}`}
+									>
 											<div className="bg-card/90 backdrop-blur-xl rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] border border-accent/20 overflow-hidden ring-1 ring-black/5">
 												{link.subItems?.map(
 													(item, index) => (
@@ -306,8 +299,7 @@ export const Header = () => {
 													<span className="absolute inset-0 bg-gradient-to-r from-transparent via-accent/5 to-transparent -translate-x-full group-hover/all:translate-x-full motion-safe:transition-transform duration-&lsqb;800ms&rsqb; ease-out" />
 												</Link>
 											</div>
-										</div>
-									)}
+									</div>
 								</div>
 							) : (
 								<Link
@@ -376,16 +368,16 @@ export const Header = () => {
 			/>
 
 			{/* ================= Mobile Menu ================= */}
-			{mounted && (
-				<div
-					id="mobile-menu"
-					className={`xl:hidden fixed top-0 right-0 h-full w-3/4 max-w-xs bg-card shadow-lg border-l border-accent/20 z-50 motion-safe:transition-transform duration-&lsqb;800ms&rsqb; ease-&lsqb;cubic-bezier(0.23,1,0.32,1)&rsqb; ${
-						isMobileOpen ? "translate-x-0" : "translate-x-[110%]"
-					}`}
-					role="dialog"
-					aria-label="Menu de navigation mobile"
-					aria-hidden={!isMobileOpen}
-				>
+			<div
+				id="mobile-menu"
+				className={`xl:hidden fixed top-0 right-0 h-full w-3/4 max-w-xs bg-card shadow-lg border-l border-accent/20 z-50 motion-safe:transition-transform duration-&lsqb;800ms&rsqb; ease-&lsqb;cubic-bezier(0.23,1,0.32,1)&rsqb; ${
+					isMobileOpen ? "translate-x-0" : "translate-x-[110%]"
+				}`}
+				role="dialog"
+				aria-label="Menu de navigation mobile"
+				aria-modal={isMobileOpen}
+				inert={!isMobileOpen ? ("" as any) : undefined}
+			>
 					<nav
 						className="p-6 flex flex-col gap-3 h-full overflow-y-auto overscroll-contain"
 						aria-label="Navigation mobile"
@@ -438,9 +430,6 @@ export const Header = () => {
 											id={`mobile-submenu-${link.label
 												.toLowerCase()
 												.replace(/\s+/g, "-")}`}
-											aria-hidden={
-												!mobileSubmenuOpen[link.label]
-											}
 											className={`overflow-hidden ${
 												mobileSubmenuOpen[link.label]
 													? "max-h-52"
@@ -557,8 +546,7 @@ export const Header = () => {
 							)}
 						</div>
 					</nav>
-				</div>
-			)}
+			</div>
 		</>
 	);
 };

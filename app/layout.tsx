@@ -179,14 +179,6 @@ export default function RootLayout({
 				<link rel="dns-prefetch" href="https://calendly.com" />
 				<link rel="dns-prefetch" href="https://www.googletagmanager.com" />
 
-				{/* Preload critical assets */}
-				<link
-					rel="preload"
-					href="/assets/emilie-hero.webp"
-					as="image"
-					type="image/webp"
-				/>
-
 				{/* Structured Data for SEO */}
 				<LocalBusinessSchema />
 				<WebsiteSchema />
