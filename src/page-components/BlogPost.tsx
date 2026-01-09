@@ -14,7 +14,7 @@ import GoldenPlantBadge from "@/components/GoldenPlantBadge";
 import LazyImage from "@/components/LazyImage";
 import { Button } from "@/components/ui/button";
 import * as utils from "@/lib/utils";
-import { WP_API_URL } from "@/lib/wordpress";
+import { getOptimizedImageUrl, transformContentImages } from "@/lib/wordpress-images";
 import { CALENDLY_URLS } from "@/lib/calendly";
 
 import {
@@ -141,10 +141,7 @@ const removeFeaturedImageFromContent = (
 const processContent = (html: string): string => {
 	let processed = html;
 
-	processed = processed.replace(
-		/src="\/wp-content/g,
-		'src="https://lylusio.fr/wp-content'
-	);
+	processed = transformContentImages(processed);
 
 	processed = processed.replace(/<span[^>]*>(.*?)<\/span>/gi, "$1");
 	processed = processed.replace(/\sstyle="[^"]*"/gi, "");
@@ -206,6 +203,7 @@ const processContent = (html: string): string => {
 
 const FeaturedImage = ({ src, alt }: { src: string; alt: string }) => {
 	const [isLoaded, setIsLoaded] = useState(false);
+	const optimizedSrc = getOptimizedImageUrl(src);
 
 	return (
 		<figure className="relative mb-10">
@@ -214,7 +212,7 @@ const FeaturedImage = ({ src, alt }: { src: string; alt: string }) => {
 			)}
 			<div className="relative w-full aspect-[16/9] max-h-[500px]">
 				<Image
-					src={src}
+					src={optimizedSrc}
 					alt={alt}
 					fill
 					sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
@@ -250,13 +248,10 @@ const BlogPost = () => {
 		queryKey: ["blogPost", slug],
 		queryFn: async () => {
 			if (!slug) throw new Error("No slug provided");
-			const response = await fetch(
-				WP_API_URL + "/posts?slug=" + slug + "&_embed"
-			);
+			const response = await fetch(`/api/posts/${slug}`);
 			if (!response.ok) throw new Error("Post not found");
-			const posts: WPPost[] = await response.json();
-			if (posts.length === 0) throw new Error("Post not found");
-			return posts[0];
+			const post: WPPost = await response.json();
+			return post;
 		},
 		staleTime: 1000 * 60 * 10,
 		gcTime: 1000 * 60 * 30,
@@ -308,12 +303,7 @@ const BlogPost = () => {
 		const fetchRelatedPosts = async () => {
 			try {
 				const res = await fetch(
-					WP_API_URL +
-						"/posts?categories=" +
-						wpPost.categories[0] +
-						"&exclude=" +
-						wpPost.id +
-						"&per_page=3&_embed"
+					`/api/posts?categories=${wpPost.categories[0]}&per_page=3&_embed=1`
 				);
 				if (res.ok) {
 					const related: WPPost[] = await res.json();
@@ -322,22 +312,17 @@ const BlogPost = () => {
 						queryClient.prefetchQuery({
 							queryKey: ["blogPost", rp.slug],
 							queryFn: async () => {
-								const r = await fetch(
-									WP_API_URL +
-										"/posts?slug=" +
-										rp.slug +
-										"&_embed"
-								);
+								const r = await fetch(`/api/posts/${rp.slug}`);
 								const d = await r.json();
-								return d[0];
+								return d;
 							},
 							staleTime: 1000 * 60 * 10,
 						});
 
 						const img = document.createElement("img");
-						img.src =
-							rp._embedded?.["wp:featuredmedia"]?.[0]
-								?.source_url || "/placeholder.svg";
+						img.src = getOptimizedImageUrl(
+							rp._embedded?.["wp:featuredmedia"]?.[0]?.source_url
+						);
 					});
 
 					setRelatedPosts(
@@ -345,9 +330,9 @@ const BlogPost = () => {
 							id: rp.id,
 							slug: rp.slug,
 							title: utils.stripHtml(rp.title.rendered),
-							image:
-								rp._embedded?.["wp:featuredmedia"]?.[0]
-									?.source_url || "/placeholder.svg",
+							image: getOptimizedImageUrl(
+								rp._embedded?.["wp:featuredmedia"]?.[0]?.source_url
+							),
 							date: utils.formatDate(rp.date),
 							excerpt:
 								utils.stripHtml(rp.excerpt.rendered).slice(0, 100) +

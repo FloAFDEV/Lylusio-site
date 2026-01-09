@@ -21,7 +21,7 @@ import {
 	SortDesc,
 } from "lucide-react";
 import * as utils from "@/lib/utils";
-import { WP_API_URL } from "@/lib/wordpress";
+import { getOptimizedImageUrl } from "@/lib/wordpress-images";
 // Types WordPress API
 interface WPPost {
 	id: number;
@@ -80,7 +80,7 @@ type SortOrder = "newest" | "oldest";
 
 const fetchAllBlogPosts = async (): Promise<BlogPost[]> => {
 	const firstRes = await fetch(
-		`${WP_API_URL}/posts?_embed&per_page=20&page=1`
+		`/api/posts?_embed=1&per_page=20&page=1`
 	);
 	if (!firstRes.ok) throw new Error("Erreur chargement articles");
 
@@ -95,7 +95,7 @@ const fetchAllBlogPosts = async (): Promise<BlogPost[]> => {
 		for (let page = 2; page <= totalPages; page++) {
 			pagePromises.push(
 				fetch(
-					`${WP_API_URL}/posts?_embed&per_page=20&page=${page}`
+					`/api/posts?_embed=1&per_page=20&page=${page}`
 				).then((res) => (res.ok ? res.json() : []))
 			);
 		}
@@ -105,7 +105,7 @@ const fetchAllBlogPosts = async (): Promise<BlogPost[]> => {
 
 	return allPosts.map((post) => {
 		const imageObj = post._embedded?.["wp:featuredmedia"]?.[0];
-		const imageUrl = imageObj?.source_url || "/placeholder.svg";
+		const imageUrl = getOptimizedImageUrl(imageObj?.source_url);
 		const imageAlt =
 			imageObj?.alt_text || utils.stripHtml(post.title.rendered);
 
@@ -161,7 +161,7 @@ const Blog = () => {
 		const fetchCategories = async () => {
 			try {
 				const response = await fetch(
-					`${WP_API_URL}/categories?per_page=50`
+					`/api/categories`
 				);
 				if (response.ok) {
 					const wpCategories: WPCategory[] = await response.json();
@@ -193,11 +193,9 @@ const Blog = () => {
 			queryClient.prefetchQuery({
 				queryKey: ["blogPost", post.slug],
 				queryFn: async () => {
-					const res = await fetch(
-						`${WP_API_URL}/posts?slug=${post.slug}&_embed`
-					);
+					const res = await fetch(`/api/posts/${post.slug}`);
 					const data = await res.json();
-					return data[0];
+					return data;
 				},
 				staleTime: 1000 * 60 * 10,
 			});
@@ -234,22 +232,24 @@ const Blog = () => {
 			}
 			try {
 				const res = await fetch(
-					`${WP_API_URL}/posts?search=${encodeURIComponent(
-						searchQuery
-					)}&_embed&per_page=5`
+					`/api/posts?per_page=5&_embed=1`
 				);
 				if (!res.ok) throw new Error("Erreur recherche articles");
 				const posts: WPPost[] = await res.json();
-				const results: RelatedPost[] = posts.map((p) => ({
+				const filtered = posts.filter((p) =>
+					utils.stripHtml(p.title.rendered).toLowerCase().includes(searchQuery.toLowerCase()) ||
+					utils.stripHtml(p.excerpt.rendered).toLowerCase().includes(searchQuery.toLowerCase())
+				);
+				const results: RelatedPost[] = filtered.map((p) => ({
 					id: p.id,
 					slug: p.slug,
 					title: utils.stripHtml(p.title.rendered),
 					excerpt:
 						utils.stripHtml(p.excerpt.rendered).slice(0, 100) +
 						"...",
-					image:
-						p._embedded?.["wp:featuredmedia"]?.[0]?.source_url ||
-						"/placeholder.svg",
+					image: getOptimizedImageUrl(
+						p._embedded?.["wp:featuredmedia"]?.[0]?.source_url
+					),
 					date: utils.formatDate(p.date),
 				}));
 				setSearchResults(results);

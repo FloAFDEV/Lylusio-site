@@ -26,16 +26,13 @@ const nextConfig: NextConfig = {
 	// Support des images externes
 	images: {
 		remotePatterns: [
+			// Images WordPress via Edge Function
 			{
 				protocol: "https",
 				hostname: "lylusio.fr",
-				pathname: "/wp-content/**",
+				pathname: "/api/wp-image",
 			},
-			{
-				protocol: "https",
-				hostname: "admin.lylusio.fr",
-				pathname: "/wp-content/uploads/**",
-			},
+			// Images locales (assets)
 			{
 				protocol: "https",
 				hostname: "lylusio.fr",
@@ -46,10 +43,17 @@ const nextConfig: NextConfig = {
 				hostname: "lylusio.fr",
 				pathname: "/*.{jpg,jpeg,png,webp,svg}",
 			},
+			// YouTube thumbnails
 			{
 				protocol: "https",
 				hostname: "i.ytimg.com",
 				pathname: "/vi/**",
+			},
+			// WordPress direct (fallback - devrait passer par Edge Function)
+			{
+				protocol: "https",
+				hostname: "admin.lylusio.fr",
+				pathname: "/wp-content/uploads/**",
 			},
 		],
 		formats: ["image/avif", "image/webp"],
@@ -63,6 +67,8 @@ const nextConfig: NextConfig = {
 		// Configure quality levels used in the app
 		qualities: [50, 65, 75, 85, 95],
 		unoptimized: false,
+		// Loader personnalisé pour les images WordPress
+		loader: "default",
 	},
 
 	// Redirections WordPress
@@ -188,12 +194,12 @@ const nextConfig: NextConfig = {
 						key: "Content-Security-Policy",
 						value: [
 							"default-src 'self'",
-							"script-src 'self' 'unsafe-eval' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://calendly.com",
+							"script-src 'self' 'unsafe-eval' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://region1.google-analytics.com https://calendly.com",
 							"style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
 							"font-src 'self' https://fonts.gstatic.com data:",
 							"img-src 'self' data: https: blob:",
 							"media-src 'self' https:",
-							"connect-src 'self' https://lylusio.fr https://www.google-analytics.com https://analytics.google.com",
+							"connect-src 'self' https://lylusio.fr https://admin.lylusio.fr https://www.google-analytics.com https://analytics.google.com https://region1.google-analytics.com https://region1.analytics.google.com",
 							"frame-src 'self' https://calendly.com https://www.youtube.com https://www.youtube-nocookie.com",
 							"object-src 'none'",
 							"base-uri 'self'",

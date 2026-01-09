@@ -2,8 +2,11 @@
 
 import { useCallback } from 'react';
 
-// Configuration GA4 - Remplacer par votre ID de mesure
-const GA_MEASUREMENT_ID = 'G-XXXXXXXXXX';
+// Configuration GA4
+// ID de mesure : G-0895ZEQQY4
+// ID de flux : 6111910808
+// URL de flux : https://lylusio.fr/
+const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_ID || 'G-0895ZEQQY4';
 
 // Vérifie si on est en production
 const isProduction = () => {

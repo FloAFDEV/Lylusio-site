@@ -13,7 +13,7 @@ import GoldenPlantBadge from "@/components/GoldenPlantBadge";
 import { Button } from "@/components/ui/button";
 import { Calendar, ArrowRight, Loader2, SortAsc, SortDesc } from "lucide-react";
 import * as utils from "@/lib/utils";
-import { WP_API_URL } from "@/lib/wordpress";
+import { getOptimizedImageUrl } from "@/lib/wordpress-images";
 
 interface WPPost {
 	id: number;
@@ -80,12 +80,11 @@ const BlogCategory = () => {
 		if (!wpCategorySlug) return;
 		const fetchCategory = async () => {
 			try {
-				const res = await fetch(
-					`${WP_API_URL}/categories?slug=${wpCategorySlug}`
-				);
+				const res = await fetch(`/api/categories`);
 				const data: WPCategory[] = await res.json();
-				if (data.length === 0) throw new Error("Catégorie non trouvée");
-				setCategory(data[0]);
+				const found = data.find(cat => cat.slug === wpCategorySlug);
+				if (!found) throw new Error("Catégorie non trouvée");
+				setCategory(found);
 			} catch {
 				setError("Erreur lors du chargement de la catégorie");
 			}
@@ -99,7 +98,7 @@ const BlogCategory = () => {
 		setLoading(true);
 		try {
 			const res = await fetch(
-				`${WP_API_URL}/posts?_embed&categories=${category.id}&per_page=100`
+				`/api/posts?_embed=1&categories=${category.id}&per_page=100`
 			);
 			const wpPosts: WPPost[] = await res.json();
 
@@ -111,9 +110,9 @@ const BlogCategory = () => {
 				date: utils.formatDate(p.date),
 				rawDate: p.date,
 				slug: p.slug,
-				image:
-					p._embedded?.["wp:featuredmedia"]?.[0]?.source_url ||
-					"/placeholder.svg",
+				image: getOptimizedImageUrl(
+					p._embedded?.["wp:featuredmedia"]?.[0]?.source_url
+				),
 				imageAlt:
 					p._embedded?.["wp:featuredmedia"]?.[0]?.alt_text ||
 					p.title.rendered,
@@ -129,11 +128,9 @@ const BlogCategory = () => {
 				queryClient.prefetchQuery({
 					queryKey: ["blogPost", post.slug],
 					queryFn: async () => {
-						const res = await fetch(
-							`${WP_API_URL}/posts?slug=${post.slug}&_embed`
-						);
+						const res = await fetch(`/api/posts/${post.slug}`);
 						const data = await res.json();
-						return data[0];
+						return data;
 					},
 					staleTime: 1000 * 60 * 5, // 5 minutes
 				});

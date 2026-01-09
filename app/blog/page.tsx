@@ -3,6 +3,7 @@ import { Suspense } from 'react';
 import BlogClientWrapper from '@/src/page-components/BlogClientWrapper';
 import { generateMetadata as genMeta } from '@/content/seo';
 import { fetchPosts, fetchCategories, CACHE_DURATIONS } from '@/lib/wordpress-cache';
+import { getOptimizedImageUrl } from '@/lib/wordpress-images';
 
 // ISR: 1 hour - configured via fetch options
 
@@ -101,7 +102,7 @@ async function fetchBlogPosts() {
 
     return allPosts.map((post: WPPost) => {
       const imageObj = post._embedded?.['wp:featuredmedia']?.[0];
-      const imageUrl = imageObj?.source_url || '/placeholder.svg';
+      const imageUrl = getOptimizedImageUrl(imageObj?.source_url);
       const imageAlt = imageObj?.alt_text || stripHtml(post.title.rendered);
 
       const categories =

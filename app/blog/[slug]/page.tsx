@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import BlogPost from "@/src/page-components/BlogPost";
 import { generateBlogPostSchema } from "@/content/schema";
 import { fetchPostBySlug, CACHE_DURATIONS } from "@/lib/wordpress-cache";
+import { getOptimizedImageUrl } from "@/lib/wordpress-images";
 
 // ISR: 2 hours - configured via fetch options
 
@@ -69,9 +70,7 @@ export async function generateMetadata({
 		const description = stripHtml(post.excerpt.rendered).substring(0, 160);
 		const featuredImage = post._embedded?.["wp:featuredmedia"]?.[0];
 
-		const imageUrl = featuredImage?.source_url?.startsWith("http")
-			? featuredImage.source_url.replace("lylusio.fr", "admin.lylusio.fr")
-			: "https://lylusio.fr/assets/logo-lylusio.webp";
+		const imageUrl = getOptimizedImageUrl(featuredImage?.source_url);
 
 		const imageAlt = featuredImage?.alt_text || title;
 		const authorName = post._embedded?.author?.[0]?.name || "Émilie Perez";
@@ -138,7 +137,7 @@ export default async function BlogPostPage({
 				300
 			);
 			const featuredImage = post._embedded?.["wp:featuredmedia"]?.[0];
-			const imageUrl = featuredImage?.source_url;
+			const imageUrl = getOptimizedImageUrl(featuredImage?.source_url);
 			const authorName =
 				post._embedded?.author?.[0]?.name || "Émilie Perez";
 

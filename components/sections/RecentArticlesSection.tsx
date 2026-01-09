@@ -6,11 +6,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Calendar } from "lucide-react";
-
-// WordPress API URL from environment
-const WP_API_URL =
-	process.env.NEXT_PUBLIC_WP_API_URL ||
-	"https://admin.lylusio.fr/wp-json/wp/v2";
+import { getOptimizedImageUrl } from "@/lib/wordpress-images";
 
 interface WPPost {
 	id: number;
@@ -35,7 +31,7 @@ const RecentArticlesSection = () => {
 		const fetchPosts = async () => {
 			try {
 				const response = await fetch(
-					`${WP_API_URL}/posts?_embed&per_page=3&orderby=date&order=desc`
+					`/api/posts?_embed=1&per_page=3`
 				);
 				if (!response.ok) {
 					throw new Error("Failed to fetch posts");
@@ -152,11 +148,11 @@ const RecentArticlesSection = () => {
 												"wp:featuredmedia"
 											]?.[0] ? (
 												<Image
-													src={
+													src={getOptimizedImageUrl(
 														post._embedded[
 															"wp:featuredmedia"
 														][0].source_url
-													}
+													)}
 													alt={
 														post._embedded[
 															"wp:featuredmedia"
