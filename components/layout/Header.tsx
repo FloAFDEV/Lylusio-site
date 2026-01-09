@@ -54,8 +54,11 @@ export const Header = () => {
 
 	const pathname = usePathname();
 
-	/* Scroll state */
+	/* Scroll state - initialize on mount to prevent flash */
 	useEffect(() => {
+		// Initialize scroll state immediately to prevent SSR/client mismatch
+		setIsScrolled(window.scrollY > 20);
+
 		const handleScroll = () => setIsScrolled(window.scrollY > 20);
 		window.addEventListener("scroll", handleScroll, { passive: true });
 		return () => window.removeEventListener("scroll", handleScroll);

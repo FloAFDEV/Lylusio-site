@@ -108,13 +108,13 @@ const MobileServiceCarousel = ({ services, className = "" }: MobileServiceCarous
         {services.map((service, idx) => (
           <article
             key={service.id}
-            className={`flex-shrink-0 w-[85vw] sm:w-[340px] md:w-[400px] lg:w-[340px] snap-start bg-card/90 backdrop-blur-sm rounded-2xl overflow-hidden border transition-all duration-300 ${
+            className={`flex-shrink-0 w-[85vw] sm:w-[340px] md:w-[400px] lg:w-[340px] snap-start bg-card/90 backdrop-blur-sm rounded-2xl border transition-all duration-300 ${
               service.isHighlighted ? "border-gold/40 shadow-elegant" : "border-border/30 shadow-soft"
             }`}
           >
             {/* Image Header */}
             {service.image && (
-              <div className="relative h-32 sm:h-40 md:h-48 lg:h-40 overflow-hidden">
+              <div className="relative h-32 sm:h-40 md:h-48 lg:h-40 overflow-hidden rounded-t-2xl">
                 <Image src={service.image} alt={service.title} fill className="object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-card/90 via-card/30 to-transparent" />
                 {/* Icon badge */}

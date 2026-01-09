@@ -2,6 +2,7 @@
 
 import dynamic from 'next/dynamic';
 import CookieBanner from '@/components/CookieBanner';
+import ScrollReset from '@/components/ScrollReset';
 
 // Lazy-load non-critical UI components client-side only
 const ScrollToTop = dynamic(() => import('@/components/ScrollToTop'), {
@@ -18,6 +19,7 @@ const FloatingCTA = dynamic(() => import('@/components/FloatingCTA'), {
 export default function ClientComponents() {
   return (
     <>
+      <ScrollReset />
       <ScrollToTop />
       <FloatingCTA />
       <CookieBanner />
