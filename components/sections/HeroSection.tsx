@@ -173,11 +173,11 @@ OrganicShapes.displayName = "OrganicShapes";
 const DecorativeCircles = memo(() => (
 	<div className="hidden sm:block">
 		<div
-			className="absolute -inset-8 -z-20 w-full h-full border border-gold/20 rounded-full opacity-30 will-change-transform motion-safe:animate-spin-slow"
+			className="absolute -inset-12 -z-20 w-full h-full border border-gold/20 rounded-[50%_45%_55%_50%] rotate-6 opacity-40 will-change-transform motion-safe:animate-spin-slow"
 			style={{ animation: "spin 40s linear infinite" }}
 		/>
 		<div
-			className="absolute -inset-12 -z-30 w-full h-full border border-gold-light/15 rounded-full opacity-20 will-change-transform"
+			className="absolute -inset-16 -z-30 w-full h-full border border-gold-light/20 rounded-[55%_50%_50%_55%] -rotate-6 opacity-70 will-change-transform"
 			style={{ animation: "spin 50s linear infinite reverse" }}
 		/>
 	</div>
