@@ -154,7 +154,7 @@ const ServicesPreview = () => {
 													}}
 													fill
 													sizes="(max-width: 768px) 100vw, 50vw"
-													quality={85}
+													quality={65}
 												/>
 											</div>
 											<div className="absolute inset-0 bg-gradient-to-t from-card via-card/40 to-transparent pointer-events-none" />

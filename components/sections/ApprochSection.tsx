@@ -36,7 +36,7 @@ const ApprochSection = () => {
 							transform: `translate3d(0, ${parallaxOffset}px, 0)`,
 						}}
 						fill
-						quality={65}
+						quality={50}
 						priority={true}
 						sizes="(max-width: 1024px) 100vw, 50vw"
 						aria-hidden="true"
