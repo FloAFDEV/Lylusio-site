@@ -102,7 +102,7 @@ const MobileServiceCarousel = ({ services, className = "" }: MobileServiceCarous
       {/* Scrollable container */}
       <div
         ref={scrollRef}
-        className="flex gap-4 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-4 -mx-4 px-4 sm:mx-0 sm:px-0"
+        className="flex gap-4 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-4 mx-auto px-4 sm:px-0 justify-center md:justify-start"
         style={{ scrollPaddingLeft: "1rem" }}
       >
         {services.map((service, idx) => (

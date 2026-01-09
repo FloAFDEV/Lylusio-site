@@ -109,7 +109,7 @@ const ServicesPreview = () => {
 
 				{/* Services Grid */}
 				<div className="max-w-5xl mx-auto">
-					<div className="grid gap-4 sm:gap-5 md:grid-cols-2 lg:grid-cols-3 lg:gap-6 mb-8 md:mb-10">
+					<div className="grid gap-6 sm:gap-5 md:grid-cols-2 lg:grid-cols-3 lg:gap-6 mb-8 md:mb-10">
 						{services.map((service, index) => {
 							const IconComponent = service.icon;
 
@@ -130,21 +130,14 @@ const ServicesPreview = () => {
 									<div className="absolute -inset-4 rounded-[2rem] md:rounded-[2.5rem] opacity-0 group-hover:opacity-100 bg-gradient-to-br from-gold/15 via-transparent to-accent/10 blur-2xl transition-opacity duration-700 pointer-events-none" />
 
 									{/* Card inner container */}
-									<div className="relative rounded-2xl md:rounded-3xl overflow-hidden">
-										{/* Animated golden border on hover - using box-shadow inset */}
-										<div
-											className="absolute inset-0 rounded-2xl md:rounded-3xl opacity-0 group-hover:opacity-100 transition-all duration-500 pointer-events-none"
-											style={{
-												boxShadow:
-													"inset 0 0 0 2px hsl(var(--gold) / 0.3)",
-											}}
-										/>
+									<div className="relative rounded-2xl md:rounded-3xl overflow-hidden border-2 border-transparent group-hover:border-gold/40 transition-all duration-500">
+										{/* Animated golden border on hover - removed inset shadow, using actual border now */}
 
 										{/* Shadow on hover */}
 										<div className="absolute inset-0 rounded-2xl md:rounded-3xl shadow-[0_16px_48px_-12px_hsl(var(--gold)/0.25)] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
 										{/* Image section */}
-										<div className="relative h-36 sm:h-40 md:h-44 lg:h-48 overflow-hidden rounded-t-2xl md:rounded-t-3xl">
+										<div className="relative h-36 sm:h-40 md:h-44 lg:h-48 overflow-hidden">
 											<div className="absolute inset-0 overflow-hidden">
 												<Image
 													src={service.image}

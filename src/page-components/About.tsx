@@ -127,7 +127,7 @@ const About = () => {
 						aria-labelledby="about-title"
 					>
 						<AnimatedSection>
-							<header className="max-w-3xl mx-auto text-center mb-12 md:mb-16">
+							<header className="max-w-3xl mx-auto text-center mb-12 md:mb-16 pt-8 sm:pt-0">
 								<p className="section-label">À propos</p>
 								<h1
 									id="about-title"
