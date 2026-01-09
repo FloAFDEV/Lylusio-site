@@ -1,11 +1,12 @@
 /**
  * WordPress API Cache Layer
  * Optimized fetch with deduplication, ISR, and error handling
+ * 🔒 Sécurisé via Edge Functions avec rate limiting
  */
 
-const WP_API_URL =
-	process.env.NEXT_PUBLIC_WP_API_URL ||
-	"https://admin.lylusio.fr/wp-json/wp/v2";
+// URL des Edge Functions internes (pas d'appel direct à WordPress)
+const API_BASE_URL =
+	process.env.NEXT_PUBLIC_SITE_URL || "https://lylusio.fr";
 
 // Cache duration constants (in seconds)
 export const CACHE_DURATIONS = {
@@ -71,28 +72,59 @@ export async function fetchPosts(params: {
 		revalidate = CACHE_DURATIONS.POSTS,
 	} = params;
 
+	// Utiliser Edge Function pour un seul post (par slug)
+	if (slug) {
+		const url = `${API_BASE_URL}/api/posts/${slug}`;
+		try {
+			const response = await fetchWithTimeout(url, {
+				next: {
+					revalidate,
+					tags: ["wordpress-posts", `post-${slug}`],
+				},
+				timeout: 8000,
+			});
+
+			if (!response.ok) {
+				throw new Error(`Edge Function error: ${response.status}`);
+			}
+
+			const data = await response.json();
+			return {
+				posts: [data],
+				total: 1,
+				totalPages: 1,
+			};
+		} catch (error) {
+			console.error("Error fetching WordPress posts:", error);
+			return {
+				posts: [],
+				total: 0,
+				totalPages: 0,
+			};
+		}
+	}
+
+	// Utiliser Edge Function pour liste de posts
 	const queryParams = new URLSearchParams({
 		per_page: perPage.toString(),
 		page: page.toString(),
-		...(embed && { _embed: "true" }),
+		...(embed && { _embed: "1" }),
 		...(categoryId && { categories: categoryId.toString() }),
-		...(slug && { slug }),
-		...(fields && { _fields: fields }),
 	});
 
-	const url = `${WP_API_URL}/posts?${queryParams}`;
+	const url = `${API_BASE_URL}/api/posts?${queryParams}`;
 
 	try {
 		const response = await fetchWithTimeout(url, {
 			next: {
 				revalidate,
-				tags: ["wordpress-posts", slug ? `post-${slug}` : "posts-list"],
+				tags: ["wordpress-posts", "posts-list"],
 			},
 			timeout: 8000,
 		});
 
 		if (!response.ok) {
-			throw new Error(`WordPress API error: ${response.status}`);
+			throw new Error(`Edge Function error: ${response.status}`);
 		}
 
 		const data = await response.json();
@@ -134,24 +166,17 @@ export async function fetchPostBySlug(slug: string, revalidate?: number) {
 
 /**
  * Fetch WordPress categories with long cache
+ * 🔒 Utilise Edge Function avec rate limiting
  */
 export async function fetchCategories(params?: {
 	perPage?: number;
 	fields?: string;
 	revalidate?: number;
 }) {
-	const {
-		perPage = 50,
-		fields,
-		revalidate = CACHE_DURATIONS.CATEGORIES,
-	} = params || {};
+	const { revalidate = CACHE_DURATIONS.CATEGORIES } = params || {};
 
-	const queryParams = new URLSearchParams({
-		per_page: perPage.toString(),
-		...(fields && { _fields: fields }),
-	});
-
-	const url = `${WP_API_URL}/categories?${queryParams}`;
+	// Utiliser Edge Function pour les catégories
+	const url = `${API_BASE_URL}/api/categories`;
 
 	try {
 		const response = await fetchWithTimeout(url, {
@@ -163,7 +188,7 @@ export async function fetchCategories(params?: {
 		});
 
 		if (!response.ok) {
-			throw new Error(`WordPress API error: ${response.status}`);
+			throw new Error(`Edge Function error: ${response.status}`);
 		}
 
 		return await response.json();
@@ -175,32 +200,22 @@ export async function fetchCategories(params?: {
 
 /**
  * Fetch category by slug
+ * Optimisé : utilise fetchCategories (déjà caché) et filtre côté client
  */
 export async function fetchCategoryBySlug(
 	slug: string,
 	revalidate = CACHE_DURATIONS.CATEGORIES
 ) {
-	const queryParams = new URLSearchParams({
-		slug,
-	});
-
-	const url = `${WP_API_URL}/categories?${queryParams}`;
-
 	try {
-		const response = await fetchWithTimeout(url, {
-			next: {
-				revalidate,
-				tags: ["wordpress-categories", `category-${slug}`],
-			},
-			timeout: 5000,
-		});
+		// Récupérer toutes les catégories (déjà caché longtemps)
+		const categories = await fetchCategories({ revalidate });
 
-		if (!response.ok) {
-			throw new Error(`WordPress API error: ${response.status}`);
-		}
+		// Filtrer par slug côté client
+		const category = categories.find(
+			(cat: any) => cat.slug === slug
+		);
 
-		const data = await response.json();
-		return data[0] || null;
+		return category || null;
 	} catch (error) {
 		console.error(`Error fetching category ${slug}:`, error);
 		return null;
