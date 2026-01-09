@@ -56,8 +56,8 @@ export function getOptimizedImageUrl(wpImageUrl: string | null | undefined): str
 			return "/assets/logo-lylusio.png";
 		}
 
-		// Construire l'URL via l'Edge Function
-		const optimizedUrl = `${SITE_URL}/api/wp-image?url=${encodeURIComponent(imagePath)}`;
+		// Construire l'URL via l'Edge Function (relative pour Next.js Image)
+		const optimizedUrl = `/api/wp-image?url=${encodeURIComponent(imagePath)}`;
 
 		return optimizedUrl;
 	} catch (error) {

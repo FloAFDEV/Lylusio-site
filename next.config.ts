@@ -26,30 +26,13 @@ const nextConfig: NextConfig = {
 	// Support des images externes
 	images: {
 		remotePatterns: [
-			// Images WordPress via Edge Function
-			{
-				protocol: "https",
-				hostname: "lylusio.fr",
-				pathname: "/api/wp-image",
-			},
-			// Images locales (assets)
-			{
-				protocol: "https",
-				hostname: "lylusio.fr",
-				pathname: "/assets/**",
-			},
-			{
-				protocol: "https",
-				hostname: "lylusio.fr",
-				pathname: "/*.{jpg,jpeg,png,webp,svg}",
-			},
 			// YouTube thumbnails
 			{
 				protocol: "https",
 				hostname: "i.ytimg.com",
 				pathname: "/vi/**",
 			},
-			// WordPress direct (fallback - devrait passer par Edge Function)
+			// WordPress direct (via Edge Function uniquement)
 			{
 				protocol: "https",
 				hostname: "admin.lylusio.fr",
@@ -199,8 +182,8 @@ const nextConfig: NextConfig = {
 							"font-src 'self' https://fonts.gstatic.com data:",
 							"img-src 'self' data: https: blob:",
 							"media-src 'self' https:",
-							"connect-src 'self' https://lylusio.fr https://admin.lylusio.fr https://www.google-analytics.com https://analytics.google.com https://region1.google-analytics.com https://region1.analytics.google.com",
-							"frame-src 'self' https://calendly.com https://www.youtube.com https://www.youtube-nocookie.com",
+							"connect-src 'self' https://lylusio.fr https://admin.lylusio.fr https://www.google-analytics.com https://analytics.google.com https://region1.google-analytics.com https://region1.analytics.google.com https://www.google.com https://www.googletagmanager.com",
+							"frame-src 'self' https://calendly.com https://www.youtube.com https://www.youtube-nocookie.com https://www.googletagmanager.com",
 							"object-src 'none'",
 							"base-uri 'self'",
 							"form-action 'self'",
