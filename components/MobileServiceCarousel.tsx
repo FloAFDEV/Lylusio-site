@@ -102,13 +102,13 @@ const MobileServiceCarousel = ({ services, className = "" }: MobileServiceCarous
       {/* Scrollable container */}
       <div
         ref={scrollRef}
-        className="flex gap-4 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-4 pl-4 pr-4 sm:px-0"
+        className="flex gap-4 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-4 pl-4 pr-8 sm:px-0"
         style={{ scrollPaddingLeft: "1rem" }}
       >
         {services.map((service, idx) => (
           <article
             key={service.id}
-            className={`flex-shrink-0 w-[85vw] sm:w-[340px] md:w-[400px] lg:w-[340px] snap-start bg-card/90 backdrop-blur-sm rounded-2xl border transition-all duration-300 ${
+            className={`flex-shrink-0 w-[80vw] sm:w-[340px] md:w-[400px] lg:w-[340px] snap-start bg-card/90 backdrop-blur-sm rounded-2xl border transition-all duration-300 ${
               service.isHighlighted ? "border-gold/40 shadow-elegant" : "border-border/30 shadow-soft"
             }`}
           >
