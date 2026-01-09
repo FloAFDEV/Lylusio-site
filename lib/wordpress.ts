@@ -1,4 +1,4 @@
 /**
  * WordPress API configuration
  */
-export const WP_API_URL = "https://lylusio.fr/wp-json/wp/v2";
+export const WP_API_URL = "https://admin.lylusio.fr/wp-json/wp/v2";

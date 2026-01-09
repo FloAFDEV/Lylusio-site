@@ -519,7 +519,8 @@ import { NextRequest, NextResponse } from "next/server";
 export const runtime = "edge";
 
 const WP_API_URL =
-	process.env.NEXT_PUBLIC_WP_API_URL || "https://lylusio.fr/wp-json/wp/v2";
+	process.env.NEXT_PUBLIC_WP_API_URL ||
+	"https://admin.lylusio.fr/wp-json/wp/v2";
 
 export async function GET(
 	request: NextRequest,
