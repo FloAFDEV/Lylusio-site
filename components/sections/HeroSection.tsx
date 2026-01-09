@@ -357,15 +357,6 @@ const HeroSection = () => {
 							/>
 						</div>
 
-						{/* Cercles décoratifs avec parallax séparé */}
-						<div
-							style={{
-								transform: `translate3d(0, ${parallaxOffset * 0.2}px, 0)`,
-							}}
-						>
-							<DecorativeCircles />
-						</div>
-
 						{/* Badge décoratif plante - Coin inférieur gauche */}
 						<div
 							className="absolute -bottom-2 -left-2 sm:-bottom-3 sm:-left-3 w-10 h-10 sm:w-14 sm:h-14 lg:w-16 lg:h-16 bg-background/95 rounded-full flex items-center justify-center motion-safe:animate-float overflow-hidden border-2 border-gold/30 shadow-[0_0_20px_rgba(212,175,55,0.2)] backdrop-blur-sm hover:scale-110 motion-safe:transition-transform duration-300"
