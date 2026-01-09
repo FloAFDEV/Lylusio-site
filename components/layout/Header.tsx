@@ -232,24 +232,6 @@ export const Header = () => {
 																handleNavClick
 															}
 															className="block px-5 py-3.5 text-[15px] font-medium text-foreground/85 hover:text-accent hover:bg-accent/8 motion-safe:transition-all duration-&lsqb;750ms&rsqb; ease-out focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-inset group/item relative overflow-hidden"
-															style={{
-																// cascade uniforme avec delay global
-																transitionDelay:
-																	desktopSubmenuOpen
-																		? `${
-																				index *
-																				100
-																		  }ms` // <- délai global cohérent
-																		: "0ms",
-																transform:
-																	desktopSubmenuOpen
-																		? "translateY(0)"
-																		: "translateY(6px)",
-																opacity:
-																	desktopSubmenuOpen
-																		? 1
-																		: 0,
-															}}
 														>
 															<span className="relative z-10">
 																<MenuLabel
@@ -268,26 +250,6 @@ export const Header = () => {
 													href={link.href}
 													onClick={handleNavClick}
 													className="block px-5 py-3 text-[13px] font-medium text-muted-foreground hover:text-accent hover:bg-accent/5 motion-safe:transition-all duration-&lsqb;750ms&rsqb; ease-out focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-inset border-t border-accent/15 group/all relative overflow-hidden"
-													style={{
-														transitionDelay:
-															desktopSubmenuOpen
-																? `${
-																		(link
-																			.subItems
-																			?.length ||
-																			0) *
-																		100
-																  }ms`
-																: "0ms",
-														transform:
-															desktopSubmenuOpen
-																? "translateY(0)"
-																: "translateY(6px)",
-														opacity:
-															desktopSubmenuOpen
-																? 1
-																: 0,
-													}}
 												>
 													<span className="relative z-10 flex items-center gap-1.5">
 														<span>→</span>
