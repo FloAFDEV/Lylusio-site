@@ -273,7 +273,18 @@ const About = () => {
 						<div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
 							<AnimatedSection>
 								<div className="flex flex-col lg:flex-row gap-10 lg:gap-16 items-center max-w-5xl mx-auto">
-									<figure className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-none lg:w-5/12 mx-auto relative">
+									<figure
+										className="
+    relative
+    mx-auto
+    w-[240px]
+    sm:w-[280px]
+    md:w-[320px]
+    lg:w-5/12
+    group
+  "
+									>
+										{" "}
 										<div className="relative group">
 											<div
 												className="absolute -inset-4 bg-gradient-to-br from-gold-light/15 to-accent/10 transition-all duration-500 group-hover:from-gold-light/20 group-hover:to-accent/15"
@@ -632,18 +643,47 @@ const About = () => {
 										</div>
 									</article>
 
-									<figure className="w-full max-w-md md:max-w-lg lg:max-w-none lg:w-5/12 mx-auto relative group">
+									<figure
+										className="
+    relative
+    mx-auto
+    w-[240px]
+    sm:w-[280px]
+    md:w-[320px]
+    lg:w-5/12
+    group
+  "
+									>
+										{" "}
 										<div className="relative overflow-hidden rounded-2xl md:rounded-3xl shadow-medium">
 											<div
 												className="absolute -inset-1 bg-gradient-to-br from-accent/20 via-gold/10 to-accent/20 rounded-2xl md:rounded-3xl opacity-60 group-hover:opacity-80 transition-opacity duration-500"
 												aria-hidden="true"
 											/>
-											<div className="relative w-full aspect-[3/4] rounded-2xl md:rounded-3xl transition-all duration-700 group-hover:scale-[1.02]">
+											<div
+												className="
+    relative
+    w-full
+    max-w-[280px]
+    sm:max-w-[320px]
+    md:max-w-[360px]
+    aspect-[3/4]
+    mx-auto
+    rounded-2xl
+    md:rounded-3xl
+    transition-transform
+    duration-700
+    group-hover:scale-[1.02]
+  "
+											>
 												<Image
 													src="/assets/emilie-portrait.webp"
 													alt="Émilie rayonnante - praticienne Reiki épanouie"
 													fill
-													sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 40vw"
+													sizes="(max-width: 640px) 280px,
+           (max-width: 768px) 320px,
+           (max-width: 1024px) 360px,
+           360px"
 													className="object-cover rounded-2xl md:rounded-3xl"
 												/>
 											</div>
@@ -814,7 +854,18 @@ const About = () => {
 						<div className="container mx-auto px-4 sm:px-6 lg:px-8">
 							<AnimatedSection>
 								<div className="flex flex-col lg:flex-row gap-10 lg:gap-16 items-center max-w-5xl mx-auto">
-									<figure className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-none lg:w-5/12 mx-auto relative">
+									<figure
+										className="
+    relative
+    mx-auto
+    w-[240px]
+    sm:w-[280px]
+    md:w-[320px]
+    lg:w-5/12
+    group
+  "
+									>
+										{" "}
 										<div className="relative group">
 											<div
 												className="absolute -inset-4 bg-gradient-to-br from-accent/10 to-gold/10 transition-all duration-500 group-hover:from-accent/15 group-hover:to-gold/15"
@@ -1306,12 +1357,12 @@ const About = () => {
 										delay: 200,
 									},
 								].map((value, valueIndex) => (
-									<AnimatedSection
-										key={value.title}
-									>
+									<AnimatedSection key={value.title}>
 										<li
 											className="text-center bg-card/70 backdrop-blur-sm rounded-2xl md:rounded-3xl p-6 md:p-8 shadow-soft border border-border/20 h-full transition-all duration-300 hover:shadow-medium hover:border-accent/20 hover:-translate-y-1"
-											style={{ animationDelay: `${value.delay}ms` }}
+											style={{
+												animationDelay: `${value.delay}ms`,
+											}}
 										>
 											<h3 className="font-display text-xl md:text-2xl text-foreground mb-3 text-center">
 												<span className="font-calligraphic text-accent text-xl md:text-2xl inline-block align-baseline">
