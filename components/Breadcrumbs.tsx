@@ -81,23 +81,33 @@ const Breadcrumbs = ({ showPlant = true, customTitle }: BreadcrumbsProps) => {
 	const pathname = usePathname();
 	const currentPath = pathname;
 	const [isVisible, setIsVisible] = useState(false);
+	const [mounted, setMounted] = useState(false);
+
+	// Mark as mounted to prevent hydration mismatch
+	useEffect(() => {
+		setMounted(true);
+		// Initialize visibility based on current scroll position
+		setIsVisible(window.scrollY > 20);
+	}, []);
 
 	// Show breadcrumbs after scroll
 	useEffect(() => {
+		if (!mounted) return;
+
 		const handleScroll = () => {
-			if (window.scrollY > 20) {
-				setIsVisible(true);
-			}
+			setIsVisible(window.scrollY > 20);
 		};
 
-		window.addEventListener("scroll", handleScroll);
+		window.addEventListener("scroll", handleScroll, { passive: true });
 		return () => window.removeEventListener("scroll", handleScroll);
-	}, []);
+	}, [mounted]);
 
 	// Reset visibility on route change
 	useEffect(() => {
-		setIsVisible(false);
-	}, [currentPath]);
+		if (mounted) {
+			setIsVisible(window.scrollY > 20);
+		}
+	}, [currentPath, mounted]);
 
 	// Pas de fil d'Ariane sur la home
 	if (currentPath === "/") return null;
