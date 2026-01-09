@@ -16,6 +16,8 @@ const nextConfig: NextConfig = {
 			"react-icons/fa",
 		],
 		webpackBuildWorker: true,
+		optimizeCss: true, // Inline critical CSS
+		webpackMemoryOptimizations: true,
 	},
 
 	// Turbopack configuration (Next.js 16+)
