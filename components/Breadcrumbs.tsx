@@ -80,9 +80,30 @@ interface BreadcrumbsProps {
 const Breadcrumbs = ({ showPlant = true, customTitle }: BreadcrumbsProps) => {
 	const pathname = usePathname();
 	const currentPath = pathname;
+	const [hasScrolled, setHasScrolled] = useState(false);
+
+	// Détecter le premier scroll vers le bas
+	useEffect(() => {
+		const handleScroll = () => {
+			if (!hasScrolled && window.scrollY > 100) {
+				setHasScrolled(true);
+			}
+		};
+
+		window.addEventListener("scroll", handleScroll, { passive: true });
+		return () => window.removeEventListener("scroll", handleScroll);
+	}, [hasScrolled]);
+
+	// Reset au changement de page
+	useEffect(() => {
+		setHasScrolled(window.scrollY > 100);
+	}, [currentPath]);
 
 	// Pas de fil d'Ariane sur la home
 	if (currentPath === "/") return null;
+
+	// Ne pas afficher avant le premier scroll
+	if (!hasScrolled) return null;
 
 	// Construction des breadcrumbs
 	const buildBreadcrumbs = (): BreadcrumbItem[] => {
