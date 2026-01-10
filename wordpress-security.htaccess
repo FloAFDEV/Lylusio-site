@@ -1,0 +1,138 @@
+# WordPress Security Configuration
+# Place this file in your WordPress root directory as .htaccess
+# Location: admin.lylusio.fr/.htaccess
+
+# BEGIN WordPress Security
+
+# 1. BLOCK ALL ACCESS TO WP-ADMIN EXCEPT FOR LOGGED-IN USERS
+# This protects the admin area from unauthorized access
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+
+# Allow access to admin-ajax.php (needed for frontend AJAX)
+RewriteRule ^wp-admin/admin-ajax\.php$ - [L]
+
+# Block access to wp-admin for non-logged-in users
+# WordPress will handle authentication via cookies
+RewriteCond %{REQUEST_URI} ^/wp-admin/
+RewriteCond %{HTTP_COOKIE} !wordpress_logged_in [NC]
+RewriteRule ^(.*)$ - [R=403,L]
+</IfModule>
+
+# 2. PROTECT WP-LOGIN.PHP FROM BRUTE FORCE
+# Limit login attempts and block suspicious IPs
+<FilesMatch "wp-login\.php">
+  # Only allow specific methods
+  <LimitExcept GET POST>
+    Require all denied
+  </LimitExcept>
+</FilesMatch>
+
+# 3. BLOCK ACCESS TO OLD WORDPRESS FORMS AND SPAM TARGETS
+# Prevent access to common spam targets from the old site
+<IfModule mod_rewrite.c>
+RewriteEngine On
+
+# Block old form submission endpoints
+RewriteCond %{REQUEST_URI} ^/wp-comments-post\.php$ [NC,OR]
+RewriteCond %{REQUEST_URI} ^/xmlrpc\.php$ [NC,OR]
+RewriteCond %{REQUEST_URI} ^/wp-trackback\.php$ [NC]
+RewriteRule ^(.*)$ - [R=403,L]
+
+# Block old WordPress paths that spammers target
+RewriteCond %{REQUEST_URI} /astrologue-cepet-toulouse/ [NC,OR]
+RewriteCond %{REQUEST_URI} /(newsletter|contact-form-7)/ [NC]
+RewriteRule ^(.*)$ - [R=410,L]
+</IfModule>
+
+# 4. DISABLE XMLRPC (Common spam target)
+<Files xmlrpc.php>
+  Require all denied
+</Files>
+
+# 5. PROTECT WP-CONFIG.PHP
+<Files wp-config.php>
+  Require all denied
+</Files>
+
+# 6. BLOCK ACCESS TO SENSITIVE FILES
+<FilesMatch "^(readme\.html|readme\.txt|license\.txt|wp-config-sample\.php)$">
+  Require all denied
+</FilesMatch>
+
+# 7. PREVENT DIRECTORY BROWSING
+Options -Indexes
+
+# 8. BLOCK USER ENUMERATION ATTEMPTS
+# Prevent ?author=1 type attacks
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteCond %{QUERY_STRING} ^author=([0-9]*) [NC]
+RewriteRule ^(.*)$ - [R=403,L]
+</IfModule>
+
+# 9. DISABLE PHP EXECUTION IN UPLOADS FOLDER
+# Prevents malicious uploads from being executed
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteCond %{REQUEST_URI} ^/wp-content/uploads/.*\.(php|php3|php4|php5|phtml|pl|py|jsp|asp|sh|cgi)$ [NC]
+RewriteRule ^(.*)$ - [R=403,L]
+</IfModule>
+
+# 10. SECURITY HEADERS
+<IfModule mod_headers.c>
+  # Prevent clickjacking
+  Header always set X-Frame-Options "SAMEORIGIN"
+
+  # Prevent MIME type sniffing
+  Header always set X-Content-Type-Options "nosniff"
+
+  # Enable XSS protection
+  Header always set X-XSS-Protection "1; mode=block"
+
+  # Referrer Policy
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# 11. ALLOW ONLY NECESSARY HTTP METHODS
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteCond %{REQUEST_METHOD} !^(GET|POST|HEAD)$ [NC]
+RewriteRule ^(.*)$ - [R=403,L]
+</IfModule>
+
+# 12. BLOCK SUSPICIOUS USER AGENTS (Common bots)
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteCond %{HTTP_USER_AGENT} (libwww|wget|python|nikto|curl|scan|java|winhttp|clshttp|loader|harvest|extract|grab|miner) [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^$ [NC]
+RewriteRule ^(.*)$ - [R=403,L]
+</IfModule>
+
+# END WordPress Security
+
+# BEGIN WordPress Standard Rules
+# These are the standard WordPress rewrite rules
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+</IfModule>
+# END WordPress Standard Rules
+
+# CORS HEADERS FOR REST API
+# Allow Next.js frontend to access WordPress REST API
+<IfModule mod_headers.c>
+  # Allow requests from your Next.js domain
+  Header always set Access-Control-Allow-Origin "https://lylusio.fr"
+  Header always set Access-Control-Allow-Methods "GET, POST, OPTIONS"
+  Header always set Access-Control-Allow-Headers "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+  Header always set Access-Control-Allow-Credentials "true"
+
+  # Handle preflight requests
+  RewriteCond %{REQUEST_METHOD} OPTIONS
+  RewriteRule ^(.*)$ $1 [R=200,L]
+</IfModule>

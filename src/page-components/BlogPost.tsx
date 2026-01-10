@@ -110,30 +110,57 @@ const removeFeaturedImageFromContent = (
 ): string => {
 	let cleaned = content;
 
+	// Méthode 1: Supprimer par ID WordPress (wp-image-XXX)
 	if (mediaId) {
-		const byId1 =
-			"<figure[^>]*>\\s*<img[^>]*wp-image-" +
-			mediaId +
-			"[^>]*>\\s*(?:<figcaption[^>]*>.*?</figcaption>\\s*)?</figure>";
-		const byId2 = "<img[^>]*wp-image-" + mediaId + "[^>]*>";
-		const regexById = new RegExp(byId1 + "|" + byId2, "gi");
-		cleaned = cleaned.replace(regexById, "");
+		// Supprimer figure avec l'image
+		const figurePattern = new RegExp(
+			`<figure[^>]*>\\s*<img[^>]*wp-image-${mediaId}[^>]*>\\s*(?:<figcaption[^>]*>.*?</figcaption>\\s*)?</figure>`,
+			"gis"
+		);
+		cleaned = cleaned.replace(figurePattern, "");
+
+		// Supprimer img standalone
+		const imgPattern = new RegExp(
+			`<img[^>]*wp-image-${mediaId}[^>]*>`,
+			"gi"
+		);
+		cleaned = cleaned.replace(imgPattern, "");
 	}
 
-	const urlParts = imageUrl.split("/");
-	const fileName = urlParts[urlParts.length - 1];
-	const baseName = fileName.replace(/-\d+x\d+\.\w+$/, "");
+	// Méthode 2: Supprimer par nom de fichier (avec toutes les variations de taille)
+	if (imageUrl) {
+		const urlParts = imageUrl.split("/");
+		const fileName = urlParts[urlParts.length - 1];
 
-	if (baseName) {
-		const escaped = baseName.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-		const byName1 =
-			"<figure[^>]*>\\s*<img[^>]*" +
-			escaped +
-			"(?:-\\d+x\\d+)?\\.[^>]+>\\s*(?:<figcaption[^>]*>.*?</figcaption>\\s*)?</figure>";
-		const byName2 = "<img[^>]*" + escaped + "(?:-\\d+x\\d+)?\\.[^>]+>";
-		const regexByName = new RegExp(byName1 + "|" + byName2, "gi");
-		cleaned = cleaned.replace(regexByName, "");
+		// Enlever les paramètres de query string
+		const cleanFileName = fileName.split("?")[0];
+
+		// Extraire le nom de base sans les dimensions (-XXXxYYY)
+		const baseName = cleanFileName.replace(/-\d+x\d+(\.\w+)$/, "$1");
+		const baseNameNoExt = baseName.replace(/\.\w+$/, "");
+
+		if (baseNameNoExt) {
+			const escaped = baseNameNoExt.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+
+			// Supprimer toutes les occurrences de cette image (toutes tailles)
+			const figureByNamePattern = new RegExp(
+				`<figure[^>]*>\\s*<img[^>]*${escaped}[^>]*>\\s*(?:<figcaption[^>]*>.*?</figcaption>\\s*)?</figure>`,
+				"gis"
+			);
+			cleaned = cleaned.replace(figureByNamePattern, "");
+
+			const imgByNamePattern = new RegExp(
+				`<img[^>]*${escaped}[^>]*>`,
+				"gi"
+			);
+			cleaned = cleaned.replace(imgByNamePattern, "");
+		}
 	}
+
+	// Méthode 3: Supprimer la première image du contenu (fallback)
+	// Si c'est la featured image, elle sera généralement en premier
+	cleaned = cleaned.replace(/^[\s\n]*<figure[^>]*>[\s\S]*?<\/figure>[\s\n]*/, "");
+	cleaned = cleaned.replace(/^[\s\n]*<img[^>]*>[\s\n]*/, "");
 
 	return cleaned;
 };
@@ -341,7 +368,7 @@ const BlogPost = () => {
 					);
 				}
 			} catch (err) {
-				console.error("Error fetching related posts:", err);
+				// Silently handle errors - related posts are optional
 			}
 		};
 

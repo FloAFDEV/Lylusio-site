@@ -111,7 +111,7 @@ export async function generateMetadata({
 			},
 		};
 	} catch (error) {
-		console.error("Error fetching blog post metadata:", error);
+		// Silently handle errors - return fallback metadata
 		return {
 			title: "Article | Lylusio",
 			description:
@@ -154,7 +154,7 @@ export default async function BlogPostPage({
 			});
 		}
 	} catch (error) {
-		console.error("Error generating blog post schema:", error);
+		// Silently handle errors - schema is optional SEO enhancement
 	}
 
 	return (

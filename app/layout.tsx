@@ -175,10 +175,14 @@ export default function RootLayout({
 		<html lang="fr" suppressHydrationWarning data-scroll-behavior="smooth">
 			<head>
 				{/* Preconnect for critical third-party origins */}
+				<link rel="preconnect" href="https://fonts.googleapis.com" />
+				<link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+				<link rel="preconnect" href="https://admin.lylusio.fr" />
 
 				{/* DNS prefetch for non-critical but frequent domains */}
 				<link rel="dns-prefetch" href="https://calendly.com" />
 				<link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+				<link rel="dns-prefetch" href="https://www.google-analytics.com" />
 
 				{/* Structured Data for SEO */}
 				<LocalBusinessSchema />

@@ -95,7 +95,7 @@ export async function fetchPosts(params: {
 				totalPages: 1,
 			};
 		} catch (error) {
-			console.error("Error fetching WordPress posts:", error);
+			// Silently handle errors - article will be fetched by client component
 			return {
 				posts: [],
 				total: 0,
@@ -139,9 +139,7 @@ export async function fetchPosts(params: {
 			totalPages: totalPages ? parseInt(totalPages, 10) : 1,
 		};
 	} catch (error) {
-		console.error("Error fetching WordPress posts:", error);
-
-		// Return empty fallback instead of throwing
+		// Silently handle errors - return empty fallback instead of throwing
 		return {
 			posts: [],
 			total: 0,
@@ -193,7 +191,7 @@ export async function fetchCategories(params?: {
 
 		return await response.json();
 	} catch (error) {
-		console.error("Error fetching WordPress categories:", error);
+		// Silently handle errors - return empty array
 		return [];
 	}
 }
@@ -217,7 +215,7 @@ export async function fetchCategoryBySlug(
 
 		return category || null;
 	} catch (error) {
-		console.error(`Error fetching category ${slug}:`, error);
+		// Silently handle errors - return null
 		return null;
 	}
 }

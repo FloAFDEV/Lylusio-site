@@ -5,6 +5,7 @@ import Image from "next/image";
 
 import { useState, useEffect } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useRouter, useSearchParams } from "next/navigation";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -132,11 +133,15 @@ const fetchAllBlogPosts = async (): Promise<BlogPost[]> => {
 };
 
 const Blog = () => {
+	const router = useRouter();
+	const searchParams = useSearchParams();
 	const queryClient = useQueryClient();
+
 	const [categories, setCategories] = useState<WPCategory[]>([]);
-	const [selectedCategory, setSelectedCategory] = useState<number | null>(
-		null
-	);
+	const [selectedCategory, setSelectedCategory] = useState<number | null>(() => {
+		const categoryParam = searchParams.get('category');
+		return categoryParam ? parseInt(categoryParam, 10) : null;
+	});
 	const [sortOrder, setSortOrder] = useState<SortOrder>("newest");
 	const [postsToShow, setPostsToShow] = useState(12);
 	const [loadingMore, setLoadingMore] = useState(false);
@@ -156,6 +161,18 @@ const Blog = () => {
 	});
 
 	const totalPosts = posts.length;
+
+	// Fonction pour changer de catégorie avec persistence dans l'URL
+	const handleCategoryChange = (categoryId: number | null) => {
+		setSelectedCategory(categoryId);
+		const params = new URLSearchParams(searchParams.toString());
+		if (categoryId === null) {
+			params.delete('category');
+		} else {
+			params.set('category', categoryId.toString());
+		}
+		router.push(`?${params.toString()}`, { scroll: false });
+	};
 
 	useEffect(() => {
 		const fetchCategories = async () => {
@@ -336,7 +353,7 @@ const Blog = () => {
 
 								{/* Bouton Tous */}
 								<button
-									onClick={() => setSelectedCategory(null)}
+									onClick={() => handleCategoryChange(null)}
 									className={`px-3 py-1.5 rounded-xl text-xs md:px-4 md:py-2 md:text-sm transition-colors focus-visible:ring-2 focus-visible:ring-accent ${
 										selectedCategory === null
 											? "bg-accent text-white"
@@ -352,7 +369,7 @@ const Blog = () => {
 									<button
 										key={cat.id}
 										onClick={() =>
-											setSelectedCategory(cat.id)
+											handleCategoryChange(cat.id)
 										}
 										className={`px-3 py-1.5 rounded-xl text-xs md:px-4 md:py-2 md:text-sm transition-colors focus-visible:ring-2 focus-visible:ring-accent whitespace-nowrap ${
 											selectedCategory === cat.id
@@ -502,7 +519,7 @@ const Blog = () => {
 								</p>
 								<Button
 									variant="outline"
-									onClick={() => setSelectedCategory(null)}
+									onClick={() => handleCategoryChange(null)}
 								>
 									Voir tous les articles
 								</Button>

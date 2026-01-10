@@ -39,7 +39,7 @@ const RecentArticlesSection = () => {
 				const data = await response.json();
 				setPosts(data);
 			} catch (error) {
-				console.error("Error fetching posts:", error);
+				// Silently handle errors - posts will remain empty
 			} finally {
 				setLoading(false);
 			}
