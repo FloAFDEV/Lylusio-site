@@ -177,28 +177,10 @@ export default function RootLayout({
 				{/* Preconnect for critical third-party origins */}
 				<link rel="preconnect" href="https://fonts.googleapis.com" />
 				<link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-				<link rel="preconnect" href="https://admin.lylusio.fr" />
-
-				{/* Preload critical fonts to reduce CLS */}
-				<link
-					rel="preload"
-					href="https://fonts.gstatic.com/s/cormorantgaramond/v16/co3bmX5slCNuHLi8bLeY9MK7whWMhyjQAllvuQWJ5heb_w.woff2"
-					as="font"
-					type="font/woff2"
-					crossOrigin="anonymous"
-				/>
-				<link
-					rel="preload"
-					href="https://fonts.gstatic.com/s/sourcesans3/v15/nwpBtKy2OAdR1K-IwhWudF-R9QMylBJAV3Bo8Kw461EN_io6np3Z.woff2"
-					as="font"
-					type="font/woff2"
-					crossOrigin="anonymous"
-				/>
 
 				{/* DNS prefetch for non-critical but frequent domains */}
 				<link rel="dns-prefetch" href="https://calendly.com" />
-				<link rel="dns-prefetch" href="https://www.googletagmanager.com" />
-				<link rel="dns-prefetch" href="https://www.google-analytics.com" />
+				<link rel="dns-prefetch" href="https://admin.lylusio.fr" />
 
 				{/* Structured Data for SEO */}
 				<LocalBusinessSchema />
