@@ -5,7 +5,7 @@ export const runtime = "edge";
 // Rate limiting configuration
 const RATE_LIMIT = {
 	windowMs: 60 * 1000, // 1 minute
-	maxRequests: 30, // 30 requests per minute per IP
+	maxRequests: 100, // 100 requests per minute per IP (augmenté pour dev)
 };
 
 // Simple in-memory rate limiter (pour Edge Runtime)
