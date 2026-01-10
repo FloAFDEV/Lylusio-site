@@ -34,7 +34,10 @@ const nextConfig: NextConfig = {
 	},
 
 	// Turbopack configuration (Next.js 16+)
-	turbopack: {},
+	turbopack: {
+		// Définit explicitement le répertoire racine du workspace
+		root: process.cwd(),
+	},
 
 	// Support des images externes
 	images: {
