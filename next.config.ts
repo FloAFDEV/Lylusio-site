@@ -25,6 +25,13 @@ const nextConfig: NextConfig = {
 
 	// Support des images externes
 	images: {
+		// Autoriser les query strings pour Edge Function locale
+		localPatterns: [
+			{
+				pathname: "/api/wp-image",
+				search: "**",
+			},
+		],
 		remotePatterns: [
 			// YouTube thumbnails
 			{
