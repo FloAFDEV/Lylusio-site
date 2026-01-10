@@ -162,7 +162,8 @@ const RecentArticlesSection = () => {
 													fill
 													sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
 													className="object-cover group-hover:scale-105 motion-safe:transition-transform duration-500"
-													quality={65}
+													quality={50}
+													loading="lazy"
 												/>
 											) : (
 												<div className="w-full h-full bg-gradient-to-br from-accent/20 via-gold/10 to-sand/20" />

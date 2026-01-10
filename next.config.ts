@@ -14,10 +14,23 @@ const nextConfig: NextConfig = {
 			"lucide-react",
 			"@radix-ui/react-icons",
 			"react-icons/fa",
+			"@radix-ui/react-dialog",
+			"@radix-ui/react-dropdown-menu",
+			"@radix-ui/react-toast",
+			"@radix-ui/react-tooltip",
+			"@radix-ui/react-popover",
+			"date-fns",
 		],
 		webpackBuildWorker: true,
 		optimizeCss: true, // Inline critical CSS
 		webpackMemoryOptimizations: true,
+	},
+
+	// Compiler options pour réduire les polyfills
+	compiler: {
+		removeConsole: process.env.NODE_ENV === "production" ? {
+			exclude: ["error", "warn"],
+		} : false,
 	},
 
 	// Turbopack configuration (Next.js 16+)

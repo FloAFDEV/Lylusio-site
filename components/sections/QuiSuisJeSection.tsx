@@ -57,7 +57,7 @@ const QuiSuisJeSection = () => {
 									fill
 									sizes="(max-width: 768px) 160px, (max-width: 1024px) 208px, 224px"
 									className="object-cover"
-									quality={65}
+									quality={60}
 									loading="lazy"
 								/>
 							</div>

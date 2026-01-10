@@ -348,8 +348,8 @@ const HeroSection = () => {
 								fill
 								sizes="(max-width: 640px) 200px, 240px"
 								className="object-cover opacity-90 motion-safe:transition-transform duration-700 group-hover:scale-105"
+								quality={75}
 								priority
-								quality={65}
 							/>
 							<div
 								className="absolute inset-0 bg-gradient-to-t from-background/15 via-transparent to-cream/8 pointer-events-none"

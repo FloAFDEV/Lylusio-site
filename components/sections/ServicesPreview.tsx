@@ -146,7 +146,8 @@ const ServicesPreview = () => {
 													}}
 													fill
 													sizes="(max-width: 768px) 100vw, 50vw"
-													quality={65}
+													quality={50}
+													loading="lazy"
 												/>
 											</div>
 											<div className="absolute inset-0 bg-gradient-to-t from-card via-card/40 to-transparent pointer-events-none" />
@@ -279,6 +280,7 @@ const ServicesPreview = () => {
 											className="object-cover transition-transform duration-700 ease-out group-hover:scale-105 transform-gpu"
 											sizes="(max-width: 768px) 100vw, 300px"
 											quality={50}
+											loading="lazy"
 											aria-hidden="true"
 										/>
 										<div className="absolute inset-0 bg-gradient-to-t from-card/40 via-transparent to-transparent pointer-events-none" />
