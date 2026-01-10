@@ -1,29 +1,12 @@
 import { Metadata } from "next";
 import BlogPost from "@/src/page-components/BlogPost";
 import { generateBlogPostSchema } from "@/content/schema";
-import { fetchPostBySlug, fetchPosts } from "@/lib/wordpress-cache";
+import { fetchPostBySlug } from "@/lib/wordpress-cache";
 import { getOptimizedImageUrl } from "@/lib/wordpress-images";
 
-// Allow dynamic routes not in generateStaticParams
-export const dynamicParams = true;
-
-// ISR: 2 hours - configured via fetch options
-
-// Generate static params for recent posts only
-export async function generateStaticParams() {
-	try {
-		const result = await fetchPosts({
-			perPage: 10,
-			revalidate: 3600 // 1 hour
-		});
-		return result.posts.map((post: any) => ({
-			slug: post.slug,
-		}));
-	} catch (error) {
-		console.error("Error generating static params:", error);
-		return [];
-	}
-}
+// Full SSR for blog posts - no static generation
+export const dynamic = 'force-dynamic';
+export const revalidate = 7200; // 2 hours ISR
 
 interface WPPost {
 	id: number;
