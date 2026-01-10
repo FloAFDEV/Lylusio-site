@@ -4,8 +4,7 @@ import { generateBlogPostSchema } from "@/content/schema";
 import { fetchPostBySlug } from "@/lib/wordpress-cache";
 import { getOptimizedImageUrl } from "@/lib/wordpress-images";
 
-// Full SSR for blog posts - no static generation
-export const dynamic = 'force-dynamic';
+// ISR: Static with revalidation every 2 hours
 export const revalidate = 7200; // 2 hours ISR
 
 interface WPPost {
