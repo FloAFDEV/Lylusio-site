@@ -94,9 +94,9 @@ const Breadcrumbs = ({ showPlant = true, customTitle }: BreadcrumbsProps) => {
 		return () => window.removeEventListener("scroll", handleScroll);
 	}, [hasScrolled]);
 
-	// Reset au changement de page - toujours afficher après navigation
+	// Reset au changement de page - cacher les breadcrumbs jusqu'au prochain scroll
 	useEffect(() => {
-		setHasScrolled(true);
+		setHasScrolled(false);
 	}, [currentPath]);
 
 	// Pas de fil d'Ariane sur la home

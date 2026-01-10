@@ -8,12 +8,15 @@ import { useEffect } from "react";
  */
 export default function EnvChecker() {
 	useEffect(() => {
-		console.log("=== 🔍 Environment Variables Check ===");
-		console.log("NEXT_PUBLIC_SITE_URL =", process.env.NEXT_PUBLIC_SITE_URL);
-		console.log("NEXT_PUBLIC_GA_ID =", process.env.NEXT_PUBLIC_GA_ID);
-		console.log("NEXT_PUBLIC_WP_API_URL =", process.env.NEXT_PUBLIC_WP_API_URL);
-		console.log("NODE_ENV =", process.env.NODE_ENV);
-		console.log("=====================================");
+		// Uniquement en développement
+		if (process.env.NODE_ENV === "development") {
+			console.log("=== 🔍 Environment Variables Check ===");
+			console.log("NEXT_PUBLIC_SITE_URL =", process.env.NEXT_PUBLIC_SITE_URL);
+			console.log("NEXT_PUBLIC_GA_ID =", process.env.NEXT_PUBLIC_GA_ID);
+			console.log("NEXT_PUBLIC_WP_API_URL =", process.env.NEXT_PUBLIC_WP_API_URL);
+			console.log("NODE_ENV =", process.env.NODE_ENV);
+			console.log("=====================================");
+		}
 	}, []);
 
 	return null;

@@ -43,7 +43,7 @@ const QuiSuisJeSection = () => {
 								: "opacity-0 -translate-x-12"
 						}`}
 					>
-						<div className="relative w-48 h-48 md:w-64 md:h-64 lg:w-72 lg:h-72 flex-shrink-0">
+						<div className="relative w-48 h-48 md:w-60 md:h-60 lg:w-64 lg:h-64 flex-shrink-0">
 							{/* Decorative gradient blur */}
 							<div
 								className="absolute inset-0 bg-gradient-to-br from-gold/20 to-navy/10 rounded-full blur-2xl"
@@ -55,7 +55,7 @@ const QuiSuisJeSection = () => {
 									src="/assets/emilie-about.webp"
 									alt="Émilie Perez, thérapeute en astrologie et Reiki à Toulouse"
 									fill
-									sizes="(max-width: 768px) 192px, (max-width: 1024px) 256px, 288px"
+									sizes="(max-width: 768px) 192px, (max-width: 1024px) 240px, 256px"
 									className="object-cover"
 									quality={65}
 									loading="lazy"

@@ -58,7 +58,7 @@ const nextConfig: NextConfig = {
 		contentSecurityPolicy:
 			"default-src 'self'; script-src 'none'; sandbox;",
 		// Configure quality levels used in the app
-		qualities: [50, 65, 75, 85, 95],
+		qualities: [50, 65, 75, 85, 90, 95],
 		unoptimized: false,
 		// Loader personnalisé pour les images WordPress
 		loader: "default",
