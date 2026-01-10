@@ -57,9 +57,9 @@ export function getOptimizedImageUrl(wpImageUrl: string | null | undefined): str
 		}
 
 		// Construire l'URL via l'Edge Function (relative pour Next.js Image)
-		const optimizedUrl = `/api/wp-image?url=${encodeURIComponent(imagePath)}`;
+		const directUrl = `https://admin.lylusio.fr${imagePath}`;
 
-		return optimizedUrl;
+		return directUrl;
 	} catch (error) {
 		console.error("Error transforming WordPress image URL:", error);
 		return "/assets/logo-lylusio.png";
