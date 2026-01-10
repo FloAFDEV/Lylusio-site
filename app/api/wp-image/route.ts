@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
-export const runtime = "edge";
+// Removed edge runtime to allow static page generation
+// export const runtime = "edge";
 
 // Rate limiting configuration
 const RATE_LIMIT = {
