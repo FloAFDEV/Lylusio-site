@@ -41,7 +41,7 @@ const CelestialStars = memo(() => {
 			{stars.map((star) => (
 				<div
 					key={star.id}
-					className="absolute rounded-full bg-gold/80 motion-safe:animate-twinkle will-change-opacity"
+					className="absolute rounded-full bg-gold/80 motion-safe:animate-twinkle"
 					style={{
 						left: star.left,
 						top: star.top,
@@ -107,11 +107,11 @@ const RessourcesCTA = () => {
 				aria-hidden="true"
 			/>
 			<div
-				className="absolute top-10 right-10 w-48 h-48 bg-gold/10 rounded-full blur-3xl"
+				className="absolute top-10 right-10 w-48 h-48 bg-gold/10 rounded-full blur-xl md:blur-3xl"
 				aria-hidden="true"
 			/>
 			<div
-				className="absolute bottom-10 left-10 w-64 h-64 bg-accent/10 rounded-full blur-3xl"
+				className="absolute bottom-10 left-10 w-64 h-64 bg-accent/10 rounded-full blur-xl md:blur-3xl"
 				aria-hidden="true"
 			/>
 
@@ -131,11 +131,11 @@ const RessourcesCTA = () => {
 					>
 						{/* Decorative glow effects - softer and smaller */}
 						<div
-							className="absolute -top-16 -right-16 w-32 h-32 bg-accent/15 rounded-full blur-2xl motion-safe:group-hover:bg-accent/20 motion-safe:transition-colors duration-500"
+							className="absolute -top-16 -right-16 w-32 h-32 bg-accent/15 rounded-full blur-xl md:blur-2xl motion-safe:group-hover:bg-accent/20 motion-safe:transition-colors duration-500"
 							aria-hidden="true"
 						/>
 						<div
-							className="absolute -bottom-16 -left-16 w-32 h-32 bg-gold/10 rounded-full blur-2xl motion-safe:group-hover:bg-gold/15 motion-safe:transition-colors duration-500"
+							className="absolute -bottom-16 -left-16 w-32 h-32 bg-gold/10 rounded-full blur-xl md:blur-2xl motion-safe:group-hover:bg-gold/15 motion-safe:transition-colors duration-500"
 							aria-hidden="true"
 						/>
 						{/* Icon badge - smaller and more delicate with FREE tag */}

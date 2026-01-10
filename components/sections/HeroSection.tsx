@@ -48,7 +48,7 @@ const CelestialStars = memo(() => {
 			{stars.map((star) => (
 				<div
 					key={star.id}
-					className="absolute rounded-full bg-gold/90 animate-twinkle will-change-opacity"
+					className="absolute rounded-full bg-gold/90 animate-twinkle"
 					style={{
 						left: star.left,
 						top: star.top,
@@ -70,28 +70,29 @@ const CelestialStars = memo(() => {
 CelestialStars.displayName = "CelestialStars";
 
 // SoftClouds - Nuages flottants avec parallax (Lovable)
+// Blur réduit sur mobile pour performances
 const SoftClouds = memo(({ parallaxOffset }: { parallaxOffset: number }) => (
 	<div
 		className="absolute inset-0 pointer-events-none overflow-hidden"
 		aria-hidden="true"
 	>
-		{/* Cloud 1 - top right */}
+		{/* Cloud 1 - top right - blur réduit sur mobile */}
 		<div
-			className="absolute -top-10 right-[10%] w-80 h-40 bg-red/30 rounded-full blur-3xl will-change-transform"
+			className="absolute -top-10 right-[10%] w-80 h-40 bg-white/30 rounded-full blur-xl md:blur-3xl"
 			style={{
 				transform: `translate3d(0, ${parallaxOffset * 0.2}px, 0)`,
 			}}
 		/>
-		{/* Cloud 2 - top left */}
+		{/* Cloud 2 - top left - blur réduit sur mobile */}
 		<div
-			className="absolute top-[5%] -left-10 w-60 h-32 bg-white/25 rounded-full blur-3xl will-change-transform"
+			className="absolute top-[5%] -left-10 w-60 h-32 bg-white/25 rounded-full blur-xl md:blur-3xl"
 			style={{
 				transform: `translate3d(0, ${parallaxOffset * 0.3}px, 0)`,
 			}}
 		/>
-		{/* Cloud 3 - middle */}
+		{/* Cloud 3 - middle - desktop only */}
 		<div
-			className="absolute top-[30%] right-[30%] w-48 h-24 bg-gradient-sky-center/40 rounded-full blur-2xl will-change-transform hidden md:block"
+			className="absolute top-[30%] right-[30%] w-48 h-24 bg-gradient-sky-center/40 rounded-full blur-xl md:blur-2xl hidden md:block"
 			style={{
 				transform: `translate3d(0, ${parallaxOffset * 0.15}px, 0)`,
 			}}
@@ -153,13 +154,13 @@ const OrganicShapes = memo(({ parallaxOffset }: { parallaxOffset: number }) => (
 		aria-hidden="true"
 	>
 		<div
-			className="absolute -top-32 -right-32 w-72 md:w-96 h-72 md:h-96 bg-gold/20 rounded-full blur-3xl will-change-transform"
+			className="absolute -top-32 -right-32 w-72 md:w-96 h-72 md:h-96 bg-gold/20 rounded-full blur-3xl"
 			style={{
 				transform: `translate3d(0, ${parallaxOffset * 0.5}px, 0)`,
 			}}
 		/>
 		<div
-			className="absolute -bottom-32 -left-32 w-60 md:w-80 h-60 md:h-80 bg-accent/20 rounded-full blur-3xl will-change-transform"
+			className="absolute -bottom-32 -left-32 w-60 md:w-80 h-60 md:h-80 bg-accent/20 rounded-full blur-3xl"
 			style={{
 				transform: `translate3d(0, ${-parallaxOffset * 0.3}px, 0)`,
 			}}
