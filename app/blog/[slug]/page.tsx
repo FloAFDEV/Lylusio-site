@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import BlogPost from "@/src/page-components/BlogPost";
 import { generateBlogPostSchema } from "@/content/schema";
-import { fetchPostBySlug, fetchPosts, CACHE_DURATIONS } from "@/lib/wordpress-cache";
+import { fetchPostBySlug, fetchPosts } from "@/lib/wordpress-cache";
 import { getOptimizedImageUrl } from "@/lib/wordpress-images";
 
 // Allow dynamic routes not in generateStaticParams
@@ -12,8 +12,11 @@ export const dynamicParams = true;
 // Generate static params for recent posts only
 export async function generateStaticParams() {
 	try {
-		const posts = await fetchPosts({ perPage: 10 }, CACHE_DURATIONS.POST_LIST);
-		return posts.map((post: any) => ({
+		const result = await fetchPosts({
+			perPage: 10,
+			revalidate: 3600 // 1 hour
+		});
+		return result.posts.map((post: any) => ({
 			slug: post.slug,
 		}));
 	} catch (error) {
@@ -74,7 +77,7 @@ export async function generateMetadata({
 	const { slug } = await params;
 
 	try {
-		const post = await fetchPostBySlug(slug, CACHE_DURATIONS.POST_SINGLE);
+		const post = await fetchPostBySlug(slug, 7200); // 2 hours cache
 
 		if (!post) {
 			return {
@@ -144,7 +147,7 @@ export default async function BlogPostPage({
 	let blogPostSchema = null;
 
 	try {
-		const post = await fetchPostBySlug(slug, CACHE_DURATIONS.POST_SINGLE);
+		const post = await fetchPostBySlug(slug, 7200); // 2 hours cache
 
 		if (post) {
 			const title = stripHtml(post.title.rendered);

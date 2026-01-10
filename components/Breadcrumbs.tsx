@@ -82,11 +82,12 @@ const Breadcrumbs = ({ showPlant = true, customTitle }: BreadcrumbsProps) => {
 	const currentPath = pathname;
 	const [hasScrolled, setHasScrolled] = useState(false);
 
-	// Détecter le premier scroll vers le bas
+	// Détecter le scroll (afficher si > 100px, cacher si < 100px)
 	useEffect(() => {
 		const handleScroll = () => {
-			if (!hasScrolled && window.scrollY > 100) {
-				setHasScrolled(true);
+			const shouldShow = window.scrollY > 100;
+			if (hasScrolled !== shouldShow) {
+				setHasScrolled(shouldShow);
 			}
 		};
 
