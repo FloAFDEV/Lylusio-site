@@ -80,34 +80,6 @@ interface BreadcrumbsProps {
 const Breadcrumbs = ({ showPlant = true, customTitle }: BreadcrumbsProps) => {
 	const pathname = usePathname();
 	const currentPath = pathname;
-	const [isVisible, setIsVisible] = useState(false);
-	const [mounted, setMounted] = useState(false);
-
-	// Mark as mounted to prevent hydration mismatch
-	useEffect(() => {
-		setMounted(true);
-		// Initialize visibility based on current scroll position
-		setIsVisible(window.scrollY > 20);
-	}, []);
-
-	// Show breadcrumbs after scroll
-	useEffect(() => {
-		if (!mounted) return;
-
-		const handleScroll = () => {
-			setIsVisible(window.scrollY > 20);
-		};
-
-		window.addEventListener("scroll", handleScroll, { passive: true });
-		return () => window.removeEventListener("scroll", handleScroll);
-	}, [mounted]);
-
-	// Reset visibility on route change
-	useEffect(() => {
-		if (mounted) {
-			setIsVisible(window.scrollY > 20);
-		}
-	}, [currentPath, mounted]);
 
 	// Pas de fil d'Ariane sur la home
 	if (currentPath === "/") return null;
@@ -163,13 +135,8 @@ const Breadcrumbs = ({ showPlant = true, customTitle }: BreadcrumbsProps) => {
 
 	return (
 		<nav
-			className={`container mx-auto px-4 sm:px-6 lg:px-8 pt-20 sm:pt-24 md:pt-28 relative transition-all duration-500 ease-out ${
-				isVisible
-					? "opacity-100 pb-4"
-					: "opacity-0 h-0 pb-0 pointer-events-none overflow-hidden"
-			}`}
+			className="container mx-auto px-4 sm:px-6 lg:px-8 pt-20 sm:pt-24 md:pt-28 pb-4 relative"
 			aria-label="Fil d'Ariane"
-			suppressHydrationWarning
 		>
 			{showPlant && (
 				<GoldenPlantBadge
