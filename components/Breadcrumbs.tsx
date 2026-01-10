@@ -82,12 +82,11 @@ const Breadcrumbs = ({ showPlant = true, customTitle }: BreadcrumbsProps) => {
 	const currentPath = pathname;
 	const [hasScrolled, setHasScrolled] = useState(false);
 
-	// Détecter le scroll (afficher si > 100px, cacher si < 100px)
+	// Détecter le premier scroll vers le bas
 	useEffect(() => {
 		const handleScroll = () => {
-			const shouldShow = window.scrollY > 100;
-			if (hasScrolled !== shouldShow) {
-				setHasScrolled(shouldShow);
+			if (!hasScrolled && window.scrollY > 100) {
+				setHasScrolled(true);
 			}
 		};
 
@@ -95,9 +94,9 @@ const Breadcrumbs = ({ showPlant = true, customTitle }: BreadcrumbsProps) => {
 		return () => window.removeEventListener("scroll", handleScroll);
 	}, [hasScrolled]);
 
-	// Reset au changement de page - cacher les breadcrumbs jusqu'au prochain scroll
+	// Reset au changement de page - toujours afficher après navigation
 	useEffect(() => {
-		setHasScrolled(false);
+		setHasScrolled(true);
 	}, [currentPath]);
 
 	// Pas de fil d'Ariane sur la home
@@ -157,7 +156,7 @@ const Breadcrumbs = ({ showPlant = true, customTitle }: BreadcrumbsProps) => {
 
 	return (
 		<nav
-			className="container mx-auto px-4 sm:px-6 lg:px-8 pb-4 relative"
+			className="container mx-auto px-4 sm:px-6 lg:px-8 pt-20 sm:pt-24 md:pt-28 pb-4 relative"
 			aria-label="Fil d'Ariane"
 		>
 			{showPlant && (
