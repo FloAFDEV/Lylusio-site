@@ -23,10 +23,6 @@ import {
 	Clock,
 	User,
 	Tag,
-	Facebook,
-	Linkedin,
-	Instagram,
-	Link as LinkIcon,
 } from "lucide-react";
 import { toast } from "sonner";
 
@@ -265,7 +261,6 @@ const BlogPost = () => {
 	const { slug } = useParams<{ slug: string }>();
 	const queryClient = useQueryClient();
 	const [relatedPosts, setRelatedPosts] = useState<RelatedPost[]>([]);
-	const [searchQuery, setSearchQuery] = useState("");
 
 	const {
 		data: wpPost,
@@ -275,14 +270,36 @@ const BlogPost = () => {
 		queryKey: ["blogPost", slug],
 		queryFn: async () => {
 			if (!slug) throw new Error("No slug provided");
-			const response = await fetch(`/api/posts/${slug}`);
-			if (!response.ok) throw new Error("Post not found");
-			const post: WPPost = await response.json();
-			return post;
+
+			// Timeout optimisé pour mobile - 10s max
+			const controller = new AbortController();
+			const timeoutId = setTimeout(() => controller.abort(), 10000);
+
+			try {
+				const response = await fetch(`/api/posts/${slug}`, {
+					signal: controller.signal,
+				});
+				clearTimeout(timeoutId);
+
+				if (!response.ok) {
+					throw new Error("Post not found");
+				}
+
+				const post: WPPost = await response.json();
+				return post;
+			} catch (error) {
+				clearTimeout(timeoutId);
+				if (error instanceof Error && error.name === 'AbortError') {
+					throw new Error("La requête a pris trop de temps. Veuillez réessayer.");
+				}
+				throw error;
+			}
 		},
 		staleTime: 1000 * 60 * 10,
 		gcTime: 1000 * 60 * 30,
 		enabled: !!slug,
+		retry: 2, // Retry up to 2 times on mobile
+		retryDelay: 1000, // Wait 1s between retries
 	});
 
 	const post: BlogPostData | null = wpPost
@@ -466,81 +483,62 @@ const BlogPost = () => {
 		}
 	};
 
-	const structuredData = post
-		? {
-				"@context": "https://schema.org",
-				"@type": "BlogPosting",
-				headline: utils.stripHtml(post.title),
-				description: post.excerpt,
-				datePublished: post.date,
-				dateModified: post.date,
-				author: {
-					"@type": "Person",
-					name: post.author,
-					url: "https://lylusio.fr/emilie-perez",
-				},
-				publisher: {
-					"@type": "Organization",
-					name: "Lylusio",
-					url: "https://lylusio.fr",
-					logo: {
-						"@type": "ImageObject",
-						url: "https://lylusio.fr/favicon.png",
-					},
-				},
-				mainEntityOfPage: {
-					"@type": "WebPage",
-					"@id": "https://lylusio.fr/blog/" + post.slug,
-				},
-				...(post.imageUrl && {
-					image: {
-						"@type": "ImageObject",
-						url: post.imageUrl,
-					},
-				}),
-				wordCount: utils.stripHtml(post.content).split(/\s+/).length,
-				articleSection: post.categories[0]?.name || "Blog",
-		  }
-		: null;
+	// Note: Structured data (JSON-LD schema) is handled server-side in /blog/[slug]/page.tsx
+	// to ensure it's available for SSR/SEO crawlers before client hydration
 
 	if (isLoading) {
 		return (
 			<div className="min-h-screen bg-background">
 				<Header />
 				<Breadcrumbs />
-				<main className="pb-16 md:pb-20">
+				<main className="pb-16 md:pb-20 pt-16 sm:pt-18">
 					<article className="container mx-auto px-4 sm:px-6 lg:px-8">
-						<div className="max-w-3xl mx-auto">
-							{/* Skeleton Header */}
+						<div className="max-w-3xl mx-auto mt-4 sm:mt-6">
+							{/* Skeleton Back Button */}
+							<div className="mb-6 animate-pulse">
+								<div className="h-4 bg-muted/50 rounded w-32" />
+							</div>
+
+							{/* Skeleton Header - optimisé mobile */}
 							<header className="mb-8 md:mb-12 animate-pulse">
-								<div className="h-4 bg-muted/50 rounded w-32 mb-4" />
-								<div className="h-12 bg-muted rounded-lg w-3/4 mb-6" />
-								<div className="flex items-center gap-6 text-sm">
-									<div className="h-4 bg-muted/50 rounded w-24" />
-									<div className="h-4 bg-muted/50 rounded w-20" />
-									<div className="h-4 bg-muted/50 rounded w-32" />
+								<div className="h-8 sm:h-12 bg-muted rounded-lg w-full sm:w-3/4 mb-4 sm:mb-6" />
+								<div className="flex flex-wrap items-center gap-3 sm:gap-4 text-sm mb-4">
+									<div className="h-4 bg-muted/50 rounded w-16 sm:w-20" />
+									<div className="h-4 bg-muted/50 rounded w-20 sm:w-24" />
+									<div className="h-4 bg-muted/50 rounded w-24 sm:w-32" />
 								</div>
 							</header>
 
-							{/* Skeleton Image */}
-							<div className="mb-8 md:mb-12 animate-pulse">
-								<div className="aspect-[16/9] bg-muted rounded-2xl" />
+							{/* Skeleton Image - optimisé mobile */}
+							<div className="mb-8 md:mb-12 animate-pulse relative">
+								<div className="aspect-[16/9] bg-gradient-to-br from-muted via-muted/80 to-muted/60 rounded-2xl relative overflow-hidden">
+									{/* Shimmer effect */}
+									<div className="absolute inset-0 -translate-x-full animate-shimmer bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+								</div>
+								{/* Badge skeleton */}
+								<div className="absolute -bottom-3 -right-3 w-12 h-12 sm:w-14 sm:h-14 bg-muted/60 rounded-full" />
 							</div>
 
-							{/* Skeleton Content */}
-							<div className="animate-pulse space-y-6 mb-12">
-								<div className="space-y-3">
-									<div className="h-4 bg-muted/70 rounded w-full" />
-									<div className="h-4 bg-muted/70 rounded w-[95%]" />
-									<div className="h-4 bg-muted/70 rounded w-[90%]" />
+							{/* Skeleton Content - réduit sur mobile */}
+							<div className="animate-pulse space-y-4 sm:space-y-6 mb-12">
+								<div className="space-y-2 sm:space-y-3">
+									<div className="h-3 sm:h-4 bg-muted/70 rounded w-full" />
+									<div className="h-3 sm:h-4 bg-muted/70 rounded w-[95%]" />
+									<div className="h-3 sm:h-4 bg-muted/70 rounded w-[90%]" />
 								</div>
-								<div className="h-8 bg-muted rounded-lg w-2/3 mt-8" />
-								<div className="space-y-3">
-									<div className="h-4 bg-muted/70 rounded w-full" />
-									<div className="h-4 bg-muted/70 rounded w-[92%]" />
-									<div className="h-4 bg-muted/70 rounded w-[97%]" />
-									<div className="h-4 bg-muted/70 rounded w-[88%]" />
+								<div className="h-6 sm:h-8 bg-muted rounded-lg w-2/3 mt-6 sm:mt-8" />
+								<div className="space-y-2 sm:space-y-3">
+									<div className="h-3 sm:h-4 bg-muted/70 rounded w-full" />
+									<div className="h-3 sm:h-4 bg-muted/70 rounded w-[92%]" />
+									<div className="h-3 sm:h-4 bg-muted/70 rounded w-[97%]" />
 								</div>
+							</div>
+
+							{/* Loading message - mobile only */}
+							<div className="text-center py-8 sm:hidden">
+								<p className="text-sm text-muted-foreground animate-pulse">
+									Chargement de l'article...
+								</p>
 							</div>
 						</div>
 					</article>
