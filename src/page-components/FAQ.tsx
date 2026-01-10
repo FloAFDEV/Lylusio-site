@@ -111,7 +111,7 @@ const FAQ = () => {
 				<Header />
 				<Breadcrumbs />
 
-				<main id="main-content" className="pb-16 md:pb-20 relative">
+				<main id="main-content" className="pt-20 sm:pt-24 md:pt-28 pb-16 md:pb-20 relative">
 					<section
 						className="container mx-auto px-4 sm:px-6 lg:px-8"
 						aria-labelledby="faq-title"

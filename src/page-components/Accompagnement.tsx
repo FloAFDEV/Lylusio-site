@@ -186,7 +186,7 @@ const Accompagnement = () => {
 				<Header />
 				<Breadcrumbs />
 
-				<main id="main-content" className="relative">
+				<main id="main-content" className="pt-20 sm:pt-24 md:pt-28 relative">
 					{/* Decorative background shapes - reduced on mobile */}
 					{mounted && !isMobile && (
 						<div

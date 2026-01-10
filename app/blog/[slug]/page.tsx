@@ -1,13 +1,26 @@
 import { Metadata } from "next";
 import BlogPost from "@/src/page-components/BlogPost";
 import { generateBlogPostSchema } from "@/content/schema";
-import { fetchPostBySlug, CACHE_DURATIONS } from "@/lib/wordpress-cache";
+import { fetchPostBySlug, fetchPosts, CACHE_DURATIONS } from "@/lib/wordpress-cache";
 import { getOptimizedImageUrl } from "@/lib/wordpress-images";
 
-// Force dynamic rendering pour les articles de blog
-export const dynamic = 'force-dynamic';
+// Allow dynamic routes not in generateStaticParams
+export const dynamicParams = true;
 
 // ISR: 2 hours - configured via fetch options
+
+// Generate static params for recent posts only
+export async function generateStaticParams() {
+	try {
+		const posts = await fetchPosts({ perPage: 10 }, CACHE_DURATIONS.POST_LIST);
+		return posts.map((post: any) => ({
+			slug: post.slug,
+		}));
+	} catch (error) {
+		console.error("Error generating static params:", error);
+		return [];
+	}
+}
 
 interface WPPost {
 	id: number;
@@ -77,7 +90,7 @@ export async function generateMetadata({
 
 		const imageAlt = featuredImage?.alt_text || title;
 		const authorName = post._embedded?.author?.[0]?.name || "Émilie Perez";
-		const url = `https://lylusio.fr/${slug}/`;
+		const url = `https://lylusio.fr/blog/${slug}`;
 
 		return {
 			title: `${title} | Lylusio`,
@@ -147,7 +160,7 @@ export default async function BlogPostPage({
 			blogPostSchema = generateBlogPostSchema({
 				title,
 				description,
-				url: `https://lylusio.fr/${slug}/`,
+				url: `https://lylusio.fr/blog/${slug}`,
 				image: imageUrl,
 				datePublished: post.date,
 				dateModified: post.modified,

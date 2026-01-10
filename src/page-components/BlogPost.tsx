@@ -553,7 +553,7 @@ const BlogPost = () => {
 			{/* SEO metadata handled by Next.js Metadata API */}
 
 			<Header />
-			<main id="main-content" className="min-h-screen bg-background">
+			<main id="main-content" className="min-h-screen bg-background pt-20 sm:pt-24 md:pt-28">
 				<Breadcrumbs customTitle={utils.stripHtml(post.title)} />
 
 				<article className="container mx-auto px-4 sm:px-6 lg:px-8 pb-16">
