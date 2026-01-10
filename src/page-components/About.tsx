@@ -120,7 +120,7 @@ const About = () => {
 				<Header />
 				<Breadcrumbs showPlant={false} />
 
-				<main id="main-content" className="pb-16 md:pb-20">
+				<main id="main-content" className="pt-20 sm:pt-24 md:pt-28 pb-16 md:pb-20">
 					{/* Hero */}
 					<section
 						className="container mx-auto px-4 sm:px-6 lg:px-8 mb-16 md:mb-24 relative"

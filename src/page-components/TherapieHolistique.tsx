@@ -109,7 +109,7 @@ const TherapieHolistique = () => {
 
 				<main
 					id="main-content"
-					className="pb-16 md:pb-24 relative overflow-hidden"
+					className="pt-20 sm:pt-24 md:pt-28 pb-16 md:pb-24 relative overflow-hidden"
 				>
 					{/* Hero Section with Full Background Image */}
 					<section

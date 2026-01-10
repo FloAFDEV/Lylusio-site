@@ -14,7 +14,7 @@ const CGU = () => {
 			{/* SEO metadata handled by Next.js Metadata API */}
 
 			<Header />
-			<main id="main-content" className="min-h-screen bg-background">
+			<main id="main-content" className="pt-20 sm:pt-24 md:pt-28 min-h-screen bg-background">
 				<a href="#main-content" className="skip-link">
 					Aller au contenu principal
 				</a>

@@ -20,7 +20,7 @@ const ApprochSection = () => {
 			style={{
 				background:
 					"linear-gradient(180deg, hsl(225 33% 97%) 0%, hsl(210 50% 96%) 30%, hsl(32 100% 97%) 100%)",
-				scrollMarginTop: "120px", // ✅ Augmenté pour compenser le texte allongé dans Hero
+				scrollMarginTop: "80px", // Compensate for fixed header height
 			}}
 			suppressHydrationWarning
 			aria-labelledby="approche-title"

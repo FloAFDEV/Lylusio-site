@@ -148,7 +148,7 @@ const MonApproche = () => {
 			/>
 			<main
 				id="main-content"
-				className="min-h-screen bg-background relative overflow-hidden"
+				className="pt-20 sm:pt-24 md:pt-28 min-h-screen bg-background relative overflow-hidden"
 			>
 				{/* Floating Particles for mystical atmosphere */}
 				<FloatingParticles count={15} />
