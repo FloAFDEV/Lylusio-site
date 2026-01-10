@@ -184,7 +184,7 @@ const BlogCategory = () => {
 			{/* SEO metadata handled by Next.js Metadata API */}
 
 			<Header />
-			<main className="pt-20 sm:pt-24 md:pt-28 min-h-screen bg-background pb-20">
+			<main className="min-h-screen bg-background pb-20">
 				<Breadcrumbs customTitle={`Catégorie : ${categoryTitle}`} />
 				<div className="container mx-auto px-4">
 					{/* Header */}

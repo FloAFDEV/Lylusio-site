@@ -94,9 +94,9 @@ const Breadcrumbs = ({ showPlant = true, customTitle }: BreadcrumbsProps) => {
 		return () => window.removeEventListener("scroll", handleScroll);
 	}, [hasScrolled]);
 
-	// Reset au changement de page
+	// Reset au changement de page - toujours afficher après navigation
 	useEffect(() => {
-		setHasScrolled(window.scrollY > 100);
+		setHasScrolled(true);
 	}, [currentPath]);
 
 	// Pas de fil d'Ariane sur la home
@@ -156,7 +156,7 @@ const Breadcrumbs = ({ showPlant = true, customTitle }: BreadcrumbsProps) => {
 
 	return (
 		<nav
-			className="container mx-auto px-4 sm:px-6 lg:px-8 pb-4 relative"
+			className="container mx-auto px-4 sm:px-6 lg:px-8 pt-20 sm:pt-24 md:pt-28 pb-4 relative"
 			aria-label="Fil d'Ariane"
 		>
 			{showPlant && (
