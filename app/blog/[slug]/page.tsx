@@ -4,6 +4,9 @@ import { generateBlogPostSchema } from "@/content/schema";
 import { fetchPostBySlug, CACHE_DURATIONS } from "@/lib/wordpress-cache";
 import { getOptimizedImageUrl } from "@/lib/wordpress-images";
 
+// Force dynamic rendering pour les articles de blog
+export const dynamic = 'force-dynamic';
+
 // ISR: 2 hours - configured via fetch options
 
 interface WPPost {
