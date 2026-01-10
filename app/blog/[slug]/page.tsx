@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import BlogPost from "@/src/page-components/BlogPost";
 import { generateBlogPostSchema } from "@/content/schema";
-import { fetchPostBySlug } from "@/lib/wordpress-cache";
+import { fetchPostBySlug, fetchPosts } from "@/lib/wordpress-cache";
 import { getOptimizedImageUrl } from "@/lib/wordpress-images";
 
 // ISR: Static with revalidation every 2 hours
@@ -51,6 +51,32 @@ const stripHtml = (html: string): string => {
 		.trim();
 };
 
+/**
+ * Generate static params for the most recent posts
+ * This ensures popular/recent posts are pre-rendered at build time
+ */
+export async function generateStaticParams() {
+	try {
+		// Fetch recent 20 posts to pre-generate at build time
+		const { posts } = await fetchPosts({
+			perPage: 20,
+			page: 1,
+			embed: true,
+			revalidate: 3600, // 1 hour cache for build
+		});
+
+		console.log(`[generateStaticParams] Pre-generating ${posts.length} article pages`);
+
+		return posts.map((post: any) => ({
+			slug: post.slug,
+		}));
+	} catch (error) {
+		console.error("[generateStaticParams] Error fetching posts:", error);
+		// Return empty array to allow dynamic rendering
+		return [];
+	}
+}
+
 export async function generateMetadata({
 	params,
 }: {
@@ -62,11 +88,14 @@ export async function generateMetadata({
 		const post = await fetchPostBySlug(slug, 7200); // 2 hours cache
 
 		if (!post) {
+			console.warn(`[generateMetadata] Post not found for slug: ${slug}`);
 			return {
-				title: "Article non trouvé | Lylusio",
-				description: "Cet article n'existe pas ou a été supprimé.",
+				title: "Article | Lylusio",
+				description:
+					"Découvrez nos articles sur l'astrologie, le Reiki et le développement personnel.",
 			};
 		}
+
 		const title = stripHtml(post.title.rendered);
 		const description = stripHtml(post.excerpt.rendered).substring(0, 160);
 		const featuredImage = post._embedded?.["wp:featuredmedia"]?.[0];
@@ -76,6 +105,8 @@ export async function generateMetadata({
 		const imageAlt = featuredImage?.alt_text || title;
 		const authorName = post._embedded?.author?.[0]?.name || "Émilie Perez";
 		const url = `https://lylusio.fr/blog/${slug}`;
+
+		console.log(`[generateMetadata] Generated metadata for: ${title} (${slug})`);
 
 		return {
 			title: `${title} | Lylusio`,
@@ -110,7 +141,8 @@ export async function generateMetadata({
 			},
 		};
 	} catch (error) {
-		// Silently handle errors - return fallback metadata
+		console.error(`[generateMetadata] Error for slug ${slug}:`, error);
+		// Return fallback metadata instead of throwing
 		return {
 			title: "Article | Lylusio",
 			description:
@@ -127,11 +159,13 @@ export default async function BlogPostPage({
 	const { slug } = await params;
 
 	let blogPostSchema = null;
+	let serverFetchSuccess = false;
 
 	try {
 		const post = await fetchPostBySlug(slug, 7200); // 2 hours cache
 
 		if (post) {
+			serverFetchSuccess = true;
 			const title = stripHtml(post.title.rendered);
 			const description = stripHtml(post.excerpt.rendered).substring(
 				0,
@@ -151,11 +185,19 @@ export default async function BlogPostPage({
 				dateModified: post.modified,
 				author: authorName,
 			});
+
+			console.log(`[BlogPostPage] Server fetch success for: ${title} (${slug})`);
+		} else {
+			console.warn(`[BlogPostPage] Post returned null for slug: ${slug}`);
 		}
 	} catch (error) {
-		// Silently handle errors - schema is optional SEO enhancement
+		console.error(`[BlogPostPage] Server fetch error for slug ${slug}:`, error);
+		// Don't throw - let client component handle fetching
 	}
 
+	// Always render BlogPost component - it has robust client-side fetching
+	// This prevents 404 flashes when server fetch fails/timeouts
+	// The component will show skeleton loader → content, never 404 unless post truly doesn't exist
 	return (
 		<>
 			{blogPostSchema && (
