@@ -6,77 +6,40 @@ import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Calendar } from "lucide-react";
-import { getOptimizedImageUrl } from "@/lib/wordpress-images";
-
-interface WPPost {
-	id: number;
-	date: string;
-	title: { rendered: string };
-	excerpt: { rendered: string };
-	slug: string;
-	_embedded?: {
-		"wp:featuredmedia"?: Array<{
-			source_url: string;
-			alt_text: string;
-		}>;
-	};
-}
+import {
+	fetchRecentPosts,
+	stripHtml,
+	formatDate,
+	type WPPost,
+} from "@/lib/wordpress-client";
 
 const RecentArticlesSection = () => {
 	const { ref, isInView } = useInView({ threshold: 0.1 });
 	const [posts, setPosts] = useState<WPPost[]>([]);
 	const [loading, setLoading] = useState(true);
+	const [error, setError] = useState<string | null>(null);
 
 	useEffect(() => {
-		const fetchPosts = async () => {
-			try {
-				const response = await fetch(
-					`/api/posts?_embed=1&per_page=3`
-				);
-				if (!response.ok) {
-					throw new Error("Failed to fetch posts");
-				}
-				const data = await response.json();
-				setPosts(data);
-			} catch (error) {
-				// Silently handle errors - posts will remain empty
-			} finally {
-				setLoading(false);
+		const loadPosts = async () => {
+			setLoading(true);
+			setError(null);
+
+			const result = await fetchRecentPosts({
+				perPage: 3,
+				orderBy: "date",
+				order: "desc",
+			});
+
+			if (result.error) {
+				setError(result.error);
 			}
+
+			setPosts(result.posts);
+			setLoading(false);
 		};
 
-		fetchPosts();
+		loadPosts();
 	}, []);
-
-	const formatDate = (dateString: string) => {
-		const date = new Date(dateString);
-		return date.toLocaleDateString("fr-FR", {
-			day: "numeric",
-			month: "long",
-			year: "numeric",
-		});
-	};
-
-	const stripHtml = (html: string) => {
-		return (
-			html
-				.replace(/<[^>]*>/g, "")
-				.replace(/&nbsp;/g, " ")
-				.replace(/&amp;/g, "&")
-				.replace(/&lt;/g, "<")
-				.replace(/&gt;/g, ">")
-				.replace(/&quot;/g, '"')
-				.replace(/&#039;/g, "'")
-				.replace(/&rsquo;/g, "'")
-				.replace(/&lsquo;/g, "'")
-				.replace(/&rdquo;/g, '"')
-				.replace(/&ldquo;/g, '"')
-				.replace(/&hellip;/g, "...")
-				.replace(/&ndash;/g, "–")
-				.replace(/&mdash;/g, "—")
-				.substring(0, 120) + "..."
-		);
-	};
 
 	return (
 		<section
@@ -123,6 +86,19 @@ const RecentArticlesSection = () => {
 							</div>
 						))}
 					</div>
+				) : error ? (
+					<div className="text-center py-12">
+						<p className="text-muted-foreground">
+							Les articles ne peuvent pas être chargés pour le
+							moment.
+						</p>
+					</div>
+				) : posts.length === 0 ? (
+					<div className="text-center py-12">
+						<p className="text-muted-foreground">
+							Aucun article disponible pour le moment.
+						</p>
+					</div>
 				) : (
 					<div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
 						{posts.map((post, index) => (
@@ -148,16 +124,19 @@ const RecentArticlesSection = () => {
 												"wp:featuredmedia"
 											]?.[0] ? (
 												<Image
-													src={getOptimizedImageUrl(
+													src={
 														post._embedded[
 															"wp:featuredmedia"
 														][0].source_url
-													)}
+													}
 													alt={
 														post._embedded[
 															"wp:featuredmedia"
 														][0].alt_text ||
-														post.title.rendered
+														stripHtml(
+															post.title
+																.rendered
+														)
 													}
 													fill
 													sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"

@@ -1,11 +1,9 @@
 "use client";
 
-import Link from "next/link";
-import Image from "next/image";
 import { useParams, useRouter } from "next/navigation";
-
 import { useEffect, useState } from "react";
-import { WP_API_URL } from "@/lib/wordpress";
+
+const WP_API_URL = process.env.NEXT_PUBLIC_WP_API_URL || 'https://admin.lylusio.fr/wp-json/wp/v2';
 
 /**
  * This component handles WordPress-style article URLs at the root level.
@@ -27,13 +25,25 @@ const ArticleRedirect = () => {
         return;
       }
 
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 5000);
+
       try {
-        const response = await fetch(`${WP_API_URL}/posts?slug=${slug}&_fields=id`);
+        const response = await fetch(`${WP_API_URL}/posts?slug=${slug}&_fields=id`, {
+          signal: controller.signal,
+          headers: { 'Accept': 'application/json' },
+        });
+        clearTimeout(timeoutId);
+
         if (response.ok) {
           const posts = await response.json();
           setIsArticle(posts.length > 0);
+        } else {
+          setIsArticle(false);
         }
-      } catch {
+      } catch (error) {
+        clearTimeout(timeoutId);
+        console.error('Error checking article:', error);
         setIsArticle(false);
       } finally {
         setChecking(false);
