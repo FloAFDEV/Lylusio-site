@@ -35,8 +35,8 @@ const NotFound = () => {
         </div>
 
         <Header />
-        
-        <main className="flex-1 flex items-start justify-center px-4 py-16 md:py-24 relative">
+
+        <main className="flex-1 flex items-start justify-center px-4 pt-20 sm:pt-24 md:pt-28 pb-16 md:pb-24 relative">
           <div className="max-w-lg mx-auto text-center">
             {/* Logo plant decoration */}
             <div className="mb-8 flex justify-center">
