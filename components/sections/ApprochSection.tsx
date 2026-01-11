@@ -7,10 +7,22 @@ import Link from "next/link";
 import Image from "next/image";
 import { Quote } from "lucide-react";
 import GoldenPlantBadge from "@/components/GoldenPlantBadge";
+import { useEffect, useState } from "react";
 
 const ApprochSection = () => {
 	const { ref, isInView } = useInView({ threshold: 0.1 });
 	const parallaxOffset = useParallax(0.08);
+
+	// Detect desktop for conditional rendering
+	const [isDesktop, setIsDesktop] = useState(false);
+	useEffect(() => {
+		if (typeof window !== "undefined") {
+			const checkDesktop = () => setIsDesktop(window.innerWidth >= 1024);
+			checkDesktop();
+			window.addEventListener("resize", checkDesktop, { passive: true });
+			return () => window.removeEventListener("resize", checkDesktop);
+		}
+	}, []);
 
 	return (
 		<section
@@ -25,59 +37,73 @@ const ApprochSection = () => {
 			aria-labelledby="approche-title"
 			suppressHydrationWarning
 		>
-			{/* Parallax Background Tree */}
-			<div className="absolute inset-0 lg:w-1/2" aria-hidden="true">
-				<div className="relative w-full h-[110%] -mt-[5%] overflow-hidden">
-					<Image
-						src="/assets/approche-arbre.webp"
-						alt=""
-						fill
-						quality={40}
-						sizes="(max-width: 1024px) 100vw, 50vw"
-						className="object-cover"
-						priority={false}
-						fetchPriority="low"
-						aria-hidden="true"
-						style={{
-							transform: `translate3d(0, ${parallaxOffset}px, 0)`,
-							willChange: "transform",
-						}}
+			{/* Parallax Background Tree - only desktop */}
+			{isDesktop && (
+				<div className="absolute inset-0 lg:w-1/2" aria-hidden="true">
+					<div className="relative w-full h-[110%] -mt-[5%] overflow-hidden">
+						<Image
+							src="/assets/approche-arbre.webp"
+							alt=""
+							fill
+							quality={40}
+							sizes="(max-width: 1024px) 100vw, 50vw"
+							className="object-cover"
+							priority={false}
+							fetchPriority="low"
+							aria-hidden="true"
+							style={{
+								transform: `translate3d(0, ${parallaxOffset}px, 0)`,
+								willChange: "transform",
+							}}
+						/>
+					</div>
+
+					{/* Gradient overlays */}
+					<div className="absolute inset-0 bg-gradient-to-r from-background/40 via-background/70 to-background lg:from-transparent lg:via-background/40 lg:to-background" />
+					<div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-background/30 lg:from-background/80 lg:via-transparent lg:to-transparent" />
+				</div>
+			)}
+
+			{/* Decorative floating shapes - desktop only */}
+			{isDesktop && (
+				<div
+					className="absolute inset-0 overflow-hidden pointer-events-none"
+					aria-hidden="true"
+				>
+					<div className="absolute top-10 right-10 w-24 h-24 border border-gold rounded-full opacity-30 animate-float" />
+					<GoldenPlantBadge
+						size="lg"
+						className="absolute top-20 right-8 lg:right-1/4 opacity-50"
 					/>
 				</div>
-
-				{/* Gradient overlays */}
-				<div className="absolute inset-0 bg-gradient-to-r from-background/40 via-background/70 to-background lg:from-transparent lg:via-background/40 lg:to-background" />
-				<div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-background/30 lg:from-background/80 lg:via-transparent lg:to-transparent" />
-			</div>
-
-			{/* Decorative floating shapes */}
-			<div
-				className="absolute inset-0 overflow-hidden pointer-events-none"
-				aria-hidden="true"
-			>
-				<div className="absolute top-10 right-10 w-24 h-24 border border-gold rounded-full opacity-30 animate-float" />
-
-				<GoldenPlantBadge
-					size="lg"
-					className="absolute top-20 right-8 lg:right-1/4 opacity-50"
-				/>
-			</div>
+			)}
 
 			{/* Main Content */}
 			<div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8">
 				<div className="flex items-center min-h-[400px] md:min-h-[500px]">
 					{/* Spacer for desktop image */}
-					<div className="hidden lg:block lg:w-[45%]" />
+					{isDesktop && (
+						<div className="hidden lg:block lg:w-[45%]" />
+					)}
 
 					<article
-						className={`w-full lg:w-[55%] motion-safe:transition-opacity duration-1000 delay-150 ${
+						className={`w-full lg:w-[55%] motion-safe:transition-opacity duration-1000 ${
 							isInView ? "opacity-100" : "opacity-0"
+						} ${
+							isDesktop
+								? isInView
+									? "translate-y-0"
+									: "translate-y-12"
+								: ""
 						}`}
 					>
 						<div
-							className="sm:bg-opacity-93 lg:bg-opacity-90 backdrop-blur-lg rounded-2xl lg:rounded-3xl p-6 sm:p-8 md:p-10 shadow-medium border border-border/40 lg:border-border/30 hover:border-gold/30 motion-safe:transition-all duration-500"
+							className="rounded-2xl lg:rounded-3xl p-6 sm:p-8 md:p-10 shadow-medium border border-border/40 lg:border-border/30 hover:border-gold/30"
 							style={{
 								backgroundColor: "rgba(255, 252, 251, 0.95)",
+								backdropFilter: isDesktop
+									? "blur(16px)"
+									: "none",
 							}}
 						>
 							<p className="section-label text-left">
