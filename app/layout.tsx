@@ -175,13 +175,25 @@ export default function RootLayout({
 		<html lang="fr" suppressHydrationWarning data-scroll-behavior="smooth">
 			<head>
 				{/* Preconnect for critical third-party origins - Google Tag Manager */}
-				<link rel="preconnect" href="https://www.googletagmanager.com" />
-				<link rel="preconnect" href="https://www.google-analytics.com" />
+				<link
+					rel="preconnect"
+					href="https://www.googletagmanager.com"
+				/>
+				<link
+					rel="preconnect"
+					href="https://www.google-analytics.com"
+				/>
 
 				{/* DNS prefetch for non-critical but frequent domains */}
 				<link rel="dns-prefetch" href="https://calendly.com" />
 				<link rel="dns-prefetch" href="https://admin.lylusio.fr" />
 				<link rel="dns-prefetch" href="https://www.google.com" />
+
+				{/* Google Site Verification */}
+				<meta
+					name="google-site-verification"
+					content="qvEqpMyLZ2qghUB8znB9u52lYHXensGGH5U6fifRYM0"
+				/>
 
 				{/* Structured Data for SEO */}
 				<LocalBusinessSchema />
@@ -207,11 +219,11 @@ export default function RootLayout({
 					<QueryProvider>
 						<TooltipProvider>
 							<AnalyticsProvider>
-								<PageTransition>
-									{children}
-								</PageTransition>
+								<PageTransition>{children}</PageTransition>
 								<ClientComponents />
-								{process.env.NODE_ENV === "development" && <EnvChecker />}
+								{process.env.NODE_ENV === "development" && (
+									<EnvChecker />
+								)}
 								<Toaster />
 								<Sonner />
 							</AnalyticsProvider>
