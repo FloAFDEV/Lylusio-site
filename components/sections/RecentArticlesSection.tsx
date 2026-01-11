@@ -7,7 +7,6 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Calendar } from "lucide-react";
 import {
-	fetchRecentPosts,
 	stripHtml,
 	formatDate,
 	type WPPost,
@@ -24,18 +23,23 @@ const RecentArticlesSection = () => {
 			setLoading(true);
 			setError(null);
 
-			const result = await fetchRecentPosts({
-				perPage: 3,
-				orderBy: "date",
-				order: "desc",
-			});
+			try {
+				// Use Next.js API route instead of direct WordPress fetch
+				// This avoids CORS/cookie issues in private browsing
+				const response = await fetch('/api/posts?per_page=3&_embed=1');
 
-			if (result.error) {
-				setError(result.error);
+				if (!response.ok) {
+					throw new Error(`API error: ${response.status}`);
+				}
+
+				const posts: WPPost[] = await response.json();
+				setPosts(posts);
+			} catch (err) {
+				console.error('Error loading posts:', err);
+				setError(err instanceof Error ? err.message : 'Failed to load posts');
+			} finally {
+				setLoading(false);
 			}
-
-			setPosts(result.posts);
-			setLoading(false);
 		};
 
 		loadPosts();
