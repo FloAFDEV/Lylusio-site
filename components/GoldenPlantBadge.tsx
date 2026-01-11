@@ -1,3 +1,6 @@
+"use client";
+
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 interface GoldenPlantBadgeProps {
@@ -14,10 +17,10 @@ const sizeClasses = {
 };
 
 const innerSizeClasses = {
-	sm: "w-7 h-7",
-	md: "w-11 h-11",
-	lg: "w-14 h-14",
-	xl: "w-20 h-20",
+	sm: 28, // px
+	md: 44,
+	lg: 56,
+	xl: 80,
 };
 
 const GoldenPlantBadge = ({
@@ -25,36 +28,41 @@ const GoldenPlantBadge = ({
 	className,
 	animate = true,
 }: GoldenPlantBadgeProps) => {
+	const innerSize = innerSizeClasses[size];
+
+	// ✅ Rend le badge décoratif uniquement côté client pour éviter SSR mismatch
+	if (typeof window === "undefined") return null;
+
 	return (
 		<div
 			className={cn(
 				"rounded-full flex items-center justify-center overflow-hidden",
 				"bg-background/95 backdrop-blur-sm",
 				"border-2 border-gold/60 shadow-[0_0_12px_hsl(var(--gold)/0.25)]",
-
-				// ✅ FLOATING PASSIF
 				animate &&
 					"motion-safe:animate-float motion-safe:hover:animate-float-slow",
-
-				// Hover enhancement only
 				"transition-shadow duration-500 hover:shadow-[0_0_20px_hsl(var(--gold)/0.4)]",
-
 				sizeClasses[size],
 				className
 			)}
 			aria-hidden="true"
 		>
-			{/* Image décorative en background CSS - protection maximale */}
 			<div
-				className={cn(
-					"rounded-full bg-cover bg-center",
-					innerSizeClasses[size]
-				)}
-				style={{
-					backgroundImage: "url('/assets/plant-decoration.webp')",
-				}}
+				className="relative rounded-full overflow-hidden"
+				style={{ width: innerSize, height: innerSize }}
 				aria-hidden="true"
-			/>
+			>
+				<Image
+					src="/assets/plant-decoration.webp"
+					alt=""
+					width={innerSize}
+					height={innerSize}
+					className="object-cover"
+					loading="lazy"
+					quality={85}
+					aria-hidden="true"
+				/>
+			</div>
 		</div>
 	);
 };

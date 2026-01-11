@@ -1,14 +1,11 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-	// Configuration stricte pour Next.js 15
 	reactStrictMode: true,
-
-	// Optimisations
 	compress: true,
 	poweredByHeader: false,
 
-	// Experimental features pour meilleures performances
+	// Experimental pour performances et build
 	experimental: {
 		optimizePackageImports: [
 			"lucide-react",
@@ -22,65 +19,49 @@ const nextConfig: NextConfig = {
 			"date-fns",
 		],
 		webpackBuildWorker: true,
-		optimizeCss: true, // Inline critical CSS
+		optimizeCss: true,
 		webpackMemoryOptimizations: true,
 	},
 
-	// Compiler options pour réduire les polyfills
 	compiler: {
-		removeConsole: process.env.NODE_ENV === "production" ? {
-			exclude: ["error", "warn"],
-		} : false,
+		removeConsole:
+			process.env.NODE_ENV === "production"
+				? { exclude: ["error", "warn"] }
+				: false,
 	},
 
-	// Turbopack configuration (Next.js 16+)
 	turbopack: {
-		// Définit explicitement le répertoire racine du workspace
 		root: process.cwd(),
 	},
 
-	// Support des images externes
+	// Config Images externe (WordPress, YouTube)
 	images: {
-		// Autoriser les query strings pour Edge Function locale et assets
-		localPatterns: [
-			{
-				pathname: "/api/wp-image",
-				search: "**",
-			},
-			{
-				pathname: "/assets/**",
-			},
-		],
 		remotePatterns: [
-			// YouTube thumbnails
+			{
+				protocol: "http",
+				hostname: "admin.lylusio.fr",
+				pathname: "/wp-content/uploads/**",
+			},
+			{
+				protocol: "https",
+				hostname: "admin.lylusio.fr",
+				port: "", // port par défaut HTTPS
+				pathname: "/wp-content/uploads/**",
+			},
 			{
 				protocol: "https",
 				hostname: "i.ytimg.com",
 				pathname: "/vi/**",
 			},
-			// WordPress direct (via Edge Function uniquement)
-			{
-				protocol: "https",
-				hostname: "admin.lylusio.fr",
-				pathname: "/wp-content/uploads/**",
-			},
 		],
 		formats: ["image/avif", "image/webp"],
 		deviceSizes: [640, 750, 828, 1080, 1200, 1920],
 		imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
-		minimumCacheTTL: 31536000, // 1 year cache for optimized images
-		dangerouslyAllowSVG: true,
-		contentDispositionType: "attachment",
-		contentSecurityPolicy:
-			"default-src 'self'; script-src 'none'; sandbox;",
-		// Configure quality levels used in the app
-		qualities: [50, 65, 75, 85, 90, 95],
-		unoptimized: false,
-		// Loader personnalisé pour les images WordPress
-		loader: "default",
+		minimumCacheTTL: 31536000,
+		// ✅ Ajout pour que quality={50} ou autres fonctionne
+		qualities: [40, 50, 65, 75, 85, 90, 95],
 	},
 
-	// Redirections WordPress
 	async redirects() {
 		return [
 			// Pages principales avec préfixe /astrologue-cepet-toulouse/
@@ -130,24 +111,7 @@ const nextConfig: NextConfig = {
 				permanent: true,
 			},
 
-			// Redirections catégories blog WordPress
-			{
-				source: "/astrologue-cepet-toulouse/blog/astrologie/:path*",
-				destination: "/category/blog/astrologie/",
-				permanent: true,
-			},
-			{
-				source: "/astrologue-cepet-toulouse/blog/reiki/:path*",
-				destination: "/category/blog/reiki/",
-				permanent: true,
-			},
-			{
-				source: "/astrologue-cepet-toulouse/blog/developpement-personnel/:path*",
-				destination: "/category/blog/developpement-personnel/",
-				permanent: true,
-			},
-
-			// Anciennes URLs simples (redirections internes)
+			// Anciennes URLs simples
 			{
 				source: "/mon-approche",
 				destination: "/approche-therapeutique",
@@ -186,19 +150,15 @@ const nextConfig: NextConfig = {
 		];
 	},
 
-	// Headers de sécurité et performance
 	async headers() {
 		return [
 			{
 				source: "/:path*",
 				headers: [
-					// 🔒 HSTS - Force HTTPS avec preload
 					{
 						key: "Strict-Transport-Security",
 						value: "max-age=63072000; includeSubDomains; preload",
 					},
-
-					// 🔒 CSP - Content Security Policy COMPLET
 					{
 						key: "Content-Security-Policy",
 						value: [
@@ -217,45 +177,20 @@ const nextConfig: NextConfig = {
 							"upgrade-insecure-requests",
 						].join("; "),
 					},
-
-					// 🔒 Clickjacking protection
-					{
-						key: "X-Frame-Options",
-						value: "SAMEORIGIN",
-					},
-
-					// 🔒 MIME type sniffing protection
-					{
-						key: "X-Content-Type-Options",
-						value: "nosniff",
-					},
-
-					// 🔒 XSS Filter (legacy mais utile)
-					{
-						key: "X-XSS-Protection",
-						value: "1; mode=block",
-					},
-
-					// 🔒 Referrer Policy
+					{ key: "X-Frame-Options", value: "SAMEORIGIN" },
+					{ key: "X-Content-Type-Options", value: "nosniff" },
+					{ key: "X-XSS-Protection", value: "1; mode=block" },
 					{
 						key: "Referrer-Policy",
 						value: "strict-origin-when-cross-origin",
 					},
-
-					// 🔒 Permissions Policy (étendu)
 					{
 						key: "Permissions-Policy",
 						value: "camera=(), microphone=(), geolocation=(), interest-cohort=(), payment=(self), usb=()",
 					},
-
-					// ⚡ Performance
-					{
-						key: "X-DNS-Prefetch-Control",
-						value: "on",
-					},
+					{ key: "X-DNS-Prefetch-Control", value: "on" },
 				],
 			},
-			// Cache headers for static assets
 			{
 				source: "/assets/:path*",
 				headers: [
@@ -274,7 +209,6 @@ const nextConfig: NextConfig = {
 					},
 				],
 			},
-			// Cache headers for JS and CSS chunks
 			{
 				source: "/_next/static/:path*",
 				headers: [
