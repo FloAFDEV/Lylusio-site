@@ -351,6 +351,7 @@ const HeroSection = () => {
 								className="object-cover opacity-90 motion-safe:transition-transform duration-700 group-hover:scale-105"
 								quality={75}
 								priority
+								fetchPriority="high"
 							/>
 							<div
 								className="absolute inset-0 bg-gradient-to-t from-background/15 via-transparent to-cream/8 pointer-events-none"
