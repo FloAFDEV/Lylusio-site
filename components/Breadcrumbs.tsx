@@ -134,18 +134,20 @@ const Breadcrumbs = ({ showPlant = true, customTitle }: BreadcrumbsProps) => {
 
 	return (
 		<nav
-			className="container mx-auto px-4 sm:px-6 lg:px-8 pt-16 sm:pt-18 pb-4 relative"
+			className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 mt-16 sm:mt-20"
 			aria-label="Fil d'Ariane"
 		>
 			{showPlant && (
-				<GoldenPlantBadge
-					size="lg"
-					className="absolute -top-2 right-4 md:right-12 opacity-40"
-				/>
+				<div className="relative">
+					<GoldenPlantBadge
+						size="lg"
+						className="absolute -top-4 right-0 md:right-12 opacity-40 pointer-events-none"
+					/>
+				</div>
 			)}
 
 			{/* DESKTOP */}
-			<ol className="hidden sm:flex items-center gap-2 text-sm text-muted-foreground flex-wrap">
+			<ol className="hidden sm:flex items-center gap-2 text-sm text-muted-foreground flex-wrap mt-2">
 				<li className="flex-shrink-0">
 					<Link
 						href="/"
@@ -177,15 +179,7 @@ const Breadcrumbs = ({ showPlant = true, customTitle }: BreadcrumbsProps) => {
 			</ol>
 
 			{/* MOBILE */}
-			<ol
-				className="
-    flex sm:hidden items-center
-    text-xs text-muted-foreground
-    flex-nowrap overflow-x-auto no-scrollbar
-    list-none p-0 m-0 mt-4
-  "
-			>
-				{/* Home */}
+			<ol className="flex sm:hidden items-center text-xs text-muted-foreground flex-nowrap overflow-x-auto no-scrollbar list-none p-0 m-0 mt-4">
 				<li className="flex-shrink-0">
 					<Link
 						href="/"
@@ -196,12 +190,10 @@ const Breadcrumbs = ({ showPlant = true, customTitle }: BreadcrumbsProps) => {
 					</Link>
 				</li>
 
-				{/* Chevron */}
 				<li className="flex-shrink-0 flex items-center">
 					<ChevronRight className="mx-0.5 w-3 h-3 text-muted-foreground/70" />
 				</li>
 
-				{/* 1 seul breadcrumb */}
 				{breadcrumbs.length === 1 ? (
 					<li className="font-medium text-foreground truncate max-w-[70vw]">
 						{breadcrumbs[0].name}
