@@ -174,15 +174,6 @@ export default function RootLayout({
 	return (
 		<html lang="fr" suppressHydrationWarning data-scroll-behavior="smooth">
 			<head>
-				{/* Preload LCP image for faster loading */}
-				<link
-					rel="preload"
-					as="image"
-					href="/_next/image?url=%2Fassets%2Femilie-hero.webp&w=384&q=75"
-					imageSrcSet="/_next/image?url=%2Fassets%2Femilie-hero.webp&w=256&q=75 256w, /_next/image?url=%2Fassets%2Femilie-hero.webp&w=384&q=75 384w"
-					imageSizes="(max-width: 640px) 200px, 240px"
-				/>
-
 				{/* Preconnect for critical third-party origins - Google Tag Manager */}
 				<link rel="preconnect" href="https://www.googletagmanager.com" />
 				<link rel="preconnect" href="https://www.google-analytics.com" />
