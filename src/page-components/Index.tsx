@@ -5,17 +5,25 @@ import Footer from "@/components/layout/Footer";
 import HeroSection from "@/components/sections/HeroSection";
 import ApprochSection from "@/components/sections/ApprochSection";
 import QuiSuisJeSection from "@/components/sections/QuiSuisJeSection";
-import ServicesPreview from "@/components/sections/ServicesPreview";
-import ProcessSection from "@/components/sections/ProcessSection";
 
 // Lazy-load below-the-fold content (SSR activé, pas de ssr: false)
-const RecentArticlesSection = dynamic(
-  () => import("@/components/sections/RecentArticlesSection"),
+const ServicesPreview = dynamic(
+  () => import("@/components/sections/ServicesPreview"),
+  { loading: () => <div className="section-padding" /> }
+);
+
+const ProcessSection = dynamic(
+  () => import("@/components/sections/ProcessSection"),
   { loading: () => <div className="section-padding" /> }
 );
 
 const TestimonialsSection = dynamic(
   () => import("@/components/sections/TestimonialsSection"),
+  { loading: () => <div className="section-padding" /> }
+);
+
+const RecentArticlesSection = dynamic(
+  () => import("@/components/sections/RecentArticlesSection"),
   { loading: () => <div className="section-padding" /> }
 );
 

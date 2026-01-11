@@ -35,8 +35,7 @@ const ApprochSection = () => {
 						quality={40}
 						sizes="(max-width: 1024px) 100vw, 50vw"
 						className="object-cover"
-						priority={false}
-						fetchPriority="low"
+						priority={true}
 						aria-hidden="true"
 						style={{
 							transform: `translate3d(0, ${parallaxOffset}px, 0)`,
