@@ -39,10 +39,7 @@ const ApprochSection = () => {
 						fetchPriority="low"
 						aria-hidden="true"
 						style={{
-							transform:
-								typeof window !== "undefined"
-									? `translate3d(0, ${parallaxOffset}px, 0)`
-									: "none",
+							transform: `translate3d(0, ${parallaxOffset}px, 0)`,
 							willChange: "transform",
 						}}
 					/>

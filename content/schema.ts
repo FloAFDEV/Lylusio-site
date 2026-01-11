@@ -221,3 +221,28 @@ export const howToSchema = {
   totalTime: 'PT1H',
   tool: ['Astrologie psychologique', 'Reiki Usui', 'Écoute profonde'],
 };
+
+// BreadcrumbList schema generator for better SEO
+export interface BreadcrumbItem {
+  name: string;
+  url: string;
+}
+
+export function generateBreadcrumbSchema(items: BreadcrumbItem[]) {
+  // Always include home as first item
+  const allItems = [
+    { name: 'Accueil', url: baseUrl },
+    ...items,
+  ];
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: allItems.map((item, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: item.name,
+      item: item.url,
+    })),
+  };
+}

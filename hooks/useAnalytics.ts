@@ -22,7 +22,7 @@ declare global {
   }
 }
 
-// Initialise GA4 uniquement en production
+// Initialise GA4 uniquement en production avec délai pour réduire TBT
 export const initGA = () => {
   if (!isProduction()) {
     console.log('[GA4] Mode développement - Analytics désactivé');
@@ -43,13 +43,23 @@ export const initGA = () => {
     send_page_view: false, // On gère manuellement les pageviews
   });
 
-  // Charger le script gtag
-  const script = document.createElement('script');
-  script.async = true;
-  script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`;
-  document.head.appendChild(script);
+  // ✅ Charger le script après un délai pour réduire TBT (Total Blocking Time)
+  // et permettre au contenu principal de se charger en priorité
+  const loadGAScript = () => {
+    const script = document.createElement('script');
+    script.async = true;
+    script.defer = true;
+    script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`;
+    document.head.appendChild(script);
+    console.log('[GA4] Analytics initialisé');
+  };
 
-  console.log('[GA4] Analytics initialisé');
+  // Charger après que le navigateur soit idle ou après 3s max
+  if ('requestIdleCallback' in window) {
+    requestIdleCallback(loadGAScript, { timeout: 3000 });
+  } else {
+    setTimeout(loadGAScript, 2000);
+  }
 };
 
 // Fonction pour tracker les pages vues manuellement

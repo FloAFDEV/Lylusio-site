@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 
@@ -29,9 +30,12 @@ const GoldenPlantBadge = ({
 	animate = true,
 }: GoldenPlantBadgeProps) => {
 	const innerSize = innerSizeClasses[size];
+	const [mounted, setMounted] = useState(false);
 
-	// ✅ Rend le badge décoratif uniquement côté client pour éviter SSR mismatch
-	if (typeof window === "undefined") return null;
+	// ✅ Fix hydration: render same content on server and initial client render
+	useEffect(() => {
+		setMounted(true);
+	}, []);
 
 	return (
 		<div
@@ -43,6 +47,9 @@ const GoldenPlantBadge = ({
 					"motion-safe:animate-float motion-safe:hover:animate-float-slow",
 				"transition-shadow duration-500 hover:shadow-[0_0_20px_hsl(var(--gold)/0.4)]",
 				sizeClasses[size],
+				// Only apply full opacity after mount to ensure smooth appearance
+				mounted ? "opacity-100" : "opacity-0",
+				"transition-opacity duration-300",
 				className
 			)}
 			aria-hidden="true"
