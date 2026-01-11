@@ -21,8 +21,6 @@ const nextConfig: NextConfig = {
 		webpackBuildWorker: true,
 		optimizeCss: true,
 		webpackMemoryOptimizations: true,
-		// Inline critical CSS to reduce render-blocking
-		cssChunking: 'strict',
 	},
 
 	compiler: {
