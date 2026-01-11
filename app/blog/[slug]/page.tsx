@@ -65,9 +65,11 @@ export async function generateStaticParams() {
 			revalidate: 3600, // 1 hour cache for build
 		});
 
-		console.log(`[generateStaticParams] Pre-generating ${posts.length} article pages`);
+		console.log(
+			`[generateStaticParams] Pre-generating ${posts.length} article pages`
+		);
 
-		return posts.map((post: any) => ({
+		return posts.map((post: WPPost) => ({
 			slug: post.slug,
 		}));
 	} catch (error) {
@@ -80,9 +82,9 @@ export async function generateStaticParams() {
 export async function generateMetadata({
 	params,
 }: {
-	params: Promise<{ slug: string }>;
+	params: { slug: string }; // fix TS type pour Next.js 15+
 }): Promise<Metadata> {
-	const { slug } = await params;
+	const { slug } = params;
 
 	try {
 		const post = await fetchPostBySlug(slug, 7200); // 2 hours cache
@@ -101,12 +103,13 @@ export async function generateMetadata({
 		const featuredImage = post._embedded?.["wp:featuredmedia"]?.[0];
 
 		const imageUrl = getOptimizedImageUrl(featuredImage?.source_url);
-
 		const imageAlt = featuredImage?.alt_text || title;
 		const authorName = post._embedded?.author?.[0]?.name || "Émilie Perez";
 		const url = `https://lylusio.fr/blog/${slug}`;
 
-		console.log(`[generateMetadata] Generated metadata for: ${title} (${slug})`);
+		console.log(
+			`[generateMetadata] Generated metadata for: ${title} (${slug})`
+		);
 
 		return {
 			title: `${title} | Lylusio`,
@@ -154,9 +157,9 @@ export async function generateMetadata({
 export default async function BlogPostPage({
 	params,
 }: {
-	params: Promise<{ slug: string }>;
+	params: { slug: string }; // fix TS type
 }) {
-	const { slug } = await params;
+	const { slug } = params;
 
 	let blogPostSchema = null;
 	let serverFetchSuccess = false;
@@ -186,12 +189,17 @@ export default async function BlogPostPage({
 				author: authorName,
 			});
 
-			console.log(`[BlogPostPage] Server fetch success for: ${title} (${slug})`);
+			console.log(
+				`[BlogPostPage] Server fetch success for: ${title} (${slug})`
+			);
 		} else {
 			console.warn(`[BlogPostPage] Post returned null for slug: ${slug}`);
 		}
 	} catch (error) {
-		console.error(`[BlogPostPage] Server fetch error for slug ${slug}:`, error);
+		console.error(
+			`[BlogPostPage] Server fetch error for slug ${slug}:`,
+			error
+		);
 		// Don't throw - let client component handle fetching
 	}
 
