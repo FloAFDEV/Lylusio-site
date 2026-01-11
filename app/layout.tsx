@@ -143,13 +143,6 @@ export const metadata: Metadata = {
 		},
 	},
 
-	// Verification codes
-	verification: {
-		google: "votre-code-google-search-console",
-		// yandex: 'votre-code-yandex',
-		// bing: 'votre-code-bing',
-	},
-
 	// Autres métadonnées
 	alternates: {
 		canonical: "https://lylusio.fr",
