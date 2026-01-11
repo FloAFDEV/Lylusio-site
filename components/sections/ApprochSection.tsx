@@ -32,17 +32,16 @@ const ApprochSection = () => {
 						src="/assets/approche-arbre.webp"
 						alt=""
 						fill
-						quality={50}
-						className="object-cover"
-						loading="lazy"
+						quality={40}
 						sizes="(max-width: 1024px) 100vw, 50vw"
-						style={{
-							transform:
-								typeof window !== "undefined"
-									? `translate3d(0, ${parallaxOffset}px, 0)`
-									: undefined,
-						}}
+						className="object-cover"
+						priority={false}
+						fetchPriority="low"
 						aria-hidden="true"
+						style={{
+							transform: `translate3d(0, ${parallaxOffset}px, 0)`,
+							willChange: "transform",
+						}}
 					/>
 				</div>
 
@@ -71,10 +70,8 @@ const ApprochSection = () => {
 					<div className="hidden lg:block lg:w-[45%]" />
 
 					<article
-						className={`w-full lg:w-[55%] motion-safe:transition-all duration-1000 delay-150 ${
-							isInView
-								? "opacity-100 translate-y-0"
-								: "opacity-0 translate-y-12"
+						className={`w-full lg:w-[55%] motion-safe:transition-opacity duration-1000 delay-150 ${
+							isInView ? "opacity-100" : "opacity-0"
 						}`}
 					>
 						<div
