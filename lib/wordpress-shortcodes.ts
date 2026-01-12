@@ -81,17 +81,27 @@ export function hideWordPressCaptions(content: string): string {
 export function processWordPressContent(content: string): string {
 	if (!content) return "";
 
-	// 1. Supprimer les shortcodes
-	let processed = removeWordPressShortcodes(content);
+	let processed = content;
 
-	// 2. Masquer les captions décoratifs (aria-hidden)
-	processed = hideWordPressCaptions(processed);
+	// 1. Supprimer TOUTES les figcaption (captions WordPress HTML)
+	processed = processed.replace(/<figcaption[\s\S]*?<\/figcaption>/gi, '');
 
-	// 3. Nettoyer les classes WordPress inutiles
+	// 2. Supprimer TOUS les shortcodes [caption]...[/caption]
+	processed = processed.replace(/\[caption[\s\S]*?\[\/caption\]/gi, '');
+
+	// 3. Supprimer les shortcodes WordPress standards
+	processed = removeWordPressShortcodes(processed);
+
+	// 4. Nettoyer les classes WordPress inutiles
 	processed = processed.replace(/\sclass="[^"]*wp-image-\d+[^"]*"/gi, "");
+	processed = processed.replace(/\sclass="[^"]*wp-caption[^"]*"/gi, "");
 
-	// 4. Supprimer les attributs style inline
+	// 5. Supprimer les attributs style inline
 	processed = processed.replace(/\sstyle="[^"]*"/gi, "");
 
-	return processed;
+	// 6. Nettoyer les espaces multiples et paragraphes vides
+	processed = processed.replace(/\s{2,}/g, " ");
+	processed = processed.replace(/<p>\s*<\/p>/gi, "");
+
+	return processed.trim();
 }
