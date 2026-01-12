@@ -106,14 +106,14 @@ export default {
 				},
 			},
 			fontFamily: {
-				display: ["Cormorant Garamond", "Georgia", "serif"],
+				display: ["var(--font-display)", "Georgia", "serif"],
 				body: [
-					"Source Sans 3",
+					"var(--font-body)",
 					"-apple-system",
 					"BlinkMacSystemFont",
 					"sans-serif",
 				],
-				calligraphic: ["Dancing Script", "cursive"],
+				calligraphic: ["var(--font-calligraphic)", "cursive"],
 			},
 			borderRadius: {
 				lg: "var(--radius)",
