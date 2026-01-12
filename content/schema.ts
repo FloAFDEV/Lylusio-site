@@ -144,10 +144,12 @@ export interface BlogPostSchemaProps {
   datePublished: string;
   dateModified?: string;
   author?: string;
+  wordCount?: number;
+  hasVideo?: boolean;
 }
 
 export function generateBlogPostSchema(props: BlogPostSchemaProps) {
-  return {
+  const schema: any = {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
     headline: props.title,
@@ -156,6 +158,7 @@ export function generateBlogPostSchema(props: BlogPostSchemaProps) {
     image: props.image || `${baseUrl}/assets/logo-lylusio.webp`,
     datePublished: props.datePublished,
     dateModified: props.dateModified || props.datePublished,
+    inLanguage: 'fr-FR',
     author: {
       '@type': 'Person',
       name: props.author || 'Émilie Perez',
@@ -167,6 +170,22 @@ export function generateBlogPostSchema(props: BlogPostSchemaProps) {
       '@id': props.url,
     },
   };
+
+  // Ajouter wordCount si disponible
+  if (props.wordCount) {
+    schema.wordCount = props.wordCount;
+  }
+
+  // Ajouter uploadDate si vidéo présente
+  if (props.hasVideo) {
+    schema.uploadDate = props.datePublished;
+    schema.video = {
+      '@type': 'VideoObject',
+      uploadDate: props.datePublished,
+    };
+  }
+
+  return schema;
 }
 
 export interface FAQSchemaItem {

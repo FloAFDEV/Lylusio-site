@@ -15,6 +15,8 @@ import LazyImage from "@/components/LazyImage";
 import { Button } from "@/components/ui/button";
 import * as utils from "@/lib/utils";
 import { getOptimizedImageUrl, transformContentImages } from "@/lib/wordpress-images";
+import { processWordPressContent } from "@/lib/wordpress-shortcodes";
+import { optimizeContentImages } from "@/lib/wordpress-content-images";
 import { CALENDLY_URLS } from "@/lib/calendly";
 
 import {
@@ -310,12 +312,22 @@ const BlogPost = () => {
 				const mediaId = featuredMedia?.id;
 
 				let content = wpPost.content.rendered;
+
+				// 1. Supprimer l'image à la une du contenu
 				content = removeFeaturedImageFromContent(
 					content,
 					imageUrl,
 					mediaId
 				);
+
+				// 2. Nettoyer les shortcodes WordPress
+				content = processWordPressContent(content);
+
+				// 3. Transformer les images
 				content = processContent(content);
+
+				// 4. Optimiser les images du contenu
+				content = optimizeContentImages(content);
 
 				return {
 					id: wpPost.id,

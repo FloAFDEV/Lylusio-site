@@ -197,7 +197,7 @@ const HeroSection = () => {
 			element.scrollIntoView({
 				behavior: "smooth",
 				block: "start",
-				inline: "nearest"
+				inline: "nearest",
 			});
 		}
 	}, []);
@@ -351,6 +351,7 @@ const HeroSection = () => {
 								className="object-cover opacity-90 motion-safe:transition-transform duration-700 group-hover:scale-105"
 								quality={75}
 								priority
+								fetchPriority="high"
 							/>
 							<div
 								className="absolute inset-0 bg-gradient-to-t from-background/15 via-transparent to-cream/8 pointer-events-none"
@@ -370,7 +371,8 @@ const HeroSection = () => {
 							<div
 								className="w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 rounded-full bg-cover bg-center"
 								style={{
-									backgroundImage: "url('/assets/plant-decoration.webp')",
+									backgroundImage:
+										"url('/assets/plant-decoration.webp')",
 								}}
 								aria-hidden="true"
 							/>

@@ -179,6 +179,11 @@ export default async function BlogPostPage({
 			const authorName =
 				post._embedded?.author?.[0]?.name || "Émilie Perez";
 
+			const wordCount = post.content.rendered.split(/\s+/).length;
+			const hasVideo =
+				post.content.rendered.includes("<video") ||
+				post.content.rendered.includes("<iframe");
+
 			blogPostSchema = generateBlogPostSchema({
 				title,
 				description,
@@ -187,6 +192,8 @@ export default async function BlogPostPage({
 				datePublished: post.date,
 				dateModified: post.modified,
 				author: authorName,
+				wordCount,
+				hasVideo,
 			});
 
 			console.log(

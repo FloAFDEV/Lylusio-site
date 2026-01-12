@@ -1,5 +1,11 @@
 import { Metadata } from "next";
-import BlogCategory from "@/src/page-components/BlogCategory";
+import BlogCategoryClient from "@/src/page-components/BlogCategoryClient";
+import {
+	fetchPosts,
+	CACHE_DURATIONS,
+} from "@/lib/wordpress-cache";
+import { getOptimizedImageUrl } from "@/lib/wordpress-images";
+import { notFound } from "next/navigation";
 
 const WP_API_URL =
 	process.env.NEXT_PUBLIC_WP_API_URL ||
@@ -11,6 +17,20 @@ interface WPCategory {
 	slug: string;
 	description: string;
 	count: number;
+}
+
+interface WPPost {
+	id: number;
+	date: string;
+	title: { rendered: string };
+	excerpt: { rendered: string };
+	slug: string;
+	_embedded?: {
+		"wp:featuredmedia"?: Array<{
+			source_url: string;
+			alt_text?: string;
+		}>;
+	};
 }
 
 const CATEGORY_SLUG_MAP: Record<string, string> = {
@@ -40,6 +60,15 @@ const stripHtml = (html: string): string => {
 		.trim();
 };
 
+const formatDate = (dateString: string): string => {
+	const date = new Date(dateString);
+	return date.toLocaleDateString("fr-FR", {
+		day: "numeric",
+		month: "short",
+		year: "numeric",
+	});
+};
+
 export async function generateMetadata({
 	params,
 }: {
@@ -52,7 +81,7 @@ export async function generateMetadata({
 		const res = await fetch(
 			`${WP_API_URL}/categories?slug=${wpCategorySlug}`,
 			{
-				next: { revalidate: 3600 }, // Cache 1h
+				next: { revalidate: 3600 },
 			}
 		);
 
@@ -77,7 +106,7 @@ export async function generateMetadata({
 		const categoryDescription = category.description
 			? stripHtml(category.description)
 			: `Découvrez tous nos articles sur ${categoryName.toLowerCase()}`;
-		const url = `https://lylusio.fr/category/blog/${categorySlug}/`;
+		const url = `https://lylusio.fr/category/blog/${categorySlug}`;
 
 		return {
 			title: `${categoryName} - Blog | Lylusio`,
@@ -125,21 +154,23 @@ export default async function BlogCategoryPage({
 	const { categorySlug } = await params;
 	const wpCategorySlug = CATEGORY_SLUG_MAP[categorySlug] || categorySlug;
 
+	let category: WPCategory | null = null;
 	let collectionPageSchema = null;
 
+	// Fetch category info
 	try {
 		const res = await fetch(
 			`${WP_API_URL}/categories?slug=${wpCategorySlug}`,
 			{
-				next: { revalidate: 3600 },
+				next: { revalidate: CACHE_DURATIONS.CATEGORIES },
 			}
 		);
 
 		if (res.ok) {
 			const categories: WPCategory[] = await res.json();
-
 			if (categories.length > 0) {
-				const category = categories[0];
+				category = categories[0];
+
 				const categoryName = category.name;
 				const categoryDescription = category.description
 					? stripHtml(category.description)
@@ -150,7 +181,7 @@ export default async function BlogCategoryPage({
 					"@type": "CollectionPage",
 					name: `${categoryName} - Blog Lylusio`,
 					description: categoryDescription,
-					url: `https://lylusio.fr/category/blog/${categorySlug}/`,
+					url: `https://lylusio.fr/category/blog/${categorySlug}`,
 					isPartOf: {
 						"@type": "Blog",
 						name: "Blog Lylusio",
@@ -160,7 +191,43 @@ export default async function BlogCategoryPage({
 			}
 		}
 	} catch (error) {
-		console.error("Error generating collection page schema:", error);
+		console.error("Error fetching category:", error);
+	}
+
+	if (!category) {
+		notFound();
+	}
+
+	// Fetch posts for this category (SSR)
+	let posts: any[] = [];
+	try {
+		const result = await fetchPosts({
+			perPage: 100,
+			categoryId: category.id,
+			embed: true,
+			revalidate: CACHE_DURATIONS.POSTS,
+		});
+
+		posts = result.posts.map((post: WPPost) => {
+			const imageObj = post._embedded?.["wp:featuredmedia"]?.[0];
+			const imageUrl = getOptimizedImageUrl(imageObj?.source_url);
+			const imageAlt =
+				imageObj?.alt_text || stripHtml(post.title.rendered);
+
+			return {
+				id: post.id,
+				title: stripHtml(post.title.rendered),
+				excerpt:
+					stripHtml(post.excerpt.rendered).slice(0, 150) + "...",
+				date: formatDate(post.date),
+				rawDate: post.date,
+				slug: post.slug,
+				image: imageUrl,
+				imageAlt,
+			};
+		});
+	} catch (error) {
+		console.error("Error fetching category posts:", error);
 	}
 
 	return (
@@ -173,7 +240,11 @@ export default async function BlogCategoryPage({
 					}}
 				/>
 			)}
-			<BlogCategory />
+			<BlogCategoryClient
+				initialPosts={posts}
+				category={category}
+				categorySlug={categorySlug}
+			/>
 		</>
 	);
 }
