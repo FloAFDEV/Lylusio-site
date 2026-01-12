@@ -1,55 +1,28 @@
 "use client";
 
 import { memo, useCallback } from "react";
+import dynamic from "next/dynamic";
 import { Button } from "@/components/ui/button";
 import { ChevronDown, MapPin } from "lucide-react";
 import Image from "next/image";
 import { useParallax } from "@/hooks/useParallax";
+// import emilieHero from "@/assets/emilie-hero.webp"; // Now using /assets/emilie-hero.webp
+// import plantDecoration from "@/assets/plant-decoration.webp"; // Now using /assets/plant-decoration.webp
 
-/**
- * 🎯 OPTIMISATIONS APPLIQUÉES :
- *
- * 1. SSR-SAFE : Tous les composants génèrent le même HTML côté serveur et client
- *    - CelestialStars : générateur déterministe (pas de Math.random())
- *    - Pas de window, pas de useEffect pour le rendu initial
- *
- * 2. IMAGES OPTIMISÉES :
- *    - Hero : priority + fetchPriority="high" pour LCP optimal
- *    - Badge plante : CSS background-image pour éviter hydration
- *    - Sizes optimisés pour responsive
- *
- * 3. PERFORMANCE :
- *    - Memo sur tous les sous-composants
- *    - Blur réduit sur mobile (blur-xl au lieu de blur-3xl)
- *    - Will-change sur parallax pour GPU
- *    - Lazy-load images non critiques
- *
- * 4. ACCESSIBILITÉ :
- *    - aria-hidden sur décoratif
- *    - aria-label sur CTA et boutons
- *    - Focus visible sur tous les interactifs
- *
- * 5. SEO :
- *    - Alt texte descriptif sur hero
- *    - Headings structurés (h1)
- *    - Semantic HTML
- */
+// Tous les composants sont maintenant SSR-safe (pas de Math.random, pas de window)
+// Plus besoin de ssr: false - le HTML sera identique côté serveur et client
 
-// ===========================
-// 🌟 CELESTIAL STARS
-// ===========================
-// Étoiles scintillantes avec positions déterministes
-// Utilise un seed fixe pour éviter l'hydration mismatch
+// CelestialStars - Étoiles scintillantes avec positions déterministes
+// Utilise un seed fixe pour éviter l'hydration mismatch (pas de Math.random())
 const CelestialStars = memo(() => {
 	// Générateur de nombres pseudo-aléatoires déterministe (seeded PRNG)
-	// Même seed = même résultat SSR et client
 	const seededRandom = (seed: number) => {
 		const x = Math.sin(seed) * 10000;
 		return x - Math.floor(x);
 	};
 
-	// Générer les étoiles de façon déterministe
-	// toFixed() élimine les différences de précision flottante entre SSR et client
+	// Générer les étoiles de façon déterministe (même résultat SSR et client)
+	// Utiliser toFixed() pour éliminer les différences de précision entre SSR et client
 	const stars = [...Array(20)].map((_, i) => {
 		const r1 = seededRandom(i * 3 + 1);
 		const r2 = seededRandom(i * 3 + 2);
@@ -96,30 +69,25 @@ const CelestialStars = memo(() => {
 
 CelestialStars.displayName = "CelestialStars";
 
-// ===========================
-// ☁️ SOFT CLOUDS
-// ===========================
-// Nuages flottants avec parallax
+// SoftClouds - Nuages flottants avec parallax (Lovable)
 // Blur réduit sur mobile pour performances
 const SoftClouds = memo(({ parallaxOffset }: { parallaxOffset: number }) => (
 	<div
 		className="absolute inset-0 pointer-events-none overflow-hidden"
 		aria-hidden="true"
 	>
-		{/* Cloud 1 - top right */}
+		{/* Cloud 1 - top right - blur réduit sur mobile */}
 		<div
 			className="absolute -top-10 right-[10%] w-80 h-40 bg-white/30 rounded-full blur-xl md:blur-3xl"
 			style={{
 				transform: `translate3d(0, ${parallaxOffset * 0.2}px, 0)`,
-				willChange: "transform",
 			}}
 		/>
-		{/* Cloud 2 - top left */}
+		{/* Cloud 2 - top left - blur réduit sur mobile */}
 		<div
 			className="absolute top-[5%] -left-10 w-60 h-32 bg-white/25 rounded-full blur-xl md:blur-3xl"
 			style={{
 				transform: `translate3d(0, ${parallaxOffset * 0.3}px, 0)`,
-				willChange: "transform",
 			}}
 		/>
 		{/* Cloud 3 - middle - desktop only */}
@@ -127,7 +95,6 @@ const SoftClouds = memo(({ parallaxOffset }: { parallaxOffset: number }) => (
 			className="absolute top-[30%] right-[30%] w-48 h-24 bg-gradient-sky-center/40 rounded-full blur-xl md:blur-2xl hidden md:block"
 			style={{
 				transform: `translate3d(0, ${parallaxOffset * 0.15}px, 0)`,
-				willChange: "transform",
 			}}
 		/>
 	</div>
@@ -135,10 +102,7 @@ const SoftClouds = memo(({ parallaxOffset }: { parallaxOffset: number }) => (
 
 SoftClouds.displayName = "SoftClouds";
 
-// ===========================
-// ✍️ HANDWRITTEN SIGNATURE
-// ===========================
-// Signature SVG mémorisée avec parallax
+// Signature SVG mémorisée pour optimisation
 const HandwrittenSignature = memo(
 	({ parallaxOffset }: { parallaxOffset: number }) => (
 		<div
@@ -146,7 +110,6 @@ const HandwrittenSignature = memo(
 			aria-hidden="true"
 			style={{
 				transform: `translate3d(0, ${parallaxOffset * 0.3}px, 0)`,
-				willChange: "transform",
 			}}
 		>
 			<svg
@@ -184,10 +147,7 @@ const HandwrittenSignature = memo(
 
 HandwrittenSignature.displayName = "HandwrittenSignature";
 
-// ===========================
-// 🎨 ORGANIC SHAPES
-// ===========================
-// Formes organiques d'arrière-plan avec parallax
+// Formes organiques d'arrière-plan
 const OrganicShapes = memo(({ parallaxOffset }: { parallaxOffset: number }) => (
 	<div
 		className="absolute inset-0 pointer-events-none hidden sm:block"
@@ -197,14 +157,12 @@ const OrganicShapes = memo(({ parallaxOffset }: { parallaxOffset: number }) => (
 			className="absolute -top-32 -right-32 w-72 md:w-96 h-72 md:h-96 bg-gold/20 rounded-full blur-3xl"
 			style={{
 				transform: `translate3d(0, ${parallaxOffset * 0.5}px, 0)`,
-				willChange: "transform",
 			}}
 		/>
 		<div
 			className="absolute -bottom-32 -left-32 w-60 md:w-80 h-60 md:h-80 bg-accent/20 rounded-full blur-3xl"
 			style={{
 				transform: `translate3d(0, ${-parallaxOffset * 0.3}px, 0)`,
-				willChange: "transform",
 			}}
 		/>
 	</div>
@@ -212,10 +170,7 @@ const OrganicShapes = memo(({ parallaxOffset }: { parallaxOffset: number }) => (
 
 OrganicShapes.displayName = "OrganicShapes";
 
-// ===========================
-// ⭕ DECORATIVE CIRCLES
-// ===========================
-// Cercles statiques décalés autour de la photo
+// DecorativeCircles - Cercles statiques décalés autour de la photo
 const DecorativeCircles = memo(() => (
 	<div className="hidden sm:block">
 		<div
@@ -231,17 +186,14 @@ const DecorativeCircles = memo(() => (
 
 DecorativeCircles.displayName = "DecorativeCircles";
 
-// ===========================
-// 🎭 MAIN HERO SECTION
-// ===========================
 const HeroSection = () => {
 	const parallaxOffset = useParallax(0.15);
 
 	const scrollToNext = useCallback(() => {
 		const element = document.querySelector("#approche");
 		if (element) {
-			// ✅ scrollIntoView évite le forced reflow
-			// scroll-margin-top gère l'offset du header
+			// ✅ Use scrollIntoView instead of getBoundingClientRect to avoid forced reflow
+			// scroll-margin-top in ApprochSection handles header offset
 			element.scrollIntoView({
 				behavior: "smooth",
 				block: "start",
@@ -260,15 +212,17 @@ const HeroSection = () => {
 			}}
 			aria-labelledby="hero-title"
 		>
-			{/* 🌌 Éléments célestes - rendus au SSR pour éviter le clignotement */}
+			{/* Éléments célestes - rendus au SSR pour éviter le clignotement */}
 			<CelestialStars />
 			<SoftClouds parallaxOffset={parallaxOffset} />
 			<HandwrittenSignature parallaxOffset={parallaxOffset} />
+
+			{/* Formes organiques d'arrière-plan */}
 			<OrganicShapes parallaxOffset={parallaxOffset} />
 
-			{/* 📝 Contenu principal */}
+			{/* Contenu principal */}
 			<div className="relative z-10 container-wide section-padding grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center">
-				{/* 📄 Contenu textuel - Gauche */}
+				{/* Contenu textuel - Gauche */}
 				<div className="lg:col-span-7 max-w-2xl mx-auto lg:mx-0 text-center lg:text-left order-2 lg:order-1">
 					<p className="font-body text-xs text-muted-foreground uppercase tracking-[0.3em] mb-4">
 						À Toulouse & en ligne
@@ -328,7 +282,7 @@ const HeroSection = () => {
 						<p className="text-muted-foreground/80 text-sm md:text-base lg:text-lg leading-relaxed max-w-prose mx-auto lg:mx-0">
 							J'accompagne les femmes à retrouver sens, apaisement
 							et confiance, à travers une approche qui unit un
-							travail de conscience émotionnelle, de l'astrologie
+							travail de conscience émotionnelle, de l’astrologie
 							symbolique et du Reiki.
 						</p>
 
@@ -353,7 +307,6 @@ const HeroSection = () => {
 						</p>
 					</div>
 
-					{/* 🎯 CTA Principal */}
 					<div className="flex justify-center lg:justify-start">
 						<Button
 							asChild
@@ -371,7 +324,7 @@ const HeroSection = () => {
 						</Button>
 					</div>
 
-					{/* ✍️ Signature manuscrite */}
+					{/* Pied manuscrit - Émilie Perez */}
 					<p
 						className="mt-8 sm:mt-10 font-calligraphic text-xl sm:text-2xl md:text-3xl text-navy/90 dark:text-gold/50 animate-handwriting"
 						style={{
@@ -384,11 +337,11 @@ const HeroSection = () => {
 					</p>
 				</div>
 
-				{/* 📸 Photo avec décoration - Droite */}
+				{/* Photo avec parallax - Droite */}
 				<div className="lg:col-span-5 relative order-1 lg:order-2 pt-4 sm:pt-6 md:pt-8 lg:pt-0">
-					{/* 🖼️ Container SSR-safe avec dimensions fixes */}
+					{/* Container with fixed dimensions - SSR safe */}
 					<div className="relative mx-auto w-[200px] sm:w-[240px] h-[200px] sm:h-[240px]">
-						{/* 🎨 Photo principale avec Next.js Image optimisé */}
+						{/* Photo principale - Pure SSR, no parallax on image container */}
 						<div className="aspect-square rounded-full overflow-hidden shadow-gold relative group">
 							<Image
 								src="/assets/emilie-hero.webp"
@@ -396,26 +349,25 @@ const HeroSection = () => {
 								fill
 								sizes="(max-width: 640px) 200px, 240px"
 								className="object-cover opacity-90 motion-safe:transition-transform duration-700 group-hover:scale-105"
-								quality={85}
+								quality={75}
 								priority
 								fetchPriority="high"
 							/>
-							{/* 🌅 Gradient overlay */}
 							<div
 								className="absolute inset-0 bg-gradient-to-t from-background/15 via-transparent to-cream/8 pointer-events-none"
 								aria-hidden="true"
 							/>
 						</div>
 
-						{/* ⭕ Cercles décoratifs */}
+						{/* Cercles décoratifs statiques en arrière-plan */}
 						<DecorativeCircles />
 
-						{/* 🌿 Badge décoratif plante - Optimisé en CSS background */}
+						{/* Badge décoratif plante - Coin inférieur gauche */}
 						<div
 							className="absolute -bottom-2 -left-2 sm:-bottom-3 sm:-left-3 w-10 h-10 sm:w-14 sm:h-14 lg:w-16 lg:h-16 bg-background/95 rounded-full flex items-center justify-center motion-safe:animate-float overflow-hidden border-2 border-gold/30 shadow-[0_0_20px_rgba(212,175,55,0.2)] backdrop-blur-sm hover:scale-110 motion-safe:transition-transform duration-300"
 							aria-hidden="true"
 						>
-							{/* 🎨 Image décorative en CSS background - Évite hydration mismatch */}
+							{/* Image décorative en background CSS - protection maximale */}
 							<div
 								className="w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 rounded-full bg-cover bg-center"
 								style={{
@@ -426,7 +378,7 @@ const HeroSection = () => {
 							/>
 						</div>
 
-						{/* 📍 Badge localisation */}
+						{/* Badge localisation - Coin supérieur droit */}
 						<div
 							className="hidden sm:flex absolute -top-2 -right-2 sm:-top-3 sm:-right-3 px-2 py-1 sm:px-3 sm:py-1.5 bg-background/90 backdrop-blur-md rounded-full shadow-soft motion-safe:animate-float border border-gold/25 items-center gap-1.5 hover:scale-105 motion-safe:transition-transform duration-300"
 							aria-hidden="true"
@@ -443,7 +395,7 @@ const HeroSection = () => {
 				</div>
 			</div>
 
-			{/* 👇 Indicateur de scroll */}
+			{/* Indicateur de scroll avec interactions améliorées */}
 			<button
 				onClick={scrollToNext}
 				className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2 text-muted-foreground/70 hover:text-accent motion-safe:transition-all duration-300 motion-safe:animate-fade-in group focus:outline-none focus:ring-2 focus:ring-accent/50 rounded-lg p-2"

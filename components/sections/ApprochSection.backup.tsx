@@ -8,35 +8,6 @@ import Image from "next/image";
 import { Quote } from "lucide-react";
 import GoldenPlantBadge from "@/components/GoldenPlantBadge";
 
-/**
- * 🎯 OPTIMISATIONS APPLIQUÉES :
- *
- * 1. RESPONSIVE IMAGES :
- *    - Desktop (lg+): approche-arbre.webp (144KB, quality 75)
- *    - Mobile (<1024px): arbre-lumiere.webp (50KB, version légère)
- *    - Économie de 94KB sur mobile = -65% de bande passante
- *
- * 2. LAZY-LOADING INTELLIGENT :
- *    - loading="lazy" au lieu de priority
- *    - Image chargée seulement quand proche du viewport
- *    - fetchPriority="low" car pas visible au-dessus du fold
- *
- * 3. PARALLAX OPTIMISÉ :
- *    - will-change: transform pour GPU
- *    - translate3d pour hardware acceleration
- *    - Offset réduit sur mobile pour fluidité
- *
- * 4. RESPONSIVE IMAGES :
- *    - Sizes optimisés selon viewport
- *    - Quality adapté (60 mobile, 75 desktop)
- *    - Lazy-load (pas priority)
- *
- * 5. ACCESSIBILITÉ :
- *    - aria-hidden sur décoratif
- *    - alt="" sur image background
- *    - Focus visible sur CTA
- */
-
 const ApprochSection = () => {
 	const { ref, isInView } = useInView({ threshold: 0.1 });
 	const parallaxOffset = useParallax(0.08);
@@ -45,39 +16,27 @@ const ApprochSection = () => {
 		<section
 			id="approche"
 			ref={ref}
-			className="relative overflow-hidden min-h-[700px] md:min-h-[750px] py-16 md:py-24 lg:py-32 scroll-mt-20"
+			className="relative overflow-hidden min-h-[700px] md:min-h-[750px] py-16 md:py-24 lg:py-32"
 			style={{
 				background:
 					"linear-gradient(180deg, hsl(225 33% 97%) 0%, hsl(210 50% 96%) 30%, hsl(32 100% 97%) 100%)",
+				scrollMarginTop: "80px",
 			}}
 			aria-labelledby="approche-title"
+			suppressHydrationWarning
 		>
-			{/* 🌳 Image d'arrière-plan avec parallax - Responsive avec srcSet */}
+			{/* Parallax Background Tree */}
 			<div className="absolute inset-0 lg:w-1/2" aria-hidden="true">
 				<div className="relative w-full h-[110%] -mt-[5%] overflow-hidden">
-					{/* 📱 Version mobile optimisée (50KB) - Desktop version (144KB) */}
-					<Image
-						src="/assets/arbre-lumiere.webp"
-						alt=""
-						fill
-						quality={75}
-						sizes="(max-width: 1024px) 100vw, 50vw"
-						className="object-cover lg:hidden"
-						loading="lazy"
-						aria-hidden="true"
-						style={{
-							transform: `translate3d(0, ${parallaxOffset}px, 0)`,
-							willChange: "transform",
-						}}
-					/>
 					<Image
 						src="/assets/approche-arbre.webp"
 						alt=""
 						fill
-						quality={75}
-						sizes="(max-width: 1024px) 0vw, 50vw"
-						className="hidden lg:block object-cover"
-						loading="lazy"
+						quality={40}
+						sizes="(max-width: 1024px) 100vw, 50vw"
+						className="object-cover"
+						priority={false}
+						fetchPriority="low"
 						aria-hidden="true"
 						style={{
 							transform: `translate3d(0, ${parallaxOffset}px, 0)`,
@@ -86,12 +45,12 @@ const ApprochSection = () => {
 					/>
 				</div>
 
-				{/* 🎨 Gradient overlays */}
+				{/* Gradient overlays */}
 				<div className="absolute inset-0 bg-gradient-to-r from-background/40 via-background/70 to-background lg:from-transparent lg:via-background/40 lg:to-background" />
 				<div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-background/30 lg:from-background/80 lg:via-transparent lg:to-transparent" />
 			</div>
 
-			{/* 🎭 Decorative floating shapes */}
+			{/* Decorative floating shapes */}
 			<div
 				className="absolute inset-0 overflow-hidden pointer-events-none"
 				aria-hidden="true"
@@ -103,7 +62,7 @@ const ApprochSection = () => {
 				/>
 			</div>
 
-			{/* 📝 Main Content */}
+			{/* Main Content */}
 			<div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8">
 				<div className="flex items-center min-h-[450px] md:min-h-[500px] lg:min-h-[550px]">
 					<div className="hidden lg:block lg:w-[45%]" />
@@ -195,7 +154,6 @@ const ApprochSection = () => {
 								</div>
 							</div>
 
-							{/* 🎯 CTA */}
 							<div className="flex flex-wrap gap-3 text-left">
 								<Link
 									href="/approche-therapeutique"
