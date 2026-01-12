@@ -57,10 +57,10 @@ const ApprochSection = () => {
 				<div className="relative w-full h-[110%] -mt-[5%] overflow-hidden">
 					{/* 📱 Version mobile optimisée (50KB) - Desktop version (144KB) */}
 					<Image
-						src="/assets/arbre-lumiere.webp"
+						src="/assets/approche-arbre-mobile.webp"
 						alt=""
 						fill
-						quality={75}
+						quality={70}
 						sizes="(max-width: 1024px) 100vw, 50vw"
 						className="object-cover lg:hidden"
 						loading="lazy"

@@ -177,10 +177,8 @@ export default function RootLayout({
 					href="https://www.google-analytics.com"
 				/>
 
-				{/* DNS prefetch for non-critical but frequent domains */}
-				<link rel="dns-prefetch" href="https://calendly.com" />
+				{/* DNS prefetch for WordPress admin backend only */}
 				<link rel="dns-prefetch" href="https://admin.lylusio.fr" />
-				<link rel="dns-prefetch" href="https://www.google.com" />
 
 				{/* Google Site Verification */}
 				<meta
