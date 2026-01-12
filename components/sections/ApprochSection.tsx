@@ -60,7 +60,7 @@ const ApprochSection = () => {
 						src="/assets/approche-arbre-mobile.webp"
 						alt=""
 						fill
-						quality={70}
+						quality={65}
 						sizes="(max-width: 1024px) 100vw, 50vw"
 						className="object-cover lg:hidden"
 						loading="lazy"

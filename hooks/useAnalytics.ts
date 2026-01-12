@@ -45,6 +45,7 @@ export const initGA = () => {
 
   // ✅ Charger le script après un délai pour réduire TBT (Total Blocking Time)
   // et permettre au contenu principal de se charger en priorité
+  // Phase 4 optimization: Increased delay to 5s/4s to prioritize LCP/FCP
   const loadGAScript = () => {
     const script = document.createElement('script');
     script.async = true;
@@ -54,11 +55,12 @@ export const initGA = () => {
     console.log('[GA4] Analytics initialisé');
   };
 
-  // Charger après que le navigateur soit idle ou après 3s max
+  // Charger après que le navigateur soit idle ou après 5s max
+  // Optimisation mobile: plus long délai pour prioritiser contenu critique
   if ('requestIdleCallback' in window) {
-    requestIdleCallback(loadGAScript, { timeout: 3000 });
+    requestIdleCallback(loadGAScript, { timeout: 5000 });
   } else {
-    setTimeout(loadGAScript, 2000);
+    setTimeout(loadGAScript, 4000);
   }
 };
 

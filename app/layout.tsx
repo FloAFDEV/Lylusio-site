@@ -1,9 +1,4 @@
 import type { Metadata, Viewport } from "next";
-import {
-	Cormorant_Garamond,
-	Source_Sans_3,
-	Dancing_Script,
-} from "next/font/google";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
@@ -19,36 +14,13 @@ import PageTransition from "@/components/PageTransition";
 import EnvChecker from "@/components/EnvChecker";
 import "@/app/globals.css";
 
-// next/font/google - Optimized for zero CLS
-const cormorantGaramond = Cormorant_Garamond({
-	subsets: ["latin"],
-	weight: ["300", "400", "500", "600", "700"],
-	variable: "--font-display",
-	display: "swap",
-	preload: true,
-	fallback: ["Georgia", "serif"],
-	adjustFontFallback: true,
-});
-
-const sourceSans = Source_Sans_3({
-	subsets: ["latin"],
-	weight: ["300", "400", "600", "700"],
-	variable: "--font-body",
-	display: "swap",
-	preload: true,
-	fallback: ["-apple-system", "BlinkMacSystemFont", "sans-serif"],
-	adjustFontFallback: true,
-});
-
-const dancingScript = Dancing_Script({
-	subsets: ["latin"],
-	weight: ["400", "500", "600", "700"],
-	variable: "--font-calligraphic",
-	display: "swap",
-	preload: false, // Non-critique, chargée uniquement si utilisée
-	fallback: ["cursive"],
-	adjustFontFallback: true,
-});
+/**
+ * Phase 3 Optimization: Self-hosted fonts via Fontsource
+ * Fonts are now loaded from local npm packages instead of Google Fonts CDN
+ * This reduces DNS lookups, improves FCP, and ensures GDPR compliance
+ *
+ * Font stacks are defined in Tailwind config with proper fallbacks
+ */
 
 export const viewport: Viewport = {
 	themeColor: [
@@ -190,9 +162,7 @@ export default function RootLayout({
 				<LocalBusinessSchema />
 				<WebsiteSchema />
 			</head>
-			<body
-				className={`${cormorantGaramond.variable} ${sourceSans.variable} ${dancingScript.variable} font-body antialiased`}
-			>
+			<body className="font-body antialiased">
 				{/* Skip to main content link for accessibility */}
 				<a
 					href="#main-content"
