@@ -64,6 +64,19 @@ const nextConfig: NextConfig = {
 
 	async redirects() {
 		return [
+		// 🔒 Domaine Vercel → domaine officiel
+		{
+			source: "/:path*",
+			has: [
+				{
+					type: "host",
+					value: "lylusio-site.vercel.app",
+				},
+			],
+			destination: "https://lylusio.fr/:path*",
+			permanent: true,
+		},
+			
 			// Pages principales avec préfixe /astrologue-cepet-toulouse/
 			{
 				source: "/astrologue-cepet-toulouse/astrologie/:path*",
