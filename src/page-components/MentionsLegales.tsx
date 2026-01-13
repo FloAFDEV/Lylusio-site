@@ -29,7 +29,7 @@ const MentionsLegales = () => (
 							entions légales
 						</h1>
 						<p className="text-muted-foreground text-sm mt-4">
-							Dernière mise à jour : Décembre 2024
+							Dernière mise à jour : Janvier 2026
 						</p>
 					</header>
 
@@ -44,16 +44,20 @@ const MentionsLegales = () => (
 							</h2>
 							<address className="not-italic leading-relaxed">
 								<strong className="text-foreground">
-									Lylusio
+									Micro-entreprise Perez Émilie
 								</strong>
 								<br />
+								Capital social : 0 €
+								<br />
+								SIREN : 898476353
+								<br />
+								49 Route De Labastide, 31620 Cépet, France
+								<br />
+								<br />
+								<strong className="text-foreground">
+									Directrice de la publication :
+								</strong>{" "}
 								Émilie Perez
-								<br />
-								Entrepreneur individuel (Micro-entreprise)
-								<br />
-								SIRET : En cours d'immatriculation
-								<br />
-								49 route de Labastide, 31620 Cépet, France
 								<br />
 								<a
 									href="mailto:contact@lylusio.fr"
@@ -80,37 +84,44 @@ const MentionsLegales = () => (
 								Hébergement
 							</h2>
 							<p className="leading-relaxed">
-								Ce site est hébergé par :<br />
 								<strong className="text-foreground">
-									Netlify, Inc.
+									Hébergement du site web :
 								</strong>
 								<br />
-								512 2nd Street, Suite 200
+								Vercel Inc.
 								<br />
-								San Francisco, CA 94107, États-Unis
+								340 S Lemon Ave #4133
+								<br />
+								Walnut, CA 91789, États-Unis
 								<br />
 								<a
-									href="https://www.netlify.com"
+									href="https://vercel.com"
 									target="_blank"
 									rel="noopener noreferrer"
 									className="text-accent hover:underline"
 								>
-									www.netlify.com
+									vercel.com
 								</a>
 							</p>
-						</section>
-
-						{/* Directeur de publication */}
-						<section aria-labelledby="directeur">
-							<h2
-								id="directeur"
-								className="font-display text-xl sm:text-2xl text-foreground mb-4"
-							>
-								Directrice de la publication
-							</h2>
-							<p className="leading-relaxed">
-								Émilie Perez, en sa qualité de fondatrice de
-								Lylusio.
+							<p className="leading-relaxed mt-4">
+								<strong className="text-foreground">
+									Nom de domaine :
+								</strong>
+								<br />
+								OVH SAS
+								<br />
+								2 rue Kellermann
+								<br />
+								59100 Roubaix, France
+								<br />
+								<a
+									href="https://www.ovh.com"
+									target="_blank"
+									rel="noopener noreferrer"
+									className="text-accent hover:underline"
+								>
+									www.ovh.com
+								</a>
 							</p>
 						</section>
 

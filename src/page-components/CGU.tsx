@@ -332,13 +332,7 @@ const CGU = () => {
 								</h2>
 								<p className="text-foreground/80 leading-relaxed">
 									Pour toute question relative aux présentes
-									CGU, vous pouvez :<br />
-									<Link
-										href="/contact"
-										className="text-accent hover:underline"
-									>
-										Nous contacter via le formulaire
-									</Link>
+									CGU, vous pouvez nous contacter :<br />
 									<br />
 									Email :{" "}
 									<a
