@@ -93,16 +93,13 @@ export function processWordPressContent(content: string): string {
 
 	// 2. Supprimer les <p> qui wrappent uniquement une image (wpautop issue)
 	// WordPress wrap les images seules : <p><img /></p>
-	processed = processed.replace(
-		/<p[^>]*>\s*(<img[^>]+>)\s*<\/p>/gi,
-		"$1"
-	);
+	processed = processed.replace(/<p[^>]*>\s*(<img[^>]+>)\s*<\/p>/gi, "$1");
 
 	// 3. Supprimer TOUTES les figcaption (captions WordPress HTML)
-	processed = processed.replace(/<figcaption[\s\S]*?<\/figcaption>/gi, '');
+	processed = processed.replace(/<figcaption[\s\S]*?<\/figcaption>/gi, "");
 
 	// 4. Supprimer TOUS les shortcodes [caption]...[/caption]
-	processed = processed.replace(/\[caption[\s\S]*?\[\/caption\]/gi, '');
+	processed = processed.replace(/\[caption[\s\S]*?\[\/caption\]/gi, "");
 
 	// 5. Supprimer les shortcodes WordPress standards ([gallery], [audio], etc.)
 	processed = removeWordPressShortcodes(processed);
@@ -119,4 +116,48 @@ export function processWordPressContent(content: string): string {
 	processed = processed.replace(/<p[^>]*>\s*<\/p>/gi, "");
 
 	return processed.trim();
+}
+
+/**
+ * Génère un excerpt texte pur (sans HTML ni shortcodes) depuis du HTML WordPress
+ * Utilise le pipeline de nettoyage centralisé pour garantir la cohérence
+ *
+ * @param html - HTML brut depuis WordPress (content.rendered ou excerpt.rendered)
+ * @param length - Longueur maximale du texte (défaut: 150)
+ * @returns Texte pur sans HTML ni shortcodes, tronqué à la longueur souhaitée
+ */
+export function getSafeExcerpt(html: string, length: number = 150): string {
+	if (!html) return "";
+
+	// 1. Nettoyer le HTML via le pipeline centralisé (supprime shortcodes + classes WP)
+	const cleaned = processWordPressContent(html);
+
+	// 2. Stripper toutes les balises HTML restantes
+	let text = cleaned.replace(/<[^>]+>/g, "");
+
+	// 3. Décoder les entités HTML
+	text = text
+		.replace(/&nbsp;/g, " ")
+		.replace(/&amp;/g, "&")
+		.replace(/&lt;/g, "<")
+		.replace(/&gt;/g, ">")
+		.replace(/&quot;/g, '"')
+		.replace(/&#039;/g, "'")
+		.replace(/&rsquo;/g, "'")
+		.replace(/&lsquo;/g, "'")
+		.replace(/&rdquo;/g, '"')
+		.replace(/&ldquo;/g, '"')
+		.replace(/&hellip;/g, "...")
+		.replace(/&ndash;/g, "–")
+		.replace(/&mdash;/g, "—");
+
+	// 4. Nettoyer les espaces multiples et trim
+	text = text.replace(/\s{2,}/g, " ").trim();
+
+	// 5. Tronquer et ajouter ellipsis
+	if (text.length > length) {
+		return text.slice(0, length).trim() + "…";
+	}
+
+	return text;
 }

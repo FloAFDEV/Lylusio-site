@@ -5,6 +5,7 @@ import {
 	CACHE_DURATIONS,
 } from "@/lib/wordpress-cache";
 import { getOptimizedImageUrl } from "@/lib/wordpress-images";
+import { getSafeExcerpt } from "@/lib/wordpress-shortcodes";
 import { notFound } from "next/navigation";
 
 const WP_API_URL =
@@ -217,8 +218,7 @@ export default async function BlogCategoryPage({
 			return {
 				id: post.id,
 				title: stripHtml(post.title.rendered),
-				excerpt:
-					stripHtml(post.excerpt.rendered).slice(0, 150) + "...",
+				excerpt: getSafeExcerpt(post.excerpt.rendered, 150),
 				date: formatDate(post.date),
 				rawDate: post.date,
 				slug: post.slug,
