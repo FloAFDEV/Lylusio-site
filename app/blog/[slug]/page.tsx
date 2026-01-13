@@ -82,9 +82,9 @@ export async function generateStaticParams() {
 export async function generateMetadata({
 	params,
 }: {
-	params: { slug: string }; // fix TS type pour Next.js 15+
+	params: Promise<{ slug: string }>; // Next.js 15+: params is a Promise
 }): Promise<Metadata> {
-	const { slug } = params;
+	const { slug } = await params;
 
 	try {
 		const post = await fetchPostBySlug(slug, 7200); // 2 hours cache
@@ -157,9 +157,9 @@ export async function generateMetadata({
 export default async function BlogPostPage({
 	params,
 }: {
-	params: { slug: string }; // fix TS type
+	params: Promise<{ slug: string }>; // Next.js 15+: params is a Promise
 }) {
-	const { slug } = params;
+	const { slug } = await params;
 
 	let blogPostSchema = null;
 	let serverFetchSuccess = false;
