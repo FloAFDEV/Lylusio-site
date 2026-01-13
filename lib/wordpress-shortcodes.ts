@@ -83,25 +83,40 @@ export function processWordPressContent(content: string): string {
 
 	let processed = content;
 
-	// 1. Supprimer TOUTES les figcaption (captions WordPress HTML)
+	// 1. 🔥 CRITIQUE : Supprimer les <p> qui wrappent des shortcodes [caption]
+	// WordPress envoie souvent : <p>[caption]...[/caption]</p>
+	// On doit extraire le shortcode AVANT de le supprimer
+	processed = processed.replace(
+		/<p[^>]*>\s*(\[caption[\s\S]*?\[\/caption\])\s*<\/p>/gi,
+		"$1"
+	);
+
+	// 2. Supprimer les <p> qui wrappent uniquement une image (wpautop issue)
+	// WordPress wrap les images seules : <p><img /></p>
+	processed = processed.replace(
+		/<p[^>]*>\s*(<img[^>]+>)\s*<\/p>/gi,
+		"$1"
+	);
+
+	// 3. Supprimer TOUTES les figcaption (captions WordPress HTML)
 	processed = processed.replace(/<figcaption[\s\S]*?<\/figcaption>/gi, '');
 
-	// 2. Supprimer TOUS les shortcodes [caption]...[/caption]
+	// 4. Supprimer TOUS les shortcodes [caption]...[/caption]
 	processed = processed.replace(/\[caption[\s\S]*?\[\/caption\]/gi, '');
 
-	// 3. Supprimer les shortcodes WordPress standards
+	// 5. Supprimer les shortcodes WordPress standards ([gallery], [audio], etc.)
 	processed = removeWordPressShortcodes(processed);
 
-	// 4. Nettoyer les classes WordPress inutiles
+	// 6. Nettoyer les classes WordPress inutiles
 	processed = processed.replace(/\sclass="[^"]*wp-image-\d+[^"]*"/gi, "");
 	processed = processed.replace(/\sclass="[^"]*wp-caption[^"]*"/gi, "");
 
-	// 5. Supprimer les attributs style inline
+	// 7. Supprimer les attributs style inline
 	processed = processed.replace(/\sstyle="[^"]*"/gi, "");
 
-	// 6. Nettoyer les espaces multiples et paragraphes vides
+	// 8. Nettoyer les espaces multiples et paragraphes vides (DOIT être à la fin)
 	processed = processed.replace(/\s{2,}/g, " ");
-	processed = processed.replace(/<p>\s*<\/p>/gi, "");
+	processed = processed.replace(/<p[^>]*>\s*<\/p>/gi, "");
 
 	return processed.trim();
 }

@@ -88,10 +88,13 @@ const CGU = () => {
 									</a>
 								</p>
 								<p className="text-foreground/80 leading-relaxed mt-4">
-									<strong>Hébergement :</strong>
+									<strong>Hébergement du site web :</strong>
 									<br />
-									Netlify, Inc. - San Francisco, CA,
-									États-Unis
+									Vercel Inc. - Walnut, CA, États-Unis
+									<br />
+									<strong>Nom de domaine :</strong>
+									<br />
+									OVH SAS - Roubaix, France
 								</p>
 								<p className="text-foreground/80 leading-relaxed mt-4">
 									Pour plus de détails, consultez nos{" "}
