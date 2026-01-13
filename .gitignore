@@ -17,12 +17,16 @@ build
 dist
 dist-ssr
 
-# Production
-*.local
-
-# Environment files
+# Environment files (DO NOT COMMIT SECRETS)
 .env
-.env*.local
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Allow safe env templates
+!.env.example
+!.env.production
 
 # Editor directories and files
 .vscode/*
