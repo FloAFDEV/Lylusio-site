@@ -31,84 +31,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 			changeFrequency: "monthly",
 			priority: 1,
 		},
-		{
-			url: `${baseUrl}/astrologie-toulouse`,
-			lastModified: new Date(),
-			changeFrequency: "monthly",
-			priority: 0.9,
-		},
-		{
-			url: `${baseUrl}/reiki-toulouse`,
-			lastModified: new Date(),
-			changeFrequency: "monthly",
-			priority: 0.9,
-		},
-		{
-			url: `${baseUrl}/therapie-holistique`,
-			lastModified: new Date(),
-			changeFrequency: "monthly",
-			priority: 0.9,
-		},
-		{
-			url: `${baseUrl}/accompagnement-toulouse`,
-			lastModified: new Date(),
-			changeFrequency: "monthly",
-			priority: 0.9,
-		},
-		{
-			url: `${baseUrl}/approche-therapeutique`,
-			lastModified: new Date(),
-			changeFrequency: "monthly",
-			priority: 0.9,
-		},
-		{
-			url: `${baseUrl}/emilie-perez`,
-			lastModified: new Date(),
-			changeFrequency: "monthly",
-			priority: 0.9,
-		},
-		{
-			url: `${baseUrl}/contact`,
-			lastModified: new Date(),
-			changeFrequency: "monthly",
-			priority: 0.8,
-		},
-		{
-			url: `${baseUrl}/blog`,
-			lastModified: new Date(),
-			changeFrequency: "weekly",
-			priority: 0.8,
-		},
-		{
-			url: `${baseUrl}/ressources`,
-			lastModified: new Date(),
-			changeFrequency: "weekly",
-			priority: 0.8,
-		},
-		{
-			url: `${baseUrl}/faq`,
-			lastModified: new Date(),
-			changeFrequency: "monthly",
-			priority: 0.6,
-		},
-		{
-			url: `${baseUrl}/mentions-legales`,
-			lastModified: new Date(),
-			changeFrequency: "yearly",
-			priority: 0.3,
-		},
-		{
-			url: `${baseUrl}/confidentialite`,
-			lastModified: new Date(),
-			changeFrequency: "yearly",
-			priority: 0.3,
-		},
-		{
-			url: `${baseUrl}/cgu`,
-			lastModified: new Date(),
-			changeFrequency: "yearly",
-			priority: 0.3,
-		},
+		{ url: `${baseUrl}/astrologie-toulouse`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.9 },
+		{ url: `${baseUrl}/reiki-toulouse`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.9 },
+		{ url: `${baseUrl}/therapie-holistique`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.9 },
+		{ url: `${baseUrl}/accompagnement-toulouse`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.9 },
+		{ url: `${baseUrl}/approche-therapeutique`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.9 },
+		{ url: `${baseUrl}/emilie-perez`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.9 },
+		{ url: `${baseUrl}/contact`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
+		{ url: `${baseUrl}/blog`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.8 },
+		{ url: `${baseUrl}/ressources`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.8 },
+		{ url: `${baseUrl}/faq`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.6 },
+		{ url: `${baseUrl}/mentions-legales`, lastModified: new Date(), changeFrequency: "yearly", priority: 0.3 },
+		{ url: `${baseUrl}/confidentialite`, lastModified: new Date(), changeFrequency: "yearly", priority: 0.3 },
+		{ url: `${baseUrl}/cgu`, lastModified: new Date(), changeFrequency: "yearly", priority: 0.3 },
 	];
 
 	let blogPostRoutes: MetadataRoute.Sitemap = [];
@@ -139,16 +74,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 		});
 
 		categoryRoutes = categories
-			.filter(
-				(cat) =>
-					cat.count > 0 &&
-					Object.values(CATEGORY_SLUG_MAP).includes(cat.slug)
-			)
-			.map((cat) => {
-				const frontendSlug =
-					Object.keys(CATEGORY_SLUG_MAP).find(
-						(key) => CATEGORY_SLUG_MAP[key] === cat.slug
-					) || cat.slug;
+			.filter(cat => cat.count > 0 && Object.values(CATEGORY_SLUG_MAP).includes(cat.slug))
+			.map(cat => {
+				const frontendSlug = Object.keys(CATEGORY_SLUG_MAP).find(
+					key => CATEGORY_SLUG_MAP[key] === cat.slug
+				) || cat.slug;
 
 				return {
 					url: `${baseUrl}/category/blog/${frontendSlug}`,
