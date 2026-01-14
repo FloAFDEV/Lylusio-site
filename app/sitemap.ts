@@ -121,7 +121,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 		});
 
 		blogPostRoutes = result.posts.map((post: WPPost) => ({
-			url: `${baseUrl}/${post.slug}`,
+			url: `${baseUrl}/blog/${post.slug}`,
 			lastModified: new Date(post.modified),
 			changeFrequency: "monthly",
 			priority: 0.7,
