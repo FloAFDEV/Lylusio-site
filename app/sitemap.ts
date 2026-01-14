@@ -24,28 +24,110 @@ const CATEGORY_SLUG_MAP: Record<string, string> = {
 };
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+	// Pages statiques - toutes les routes du projet
 	const staticRoutes: MetadataRoute.Sitemap = [
+		// Homepage (priorité maximale)
 		{
 			url: baseUrl,
 			lastModified: new Date(),
 			changeFrequency: "monthly",
 			priority: 1,
 		},
-		{ url: `${baseUrl}/astrologie-toulouse`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.9 },
-		{ url: `${baseUrl}/reiki-toulouse`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.9 },
-		{ url: `${baseUrl}/therapie-holistique`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.9 },
-		{ url: `${baseUrl}/accompagnement-toulouse`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.9 },
-		{ url: `${baseUrl}/approche-therapeutique`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.9 },
-		{ url: `${baseUrl}/emilie-perez`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.9 },
-		{ url: `${baseUrl}/contact`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
-		{ url: `${baseUrl}/blog`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.8 },
-		{ url: `${baseUrl}/ressources`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.8 },
-		{ url: `${baseUrl}/faq`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.6 },
-		{ url: `${baseUrl}/mentions-legales`, lastModified: new Date(), changeFrequency: "yearly", priority: 0.3 },
-		{ url: `${baseUrl}/confidentialite`, lastModified: new Date(), changeFrequency: "yearly", priority: 0.3 },
-		{ url: `${baseUrl}/cgu`, lastModified: new Date(), changeFrequency: "yearly", priority: 0.3 },
+
+		// Pages services principales (haute priorité SEO)
+		{
+			url: `${baseUrl}/astrologie-toulouse`,
+			lastModified: new Date(),
+			changeFrequency: "monthly",
+			priority: 0.9
+		},
+		{
+			url: `${baseUrl}/reiki-toulouse`,
+			lastModified: new Date(),
+			changeFrequency: "monthly",
+			priority: 0.9
+		},
+		{
+			url: `${baseUrl}/therapie-holistique`,
+			lastModified: new Date(),
+			changeFrequency: "monthly",
+			priority: 0.9
+		},
+		{
+			url: `${baseUrl}/therapie-energetique`,
+			lastModified: new Date(),
+			changeFrequency: "monthly",
+			priority: 0.9
+		},
+		{
+			url: `${baseUrl}/accompagnement-toulouse`,
+			lastModified: new Date(),
+			changeFrequency: "monthly",
+			priority: 0.9
+		},
+
+		// Pages À propos (haute priorité)
+		{
+			url: `${baseUrl}/approche-therapeutique`,
+			lastModified: new Date(),
+			changeFrequency: "monthly",
+			priority: 0.9
+		},
+		{
+			url: `${baseUrl}/emilie-perez`,
+			lastModified: new Date(),
+			changeFrequency: "monthly",
+			priority: 0.9
+		},
+
+		// Pages utilitaires (priorité moyenne-haute)
+		{
+			url: `${baseUrl}/contact`,
+			lastModified: new Date(),
+			changeFrequency: "monthly",
+			priority: 0.8
+		},
+		{
+			url: `${baseUrl}/blog`,
+			lastModified: new Date(),
+			changeFrequency: "weekly",
+			priority: 0.8
+		},
+		{
+			url: `${baseUrl}/ressources`,
+			lastModified: new Date(),
+			changeFrequency: "weekly",
+			priority: 0.8
+		},
+		{
+			url: `${baseUrl}/faq`,
+			lastModified: new Date(),
+			changeFrequency: "monthly",
+			priority: 0.6
+		},
+
+		// Pages légales (basse priorité mais nécessaires)
+		{
+			url: `${baseUrl}/mentions-legales`,
+			lastModified: new Date("2026-01-13"),
+			changeFrequency: "yearly",
+			priority: 0.3
+		},
+		{
+			url: `${baseUrl}/confidentialite`,
+			lastModified: new Date(),
+			changeFrequency: "yearly",
+			priority: 0.3
+		},
+		{
+			url: `${baseUrl}/cgu`,
+			lastModified: new Date("2026-01-13"),
+			changeFrequency: "yearly",
+			priority: 0.3
+		},
 	];
 
+	// Articles de blog dynamiques depuis WordPress
 	let blogPostRoutes: MetadataRoute.Sitemap = [];
 	try {
 		const result = await fetchPosts({
@@ -56,15 +138,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 		});
 
 		blogPostRoutes = result.posts.map((post: WPPost) => ({
-			url: `${baseUrl}/blog/${post.slug}`,
+			url: `${baseUrl}/${post.slug}`, // URL directe sans /blog/ prefix
 			lastModified: new Date(post.modified),
-			changeFrequency: "monthly",
+			changeFrequency: "monthly" as const,
 			priority: 0.7,
 		}));
 	} catch (error) {
-		console.error("Error fetching blog posts for sitemap:", error);
+		console.error("❌ Error fetching blog posts for sitemap:", error);
 	}
 
+	// Catégories de blog (uniquement celles avec des posts)
 	let categoryRoutes: MetadataRoute.Sitemap = [];
 	try {
 		const categories: WPCategory[] = await fetchCategories({
@@ -83,13 +166,18 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 				return {
 					url: `${baseUrl}/category/blog/${frontendSlug}`,
 					lastModified: new Date(),
-					changeFrequency: "weekly",
+					changeFrequency: "weekly" as const,
 					priority: 0.6,
 				};
 			});
 	} catch (error) {
-		console.error("Error fetching categories for sitemap:", error);
+		console.error("❌ Error fetching categories for sitemap:", error);
 	}
 
-	return [...staticRoutes, ...blogPostRoutes, ...categoryRoutes];
+	// Fusion et tri des routes par priorité (plus haute priorité en premier)
+	const allRoutes = [...staticRoutes, ...blogPostRoutes, ...categoryRoutes];
+
+	console.log(`✅ Sitemap généré: ${staticRoutes.length} pages statiques, ${blogPostRoutes.length} articles, ${categoryRoutes.length} catégories`);
+
+	return allRoutes;
 }
