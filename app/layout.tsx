@@ -176,26 +176,11 @@ export default function RootLayout({
 					fetchPriority="high"
 				/>
 
-				{/* 🚀 PERFORMANCE: Preconnect Google Fonts (critical) */}
-				<link
-					rel="preconnect"
-					href="https://fonts.googleapis.com"
-					crossOrigin="anonymous"
-				/>
-				<link
-					rel="preconnect"
-					href="https://fonts.gstatic.com"
-					crossOrigin="anonymous"
-				/>
-
-				{/* Preconnect for third-party origins - Google Tag Manager */}
+				{/* Preconnect for third-party origins - Google Tag Manager only */}
+				{/* Note: Google Fonts already inlined by next/font, no preconnect needed */}
 				<link
 					rel="preconnect"
 					href="https://www.googletagmanager.com"
-				/>
-				<link
-					rel="preconnect"
-					href="https://www.google-analytics.com"
 				/>
 
 				{/* DNS prefetch for WordPress admin backend only */}

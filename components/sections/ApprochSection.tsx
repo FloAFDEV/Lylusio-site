@@ -55,12 +55,12 @@ const ApprochSection = () => {
 			{/* 🌳 Image d'arrière-plan avec parallax - Responsive avec srcSet */}
 			<div className="absolute inset-0 lg:w-1/2" aria-hidden="true">
 				<div className="relative w-full h-[110%] -mt-[5%] overflow-hidden">
-					{/* 📱 Version mobile optimisée (50KB) - Desktop version (144KB) */}
+					{/* 📱 Version mobile optimisée - Quality 50 pour réduire poids */}
 					<Image
 						src="/assets/approche-arbre-mobile.webp"
 						alt=""
 						fill
-						quality={65}
+						quality={50}
 						sizes="(max-width: 1024px) 100vw, 50vw"
 						className="object-cover lg:hidden"
 						loading="lazy"
