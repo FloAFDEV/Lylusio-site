@@ -40,10 +40,9 @@ const sourceSans = Source_Sans_3({
 	adjustFontFallback: true,
 });
 
-// 🚀 PERFORMANCE: Dancing Script lazy-loaded (non critique)
 const dancingScript = Dancing_Script({
 	subsets: ["latin"],
-	weight: ["400"], // Seulement weight utilisé
+	weight: ["400", "500", "600", "700"],
 	variable: "--font-calligraphic",
 	display: "swap",
 	preload: false,

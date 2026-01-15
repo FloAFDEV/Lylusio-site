@@ -55,26 +55,13 @@ export const initGA = () => {
     console.log('[GA4] Analytics initialisé');
   };
 
-  // 🚀 MOBILE OPTIMIZATION: Charger GTM après interaction ou 10s
-  // Sur mobile, on priorise LCP/TBT sur tracking immédiat
-  let hasLoaded = false;
-
-  const load = () => {
-    if (hasLoaded) return;
-    hasLoaded = true;
-    loadGAScript();
-  };
-
-  // Strategy 1: Load après première interaction (scroll, click, touch)
-  const events = ['scroll', 'click', 'touchstart', 'keydown'];
-  const loadOnce = () => {
-    load();
-    events.forEach(e => window.removeEventListener(e, loadOnce));
-  };
-  events.forEach(e => window.addEventListener(e, loadOnce, { passive: true, once: true }));
-
-  // Strategy 2: Fallback après 10s si aucune interaction
-  setTimeout(load, 10000);
+  // Charger après que le navigateur soit idle ou après 5s max
+  // Optimisation mobile: plus long délai pour prioritiser contenu critique
+  if ('requestIdleCallback' in window) {
+    requestIdleCallback(loadGAScript, { timeout: 5000 });
+  } else {
+    setTimeout(loadGAScript, 4000);
+  }
 };
 
 // Fonction pour tracker les pages vues manuellement
