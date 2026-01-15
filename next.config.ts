@@ -21,6 +21,8 @@ const nextConfig: NextConfig = {
 		webpackBuildWorker: true,
 		optimizeCss: true,
 		webpackMemoryOptimizations: true,
+		// 🚀 PERFORMANCE: CSS critique inline dans HTML
+		inlineCss: true,
 	},
 
 	compiler: {
@@ -165,6 +167,16 @@ const nextConfig: NextConfig = {
 
 	async headers() {
 		return [
+			// 🚀 PERFORMANCE: Cache agressif pour page d'accueil (ISR)
+			{
+				source: "/",
+				headers: [
+					{
+						key: "Cache-Control",
+						value: "public, s-maxage=21600, stale-while-revalidate=43200",
+					},
+				],
+			},
 			{
 				source: "/:path*",
 				headers: [
@@ -176,13 +188,17 @@ const nextConfig: NextConfig = {
 						key: "Content-Security-Policy",
 						value: [
 							"default-src 'self'",
-							"script-src 'self' 'unsafe-eval' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://region1.google-analytics.com https://calendly.com",
-							"style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+							// 🔒 Google Tag Manager + Google Analytics + Google Ads
+							"script-src 'self' 'unsafe-eval' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://region1.google-analytics.com https://googleads.g.doubleclick.net https://www.googleadservices.com https://calendly.com",
+							"style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://www.googleadservices.com",
 							"font-src 'self' https://fonts.gstatic.com data:",
-							"img-src 'self' data: https: blob:",
+							// 🔒 Google Ads tracking pixels + conversions
+							"img-src 'self' data: https: blob: https://www.google.com https://googleads.g.doubleclick.net https://www.googleadservices.com",
 							"media-src 'self' https:",
-							"connect-src 'self' https://lylusio.fr https://admin.lylusio.fr https://www.google-analytics.com https://analytics.google.com https://region1.google-analytics.com https://region1.analytics.google.com https://www.google.com https://www.googletagmanager.com",
-							"frame-src 'self' https://calendly.com https://www.youtube.com https://www.youtube-nocookie.com https://www.googletagmanager.com https://www.google.com",
+							// 🔒 Google Ads API calls
+							"connect-src 'self' https://lylusio.fr https://admin.lylusio.fr https://www.google-analytics.com https://analytics.google.com https://region1.google-analytics.com https://region1.analytics.google.com https://www.google.com https://www.googletagmanager.com https://googleads.g.doubleclick.net https://www.googleadservices.com",
+							// 🔒 Google Ads iframes
+							"frame-src 'self' https://calendly.com https://www.youtube.com https://www.youtube-nocookie.com https://www.googletagmanager.com https://www.google.com https://bid.g.doubleclick.net",
 							"object-src 'none'",
 							"base-uri 'self'",
 							"form-action 'self'",

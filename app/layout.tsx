@@ -167,7 +167,28 @@ export default function RootLayout({
 	return (
 		<html lang="fr" suppressHydrationWarning data-scroll-behavior="smooth">
 			<head>
-				{/* Preconnect for critical third-party origins - Google Tag Manager */}
+				{/* 🚀 PERFORMANCE: Preload LCP image (hero homepage) */}
+				<link
+					rel="preload"
+					as="image"
+					href="/assets/emilie-hero.webp"
+					type="image/webp"
+					fetchPriority="high"
+				/>
+
+				{/* 🚀 PERFORMANCE: Preconnect Google Fonts (critical) */}
+				<link
+					rel="preconnect"
+					href="https://fonts.googleapis.com"
+					crossOrigin="anonymous"
+				/>
+				<link
+					rel="preconnect"
+					href="https://fonts.gstatic.com"
+					crossOrigin="anonymous"
+				/>
+
+				{/* Preconnect for third-party origins - Google Tag Manager */}
 				<link
 					rel="preconnect"
 					href="https://www.googletagmanager.com"
