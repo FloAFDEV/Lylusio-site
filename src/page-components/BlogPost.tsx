@@ -25,6 +25,7 @@ import {
 	Clock,
 	User,
 	Tag,
+	RefreshCw,
 } from "lucide-react";
 import { toast } from "sonner";
 
@@ -268,40 +269,65 @@ const BlogPost = () => {
 		data: wpPost,
 		isLoading,
 		isError,
+		error,
+		failureCount,
+		refetch,
 	} = useQuery({
 		queryKey: ["blogPost", slug],
 		queryFn: async () => {
 			if (!slug) throw new Error("No slug provided");
 
-			// Timeout optimisé pour mobile - 10s max
+			// 🚀 RESILIENCE: Timeout optimisé - 15s pour mobile lent
 			const controller = new AbortController();
-			const timeoutId = setTimeout(() => controller.abort(), 10000);
+			const timeoutId = setTimeout(() => controller.abort(), 15000);
 
 			try {
 				const response = await fetch(`/api/posts/${slug}`, {
 					signal: controller.signal,
+					// Cache headers pour éviter requêtes répétées
+					cache: "force-cache",
+					next: { revalidate: 300 }, // 5 min cache
 				});
 				clearTimeout(timeoutId);
 
 				if (!response.ok) {
-					throw new Error("Post not found");
+					// Différencier 404 (article inexistant) vs 500 (erreur serveur)
+					if (response.status === 404) {
+						throw new Error("POST_NOT_FOUND");
+					}
+					throw new Error("SERVER_ERROR");
 				}
 
 				const post: WPPost = await response.json();
 				return post;
 			} catch (error) {
 				clearTimeout(timeoutId);
-				if (error instanceof Error && error.name === 'AbortError') {
-					throw new Error("La requête a pris trop de temps. Veuillez réessayer.");
+				if (error instanceof Error) {
+					if (error.name === 'AbortError') {
+						throw new Error("TIMEOUT");
+					}
+					// Propager l'erreur spécifique
+					throw error;
 				}
-				throw error;
+				throw new Error("UNKNOWN_ERROR");
 			}
 		},
-		staleTime: 1000 * 60 * 10,
-		gcTime: 1000 * 60 * 30,
+		staleTime: 1000 * 60 * 10, // 10 min
+		gcTime: 1000 * 60 * 30, // 30 min
 		enabled: !!slug,
-		retry: 2, // Retry up to 2 times on mobile
-		retryDelay: 1000, // Wait 1s between retries
+		// 🚀 RESILIENCE: Configuration retry avancée
+		retry: (failureCount, error) => {
+			// Ne jamais retry si 404 (article n'existe pas)
+			if (error instanceof Error && error.message === "POST_NOT_FOUND") {
+				return false;
+			}
+			// Retry jusqu'à 3 fois pour erreurs réseau/serveur/timeout
+			return failureCount < 3;
+		},
+		retryDelay: (attemptIndex) => {
+			// Délai progressif: 2s, 4s, 8s
+			return Math.min(1000 * 2 ** attemptIndex, 8000);
+		},
 	});
 
 	const post: BlogPostData | null = wpPost
@@ -359,7 +385,8 @@ const BlogPost = () => {
 		const fetchRelatedPosts = async () => {
 			try {
 				const res = await fetch(
-					`/api/posts?categories=${wpPost.categories[0]}&per_page=3&_embed=1`
+					`/api/posts?categories=${wpPost.categories[0]}&per_page=3&_embed=1`,
+					{ cache: "force-cache", next: { revalidate: 600 } }
 				);
 				if (res.ok) {
 					const related: WPPost[] = await res.json();
@@ -498,7 +525,13 @@ const BlogPost = () => {
 	// Note: Structured data (JSON-LD schema) is handled server-side in /blog/[slug]/page.tsx
 	// to ensure it's available for SSR/SEO crawlers before client hydration
 
-	if (isLoading) {
+	// 🚀 RESILIENCE: Loading state avec indication retry
+	if (isLoading || (isError && failureCount < 3)) {
+		const isRetrying = failureCount > 0;
+		const retryMessage = isRetrying
+			? `Nouvelle tentative (${failureCount}/3)...`
+			: "Chargement de l'article...";
+
 		return (
 			<div className="min-h-screen bg-background">
 				<Header />
@@ -546,11 +579,23 @@ const BlogPost = () => {
 								</div>
 							</div>
 
-							{/* Loading message - mobile only */}
-							<div className="text-center py-8 sm:hidden">
-								<p className="text-sm text-muted-foreground animate-pulse">
-									Chargement de l'article...
-								</p>
+							{/* 🚀 Loading message avec état retry */}
+							<div className="text-center py-8">
+								<div className="flex items-center justify-center gap-2 mb-3">
+									<RefreshCw
+										className={`w-5 h-5 text-accent ${
+											isRetrying ? "animate-spin" : "animate-pulse"
+										}`}
+									/>
+									<p className="text-sm text-muted-foreground">
+										{retryMessage}
+									</p>
+								</div>
+								{isRetrying && (
+									<p className="text-xs text-muted-foreground/70 mt-2">
+										Connexion lente détectée, veuillez patienter...
+									</p>
+								)}
 							</div>
 						</div>
 					</article>
@@ -560,20 +605,46 @@ const BlogPost = () => {
 		);
 	}
 
+	// 🚀 RESILIENCE: Error state uniquement si tous les retries échouent
 	if (isError || !post) {
+		const errorMessage = error instanceof Error ? error.message : "UNKNOWN_ERROR";
+		const is404 = errorMessage === "POST_NOT_FOUND";
+		const isTimeout = errorMessage === "TIMEOUT";
+
 		return (
 			<>
 				<Header />
 				<main className="min-h-screen bg-background flex items-center justify-center">
-					<div className="text-center px-4">
+					<div className="text-center px-4 max-w-md">
 						<h1 className="font-display text-3xl text-navy mb-4">
-							Article introuvable
+							{is404
+								? "Article introuvable"
+								: isTimeout
+								? "Chargement trop long"
+								: "Erreur de connexion"}
 						</h1>
-						<p className="text-muted-foreground mb-8">
-							Cet article n'existe pas ou a été supprimé.
+						<p className="text-muted-foreground mb-6">
+							{is404
+								? "Cet article n'existe pas ou a été supprimé."
+								: isTimeout
+								? "Le serveur met trop de temps à répondre. Vérifiez votre connexion."
+								: "Une erreur s'est produite lors du chargement de l'article."}
 						</p>
+
+						{/* 🚀 Bouton retry manuel si pas 404 */}
+						{!is404 && (
+							<Button
+								variant="elegant"
+								onClick={() => refetch()}
+								className="mb-4"
+							>
+								<RefreshCw className="w-4 h-4 mr-2" />
+								Réessayer
+							</Button>
+						)}
+
 						<Link href="/blog">
-							<Button variant="elegant">
+							<Button variant={is404 ? "elegant" : "outline"}>
 								<ArrowLeft className="w-4 h-4 mr-2" />
 								Retour au blog
 							</Button>
