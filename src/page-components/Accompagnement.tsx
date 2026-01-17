@@ -32,6 +32,7 @@ import {
 import { useParallax } from "@/hooks/useParallax";
 import { useInView } from "@/hooks/useInView";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { useAnalyticsEvent } from "@/hooks/useAnalytics";
 
 import CALENDLY_URLS from "@/lib/calendly";
 
@@ -39,6 +40,7 @@ const Accompagnement = () => {
 	const isMobile = useIsMobile();
 	const parallaxOffset = useParallax(0.15);
 	const parallaxOffsetSlow = useParallax(0.08);
+	const { trackBookingClick } = useAnalyticsEvent();
 
 	// Hydration fix: only show decorative elements after mount
 	const [mounted, setMounted] = useState(false);
@@ -496,12 +498,13 @@ const Accompagnement = () => {
 												<Button
 													variant="accent"
 													className="w-full group/btn"
-													onClick={() =>
+													onClick={() => {
+														trackBookingClick(service.title);
 														window.open(
 															service.calendlyLink,
 															"_blank"
-														)
-													}
+														);
+													}}
 												>
 													<Calendar className="w-4 h-4 mr-2" />
 													Réserver
@@ -659,12 +662,13 @@ const Accompagnement = () => {
 										<Button
 											variant="accent"
 											className="w-full max-w-sm mx-auto group/btn"
-											onClick={() =>
+											onClick={() => {
+												trackBookingClick("Reiki");
 												window.open(
 													CALENDLY_URLS.REIKI,
 													"_blank"
-												)
-											}
+												);
+											}}
 										>
 											<Calendar className="w-4 h-4 mr-2" />
 											Réserver mon soin Reiki
@@ -837,12 +841,13 @@ const Accompagnement = () => {
 												<Button
 													variant="accent"
 													className="sm:ml-auto group/btn"
-													onClick={() =>
+													onClick={() => {
+														trackBookingClick("Accompagnement Carte Astro");
 														window.open(
 															CALENDLY_URLS.ACCOMPAGNEMENT_GLOBAL,
 															"_blank"
-														)
-													}
+														);
+													}}
 												>
 													<Calendar className="w-4 h-4 mr-2" />
 													Réserver
@@ -969,12 +974,13 @@ const Accompagnement = () => {
 												<Button
 													variant="accent"
 													className="w-full sm:w-auto flex-shrink-0 group/btn"
-													onClick={() =>
+													onClick={() => {
+														trackBookingClick("Bilan Astro-Orientation");
 														window.open(
 															CALENDLY_URLS.BILAN_PRO,
 															"_blank"
-														)
-													}
+														);
+													}}
 												>
 													<Calendar className="w-4 h-4 mr-2" />
 													Réserver

@@ -4,6 +4,7 @@ import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Clock, MapPin, Euro, Check, Calendar, ArrowRight, ChevronLeft, ChevronRight, CreditCard } from "lucide-react";
+import { useAnalyticsEvent } from "@/hooks/useAnalytics";
 
 interface ServiceItem {
   id: string;
@@ -35,6 +36,7 @@ const MobileServiceCarousel = ({ services, className = "" }: MobileServiceCarous
   const [activeIndex, setActiveIndex] = useState(0);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
+  const { trackBookingClick } = useAnalyticsEvent();
 
   const updateScrollState = () => {
     if (scrollRef.current) {
@@ -194,7 +196,10 @@ const MobileServiceCarousel = ({ services, className = "" }: MobileServiceCarous
                 variant="accent"
                 size="default"
                 className="w-full min-h-[44px] text-sm"
-                onClick={() => window.open(service.calendlyLink, "_blank")}
+                onClick={() => {
+                  trackBookingClick(service.title);
+                  window.open(service.calendlyLink, "_blank");
+                }}
               >
                 <Calendar className="w-4 h-4 mr-2 flex-shrink-0" />
                 <span className="truncate">Réserver</span>
