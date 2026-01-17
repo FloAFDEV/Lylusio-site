@@ -3,7 +3,7 @@
 import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { Clock, MapPin, Euro, Check, Calendar, ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { Clock, MapPin, Euro, Check, Calendar, ArrowRight, ChevronLeft, ChevronRight, CreditCard } from "lucide-react";
 
 interface ServiceItem {
   id: string;
@@ -19,6 +19,10 @@ interface ServiceItem {
   features?: string[];
   calendlyLink: string;
   isHighlighted?: boolean;
+  paymentInfo?: {
+    phone: string;
+    email: string;
+  };
 }
 
 interface MobileServiceCarouselProps {
@@ -174,14 +178,14 @@ const MobileServiceCarousel = ({ services, className = "" }: MobileServiceCarous
                 {service.priceNote && <span className="text-xs text-muted-foreground">({service.priceNote})</span>}
               </div>
 
-              <div className="flex flex-wrap gap-3 text-xs text-muted-foreground mb-4">
+              <div className="flex flex-wrap gap-x-3 gap-y-2 text-xs text-muted-foreground mb-4">
                 <span className="flex items-center gap-1">
-                  <Clock className="w-3.5 h-3.5 text-accent" />
-                  {service.duration}
+                  <Clock className="w-3.5 h-3.5 text-accent flex-shrink-0" />
+                  <span>{service.duration}</span>
                 </span>
-                <span className="flex items-center gap-1">
-                  <MapPin className="w-3.5 h-3.5 text-accent" />
-                  <span className="truncate max-w-[100px]">{service.format}</span>
+                <span className="flex items-center gap-1 whitespace-nowrap">
+                  <MapPin className="w-3.5 h-3.5 text-accent flex-shrink-0" />
+                  <span>{service.format}</span>
                 </span>
               </div>
 
@@ -196,6 +200,32 @@ const MobileServiceCarousel = ({ services, className = "" }: MobileServiceCarous
                 <span className="truncate">Réserver</span>
                 <ArrowRight className="w-4 h-4 ml-2 flex-shrink-0" />
               </Button>
+
+              {/* Payment information */}
+              {service.paymentInfo && (
+                <div className="mt-4 pt-4 border-t border-gold/10">
+                  <div className="flex items-start gap-2 text-xs text-muted-foreground/90">
+                    <CreditCard className="w-3.5 h-3.5 mt-0.5 text-gold flex-shrink-0" />
+                    <p className="leading-relaxed">
+                      Il est possible de payer en 3 fois. Si c'est le cas, veuillez me contacter directement par{" "}
+                      <a
+                        href={`tel:${service.paymentInfo.phone}`}
+                        className="text-accent hover:text-gold transition-colors underline underline-offset-2"
+                      >
+                        téléphone
+                      </a>{" "}
+                      ou par{" "}
+                      <a
+                        href={`mailto:${service.paymentInfo.email}`}
+                        className="text-accent hover:text-gold transition-colors underline underline-offset-2"
+                      >
+                        mail
+                      </a>
+                      .
+                    </p>
+                  </div>
+                </div>
+              )}
             </div>
           </article>
         ))}

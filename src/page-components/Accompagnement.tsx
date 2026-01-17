@@ -78,7 +78,7 @@ const Accompagnement = () => {
 			price: "90€ / 120€",
 			priceNote: "avec support écrit",
 			duration: "1h30 à 2h",
-			format: "Présentiel ou distance",
+			format: "Présentiel / Distance",
 			features: [
 				"Analyse complète écrite",
 				"Échange approfondi",
@@ -97,7 +97,7 @@ const Accompagnement = () => {
 			price: "70€ / 90€",
 			priceNote: "avec support écrit",
 			duration: "1h30 à 2h",
-			format: "Présentiel ou distance",
+			format: "Présentiel / Distance",
 			isSecond: true,
 			features: [
 				"Identifier les cycles",
@@ -119,7 +119,7 @@ const Accompagnement = () => {
 		price: "60€ / 50€",
 		priceNote: "à distance",
 		duration: "1h15 à 1h30",
-		format: "Présentiel ou distance",
+		format: "Présentiel / Distance",
 		features: [
 			"Rééquilibrage global",
 			"Libération blocages",
@@ -140,13 +140,17 @@ const Accompagnement = () => {
 		price: "290€",
 		duration:
 			"4 séances d'1h30 complétées par des rdv téléphoniques réguliers",
-		format: "Présentiel ou distance",
+		format: "Présentiel / Distance",
 		features: [
 			"Talents innés",
 			"Aspirations profondes",
 			"Plan d'action aligné",
 		],
 		calendlyLink: CALENDLY_URLS.BILAN_PRO,
+		paymentInfo: {
+			phone: "+33619151959",
+			email: "contact@lylusio.fr",
+		},
 	};
 
 	const structuredData = {
@@ -477,14 +481,14 @@ const Accompagnement = () => {
 															</span>
 														)}
 													</div>
-													<div className="flex flex-wrap justify-center gap-3 text-xs text-muted-foreground mb-4">
+													<div className="flex flex-wrap justify-center gap-x-3 gap-y-2 text-xs text-muted-foreground mb-4">
 														<span className="flex items-center gap-1">
-															<Clock className="w-3.5 h-3.5 text-accent" />
-															{service.duration}
+															<Clock className="w-3.5 h-3.5 text-accent flex-shrink-0" />
+															<span>{service.duration}</span>
 														</span>
-														<span className="flex items-center gap-1">
-															<MapPin className="w-3.5 h-3.5 text-accent" />
-															{service.format}
+														<span className="flex items-center gap-1 whitespace-nowrap">
+															<MapPin className="w-3.5 h-3.5 text-accent flex-shrink-0" />
+															<span>{service.format}</span>
 														</span>
 													</div>
 												</div>
@@ -573,7 +577,7 @@ const Accompagnement = () => {
 							</div>
 
 							{/* Desktop: Single card */}
-							<div className="hidden md:block max-w-3xl mx-auto">
+							<div className="hidden md:block max-w-4xl mx-auto">
 								<article
 									className={`group relative bg-gradient-to-b from-card/90 to-card/60 backdrop-blur-md rounded-[2rem] border border-border/20 shadow-soft hover:shadow-[0_20px_50px_-15px_hsl(var(--gold)/0.25)] hover:border-gold/40 hover:-translate-y-3 transition-all duration-500 ${
 										reikiInView
@@ -817,17 +821,17 @@ const Accompagnement = () => {
 
 											{/* Price & CTA */}
 											<div className="flex flex-col sm:flex-row sm:items-center gap-4 pt-5 border-t border-gold/15">
-												<div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
+												<div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-muted-foreground">
 													<span className="font-display text-xl font-bold text-gold">
 														75€
 													</span>
 													<span className="flex items-center gap-1">
-														<Clock className="w-4 h-4 text-accent" />
-														1h30
+														<Clock className="w-4 h-4 text-accent flex-shrink-0" />
+														<span>1h30</span>
 													</span>
-													<span className="flex items-center gap-1">
-														<MapPin className="w-4 h-4 text-accent" />
-														Présentiel
+													<span className="flex items-center gap-1 whitespace-nowrap">
+														<MapPin className="w-4 h-4 text-accent flex-shrink-0" />
+														<span>Présentiel</span>
 													</span>
 												</div>
 												<Button
@@ -948,22 +952,17 @@ const Accompagnement = () => {
 
 											{/* Price & CTA */}
 											<div className="flex flex-col sm:flex-row sm:items-center gap-4 pt-5 border-t border-accent/15">
-												<div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
+												<div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-muted-foreground">
 													<span className="font-display text-xl font-bold text-gold">
 														290€
 													</span>
 													<span className="flex items-center gap-1">
-														<Clock className="w-4 h-4 text-accent" />
-														4 séances d'1h30
-														complétées par des rdv
-														téléphoniques réguliers
+														<Clock className="w-4 h-4 text-accent flex-shrink-0" />
+														<span>4 séances d'1h30 complétées par des rdv téléphoniques réguliers</span>
 													</span>
 													<span className="flex items-center gap-1 whitespace-nowrap">
 														<MapPin className="w-4 h-4 text-gold flex-shrink-0" />
-														<span>
-															Présentiel /
-															Distance
-														</span>
+														<span>Présentiel / Distance</span>
 													</span>
 												</div>
 
