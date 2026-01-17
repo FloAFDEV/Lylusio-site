@@ -204,8 +204,8 @@ const MobileServiceCarousel = ({ services, className = "" }: MobileServiceCarous
               {/* Payment information */}
               {service.paymentInfo && (
                 <div className="mt-4 pt-4 border-t border-gold/10">
-                  <div className="flex items-start gap-2 text-xs text-muted-foreground/90">
-                    <CreditCard className="w-3.5 h-3.5 mt-0.5 text-gold flex-shrink-0" />
+                  <div className="flex items-start gap-2 text-[13px] text-muted-foreground/90">
+                    <CreditCard className="w-4 h-4 mt-0.5 text-gold flex-shrink-0" />
                     <p className="leading-relaxed">
                       Il est possible de payer en 3 fois. Si c'est le cas, veuillez me contacter directement par{" "}
                       <a
