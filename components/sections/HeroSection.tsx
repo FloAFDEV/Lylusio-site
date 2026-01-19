@@ -77,7 +77,7 @@ const CelestialStars = memo(() => {
 			{stars.map((star) => (
 				<div
 					key={star.id}
-					className={`absolute rounded-full bg-gold/90 max-md:motion-reduce:animate-none md:animate-twinkle ${
+					className={`absolute rounded-full bg-gold/90 animate-twinkle ${
 						star.id >= 12 ? 'hidden md:block' : ''
 					}`}
 					style={{
@@ -112,7 +112,7 @@ const SoftClouds = memo(({ parallaxOffset }: { parallaxOffset: number }) => (
 	>
 		{/* Cloud 1 - top right */}
 		<div
-			className="absolute -top-10 right-[10%] w-80 h-40 bg-white/30 rounded-full blur-xl md:blur-3xl max-md:!transform-none"
+			className="absolute -top-10 right-[10%] w-80 h-40 bg-white/30 rounded-full blur-xl md:blur-3xl"
 			style={{
 				transform: `translate3d(0, ${parallaxOffset * 0.2}px, 0)`,
 				willChange: "transform",
@@ -120,7 +120,7 @@ const SoftClouds = memo(({ parallaxOffset }: { parallaxOffset: number }) => (
 		/>
 		{/* Cloud 2 - top left */}
 		<div
-			className="absolute top-[5%] -left-10 w-60 h-32 bg-white/25 rounded-full blur-xl md:blur-3xl max-md:!transform-none"
+			className="absolute top-[5%] -left-10 w-60 h-32 bg-white/25 rounded-full blur-xl md:blur-3xl"
 			style={{
 				transform: `translate3d(0, ${parallaxOffset * 0.3}px, 0)`,
 				willChange: "transform",
@@ -128,7 +128,7 @@ const SoftClouds = memo(({ parallaxOffset }: { parallaxOffset: number }) => (
 		/>
 		{/* Cloud 3 - middle - desktop only */}
 		<div
-			className="absolute top-[30%] right-[30%] w-48 h-24 bg-gradient-sky-center/40 rounded-full blur-xl md:blur-2xl hidden md:block max-md:!transform-none"
+			className="absolute top-[30%] right-[30%] w-48 h-24 bg-gradient-sky-center/40 rounded-full blur-xl md:blur-2xl hidden md:block"
 			style={{
 				transform: `translate3d(0, ${parallaxOffset * 0.15}px, 0)`,
 				willChange: "transform",
@@ -147,7 +147,7 @@ SoftClouds.displayName = "SoftClouds";
 const HandwrittenSignature = memo(
 	({ parallaxOffset }: { parallaxOffset: number }) => (
 		<div
-			className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden max-md:!transform-none"
+			className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden"
 			aria-hidden="true"
 			style={{
 				transform: `translate3d(0, ${parallaxOffset * 0.3}px, 0)`,
@@ -158,7 +158,7 @@ const HandwrittenSignature = memo(
 				viewBox="0 0 800 200"
 				width="1120"
 				height="280"
-				className="opacity-[0.12] dark:opacity-[0.10] max-md:hidden"
+				className="opacity-[0.12] dark:opacity-[0.10]"
 				preserveAspectRatio="xMidYMid meet"
 				style={{
 					maxWidth: "140%",
@@ -206,14 +206,14 @@ const OrganicShapes = memo(({ parallaxOffset }: { parallaxOffset: number }) => (
 		aria-hidden="true"
 	>
 		<div
-			className="absolute -top-32 -right-32 w-72 md:w-96 h-72 md:h-96 bg-gold/20 rounded-full blur-3xl max-md:!transform-none"
+			className="absolute -top-32 -right-32 w-72 md:w-96 h-72 md:h-96 bg-gold/20 rounded-full blur-3xl"
 			style={{
 				transform: `translate3d(0, ${parallaxOffset * 0.5}px, 0)`,
 				willChange: "transform",
 			}}
 		/>
 		<div
-			className="absolute -bottom-32 -left-32 w-60 md:w-80 h-60 md:h-80 bg-accent/20 rounded-full blur-3xl max-md:!transform-none"
+			className="absolute -bottom-32 -left-32 w-60 md:w-80 h-60 md:h-80 bg-accent/20 rounded-full blur-3xl"
 			style={{
 				transform: `translate3d(0, ${-parallaxOffset * 0.3}px, 0)`,
 				willChange: "transform",
@@ -291,8 +291,7 @@ const HeroSection = () => {
 							id="hero-title"
 							className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-foreground leading-[1.1] mb-4 sm:mb-6"
 						>
-							{/* ✅ MOBILE-ONLY: Pas d'animation sur LCP pour score 88+ mobile */}
-							<span className="font-calligraphic text-accent text-5xl sm:text-6xl md:text-7xl lg:text-8xl inline-block align-baseline max-md:motion-reduce:transition-none md:motion-safe:transition-transform md:duration-300 md:hover:scale-110">
+							<span className="font-calligraphic text-accent text-5xl sm:text-6xl md:text-7xl lg:text-8xl inline-block align-baseline motion-safe:transition-transform duration-300 hover:scale-110">
 								A
 							</span>
 							strologie Consciente
@@ -371,7 +370,7 @@ const HeroSection = () => {
 						<Button
 							asChild
 							size="lg"
-							className="bg-gold-light text-foreground hover:bg-navy hover:text-white font-medium px-8 shadow-gold max-md:transition-none md:motion-safe:transition-all duration-300 max-md:scale-100 md:hover:scale-105 hover:shadow-glow active:scale-100 max-md:animate-none md:motion-safe:animate-gold-glow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2"
+							className="bg-gold-light text-foreground hover:bg-navy hover:text-white font-medium px-8 shadow-gold motion-safe:transition-all duration-300 hover:scale-105 hover:shadow-glow active:scale-100 motion-safe:animate-gold-glow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2"
 							aria-label="Réserver une séance de consultation sur Calendly"
 						>
 							<a
@@ -386,7 +385,7 @@ const HeroSection = () => {
 
 					{/* ✍️ Signature manuscrite */}
 					<p
-						className="mt-8 sm:mt-10 font-calligraphic text-xl sm:text-2xl md:text-3xl text-navy/90 dark:text-gold/50 max-md:animate-none md:animate-handwriting"
+						className="mt-8 sm:mt-10 font-calligraphic text-xl sm:text-2xl md:text-3xl text-navy/90 dark:text-gold/50 animate-handwriting"
 						style={{
 							textShadow:
 								"1px 1px 2px rgba(0,0,0,0.15), -1px -1px 2px rgba(0,0,0,0.08)",
@@ -408,7 +407,7 @@ const HeroSection = () => {
 								alt="Émilie Perez - Astrologue et praticienne Reiki 3ème degré à Toulouse"
 								fill
 								sizes="(max-width: 640px) 200px, (max-width: 1024px) 240px, 240px"
-								className="object-cover opacity-90 max-md:transition-none max-md:scale-100 md:motion-safe:transition-transform duration-700 md:group-hover:scale-105"
+								className="object-cover opacity-90 motion-safe:transition-transform duration-700 group-hover:scale-105"
 								quality={55}
 								priority
 								fetchPriority="high"
@@ -427,7 +426,7 @@ const HeroSection = () => {
 
 						{/* 🌿 Badge décoratif plante - Optimisé en CSS background */}
 						<div
-							className="absolute -bottom-2 -left-2 sm:-bottom-3 sm:-left-3 w-10 h-10 sm:w-14 sm:h-14 lg:w-16 lg:h-16 bg-background rounded-full flex items-center justify-center max-md:animate-none md:motion-safe:animate-float overflow-hidden border-2 border-gold/30 shadow-[0_0_20px_rgba(212,175,55,0.2)] max-md:scale-100 md:hover:scale-110 max-md:transition-none md:motion-safe:transition-transform duration-300"
+							className="absolute -bottom-2 -left-2 sm:-bottom-3 sm:-left-3 w-10 h-10 sm:w-14 sm:h-14 lg:w-16 lg:h-16 bg-background rounded-full flex items-center justify-center motion-safe:animate-float overflow-hidden border-2 border-gold/30 shadow-[0_0_20px_rgba(212,175,55,0.2)] hover:scale-110 motion-safe:transition-transform duration-300"
 							aria-hidden="true"
 						>
 							{/* 🎨 Image décorative en CSS background - Évite hydration mismatch */}
@@ -443,7 +442,7 @@ const HeroSection = () => {
 
 						{/* 📍 Badge localisation */}
 						<div
-							className="hidden sm:flex absolute -top-2 -right-2 sm:-top-3 sm:-right-3 px-2 py-1 sm:px-3 sm:py-1.5 bg-background rounded-full shadow-soft max-md:animate-none md:motion-safe:animate-float border border-gold/25 items-center gap-1.5 max-md:scale-100 md:hover:scale-105 max-md:transition-none md:motion-safe:transition-transform duration-300"
+							className="hidden sm:flex absolute -top-2 -right-2 sm:-top-3 sm:-right-3 px-2 py-1 sm:px-3 sm:py-1.5 bg-background rounded-full shadow-soft motion-safe:animate-float border border-gold/25 items-center gap-1.5 hover:scale-105 motion-safe:transition-transform duration-300"
 							aria-hidden="true"
 						>
 							<MapPin
@@ -461,14 +460,14 @@ const HeroSection = () => {
 			{/* 👇 Indicateur de scroll */}
 			<button
 				onClick={scrollToNext}
-				className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2 text-muted-foreground/70 hover:text-accent max-md:transition-none md:motion-safe:transition-all duration-300 max-md:animate-none md:motion-safe:animate-fade-in group focus:outline-none focus:ring-2 focus:ring-accent/50 rounded-lg p-2"
+				className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2 text-muted-foreground/70 hover:text-accent motion-safe:transition-all duration-300 motion-safe:animate-fade-in group focus:outline-none focus:ring-2 focus:ring-accent/50 rounded-lg p-2"
 				aria-label="Défiler vers la section suivante"
 			>
-				<span className="text-[10px] uppercase tracking-widest font-medium max-md:tracking-widest md:group-hover:tracking-[0.25em] max-md:transition-none md:motion-safe:transition-all duration-300">
+				<span className="text-[10px] uppercase tracking-widest font-medium group-hover:tracking-[0.25em] motion-safe:transition-all duration-300">
 					Découvrir
 				</span>
 				<ChevronDown
-					className="w-5 h-5 max-md:animate-none md:motion-safe:animate-bounce max-md:translate-y-0 md:group-hover:translate-y-1 max-md:transition-none md:motion-safe:transition-transform"
+					className="w-5 h-5 motion-safe:animate-bounce group-hover:translate-y-1 motion-safe:transition-transform"
 					aria-hidden="true"
 				/>
 			</button>
