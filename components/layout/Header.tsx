@@ -147,8 +147,8 @@ export const Header = () => {
 				suppressHydrationWarning
 				className={`fixed top-0 left-0 right-0 z-50 transition-all duration-&lsqb;550ms&rsqb; ${
 					isScrolled
-						? "bg-background/98 backdrop-blur-xl shadow-[0_2px_20px_rgba(0,0,0,0.08)] py-3"
-						: "bg-background/90 backdrop-blur-md py-4 md:py-5"
+						? "bg-background shadow-[0_2px_20px_rgba(0,0,0,0.08)] py-3"
+						: "bg-background/95 py-4 md:py-5"
 				}`}
 				role="banner"
 			>
