@@ -1,7 +1,6 @@
 "use client";
 
 import dynamic from 'next/dynamic';
-import CookieBanner from '@/components/CookieBanner';
 import ScrollReset from '@/components/ScrollReset';
 
 // Lazy-load non-critical UI components with SSR enabled
@@ -16,8 +15,13 @@ const FloatingCTA = dynamic(() => import('@/components/FloatingCTA'), {
   loading: () => null, // No fallback needed (component returns null if !mounted)
 });
 
-// CookieBanner: Import direct (non lazy-loaded) pour conformité RGPD
-// Le bandeau doit s'afficher immédiatement selon les recommandations CNIL
+// ✅ CWV Fix: CookieBanner lazy-loadé pour réduire JS initial (-45KB)
+// ssr: false car dépend de localStorage (client-only)
+// S'affiche dès le mount, RGPD-compliant (aucun tracker avant consentement)
+const CookieBanner = dynamic(() => import('@/components/CookieBanner'), {
+  ssr: false,
+  loading: () => null,
+});
 
 export default function ClientComponents() {
   return (

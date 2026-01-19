@@ -50,7 +50,8 @@ const CelestialStars = memo(() => {
 
 	// Générer les étoiles de façon déterministe
 	// toFixed() élimine les différences de précision flottante entre SSR et client
-	const stars = [...Array(20)].map((_, i) => {
+	// ✅ CWV Fix: Réduit de 20 à 12 étoiles (-40% nodes animés)
+	const stars = [...Array(12)].map((_, i) => {
 		const r1 = seededRandom(i * 3 + 1);
 		const r2 = seededRandom(i * 3 + 2);
 		const r3 = seededRandom(i * 3 + 3);
