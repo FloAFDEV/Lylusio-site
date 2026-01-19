@@ -69,14 +69,52 @@ export const initGA = () => {
     console.log('[GA4] Script chargé avec succès, ID:', GA_MEASUREMENT_ID);
   };
 
-  // Charger après que le navigateur soit idle ou après 5s max
-  // Optimisation mobile: plus long délai pour prioritiser contenu critique
-  if ('requestIdleCallback' in window) {
-    console.log('[GA4] Utilisation de requestIdleCallback (timeout: 5s)');
-    requestIdleCallback(loadGAScript, { timeout: 5000 });
+  // ✅ MOBILE-ONLY: Retarder GA4 jusqu'à première interaction sur mobile
+  // Desktop: Chargement immédiat (idle callback)
+  const isMobile = window.innerWidth < 768;
+
+  if (isMobile) {
+    console.log('[GA4] Mobile détecté - attente première interaction');
+    let gaLoaded = false;
+
+    const loadOnInteraction = () => {
+      if (gaLoaded) return;
+      gaLoaded = true;
+      console.log('[GA4] Première interaction mobile - chargement GA4');
+
+      // Supprimer les listeners
+      window.removeEventListener('scroll', loadOnInteraction, { capture: true, passive: true } as any);
+      window.removeEventListener('click', loadOnInteraction, { capture: true, passive: true } as any);
+      window.removeEventListener('touchstart', loadOnInteraction, { capture: true, passive: true } as any);
+
+      // Charger GA4
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(loadGAScript, { timeout: 2000 });
+      } else {
+        setTimeout(loadGAScript, 1000);
+      }
+    };
+
+    // Écouter première interaction (scroll, click, touch)
+    window.addEventListener('scroll', loadOnInteraction, { capture: true, passive: true, once: true });
+    window.addEventListener('click', loadOnInteraction, { capture: true, passive: true, once: true });
+    window.addEventListener('touchstart', loadOnInteraction, { capture: true, passive: true, once: true });
+
+    // Fallback : charger après 10s si aucune interaction
+    setTimeout(() => {
+      if (!gaLoaded) {
+        console.log('[GA4] Fallback 10s - chargement GA4');
+        loadOnInteraction();
+      }
+    }, 10000);
   } else {
-    console.log('[GA4] Utilisation de setTimeout (4s)');
-    setTimeout(loadGAScript, 4000);
+    // Desktop: chargement immédiat avec idle callback
+    console.log('[GA4] Desktop - chargement idle callback');
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(loadGAScript, { timeout: 5000 });
+    } else {
+      setTimeout(loadGAScript, 4000);
+    }
   }
 };
 
