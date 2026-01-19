@@ -125,12 +125,12 @@ const ServicesPreview = () => {
 										transitionDelay: `${index * 150}ms`,
 									}}
 								>
-									{/* Card inner container */}
+									{/* Card inner container - overflow hidden pour contenir le scale */}
 									<div className="relative rounded-2xl md:rounded-3xl overflow-hidden border border-border/40 group-hover:border-gold/50 group-hover:shadow-lg transition-all duration-300 bg-card">
 
-										{/* Image section */}
-										<div className="relative h-36 sm:h-40 md:h-44 lg:h-48 overflow-hidden">
-											<div className="absolute inset-0 overflow-hidden">
+										{/* Image section - rounded top pour match parent radius */}
+										<div className="relative h-36 sm:h-40 md:h-44 lg:h-48 overflow-hidden rounded-t-2xl md:rounded-t-3xl">
+											<div className="absolute inset-0 overflow-hidden rounded-t-2xl md:rounded-t-3xl">
 												<Image
 													src={service.image}
 													alt={service.alt}
@@ -145,12 +145,12 @@ const ServicesPreview = () => {
 															"hidden",
 													}}
 													fill
-													sizes="(max-width: 768px) 100vw, 50vw"
+													sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
 													quality={50}
 													loading="lazy"
 												/>
 											</div>
-											<div className="absolute inset-0 bg-gradient-to-t from-card via-card/40 to-transparent pointer-events-none" />
+											<div className="absolute inset-0 bg-gradient-to-t from-card via-card/40 to-transparent pointer-events-none rounded-t-2xl md:rounded-t-3xl" />
 
 											{/* Icon badge */}
 											<div

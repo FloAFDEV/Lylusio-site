@@ -50,8 +50,9 @@ const CelestialStars = memo(() => {
 
 	// Générer les étoiles de façon déterministe
 	// toFixed() élimine les différences de précision flottante entre SSR et client
-	// ✅ CWV Fix: Réduit de 20 à 12 étoiles (-40% nodes animés)
-	const stars = [...Array(12)].map((_, i) => {
+	// ✅ CWV Fix: 12 étoiles sur mobile (score 72), 20 sur desktop (score 97)
+	// On génère toujours 20 étoiles mais on cache les 8 dernières sur mobile avec CSS
+	const stars = [...Array(20)].map((_, i) => {
 		const r1 = seededRandom(i * 3 + 1);
 		const r2 = seededRandom(i * 3 + 2);
 		const r3 = seededRandom(i * 3 + 3);
@@ -76,7 +77,9 @@ const CelestialStars = memo(() => {
 			{stars.map((star) => (
 				<div
 					key={star.id}
-					className="absolute rounded-full bg-gold/90 animate-twinkle"
+					className={`absolute rounded-full bg-gold/90 animate-twinkle ${
+						star.id >= 12 ? 'hidden md:block' : ''
+					}`}
 					style={{
 						left: star.left,
 						top: star.top,
