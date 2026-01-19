@@ -139,10 +139,11 @@ SoftClouds.displayName = "SoftClouds";
 // ✍️ HANDWRITTEN SIGNATURE
 // ===========================
 // Signature SVG mémorisée avec parallax
+// ✅ CWV Fix: Dimensions fixes pour éviter CLS, transform CSS uniquement
 const HandwrittenSignature = memo(
 	({ parallaxOffset }: { parallaxOffset: number }) => (
 		<div
-			className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden sm:flex"
+			className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden"
 			aria-hidden="true"
 			style={{
 				transform: `translate3d(0, ${parallaxOffset * 0.3}px, 0)`,
@@ -151,8 +152,14 @@ const HandwrittenSignature = memo(
 		>
 			<svg
 				viewBox="0 0 800 200"
-				className="w-[140%] lg:w-[120%] h-auto opacity-[0.12] dark:opacity-[0.10]"
+				width="1120"
+				height="280"
+				className="opacity-[0.12] dark:opacity-[0.10]"
 				preserveAspectRatio="xMidYMid meet"
+				style={{
+					maxWidth: "140%",
+					height: "auto",
+				}}
 			>
 				<defs>
 					<filter id="signature-blur">
@@ -165,11 +172,12 @@ const HandwrittenSignature = memo(
 					textAnchor="middle"
 					dominantBaseline="middle"
 					filter="url(#signature-blur)"
-					className="fill-navy/30 dark:fill-gold/20 animate-handwriting"
+					className="fill-navy/30 dark:fill-gold/20"
 					style={{
 						fontSize: "100px",
 						fontFamily: "Dancing Script, cursive",
-						animationDelay: "1.5s",
+						opacity: 0,
+						animation: "fadeIn 0.6s ease-out 1.5s forwards",
 					}}
 					stroke="currentColor"
 					strokeWidth="0.5"

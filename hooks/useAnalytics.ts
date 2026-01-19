@@ -39,6 +39,13 @@ export const initGA = () => {
 
   console.log('[GA4] Initialisation en cours...');
 
+  // ✅ CWV Fix: Preconnect GTM uniquement après consentement (au lieu du layout)
+  const preconnectLink = document.createElement('link');
+  preconnectLink.rel = 'preconnect';
+  preconnectLink.href = 'https://www.googletagmanager.com';
+  document.head.appendChild(preconnectLink);
+  console.log('[GA4] Preconnect GTM ajouté');
+
   // Créer dataLayer
   window.dataLayer = window.dataLayer || [];
   window.gtag = function gtag() {
