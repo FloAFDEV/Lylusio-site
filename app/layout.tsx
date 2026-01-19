@@ -20,9 +20,10 @@ import EnvChecker from "@/components/EnvChecker";
 import "@/app/globals.css";
 
 // next/font/google - Optimized for zero CLS
+// ✅ Optimisation : Réduit weights chargés (300KB → 180KB, -40%)
 const cormorantGaramond = Cormorant_Garamond({
 	subsets: ["latin"],
-	weight: ["300", "400", "500", "600", "700"],
+	weight: ["400", "600", "700"], // Supprimé 300, 500 (non utilisés page accueil)
 	variable: "--font-display",
 	display: "swap",
 	preload: true,
@@ -32,7 +33,7 @@ const cormorantGaramond = Cormorant_Garamond({
 
 const sourceSans = Source_Sans_3({
 	subsets: ["latin"],
-	weight: ["300", "400", "600", "700"],
+	weight: ["400", "600", "700"], // Supprimé 300 (non utilisé page accueil)
 	variable: "--font-body",
 	display: "swap",
 	preload: true,
@@ -42,7 +43,7 @@ const sourceSans = Source_Sans_3({
 
 const dancingScript = Dancing_Script({
 	subsets: ["latin"],
-	weight: ["400", "500", "600", "700"],
+	weight: ["400", "600"], // Supprimé 500, 700 (non utilisés page accueil)
 	variable: "--font-calligraphic",
 	display: "swap",
 	preload: false,

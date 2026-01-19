@@ -3,11 +3,20 @@ import dynamic from "next/dynamic";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import HeroSection from "@/components/sections/HeroSection";
-import ApprochSection from "@/components/sections/ApprochSection";
-import ServicesPreview from "@/components/sections/ServicesPreview";
 
-// ✅ CWV Fix: Lazy-load sections below-the-fold pour réduire TBT (690ms → <200ms)
-// Ces sections ne sont pas visibles immédiatement et peuvent être chargées après le LCP
+// ✅ CWV Fix: Lazy-load TOUTES sections below-the-fold pour maximiser score LCP
+// Sur mobile (viewport principal PageSpeed), Hero seul = above-the-fold
+// Réduction chunk JS initial : ~60% (-240KB estimé)
+const ApprochSection = dynamic(
+  () => import("@/components/sections/ApprochSection"),
+  { loading: () => <div className="section-padding" /> }
+);
+
+const ServicesPreview = dynamic(
+  () => import("@/components/sections/ServicesPreview"),
+  { loading: () => <div className="section-padding" /> }
+);
+
 const QuiSuisJeSection = dynamic(
   () => import("@/components/sections/QuiSuisJeSection"),
   { loading: () => <div className="section-padding" /> }
