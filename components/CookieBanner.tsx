@@ -28,6 +28,21 @@ const CookieBanner = () => {
 		marketing: true, // ✅ Coché par défaut
 	});
 
+	// ✅ Accessibilité: Respect prefers-reduced-motion
+	const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+
+	useEffect(() => {
+		const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+		setPrefersReducedMotion(mediaQuery.matches);
+
+		const handleChange = (e: MediaQueryListEvent) => {
+			setPrefersReducedMotion(e.matches);
+		};
+
+		mediaQuery.addEventListener('change', handleChange);
+		return () => mediaQuery.removeEventListener('change', handleChange);
+	}, []);
+
 	useEffect(() => {
 		const consent = localStorage.getItem(COOKIE_CONSENT_KEY);
 		const expiryDate = localStorage.getItem("cookie-consent-expiry");
@@ -40,15 +55,8 @@ const CookieBanner = () => {
 		}
 
 		if (!consent || (expiryDate && new Date(expiryDate) < new Date())) {
-			// Delay showing the banner for better UX - apparition ultra-douce
-			const timer = setTimeout(() => {
-				setIsVisible(true);
-				// Bloquer le scroll du body sans décalage
-				const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
-				document.body.style.overflow = "hidden";
-				document.body.style.paddingRight = `${scrollbarWidth}px`;
-			}, 1500);
-			return () => clearTimeout(timer);
+			// ✅ CWV Fix: Affichage immédiat sans délai pour éviter CLS
+			setIsVisible(true);
 		} else {
 			// Charger les préférences existantes
 			const savedPreferences = localStorage.getItem(
@@ -56,6 +64,14 @@ const CookieBanner = () => {
 			);
 			if (savedPreferences) {
 				setPreferences(JSON.parse(savedPreferences));
+			}
+			// ✅ CWV Fix: Charger GA4 uniquement si consentement analytics existe
+			const prefs = savedPreferences ? JSON.parse(savedPreferences) : null;
+			if (prefs?.analytics && typeof window !== 'undefined') {
+				// Déclencher l'événement pour charger GA4
+				window.dispatchEvent(new CustomEvent('cookieConsentGranted', {
+					detail: { analytics: true, marketing: prefs.marketing }
+				}));
 			}
 		}
 	}, []);
@@ -86,12 +102,12 @@ const CookieBanner = () => {
 		localStorage.setItem(COOKIE_PREFERENCES_KEY, JSON.stringify(prefs));
 		localStorage.setItem("cookie-consent-expiry", expiryDate.toISOString());
 
-		// Ici, vous pouvez activer/désactiver réellement les cookies selon les préférences
-		if (prefs.analytics) {
-			// Activer Google Analytics, etc.
-		}
-		if (prefs.marketing) {
-			// Activer pixels de suivi, etc.
+		// ✅ CWV Fix: Charger les scripts uniquement après consentement
+		if (prefs.analytics && typeof window !== 'undefined') {
+			// Déclencher l'événement pour charger GA4
+			window.dispatchEvent(new CustomEvent('cookieConsentGranted', {
+				detail: { analytics: true, marketing: prefs.marketing }
+			}));
 		}
 	};
 
@@ -118,9 +134,7 @@ const CookieBanner = () => {
 				// Personnalisé
 				savePreferences(preferences);
 			}
-			// Réactiver le scroll sans décalage
-			document.body.style.overflow = "";
-			document.body.style.paddingRight = "";
+			// ✅ CWV Fix: Pas de modification du body (déjà position fixed)
 			setIsVisible(false);
 		}, 400);
 	};
@@ -156,11 +170,15 @@ const CookieBanner = () => {
 
 	if (!isVisible) return null;
 
+	// ✅ Accessibilité: Durées d'animation réduites si prefers-reduced-motion
+	const transitionDuration = prefersReducedMotion ? "duration-150" : "duration-700";
+	const transitionDurationFast = prefersReducedMotion ? "duration-100" : "duration-500";
+
 	return (
 		<>
-			{/* Overlay bloquant avec blur renforcé - RGPD Compliant - Apparition ultra-douce */}
+			{/* Overlay bloquant avec blur renforcé - RGPD Compliant */}
 			<div
-				className={`fixed inset-0 z-[60] transition-all duration-700 ease-out ${
+				className={`fixed inset-0 z-[60] transition-all ${transitionDuration} ease-out ${
 					isClosing ? "opacity-0" : "opacity-100"
 				}`}
 				aria-hidden="true"
@@ -171,13 +189,14 @@ const CookieBanner = () => {
 				<div className="absolute inset-0 bg-gradient-radial from-transparent via-sand/10 to-navy/20" />
 			</div>
 
-			{/* Cookie Banner - Apparition ultra-douce avec fade + scale */}
+			{/* Cookie Banner - CWV optimisé avec accessibilité */}
 			<div
-				className={`fixed inset-0 z-[70] flex items-center justify-center p-4 md:p-6 transition-all duration-700 ease-out ${
+				className={`fixed inset-0 z-[70] flex items-center justify-center p-4 md:p-6 transition-all ${transitionDuration} ease-out ${
 					isClosing ? "opacity-0 scale-95" : "opacity-100 scale-100"
 				}`}
 				role="dialog"
 				aria-modal="true"
+				aria-live="polite"
 				aria-label="Consentement aux cookies"
 				aria-describedby="cookie-description"
 			>
@@ -193,7 +212,7 @@ const CookieBanner = () => {
 
 						{/* Contenu principal avec transition douce */}
 						<div
-							className={`relative transition-all duration-500 ease-out ${
+							className={`relative transition-all ${transitionDurationFast} ease-out ${
 								isTransitioning
 									? "opacity-0 scale-95"
 									: "opacity-100 scale-100"
