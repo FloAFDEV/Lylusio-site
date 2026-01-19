@@ -404,7 +404,7 @@ const HeroSection = () => {
 								fill
 								sizes="(max-width: 640px) 200px, (max-width: 1024px) 240px, 240px"
 								className="object-cover opacity-90 motion-safe:transition-transform duration-700 group-hover:scale-105"
-								quality={65}
+								quality={55}
 								priority
 								fetchPriority="high"
 								loading="eager"
@@ -422,7 +422,7 @@ const HeroSection = () => {
 
 						{/* 🌿 Badge décoratif plante - Optimisé en CSS background */}
 						<div
-							className="absolute -bottom-2 -left-2 sm:-bottom-3 sm:-left-3 w-10 h-10 sm:w-14 sm:h-14 lg:w-16 lg:h-16 bg-background/95 rounded-full flex items-center justify-center motion-safe:animate-float overflow-hidden border-2 border-gold/30 shadow-[0_0_20px_rgba(212,175,55,0.2)] backdrop-blur-sm hover:scale-110 motion-safe:transition-transform duration-300"
+							className="absolute -bottom-2 -left-2 sm:-bottom-3 sm:-left-3 w-10 h-10 sm:w-14 sm:h-14 lg:w-16 lg:h-16 bg-background rounded-full flex items-center justify-center motion-safe:animate-float overflow-hidden border-2 border-gold/30 shadow-[0_0_20px_rgba(212,175,55,0.2)] hover:scale-110 motion-safe:transition-transform duration-300"
 							aria-hidden="true"
 						>
 							{/* 🎨 Image décorative en CSS background - Évite hydration mismatch */}
@@ -438,7 +438,7 @@ const HeroSection = () => {
 
 						{/* 📍 Badge localisation */}
 						<div
-							className="hidden sm:flex absolute -top-2 -right-2 sm:-top-3 sm:-right-3 px-2 py-1 sm:px-3 sm:py-1.5 bg-background/90 backdrop-blur-md rounded-full shadow-soft motion-safe:animate-float border border-gold/25 items-center gap-1.5 hover:scale-105 motion-safe:transition-transform duration-300"
+							className="hidden sm:flex absolute -top-2 -right-2 sm:-top-3 sm:-right-3 px-2 py-1 sm:px-3 sm:py-1.5 bg-background rounded-full shadow-soft motion-safe:animate-float border border-gold/25 items-center gap-1.5 hover:scale-105 motion-safe:transition-transform duration-300"
 							aria-hidden="true"
 						>
 							<MapPin
