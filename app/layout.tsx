@@ -176,12 +176,8 @@ export default function RootLayout({
 					fetchPriority="high"
 				/>
 
-				{/* Preconnect for third-party origins - Google Tag Manager only */}
+				{/* ✅ CWV Fix: Preconnect GTM retiré - sera chargé uniquement après consentement analytics */}
 				{/* Note: Google Fonts already inlined by next/font, no preconnect needed */}
-				<link
-					rel="preconnect"
-					href="https://www.googletagmanager.com"
-				/>
 
 				{/* DNS prefetch for WordPress admin backend only */}
 				<link rel="dns-prefetch" href="https://admin.lylusio.fr" />

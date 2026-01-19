@@ -46,9 +46,11 @@ const CookieBanner = () => {
 	useEffect(() => {
 		const consent = localStorage.getItem(COOKIE_CONSENT_KEY);
 		const expiryDate = localStorage.getItem("cookie-consent-expiry");
+		console.log('[CookieBanner] Vérification consentement:', { consent, expiryDate });
 
 		// Vérifier si le consentement a expiré
 		if (expiryDate && new Date(expiryDate) < new Date()) {
+			console.log('[CookieBanner] Consentement expiré, nettoyage...');
 			localStorage.removeItem(COOKIE_CONSENT_KEY);
 			localStorage.removeItem(COOKIE_PREFERENCES_KEY);
 			localStorage.removeItem("cookie-consent-expiry");
@@ -56,6 +58,7 @@ const CookieBanner = () => {
 
 		if (!consent || (expiryDate && new Date(expiryDate) < new Date())) {
 			// ✅ CWV Fix: Affichage immédiat sans délai pour éviter CLS
+			console.log('[CookieBanner] Aucun consentement, affichage du banner');
 			setIsVisible(true);
 		} else {
 			// Charger les préférences existantes
@@ -67,8 +70,10 @@ const CookieBanner = () => {
 			}
 			// ✅ CWV Fix: Charger GA4 uniquement si consentement analytics existe
 			const prefs = savedPreferences ? JSON.parse(savedPreferences) : null;
+			console.log('[CookieBanner] Préférences chargées:', prefs);
 			if (prefs?.analytics && typeof window !== 'undefined') {
 				// Déclencher l'événement pour charger GA4
+				console.log('[CookieBanner] Dispatch événement cookieConsentGranted');
 				window.dispatchEvent(new CustomEvent('cookieConsentGranted', {
 					detail: { analytics: true, marketing: prefs.marketing }
 				}));
@@ -98,6 +103,7 @@ const CookieBanner = () => {
 		const expiryDate = new Date();
 		expiryDate.setDate(expiryDate.getDate() + COOKIE_EXPIRY_DAYS);
 
+		console.log('[CookieBanner] Sauvegarde préférences:', prefs);
 		localStorage.setItem(COOKIE_CONSENT_KEY, "customized");
 		localStorage.setItem(COOKIE_PREFERENCES_KEY, JSON.stringify(prefs));
 		localStorage.setItem("cookie-consent-expiry", expiryDate.toISOString());
@@ -105,6 +111,7 @@ const CookieBanner = () => {
 		// ✅ CWV Fix: Charger les scripts uniquement après consentement
 		if (prefs.analytics && typeof window !== 'undefined') {
 			// Déclencher l'événement pour charger GA4
+			console.log('[CookieBanner] Dispatch événement cookieConsentGranted (acceptation)');
 			window.dispatchEvent(new CustomEvent('cookieConsentGranted', {
 				detail: { analytics: true, marketing: prefs.marketing }
 			}));
@@ -176,17 +183,15 @@ const CookieBanner = () => {
 
 	return (
 		<>
-			{/* Overlay bloquant avec blur renforcé - RGPD Compliant */}
+			{/* Overlay bloquant optimisé performance - RGPD Compliant */}
 			<div
-				className={`fixed inset-0 z-[60] transition-all ${transitionDuration} ease-out ${
+				className={`fixed inset-0 z-[60] transition-opacity ${transitionDuration} ease-out ${
 					isClosing ? "opacity-0" : "opacity-100"
 				}`}
 				aria-hidden="true"
 			>
-				{/* Backdrop blur plus profond et chaud */}
-				<div className="absolute inset-0 bg-navy/40 backdrop-blur-md" />
-				{/* Vignette dorée subtile */}
-				<div className="absolute inset-0 bg-gradient-radial from-transparent via-sand/10 to-navy/20" />
+				{/* Overlay semi-transparent sans blur (optimisation LCP) */}
+				<div className="absolute inset-0 bg-gradient-to-b from-navy/50 via-navy/60 to-navy/70" />
 			</div>
 
 			{/* Cookie Banner - CWV optimisé avec accessibilité */}
@@ -201,11 +206,8 @@ const CookieBanner = () => {
 				aria-describedby="cookie-description"
 			>
 				<div className="w-full max-w-2xl">
-					{/* Background plus riche et profond */}
-					<div className="relative bg-gradient-to-br from-cream/95 via-sand/90 to-background/95 backdrop-blur-xl border border-gold/40 rounded-3xl shadow-[0_25px_70px_-20px_rgba(0,0,0,0.25)] overflow-hidden">
-						{/* Halos dorés renforcés */}
-						<div className="absolute -top-24 -right-24 w-56 h-56 bg-gradient-radial from-gold/20 via-gold/8 to-transparent rounded-full blur-3xl" />
-						<div className="absolute -bottom-24 -left-24 w-56 h-56 bg-gradient-radial from-accent/15 via-accent/5 to-transparent rounded-full blur-3xl" />
+					{/* Background optimisé performance (sans blur coûteux) */}
+					<div className="relative bg-gradient-to-br from-cream via-sand to-background border border-gold/40 rounded-3xl shadow-2xl overflow-hidden">
 
 						{/* Ligne supérieure dorée visible */}
 						<div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/60 to-transparent" />

@@ -24,13 +24,27 @@ declare global {
 
 // Initialise GA4 uniquement en production avec délai pour réduire TBT
 export const initGA = () => {
+  console.log('[GA4] initGA appelé, hostname:', window.location.hostname);
+
   if (!isProduction()) {
-    console.log('[GA4] Mode développement - Analytics désactivé');
+    console.log('[GA4] Mode développement - Analytics désactivé (hostname non production)');
     return;
   }
 
   // Vérifie si déjà chargé
-  if (window.gtag) return;
+  if (window.gtag) {
+    console.log('[GA4] Déjà initialisé, skip');
+    return;
+  }
+
+  console.log('[GA4] Initialisation en cours...');
+
+  // ✅ CWV Fix: Preconnect GTM uniquement après consentement (au lieu du layout)
+  const preconnectLink = document.createElement('link');
+  preconnectLink.rel = 'preconnect';
+  preconnectLink.href = 'https://www.googletagmanager.com';
+  document.head.appendChild(preconnectLink);
+  console.log('[GA4] Preconnect GTM ajouté');
 
   // Créer dataLayer
   window.dataLayer = window.dataLayer || [];
@@ -52,14 +66,16 @@ export const initGA = () => {
     script.defer = true;
     script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`;
     document.head.appendChild(script);
-    console.log('[GA4] Analytics initialisé');
+    console.log('[GA4] Script chargé avec succès, ID:', GA_MEASUREMENT_ID);
   };
 
   // Charger après que le navigateur soit idle ou après 5s max
   // Optimisation mobile: plus long délai pour prioritiser contenu critique
   if ('requestIdleCallback' in window) {
+    console.log('[GA4] Utilisation de requestIdleCallback (timeout: 5s)');
     requestIdleCallback(loadGAScript, { timeout: 5000 });
   } else {
+    console.log('[GA4] Utilisation de setTimeout (4s)');
     setTimeout(loadGAScript, 4000);
   }
 };

@@ -26,13 +26,18 @@ export function AnalyticsProvider({
   const [hasConsent, setHasConsent] = useState(false);
 
   useEffect(() => {
+    let gaInitialized = false;
+
     // ✅ CWV Fix: Vérifier le consentement existant au chargement
     const checkExistingConsent = () => {
       try {
         const savedPreferences = localStorage.getItem('lylusio-cookie-preferences');
+        console.log('[GA4] Vérification consentement localStorage:', savedPreferences);
         if (savedPreferences) {
           const prefs = JSON.parse(savedPreferences);
-          if (prefs?.analytics) {
+          if (prefs?.analytics && !gaInitialized) {
+            console.log('[GA4] Consentement trouvé, initialisation GA4...');
+            gaInitialized = true;
             setHasConsent(true);
             initGA();
           }
@@ -46,7 +51,10 @@ export function AnalyticsProvider({
     const handleConsentGranted = (event: Event) => {
       const customEvent = event as CustomEvent;
       const { analytics } = customEvent.detail || {};
-      if (analytics && !hasConsent) {
+      console.log('[GA4] Événement cookieConsentGranted reçu:', { analytics, gaInitialized });
+      if (analytics && !gaInitialized) {
+        console.log('[GA4] Initialisation GA4 via événement...');
+        gaInitialized = true;
         setHasConsent(true);
         initGA();
       }
@@ -58,7 +66,7 @@ export function AnalyticsProvider({
     return () => {
       window.removeEventListener('cookieConsentGranted', handleConsentGranted);
     };
-  }, [hasConsent]);
+  }, []); // ✅ Suppression de la dépendance hasConsent pour éviter les re-exécutions
 
   return (
     <>
