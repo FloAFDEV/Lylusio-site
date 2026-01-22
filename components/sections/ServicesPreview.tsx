@@ -84,17 +84,19 @@ const ServicesPreview = () => {
 
 			<div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 				{/* Header */}
-				<header
-					className={`text-center max-w-xl mx-auto mb-10 md:mb-16 transition-all duration-1000 ${
-						isInView
-							? "opacity-100 translate-y-0"
-							: "opacity-0 translate-y-8"
-					}`}
-				>
-					<p className="section-label">Services</p>
+				<header className="text-center max-w-xl mx-auto mb-10 md:mb-16">
+					<p
+						className={`section-label opacity-0 animate-fade-in-up delay-100 ${
+							isInView ? "" : "!opacity-0"
+						}`}
+					>
+						Services
+					</p>
 					<h2
 						id="services-title"
-						className="text-foreground mb-4 md:mb-6"
+						className={`text-foreground mb-4 md:mb-6 opacity-0 animate-fade-in-up delay-200 ${
+							isInView ? "" : "!opacity-0"
+						}`}
 					>
 						<span className="font-calligraphic text-accent text-4xl sm:text-5xl md:text-6xl inline-block align-baseline">
 							U

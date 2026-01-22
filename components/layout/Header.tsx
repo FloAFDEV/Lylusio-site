@@ -300,28 +300,28 @@ export const Header = () => {
 						aria-controls="mobile-menu"
 					>
 						<span
-							className={`block h-0.5 w-6 bg-foreground rounded-full motion-safe:transition-all duration-&lsqb;650ms&rsqb; ${
+							className={`block h-0.5 w-6 bg-current transition-all duration-300 ${
 								isMobileOpen
 									? "rotate-45 translate-y-2"
 									: "rotate-0"
 							}`}
 						/>
 						<span
-							className={`block h-0.5 w-6 bg-foreground rounded-full motion-safe:transition-all duration-&lsqb;650ms&rsqb; ${
+							className={`block h-0.5 w-6 bg-current transition-all duration-300 ${
 								isMobileOpen
-									? "opacity-0 scale-0"
+									? "opacity-0"
 									: "opacity-100"
 							}`}
 						/>
 						<span
-							className={`block h-0.5 w-6 bg-foreground rounded-full motion-safe:transition-all duration-&lsqb;650ms&rsqb; ${
+							className={`block h-0.5 w-6 bg-current transition-all duration-300 ${
 								isMobileOpen
 									? "-rotate-45 -translate-y-2"
 									: "rotate-0"
 							}`}
 						/>
 						<div
-							className={`absolute inset-0 rounded-lg bg-accent/20 opacity-0 group-hover:opacity-100 motion-safe:transition-opacity duration-&lsqb;550ms&rsqb; ${
+							className={`absolute inset-0 rounded-lg bg-accent/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${
 								isMobileOpen ? "opacity-100" : ""
 							}`}
 							aria-hidden="true"
@@ -332,7 +332,7 @@ export const Header = () => {
 
 			{/* ================= Mobile Overlay ================= */}
 			<div
-				className={`xl:hidden fixed inset-0 bg-black/30 backdrop-blur-sm z-40 motion-safe:transition-opacity duration-&lsqb;700ms&rsqb; ease-out ${
+				className={`xl:hidden fixed inset-0 bg-black/10 z-[9998] transition-opacity duration-300 ${
 					isMobileOpen
 						? "opacity-100 visible"
 						: "opacity-0 invisible pointer-events-none"
@@ -345,9 +345,12 @@ export const Header = () => {
 			<div
 				suppressHydrationWarning
 				id="mobile-menu"
-				className={`xl:hidden fixed top-0 right-0 h-full w-3/4 max-w-xs bg-card shadow-lg border-l border-accent/20 z-50 motion-safe:transition-transform duration-&lsqb;800ms&rsqb; ease-&lsqb;cubic-bezier(0.23,1,0.32,1)&rsqb; ${
-					isMobileOpen ? "translate-x-0" : "translate-x-[110%]"
+				className={`xl:hidden fixed top-0 right-0 h-full w-3/4 max-w-[320px] bg-card shadow-lg border-l border-accent/20 z-[9999] transition-transform duration-300 ${
+					isMobileOpen ? "animate-slide-in-drawer" : "animate-slide-out-drawer"
 				}`}
+				style={{
+					transform: isMobileOpen ? "translateX(0)" : "translateX(100%)"
+				}}
 				role="dialog"
 				aria-label="Menu de navigation mobile"
 				aria-modal={isMobileOpen}
@@ -362,15 +365,15 @@ export const Header = () => {
 								link.hasSubmenu ? (
 									<div
 										key={link.label}
-										className="motion-safe:transition-all duration-&lsqb;700ms&rsqb; ease-out will-change-transform"
+										className="transition-all duration-300"
 										style={{
 											opacity: isMobileOpen ? 1 : 0,
 											transform: isMobileOpen
-												? "translateY(0)"
-												: "translateY(12px)",
+												? "translateX(0)"
+												: "translateX(2rem)",
 											transitionDelay: isMobileOpen
-												? `${index * 50 + 150}ms`
-												: "0ms", // cascade douce
+												? `${50 * index + 50}ms`
+												: "0ms",
 										}}
 									>
 										<button
@@ -378,7 +381,7 @@ export const Header = () => {
 											onClick={() =>
 												toggleMobileSubmenu(link.label)
 											}
-											className="w-full flex items-center justify-between font-medium text-foreground/80 hover:text-accent py-3 motion-safe:transition-colors duration-&lsqb;550ms&rsqb; focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 min-h-[44px]"
+											className="w-full flex items-center justify-between font-medium text-foreground/80 hover:text-accent py-3 transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 min-h-[44px]"
 											aria-expanded={
 												mobileSubmenuOpen[link.label] ||
 												false
@@ -389,7 +392,7 @@ export const Header = () => {
 										>
 											<MenuLabel label={link.label} />
 											<ChevronDown
-												className={`w-4 h-4 motion-safe:transition-transform duration-&lsqb;900ms&rsqb; ease-in-out ${
+												className={`w-4 h-4 transition-transform duration-300 ${
 													mobileSubmenuOpen[
 														link.label
 													]
@@ -400,15 +403,15 @@ export const Header = () => {
 											/>
 										</button>
 
-										{/* Sous-menu mobile smooth avec translateY uniquement */}
+										{/* Sous-menu mobile */}
 										<div
 											id={`mobile-submenu-${link.label
 												.toLowerCase()
 												.replace(/\s+/g, "-")}`}
-											className={`overflow-hidden ${
+											className={`overflow-hidden transition-all duration-500 ease-out ${
 												mobileSubmenuOpen[link.label]
-													? "max-h-52"
-													: "max-h-0"
+													? "max-h-60 opacity-100"
+													: "max-h-0 opacity-0"
 											}`}
 										>
 											<div className="pl-4 py-2 space-y-1 border-l-2 backdrop-blur-lg border-accent/30 ml-2">
@@ -420,7 +423,7 @@ export const Header = () => {
 															onClick={
 																handleNavClick
 															}
-															className="block font-medium text-sm text-foreground/80 hover:text-accent hover:bg-accent/5 rounded-lg px-3 py-2 motion-safe:transition-all duration-&lsqb;400ms&rsqb; ease-out min-h-[44px] flex items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-accent will-change-transform"
+															className="block font-medium text-sm text-foreground/80 hover:text-foreground hover:bg-accent/5 hover:translate-x-1 active:scale-95 rounded-lg px-3 py-2 transition-all duration-300 min-h-[44px] flex items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
 															style={{
 																opacity:
 																	mobileSubmenuOpen[
@@ -434,8 +437,8 @@ export const Header = () => {
 																		link
 																			.label
 																	]
-																		? "translateY(0)"
-																		: "translateY(-8px)",
+																		? "translateX(0)"
+																		: "translateX(1rem)",
 																transitionDelay:
 																	mobileSubmenuOpen[
 																		link
@@ -443,7 +446,7 @@ export const Header = () => {
 																	]
 																		? `${
 																				subIndex *
-																				50
+																				80 + 100
 																		  }ms`
 																		: "0ms",
 															}}
@@ -464,7 +467,7 @@ export const Header = () => {
 													<Link
 														href={link.href}
 														onClick={handleNavClick}
-														className="block text-sm text-muted-foreground hover:text-accent py-2 pl-2 motion-safe:transition-all duration-&lsqb;400ms&rsqb; ease-out focus:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-lg will-change-transform"
+														className="block text-sm text-muted-foreground hover:text-accent py-2 pl-2 transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-lg"
 														style={{
 															opacity:
 																mobileSubmenuOpen[
@@ -476,8 +479,8 @@ export const Header = () => {
 																mobileSubmenuOpen[
 																	link.label
 																]
-																	? "translateY(0)"
-																	: "translateY(-8px)",
+																	? "translateX(0)"
+																	: "translateX(1rem)",
 															transitionDelay:
 																mobileSubmenuOpen[
 																	link.label
@@ -487,7 +490,7 @@ export const Header = () => {
 																				.subItems
 																				?.length ||
 																				0) *
-																			50
+																			80 + 100
 																	  }ms`
 																	: "0ms",
 														}}
@@ -504,14 +507,14 @@ export const Header = () => {
 										key={link.href}
 										href={link.href}
 										onClick={handleNavClick}
-										className="flex items-center font-medium text-foreground/80 hover:text-accent py-3 motion-safe:transition-all duration-&lsqb;500ms&rsqb; ease-out min-h-[44px] focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 rounded-md will-change-transform"
+										className="flex items-center font-medium text-foreground/80 hover:text-accent hover:translate-x-2 active:scale-95 py-3 transition-all duration-300 min-h-[44px] focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 rounded-md"
 										style={{
 											opacity: isMobileOpen ? 1 : 0,
 											transform: isMobileOpen
-												? "translateY(0)"
-												: "translateY(12px)",
+												? "translateX(0)"
+												: "translateX(2rem)",
 											transitionDelay: isMobileOpen
-												? `${index * 50 + 150}ms`
+												? `${50 * index + 50}ms`
 												: "0ms",
 										}}
 									>

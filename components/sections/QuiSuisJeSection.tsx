@@ -37,10 +37,8 @@ const QuiSuisJeSection = () => {
 				<div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-8 md:gap-12 lg:gap-16">
 					{/* Image */}
 					<div
-						className={`relative motion-safe:transition-all duration-1000 ${
-							isInView
-								? "opacity-100 translate-x-0"
-								: "opacity-0 -translate-x-12"
+						className={`relative opacity-0 animate-fade-in-left delay-100 ${
+							isInView ? "" : "!opacity-0"
 						}`}
 					>
 						<div className="relative w-40 h-40 md:w-52 md:h-52 lg:w-56 lg:h-56 flex-shrink-0">
@@ -80,10 +78,8 @@ const QuiSuisJeSection = () => {
 
 					{/* Content */}
 					<div
-						className={`flex-1 text-center md:text-left motion-safe:transition-all duration-1000 delay-200 ${
-							isInView
-								? "opacity-100 translate-x-0"
-								: "opacity-0 translate-x-12"
+						className={`flex-1 text-center md:text-left opacity-0 animate-fade-in-right delay-200 ${
+							isInView ? "" : "!opacity-0"
 						}`}
 					>
 						<p className="section-label mb-2">Qui suis-je</p>
