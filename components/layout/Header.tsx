@@ -289,7 +289,7 @@ export const Header = () => {
 						)}
 					</nav>
 
-					{/* ================= Mobile Toggle Button - AURELIA ================= */}
+					{/* ================= Mobile Toggle Button ================= */}
 					<button
 						onClick={() => setIsMobileOpen((v) => !v)}
 						className="xl:hidden p-2 flex flex-col items-center justify-center gap-1.5 w-12 h-12 relative group bg-card/50 rounded-lg border border-border/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
@@ -330,7 +330,7 @@ export const Header = () => {
 				</div>
 			</header>
 
-			{/* ================= Mobile Overlay - AURELIA ================= */}
+			{/* ================= Mobile Overlay ================= */}
 			<div
 				className={`xl:hidden fixed inset-0 bg-black/10 z-[9998] transition-opacity duration-300 ${
 					isMobileOpen
@@ -341,7 +341,7 @@ export const Header = () => {
 				aria-hidden="true"
 			/>
 
-			{/* ================= Mobile Menu - AURELIA ================= */}
+			{/* ================= Mobile Menu ================= */}
 			<div
 				suppressHydrationWarning
 				id="mobile-menu"
@@ -403,7 +403,7 @@ export const Header = () => {
 											/>
 										</button>
 
-										{/* Sous-menu mobile - AURELIA */}
+										{/* Sous-menu mobile */}
 										<div
 											id={`mobile-submenu-${link.label
 												.toLowerCase()
@@ -460,7 +460,7 @@ export const Header = () => {
 													)
 												)}
 
-												{/* Lien direct vers la page Accompagnements - AURELIA */}
+												{/* Lien direct vers la page Accompagnements */}
 												{mobileSubmenuOpen[
 													link.label
 												] && (

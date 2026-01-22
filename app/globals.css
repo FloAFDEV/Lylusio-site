@@ -660,10 +660,10 @@ html {
 }
 
 /* ========================================
-   ANIMATIONS - AURELIA DESVAUX SYSTEM
+   ANIMATIONS - SYSTÈME D'ENTRÉE DE PAGE
 ======================================== */
 
-/* 🎯 ANIMATIONS D'ARRIVÉE DES PAGES - AURELIA */
+/* 🎯 ANIMATIONS D'ARRIVÉE DES PAGES */
 
 /* Animation principale : fade-in-up */
 @keyframes fadeInUp {
@@ -728,7 +728,7 @@ html {
 }
 
 /* Variante : scale-in */
-@keyframes scaleInAurelia {
+@keyframes scaleInEntry {
 	from {
 		opacity: 0;
 		transform: scale(0.95);
@@ -740,7 +740,7 @@ html {
 }
 
 .animate-scale-in {
-	animation: scaleInAurelia 1s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+	animation: scaleInEntry 1s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
 }
 
 /* Variante : slide-up (bounce effect) */
@@ -759,7 +759,7 @@ html {
 	animation: slideUpBounce 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
 
-/* 🎯 MENU BURGER - DRAWER ANIMATIONS - AURELIA */
+/* 🎯 MENU BURGER - DRAWER ANIMATIONS */
 
 /* Drawer slide in (ouverture) */
 @keyframes slideInDrawer {
@@ -789,7 +789,7 @@ html {
 	animation: slideOutDrawer 0.3s ease-in forwards;
 }
 
-/* Delays séquentiels - AURELIA */
+/* Delays séquentiels */
 .delay-100 {
 	animation-delay: 100ms;
 }

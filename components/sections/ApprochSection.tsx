@@ -108,24 +108,26 @@ const ApprochSection = () => {
 				<div className="flex items-center min-h-[450px] md:min-h-[500px] lg:min-h-[550px]">
 					<div className="hidden lg:block lg:w-[45%]" />
 
-					<article
-						className={`w-full lg:w-[55%] motion-safe:transition-opacity duration-1000 delay-150 ${
-							isInView ? "opacity-100" : "opacity-0"
-						}`}
-					>
+					<article className="w-full lg:w-[55%]">
 						<div
 							className="sm:bg-opacity-93 lg:bg-opacity-90 backdrop-blur-lg rounded-2xl lg:rounded-3xl p-6 sm:p-8 md:p-10 shadow-medium border border-border/40 lg:border-border/30 hover:border-gold/30 motion-safe:transition-all duration-500"
 							style={{
 								backgroundColor: "rgba(255, 252, 251, 0.95)",
 							}}
 						>
-							<p className="section-label text-left">
+							<p
+								className={`section-label text-left opacity-0 animate-fade-in-up delay-100 ${
+									isInView ? "" : "!opacity-0"
+								}`}
+							>
 								Ma philosophie
 							</p>
 
 							<h2
 								id="approche-title"
-								className="text-foreground mb-5 md:mb-6 text-left text-2xl sm:text-3xl md:text-4xl"
+								className={`text-foreground mb-5 md:mb-6 text-left text-2xl sm:text-3xl md:text-4xl opacity-0 animate-fade-in-up delay-200 ${
+									isInView ? "" : "!opacity-0"
+								}`}
 							>
 								<span className="font-calligraphic text-accent text-3xl sm:text-4xl md:text-5xl inline-block align-baseline">
 									M
@@ -134,8 +136,9 @@ const ApprochSection = () => {
 							</h2>
 
 							<div
-								className="space-y-4 mb-8 animate-fade-up"
-								style={{ animationDelay: "0.3s" }}
+								className={`space-y-4 mb-8 opacity-0 animate-fade-in-up delay-300 ${
+									isInView ? "" : "!opacity-0"
+								}`}
 							>
 								<div className="space-y-5 text-foreground/90 font-body leading-relaxed max-w-prose mx-auto lg:mx-0">
 									<p>
@@ -196,7 +199,11 @@ const ApprochSection = () => {
 							</div>
 
 							{/* 🎯 CTA */}
-							<div className="flex flex-wrap gap-3 text-left">
+							<div
+								className={`flex flex-wrap gap-3 text-left opacity-0 animate-fade-in-up delay-400 ${
+									isInView ? "" : "!opacity-0"
+								}`}
+							>
 								<Link
 									href="/approche-therapeutique"
 									aria-label="Découvrir mon approche thérapeutique"
