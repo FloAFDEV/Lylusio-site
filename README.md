@@ -24,7 +24,7 @@
 
 ### 🎯 Objectifs du projet
 
-- ✅ **Performances optimales** : Temps de chargement < 2s, score Lighthouse > 95
+- ✅ **Performances optimales** : Temps de chargement < 2s, score Lighthouse >  95
 - ✅ **SEO-friendly** : Metadata Next.js, JSON-LD schema, sitemap dynamique
 - ✅ **Accessibilité** : Conformité WCAG 2.1 niveau AA
 - ✅ **Expérience utilisateur** : Design apaisant, navigation intuitive, animations fluides
