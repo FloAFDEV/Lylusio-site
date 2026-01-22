@@ -211,13 +211,13 @@ export default function RootLayout({
 					enableSystem={false}
 					disableTransitionOnChange
 				>
-					{/* Critique: Page content avec transitions */}
-					<PageTransition>{children}</PageTransition>
-
-					{/* Non-critiques: UI helpers et tracking */}
 					<QueryProvider>
 						<TooltipProvider>
 							<AnalyticsProvider>
+								{/* Critique: Page content avec transitions */}
+								<PageTransition>{children}</PageTransition>
+
+								{/* Non-critiques: UI helpers et tracking */}
 								<ClientComponents />
 								<Toaster />
 								<Sonner />
