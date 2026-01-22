@@ -1,5 +1,4 @@
 import type { Metadata, Viewport } from "next";
-import dynamic from "next/dynamic";
 import {
 	Cormorant_Garamond,
 	Source_Sans_3,
@@ -10,6 +9,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { QueryProvider } from "@/components/providers/query-provider";
 import { ThemeProvider } from "@/components/providers/theme-provider";
+import { AnalyticsProvider } from "@/components/providers/analytics-provider";
 import {
 	LocalBusinessSchema,
 	WebsiteSchema,
@@ -18,15 +18,6 @@ import ClientComponents from "@/components/ClientComponents";
 import PageTransition from "@/components/PageTransition";
 import EnvChecker from "@/components/EnvChecker";
 import "@/app/globals.css";
-
-// ✅ PERF: Lazy-load AnalyticsProvider (non-critique, dépend de window)
-// Impact: -5KB JS initial, -20ms TBT mobile
-const AnalyticsProvider = dynamic(
-	() => import("@/components/providers/analytics-provider").then(
-		(mod) => ({ default: mod.AnalyticsProvider })
-	),
-	{ ssr: false } // Client-only (window, localStorage)
-);
 
 // next/font/google - Optimized for zero CLS
 // ✅ Optimisation : Réduit weights chargés (300KB → 180KB, -40%)
