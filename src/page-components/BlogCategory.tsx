@@ -72,7 +72,7 @@ const BlogCategory = () => {
 
 	// Prefetch article on hover
 	const handlePrefetch = (slug: string) => {
-		router.prefetch(`/${slug}/`);
+		router.prefetch(`/blog/${slug}/`);
 	};
 
 	// Fetch category info
@@ -82,7 +82,7 @@ const BlogCategory = () => {
 			try {
 				const res = await fetch(`/api/categories`);
 				const data: WPCategory[] = await res.json();
-				const found = data.find(cat => cat.slug === wpCategorySlug);
+				const found = data.find((cat) => cat.slug === wpCategorySlug);
 				if (!found) throw new Error("Catégorie non trouvée");
 				setCategory(found);
 			} catch {
@@ -98,7 +98,7 @@ const BlogCategory = () => {
 		setLoading(true);
 		try {
 			const res = await fetch(
-				`/api/posts?_embed=1&categories=${category.id}&per_page=100`
+				`/api/posts?_embed=1&categories=${category.id}&per_page=100`,
 			);
 			const wpPosts: WPPost[] = await res.json();
 
@@ -106,12 +106,13 @@ const BlogCategory = () => {
 				id: p.id,
 				title: p.title.rendered,
 				excerpt:
-					utils.stripHtml(p.excerpt.rendered).substring(0, 150) + "...",
+					utils.stripHtml(p.excerpt.rendered).substring(0, 150) +
+					"...",
 				date: utils.formatDate(p.date),
 				rawDate: p.date,
 				slug: p.slug,
 				image: getOptimizedImageUrl(
-					p._embedded?.["wp:featuredmedia"]?.[0]?.source_url
+					p._embedded?.["wp:featuredmedia"]?.[0]?.source_url,
 				),
 				imageAlt:
 					p._embedded?.["wp:featuredmedia"]?.[0]?.alt_text ||
@@ -136,7 +137,7 @@ const BlogCategory = () => {
 				});
 
 				// Précharger l'image
-				const img = document.createElement('img');
+				const img = document.createElement("img");
 				img.src = post.image;
 			});
 		} catch {
@@ -155,7 +156,7 @@ const BlogCategory = () => {
 		.sort((a, b) =>
 			sortOrder === "newest"
 				? new Date(b.rawDate).getTime() - new Date(a.rawDate).getTime()
-				: new Date(a.rawDate).getTime() - new Date(b.rawDate).getTime()
+				: new Date(a.rawDate).getTime() - new Date(b.rawDate).getTime(),
 		)
 		.slice(0, postsToShow);
 
@@ -213,7 +214,7 @@ const BlogCategory = () => {
 							size="sm"
 							onClick={() =>
 								setSortOrder((prev) =>
-									prev === "newest" ? "oldest" : "newest"
+									prev === "newest" ? "oldest" : "newest",
 								)
 							}
 							className="flex items-center gap-2"
@@ -271,9 +272,14 @@ const BlogCategory = () => {
 									<article
 										key={post.id}
 										className="group bg-card rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 flex flex-col"
-										onMouseEnter={() => handlePrefetch(post.slug)}
+										onMouseEnter={() =>
+											handlePrefetch(post.slug)
+										}
 									>
-										<Link href={`/${post.slug}/`} className="flex flex-col h-full">
+										<Link
+											href={`/blog/${post.slug}/`}
+											className="flex flex-col h-full"
+										>
 											<div className="aspect-[16/10] overflow-hidden relative bg-muted">
 												<Image
 													src={post.image}
@@ -287,15 +293,29 @@ const BlogCategory = () => {
 											<div className="p-6 flex flex-col flex-grow">
 												<div className="flex items-center gap-2 text-xs text-muted-foreground mb-3 uppercase tracking-wide">
 													<Calendar className="h-3.5 w-3.5" />
-													<time dateTime={post.rawDate}>
+													<time
+														dateTime={post.rawDate}
+													>
 														{post.date}
 													</time>
 												</div>
 												<h2 className="font-heading text-lg md:text-xl font-bold mb-3 group-hover:text-accent transition-colors line-clamp-2 min-h-[3.5rem] leading-tight">
 													<span className="font-calligraphic text-accent inline-block align-baseline text-2xl md:text-3xl">
-														{utils.toSentenceCase(utils.stripHtml(post.title)).charAt(0)}
+														{utils
+															.toSentenceCase(
+																utils.stripHtml(
+																	post.title,
+																),
+															)
+															.charAt(0)}
 													</span>
-													{utils.toSentenceCase(utils.stripHtml(post.title)).slice(1)}
+													{utils
+														.toSentenceCase(
+															utils.stripHtml(
+																post.title,
+															),
+														)
+														.slice(1)}
 												</h2>
 												<p className="text-muted-foreground text-sm leading-relaxed line-clamp-3 mb-4 flex-grow">
 													{post.excerpt}

@@ -52,7 +52,7 @@ const BlogCategoryClient = ({
 
 	// Prefetch article on hover
 	const handlePrefetch = (slug: string) => {
-		router.prefetch(`/${slug}/`);
+		router.prefetch(`/blog/${slug}/`);
 
 		// Prefetch dans React Query cache
 		queryClient.prefetchQuery({
@@ -71,9 +71,9 @@ const BlogCategoryClient = ({
 			.sort((a, b) =>
 				sortOrder === "newest"
 					? new Date(b.rawDate).getTime() -
-					  new Date(a.rawDate).getTime()
+						new Date(a.rawDate).getTime()
 					: new Date(a.rawDate).getTime() -
-					  new Date(b.rawDate).getTime()
+						new Date(b.rawDate).getTime(),
 			)
 			.slice(0, postsToShow);
 	}, [initialPosts, sortOrder, postsToShow]);
@@ -113,7 +113,7 @@ const BlogCategoryClient = ({
 							size="sm"
 							onClick={() =>
 								setSortOrder((prev) =>
-									prev === "newest" ? "oldest" : "newest"
+									prev === "newest" ? "oldest" : "newest",
 								)
 							}
 							className="flex items-center gap-2"
@@ -152,7 +152,7 @@ const BlogCategoryClient = ({
 										}
 									>
 										<Link
-											href={`/${post.slug}/`}
+											href={`/blog/${post.slug}/`}
 											className="flex flex-col h-full"
 										>
 											<div className="aspect-[16/10] overflow-hidden relative bg-muted">
@@ -168,7 +168,9 @@ const BlogCategoryClient = ({
 											<div className="p-6 flex flex-col flex-grow">
 												<div className="flex items-center gap-2 text-xs text-muted-foreground mb-3 uppercase tracking-wide">
 													<Calendar className="h-3.5 w-3.5" />
-													<time dateTime={post.rawDate}>
+													<time
+														dateTime={post.rawDate}
+													>
 														{post.date}
 													</time>
 												</div>
@@ -177,16 +179,16 @@ const BlogCategoryClient = ({
 														{utils
 															.toSentenceCase(
 																utils.stripHtml(
-																	post.title
-																)
+																	post.title,
+																),
 															)
 															.charAt(0)}
 													</span>
 													{utils
 														.toSentenceCase(
 															utils.stripHtml(
-																post.title
-															)
+																post.title,
+															),
 														)
 														.slice(1)}
 												</h2>
