@@ -5,8 +5,7 @@
  */
 
 // URL des Edge Functions internes (pas d'appel direct à WordPress)
-const API_BASE_URL =
-	process.env.NEXT_PUBLIC_SITE_URL || "https://lylusio.fr";
+const API_BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://lylusio.fr";
 
 // Cache duration constants (in seconds)
 export const CACHE_DURATIONS = {
@@ -27,7 +26,7 @@ interface FetchOptions {
  */
 async function fetchWithTimeout(
 	url: string,
-	options: RequestInit & { timeout?: number } = {}
+	options: RequestInit & { timeout?: number } = {},
 ): Promise<Response> {
 	const { timeout = 10000, ...fetchOptions } = options;
 
@@ -124,6 +123,18 @@ export async function fetchPosts(params: {
 		});
 
 		if (!response.ok) {
+			console.error(
+				`❌ Edge Function error: ${response.status} ${response.statusText}`,
+			);
+			if (response.status === 403) {
+				console.error("💡 WordPress API blocked (403 Forbidden)");
+				console.error("   Possible causes:");
+				console.error("   - .htaccess User-Agent blocking rules");
+				console.error(
+					"   - WordPress security plugin (Wordfence, iThemes)",
+				);
+				console.error("   - Firewall or rate limiting");
+			}
 			throw new Error(`Edge Function error: ${response.status}`);
 		}
 
@@ -139,6 +150,10 @@ export async function fetchPosts(params: {
 			totalPages: totalPages ? parseInt(totalPages, 10) : 1,
 		};
 	} catch (error) {
+		console.error(
+			"⚠️ Failed to fetch WordPress posts:",
+			error instanceof Error ? error.message : error,
+		);
 		// Silently handle errors - return empty fallback instead of throwing
 		return {
 			posts: [],
@@ -202,16 +217,14 @@ export async function fetchCategories(params?: {
  */
 export async function fetchCategoryBySlug(
 	slug: string,
-	revalidate = CACHE_DURATIONS.CATEGORIES
+	revalidate = CACHE_DURATIONS.CATEGORIES,
 ) {
 	try {
 		// Récupérer toutes les catégories (déjà caché longtemps)
 		const categories = await fetchCategories({ revalidate });
 
 		// Filtrer par slug côté client
-		const category = categories.find(
-			(cat: any) => cat.slug === slug
-		);
+		const category = categories.find((cat: any) => cat.slug === slug);
 
 		return category || null;
 	} catch (error) {
@@ -225,20 +238,20 @@ export async function fetchCategoryBySlug(
  */
 export async function fetchPostsBatch(
 	slugs: string[],
-	revalidate = CACHE_DURATIONS.POSTS
+	revalidate = CACHE_DURATIONS.POSTS,
 ) {
 	// Deduplicate slugs
 	const uniqueSlugs = Array.from(new Set(slugs));
 
 	// Fetch in parallel with deduplication
 	const results = await Promise.allSettled(
-		uniqueSlugs.map((slug) => fetchPostBySlug(slug, revalidate))
+		uniqueSlugs.map((slug) => fetchPostBySlug(slug, revalidate)),
 	);
 
 	return results
 		.filter(
 			(result): result is PromiseFulfilledResult<any> =>
-				result.status === "fulfilled"
+				result.status === "fulfilled",
 		)
 		.map((result) => result.value)
 		.filter(Boolean);

@@ -43,7 +43,7 @@ const BlogClientWrapper = ({ initialPosts, initialCategories }: Props) => {
 	const router = useRouter();
 	const searchParams = useSearchParams();
 	const [selectedCategory, setSelectedCategory] = useState<number | null>(
-		null
+		null,
 	);
 	const [sortOrder, setSortOrder] = useState<SortOrder>("newest");
 	const [postsToShow, setPostsToShow] = useState(12);
@@ -53,10 +53,10 @@ const BlogClientWrapper = ({ initialPosts, initialCategories }: Props) => {
 
 	// Sync URL theme param with category filter on mount
 	useEffect(() => {
-		const themeParam = searchParams.get('theme');
+		const themeParam = searchParams.get("theme");
 		if (themeParam) {
 			const matchedCategory = initialCategories.find(
-				cat => cat.slug === themeParam.toLowerCase()
+				(cat) => cat.slug === themeParam.toLowerCase(),
 			);
 			if (matchedCategory) {
 				setSelectedCategory(matchedCategory.id);
@@ -75,7 +75,7 @@ const BlogClientWrapper = ({ initialPosts, initialCategories }: Props) => {
 	// Filter by category
 	if (selectedCategory !== null) {
 		displayedPosts = displayedPosts.filter((post) =>
-			post.categories.some((cat) => cat.id === selectedCategory)
+			post.categories.some((cat) => cat.id === selectedCategory),
 		);
 	}
 
@@ -85,7 +85,7 @@ const BlogClientWrapper = ({ initialPosts, initialCategories }: Props) => {
 		displayedPosts = displayedPosts.filter(
 			(post) =>
 				post.title.toLowerCase().includes(query) ||
-				post.excerpt.toLowerCase().includes(query)
+				post.excerpt.toLowerCase().includes(query),
 		);
 	}
 
@@ -93,7 +93,7 @@ const BlogClientWrapper = ({ initialPosts, initialCategories }: Props) => {
 	displayedPosts = displayedPosts.sort((a, b) =>
 		sortOrder === "newest"
 			? new Date(b.rawDate).getTime() - new Date(a.rawDate).getTime()
-			: new Date(a.rawDate).getTime() - new Date(b.rawDate).getTime()
+			: new Date(a.rawDate).getTime() - new Date(b.rawDate).getTime(),
 	);
 
 	const filteredCount = displayedPosts.length;
@@ -110,29 +110,35 @@ const BlogClientWrapper = ({ initialPosts, initialCategories }: Props) => {
 		.filter(Boolean) as WPCategory[];
 
 	// Dynamic title and subtitle based on URL theme parameter
-	const themeParam = searchParams.get('theme');
+	const themeParam = searchParams.get("theme");
 	const selectedCategoryData = selectedCategory
-		? initialCategories.find(cat => cat.id === selectedCategory)
+		? initialCategories.find((cat) => cat.id === selectedCategory)
 		: null;
 
 	const getContextualContent = () => {
 		if (themeParam && selectedCategoryData) {
-			const themeMap: Record<string, { title: string; subtitle: string; firstLetter: string }> = {
-				'astrologie': {
-					firstLetter: 'A',
-					title: 'rticles autour de l\'astrologie',
-					subtitle: 'Explorez mes réflexions sur l\'astrologie humaniste, les dominantes planétaires, les transits et bien plus encore. D\'autres thématiques sont également disponibles ci-dessous.'
+			const themeMap: Record<
+				string,
+				{ title: string; subtitle: string; firstLetter: string }
+			> = {
+				astrologie: {
+					firstLetter: "A",
+					title: "rticles autour de l'astrologie",
+					subtitle:
+						"Explorez mes réflexions sur l'astrologie humaniste, les dominantes planétaires, les transits et bien plus encore. D'autres thématiques sont également disponibles ci-dessous.",
 				},
-				'reiki': {
-					firstLetter: 'A',
-					title: 'rticles autour du Reiki',
-					subtitle: 'Découvrez mes articles sur le Reiki, l\'énergie vitale, les chakras et cette pratique millénaire de guérison. D\'autres thématiques sont également disponibles ci-dessous.'
+				reiki: {
+					firstLetter: "A",
+					title: "rticles autour du Reiki",
+					subtitle:
+						"Découvrez mes articles sur le Reiki, l'énergie vitale, les chakras et cette pratique millénaire de guérison. D'autres thématiques sont également disponibles ci-dessous.",
 				},
-				'developpement-personnel': {
-					firstLetter: 'D',
-					title: 'éveloppement personnel',
-					subtitle: 'Parcourez mes réflexions sur le chemin de développement personnel, la connaissance de soi et l\'évolution spirituelle. D\'autres thématiques sont également disponibles ci-dessous.'
-				}
+				"developpement-personnel": {
+					firstLetter: "D",
+					title: "éveloppement personnel",
+					subtitle:
+						"Parcourez mes réflexions sur le chemin de développement personnel, la connaissance de soi et l'évolution spirituelle. D'autres thématiques sont également disponibles ci-dessous.",
+				},
 			};
 			return themeMap[themeParam.toLowerCase()] || null;
 		}
@@ -140,10 +146,11 @@ const BlogClientWrapper = ({ initialPosts, initialCategories }: Props) => {
 	};
 
 	const contextualContent = getContextualContent();
-	const titleFirstLetter = contextualContent?.firstLetter || 'A';
-	const titleText = contextualContent?.title || 'rticles & Réflexions';
-	const subtitleText = contextualContent?.subtitle ||
-		'Lectures inspirantes et analyses approfondies sur l\'astrologie humaniste, le Reiki et votre chemin de développement personnel.';
+	const titleFirstLetter = contextualContent?.firstLetter || "A";
+	const titleText = contextualContent?.title || "rticles & Réflexions";
+	const subtitleText =
+		contextualContent?.subtitle ||
+		"Lectures inspirantes et analyses approfondies sur l'astrologie humaniste, le Reiki et votre chemin de développement personnel.";
 
 	return (
 		<div className="min-h-screen bg-background relative">
@@ -171,7 +178,7 @@ const BlogClientWrapper = ({ initialPosts, initialCategories }: Props) => {
 							{titleText}
 						</h1>
 						<p className="text-muted-foreground text-base sm:text-lg leading-relaxed max-w-2xl mx-auto">
-						{subtitleText}
+							{subtitleText}
 						</p>
 					</header>
 					{/* Filters avec compteurs intégrés */}
@@ -230,7 +237,7 @@ const BlogClientWrapper = ({ initialPosts, initialCategories }: Props) => {
 											setSortOrder((prev) =>
 												prev === "newest"
 													? "oldest"
-													: "newest"
+													: "newest",
 											)
 										}
 										className="flex items-center gap-2 px-3 py-1.5 rounded-full text-sm bg-muted/50 text-muted-foreground hover:bg-muted transition-colors focus-visible:ring-2 focus-visible:ring-accent"
@@ -305,10 +312,34 @@ const BlogClientWrapper = ({ initialPosts, initialCategories }: Props) => {
 					</div>
 					{/* Posts Grid */}
 					{paginatedPosts.length === 0 ? (
-						<div className="text-center py-12">
-							<p className="text-muted-foreground">
-								Aucun article ne correspond à votre recherche.
-							</p>
+						<div className="text-center py-12 px-4">
+							{totalPosts === 0 &&
+							!searchQuery &&
+							selectedCategory === null ? (
+								// API error - no posts loaded at all
+								<div className="max-w-xl mx-auto bg-amber-50 dark:bg-amber-900/10 border border-amber-200 dark:border-amber-800 rounded-lg p-6">
+									<h3 className="text-lg font-semibold text-amber-900 dark:text-amber-100 mb-2">
+										⚠️ Chargement des articles
+										temporairement indisponible
+									</h3>
+									<p className="text-sm text-amber-700 dark:text-amber-300 mb-4">
+										Nous rencontrons actuellement des
+										difficultés techniques pour afficher les
+										articles du blog.
+									</p>
+									<p className="text-xs text-amber-600 dark:text-amber-400">
+										Nos équipes techniques travaillent à
+										résoudre ce problème. Merci de réessayer
+										dans quelques instants.
+									</p>
+								</div>
+							) : (
+								// Normal filter result - no matching articles
+								<p className="text-muted-foreground">
+									Aucun article ne correspond à votre
+									recherche.
+								</p>
+							)}
 						</div>
 					) : (
 						<>
@@ -347,13 +378,17 @@ const BlogClientWrapper = ({ initialPosts, initialCategories }: Props) => {
 												</div>
 												<h2 className="font-heading text-lg md:text-xl font-bold mb-3 group-hover:text-accent transition-colors line-clamp-2 min-h-[3.5rem] leading-tight">
 													<span className="font-calligraphic text-accent inline-block align-baseline text-2xl md:text-3xl">
-														{utils.toSentenceCase(
-															post.title
-														).charAt(0)}
+														{utils
+															.toSentenceCase(
+																post.title,
+															)
+															.charAt(0)}
 													</span>
-													{utils.toSentenceCase(
-														post.title
-													).slice(1)}
+													{utils
+														.toSentenceCase(
+															post.title,
+														)
+														.slice(1)}
 												</h2>
 												<p className="text-muted-foreground text-sm leading-relaxed line-clamp-3 mb-4 flex-grow">
 													{post.excerpt}
@@ -385,7 +420,10 @@ const BlogClientWrapper = ({ initialPosts, initialCategories }: Props) => {
 						</>
 					)}
 					{/* CTA Principal et Secondaire */}
-					<ServicesDiscoveryCTA variant="toulouse" buttonVariant="outline" />
+					<ServicesDiscoveryCTA
+						variant="toulouse"
+						buttonVariant="outline"
+					/>
 				</section>
 			</main>
 
