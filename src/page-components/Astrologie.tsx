@@ -234,7 +234,9 @@ const Astrologie = () => {
 										développement personnel. Le besoin
 										d'être en accord avec ses valeurs et ses
 										choix de vie se veut de plus en plus
-										important de nos jours.
+										important de nos jours.{" "}
+										Je vous reçois en cabinet à Cépet, au nord de Toulouse,
+										ou à distance depuis partout en France, notamment depuis Montauban.
 									</p>
 
 									<div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">

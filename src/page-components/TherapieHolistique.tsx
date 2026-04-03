@@ -201,7 +201,8 @@ const TherapieHolistique = () => {
 											différentes pratiques pour vous
 											accompagner vers un bien-être
 											profond et durable.
-										</span>
+										</span>{" "}
+										Séances en cabinet à Cépet, accessible depuis Toulouse et Montauban, ou à distance.
 									</p>
 
 									<div className="flex flex-col sm:flex-row gap-4">

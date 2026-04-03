@@ -3,8 +3,6 @@ import Astrologie from '@/src/page-components/Astrologie';
 import { generateMetadata as genMeta } from '@/content/seo';
 import { generateServiceSchema } from '@/content/schema';
 
-export const dynamic = 'force-dynamic';
-
 export const metadata: Metadata = genMeta('astrologie');
 
 export default function AstrologiePage() {

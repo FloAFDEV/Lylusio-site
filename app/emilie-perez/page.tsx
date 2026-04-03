@@ -3,8 +3,6 @@ import About from '@/src/page-components/About';
 import { generateMetadata as genMeta } from '@/content/seo';
 import { personSchema } from '@/content/schema';
 
-export const dynamic = 'force-dynamic';
-
 export const metadata: Metadata = genMeta('emilie');
 
 export default function EmiliePage() {

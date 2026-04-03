@@ -3,8 +3,6 @@ import TherapieHolistique from '@/src/page-components/TherapieHolistique';
 import { generateMetadata as genMeta } from '@/content/seo';
 import { generateServiceSchema } from '@/content/schema';
 
-export const dynamic = 'force-dynamic';
-
 export const metadata: Metadata = genMeta('therapieHolistique');
 
 export default function TherapieHolistiquePage() {

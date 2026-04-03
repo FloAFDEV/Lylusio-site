@@ -95,7 +95,7 @@ const About = () => {
 			name: "Émilie Perez",
 			jobTitle: "Astrologue et Praticienne Reiki",
 			description:
-				"Astrologue humaniste et praticienne Reiki 3ème degré à Toulouse",
+				"Astrologue humaniste et praticienne Reiki 3ème degré à Cépet (Toulouse Nord), accessible depuis Montauban",
 			url: "https://lylusio.fr/a-propos",
 		},
 	};
@@ -1270,7 +1270,7 @@ const About = () => {
 									<p className="text-muted-foreground text-base md:text-lg leading-relaxed mb-8">
 										Prête à commencer votre transformation ?
 										Je serais ravie de vous accompagner dans
-										votre cheminement personnel.
+										votre cheminement personnel, en cabinet à Cépet au nord de Toulouse, ou à distance depuis Montauban et partout en France.
 									</p>
 									<Link href="https://calendly.com/lylusio-fr">
 										<Button
