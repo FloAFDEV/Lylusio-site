@@ -61,7 +61,7 @@ const nextConfig: NextConfig = {
 		imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
 		minimumCacheTTL: 31536000,
 		// ✅ Ajout pour que quality={50} ou autres fonctionne
-		qualities: [40, 50, 65, 75, 85, 90, 95],
+		qualities: [40, 50, 55, 65, 75, 85, 90, 95],
 	},
 
 	async redirects() {
