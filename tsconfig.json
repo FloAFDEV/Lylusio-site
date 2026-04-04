@@ -13,26 +13,23 @@
 		"isolatedModules": true,
 		"jsx": "react-jsx",
 		"incremental": true,
+		"ignoreDeprecations": "6.0",
+
 		"plugins": [
 			{
 				"name": "next"
 			}
 		],
-		"baseUrl": ".",
+
 		"paths": {
 			"@/*": ["./*"]
 		},
+
 		"noImplicitAny": false,
 		"noUnusedParameters": false,
 		"noUnusedLocals": false,
 		"strictNullChecks": false
 	},
-	"include": [
-		"next-env.d.ts",
-		"**/*.ts",
-		"**/*.tsx",
-		".next/types/**/*.ts",
-		".next/dev/types/**/*.ts"
-	],
+	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
 	"exclude": ["node_modules"]
 }

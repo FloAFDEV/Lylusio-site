@@ -74,7 +74,7 @@ export async function fetchPosts(params: {
 
 	// Utiliser Edge Function pour un seul post (par slug)
 	if (slug) {
-		const url = `${API_BASE_URL}/api/posts/${slug}`;
+		const url = `${API_BASE_URL}/api/posts/${encodeURIComponent(slug)}`;
 		try {
 			const response = await fetchWithTimeout(url, {
 				next: {

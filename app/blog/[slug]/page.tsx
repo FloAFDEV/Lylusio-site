@@ -84,7 +84,8 @@ export async function generateMetadata({
 }: {
 	params: Promise<{ slug: string }>; // Next.js 15+: params is a Promise
 }): Promise<Metadata> {
-	const { slug } = await params;
+	const { slug: rawSlug } = await params;
+	const slug = decodeURIComponent(rawSlug);
 
 	try {
 		const post = await fetchPostBySlug(slug, 7200); // 2 hours cache
@@ -105,7 +106,7 @@ export async function generateMetadata({
 		const imageUrl = getOptimizedImageUrl(featuredImage?.source_url);
 		const imageAlt = featuredImage?.alt_text || title;
 		const authorName = post._embedded?.author?.[0]?.name || "Émilie Perez";
-		const url = `https://lylusio.fr/blog/${slug}`;
+		const url = `https://lylusio.fr/blog/${encodeURIComponent(slug)}`;
 
 		console.log(
 			`[generateMetadata] Generated metadata for: ${title} (${slug})`
@@ -159,7 +160,8 @@ export default async function BlogPostPage({
 }: {
 	params: Promise<{ slug: string }>; // Next.js 15+: params is a Promise
 }) {
-	const { slug } = await params;
+	const { slug: rawSlug } = await params;
+	const slug = decodeURIComponent(rawSlug);
 
 	let blogPostSchema = null;
 	let serverFetchSuccess = false;
@@ -187,7 +189,7 @@ export default async function BlogPostPage({
 			blogPostSchema = generateBlogPostSchema({
 				title,
 				description,
-				url: `https://lylusio.fr/blog/${slug}`,
+				url: `https://lylusio.fr/blog/${encodeURIComponent(slug)}`,
 				image: imageUrl,
 				datePublished: post.date,
 				dateModified: post.modified,

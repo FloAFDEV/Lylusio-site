@@ -161,7 +161,9 @@ export async function GET(
 		}
 
 		const wpUrl = new URL(`${wpApiUrl}/posts`);
-		wpUrl.searchParams.set("slug", slug);
+		// Décoder le slug (Next.js peut transmettre un slug encore encodé selon le contexte)
+		const decodedSlug = decodeURIComponent(slug);
+		wpUrl.searchParams.set("slug", decodedSlug);
 		wpUrl.searchParams.set("_embed", "1");
 
 		// Appel à WordPress avec timeout

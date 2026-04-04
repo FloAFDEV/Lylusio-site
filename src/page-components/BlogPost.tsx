@@ -282,7 +282,7 @@ const BlogPost = () => {
 			const timeoutId = setTimeout(() => controller.abort(), 15000);
 
 			try {
-				const response = await fetch(`/api/posts/${slug}`, {
+				const response = await fetch(`/api/posts/${encodeURIComponent(slug)}`, {
 					signal: controller.signal,
 					// Cache headers pour éviter requêtes répétées
 					cache: "force-cache",
@@ -395,7 +395,7 @@ const BlogPost = () => {
 						queryClient.prefetchQuery({
 							queryKey: ["blogPost", rp.slug],
 							queryFn: async () => {
-								const r = await fetch(`/api/posts/${rp.slug}`);
+								const r = await fetch(`/api/posts/${encodeURIComponent(rp.slug)}`);
 								const d = await r.json();
 								return d;
 							},
