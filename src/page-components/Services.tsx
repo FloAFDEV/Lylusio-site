@@ -138,7 +138,9 @@ const Services = () => {
 								vos besoins spécifiques. Que vous cherchiez à
 								comprendre vos cycles, à vous apaiser ou à
 								traverser une transition, je vous propose un
-								espace de confiance et de bienveillance.
+								espace de confiance et de bienveillance,
+								en cabinet à Cépet — au nord de Toulouse, accessible depuis Montauban —
+								ou à distance.
 							</p>
 							<p className="text-sm text-muted-foreground/80 mt-4">
 								Découvrez{" "}

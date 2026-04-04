@@ -213,6 +213,9 @@ const Reiki = () => {
 											l'esprit et le corps sont liés et
 											indissociables.
 										</strong>
+										{" "}Je vous reçois en cabinet à Cépet,
+										facilement accessible depuis Toulouse et Montauban,
+										ou à distance depuis partout en France.
 									</p>
 
 									<div className="flex flex-col sm:flex-row gap-4">

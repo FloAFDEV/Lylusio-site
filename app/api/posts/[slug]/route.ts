@@ -156,8 +156,6 @@ export async function GET(
 				{ status: 500 },
 			);
 		}
-		// Décoder le slug (Next.js peut transmettre un slug encore encodé selon le contexte)
-
 		const wpUrl = new URL(`${wpApiUrl}/posts`);
 		// Décoder le slug (Next.js peut transmettre un slug encore encodé selon le contexte)
 		const decodedSlug = decodeURIComponent(slug);

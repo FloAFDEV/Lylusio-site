@@ -289,7 +289,9 @@ const Accompagnement = () => {
 
 								<p className="text-muted-foreground text-sm sm:text-base md:text-lg leading-relaxed mb-6 max-w-2xl mx-auto px-2">
 									Un espace d'écoute et de transformation pour
-									traverser vos transitions de vie
+									traverser vos transitions de vie, en cabinet à Cépet
+									(nord de Toulouse) ou à distance depuis Montauban
+									et partout en France.
 								</p>
 
 								{/* Tags - stacked on mobile */}
