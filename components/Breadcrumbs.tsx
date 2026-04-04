@@ -126,7 +126,7 @@ const Breadcrumbs = ({ showPlant = true, customTitle }: BreadcrumbsProps) => {
 				isLast: true,
 			});
 		}
-
+		// retourn du fil d'Ariane construit
 		return breadcrumbs;
 	};
 
