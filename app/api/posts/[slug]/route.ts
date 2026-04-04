@@ -10,10 +10,7 @@ const RATE_LIMIT = {
 };
 
 // Simple in-memory rate limiter
-const rateLimitMap = new Map<
-	string,
-	{ count: number; resetTime: number }
->();
+const rateLimitMap = new Map<string, { count: number; resetTime: number }>();
 
 function getRateLimitKey(request: NextRequest): string {
 	const forwarded = request.headers.get("x-forwarded-for");
@@ -159,6 +156,7 @@ export async function GET(
 				{ status: 500 },
 			);
 		}
+		// Décoder le slug (Next.js peut transmettre un slug encore encodé selon le contexte)
 
 		const wpUrl = new URL(`${wpApiUrl}/posts`);
 		// Décoder le slug (Next.js peut transmettre un slug encore encodé selon le contexte)
@@ -212,7 +210,9 @@ export async function GET(
 			headers: {
 				"X-RateLimit-Limit": RATE_LIMIT.maxRequests.toString(),
 				"X-RateLimit-Remaining": rateLimit.remaining.toString(),
-				"X-RateLimit-Reset": new Date(rateLimit.resetTime).toISOString(),
+				"X-RateLimit-Reset": new Date(
+					rateLimit.resetTime,
+				).toISOString(),
 				// Cache plus long pour articles individuels (24h)
 				"Cache-Control":
 					"public, s-maxage=86400, stale-while-revalidate=604800",
