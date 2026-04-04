@@ -230,7 +230,7 @@ const Accompagnement = () => {
 										? "none"
 										: `translateY(${
 												parallaxOffset * 0.5
-										  }px)`,
+											}px)`,
 							}}
 						>
 							<div className="absolute inset-0 bg-gradient-to-b from-background via-background/95 to-background" />
@@ -289,9 +289,10 @@ const Accompagnement = () => {
 
 								<p className="text-muted-foreground text-sm sm:text-base md:text-lg leading-relaxed mb-6 max-w-2xl mx-auto px-2">
 									Un espace d'écoute et de transformation pour
-									traverser vos transitions de vie, en cabinet à Cépet
-									(nord de Toulouse) ou à distance depuis Montauban
-									et partout en France.
+									traverser vos transitions de vie, en cabinet
+									à Cépet (nord de Toulouse) ou à distance,
+									dans le secteur Montauban et partout en
+									France.
 								</p>
 
 								{/* Tags - stacked on mobile */}
@@ -465,7 +466,7 @@ const Accompagnement = () => {
 																		{f}
 																	</span>
 																</li>
-															)
+															),
 														)}
 													</ul>
 												)}
@@ -488,11 +489,17 @@ const Accompagnement = () => {
 													<div className="flex flex-wrap justify-center gap-x-3 gap-y-2 text-xs text-muted-foreground mb-4">
 														<span className="flex items-center gap-1">
 															<Clock className="w-3.5 h-3.5 text-accent flex-shrink-0" />
-															<span>{service.duration}</span>
+															<span>
+																{
+																	service.duration
+																}
+															</span>
 														</span>
 														<span className="flex items-center gap-1 whitespace-nowrap">
 															<MapPin className="w-3.5 h-3.5 text-accent flex-shrink-0" />
-															<span>{service.format}</span>
+															<span>
+																{service.format}
+															</span>
 														</span>
 													</div>
 												</div>
@@ -501,10 +508,12 @@ const Accompagnement = () => {
 													variant="accent"
 													className="w-full group/btn"
 													onClick={() => {
-														trackBookingClick(service.title);
+														trackBookingClick(
+															service.title,
+														);
 														window.open(
 															service.calendlyLink,
-															"_blank"
+															"_blank",
 														);
 													}}
 												>
@@ -668,7 +677,7 @@ const Accompagnement = () => {
 												trackBookingClick("Reiki");
 												window.open(
 													CALENDLY_URLS.REIKI,
-													"_blank"
+													"_blank",
 												);
 											}}
 										>
@@ -752,7 +761,8 @@ const Accompagnement = () => {
 										ccompagnement Global
 									</h2>
 									<p className="text-muted-foreground text-sm sm:text-base leading-relaxed max-w-xl mx-auto">
-										Astrologie • Reiki • Thérapie pour traverser vos transitions de vie
+										Astrologie • Reiki • Thérapie pour
+										traverser vos transitions de vie
 									</p>
 								</div>
 							</div>
@@ -844,10 +854,12 @@ const Accompagnement = () => {
 													variant="accent"
 													className="sm:ml-auto group/btn"
 													onClick={() => {
-														trackBookingClick("Accompagnement Carte Astro");
+														trackBookingClick(
+															"Accompagnement Carte Astro",
+														);
 														window.open(
 															CALENDLY_URLS.ACCOMPAGNEMENT_GLOBAL,
-															"_blank"
+															"_blank",
 														);
 													}}
 												>
@@ -965,11 +977,19 @@ const Accompagnement = () => {
 													</span>
 													<span className="flex items-center gap-1">
 														<Clock className="w-4 h-4 text-accent flex-shrink-0" />
-														<span>4 séances d'1h30 complétées par des rdv téléphoniques réguliers</span>
+														<span>
+															4 séances d'1h30
+															complétées par des
+															rdv téléphoniques
+															réguliers
+														</span>
 													</span>
 													<span className="flex items-center gap-1 whitespace-nowrap">
 														<MapPin className="w-4 h-4 text-gold flex-shrink-0" />
-														<span>Présentiel / Distance</span>
+														<span>
+															Présentiel /
+															Distance
+														</span>
 													</span>
 												</div>
 
@@ -977,10 +997,12 @@ const Accompagnement = () => {
 													variant="accent"
 													className="w-full sm:w-auto flex-shrink-0 group/btn"
 													onClick={() => {
-														trackBookingClick("Bilan Astro-Orientation");
+														trackBookingClick(
+															"Bilan Astro-Orientation",
+														);
 														window.open(
 															CALENDLY_URLS.BILAN_PRO,
-															"_blank"
+															"_blank",
 														);
 													}}
 												>
