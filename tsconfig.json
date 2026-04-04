@@ -22,7 +22,6 @@
 		"paths": {
 			"@/*": ["./*"]
 		},
-		"ignoreDeprecations": "6.0",
 		"noImplicitAny": false,
 		"noUnusedParameters": false,
 		"noUnusedLocals": false,
