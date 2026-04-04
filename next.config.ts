@@ -68,6 +68,11 @@ const nextConfig: NextConfig = {
 		return [
 		// 🔒 Domaine Vercel → domaine officiel
 		{
+			source: "/blog/transition-2025-\u2192-2026-janvier-nest-pas-un-sprint",
+			destination: "/blog/transition-2025-2026-janvier-nest-pas-un-sprint",
+			permanent: true,
+		},
+		{
 			source: "/:path*",
 			has: [
 				{
