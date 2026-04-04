@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import { redirect } from "next/navigation";
 import BlogPost from "@/src/page-components/BlogPost";
 import { generateBlogPostSchema } from "@/content/schema";
 import { fetchPostBySlug, fetchPosts } from "@/lib/wordpress-cache";
@@ -28,6 +29,19 @@ interface WPPost {
 			name: string;
 		}>;
 	};
+}
+
+/**
+ * Décode un slug de façon sécurisée.
+ * Évite une URIError non gérée → 500 si le slug contient un séquence
+ * percent-encodée malformée (ex: slug tronqué, double-encodage partiel…).
+ */
+function safeDecodeSlug(raw: string): string {
+	try {
+		return decodeURIComponent(raw);
+	} catch {
+		return raw;
+	}
 }
 
 // Server-safe HTML stripping
@@ -85,7 +99,7 @@ export async function generateMetadata({
 	params: Promise<{ slug: string }>; // Next.js 15+: params is a Promise
 }): Promise<Metadata> {
 	const { slug: rawSlug } = await params;
-	const slug = decodeURIComponent(rawSlug);
+	const slug = safeDecodeSlug(rawSlug);
 
 	try {
 		const post = await fetchPostBySlug(slug, 7200); // 2 hours cache
@@ -161,16 +175,19 @@ export default async function BlogPostPage({
 	params: Promise<{ slug: string }>; // Next.js 15+: params is a Promise
 }) {
 	const { slug: rawSlug } = await params;
-	const slug = decodeURIComponent(rawSlug);
+	const slug = safeDecodeSlug(rawSlug);
 
 	let blogPostSchema = null;
 	let serverFetchSuccess = false;
+	// Slug canonique WordPress (peut différer du slug dans l'URL si caractères spéciaux)
+	let canonicalSlug: string | null = null;
 
 	try {
 		const post = await fetchPostBySlug(slug, 7200); // 2 hours cache
 
 		if (post) {
 			serverFetchSuccess = true;
+			canonicalSlug = post.slug;
 			const title = stripHtml(post.title.rendered);
 			const description = stripHtml(post.excerpt.rendered).substring(
 				0,
@@ -189,7 +206,7 @@ export default async function BlogPostPage({
 			blogPostSchema = generateBlogPostSchema({
 				title,
 				description,
-				url: `https://lylusio.fr/blog/${encodeURIComponent(slug)}`,
+				url: `https://lylusio.fr/blog/${encodeURIComponent(post.slug)}`,
 				image: imageUrl,
 				datePublished: post.date,
 				dateModified: post.modified,
@@ -210,6 +227,18 @@ export default async function BlogPostPage({
 			error
 		);
 		// Don't throw - let client component handle fetching
+	}
+
+	// Redirection canonique : si le slug WordPress diffère du slug dans l'URL
+	// (ex : URL avec "→" alors que WP stocke "transition-2025-2026-…"),
+	// on redirige vers l'URL propre pour éviter contenu dupliqué et erreurs futures.
+	// ⚠️ Doit être HORS du try-catch (redirect() lève une exception Next.js interne).
+	if (
+		canonicalSlug &&
+		canonicalSlug !== slug &&
+		canonicalSlug !== rawSlug
+	) {
+		redirect(`/blog/${canonicalSlug}`);
 	}
 
 	// Always render BlogPost component - it has robust client-side fetching
