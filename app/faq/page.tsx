@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
-import FAQ, { faqStructuredData } from '@/src/page-components/FAQ';
+import FAQ from '@/src/page-components/FAQ';
+import { faqStructuredData } from '@/content/faq-data';
 import { generateMetadata as genMeta } from '@/content/seo';
 
 export const metadata: Metadata = genMeta('faq');
