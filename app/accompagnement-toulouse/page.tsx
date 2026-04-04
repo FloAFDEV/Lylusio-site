@@ -3,8 +3,6 @@ import Accompagnement from '@/src/page-components/Accompagnement';
 import { generateMetadata as genMeta } from '@/content/seo';
 import { generateServiceSchema } from '@/content/schema';
 
-export const dynamic = 'force-dynamic';
-
 export const metadata: Metadata = genMeta('accompagnement');
 
 export default function AccompagnementPage() {

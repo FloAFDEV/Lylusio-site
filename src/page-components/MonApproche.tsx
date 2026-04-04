@@ -301,6 +301,7 @@ const MonApproche = () => {
 									</strong>{" "}
 									pour mettre des mots justes sur vos
 									ressentis.
+									{" "}Je vous accompagne en cabinet à Cépet (Toulouse Nord) ou à distance, pour des personnes situées à Toulouse, Montauban et partout en France.
 								</p>
 							</div>
 

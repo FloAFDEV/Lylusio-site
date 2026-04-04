@@ -54,12 +54,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 			priority: 0.9
 		},
 		{
-			url: `${baseUrl}/therapie-energetique`,
-			lastModified: new Date(),
-			changeFrequency: "monthly",
-			priority: 0.9
-		},
-		{
 			url: `${baseUrl}/accompagnement-toulouse`,
 			lastModified: new Date(),
 			changeFrequency: "monthly",
@@ -138,7 +132,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 		});
 
 		blogPostRoutes = result.posts.map((post: WPPost) => ({
-			url: `${baseUrl}/${post.slug}`, // URL directe sans /blog/ prefix
+			url: `${baseUrl}/blog/${post.slug}`,
 			lastModified: new Date(post.modified),
 			changeFrequency: "monthly" as const,
 			priority: 0.7,

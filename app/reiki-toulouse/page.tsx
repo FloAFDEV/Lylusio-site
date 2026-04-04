@@ -3,8 +3,6 @@ import Reiki from '@/src/page-components/Reiki';
 import { generateMetadata as genMeta } from '@/content/seo';
 import { generateServiceSchema } from '@/content/schema';
 
-export const dynamic = 'force-dynamic';
-
 export const metadata: Metadata = genMeta('reiki');
 
 export default function ReikiPage() {

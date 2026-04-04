@@ -304,7 +304,7 @@ const Accompagnement = () => {
 									</span>
 									<span className="flex items-center gap-1.5 px-3 py-1.5 sm:px-4 sm:py-2 bg-card/80 backdrop-blur-sm rounded-full border border-border/30 text-xs sm:text-sm text-muted-foreground shadow-soft">
 										<MapPin className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-accent flex-shrink-0" />
-										<span>Toulouse</span>
+										<span>Cépet · Toulouse</span>
 									</span>
 								</div>
 							</div>

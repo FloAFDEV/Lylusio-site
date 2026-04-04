@@ -283,7 +283,7 @@ const HeroSection = () => {
 				{/* 📄 Contenu textuel - Gauche */}
 				<div className="lg:col-span-7 max-w-2xl mx-auto lg:mx-0 text-center lg:text-left order-2 lg:order-1">
 					<p className="font-body text-xs text-muted-foreground uppercase tracking-[0.3em] mb-4">
-						À Toulouse & en ligne
+						À Cépet · Toulouse & en ligne
 					</p>
 
 					<div>

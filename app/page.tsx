@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import Index from '@/src/page-components/Index';
 import { generateMetadata as genMeta } from '@/content/seo';
-import { websiteSchema, organizationSchema, howToSchema, localBusinessSchema } from '@/content/schema';
+import { organizationSchema, howToSchema } from '@/content/schema';
 
 export const metadata: Metadata = genMeta('home');
 
@@ -13,17 +13,10 @@ export const revalidate = 21600; // 6 heures
 export default function HomePage() {
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
-      />
+      {/* LocalBusiness + WebSite schemas injectés via app/layout.tsx (SSR inline) */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
       />
       <script
         type="application/ld+json"
