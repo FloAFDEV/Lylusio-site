@@ -47,6 +47,7 @@ export function stripHtml(html: string): string {
     .replace(/&hellip;/g, '...')
     .replace(/&ndash;/g, '–')
     .replace(/&mdash;/g, '—')
+    .replace(/&#(\d+);/g, (_, code) => String.fromCharCode(parseInt(code, 10)))
     .replace(/\s+/g, ' ')
     .trim();
 }
