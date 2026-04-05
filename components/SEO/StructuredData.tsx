@@ -1,29 +1,53 @@
 /**
  * Structured Data (JSON-LD) — rendu SSR inline
+ *
  * ⚠️ Ne pas utiliser next/script ici : strategy="afterInteractive" exclut ces schemas
  *    du HTML initial et les rend invisibles aux crawlers non-JS (Bing, réseaux sociaux).
  *    L'injection inline via dangerouslySetInnerHTML garantit leur présence dans le view-source.
+ *
+ * Source unique de vérité pour le LocalBusiness.
+ * Tous les autres schemas qui référencent Lylusio doivent pointer vers :
+ *   "@id": "https://lylusio.fr/#local-business"
  */
 
-// Source unique de vérité pour le LocalBusiness
-// Reprend l'adresse réelle (49 route de Labastide, Cépet 31620) et les coordonnées GPS de Cépet
+const BASE_URL = 'https://lylusio.fr';
+
+// ─── LocalBusiness ────────────────────────────────────────────────────────────
+// @type en tableau : LocalBusiness (base) + HealthAndBeautyBusiness (Reiki)
+// + ProfessionalService (Astrologie). Permet un matching plus précis dans
+// Google Business et les moteurs spécialisés bien-être.
 const localBusinessData = {
   '@context': 'https://schema.org',
-  '@type': 'LocalBusiness',
-  '@id': 'https://lylusio.fr/#local-business',
+  '@type': ['LocalBusiness', 'HealthAndBeautyBusiness', 'ProfessionalService'],
+  '@id': `${BASE_URL}/#local-business`,
   name: 'Lylusio',
   alternateName: 'Lylusio - Émilie Perez',
   description:
     'Astrologie humaniste, Reiki et accompagnement holistique à Cépet (Toulouse Nord). Consultation en cabinet ou à distance, accessible depuis Toulouse et Montauban.',
-  image: 'https://lylusio.fr/og-image.jpg',
-  logo: 'https://lylusio.fr/assets/logo-lylusio.webp',
-  url: 'https://lylusio.fr',
+  image: {
+    '@type': 'ImageObject',
+    url: `${BASE_URL}/og-image.jpg`,
+    width: 1200,
+    height: 630,
+  },
+  logo: {
+    '@type': 'ImageObject',
+    url: `${BASE_URL}/assets/logo-lylusio.webp`,
+    width: 400,
+    height: 400,
+  },
+  url: BASE_URL,
   telephone: '+33619151959',
   email: 'contact@lylusio.fr',
+  currenciesAccepted: 'EUR',
+  paymentAccepted: 'Cash, Credit Card, Bank Transfer',
+  knowsLanguage: 'fr',
   founder: {
     '@type': 'Person',
+    '@id': `${BASE_URL}/emilie-perez#person`,
     name: 'Émilie Perez',
     jobTitle: 'Astrologue & Praticienne Reiki',
+    url: `${BASE_URL}/emilie-perez`,
   },
   address: {
     '@type': 'PostalAddress',
@@ -38,6 +62,7 @@ const localBusinessData = {
     latitude: 43.7349,
     longitude: 1.4678,
   },
+  hasMap: 'https://maps.google.com/?q=49+route+de+Labastide+C%C3%A9pet+31620',
   areaServed: [
     { '@type': 'City', name: 'Cépet' },
     { '@type': 'City', name: 'Toulouse' },
@@ -54,6 +79,14 @@ const localBusinessData = {
       closes: '19:00',
     },
   ],
+  contactPoint: {
+    '@type': 'ContactPoint',
+    telephone: '+33619151959',
+    email: 'contact@lylusio.fr',
+    contactType: 'customer service',
+    areaServed: 'FR',
+    availableLanguage: 'French',
+  },
   sameAs: [
     'https://www.instagram.com/lylusio.toulouse',
     'https://www.facebook.com/lylusio',
@@ -69,7 +102,7 @@ const localBusinessData = {
           '@type': 'Service',
           name: 'Consultation Astrologique',
           description: 'Lecture de votre thème natal, transits et cycles de vie',
-          provider: { '@type': 'LocalBusiness', name: 'Lylusio' },
+          provider: { '@id': `${BASE_URL}/#local-business` },
         },
         priceSpecification: {
           '@type': 'PriceSpecification',
@@ -84,7 +117,7 @@ const localBusinessData = {
           '@type': 'Service',
           name: 'Séance Reiki',
           description: 'Soin énergétique pour libérer les tensions',
-          provider: { '@type': 'LocalBusiness', name: 'Lylusio' },
+          provider: { '@id': `${BASE_URL}/#local-business` },
         },
         priceSpecification: {
           '@type': 'PriceSpecification',
@@ -99,23 +132,36 @@ const localBusinessData = {
           '@type': 'Service',
           name: 'Accompagnement Holistique',
           description: 'Coaching personnalisé pour vos transitions de vie',
-          provider: { '@type': 'LocalBusiness', name: 'Lylusio' },
+          provider: { '@id': `${BASE_URL}/#local-business` },
         },
       },
     ],
   },
 };
 
+// ─── WebSite ──────────────────────────────────────────────────────────────────
+// potentialAction (SearchAction) : signale à Google le moteur de recherche interne.
+// Utile pour les sitelinks search box dans les SERPs.
 const websiteData = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
-  '@id': 'https://lylusio.fr/#website',
-  url: 'https://lylusio.fr',
+  '@id': `${BASE_URL}/#website`,
+  url: BASE_URL,
   name: 'Lylusio',
   description: 'Astrologie humaniste, Reiki et accompagnement holistique à Toulouse',
-  publisher: { '@id': 'https://lylusio.fr/#local-business' },
   inLanguage: 'fr-FR',
+  publisher: { '@id': `${BASE_URL}/#local-business` },
+  potentialAction: {
+    '@type': 'SearchAction',
+    target: {
+      '@type': 'EntryPoint',
+      urlTemplate: `${BASE_URL}/blog?q={search_term_string}`,
+    },
+    'query-input': 'required name=search_term_string',
+  },
 };
+
+// ─── React components (SSR inline) ───────────────────────────────────────────
 
 export function LocalBusinessSchema() {
   return (

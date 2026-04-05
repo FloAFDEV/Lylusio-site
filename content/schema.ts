@@ -1,97 +1,76 @@
 const baseUrl = 'https://lylusio.fr';
 
+/**
+ * Référence JSON-LD vers le LocalBusiness canonique (source unique de vérité).
+ * Défini dans components/SEO/StructuredData.tsx (@id: baseUrl/#local-business).
+ * À utiliser partout où un champ provider/publisher/worksFor référence Lylusio —
+ * évite d'embarquer les données complètes et garantit la cohérence entre schemas.
+ */
+const localBusinessRef = { '@id': `${baseUrl}/#local-business` } as const;
+
 export const organizationSchema = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
+  '@id': `${baseUrl}/#organization`,
   name: 'Lylusio',
   url: baseUrl,
-  logo: `${baseUrl}/assets/logo-lylusio.webp`,
-  description: 'Cabinet d\'astrologie psychologique et de Reiki à Toulouse',
+  logo: {
+    '@type': 'ImageObject',
+    url: `${baseUrl}/assets/logo-lylusio.webp`,
+    width: 400,
+    height: 400,
+  },
+  description: 'Cabinet d\'astrologie psychologique et de Reiki à Cépet (Toulouse Nord)',
   email: 'contact@lylusio.fr',
   address: {
     '@type': 'PostalAddress',
-    addressLocality: 'Toulouse',
+    streetAddress: '49 route de Labastide',
+    addressLocality: 'Cépet',
+    postalCode: '31620',
     addressRegion: 'Occitanie',
     addressCountry: 'FR',
   },
   sameAs: [
-    'https://www.instagram.com/lylusio',
+    'https://www.instagram.com/lylusio.toulouse',
     'https://www.facebook.com/lylusio',
+    'https://www.linkedin.com/company/lylusio',
   ],
 };
 
 export const personSchema = {
   '@context': 'https://schema.org',
   '@type': 'Person',
+  '@id': `${baseUrl}/emilie-perez#person`,
   name: 'Émilie Perez',
   url: `${baseUrl}/emilie-perez`,
-  image: `${baseUrl}/assets/logo-lylusio.webp`,
+  image: {
+    '@type': 'ImageObject',
+    url: `${baseUrl}/assets/logo-lylusio.webp`,
+    width: 400,
+    height: 400,
+  },
   jobTitle: 'Astrologue & Praticienne Reiki',
-  worksFor: organizationSchema,
-  description: 'Praticienne en astrologie psychologique et Reiki Usui à Toulouse',
-  knowsAbout: ['Astrologie psychologique', 'Reiki Usui', 'Accompagnement holistique', 'Développement personnel'],
+  // Référence par @id uniquement — évite d'embarquer tout l'organizationSchema
+  worksFor: { '@id': `${baseUrl}/#organization` },
+  description: 'Praticienne en astrologie psychologique et Reiki Usui à Cépet (Toulouse Nord)',
+  knowsAbout: [
+    'Astrologie psychologique',
+    'Reiki Usui',
+    'Accompagnement holistique',
+    'Développement personnel',
+  ],
   address: {
     '@type': 'PostalAddress',
-    addressLocality: 'Toulouse',
+    streetAddress: '49 route de Labastide',
+    addressLocality: 'Cépet',
+    postalCode: '31620',
     addressRegion: 'Occitanie',
     addressCountry: 'FR',
   },
 };
 
-export const websiteSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'WebSite',
-  name: 'Lylusio',
-  url: baseUrl,
-  description: 'Cabinet d\'astrologie psychologique et de Reiki à Toulouse',
-  publisher: organizationSchema,
-  potentialAction: {
-    '@type': 'SearchAction',
-    target: {
-      '@type': 'EntryPoint',
-      urlTemplate: `${baseUrl}/blog?q={search_term_string}`,
-    },
-    'query-input': 'required name=search_term_string',
-  },
-};
-
-export const localBusinessSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'LocalBusiness',
-  name: 'Lylusio',
-  image: `${baseUrl}/assets/logo-lylusio.webp`,
-  '@id': baseUrl,
-  url: baseUrl,
-  telephone: '+33619151959',
-  email: 'contact@lylusio.fr',
-  address: {
-    '@type': 'PostalAddress',
-    streetAddress: 'Cépet',
-    addressLocality: 'Toulouse',
-    postalCode: '31000',
-    addressRegion: 'Occitanie',
-    addressCountry: 'FR',
-  },
-  geo: {
-    '@type': 'GeoCoordinates',
-    latitude: 43.604652,
-    longitude: 1.444209,
-  },
-  openingHoursSpecification: [
-    {
-      '@type': 'OpeningHoursSpecification',
-      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-      opens: '09:00',
-      closes: '19:00',
-    },
-  ],
-  priceRange: '€€',
-  description: 'Cabinet d\'astrologie psychologique, Reiki et accompagnement holistique à Toulouse',
-  sameAs: [
-    'https://www.instagram.com/lylusio',
-    'https://www.facebook.com/lylusio',
-  ],
-};
+// websiteSchema supprimé : le WebSite canonique est géré dans
+// components/SEO/StructuredData.tsx (WebsiteSchema) injecté dans app/layout.tsx.
 
 export interface ServiceSchemaProps {
   name: string;
@@ -108,11 +87,14 @@ export function generateServiceSchema(props: ServiceSchemaProps) {
     serviceType: props.name,
     name: props.name,
     description: props.description,
-    provider: organizationSchema,
-    areaServed: {
-      '@type': 'City',
-      name: 'Toulouse',
-    },
+    // Référence par @id — aucun objet dupliqué
+    provider: localBusinessRef,
+    areaServed: [
+      { '@type': 'City', name: 'Cépet' },
+      { '@type': 'City', name: 'Toulouse' },
+      { '@type': 'AdministrativeArea', name: 'Haute-Garonne' },
+      { '@type': 'Country', name: 'France' },
+    ],
     availableChannel: {
       '@type': 'ServiceChannel',
       serviceUrl: props.url,
@@ -120,7 +102,10 @@ export function generateServiceSchema(props: ServiceSchemaProps) {
         '@type': 'Place',
         address: {
           '@type': 'PostalAddress',
-          addressLocality: 'Toulouse',
+          streetAddress: '49 route de Labastide',
+          addressLocality: 'Cépet',
+          postalCode: '31620',
+          addressRegion: 'Occitanie',
           addressCountry: 'FR',
         },
       },
@@ -131,6 +116,10 @@ export function generateServiceSchema(props: ServiceSchemaProps) {
         '@type': 'Offer',
         price: props.price,
         priceCurrency: 'EUR',
+        availability: 'https://schema.org/InStock',
+        priceValidUntil: new Date(new Date().getFullYear() + 1, 11, 31)
+          .toISOString()
+          .split('T')[0],
       },
     }),
   };
@@ -155,16 +144,20 @@ export function generateBlogPostSchema(props: BlogPostSchemaProps) {
     headline: props.title,
     description: props.description,
     url: props.url,
-    image: props.image || `${baseUrl}/assets/logo-lylusio.webp`,
+    image: props.image || `${baseUrl}/og-image.jpg`,
     datePublished: props.datePublished,
     dateModified: props.dateModified || props.datePublished,
     inLanguage: 'fr-FR',
     author: {
       '@type': 'Person',
+      // Référence par @id vers la fiche Person canonique
+      '@id': `${baseUrl}/emilie-perez#person`,
       name: props.author || 'Émilie Perez',
       url: `${baseUrl}/emilie-perez`,
     },
-    publisher: organizationSchema,
+    // Référence par @id — évite d'embarquer tout l'organizationSchema
+    publisher: localBusinessRef,
+    isPartOf: { '@id': `${baseUrl}/#website` },
     mainEntityOfPage: {
       '@type': 'WebPage',
       '@id': props.url,

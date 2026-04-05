@@ -158,20 +158,18 @@ const Accompagnement = () => {
 	const structuredData = {
 		"@context": "https://schema.org",
 		"@type": "Service",
+		"@id": "https://lylusio.fr/accompagnement-toulouse#service",
 		name: "Consultations & Accompagnements",
 		description:
-			"Consultations d'astrologie, soins Reiki et accompagnement personnalisé.",
-		provider: {
-			"@type": "LocalBusiness",
-			name: "Lylusio - Émilie Perez",
-			address: {
-				"@type": "PostalAddress",
-				addressLocality: "Toulouse",
-				addressRegion: "Occitanie",
-				addressCountry: "FR",
-			},
-		},
-		areaServed: "Toulouse",
+			"Consultations d'astrologie, soins Reiki et accompagnement personnalisé à Cépet (Toulouse Nord). En cabinet ou à distance.",
+		// Référence par @id vers le LocalBusiness canonique
+		provider: { "@id": "https://lylusio.fr/#local-business" },
+		areaServed: [
+			{ "@type": "City", name: "Cépet" },
+			{ "@type": "City", name: "Toulouse" },
+			{ "@type": "AdministrativeArea", name: "Haute-Garonne" },
+			{ "@type": "Country", name: "France" },
+		],
 	};
 
 	return (

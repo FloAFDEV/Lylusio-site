@@ -61,7 +61,7 @@ const Reiki = () => {
 			"Soin énergétique Reiki Usui à Toulouse et Cépet (31). Praticienne Reiki 3ème degré certifiée. Libération des tensions, rééquilibrage énergétique et bien-être intérieur. En cabinet ou à distance.",
 		provider: {
 			"@type": "LocalBusiness",
-			"@id": "https://lylusio.fr/#business",
+			"@id": "https://lylusio.fr/#local-business",
 			name: "Lylusio - Émilie Perez",
 			address: {
 				"@type": "PostalAddress",

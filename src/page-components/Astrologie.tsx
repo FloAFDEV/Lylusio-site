@@ -57,7 +57,7 @@ const Astrologie = () => {
 			"Consultation astrologique à Toulouse et Cépet : lecture de thème natal, analyse des transits et cycles de vie. Astrologie symbolique et psychologique pour comprendre votre personnalité et éclairer vos transitions.",
 		provider: {
 			"@type": "LocalBusiness",
-			"@id": "https://lylusio.fr/#business",
+			"@id": "https://lylusio.fr/#local-business",
 			name: "Lylusio - Émilie Perez",
 			address: {
 				"@type": "PostalAddress",
