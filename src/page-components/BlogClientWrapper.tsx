@@ -184,7 +184,7 @@ const BlogClientWrapper = ({ initialPosts, initialCategories }: Props) => {
 									<strong className="text-foreground/70 font-medium">Reiki Usui</strong>{" "}
 									et du cheminement vers soi. Je suis{" "}
 									<strong className="text-foreground/70 font-medium">Émilie Perez</strong>,
-									praticienne en astrologie psychologique et en soins énergétiques,
+									praticienne en astrologie thérapeutique et en soins énergétiques,
 									basée à Cépet au nord de{" "}
 									<strong className="text-foreground/70 font-medium">Toulouse</strong>.
 								</p>

@@ -8,7 +8,7 @@ export const metadata: Metadata = genMeta('therapieHolistique');
 export default function TherapieHolistiquePage() {
   const serviceSchema = generateServiceSchema({
     name: 'Thérapie Holistique',
-    description: 'Accompagnement holistique combinant Reiki, astrologie psychologique et libération émotionnelle pour un bien-être global corps-esprit',
+    description: 'Accompagnement holistique combinant Reiki, astrologie thérapeutique et libération émotionnelle pour un bien-être global corps-esprit',
     url: 'https://lylusio.fr/therapie-holistique',
     image: 'https://lylusio.fr/assets/golden-mandala-holistic.webp',
   });

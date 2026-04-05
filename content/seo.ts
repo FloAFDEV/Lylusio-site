@@ -8,7 +8,7 @@ export const defaultMetadata: Metadata = {
     default: 'Lylusio - Astrologie & Thérapie Énergétique à Toulouse',
     template: '%s | Lylusio',
   },
-  description: 'Émilie Perez, praticienne en astrologie psychologique, Reiki et accompagnement holistique à Cépet (Toulouse Nord). Consultations en cabinet et à distance.',
+  description: 'Émilie Perez, praticienne en astrologie thérapeutique, Reiki et accompagnement holistique à Cépet (Toulouse Nord). Consultations en cabinet et à distance.',
   keywords: ['astrologie', 'reiki', 'thérapie énergétique', 'Toulouse', 'accompagnement holistique', 'thème natal', 'développement personnel'],
   authors: [{ name: 'Émilie Perez' }],
   openGraph: {
@@ -17,7 +17,7 @@ export const defaultMetadata: Metadata = {
     url: baseUrl,
     siteName: 'Lylusio',
     title: 'Lylusio - Astrologie & Thérapie Énergétique à Toulouse',
-    description: 'Émilie Perez, praticienne en astrologie psychologique, Reiki et accompagnement holistique à Toulouse.',
+    description: 'Émilie Perez, praticienne en astrologie thérapeutique, Reiki et accompagnement holistique à Toulouse.',
     images: [
       {
         url: '/assets/logo-lylusio.webp',
@@ -63,7 +63,7 @@ export const pageMetadata = {
     title: 'Astrologie Psychologique à Toulouse - Consultation Thème Natal',
     description: 'Consultation astrologique à Cépet et Toulouse : thème natal, transit, révolution solaire. Explorez votre carte du ciel avec Émilie Perez, astrologue certifiée.',
     canonical: `${baseUrl}/astrologie-toulouse`,
-    keywords: ['astrologie toulouse', 'thème natal', 'astrologue toulouse', 'carte du ciel', 'consultation astrologique', 'astrologie psychologique'],
+    keywords: ['astrologie toulouse', 'thème natal', 'astrologue toulouse', 'carte du ciel', 'consultation astrologique', 'astrologie thérapeutique'],
     openGraph: {
       url: `${baseUrl}/astrologie-toulouse`,
       title: 'Astrologie Psychologique à Toulouse',
@@ -132,7 +132,7 @@ export const pageMetadata = {
 
   approche: {
     title: 'Mon Approche Thérapeutique - Astrologie & Reiki Holistique',
-    description: 'Découvrez mon approche holistique combinant astrologie psychologique et Reiki. Accompagnement global et bienveillant, en cabinet à Cépet (Toulouse Nord) ou à distance.',
+    description: 'Découvrez mon approche holistique combinant astrologie thérapeutique et Reiki. Accompagnement global et bienveillant, en cabinet à Cépet (Toulouse Nord) ou à distance.',
     canonical: `${baseUrl}/approche-therapeutique`,
     openGraph: {
       url: `${baseUrl}/approche-therapeutique`,
@@ -144,7 +144,7 @@ export const pageMetadata = {
 
   emilie: {
     title: 'Émilie Perez - Astrologue & Praticienne Reiki à Toulouse',
-    description: 'Émilie Perez, certifiée en astrologie psychologique et Reiki Usui, en cabinet à Cépet au nord de Toulouse. Mon parcours, mes formations et ma vision de l\'accompagnement holistique.',
+    description: 'Émilie Perez, certifiée en astrologie thérapeutique et Reiki Usui, en cabinet à Cépet au nord de Toulouse. Mon parcours, mes formations et ma vision de l\'accompagnement holistique.',
     canonical: `${baseUrl}/emilie-perez`,
     keywords: ['émilie perez', 'astrologue toulouse', 'praticienne reiki toulouse', 'thérapeute énergétique'],
     openGraph: {

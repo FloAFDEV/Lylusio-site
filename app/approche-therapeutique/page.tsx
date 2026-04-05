@@ -9,7 +9,7 @@ export default function ApprochePage() {
     "@context": "https://schema.org",
     "@type": "Article",
     "headline": "Mon Approche Thérapeutique Holistique",
-    "description": "Découvrez mon approche holistique combinant astrologie psychologique et Reiki pour un accompagnement global et bienveillant.",
+    "description": "Découvrez mon approche holistique combinant astrologie thérapeutique et Reiki pour un accompagnement global et bienveillant.",
     "author": {
       "@type": "Person",
       "name": "Émilie Perez",

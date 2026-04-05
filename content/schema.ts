@@ -20,7 +20,7 @@ export const organizationSchema = {
     width: 400,
     height: 400,
   },
-  description: 'Cabinet d\'astrologie psychologique et de Reiki à Cépet (Toulouse Nord)',
+  description: 'Cabinet d\'astrologie thérapeutique et de Reiki à Cépet (Toulouse Nord)',
   email: 'contact@lylusio.fr',
   address: {
     '@type': 'PostalAddress',
@@ -52,9 +52,9 @@ export const personSchema = {
   jobTitle: 'Astrologue & Praticienne Reiki',
   // Référence par @id uniquement — évite d'embarquer tout l'organizationSchema
   worksFor: { '@id': `${baseUrl}/#organization` },
-  description: 'Praticienne en astrologie psychologique et Reiki Usui à Cépet (Toulouse Nord)',
+  description: 'Praticienne en astrologie thérapeutique et Reiki Usui à Cépet (Toulouse Nord)',
   knowsAbout: [
-    'Astrologie psychologique',
+    'Astrologie thérapeutique',
     'Reiki Usui',
     'Accompagnement holistique',
     'Développement personnel',
