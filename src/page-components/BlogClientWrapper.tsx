@@ -66,7 +66,7 @@ const BlogClientWrapper = ({ initialPosts, initialCategories }: Props) => {
 
 	// Prefetch article on hover for instant navigation
 	const handlePrefetch = (slug: string) => {
-		router.prefetch(`/${slug}/`);
+		router.prefetch(`/blog/${slug}`);
 	};
 
 	// Filter and sort posts
@@ -173,6 +173,32 @@ const BlogClientWrapper = ({ initialPosts, initialCategories }: Props) => {
 						<p className="text-muted-foreground text-base sm:text-lg leading-relaxed max-w-2xl mx-auto">
 						{subtitleText}
 						</p>
+
+						{/* Intro SEO — visible uniquement sur /blog sans filtre thématique */}
+						{!contextualContent && (
+							<div className="mt-6 max-w-2xl mx-auto text-left text-sm sm:text-base text-muted-foreground/80 leading-relaxed space-y-3 border-t border-border/20 pt-6">
+								<p>
+									Ce blog est un espace de réflexions et de partages autour de{" "}
+									<strong className="text-foreground/70 font-medium">l'astrologie humaniste</strong>,
+									du{" "}
+									<strong className="text-foreground/70 font-medium">Reiki Usui</strong>{" "}
+									et du cheminement vers soi. Je suis{" "}
+									<strong className="text-foreground/70 font-medium">Émilie Perez</strong>,
+									praticienne en astrologie psychologique et en soins énergétiques,
+									basée à Cépet au nord de{" "}
+									<strong className="text-foreground/70 font-medium">Toulouse</strong>.
+								</p>
+								<p>
+									Vous y trouverez des analyses de transits planétaires, de révolutions
+									solaires et de grandes conjonctures, mais aussi des articles sur le
+									Reiki, les chakras et l'énergie vitale — ainsi qu'une rubrique
+									dédiée au{" "}
+									<strong className="text-foreground/70 font-medium">développement personnel</strong>{" "}
+									et aux transitions de vie. Chaque texte est pensé comme une invitation
+									à regarder différemment votre chemin intérieur.
+								</p>
+							</div>
+						)}
 					</header>
 					{/* Filters avec compteurs intégrés */}
 					<div className="max-w-5xl mx-auto mb-2">
@@ -322,7 +348,7 @@ const BlogClientWrapper = ({ initialPosts, initialCategories }: Props) => {
 										}
 									>
 										<Link
-											href={`/${post.slug}/`}
+											href={`/blog/${post.slug}`}
 											className="flex flex-col h-full"
 										>
 											<div className="aspect-[16/10] overflow-hidden relative bg-muted">
