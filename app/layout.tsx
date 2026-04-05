@@ -168,15 +168,6 @@ export default function RootLayout({
 	return (
 		<html lang="fr" suppressHydrationWarning data-scroll-behavior="smooth">
 			<head>
-				{/* 🚀 PERFORMANCE: Preload LCP image (hero homepage) */}
-				<link
-					rel="preload"
-					as="image"
-					href="/assets/emilie-hero.webp"
-					type="image/webp"
-					fetchPriority="high"
-				/>
-
 				{/* ✅ CWV Fix: Preconnect GTM retiré - sera chargé uniquement après consentement analytics */}
 				{/* Note: Google Fonts already inlined by next/font, no preconnect needed */}
 

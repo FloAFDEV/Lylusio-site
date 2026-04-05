@@ -399,14 +399,14 @@ const HeroSection = () => {
 				{/* 📸 Photo avec décoration - Droite */}
 				<div className="lg:col-span-5 relative order-1 lg:order-2 pt-4 sm:pt-6 md:pt-8 lg:pt-0">
 					{/* 🖼️ Container SSR-safe avec dimensions fixes */}
-					<div className="relative mx-auto w-[200px] sm:w-[240px] h-[200px] sm:h-[240px]">
+					<div className="relative mx-auto w-[280px] sm:w-[240px] h-[280px] sm:h-[240px]">
 						{/* 🎨 Photo principale avec Next.js Image optimisé */}
 						<div className="aspect-square rounded-full overflow-hidden shadow-gold relative group">
 							<Image
 								src="/assets/emilie-hero.webp"
 								alt="Émilie Perez - Astrologue et praticienne Reiki 3ème degré à Toulouse"
 								fill
-								sizes="(max-width: 640px) 200px, (max-width: 1024px) 240px, 240px"
+								sizes="(max-width: 640px) 280px, (max-width: 1024px) 240px, 240px"
 								className="object-cover opacity-90 motion-safe:transition-transform duration-700 group-hover:scale-105"
 								quality={55}
 								priority
