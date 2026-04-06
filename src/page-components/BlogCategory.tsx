@@ -72,7 +72,7 @@ const BlogCategory = () => {
 
 	// Prefetch article on hover
 	const handlePrefetch = (slug: string) => {
-		router.prefetch(`/${slug}/`);
+		router.prefetch(`/blog/${slug}`);
 	};
 
 	// Fetch category info
@@ -273,7 +273,7 @@ const BlogCategory = () => {
 										className="group bg-card rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 flex flex-col"
 										onMouseEnter={() => handlePrefetch(post.slug)}
 									>
-										<Link href={`/${post.slug}/`} className="flex flex-col h-full">
+										<Link href={`/blog/${post.slug}`} className="flex flex-col h-full">
 											<div className="aspect-[16/10] overflow-hidden relative bg-muted">
 												<Image
 													src={post.image}

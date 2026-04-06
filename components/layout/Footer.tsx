@@ -118,6 +118,9 @@ const Footer = () => {
 		{ href: "/faq", label: "FAQ" },
 		{ href: "/ressources", label: "Ressources" },
 		{ href: "/blog", label: "Blog" },
+		{ href: "/category/blog/astrologie", label: "Articles Astrologie" },
+		{ href: "/category/blog/reiki", label: "Articles Reiki" },
+		{ href: "/category/blog/developpement-personnel", label: "Développement personnel" },
 		{ href: "/contact", label: "Contact" },
 	], []);
 

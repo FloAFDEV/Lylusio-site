@@ -52,7 +52,7 @@ const BlogCategoryClient = ({
 
 	// Prefetch article on hover
 	const handlePrefetch = (slug: string) => {
-		router.prefetch(`/${slug}/`);
+		router.prefetch(`/blog/${slug}`);
 
 		// Prefetch dans React Query cache
 		queryClient.prefetchQuery({
@@ -152,7 +152,7 @@ const BlogCategoryClient = ({
 										}
 									>
 										<Link
-											href={`/${post.slug}/`}
+											href={`/blog/${post.slug}`}
 											className="flex flex-col h-full"
 										>
 											<div className="aspect-[16/10] overflow-hidden relative bg-muted">

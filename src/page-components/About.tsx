@@ -514,9 +514,9 @@ const About = () => {
 											ou encore{" "}
 											<strong>Stephen Arroyo</strong>,
 											j'ai trouvé dans{" "}
-											<strong>
+											<Link href="/astrologie-toulouse" className="font-semibold text-accent hover:underline underline-offset-2">
 												l'astrologie humaniste
-											</strong>{" "}
+											</Link>{" "}
 											une voie de compréhension, de
 											guérison et d'évolution.
 										</p>
@@ -599,9 +599,9 @@ const About = () => {
 												tournant pour moi. J'ai
 												rencontré des personnes clés et
 												j'ai commencé une formation en{" "}
-												<strong>
+												<Link href="/reiki-toulouse" className="font-semibold text-accent hover:underline underline-offset-2">
 													Reiki Usui Shiki Ryoho
-												</strong>{" "}
+												</Link>{" "}
 												(dans le respect de la
 												déontologie et de l'enseignement
 												traditionnel de Mikao Usui) et
@@ -1272,16 +1272,27 @@ const About = () => {
 										Je serais ravie de vous accompagner dans
 										votre cheminement personnel, en cabinet à Cépet au nord de Toulouse, ou à distance depuis Montauban et partout en France.
 									</p>
-									<Link href="https://calendly.com/lylusio-fr">
-										<Button
-											variant="accent"
-											size="lg"
-											className="w-full sm:w-auto"
-										>
-											Prenez rendez-vous dès maintenant
-											<ArrowRight className="ml-2 w-4 h-4" />
-										</Button>
-									</Link>
+									<div className="flex flex-col sm:flex-row gap-4 justify-center">
+										<Link href="https://calendly.com/lylusio-fr">
+											<Button
+												variant="accent"
+												size="lg"
+												className="w-full sm:w-auto"
+											>
+												Prenez rendez-vous dès maintenant
+												<ArrowRight className="ml-2 w-4 h-4" />
+											</Button>
+										</Link>
+										<Link href="/accompagnement-toulouse">
+											<Button
+												variant="outline"
+												size="lg"
+												className="w-full sm:w-auto"
+											>
+												Voir mes accompagnements
+											</Button>
+										</Link>
+									</div>
 								</div>
 							</AnimatedSection>
 						</div>

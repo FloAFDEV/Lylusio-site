@@ -1062,6 +1062,36 @@ const Accompagnement = () => {
 									contactez-moi
 								</Link>
 							</p>
+							<p className="text-muted-foreground text-sm sm:text-base mt-4">
+								En savoir plus :{" "}
+								<Link
+									href="/astrologie-toulouse"
+									className="text-accent hover:text-gold transition-colors duration-300 underline decoration-accent/30 hover:decoration-gold/50 underline-offset-2 font-medium"
+								>
+									Astrologie thérapeutique
+								</Link>
+								{" · "}
+								<Link
+									href="/reiki-toulouse"
+									className="text-accent hover:text-gold transition-colors duration-300 underline decoration-accent/30 hover:decoration-gold/50 underline-offset-2 font-medium"
+								>
+									Reiki Usui
+								</Link>
+								{" · "}
+								<Link
+									href="/therapie-holistique"
+									className="text-accent hover:text-gold transition-colors duration-300 underline decoration-accent/30 hover:decoration-gold/50 underline-offset-2 font-medium"
+								>
+									Thérapie holistique
+								</Link>
+								{" · "}
+								<Link
+									href="/blog"
+									className="text-accent hover:text-gold transition-colors duration-300 underline decoration-accent/30 hover:decoration-gold/50 underline-offset-2 font-medium"
+								>
+									Blog
+								</Link>
+							</p>
 						</div>
 					</section>
 				</main>
