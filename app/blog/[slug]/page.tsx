@@ -121,7 +121,10 @@ export async function generateMetadata({
 		const imageUrl = getOptimizedImageUrl(featuredImage?.source_url);
 		const imageAlt = featuredImage?.alt_text || title;
 		const authorName = post._embedded?.author?.[0]?.name || "Émilie Perez";
-		const url = `https://lylusio.fr/blog/${encodeURIComponent(slug)}`;
+		// Toujours utiliser post.slug (source WordPress) comme canonical,
+		// jamais le slug extrait de l'URL (peut différer après décoding).
+		// Les slugs WP sont déjà ASCII-safe → pas besoin d'encodeURIComponent.
+		const url = `https://lylusio.fr/blog/${post.slug}`;
 
 		console.log(
 			`[generateMetadata] Generated metadata for: ${title} (${slug})`
@@ -207,7 +210,7 @@ export default async function BlogPostPage({
 			blogPostSchema = generateBlogPostSchema({
 				title,
 				description,
-				url: `https://lylusio.fr/blog/${encodeURIComponent(post.slug)}`,
+				url: `https://lylusio.fr/blog/${post.slug}`,
 				image: imageUrl,
 				datePublished: post.date,
 				dateModified: post.modified,
