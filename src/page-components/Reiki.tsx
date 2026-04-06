@@ -234,7 +234,7 @@ const Reiki = () => {
 											Réserver ma séance
 											<ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
 										</Button>
-										<Link href="/blog?theme=reiki">
+										<Link href="/category/blog/reiki">
 											<Button
 												variant="outline"
 												size="lg"
@@ -1071,7 +1071,7 @@ const Reiki = () => {
 										travers mes articles.
 									</p>
 									<div className="flex flex-col sm:flex-row gap-4 justify-center">
-										<Link href="/blog?theme=reiki">
+										<Link href="/category/blog/reiki">
 											<Button
 												variant="elegant"
 												size="lg"

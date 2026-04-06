@@ -5,7 +5,8 @@ import { generateMetadata as genMeta } from '@/content/seo';
 import { fetchPosts, fetchCategories, CACHE_DURATIONS } from '@/lib/wordpress-cache';
 import { getOptimizedImageUrl } from '@/lib/wordpress-images';
 
-// ISR: 1 hour - configured via fetch options
+// ISR: 1 hour
+export const revalidate = 3600;
 
 export const metadata: Metadata = genMeta('blog');
 
@@ -144,13 +145,38 @@ async function fetchBlogCategories() {
   }
 }
 
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Accueil',
+      item: 'https://lylusio.fr',
+    },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: 'Blog',
+      item: 'https://lylusio.fr/blog',
+    },
+  ],
+};
+
 export default async function BlogPage() {
   // Server-side data fetching with parallel deduplication
   const [posts, categories] = await Promise.all([fetchBlogPosts(), fetchBlogCategories()]);
 
   return (
-    <Suspense fallback={<div className="min-h-screen bg-background" />}>
-      <BlogClientWrapper initialPosts={posts} initialCategories={categories} />
-    </Suspense>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <Suspense fallback={<div className="min-h-screen bg-background" />}>
+        <BlogClientWrapper initialPosts={posts} initialCategories={categories} />
+      </Suspense>
+    </>
   );
 }

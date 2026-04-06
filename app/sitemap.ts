@@ -29,7 +29,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 		// Homepage (priorité maximale)
 		{
 			url: baseUrl,
-			lastModified: new Date(),
+			lastModified: new Date("2026-04-06"),
 			changeFrequency: "monthly",
 			priority: 1,
 		},
@@ -37,25 +37,25 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 		// Pages services principales (haute priorité SEO)
 		{
 			url: `${baseUrl}/astrologie-toulouse`,
-			lastModified: new Date(),
+			lastModified: new Date("2026-04-06"),
 			changeFrequency: "monthly",
 			priority: 0.9
 		},
 		{
 			url: `${baseUrl}/reiki-toulouse`,
-			lastModified: new Date(),
+			lastModified: new Date("2026-04-06"),
 			changeFrequency: "monthly",
 			priority: 0.9
 		},
 		{
 			url: `${baseUrl}/therapie-holistique`,
-			lastModified: new Date(),
+			lastModified: new Date("2026-04-06"),
 			changeFrequency: "monthly",
 			priority: 0.9
 		},
 		{
 			url: `${baseUrl}/accompagnement-toulouse`,
-			lastModified: new Date(),
+			lastModified: new Date("2026-04-06"),
 			changeFrequency: "monthly",
 			priority: 0.9
 		},
@@ -63,13 +63,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 		// Pages À propos (haute priorité)
 		{
 			url: `${baseUrl}/approche-therapeutique`,
-			lastModified: new Date(),
+			lastModified: new Date("2026-04-06"),
 			changeFrequency: "monthly",
 			priority: 0.9
 		},
 		{
 			url: `${baseUrl}/emilie-perez`,
-			lastModified: new Date(),
+			lastModified: new Date("2026-04-06"),
 			changeFrequency: "monthly",
 			priority: 0.9
 		},
@@ -77,25 +77,25 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 		// Pages utilitaires (priorité moyenne-haute)
 		{
 			url: `${baseUrl}/contact`,
-			lastModified: new Date(),
+			lastModified: new Date("2026-03-01"),
 			changeFrequency: "monthly",
 			priority: 0.8
 		},
 		{
 			url: `${baseUrl}/blog`,
-			lastModified: new Date(),
+			lastModified: new Date("2026-04-06"),
 			changeFrequency: "weekly",
 			priority: 0.8
 		},
 		{
 			url: `${baseUrl}/ressources`,
-			lastModified: new Date(),
+			lastModified: new Date("2026-03-01"),
 			changeFrequency: "weekly",
 			priority: 0.8
 		},
 		{
 			url: `${baseUrl}/faq`,
-			lastModified: new Date(),
+			lastModified: new Date("2026-03-01"),
 			changeFrequency: "monthly",
 			priority: 0.6
 		},
@@ -109,7 +109,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 		},
 		{
 			url: `${baseUrl}/confidentialite`,
-			lastModified: new Date(),
+			lastModified: new Date("2026-01-13"),
 			changeFrequency: "yearly",
 			priority: 0.3
 		},
