@@ -4,6 +4,7 @@ const nextConfig: NextConfig = {
 	reactStrictMode: true,
 	compress: true,
 	poweredByHeader: false,
+	trailingSlash: false,
 
 	// Experimental pour performances et build
 	experimental: {
