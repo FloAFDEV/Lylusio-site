@@ -110,6 +110,24 @@ const nextConfig: NextConfig = {
 				destination: "/emilie-perez",
 				permanent: true,
 			},
+			// Catégories de blog sous l'ancien préfixe → nouvelles catégories
+			// (doit être AVANT le catch-all /astrologue-cepet-toulouse/blog/:path*)
+			{
+				source: "/astrologue-cepet-toulouse/blog/astrologie",
+				destination: "/category/blog/astrologie",
+				permanent: true,
+			},
+			{
+				source: "/astrologue-cepet-toulouse/blog/reiki",
+				destination: "/category/blog/reiki",
+				permanent: true,
+			},
+			{
+				source: "/astrologue-cepet-toulouse/blog/developpement-personnel",
+				destination: "/category/blog/developpement-personnel",
+				permanent: true,
+			},
+			// Catch-all pour toute autre URL sous l'ancien préfixe blog
 			{
 				source: "/astrologue-cepet-toulouse/blog/:path*",
 				destination: "/blog",
