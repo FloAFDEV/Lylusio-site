@@ -260,7 +260,14 @@ const FeaturedImage = ({ src, alt }: { src: string; alt: string }) => {
 	);
 };
 
-const BlogPost = () => {
+interface BlogPostProps {
+	// Post WordPress brut pré-fetchosté côté serveur (page.tsx).
+	// Transmis comme initialData à useQuery → contenu dans le HTML initial → indexable Google.
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	initialData?: any;
+}
+
+const BlogPost = ({ initialData }: BlogPostProps = {}) => {
 	const { slug } = useParams<{ slug: string }>();
 	const queryClient = useQueryClient();
 	const [relatedPosts, setRelatedPosts] = useState<RelatedPost[]>([]);
@@ -312,6 +319,11 @@ const BlogPost = () => {
 				throw new Error("UNKNOWN_ERROR");
 			}
 		},
+		// Données pré-fetchtées côté serveur : utilisées immédiatement, pas de fetch client.
+		// initialDataUpdatedAt = Date.now() → React Query considère la donnée fraîche
+		// pendant staleTime (10 min) → pas de refetch en arrière-plan au premier rendu.
+		initialData: initialData || undefined,
+		initialDataUpdatedAt: initialData ? Date.now() : undefined,
 		staleTime: 1000 * 60 * 10, // 10 min
 		gcTime: 1000 * 60 * 30, // 30 min
 		enabled: !!slug,
