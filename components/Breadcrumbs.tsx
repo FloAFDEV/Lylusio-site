@@ -100,6 +100,23 @@ const Breadcrumbs = ({ showPlant = true, customTitle }: BreadcrumbsProps) => {
 			return breadcrumbs;
 		}
 
+		// Cas des articles de ressources
+		const isRessourceArticle =
+			currentPath.startsWith("/ressources/") && currentPath !== "/ressources";
+		if (isRessourceArticle) {
+			breadcrumbs.push({
+				path: "/ressources",
+				name: "Ressources",
+				isLast: false,
+			});
+			breadcrumbs.push({
+				path: currentPath,
+				name: customTitle || "Article",
+				isLast: true,
+			});
+			return breadcrumbs;
+		}
+
 		const config = routeConfig[currentPath];
 
 		if (config) {

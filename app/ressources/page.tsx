@@ -12,6 +12,8 @@ import { YouTubeEmbed } from "@/components/YouTubeEmbed";
 import { getYouTubeVideoInfo } from "@/lib/youtube";
 import { generateMetadata as genMeta } from "@/content/seo";
 import CALENDLY_URLS from "@/lib/calendly";
+import ArticleCard from "@/components/ressources/ArticleCard";
+import { ressourceArticles } from "@/lib/ressources";
 
 // SEO Metadata
 export const metadata = genMeta("ressources");
@@ -422,6 +424,38 @@ export default async function RessourcesPage() {
 					</div>
 				</section>
 
+				{/* Section 3: Guides & Articles */}
+				<section
+					aria-labelledby="articles-section-title"
+					className="py-16 md:py-20 bg-gradient-to-b from-transparent via-secondary/10 to-transparent"
+				>
+					<div className="container mx-auto px-4 sm:px-6 lg:px-8">
+						<div className="text-center mb-12 md:mb-16">
+							<p className="section-label">Guides pratiques</p>
+							<h2
+								id="articles-section-title"
+								className="text-foreground mb-6 text-3xl sm:text-4xl md:text-5xl"
+							>
+								<span className="font-calligraphic text-accent text-4xl sm:text-5xl md:text-6xl inline-block align-baseline">
+									G
+								</span>
+								uides &amp; Articles
+							</h2>
+							<p className="text-muted-foreground max-w-2xl mx-auto text-base md:text-lg">
+								Approfondissez vos connaissances en astrologie thérapeutique et en Reiki
+								avec ces guides pratiques
+							</p>
+						</div>
+
+						<div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto">
+							{ressourceArticles.map((article) => (
+								<ArticleCard key={article.slug} article={article} />
+							))}
+						</div>
+
+					</div>
+				</section>
+
 				{/* CTA Section - Transition vers accompagnement */}
 				<section
 					aria-label="Appel à l'action - Séance découverte"
@@ -514,23 +548,6 @@ export default async function RessourcesPage() {
 									</Link>
 								</Button>
 							</div>
-						</div>
-					</div>
-				</section>
-
-				{/* CTA Secondaire - Blog */}
-				<section className="pb-16 md:pb-20">
-					<div className="container mx-auto px-4 sm:px-6 lg:px-8">
-						<div className="text-center">
-							<p className="text-sm text-muted-foreground">
-								Envie de lectures inspirantes ?{" "}
-								<Link
-									href="/blog"
-									className="text-navy hover:text-navy transition-colors font-semibold underline decoration-accent/50 hover:decoration-navy/50 underline-offset-2"
-								>
-									Découvrir mes articles
-								</Link>
-							</p>
 						</div>
 					</div>
 				</section>

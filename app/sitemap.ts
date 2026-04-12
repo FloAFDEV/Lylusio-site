@@ -4,6 +4,7 @@ import {
 	fetchCategories,
 	CACHE_DURATIONS,
 } from "@/lib/wordpress-cache";
+import { ressourceArticles } from "@/lib/ressources";
 
 const baseUrl = "https://lylusio.fr";
 
@@ -168,10 +169,18 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 		console.error("❌ Error fetching categories for sitemap:", error);
 	}
 
-	// Fusion et tri des routes par priorité (plus haute priorité en premier)
-	const allRoutes = [...staticRoutes, ...blogPostRoutes, ...categoryRoutes];
+	// Pages ressources statiques
+	const ressourceRoutes: MetadataRoute.Sitemap = ressourceArticles.map((article) => ({
+		url: `${baseUrl}/ressources/${article.slug}`,
+		lastModified: new Date(article.date),
+		changeFrequency: "monthly" as const,
+		priority: 0.7,
+	}));
 
-	console.log(`✅ Sitemap généré: ${staticRoutes.length} pages statiques, ${blogPostRoutes.length} articles, ${categoryRoutes.length} catégories`);
+	// Fusion et tri des routes par priorité (plus haute priorité en premier)
+	const allRoutes = [...staticRoutes, ...blogPostRoutes, ...categoryRoutes, ...ressourceRoutes];
+
+	console.log(`✅ Sitemap généré: ${staticRoutes.length} pages statiques, ${blogPostRoutes.length} articles, ${categoryRoutes.length} catégories, ${ressourceRoutes.length} ressources`);
 
 	return allRoutes;
 }

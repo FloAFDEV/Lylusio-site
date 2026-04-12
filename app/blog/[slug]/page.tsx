@@ -185,6 +185,10 @@ export default async function BlogPostPage({
 	let serverFetchSuccess = false;
 	// Slug canonique WordPress (peut différer du slug dans l'URL si caractères spéciaux)
 	let canonicalSlug: string | null = null;
+	// Post brut WordPress transmis au composant client pour le rendu initial côté serveur.
+	// Permet à useQuery d'utiliser initialData → contenu dans le HTML initial → indexable Google.
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	let initialPost: any = null;
 
 	try {
 		const post = await fetchPostBySlug(slug, 7200); // 2 hours cache
@@ -192,6 +196,8 @@ export default async function BlogPostPage({
 		if (post) {
 			serverFetchSuccess = true;
 			canonicalSlug = post.slug;
+			initialPost = post;
+
 			const title = stripHtml(post.title.rendered);
 			const description = stripHtml(post.excerpt.rendered).substring(
 				0,
@@ -245,9 +251,8 @@ export default async function BlogPostPage({
 		redirect(`/blog/${canonicalSlug}`);
 	}
 
-	// Always render BlogPost component - it has robust client-side fetching
-	// This prevents 404 flashes when server fetch fails/timeouts
-	// The component will show skeleton loader → content, never 404 unless post truly doesn't exist
+	// BlogPost reçoit initialPost pour hydrater useQuery côté serveur :
+	// le contenu WordPress est rendu dans le HTML initial sans attendre le fetch client.
 	return (
 		<>
 			{blogPostSchema && (
@@ -258,7 +263,7 @@ export default async function BlogPostPage({
 					}}
 				/>
 			)}
-			<BlogPost />
+			<BlogPost initialData={initialPost} />
 		</>
 	);
 }
