@@ -67,6 +67,10 @@ export async function generateMetadata({
 			description: article.description,
 			images: [`https://lylusio.fr${article.image}`],
 		},
+		robots: {
+			index: false,
+			follow: true,
+		},
 	};
 }
 

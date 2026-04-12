@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { FaInstagram, FaYoutube, FaFacebook } from "react-icons/fa";
-import { ArrowRight, BookOpen, ExternalLink, Sparkles, Calendar } from "lucide-react";
+import { ArrowRight, ExternalLink, Sparkles, Calendar } from "lucide-react";
 
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
@@ -453,21 +453,6 @@ export default async function RessourcesPage() {
 							))}
 						</div>
 
-						<nav className="text-center mt-10" aria-label="Lire plus d'articles">
-							<Button asChild variant="outline" size="lg" className="group">
-								<Link
-									href="/blog"
-									className="inline-flex items-center gap-2"
-								>
-									<BookOpen className="w-4 h-4" aria-hidden="true" />
-									<span>Voir tous mes articles de blog</span>
-									<ArrowRight
-										className="w-4 h-4 group-hover:translate-x-1 transition-transform"
-										aria-hidden="true"
-									/>
-								</Link>
-							</Button>
-						</nav>
 					</div>
 				</section>
 
@@ -563,23 +548,6 @@ export default async function RessourcesPage() {
 									</Link>
 								</Button>
 							</div>
-						</div>
-					</div>
-				</section>
-
-				{/* CTA Secondaire - Blog */}
-				<section className="pb-16 md:pb-20">
-					<div className="container mx-auto px-4 sm:px-6 lg:px-8">
-						<div className="text-center">
-							<p className="text-sm text-muted-foreground">
-								Envie de lectures inspirantes ?{" "}
-								<Link
-									href="/blog"
-									className="text-navy hover:text-navy transition-colors font-semibold underline decoration-accent/50 hover:decoration-navy/50 underline-offset-2"
-								>
-									Découvrir mes articles
-								</Link>
-							</p>
 						</div>
 					</div>
 				</section>
