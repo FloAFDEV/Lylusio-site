@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { FaInstagram, FaYoutube, FaFacebook } from "react-icons/fa";
-import { ArrowRight, ExternalLink, Sparkles, Calendar } from "lucide-react";
+import { ArrowRight, BookOpen, ExternalLink, Sparkles, Calendar } from "lucide-react";
 
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
@@ -12,6 +12,8 @@ import { YouTubeEmbed } from "@/components/YouTubeEmbed";
 import { getYouTubeVideoInfo } from "@/lib/youtube";
 import { generateMetadata as genMeta } from "@/content/seo";
 import CALENDLY_URLS from "@/lib/calendly";
+import ArticleCard from "@/components/ressources/ArticleCard";
+import { ressourceArticles } from "@/lib/ressources";
 
 // SEO Metadata
 export const metadata = genMeta("ressources");
@@ -417,6 +419,53 @@ export default async function RessourcesPage() {
 										aria-hidden="true"
 									/>
 								</a>
+							</Button>
+						</nav>
+					</div>
+				</section>
+
+				{/* Section 3: Guides & Articles */}
+				<section
+					aria-labelledby="articles-section-title"
+					className="py-16 md:py-20 bg-gradient-to-b from-transparent via-secondary/10 to-transparent"
+				>
+					<div className="container mx-auto px-4 sm:px-6 lg:px-8">
+						<div className="text-center mb-12 md:mb-16">
+							<p className="section-label">Guides pratiques</p>
+							<h2
+								id="articles-section-title"
+								className="text-foreground mb-6 text-3xl sm:text-4xl md:text-5xl"
+							>
+								<span className="font-calligraphic text-accent text-4xl sm:text-5xl md:text-6xl inline-block align-baseline">
+									G
+								</span>
+								uides &amp; Articles
+							</h2>
+							<p className="text-muted-foreground max-w-2xl mx-auto text-base md:text-lg">
+								Approfondissez vos connaissances en astrologie thérapeutique et en Reiki
+								avec ces guides pratiques
+							</p>
+						</div>
+
+						<div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto">
+							{ressourceArticles.map((article) => (
+								<ArticleCard key={article.slug} article={article} />
+							))}
+						</div>
+
+						<nav className="text-center mt-10" aria-label="Lire plus d'articles">
+							<Button asChild variant="outline" size="lg" className="group">
+								<Link
+									href="/blog"
+									className="inline-flex items-center gap-2"
+								>
+									<BookOpen className="w-4 h-4" aria-hidden="true" />
+									<span>Voir tous mes articles de blog</span>
+									<ArrowRight
+										className="w-4 h-4 group-hover:translate-x-1 transition-transform"
+										aria-hidden="true"
+									/>
+								</Link>
 							</Button>
 						</nav>
 					</div>
