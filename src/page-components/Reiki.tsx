@@ -213,7 +213,7 @@ const Reiki = () => {
 											l'esprit et le corps sont liés et
 											indissociables.
 										</strong>
-										{" "}Je vous reçois en cabinet à Cépet,
+										{" "}Mon approche du Reiki s'inscrit dans une vision holistique, en complémentarité avec l'astrologie pour comprendre les cycles énergétiques personnels. Je vous reçois en cabinet à Cépet,
 										facilement accessible depuis Toulouse et Montauban,
 										ou à distance depuis partout en France.
 									</p>

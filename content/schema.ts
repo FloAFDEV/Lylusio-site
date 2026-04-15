@@ -50,15 +50,52 @@ export const personSchema = {
     height: 400,
   },
   jobTitle: 'Astrologue & Praticienne Reiki',
+
+  // ✅ SEO Entity: Occupation structurée pour désambiguïsation Google
+  hasOccupation: {
+    '@type': 'Occupation',
+    name: 'Astrologue',
+    occupationalCategory: {
+      '@type': 'CategoryCode',
+      inCodeSet: {
+        '@type': 'CategoryCodeSet',
+        name: 'ISCO-08',
+      },
+      codeValue: '3412', // Social work and counselling professionals (inclut astrologues)
+    },
+    occupationLocation: {
+      '@type': 'City',
+      name: 'Cépet',
+      addressCountry: 'FR',
+    },
+  },
+
+  // ✅ SEO Entity: Désambiguïsation explicite homonyme
+  disambiguatingDescription: 'Astrologue professionnelle spécialisée en astrologie humaniste et psychologique (Lylusio), praticienne Reiki certifiée. Basée à Cépet près de Toulouse. Approche basée sur l\'analyse du thème natal et l\'accompagnement holistique, distincte de la voyance ou médiumnité.',
+
   // Référence par @id uniquement — évite d'embarquer tout l'organizationSchema
   worksFor: { '@id': `${baseUrl}/#organization` },
-  description: 'Praticienne en astrologie thérapeutique et Reiki Usui à Cépet (Toulouse Nord)',
+
+  description: 'Astrologue professionnelle en astrologie humaniste et psychologique, praticienne Reiki Usui 3ème degré à Cépet (Toulouse Nord). Spécialisée dans l\'analyse de thème natal, transits astrologiques et accompagnement holistique.',
+
   knowsAbout: [
-    'Astrologie thérapeutique',
+    'Astrologie humaniste',
+    'Astrologie psychologique',
+    'Thème natal',
+    'Transits astrologiques',
+    'Révolution solaire',
     'Reiki Usui',
     'Accompagnement holistique',
     'Développement personnel',
   ],
+
+  // ✅ SEO Entity: Compétence linguistique structurée
+  knowsLanguage: {
+    '@type': 'Language',
+    name: 'French',
+    alternateName: 'fr',
+  },
+
   address: {
     '@type': 'PostalAddress',
     streetAddress: '49 route de Labastide',
