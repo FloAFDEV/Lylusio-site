@@ -456,7 +456,7 @@ const About = () => {
 											symbolique et fascinant,{" "}
 											<strong>
 												miroir de notre monde intérieur
-											</strong>
+											</strong>. Mon approche est basée sur l'analyse du thème natal et l'accompagnement holistique, et non sur la voyance ou la médiumnité
 											. Je m'amusais à analyser et
 											décortiquer les thèmes des membres
 											de ma famille, des amis… Je pouvais

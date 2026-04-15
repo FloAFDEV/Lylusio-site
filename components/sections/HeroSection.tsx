@@ -292,11 +292,13 @@ const HeroSection = () => {
 							className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-foreground leading-[1.1] mb-4 sm:mb-6"
 						>
 							<span className="font-calligraphic text-accent text-5xl sm:text-6xl md:text-7xl lg:text-8xl inline-block align-baseline motion-safe:transition-transform duration-300 hover:scale-110">
-								A
+								É
 							</span>
-							strologie Consciente
+							milie Perez
 							<br />
-							<span className="text-accent">& Reiki</span>
+							<span className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-accent">
+								Astrologue & Reiki à Cépet
+							</span>
 						</h1>
 					</div>
 
