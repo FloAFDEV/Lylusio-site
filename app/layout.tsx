@@ -92,7 +92,7 @@ export const metadata: Metadata = {
 	},
 
 	// Manifest pour PWA et Android
-	manifest: "/manifest.json",
+	manifest: "/site.webmanifest",
 
 	// Couleur de fond pour splash screen
 	appleWebApp: {

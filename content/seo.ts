@@ -98,19 +98,6 @@ export const pageMetadata = {
     },
   },
 
-  therapieEnergetique: {
-    title: 'Thérapie Énergétique à Toulouse - Soins Holistiques',
-    description: 'Thérapie énergétique holistique à Toulouse : Reiki, harmonisation des chakras, libération émotionnelle. Approche bienveillante et personnalisée.',
-    canonical: `${baseUrl}/therapie-energetique`,
-    keywords: ['thérapie énergétique toulouse', 'soins holistiques', 'harmonisation chakras', 'libération émotionnelle'],
-    openGraph: {
-      url: `${baseUrl}/therapie-energetique`,
-      title: 'Thérapie Énergétique à Toulouse',
-      description: 'Soins énergétiques holistiques pour harmoniser corps et esprit',
-      images: [{ url: '/assets/reiki-histoire.webp', width: 1200, height: 630 }],
-    },
-  },
-
   therapieHolistique: {
     title: 'Thérapeute Holistique à Toulouse - Thérapie Holistique',
     description: 'Thérapie holistique à Cépet, près de Toulouse : approche globale corps-esprit combinant Reiki, astrologie et accompagnement personnalisé. Émilie Perez, thérapeute holistique certifiée.',

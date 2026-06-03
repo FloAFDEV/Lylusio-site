@@ -101,25 +101,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 			priority: 0.6
 		},
 
-		// Pages légales (basse priorité mais nécessaires)
-		{
-			url: `${baseUrl}/mentions-legales`,
-			lastModified: new Date("2026-01-13"),
-			changeFrequency: "yearly",
-			priority: 0.3
-		},
-		{
-			url: `${baseUrl}/confidentialite`,
-			lastModified: new Date("2026-01-13"),
-			changeFrequency: "yearly",
-			priority: 0.3
-		},
-		{
-			url: `${baseUrl}/cgu`,
-			lastModified: new Date("2026-01-13"),
-			changeFrequency: "yearly",
-			priority: 0.3
-		},
 	];
 
 	// Articles de blog dynamiques depuis WordPress
