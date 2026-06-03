@@ -33,8 +33,8 @@ const localBusinessData = {
   logo: {
     '@type': 'ImageObject',
     url: `${BASE_URL}/assets/logo-lylusio.webp`,
-    width: 490,
-    height: 192,
+    width: 400,
+    height: 400,
   },
   url: BASE_URL,
   telephone: '+33619151959',

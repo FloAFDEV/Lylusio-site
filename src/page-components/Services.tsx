@@ -14,7 +14,7 @@ const services = [
 	{
 		id: "astrologie",
 		icon: Star,
-		image: "/assets/seance-astro-zen.webp",
+		image: "/assets/seance-astro.webp",
 		imageAlt: "Symbole astrologique avec roue du zodiaque",
 		title: "Astrologie",
 		subtitle: "Consultation Thème Natal & Transits",
@@ -26,7 +26,7 @@ const services = [
 	{
 		id: "reiki",
 		icon: Heart,
-		image: "/assets/seance-reiki-zen.webp",
+		image: "/assets/seance-reiki.webp",
 		imageAlt: "Symbole Reiki avec lotus et mains énergétiques",
 		title: "Thérapie Énergétique",
 		subtitle: "Séances de Reiki",

@@ -17,8 +17,8 @@ export const organizationSchema = {
   logo: {
     '@type': 'ImageObject',
     url: `${baseUrl}/assets/logo-lylusio.webp`,
-    width: 490,
-    height: 192,
+    width: 400,
+    height: 400,
   },
   description: 'Cabinet d\'astrologie thérapeutique et de Reiki à Cépet (Toulouse Nord)',
   email: 'contact@lylusio.fr',
