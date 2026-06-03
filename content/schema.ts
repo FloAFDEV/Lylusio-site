@@ -45,9 +45,9 @@ export const personSchema = {
   url: `${baseUrl}/emilie-perez`,
   image: {
     '@type': 'ImageObject',
-    url: `${baseUrl}/assets/logo-lylusio.webp`,
-    width: 400,
-    height: 400,
+    url: `${baseUrl}/assets/emilie-portrait.webp`,
+    width: 600,
+    height: 600,
   },
   jobTitle: 'Astrologue & Praticienne Reiki',
 
@@ -121,6 +121,7 @@ export function generateServiceSchema(props: ServiceSchemaProps) {
   return {
     '@context': 'https://schema.org',
     '@type': 'Service',
+    '@id': `${props.url}#service`,
     serviceType: props.name,
     name: props.name,
     description: props.description,

@@ -8,7 +8,7 @@ export const defaultMetadata: Metadata = {
     default: 'Lylusio - Astrologie & Thérapie Énergétique à Toulouse',
     template: '%s | Lylusio',
   },
-  description: 'Émilie Perez, astrologue certifiée en astrologie humaniste, praticienne Reiki et accompagnement holistique à Cépet (Toulouse Nord). Consultations de thème natal en cabinet et à distance.',
+  description: 'Émilie Perez, astrologue et praticienne Reiki à Cépet (Toulouse Nord). Thème natal, soins énergétiques et accompagnement holistique en cabinet ou à distance.',
   keywords: ['astrologie', 'reiki', 'thérapie énergétique', 'Toulouse', 'accompagnement holistique', 'thème natal', 'développement personnel'],
   authors: [{ name: 'Émilie Perez' }],
   openGraph: {
@@ -118,7 +118,7 @@ export const pageMetadata = {
   },
 
   approche: {
-    title: 'Mon Approche Thérapeutique - Astrologie & Reiki Holistique',
+    title: 'Approche Thérapeutique Holistique - Astrologie & Reiki',
     description: 'Découvrez mon approche holistique combinant astrologie thérapeutique et Reiki. Accompagnement global et bienveillant, en cabinet à Cépet (Toulouse Nord) ou à distance.',
     canonical: `${baseUrl}/approche-therapeutique`,
     openGraph: {
@@ -137,63 +137,63 @@ export const pageMetadata = {
     openGraph: {
       url: `${baseUrl}/emilie-perez`,
       title: 'Émilie Perez - Astrologue & Praticienne Reiki',
-      description: 'Mon parcours et ma vision de l\'accompagnement holistique',
+      description: 'Astrologue certifiée en astrologie humaniste, praticienne Reiki Usui 3ème degré à Cépet (Toulouse Nord). Parcours, formations et vision de l\'accompagnement holistique.',
       images: [{ url: '/assets/logo-lylusio.webp', width: 1200, height: 630 }],
     },
   },
 
   contact: {
-    title: 'Contact - Prendre Rendez-vous | Lylusio Toulouse',
+    title: 'Contact - Prendre Rendez-vous à Toulouse',
     description: 'Contactez Émilie Perez pour une consultation en astrologie ou Reiki. Cabinet à Cépet (Toulouse Nord), consultations à distance. Réponse sous 24h.',
     canonical: `${baseUrl}/contact`,
     openGraph: {
       url: `${baseUrl}/contact`,
-      title: 'Contact - Prendre Rendez-vous',
-      description: 'Contactez-moi pour une consultation en astrologie ou Reiki',
+      title: 'Contacter Émilie Perez - Prendre Rendez-vous à Toulouse',
+      description: 'Contactez Émilie Perez pour une consultation en astrologie ou Reiki à Cépet (Toulouse Nord). Séances en cabinet et à distance. Réponse sous 24h.',
       images: [{ url: '/assets/logo-lylusio.webp', width: 1200, height: 630 }],
     },
   },
 
   blog: {
-    title: 'Lectures & Réflexions - Blog Astrologie & Reiki Toulouse | Lylusio',
+    title: 'Blog Astrologie & Reiki à Toulouse - Lectures & Réflexions',
     description: 'Articles inspirants et analyses approfondies sur l\'astrologie humaniste, le Reiki et votre cheminement personnel. Blog par Émilie Perez à Toulouse.',
     canonical: `${baseUrl}/blog`,
     keywords: ['blog astrologie toulouse', 'lectures inspirantes reiki', 'réflexions spirituelles', 'articles développement personnel', 'analyses astrologie'],
     openGraph: {
       url: `${baseUrl}/blog`,
-      title: 'Lectures & Réflexions - Blog Astrologie & Reiki',
+      title: 'Blog Astrologie & Reiki - Lectures & Réflexions',
       description: 'Articles inspirants et analyses approfondies sur l\'astrologie humaniste, le Reiki et votre cheminement personnel',
       images: [{ url: '/assets/logo-lylusio.webp', width: 1200, height: 630 }],
     },
   },
 
   ressources: {
-    title: 'Ressources Gratuites & Contenus Pratiques - Astrologie Reiki | Lylusio',
+    title: 'Ressources Gratuites - Astrologie & Reiki à Toulouse',
     description: 'Vidéos pédagogiques, ateliers & lives pour enrichir votre chemin. Ressources gratuites sur l\'astrologie et le Reiki par Émilie Perez à Toulouse.',
     canonical: `${baseUrl}/ressources`,
     keywords: ['ressources gratuites astrologie', 'vidéos pédagogiques reiki', 'ateliers lives toulouse', 'contenus pratiques gratuits', 'youtube astrologie'],
     openGraph: {
       url: `${baseUrl}/ressources`,
-      title: 'Ressources Gratuites & Contenus Pratiques',
-      description: 'Vidéos pédagogiques, ateliers & lives pour enrichir votre chemin',
+      title: 'Ressources Gratuites - Astrologie & Reiki',
+      description: 'Vidéos pédagogiques, ateliers et lives sur l\'astrologie humaniste et le Reiki par Émilie Perez à Toulouse. Accès gratuit à tous les contenus.',
       images: [{ url: '/assets/logo-lylusio.webp', width: 1200, height: 630 }],
     },
   },
 
   faq: {
-    title: 'Questions Fréquentes - Astrologie & Reiki | Lylusio',
+    title: 'Questions Fréquentes - Astrologie, Reiki & Tarifs',
     description: 'Réponses aux questions fréquentes sur les consultations d\'astrologie, les soins Reiki, les tarifs et le déroulement des séances.',
     canonical: `${baseUrl}/faq`,
     openGraph: {
       url: `${baseUrl}/faq`,
-      title: 'Questions Fréquentes - FAQ',
-      description: 'Toutes les réponses à vos questions sur mes services',
+      title: 'Questions Fréquentes - Astrologie, Reiki & Tarifs',
+      description: 'Réponses sur les consultations d\'astrologie, soins Reiki, tarifs et déroulement des séances avec Émilie Perez à Toulouse.',
       images: [{ url: '/assets/logo-lylusio.webp', width: 1200, height: 630 }],
     },
   },
 
   mentionsLegales: {
-    title: 'Mentions Légales | Lylusio',
+    title: 'Mentions Légales',
     description: 'Mentions légales du site Lylusio.fr - Informations juridiques et éditoriales.',
     canonical: `${baseUrl}/mentions-legales`,
     robots: {
@@ -203,7 +203,7 @@ export const pageMetadata = {
   },
 
   confidentialite: {
-    title: 'Politique de Confidentialité | Lylusio',
+    title: 'Politique de Confidentialité',
     description: 'Politique de confidentialité et protection des données personnelles du site Lylusio.fr.',
     canonical: `${baseUrl}/confidentialite`,
     robots: {
@@ -213,7 +213,7 @@ export const pageMetadata = {
   },
 
   cgu: {
-    title: 'Conditions Générales d\'Utilisation | Lylusio',
+    title: 'Conditions Générales d\'Utilisation',
     description: 'Conditions générales d\'utilisation du site Lylusio.fr.',
     canonical: `${baseUrl}/cgu`,
     robots: {
