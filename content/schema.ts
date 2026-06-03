@@ -11,14 +11,14 @@ const localBusinessRef = { '@id': `${baseUrl}/#local-business` } as const;
 export const organizationSchema = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
-  '@id': `${baseUrl}/#organization`,
+  '@id': `${baseUrl}/#local-business`,
   name: 'Lylusio',
   url: baseUrl,
   logo: {
     '@type': 'ImageObject',
     url: `${baseUrl}/assets/logo-lylusio.webp`,
-    width: 400,
-    height: 400,
+    width: 490,
+    height: 192,
   },
   description: 'Cabinet d\'astrologie thérapeutique et de Reiki à Cépet (Toulouse Nord)',
   email: 'contact@lylusio.fr',
@@ -74,7 +74,7 @@ export const personSchema = {
   disambiguatingDescription: 'Astrologue professionnelle spécialisée en astrologie humaniste et psychologique (Lylusio), praticienne Reiki certifiée. Basée à Cépet près de Toulouse. Approche basée sur l\'analyse du thème natal et l\'accompagnement holistique, distincte de la voyance ou médiumnité.',
 
   // Référence par @id uniquement — évite d'embarquer tout l'organizationSchema
-  worksFor: { '@id': `${baseUrl}/#organization` },
+  worksFor: { '@id': `${baseUrl}/#local-business` },
 
   description: 'Astrologue professionnelle en astrologie humaniste et psychologique, praticienne Reiki Usui 3ème degré à Cépet (Toulouse Nord). Spécialisée dans l\'analyse de thème natal, transits astrologiques et accompagnement holistique.',
 

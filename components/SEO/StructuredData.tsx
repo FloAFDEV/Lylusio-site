@@ -33,8 +33,8 @@ const localBusinessData = {
   logo: {
     '@type': 'ImageObject',
     url: `${BASE_URL}/assets/logo-lylusio.webp`,
-    width: 400,
-    height: 400,
+    width: 490,
+    height: 192,
   },
   url: BASE_URL,
   telephone: '+33619151959',
@@ -104,12 +104,6 @@ const localBusinessData = {
           description: 'Lecture de votre thème natal, transits et cycles de vie',
           provider: { '@id': `${BASE_URL}/#local-business` },
         },
-        priceSpecification: {
-          '@type': 'PriceSpecification',
-          price: '80',
-          priceCurrency: 'EUR',
-          valueAddedTaxIncluded: true,
-        },
       },
       {
         '@type': 'Offer',
@@ -118,12 +112,6 @@ const localBusinessData = {
           name: 'Séance Reiki',
           description: 'Soin énergétique pour libérer les tensions',
           provider: { '@id': `${BASE_URL}/#local-business` },
-        },
-        priceSpecification: {
-          '@type': 'PriceSpecification',
-          price: '60',
-          priceCurrency: 'EUR',
-          valueAddedTaxIncluded: true,
         },
       },
       {
@@ -151,14 +139,6 @@ const websiteData = {
   description: 'Astrologie humaniste, Reiki et accompagnement holistique à Toulouse',
   inLanguage: 'fr-FR',
   publisher: { '@id': `${BASE_URL}/#local-business` },
-  potentialAction: {
-    '@type': 'SearchAction',
-    target: {
-      '@type': 'EntryPoint',
-      urlTemplate: `${BASE_URL}/blog?q={search_term_string}`,
-    },
-    'query-input': 'required name=search_term_string',
-  },
 };
 
 // ─── React components (SSR inline) ───────────────────────────────────────────

@@ -92,7 +92,7 @@ export const metadata: Metadata = {
 	},
 
 	// Manifest pour PWA et Android
-	manifest: "/manifest.json",
+	manifest: "/site.webmanifest",
 
 	// Couleur de fond pour splash screen
 	appleWebApp: {
@@ -114,7 +114,7 @@ export const metadata: Metadata = {
 			{
 				url: "/og-image.jpg",
 				width: 1200,
-				height: 630,
+				height: 640,
 				alt: "Lylusio - Astrologie & Thérapie Énergétique",
 			},
 		],

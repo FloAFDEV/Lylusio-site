@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { redirect } from "next/navigation";
+import { redirect, notFound } from "next/navigation";
 import BlogPost from "@/src/page-components/BlogPost";
 import { generateBlogPostSchema } from "@/content/schema";
 import { fetchPostBySlug, fetchPosts } from "@/lib/wordpress-cache";
@@ -229,14 +229,17 @@ export default async function BlogPostPage({
 				`[BlogPostPage] Server fetch success for: ${title} (${slug})`
 			);
 		} else {
-			console.warn(`[BlogPostPage] Post returned null for slug: ${slug}`);
+			// Post doesn't exist in WordPress — return a clean 404.
+			// Only reached when the fetch itself succeeded (no exception),
+			// so this is a genuine missing slug, not a transient WP outage.
+			notFound();
 		}
 	} catch (error) {
 		console.error(
 			`[BlogPostPage] Server fetch error for slug ${slug}:`,
 			error
 		);
-		// Don't throw - let client component handle fetching
+		// WP may be temporarily down — let client component retry.
 	}
 
 	// Redirection canonique : si le slug WordPress diffère du slug dans l'URL

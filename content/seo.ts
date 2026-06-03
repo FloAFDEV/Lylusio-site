@@ -55,7 +55,7 @@ export const pageMetadata = {
       url: baseUrl,
       title: 'Lylusio - Accompagnement Holistique pour Femmes en Transition | Toulouse',
       description: 'Astrologie psychologique, Reiki Usui et accompagnement personnalisé. Séances sur-mesure en cabinet à Cépet ou en ligne. Parcours en 3 étapes : échange initial, séance adaptée, suivi bienveillant.',
-      images: [{ url: '/assets/emilie-about.webp', width: 1200, height: 630 }],
+      images: [{ url: '/assets/emilie-about.webp', width: 600, height: 600 }],
     },
   },
 
@@ -81,7 +81,7 @@ export const pageMetadata = {
       url: `${baseUrl}/reiki-toulouse`,
       title: 'Reiki Usui à Toulouse - Soins & Formations',
       description: 'Soins énergétiques Reiki et formations certifiantes avec Émilie Perez',
-      images: [{ url: '/assets/reiki-histoire.webp', width: 1200, height: 630 }],
+      images: [{ url: '/assets/reiki-histoire.webp', width: 1200, height: 1800 }],
     },
   },
 
@@ -94,20 +94,7 @@ export const pageMetadata = {
       url: `${baseUrl}/accompagnement-toulouse`,
       title: 'Accompagnement Holistique à Toulouse',
       description: 'Accompagnement personnalisé alliant astrologie, Reiki et développement personnel',
-      images: [{ url: '/assets/seance-astro.webp', width: 1200, height: 630 }],
-    },
-  },
-
-  therapieEnergetique: {
-    title: 'Thérapie Énergétique à Toulouse - Soins Holistiques',
-    description: 'Thérapie énergétique holistique à Toulouse : Reiki, harmonisation des chakras, libération émotionnelle. Approche bienveillante et personnalisée.',
-    canonical: `${baseUrl}/therapie-energetique`,
-    keywords: ['thérapie énergétique toulouse', 'soins holistiques', 'harmonisation chakras', 'libération émotionnelle'],
-    openGraph: {
-      url: `${baseUrl}/therapie-energetique`,
-      title: 'Thérapie Énergétique à Toulouse',
-      description: 'Soins énergétiques holistiques pour harmoniser corps et esprit',
-      images: [{ url: '/assets/reiki-histoire.webp', width: 1200, height: 630 }],
+      images: [{ url: '/assets/seance-astro-zen.webp', width: 800, height: 800 }],
     },
   },
 
@@ -120,13 +107,13 @@ export const pageMetadata = {
       url: `${baseUrl}/therapie-holistique`,
       title: 'Thérapeute Holistique à Toulouse - Thérapie Holistique',
       description: 'Approche globale corps-esprit combinant Reiki, astrologie et accompagnement personnalisé pour retrouver équilibre et harmonie',
-      images: [{ url: '/assets/golden-mandala-holistic.webp', width: 1200, height: 630 }],
+      images: [{ url: '/assets/therapie-holistique-card.webp', width: 800, height: 800 }],
     },
     twitter: {
       card: 'summary_large_image',
       title: 'Thérapeute Holistique à Toulouse - Thérapie Holistique',
       description: 'Approche globale corps-esprit combinant Reiki, astrologie et accompagnement personnalisé pour retrouver équilibre et harmonie',
-      images: ['/assets/golden-mandala-holistic.webp'],
+      images: ['/assets/therapie-holistique-card.webp'],
     },
   },
 
@@ -138,7 +125,7 @@ export const pageMetadata = {
       url: `${baseUrl}/approche-therapeutique`,
       title: 'Mon Approche Thérapeutique Holistique',
       description: 'Une approche intégrative alliant astrologie, Reiki et développement personnel',
-      images: [{ url: '/assets/approche-arbre.webp', width: 1200, height: 630 }],
+      images: [{ url: '/assets/approche-arbre.webp', width: 1080, height: 719 }],
     },
   },
 
