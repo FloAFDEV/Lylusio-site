@@ -130,8 +130,8 @@ const ContactCard = ({
 
 const ContactCards = () => {
 	const { ref, isInView } = useInView({ threshold: 0.1 });
-	const [showPhone, setShowPhone] = useState(false);
-	const [showEmail, setShowEmail] = useState(false);
+	const [showPhone, setShowPhone] = useState(true);
+	const [showEmail, setShowEmail] = useState(true);
 
 	return (
 		<div ref={ref} className="grid sm:grid-cols-2 gap-6 mb-12">
