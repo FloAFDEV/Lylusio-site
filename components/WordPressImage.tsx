@@ -31,10 +31,10 @@ interface WordPressImageProps {
  *
  * @example
  * <WordPressImage
- *   src="https://admin.lylusio.fr/wp-content/uploads/2024/01/image.jpg"
- *   alt="Description"
- *   width={800}
- *   height={600}
+ * src="https://admin.lylusio.fr/wp-content/uploads/2024/01/image.jpg"
+ * alt="Description"
+ * width={800}
+ * height={600}
  * />
  */
 export function WordPressImage({
@@ -106,10 +106,10 @@ interface FeaturedImageProps {
  *
  * @example
  * <FeaturedImage
- *   post={post}
- *   size="large"
- *   fill
- *   sizes="(max-width: 768px) 100vw, 50vw"
+ * post={post}
+ * size="large"
+ * fill
+ * sizes="(max-width: 768px) 100vw, 50vw"
  * />
  */
 export function FeaturedImage({

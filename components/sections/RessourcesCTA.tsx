@@ -13,7 +13,7 @@ const seededRandom = (seed: number): number => {
 	return x - Math.floor(x);
 };
 
-// 🌟 Étoiles scintillantes avec positions déterministes (SSR-safe)
+// Étoiles scintillantes avec positions déterministes (SSR-safe)
 const CelestialStars = memo(() => {
 	// Générer les étoiles de façon déterministe (même résultat SSR et client)
 	const stars = Array.from({ length: 12 }).map((_, i) => {

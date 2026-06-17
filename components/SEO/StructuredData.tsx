@@ -1,13 +1,13 @@
 /**
  * Structured Data (JSON-LD) — rendu SSR inline
  *
- * ⚠️ Ne pas utiliser next/script ici : strategy="afterInteractive" exclut ces schemas
- *    du HTML initial et les rend invisibles aux crawlers non-JS (Bing, réseaux sociaux).
- *    L'injection inline via dangerouslySetInnerHTML garantit leur présence dans le view-source.
+ * Ne pas utiliser next/script ici : strategy="afterInteractive" exclut ces schemas
+ * du HTML initial et les rend invisibles aux crawlers non-JS (Bing, réseaux sociaux).
+ * L'injection inline via dangerouslySetInnerHTML garantit leur présence dans le view-source.
  *
  * Source unique de vérité pour le LocalBusiness.
  * Tous les autres schemas qui référencent Lylusio doivent pointer vers :
- *   "@id": "https://lylusio.fr/#local-business"
+ * "@id": "https://lylusio.fr/#local-business"
  */
 
 const BASE_URL = 'https://lylusio.fr';

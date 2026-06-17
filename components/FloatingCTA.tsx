@@ -51,7 +51,7 @@ const FloatingCTA = () => {
 		};
 
 		// DO NOT call handleScroll immediately - wait for first scroll event to prevent flash
-		// handleScroll(); // ❌ REMOVED: Causes flash if scrollY > 400 on mount
+		// handleScroll(); // REMOVED: Causes flash if scrollY > 400 on mount
 
 		window.addEventListener("scroll", handleScroll, { passive: true });
 		window.addEventListener(

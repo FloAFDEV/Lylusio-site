@@ -6,37 +6,8 @@ import { ChevronDown, MapPin } from "lucide-react";
 import Image from "next/image";
 import { useParallax } from "@/hooks/useParallax";
 
-/**
- * 🎯 OPTIMISATIONS APPLIQUÉES :
- *
- * 1. SSR-SAFE : Tous les composants génèrent le même HTML côté serveur et client
- *    - CelestialStars : générateur déterministe (pas de Math.random())
- *    - Pas de window, pas de useEffect pour le rendu initial
- *
- * 2. IMAGES OPTIMISÉES :
- *    - Hero : priority + fetchPriority="high" pour LCP optimal
- *    - Badge plante : CSS background-image pour éviter hydration
- *    - Sizes optimisés pour responsive
- *
- * 3. PERFORMANCE :
- *    - Memo sur tous les sous-composants
- *    - Blur réduit sur mobile (blur-xl au lieu de blur-3xl)
- *    - Will-change sur parallax pour GPU
- *    - Lazy-load images non critiques
- *
- * 4. ACCESSIBILITÉ :
- *    - aria-hidden sur décoratif
- *    - aria-label sur CTA et boutons
- *    - Focus visible sur tous les interactifs
- *
- * 5. SEO :
- *    - Alt texte descriptif sur hero
- *    - Headings structurés (h1)
- *    - Semantic HTML
- */
-
 // ===========================
-// 🌟 CELESTIAL STARS
+// CELESTIAL STARS
 // ===========================
 // Étoiles scintillantes avec positions déterministes
 // Utilise un seed fixe pour éviter l'hydration mismatch
@@ -50,7 +21,7 @@ const CelestialStars = memo(() => {
 
 	// Générer les étoiles de façon déterministe
 	// toFixed() élimine les différences de précision flottante entre SSR et client
-	// ✅ CWV Fix: 12 étoiles sur mobile (score 72), 20 sur desktop (score 97)
+	// CWV Fix: 12 étoiles sur mobile (score 72), 20 sur desktop (score 97)
 	// On génère toujours 20 étoiles mais on cache les 8 dernières sur mobile avec CSS
 	const stars = [...Array(20)].map((_, i) => {
 		const r1 = seededRandom(i * 3 + 1);
@@ -101,7 +72,7 @@ const CelestialStars = memo(() => {
 CelestialStars.displayName = "CelestialStars";
 
 // ===========================
-// ☁️ SOFT CLOUDS
+// SOFT CLOUDS
 // ===========================
 // Nuages flottants avec parallax
 // Blur réduit sur mobile pour performances
@@ -140,10 +111,10 @@ const SoftClouds = memo(({ parallaxOffset }: { parallaxOffset: number }) => (
 SoftClouds.displayName = "SoftClouds";
 
 // ===========================
-// ✍️ HANDWRITTEN SIGNATURE
+// HANDWRITTEN SIGNATURE
 // ===========================
 // Signature SVG mémorisée avec parallax
-// ✅ CWV Fix: Dimensions fixes pour éviter CLS, transform CSS uniquement
+// CWV Fix: Dimensions fixes pour éviter CLS, transform CSS uniquement
 const HandwrittenSignature = memo(
 	({ parallaxOffset }: { parallaxOffset: number }) => (
 		<div
@@ -197,7 +168,7 @@ const HandwrittenSignature = memo(
 HandwrittenSignature.displayName = "HandwrittenSignature";
 
 // ===========================
-// 🎨 ORGANIC SHAPES
+// ORGANIC SHAPES
 // ===========================
 // Formes organiques d'arrière-plan avec parallax
 const OrganicShapes = memo(({ parallaxOffset }: { parallaxOffset: number }) => (
@@ -225,7 +196,7 @@ const OrganicShapes = memo(({ parallaxOffset }: { parallaxOffset: number }) => (
 OrganicShapes.displayName = "OrganicShapes";
 
 // ===========================
-// ⭕ DECORATIVE CIRCLES
+// DECORATIVE CIRCLES
 // ===========================
 // Cercles statiques décalés autour de la photo
 const DecorativeCircles = memo(() => (
@@ -244,7 +215,7 @@ const DecorativeCircles = memo(() => (
 DecorativeCircles.displayName = "DecorativeCircles";
 
 // ===========================
-// 🎭 MAIN HERO SECTION
+// MAIN HERO SECTION
 // ===========================
 const HeroSection = () => {
 	const parallaxOffset = useParallax(0.15);
@@ -252,7 +223,7 @@ const HeroSection = () => {
 	const scrollToNext = useCallback(() => {
 		const element = document.querySelector("#approche");
 		if (element) {
-			// ✅ scrollIntoView évite le forced reflow
+			// scrollIntoView évite le forced reflow
 			// scroll-margin-top gère l'offset du header
 			element.scrollIntoView({
 				behavior: "smooth",
@@ -272,15 +243,15 @@ const HeroSection = () => {
 			}}
 			aria-labelledby="hero-title"
 		>
-			{/* 🌌 Éléments célestes - rendus au SSR pour éviter le clignotement */}
+			{/* Éléments célestes - rendus au SSR pour éviter le clignotement */}
 			<CelestialStars />
 			<SoftClouds parallaxOffset={parallaxOffset} />
 			<HandwrittenSignature parallaxOffset={parallaxOffset} />
 			<OrganicShapes parallaxOffset={parallaxOffset} />
 
-			{/* 📝 Contenu principal */}
+			{/* Contenu principal */}
 			<div className="relative z-10 container-wide section-padding grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center">
-				{/* 📄 Contenu textuel - Gauche */}
+				{/* Contenu textuel - Gauche */}
 				<div className="lg:col-span-7 max-w-2xl mx-auto lg:mx-0 text-center lg:text-left order-2 lg:order-1">
 					<p className="font-body text-xs text-muted-foreground uppercase tracking-[0.3em] mb-4">
 						À Cépet · Toulouse & en ligne
@@ -367,7 +338,7 @@ const HeroSection = () => {
 						</p>
 					</div>
 
-					{/* 🎯 CTA Principal */}
+					{/* CTA Principal */}
 					<div className="flex justify-center lg:justify-start">
 						<Button
 							asChild
@@ -385,7 +356,7 @@ const HeroSection = () => {
 						</Button>
 					</div>
 
-					{/* ✍️ Signature manuscrite */}
+					{/* Signature manuscrite */}
 					<p
 						className="mt-8 sm:mt-10 font-calligraphic text-xl sm:text-2xl md:text-3xl text-navy/90 dark:text-gold/50 animate-handwriting"
 						style={{
@@ -398,11 +369,11 @@ const HeroSection = () => {
 					</p>
 				</div>
 
-				{/* 📸 Photo avec décoration - Droite */}
+				{/* Photo avec décoration - Droite */}
 				<div className="lg:col-span-5 relative order-1 lg:order-2 pt-4 sm:pt-6 md:pt-8 lg:pt-0">
-					{/* 🖼️ Container SSR-safe avec dimensions fixes */}
+					{/* Container SSR-safe avec dimensions fixes */}
 					<div className="relative mx-auto w-[280px] sm:w-[240px] h-[280px] sm:h-[240px]">
-						{/* 🎨 Photo principale avec Next.js Image optimisé */}
+						{/* Photo principale avec Next.js Image optimisé */}
 						<div className="aspect-square rounded-full overflow-hidden shadow-gold relative group">
 							<Image
 								src="/assets/emilie-hero.webp"
@@ -416,22 +387,22 @@ const HeroSection = () => {
 								loading="eager"
 								unoptimized={false}
 							/>
-							{/* 🌅 Gradient overlay */}
+							{/* Gradient overlay */}
 							<div
 								className="absolute inset-0 bg-gradient-to-t from-background/15 via-transparent to-cream/8 pointer-events-none"
 								aria-hidden="true"
 							/>
 						</div>
 
-						{/* ⭕ Cercles décoratifs */}
+						{/* Cercles décoratifs */}
 						<DecorativeCircles />
 
-						{/* 🌿 Badge décoratif plante - Optimisé en CSS background */}
+						{/* Badge décoratif plante - Optimisé en CSS background */}
 						<div
 							className="absolute -bottom-2 -left-2 sm:-bottom-3 sm:-left-3 w-10 h-10 sm:w-14 sm:h-14 lg:w-16 lg:h-16 bg-background rounded-full flex items-center justify-center motion-safe:animate-float overflow-hidden border-2 border-gold/30 shadow-[0_0_20px_rgba(212,175,55,0.2)] hover:scale-110 motion-safe:transition-transform duration-300"
 							aria-hidden="true"
 						>
-							{/* 🎨 Image décorative en CSS background - Évite hydration mismatch */}
+							{/* Image décorative en CSS background - Évite hydration mismatch */}
 							<div
 								className="w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 rounded-full bg-cover bg-center"
 								style={{
@@ -442,7 +413,7 @@ const HeroSection = () => {
 							/>
 						</div>
 
-						{/* 📍 Badge localisation */}
+						{/* Badge localisation */}
 						<div
 							className="hidden sm:flex absolute -top-2 -right-2 sm:-top-3 sm:-right-3 px-2 py-1 sm:px-3 sm:py-1.5 bg-background rounded-full shadow-soft motion-safe:animate-float border border-gold/25 items-center gap-1.5 hover:scale-105 motion-safe:transition-transform duration-300"
 							aria-hidden="true"
@@ -459,7 +430,7 @@ const HeroSection = () => {
 				</div>
 			</div>
 
-			{/* 👇 Indicateur de scroll */}
+			{/* Indicateur de scroll */}
 			<button
 				onClick={scrollToNext}
 				className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2 text-muted-foreground/70 hover:text-accent motion-safe:transition-all duration-300 motion-safe:animate-fade-in group focus:outline-none focus:ring-2 focus:ring-accent/50 rounded-lg p-2"

@@ -4,7 +4,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import HeroSection from "@/components/sections/HeroSection";
 
-// ✅ CWV Fix: Lazy-load TOUTES sections below-the-fold pour maximiser score LCP
+// CWV Fix: Lazy-load TOUTES sections below-the-fold pour maximiser score LCP
 // Sur mobile (viewport principal PageSpeed), Hero seul = above-the-fold
 // Réduction chunk JS initial : ~60% (-240KB estimé)
 const ApprochSection = dynamic(

@@ -83,7 +83,7 @@ export function processWordPressContent(content: string): string {
 
 	let processed = content;
 
-	// 1. 🔥 CRITIQUE : Supprimer les <p> qui wrappent des shortcodes [caption]
+	// 1. CRITIQUE : Supprimer les <p> qui wrappent des shortcodes [caption]
 	// WordPress envoie souvent : <p>[caption]...[/caption]</p>
 	// On doit extraire le shortcode AVANT de le supprimer
 	processed = processed.replace(

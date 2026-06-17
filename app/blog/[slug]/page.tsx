@@ -245,7 +245,7 @@ export default async function BlogPostPage({
 	// Redirection canonique : si le slug WordPress diffère du slug dans l'URL
 	// (ex : URL avec "→" alors que WP stocke "transition-2025-2026-…"),
 	// on redirige vers l'URL propre pour éviter contenu dupliqué et erreurs futures.
-	// ⚠️ Doit être HORS du try-catch (redirect() lève une exception Next.js interne).
+	// Doit être HORS du try-catch (redirect() lève une exception Next.js interne).
 	if (
 		canonicalSlug &&
 		canonicalSlug !== slug &&

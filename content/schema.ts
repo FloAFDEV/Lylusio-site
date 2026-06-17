@@ -51,7 +51,7 @@ export const personSchema = {
   },
   jobTitle: 'Astrologue & Praticienne Reiki',
 
-  // ✅ SEO Entity: Occupation structurée pour désambiguïsation Google
+  // SEO Entity: Occupation structurée pour désambiguïsation Google
   hasOccupation: {
     '@type': 'Occupation',
     name: 'Astrologue',
@@ -70,7 +70,7 @@ export const personSchema = {
     },
   },
 
-  // ✅ SEO Entity: Désambiguïsation explicite homonyme
+  // SEO Entity: Désambiguïsation explicite homonyme
   disambiguatingDescription: 'Astrologue professionnelle spécialisée en astrologie humaniste et psychologique (Lylusio), praticienne Reiki certifiée. Basée à Cépet près de Toulouse. Approche basée sur l\'analyse du thème natal et l\'accompagnement holistique, distincte de la voyance ou médiumnité.',
 
   // Référence par @id uniquement — évite d'embarquer tout l'organizationSchema
@@ -89,7 +89,7 @@ export const personSchema = {
     'Développement personnel',
   ],
 
-  // ✅ SEO Entity: Compétence linguistique structurée
+  // SEO Entity: Compétence linguistique structurée
   knowsLanguage: {
     '@type': 'Language',
     name: 'French',

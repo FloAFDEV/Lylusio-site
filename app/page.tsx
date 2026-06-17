@@ -5,9 +5,7 @@ import { organizationSchema, howToSchema } from '@/content/schema';
 
 export const metadata: Metadata = genMeta('home');
 
-// 🚀 PERFORMANCE: Force Static Generation + ISR (Incremental Static Regeneration)
-// Génère le HTML au build, revalide toutes les 6h
-// TTFB: 2500ms → <100ms (gain: -2400ms sur mobile 4G)
+// Static Generation + ISR : HTML généré au build, revalidé toutes les 6h
 export const revalidate = 21600; // 6 heures
 
 export default function HomePage() {

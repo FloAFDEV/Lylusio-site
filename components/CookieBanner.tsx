@@ -24,11 +24,11 @@ const CookieBanner = () => {
 	const [isTransitioning, setIsTransitioning] = useState(false);
 	const [preferences, setPreferences] = useState<CookiePreferences>({
 		necessary: true, // Toujours activé
-		analytics: true, // ✅ Coché par défaut
-		marketing: true, // ✅ Coché par défaut
+		analytics: true, // Coché par défaut
+		marketing: true, // Coché par défaut
 	});
 
-	// ✅ Accessibilité: Respect prefers-reduced-motion
+	// Accessibilité: Respect prefers-reduced-motion
 	const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
 
 	useEffect(() => {
@@ -57,7 +57,7 @@ const CookieBanner = () => {
 		}
 
 		if (!consent || (expiryDate && new Date(expiryDate) < new Date())) {
-			// ✅ CWV Fix: Affichage immédiat sans délai pour éviter CLS
+			// CWV Fix: Affichage immédiat sans délai pour éviter CLS
 			console.log('[CookieBanner] Aucun consentement, affichage du banner');
 			setIsVisible(true);
 		} else {
@@ -68,7 +68,7 @@ const CookieBanner = () => {
 			if (savedPreferences) {
 				setPreferences(JSON.parse(savedPreferences));
 			}
-			// ✅ CWV Fix: Charger GA4 uniquement si consentement analytics existe
+			// CWV Fix: Charger GA4 uniquement si consentement analytics existe
 			const prefs = savedPreferences ? JSON.parse(savedPreferences) : null;
 			console.log('[CookieBanner] Préférences chargées:', prefs);
 			if (prefs?.analytics && typeof window !== 'undefined') {
@@ -108,7 +108,7 @@ const CookieBanner = () => {
 		localStorage.setItem(COOKIE_PREFERENCES_KEY, JSON.stringify(prefs));
 		localStorage.setItem("cookie-consent-expiry", expiryDate.toISOString());
 
-		// ✅ CWV Fix: Charger les scripts uniquement après consentement
+		// CWV Fix: Charger les scripts uniquement après consentement
 		if (prefs.analytics && typeof window !== 'undefined') {
 			// Déclencher l'événement pour charger GA4
 			console.log('[CookieBanner] Dispatch événement cookieConsentGranted (acceptation)');
@@ -141,7 +141,7 @@ const CookieBanner = () => {
 				// Personnalisé
 				savePreferences(preferences);
 			}
-			// ✅ CWV Fix: Pas de modification du body (déjà position fixed)
+			// CWV Fix: Pas de modification du body (déjà position fixed)
 			setIsVisible(false);
 		}, 400);
 	};
@@ -177,7 +177,7 @@ const CookieBanner = () => {
 
 	if (!isVisible) return null;
 
-	// ✅ Accessibilité: Durées d'animation réduites si prefers-reduced-motion
+	// Accessibilité: Durées d'animation réduites si prefers-reduced-motion
 	const transitionDuration = prefersReducedMotion ? "duration-150" : "duration-700";
 	const transitionDurationFast = prefersReducedMotion ? "duration-100" : "duration-500";
 

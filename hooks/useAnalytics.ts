@@ -39,7 +39,7 @@ export const initGA = () => {
 
   console.log('[GA4] Initialisation en cours...');
 
-  // ✅ CWV Fix: Preconnect GTM uniquement après consentement (au lieu du layout)
+  // CWV Fix: Preconnect GTM uniquement après consentement (au lieu du layout)
   const preconnectLink = document.createElement('link');
   preconnectLink.rel = 'preconnect';
   preconnectLink.href = 'https://www.googletagmanager.com';
@@ -57,7 +57,7 @@ export const initGA = () => {
     send_page_view: false, // On gère manuellement les pageviews
   });
 
-  // ✅ Charger le script après un délai pour réduire TBT (Total Blocking Time)
+  // Charger le script après un délai pour réduire TBT (Total Blocking Time)
   // et permettre au contenu principal de se charger en priorité
   // Phase 4 optimization: Increased delay to 5s/4s to prioritize LCP/FCP
   const loadGAScript = () => {
@@ -69,7 +69,7 @@ export const initGA = () => {
     console.log('[GA4] Script chargé avec succès, ID:', GA_MEASUREMENT_ID);
   };
 
-  // ✅ MOBILE-ONLY: Retarder GA4 jusqu'à première interaction sur mobile
+  // MOBILE-ONLY: Retarder GA4 jusqu'à première interaction sur mobile
   // Desktop: Chargement immédiat (idle callback)
   const isMobile = window.innerWidth < 768;
 

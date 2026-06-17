@@ -8,35 +8,6 @@ import Image from "next/image";
 import { Quote } from "lucide-react";
 import GoldenPlantBadge from "@/components/GoldenPlantBadge";
 
-/**
- * 🎯 OPTIMISATIONS APPLIQUÉES :
- *
- * 1. RESPONSIVE IMAGES :
- *    - Desktop (lg+): approche-arbre.webp (144KB, quality 75)
- *    - Mobile (<1024px): arbre-lumiere.webp (50KB, version légère)
- *    - Économie de 94KB sur mobile = -65% de bande passante
- *
- * 2. LAZY-LOADING INTELLIGENT :
- *    - loading="lazy" au lieu de priority
- *    - Image chargée seulement quand proche du viewport
- *    - fetchPriority="low" car pas visible au-dessus du fold
- *
- * 3. PARALLAX OPTIMISÉ :
- *    - will-change: transform pour GPU
- *    - translate3d pour hardware acceleration
- *    - Offset réduit sur mobile pour fluidité
- *
- * 4. RESPONSIVE IMAGES :
- *    - Sizes optimisés selon viewport
- *    - Quality adapté (60 mobile, 75 desktop)
- *    - Lazy-load (pas priority)
- *
- * 5. ACCESSIBILITÉ :
- *    - aria-hidden sur décoratif
- *    - alt="" sur image background
- *    - Focus visible sur CTA
- */
-
 const ApprochSection = () => {
 	const { ref, isInView } = useInView({ threshold: 0.1 });
 	const parallaxOffset = useParallax(0.08);
@@ -52,10 +23,10 @@ const ApprochSection = () => {
 			}}
 			aria-labelledby="approche-title"
 		>
-			{/* 🌳 Image d'arrière-plan avec parallax - Responsive avec srcSet */}
+			{/* Image d'arrière-plan avec parallax - Responsive avec srcSet */}
 			<div className="absolute inset-0 lg:w-1/2" aria-hidden="true">
 				<div className="relative w-full h-[110%] -mt-[5%] overflow-hidden">
-					{/* 📱 Version mobile optimisée - Quality 50 pour réduire poids */}
+					{/* Version mobile optimisée - Quality 50 pour réduire poids */}
 					<Image
 						src="/assets/approche-arbre-mobile.webp"
 						alt=""
@@ -86,12 +57,12 @@ const ApprochSection = () => {
 					/>
 				</div>
 
-				{/* 🎨 Gradient overlays */}
+				{/* Gradient overlays */}
 				<div className="absolute inset-0 bg-gradient-to-r from-background/40 via-background/70 to-background lg:from-transparent lg:via-background/40 lg:to-background" />
 				<div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-background/30 lg:from-background/80 lg:via-transparent lg:to-transparent" />
 			</div>
 
-			{/* 🎭 Decorative floating shapes */}
+			{/* Decorative floating shapes */}
 			<div
 				className="absolute inset-0 overflow-hidden pointer-events-none"
 				aria-hidden="true"
@@ -103,7 +74,7 @@ const ApprochSection = () => {
 				/>
 			</div>
 
-			{/* 📝 Main Content */}
+			{/* Main Content */}
 			<div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8">
 				<div className="flex items-center min-h-[450px] md:min-h-[500px] lg:min-h-[550px]">
 					<div className="hidden lg:block lg:w-[45%]" />
@@ -198,7 +169,7 @@ const ApprochSection = () => {
 								</div>
 							</div>
 
-							{/* 🎯 CTA */}
+							{/* CTA */}
 							<div
 								className={`flex flex-wrap gap-3 text-left opacity-0 animate-fade-in-up delay-400 ${
 									isInView ? "" : "!opacity-0"

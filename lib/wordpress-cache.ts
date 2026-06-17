@@ -1,7 +1,7 @@
 /**
  * WordPress API Cache Layer
  * Optimized fetch with deduplication, ISR, and error handling
- * 🔒 Sécurisé via Edge Functions avec rate limiting
+ * Sécurisé via Edge Functions avec rate limiting
  */
 
 // URL des Edge Functions internes (pas d'appel direct à WordPress)
@@ -164,7 +164,7 @@ export async function fetchPostBySlug(slug: string, revalidate?: number) {
 
 /**
  * Fetch WordPress categories with long cache
- * 🔒 Utilise Edge Function avec rate limiting
+ * Utilise Edge Function avec rate limiting
  */
 export async function fetchCategories(params?: {
 	perPage?: number;

@@ -112,16 +112,16 @@ function safeDecode(str: string): string {
  * Normalisation compatible WordPress (sanitize_title_with_dashes).
  *
  * Règles, dans l'ordre :
- *   1. Minuscule
- *   2. NFD → suppression des diacritiques (é→e, à→a, ç→c…)
- *   3. Apostrophes/guillemets → rien (WP les supprime, pas de tiret)
- *   4. Tirets longs → tiret simple
- *   5. Flèches Unicode → tiret (→ ← ↔ …)
- *   6. Ponctuation générale Unicode → espace
- *   7. Tout caractère restant non-ASCII → tiret
- *   8. Espaces/underscores → tiret
- *   9. Tirets multiples → un seul
- *  10. Tirets en début/fin → supprimés
+ * 1. Minuscule
+ * 2. NFD → suppression des diacritiques (é→e, à→a, ç→c…)
+ * 3. Apostrophes/guillemets → rien (WP les supprime, pas de tiret)
+ * 4. Tirets longs → tiret simple
+ * 5. Flèches Unicode → tiret (→ ← ↔ …)
+ * 6. Ponctuation générale Unicode → espace
+ * 7. Tout caractère restant non-ASCII → tiret
+ * 8. Espaces/underscores → tiret
+ * 9. Tirets multiples → un seul
+ * 10. Tirets en début/fin → supprimés
  */
 function normalizeSlug(str: string): string {
 	return str
@@ -143,10 +143,10 @@ function normalizeSlug(str: string): string {
  * Construit les variantes dans l'ordre de probabilité vis-à-vis du format WordPress.
  *
  * Ordre (du plus probable au moins probable) :
- *   1. ASCII pur — format standard WordPress (sanitize_title_with_dashes)
- *   2. NFD normalisé — WordPress avec plugin d'accents (Polylang, WPML…)
- *   3. Décodé brut — WordPress en mode Unicode slug
- *   4. Minuscule simple — dernier recours
+ * 1. ASCII pur — format standard WordPress (sanitize_title_with_dashes)
+ * 2. NFD normalisé — WordPress avec plugin d'accents (Polylang, WPML…)
+ * 3. Décodé brut — WordPress en mode Unicode slug
+ * 4. Minuscule simple — dernier recours
  *
  * Le Set garantit l'unicité : aucune requête dupliquée vers WP.
  */
@@ -286,11 +286,11 @@ function tokenOverlapScore(slugA: string, slugB: string): number {
  * Sélectionne le meilleur article parmi les candidats WP.
  *
  * Niveaux de matching (ordre décroissant de fiabilité) :
- *   1. Slug exact (identique)
- *   2. Casse insensible
- *   3. Slug normalisé exact (NFD + caractères spéciaux)
- *   4. Recouvrement tokens ≥ 80 % (haute confiance)
- *   5. Recouvrement tokens ≥ 60 % avec ≥ 3 tokens cibles (confiance moyenne)
+ * 1. Slug exact (identique)
+ * 2. Casse insensible
+ * 3. Slug normalisé exact (NFD + caractères spéciaux)
+ * 4. Recouvrement tokens ≥ 80 % (haute confiance)
+ * 5. Recouvrement tokens ≥ 60 % avec ≥ 3 tokens cibles (confiance moyenne)
  *
  * Aucune heuristique "contains" ou "prefix" seule → évite les faux positifs.
  */
@@ -331,7 +331,7 @@ function findBestMatch(posts: any[], targetSlug: string): any | null {
 	}
 
 	// 5. Scoring par tokens — confiance moyenne (≥ 60 %), uniquement si
-	//    le slug cible contient assez de tokens pour que le score soit fiable
+	// le slug cible contient assez de tokens pour que le score soit fiable
 	const targetTokenCount = extractTokens(targetSlug).size;
 	if (targetTokenCount >= 3 && scoredPosts.length > 0 && scoredPosts[0].score >= 0.6) {
 		return scoredPosts[0].post;
