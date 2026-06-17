@@ -286,24 +286,6 @@ const Blog = () => {
 		}, 300);
 	};
 
-	const structuredData = {
-		"@context": "https://schema.org",
-		"@type": "Blog",
-		name: "Blog Lylusio - Astrologie & Bien-être",
-		description:
-			"Articles et réflexions sur l'astrologie, le Reiki et le développement personnel par Émilie Perez.",
-		url: "https://lylusio.fr/blog",
-		author: { "@type": "Person", name: "Émilie Perez" },
-		blogPost: displayedPosts.slice(0, 10).map((post) => ({
-			"@type": "BlogPosting",
-			headline: post.title,
-			description: post.excerpt,
-			datePublished: post.rawDate,
-			url: `https://lylusio.fr/blog/${post.slug}`,
-			author: { "@type": "Person", name: "Émilie Perez" },
-		})),
-	};
-
 	return (
 		<>
 			{/* SEO metadata handled by Next.js Metadata API */}

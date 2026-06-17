@@ -87,28 +87,8 @@ const AnimatedSection = ({
 
 const About = () => {
 	const parallaxOffset = useParallax(0.1);
-	const structuredData = {
-		"@context": "https://schema.org",
-		"@type": "AboutPage",
-		mainEntity: {
-			"@type": "Person",
-			name: "Émilie Perez",
-			jobTitle: "Astrologue et Praticienne Reiki",
-			description:
-				"Astrologue humaniste et praticienne Reiki 3ème degré à Cépet (Toulouse Nord), accessible depuis Montauban",
-			url: "https://lylusio.fr/a-propos",
-		},
-	};
-
 	return (
 		<>
-			{/* SEO metadata is handled by Next.js Metadata API in app/emilie-perez/page.tsx */}
-			<script
-				type="application/ld+json"
-				dangerouslySetInnerHTML={{
-					__html: JSON.stringify(structuredData),
-				}}
-			/>
 
 			<div className="min-h-screen bg-background relative">
 				<FloatingParticles count={35} />

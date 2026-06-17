@@ -48,69 +48,8 @@ const Astrologie = () => {
 		threshold: 0.1,
 	});
 
-	const structuredData = {
-		"@context": "https://schema.org",
-		"@type": "Service",
-		"@id": "https://lylusio.fr/astrologie-toulouse#service",
-		name: "Consultation Astrologique Toulouse Cépet",
-		description:
-			"Consultation astrologique à Toulouse et Cépet : lecture de thème natal, analyse des transits et cycles de vie. Astrologie symbolique et psychologique pour comprendre votre personnalité et éclairer vos transitions.",
-		provider: {
-			"@type": "LocalBusiness",
-			"@id": "https://lylusio.fr/#local-business",
-			name: "Lylusio - Émilie Perez",
-			address: {
-				"@type": "PostalAddress",
-				addressLocality: "Cépet",
-				postalCode: "31620",
-				addressRegion: "Occitanie",
-				addressCountry: "FR",
-			},
-			telephone: "+33619151959",
-		},
-		areaServed: [
-			{ "@type": "City", name: "Toulouse" },
-			{ "@type": "City", name: "Cépet" },
-			{ "@type": "AdministrativeArea", name: "Haute-Garonne" },
-		],
-		serviceType: "Astrologie",
-		offers: [
-			{
-				"@type": "Offer",
-				name: "Lecture de Thème Natal",
-				description:
-					"Analyse complète de votre carte du ciel de naissance",
-				price: "90",
-				priceCurrency: "EUR",
-				availability: "https://schema.org/InStock",
-			},
-			{
-				"@type": "Offer",
-				name: "Lecture de Thème Natal avec support écrit",
-				price: "120",
-				priceCurrency: "EUR",
-				availability: "https://schema.org/InStock",
-			},
-			{
-				"@type": "Offer",
-				name: "Lecture des Transits",
-				description: "Analyse des cycles planétaires actuels",
-				price: "60",
-				priceCurrency: "EUR",
-				availability: "https://schema.org/InStock",
-			},
-		],
-	};
-
 	return (
 		<>
-			{/* SEO metadata handled by Next.js Metadata API */}
-			<script
-				type="application/ld+json"
-				dangerouslySetInnerHTML={{
-					__html: JSON.stringify(structuredData),
-				}}
-			/>
 
 			<div className="min-h-screen bg-background relative">
 				<FloatingParticles count={25} />

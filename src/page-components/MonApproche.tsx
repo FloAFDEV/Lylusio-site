@@ -52,28 +52,6 @@ const MonApproche = () => {
 		setMounted(true);
 	}, []);
 
-	const structuredData = {
-		"@context": "https://schema.org",
-		"@type": "WebPage",
-		"@id": "https://lylusio.fr/approche-therapeutique#page",
-		name: "Mon Approche Thérapeutique - Astrologie & Reiki Toulouse Cépet",
-		description:
-			"Approche thérapeutique unique mêlant astrologie symbolique et psychologique, Reiki Usui et accompagnement émotionnel à Toulouse et Cépet. Pour les femmes en transition de vie.",
-		url: "https://lylusio.fr/approche-therapeutique",
-		isPartOf: {
-			"@id": "https://lylusio.fr/#website",
-		},
-		about: {
-			"@type": "Thing",
-			name: "Accompagnement thérapeutique holistique",
-		},
-		mentions: [
-			{ "@type": "Thing", name: "Astrologie symbolique" },
-			{ "@type": "Thing", name: "Reiki Usui" },
-			{ "@type": "Thing", name: "Développement personnel" },
-		],
-	};
-
 	const pillars = [
 		{
 			icon: Heart,
@@ -136,16 +114,8 @@ const MonApproche = () => {
 
 	return (
 		<>
-			{/* SEO metadata handled by Next.js Metadata API */}
 
 			<Header />
-			{/* Structured Data */}
-			<script
-				type="application/ld+json"
-				dangerouslySetInnerHTML={{
-					__html: JSON.stringify(structuredData),
-				}}
-			/>
 			<main
 				id="main-content"
 				className="min-h-screen bg-background relative overflow-hidden"
