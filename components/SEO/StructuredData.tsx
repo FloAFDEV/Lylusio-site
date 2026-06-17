@@ -12,6 +12,55 @@
 
 const BASE_URL = 'https://lylusio.fr';
 
+// ─── Avis clients (E-E-A-T) ───────────────────────────────────────────────────
+// Source unique pour les avis structurés. Tant que ce tableau est vide, AUCUN
+// aggregateRating ni review n'est injecté : on n'invente aucune note (conforme
+// aux règles Google sur les rich results). Renseigner avec de vrais avis pour
+// activer les rich snippets d'étoiles.
+interface BusinessReview {
+  author: string;
+  rating: number; // 1–5
+  body: string;
+  datePublished: string; // ISO (yyyy-mm-dd)
+}
+
+const reviews: BusinessReview[] = [];
+
+// Profil Google Business : renseigner l'URL réelle pour relier l'entité site à
+// l'entité Google. Laisser vide tant qu'indisponible (pas de lien inventé).
+const googleBusinessProfileUrl = '';
+
+// Construit aggregateRating + review uniquement si de vrais avis existent.
+function buildReviewSchema(items: BusinessReview[]) {
+  if (items.length === 0) return {};
+
+  const ratingValue = (
+    items.reduce((sum, r) => sum + r.rating, 0) / items.length
+  ).toFixed(1);
+
+  return {
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue,
+      reviewCount: items.length,
+      bestRating: 5,
+      worstRating: 1,
+    },
+    review: items.map((r) => ({
+      '@type': 'Review',
+      author: { '@type': 'Person', name: r.author },
+      reviewRating: {
+        '@type': 'Rating',
+        ratingValue: r.rating,
+        bestRating: 5,
+        worstRating: 1,
+      },
+      reviewBody: r.body,
+      datePublished: r.datePublished,
+    })),
+  };
+}
+
 // ─── LocalBusiness ────────────────────────────────────────────────────────────
 // @type en tableau : LocalBusiness (base) + HealthAndBeautyBusiness (Reiki)
 // + ProfessionalService (Astrologie). Permet un matching plus précis dans
@@ -68,6 +117,7 @@ const localBusinessData = {
     { '@type': 'City', name: 'Toulouse' },
     { '@type': 'City', name: 'Montauban' },
     { '@type': 'AdministrativeArea', name: 'Haute-Garonne' },
+    { '@type': 'AdministrativeArea', name: 'Occitanie' },
     { '@type': 'Country', name: 'France' },
   ],
   priceRange: '€€',
@@ -91,7 +141,11 @@ const localBusinessData = {
     'https://www.facebook.com/lylusio',
     'https://www.instagram.com/emilie.perez_astroreiki_',
     'https://www.youtube.com/@emilielylusio6206',
+    // Profil Google Business ajouté automatiquement si renseigné ci-dessus.
+    ...(googleBusinessProfileUrl ? [googleBusinessProfileUrl] : []),
   ],
+  // aggregateRating + review injectés uniquement si de vrais avis sont fournis.
+  ...buildReviewSchema(reviews),
   hasOfferCatalog: {
     '@type': 'OfferCatalog',
     name: 'Services Lylusio',
