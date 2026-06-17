@@ -28,7 +28,7 @@ export function AnalyticsProvider({
   useEffect(() => {
     let gaInitialized = false;
 
-    // ✅ CWV Fix: Vérifier le consentement existant au chargement
+    // CWV Fix: Vérifier le consentement existant au chargement
     const checkExistingConsent = () => {
       try {
         const savedPreferences = localStorage.getItem('lylusio-cookie-preferences');
@@ -47,7 +47,7 @@ export function AnalyticsProvider({
       }
     };
 
-    // ✅ CWV Fix: Écouter l'événement de consentement depuis le cookie banner
+    // CWV Fix: Écouter l'événement de consentement depuis le cookie banner
     const handleConsentGranted = (event: Event) => {
       const customEvent = event as CustomEvent;
       const { analytics } = customEvent.detail || {};
@@ -66,7 +66,7 @@ export function AnalyticsProvider({
     return () => {
       window.removeEventListener('cookieConsentGranted', handleConsentGranted);
     };
-  }, []); // ✅ Suppression de la dépendance hasConsent pour éviter les re-exécutions
+  }, []); // Suppression de la dépendance hasConsent pour éviter les re-exécutions
 
   return (
     <>

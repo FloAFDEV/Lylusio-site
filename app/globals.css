@@ -301,7 +301,7 @@ html {
 
 	/* ═══════════════════════════════════════════
 	   GRADIENT BACKGROUNDS - Céleste Poudré
-	   ⚠️ RÈGLE ABSOLUE : Jamais de bg-sand ou bg-sky uni
+	    RÈGLE ABSOLUE : Jamais de bg-sand ou bg-sky uni
 	═══════════════════════════════════════════ */
 
 	.bg-gradient-sky-center {
@@ -374,7 +374,7 @@ html {
 		);
 	}
 
-	/* ⚠️ Classes dépréciées - conservées pour compatibilité temporaire */
+	/* Classes dépréciées - conservées pour compatibilité temporaire */
 	.section-sky {
 		background: linear-gradient(
 			180deg,
@@ -663,7 +663,7 @@ html {
    ANIMATIONS - SYSTÈME D'ENTRÉE DE PAGE
 ======================================== */
 
-/* 🎯 ANIMATIONS D'ARRIVÉE DES PAGES */
+/* ANIMATIONS D'ARRIVÉE DES PAGES */
 
 /* Animation principale : fade-in-up */
 @keyframes fadeInUp {
@@ -759,7 +759,7 @@ html {
 	animation: slideUpBounce 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
 
-/* 🎯 MENU BURGER - DRAWER ANIMATIONS */
+/* MENU BURGER - DRAWER ANIMATIONS */
 
 /* Drawer slide in (ouverture) */
 @keyframes slideInDrawer {

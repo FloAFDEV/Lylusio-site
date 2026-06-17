@@ -20,7 +20,7 @@ import EnvChecker from "@/components/EnvChecker";
 import "@/app/globals.css";
 
 // next/font/google - Optimized for zero CLS
-// ✅ Optimisation : Réduit weights chargés (300KB → 180KB, -40%)
+// Réduit weights chargés (300KB → 180KB, -40%)
 const cormorantGaramond = Cormorant_Garamond({
 	subsets: ["latin"],
 	weight: ["400", "600", "700"], // Supprimé 300, 500 (non utilisés page accueil)
@@ -168,7 +168,7 @@ export default function RootLayout({
 	return (
 		<html lang="fr" suppressHydrationWarning data-scroll-behavior="smooth">
 			<head>
-				{/* ✅ CWV Fix: Preconnect GTM retiré - sera chargé uniquement après consentement analytics */}
+				{/* CWV Fix: Preconnect GTM retiré - sera chargé uniquement après consentement analytics */}
 				{/* Note: Google Fonts already inlined by next/font, no preconnect needed */}
 
 				{/* DNS prefetch for WordPress admin backend only */}
@@ -195,7 +195,7 @@ export default function RootLayout({
 					Aller au contenu principal
 				</a>
 
-				{/* ✅ PERF: Ordre optimisé providers (critiques → non-critiques) */}
+				{/* Ordre optimisé providers (critiques → non-critiques) */}
 				<ThemeProvider
 					attribute="class"
 					defaultTheme="light"

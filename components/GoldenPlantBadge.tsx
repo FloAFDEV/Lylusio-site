@@ -32,7 +32,7 @@ const GoldenPlantBadge = ({
 	const innerSize = innerSizeClasses[size];
 	const [mounted, setMounted] = useState(false);
 
-	// ✅ Fix hydration: render same content on server and initial client render
+	// Fix hydration: render same content on server and initial client render
 	useEffect(() => {
 		setMounted(true);
 	}, []);

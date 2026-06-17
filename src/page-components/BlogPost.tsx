@@ -284,7 +284,7 @@ const BlogPost = ({ initialData }: BlogPostProps = {}) => {
 		queryFn: async () => {
 			if (!slug) throw new Error("No slug provided");
 
-			// 🚀 RESILIENCE: Timeout optimisé - 15s pour mobile lent
+			// RESILIENCE: Timeout optimisé - 15s pour mobile lent
 			const controller = new AbortController();
 			const timeoutId = setTimeout(() => controller.abort(), 15000);
 
@@ -327,7 +327,7 @@ const BlogPost = ({ initialData }: BlogPostProps = {}) => {
 		staleTime: 1000 * 60 * 10, // 10 min
 		gcTime: 1000 * 60 * 30, // 30 min
 		enabled: !!slug,
-		// 🚀 RESILIENCE: Configuration retry avancée
+		// RESILIENCE: Configuration retry avancée
 		retry: (failureCount, error) => {
 			// Ne jamais retry si 404 (article n'existe pas)
 			if (error instanceof Error && error.message === "POST_NOT_FOUND") {
@@ -537,7 +537,7 @@ const BlogPost = ({ initialData }: BlogPostProps = {}) => {
 	// Note: Structured data (JSON-LD schema) is handled server-side in /blog/[slug]/page.tsx
 	// to ensure it's available for SSR/SEO crawlers before client hydration
 
-	// 🚀 RESILIENCE: Loading state avec indication retry
+	// RESILIENCE: Loading state avec indication retry
 	if (isLoading || (isError && failureCount < 3)) {
 		const isRetrying = failureCount > 0;
 		const retryMessage = isRetrying
@@ -591,7 +591,7 @@ const BlogPost = ({ initialData }: BlogPostProps = {}) => {
 								</div>
 							</div>
 
-							{/* 🚀 Loading message avec état retry */}
+							{/* Loading message avec état retry */}
 							<div className="text-center py-8">
 								<div className="flex items-center justify-center gap-2 mb-3">
 									<RefreshCw
@@ -617,7 +617,7 @@ const BlogPost = ({ initialData }: BlogPostProps = {}) => {
 		);
 	}
 
-	// 🚀 RESILIENCE: Error state uniquement si tous les retries échouent
+	// RESILIENCE: Error state uniquement si tous les retries échouent
 	if (isError || !post) {
 		const errorMessage = error instanceof Error ? error.message : "UNKNOWN_ERROR";
 		const is404 = errorMessage === "POST_NOT_FOUND";
@@ -643,7 +643,7 @@ const BlogPost = ({ initialData }: BlogPostProps = {}) => {
 								: "Une erreur s'est produite lors du chargement de l'article."}
 						</p>
 
-						{/* 🚀 Bouton retry manuel si pas 404 */}
+						{/* Bouton retry manuel si pas 404 */}
 						{!is404 && (
 							<Button
 								variant="elegant"

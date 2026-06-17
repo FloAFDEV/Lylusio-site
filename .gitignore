@@ -17,6 +17,9 @@ build
 dist
 dist-ssr
 
+# Tailwind CLI build artifact (generated, not committed)
+output.css
+
 # Environment files (DO NOT COMMIT SECRETS)
 .env
 .env.local
