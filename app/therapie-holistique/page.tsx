@@ -10,7 +10,7 @@ export default function TherapieHolistiquePage() {
     name: 'Thérapie Holistique',
     description: 'Accompagnement holistique combinant Reiki, astrologie thérapeutique et libération émotionnelle pour un bien-être global corps-esprit',
     url: 'https://lylusio.fr/therapie-holistique',
-    image: 'https://lylusio.fr/assets/golden-mandala-holistic.webp',
+    image: 'https://lylusio.fr/assets/therapie-holistique-card.webp',
   });
 
   const breadcrumbSchema = {

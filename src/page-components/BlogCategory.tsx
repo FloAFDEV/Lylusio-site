@@ -166,19 +166,6 @@ const BlogCategory = () => {
 		? utils.stripHtml(category.description)
 		: `Découvrez tous nos articles sur ${categoryTitle.toLowerCase()}`;
 
-	const structuredData = {
-		"@context": "https://schema.org",
-		"@type": "CollectionPage",
-		name: `${categoryTitle} - Blog Lylusio`,
-		description: categoryDescription,
-		url: `https://lylusio.fr/category/blog/${categorySlug}/`,
-		isPartOf: {
-			"@type": "Blog",
-			name: "Blog Lylusio",
-			url: "https://lylusio.fr/blog",
-		},
-	};
-
 	return (
 		<>
 			{/* SEO metadata handled by Next.js Metadata API */}

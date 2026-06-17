@@ -52,63 +52,8 @@ const Reiki = () => {
 		threshold: 0.1,
 	});
 
-	const structuredData = {
-		"@context": "https://schema.org",
-		"@type": "Service",
-		"@id": "https://lylusio.fr/reiki-toulouse#service",
-		name: "Séance Reiki Toulouse Cépet - Thérapie Énergétique",
-		description:
-			"Soin énergétique Reiki Usui à Toulouse et Cépet (31). Praticienne Reiki 3ème degré certifiée. Libération des tensions, rééquilibrage énergétique et bien-être intérieur. En cabinet ou à distance.",
-		provider: {
-			"@type": "LocalBusiness",
-			"@id": "https://lylusio.fr/#local-business",
-			name: "Lylusio - Émilie Perez",
-			address: {
-				"@type": "PostalAddress",
-				addressLocality: "Cépet",
-				postalCode: "31620",
-				addressRegion: "Occitanie",
-				addressCountry: "FR",
-			},
-			telephone: "+33619151959",
-		},
-		areaServed: [
-			{ "@type": "City", name: "Toulouse" },
-			{ "@type": "City", name: "Cépet" },
-			{ "@type": "AdministrativeArea", name: "Haute-Garonne" },
-			{ "@type": "Country", name: "France" },
-		],
-		serviceType: "Thérapie énergétique",
-		offers: [
-			{
-				"@type": "Offer",
-				name: "Séance Reiki en présentiel",
-				description:
-					"Soin énergétique au cabinet de Cépet près de Toulouse",
-				price: "60",
-				priceCurrency: "EUR",
-				availability: "https://schema.org/InStock",
-			},
-			{
-				"@type": "Offer",
-				name: "Séance Reiki à distance",
-				description: "Soin énergétique en visio, accessible partout",
-				price: "50",
-				priceCurrency: "EUR",
-				availability: "https://schema.org/InStock",
-			},
-		],
-	};
-
 	return (
 		<>
-			{/* SEO metadata handled by Next.js Metadata API */}
-			<script
-				type="application/ld+json"
-				dangerouslySetInnerHTML={{
-					__html: JSON.stringify(structuredData),
-				}}
-			/>
 
 			<div className="min-h-screen bg-background relative">
 				<FloatingParticles count={20} />

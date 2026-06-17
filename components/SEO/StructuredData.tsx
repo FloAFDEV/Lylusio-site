@@ -88,9 +88,9 @@ const localBusinessData = {
     availableLanguage: 'French',
   },
   sameAs: [
-    'https://www.instagram.com/lylusio.toulouse',
     'https://www.facebook.com/lylusio',
-    'https://www.linkedin.com/company/lylusio',
+    'https://www.instagram.com/emilie.perez_astroreiki_',
+    'https://www.youtube.com/@emilielylusio6206',
   ],
   hasOfferCatalog: {
     '@type': 'OfferCatalog',

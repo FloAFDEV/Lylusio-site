@@ -94,7 +94,7 @@ export const pageMetadata = {
       url: `${baseUrl}/accompagnement-toulouse`,
       title: 'Accompagnement Holistique à Toulouse',
       description: 'Accompagnement personnalisé alliant astrologie, Reiki et développement personnel',
-      images: [{ url: '/assets/seance-astro.webp', width: 1200, height: 630 }],
+      images: [{ url: '/assets/seance-accompagnement.webp', width: 1200, height: 630 }],
     },
   },
 
@@ -107,13 +107,13 @@ export const pageMetadata = {
       url: `${baseUrl}/therapie-holistique`,
       title: 'Thérapeute Holistique à Toulouse - Thérapie Holistique',
       description: 'Approche globale corps-esprit combinant Reiki, astrologie et accompagnement personnalisé pour retrouver équilibre et harmonie',
-      images: [{ url: '/assets/golden-mandala-holistic.webp', width: 1200, height: 630 }],
+      images: [{ url: '/assets/therapie-holistique-card.webp', width: 1200, height: 630 }],
     },
     twitter: {
       card: 'summary_large_image',
       title: 'Thérapeute Holistique à Toulouse - Thérapie Holistique',
       description: 'Approche globale corps-esprit combinant Reiki, astrologie et accompagnement personnalisé pour retrouver équilibre et harmonie',
-      images: ['/assets/golden-mandala-holistic.webp'],
+      images: ['/assets/therapie-holistique-card.webp'],
     },
   },
 

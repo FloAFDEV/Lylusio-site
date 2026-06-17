@@ -8,34 +8,9 @@ const baseUrl = 'https://lylusio.fr';
  */
 const localBusinessRef = { '@id': `${baseUrl}/#local-business` } as const;
 
-export const organizationSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'Organization',
-  '@id': `${baseUrl}/#local-business`,
-  name: 'Lylusio',
-  url: baseUrl,
-  logo: {
-    '@type': 'ImageObject',
-    url: `${baseUrl}/assets/logo-lylusio.webp`,
-    width: 400,
-    height: 400,
-  },
-  description: 'Cabinet d\'astrologie thérapeutique et de Reiki à Cépet (Toulouse Nord)',
-  email: 'contact@lylusio.fr',
-  address: {
-    '@type': 'PostalAddress',
-    streetAddress: '49 route de Labastide',
-    addressLocality: 'Cépet',
-    postalCode: '31620',
-    addressRegion: 'Occitanie',
-    addressCountry: 'FR',
-  },
-  sameAs: [
-    'https://www.instagram.com/lylusio.toulouse',
-    'https://www.facebook.com/lylusio',
-    'https://www.linkedin.com/company/lylusio',
-  ],
-};
+// organizationSchema supprimé : l'entité Lylusio (LocalBusiness, @id #local-business)
+// est l'unique source de vérité, définie dans components/SEO/StructuredData.tsx
+// et injectée globalement via app/layout.tsx. Référencer par @id (localBusinessRef).
 
 export const personSchema = {
   '@context': 'https://schema.org',

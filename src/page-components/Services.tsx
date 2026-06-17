@@ -58,31 +58,8 @@ const Services = () => {
 	});
 	const parallaxOffset = useParallax(0.1);
 
-	const structuredData = {
-		"@context": "https://schema.org",
-		"@type": "ItemList",
-		"@id": "https://lylusio.fr/#services-list",
-		itemListElement: services.map((service, index) => ({
-			"@type": "ListItem",
-			position: index + 1,
-			item: {
-				"@type": "Service",
-				name: service.title,
-				description: service.description,
-				// Référence par @id vers le LocalBusiness canonique
-				provider: { "@id": "https://lylusio.fr/#local-business" },
-				areaServed: [
-					{ "@type": "City", name: "Cépet" },
-					{ "@type": "City", name: "Toulouse" },
-					{ "@type": "AdministrativeArea", name: "Haute-Garonne" },
-				],
-			},
-		})),
-	};
-
 	return (
 		<>
-			{/* SEO metadata handled by Next.js Metadata API */}
 
 			<div className="min-h-screen bg-background relative">
 				<a href="#main-content" className="skip-link">

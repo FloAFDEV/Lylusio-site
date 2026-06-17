@@ -10,7 +10,7 @@ export default function AccompagnementPage() {
     name: 'Accompagnement Holistique',
     description: 'Accompagnement personnalisé combinant astrologie, Reiki et développement personnel',
     url: 'https://lylusio.fr/accompagnement-toulouse',
-    image: 'https://lylusio.fr/assets/seance-astro.webp',
+    image: 'https://lylusio.fr/assets/seance-accompagnement.webp',
     price: '110',
   });
 
