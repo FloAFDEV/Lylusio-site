@@ -136,8 +136,7 @@ const Footer = () => {
         font-medium
         border-2 border-transparent
         hover:bg-navy hover:text-white hover:border-white
-        hover:scale-105
-        transition-all duration-300
+        transition-colors duration-300
       "
 				onClick={() => trackBookingClick("footer_cta")}
 			>

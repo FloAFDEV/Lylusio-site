@@ -1472,3 +1472,35 @@ html {
 		display: none;
 	}
 }
+
+/* ========================================
+   PREMIUM PASS — Calme visuel
+   Neutralise les animations décoratives en boucle infinie.
+   On conserve les animations d'entrée (fade/scale/slide), les hovers,
+   ainsi que les états fonctionnels (animate-pulse, animate-spin).
+======================================== */
+.animate-float,
+.animate-float-delayed,
+.animate-float-slow,
+.animate-gentle-pulse,
+.animate-twinkle,
+.animate-twinkle-soft,
+.animate-gold-glow,
+.animate-pulse-slow,
+.animate-handwriting {
+	animation: none !important;
+}
+
+/* Exception : le ciel étoilé du footer conserve son animation subtile */
+footer .animate-twinkle {
+	animation: twinkle 2s ease-in-out infinite !important;
+}
+footer .animate-twinkle-soft {
+	animation: twinkle-soft 4s ease-in-out infinite !important;
+}
+footer .animate-pulse-slow {
+	animation: pulse-slow 6s ease-in-out infinite !important;
+}
+footer .animate-gentle-pulse {
+	animation: gentlePulse 4s ease-in-out infinite !important;
+}

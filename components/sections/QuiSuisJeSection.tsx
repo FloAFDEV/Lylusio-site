@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { useInView } from "@/hooks/useInView";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 const QuiSuisJeSection = () => {
 	const { ref, isInView } = useInView({ threshold: 0.1 });
@@ -15,24 +15,6 @@ const QuiSuisJeSection = () => {
 			className="py-16 md:py-24 overflow-hidden bg-gradient-cream-to-bg"
 			aria-labelledby="qui-suis-je-title"
 		>
-			<div
-				className="absolute inset-0 pointer-events-none"
-				aria-hidden="true"
-			>
-				{[...Array(5)].map((_, i) => (
-					<div
-						key={i}
-						className="absolute w-1 h-1 bg-gold/30 rounded-full animate-twinkle"
-						style={{
-							top: `${20 + i * 15}%`,
-							left: `${10 + i * 20}%`,
-							animationDelay: `${i * 0.6}s`,
-						}}
-					/>
-				))}
-				<div className="absolute top-10 right-[20%] w-40 h-24 bg-white/20 rounded-full blur-3xl hidden md:block" />
-			</div>
-
 			<div className="container mx-auto px-4 sm:px-6 lg:px-8">
 				<div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-8 md:gap-12 lg:gap-16">
 					{/* Image */}
@@ -59,20 +41,6 @@ const QuiSuisJeSection = () => {
 									loading="lazy"
 								/>
 							</div>
-
-							{/* Decorative sparkle */}
-							<div className="absolute -top-2 -right-2 w-8 h-8 bg-gold/20 rounded-full flex items-center justify-center animate-gentle-pulse">
-								<Sparkles className="w-4 h-4 text-gold" />
-							</div>
-							{/* Small stars around image */}
-							<div
-								className="absolute top-4 -left-2 w-1.5 h-1.5 bg-gold/40 rounded-full animate-twinkle"
-								style={{ animationDelay: "0.3s" }}
-							/>
-							<div
-								className="absolute bottom-8 -right-3 w-1 h-1 bg-gold/30 rounded-full animate-twinkle"
-								style={{ animationDelay: "1s" }}
-							/>
 						</div>
 					</div>
 

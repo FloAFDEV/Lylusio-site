@@ -90,37 +90,28 @@ const FloatingCTA = () => {
 			role="complementary"
 			aria-label="Bouton de réservation flottant"
 		>
-			{/* Glow effect autour du bouton */}
-			<div className="relative group/floating">
-				<Button
-					asChild
-					size="default"
-					className="relative bg-gold-light hover:bg-navy text-foreground hover:text-white shadow-gold group px-3 sm:px-4 py-2.5 transition-all duration-300 hover:scale-105 active:scale-95"
+			<Button
+				asChild
+				size="default"
+				className="bg-gold-light hover:bg-navy text-foreground hover:text-white shadow-soft px-3 sm:px-4 py-2.5 transition-colors duration-300"
+			>
+				<a
+					href="https://calendly.com/lylusio-fr"
+					target="_blank"
+					rel="noopener noreferrer"
+					onClick={handleLinkClick}
+					className="flex items-center gap-2"
+					aria-label="Réserver une séance d'astrologie ou de Reiki avec Émilie Perez (ouvre Calendly dans un nouvel onglet)"
 				>
-					<a
-						href="https://calendly.com/lylusio-fr"
-						target="_blank"
-						rel="noopener noreferrer"
-						onClick={handleLinkClick}
-						className="relative overflow-hidden flex items-center gap-2"
-						aria-label="Réserver une séance d'astrologie ou de Reiki avec Émilie Perez (ouvre Calendly dans un nouvel onglet)"
-					>
-						{/* Effet de shine animé au hover */}
-						<span
-							className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out"
-							aria-hidden="true"
-						/>
-
-						<Calendar
-							className="w-4 h-4 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6 relative z-10 text-foreground"
-							aria-hidden="true"
-						/>
-						<span className="hidden sm:inline relative z-10 font-medium text-foreground">
-							Réserver
-						</span>
-					</a>
-				</Button>
-			</div>
+					<Calendar
+						className="w-4 h-4 text-foreground"
+						aria-hidden="true"
+					/>
+					<span className="hidden sm:inline font-medium text-foreground">
+						Réserver
+					</span>
+				</a>
+			</Button>
 		</div>
 	);
 };
