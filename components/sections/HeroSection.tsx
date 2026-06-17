@@ -4,196 +4,6 @@ import { memo, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import { ChevronDown, MapPin } from "lucide-react";
 import Image from "next/image";
-import { useParallax } from "@/hooks/useParallax";
-
-// ===========================
-// CELESTIAL STARS
-// ===========================
-// Étoiles scintillantes avec positions déterministes
-// Utilise un seed fixe pour éviter l'hydration mismatch
-const CelestialStars = memo(() => {
-	// Générateur de nombres pseudo-aléatoires déterministe (seeded PRNG)
-	// Même seed = même résultat SSR et client
-	const seededRandom = (seed: number) => {
-		const x = Math.sin(seed) * 10000;
-		return x - Math.floor(x);
-	};
-
-	// Générer les étoiles de façon déterministe
-	// toFixed() élimine les différences de précision flottante entre SSR et client
-	// CWV Fix: 12 étoiles sur mobile (score 72), 20 sur desktop (score 97)
-	// On génère toujours 20 étoiles mais on cache les 8 dernières sur mobile avec CSS
-	const stars = [...Array(20)].map((_, i) => {
-		const r1 = seededRandom(i * 3 + 1);
-		const r2 = seededRandom(i * 3 + 2);
-		const r3 = seededRandom(i * 3 + 3);
-		const r4 = seededRandom(i * 3 + 4);
-		const r5 = seededRandom(i * 3 + 5);
-
-		return {
-			id: i,
-			left: `${(5 + r1 * 90).toFixed(4)}%`,
-			top: `${(5 + r2 * 80).toFixed(4)}%`,
-			size: r3 > 0.7 ? 3 : r3 > 0.4 ? 2 : 1,
-			delay: `${(r4 * 4).toFixed(2)}s`,
-			duration: `${(2.5 + r5 * 2).toFixed(2)}s`,
-		};
-	});
-
-	return (
-		<div
-			className="absolute inset-0 pointer-events-none"
-			aria-hidden="true"
-		>
-			{stars.map((star) => (
-				<div
-					key={star.id}
-					className={`absolute rounded-full bg-gold/90 animate-twinkle ${
-						star.id >= 12 ? 'hidden md:block' : ''
-					}`}
-					style={{
-						left: star.left,
-						top: star.top,
-						width: `${star.size}px`,
-						height: `${star.size}px`,
-						animationDelay: star.delay,
-						animationDuration: star.duration,
-						boxShadow:
-							star.size > 2
-								? "0 0 6px hsl(var(--gold)/0.5)"
-								: "none",
-					}}
-				/>
-			))}
-		</div>
-	);
-});
-
-CelestialStars.displayName = "CelestialStars";
-
-// ===========================
-// SOFT CLOUDS
-// ===========================
-// Nuages flottants avec parallax
-// Blur réduit sur mobile pour performances
-const SoftClouds = memo(({ parallaxOffset }: { parallaxOffset: number }) => (
-	<div
-		className="absolute inset-0 pointer-events-none overflow-hidden"
-		aria-hidden="true"
-	>
-		{/* Cloud 1 - top right */}
-		<div
-			className="absolute -top-10 right-[10%] w-80 h-40 bg-white/30 rounded-full blur-xl md:blur-3xl"
-			style={{
-				transform: `translate3d(0, ${parallaxOffset * 0.2}px, 0)`,
-				willChange: "transform",
-			}}
-		/>
-		{/* Cloud 2 - top left */}
-		<div
-			className="absolute top-[5%] -left-10 w-60 h-32 bg-white/25 rounded-full blur-xl md:blur-3xl"
-			style={{
-				transform: `translate3d(0, ${parallaxOffset * 0.3}px, 0)`,
-				willChange: "transform",
-			}}
-		/>
-		{/* Cloud 3 - middle - desktop only */}
-		<div
-			className="absolute top-[30%] right-[30%] w-48 h-24 bg-gradient-sky-center/40 rounded-full blur-xl md:blur-2xl hidden md:block"
-			style={{
-				transform: `translate3d(0, ${parallaxOffset * 0.15}px, 0)`,
-				willChange: "transform",
-			}}
-		/>
-	</div>
-));
-
-SoftClouds.displayName = "SoftClouds";
-
-// ===========================
-// HANDWRITTEN SIGNATURE
-// ===========================
-// Signature SVG mémorisée avec parallax
-// CWV Fix: Dimensions fixes pour éviter CLS, transform CSS uniquement
-const HandwrittenSignature = memo(
-	({ parallaxOffset }: { parallaxOffset: number }) => (
-		<div
-			className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden"
-			aria-hidden="true"
-			style={{
-				transform: `translate3d(0, ${parallaxOffset * 0.3}px, 0)`,
-				willChange: "transform",
-			}}
-		>
-			<svg
-				viewBox="0 0 800 200"
-				width="1120"
-				height="280"
-				className="opacity-[0.12] dark:opacity-[0.10]"
-				preserveAspectRatio="xMidYMid meet"
-				style={{
-					maxWidth: "140%",
-					height: "auto",
-				}}
-			>
-				<defs>
-					<filter id="signature-blur">
-						<feGaussianBlur stdDeviation="0.4" />
-					</filter>
-				</defs>
-				<text
-					x="50%"
-					y="50%"
-					textAnchor="middle"
-					dominantBaseline="middle"
-					filter="url(#signature-blur)"
-					className="fill-navy/30 dark:fill-gold/20"
-					style={{
-						fontSize: "100px",
-						fontFamily: "Dancing Script, cursive",
-						opacity: 0,
-						animation: "fadeIn 0.6s ease-out 1.5s forwards",
-					}}
-					stroke="currentColor"
-					strokeWidth="0.5"
-					strokeOpacity="0.12"
-				>
-					Émilie Perez
-				</text>
-			</svg>
-		</div>
-	)
-);
-
-HandwrittenSignature.displayName = "HandwrittenSignature";
-
-// ===========================
-// ORGANIC SHAPES
-// ===========================
-// Formes organiques d'arrière-plan avec parallax
-const OrganicShapes = memo(({ parallaxOffset }: { parallaxOffset: number }) => (
-	<div
-		className="absolute inset-0 pointer-events-none hidden sm:block"
-		aria-hidden="true"
-	>
-		<div
-			className="absolute -top-32 -right-32 w-72 md:w-96 h-72 md:h-96 bg-gold/20 rounded-full blur-3xl"
-			style={{
-				transform: `translate3d(0, ${parallaxOffset * 0.5}px, 0)`,
-				willChange: "transform",
-			}}
-		/>
-		<div
-			className="absolute -bottom-32 -left-32 w-60 md:w-80 h-60 md:h-80 bg-accent/20 rounded-full blur-3xl"
-			style={{
-				transform: `translate3d(0, ${-parallaxOffset * 0.3}px, 0)`,
-				willChange: "transform",
-			}}
-		/>
-	</div>
-));
-
-OrganicShapes.displayName = "OrganicShapes";
 
 // ===========================
 // DECORATIVE CIRCLES
@@ -218,8 +28,6 @@ DecorativeCircles.displayName = "DecorativeCircles";
 // MAIN HERO SECTION
 // ===========================
 const HeroSection = () => {
-	const parallaxOffset = useParallax(0.15);
-
 	const scrollToNext = useCallback(() => {
 		const element = document.querySelector("#approche");
 		if (element) {
@@ -243,12 +51,6 @@ const HeroSection = () => {
 			}}
 			aria-labelledby="hero-title"
 		>
-			{/* Éléments célestes - rendus au SSR pour éviter le clignotement */}
-			<CelestialStars />
-			<SoftClouds parallaxOffset={parallaxOffset} />
-			<HandwrittenSignature parallaxOffset={parallaxOffset} />
-			<OrganicShapes parallaxOffset={parallaxOffset} />
-
 			{/* Contenu principal */}
 			<div className="relative z-10 container-wide section-padding grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center">
 				{/* Contenu textuel - Gauche */}
@@ -343,7 +145,7 @@ const HeroSection = () => {
 						<Button
 							asChild
 							size="lg"
-							className="bg-gold-light text-foreground hover:bg-navy hover:text-white font-medium px-8 shadow-gold motion-safe:transition-all duration-300 hover:scale-105 hover:shadow-glow active:scale-100 motion-safe:animate-gold-glow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2"
+							className="bg-gold-light text-foreground hover:bg-navy hover:text-white font-medium px-8 motion-safe:transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2"
 							aria-label="Réserver une séance de consultation sur Calendly"
 						>
 							<a
@@ -356,13 +158,9 @@ const HeroSection = () => {
 						</Button>
 					</div>
 
-					{/* Signature manuscrite */}
+					{/* Signature */}
 					<p
-						className="mt-8 sm:mt-10 font-calligraphic text-xl sm:text-2xl md:text-3xl text-navy/90 dark:text-gold/50 animate-handwriting"
-						style={{
-							textShadow:
-								"1px 1px 2px rgba(0,0,0,0.15), -1px -1px 2px rgba(0,0,0,0.08)",
-						}}
+						className="mt-8 sm:mt-10 font-calligraphic text-xl sm:text-2xl md:text-3xl text-navy/90 dark:text-gold/50"
 						aria-hidden="true"
 					>
 						— Émilie Perez —
@@ -397,12 +195,11 @@ const HeroSection = () => {
 						{/* Cercles décoratifs */}
 						<DecorativeCircles />
 
-						{/* Badge décoratif plante - Optimisé en CSS background */}
+						{/* Badge décoratif plante */}
 						<div
-							className="absolute -bottom-2 -left-2 sm:-bottom-3 sm:-left-3 w-10 h-10 sm:w-14 sm:h-14 lg:w-16 lg:h-16 bg-background rounded-full flex items-center justify-center motion-safe:animate-float overflow-hidden border-2 border-gold/30 shadow-[0_0_20px_rgba(212,175,55,0.2)] hover:scale-110 motion-safe:transition-transform duration-300"
+							className="absolute -bottom-2 -left-2 sm:-bottom-3 sm:-left-3 w-10 h-10 sm:w-14 sm:h-14 lg:w-16 lg:h-16 bg-background rounded-full flex items-center justify-center overflow-hidden border-2 border-gold/30 shadow-soft hover:scale-110 motion-safe:transition-transform duration-300"
 							aria-hidden="true"
 						>
-							{/* Image décorative en CSS background - Évite hydration mismatch */}
 							<div
 								className="w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 rounded-full bg-cover bg-center"
 								style={{
@@ -415,7 +212,7 @@ const HeroSection = () => {
 
 						{/* Badge localisation */}
 						<div
-							className="hidden sm:flex absolute -top-2 -right-2 sm:-top-3 sm:-right-3 px-2 py-1 sm:px-3 sm:py-1.5 bg-background rounded-full shadow-soft motion-safe:animate-float border border-gold/25 items-center gap-1.5 hover:scale-105 motion-safe:transition-transform duration-300"
+							className="hidden sm:flex absolute -top-2 -right-2 sm:-top-3 sm:-right-3 px-2 py-1 sm:px-3 sm:py-1.5 bg-background rounded-full shadow-soft border border-gold/25 items-center gap-1.5 hover:scale-105 motion-safe:transition-transform duration-300"
 							aria-hidden="true"
 						>
 							<MapPin

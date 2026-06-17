@@ -71,17 +71,6 @@ const ServicesPreview = () => {
 			className="py-20 md:py-28 lg:py-32 overflow-hidden relative bg-gradient-sky-center"
 			aria-labelledby="services-title"
 		>
-			{/* Decorative abstract shapes with floating animation */}
-			<div
-				className="absolute inset-0 overflow-hidden pointer-events-none"
-				aria-hidden="true"
-			>
-				<div className="absolute top-10 sm:top-20 -left-10 sm:-left-20 w-48 sm:w-64 h-48 sm:h-64 bg-accent/8 rounded-full blur-3xl animate-float" />
-				<div className="absolute bottom-5 sm:bottom-10 -right-10 sm:-right-16 w-36 sm:w-48 h-36 sm:h-48 bg-gold/8 rounded-full blur-2xl animate-float-delayed" />
-				<div className="absolute top-1/2 left-1/4 w-20 sm:w-32 h-20 sm:h-32 border border-accent/12 rounded-full opacity-40 animate-float-slow" />
-				<div className="absolute bottom-1/3 right-1/3 w-14 sm:w-20 h-14 sm:h-20 border border-gold/12 rotate-45 opacity-30 animate-float-delayed" />
-			</div>
-
 			<div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 				{/* Header */}
 				<header className="text-center max-w-xl mx-auto mb-10 md:mb-16">
