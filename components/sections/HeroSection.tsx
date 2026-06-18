@@ -179,7 +179,7 @@ const HeroSection = () => {
 								fill
 								sizes="(max-width: 640px) 280px, (max-width: 1024px) 240px, 240px"
 								className="object-cover opacity-90 motion-safe:transition-transform duration-700 group-hover:scale-105"
-								quality={55}
+								quality={90}
 								priority
 								fetchPriority="high"
 								loading="eager"

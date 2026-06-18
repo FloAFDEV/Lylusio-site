@@ -137,7 +137,7 @@ const ServicesPreview = () => {
 													}}
 													fill
 													sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-													quality={50}
+													quality={75}
 													loading="lazy"
 												/>
 											</div>
@@ -270,7 +270,7 @@ const ServicesPreview = () => {
 											fill
 											className="object-cover transition-transform duration-700 ease-out group-hover:scale-105 transform-gpu"
 											sizes="(max-width: 768px) 100vw, 300px"
-											quality={50}
+											quality={85}
 											loading="lazy"
 											aria-hidden="true"
 										/>
