@@ -331,7 +331,56 @@ const CGU = () => {
 
 							<section>
 								<h2 className="font-heading text-xl text-navy mb-4">
-									12. Contact
+									12. Médiation de la consommation
+								</h2>
+								<p className="text-foreground/80 leading-relaxed">
+									Conformément aux dispositions du Code de la
+									consommation concernant « le processus de
+									médiation des litiges de la consommation »,
+									après nous avoir sollicités et à défaut de
+									réponse vous satisfaisant, vous avez la
+									possibilité de recourir gratuitement à une
+									procédure de médiation de la consommation
+									auprès de :
+								</p>
+								<address className="not-italic text-foreground/80 leading-relaxed mt-4">
+									CM2C
+									<br />
+									49 rue de Ponthieu
+									<br />
+									75 008 PARIS
+									<br />
+									Tel :{" "}
+									<a
+										href="tel:+33189470014"
+										className="text-accent hover:underline focus:outline-none focus:ring-2 focus:ring-accent"
+									>
+										01 89 47 00 14
+									</a>
+									<br />
+									Site internet :{" "}
+									<a
+										href="https://www.cm2c.net/declarer-un-litige.php"
+										target="_blank"
+										rel="noopener noreferrer"
+										className="text-accent hover:underline focus:outline-none focus:ring-2 focus:ring-accent"
+									>
+										https://www.cm2c.net/declarer-un-litige.php
+									</a>
+									<br />
+									Mail :{" "}
+									<a
+										href="mailto:litiges@cm2c.net"
+										className="text-accent hover:underline focus:outline-none focus:ring-2 focus:ring-accent"
+									>
+										litiges@cm2c.net
+									</a>
+								</address>
+							</section>
+
+							<section>
+								<h2 className="font-heading text-xl text-navy mb-4">
+									13. Contact
 								</h2>
 								<p className="text-foreground/80 leading-relaxed">
 									Pour toute question relative aux présentes
