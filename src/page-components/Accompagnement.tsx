@@ -138,7 +138,7 @@ const Accompagnement = () => {
 		title: "Bilan Astro-Orientation",
 		subtitle: "Vie pro alignée",
 		description:
-			"Tu te poses des questions sur ta vie professionnelle ? Tu envisages une reconversion, tu veux reprendre des études ou te lancer dans l'entrepreneuriat ?",
+			"Vous vous posez des questions sur votre vie professionnelle ? Vous envisagez une reconversion, vous voulez reprendre des études ou vous lancer dans l'entrepreneuriat ?",
 		price: "290€",
 		duration:
 			"4 séances d'1h30 complétées par des rdv téléphoniques réguliers",
@@ -354,10 +354,12 @@ const Accompagnement = () => {
 							>
 								<p className="text-muted-foreground text-xs sm:text-sm italic">
 									<span className="text-accent font-medium">
-										NB :
+										Bon à savoir :
 									</span>{" "}
-									L'Astrologie nécessite un délai de plusieurs
-									jours après la prise de RDV.
+									Chaque consultation d'astrologie est préparée
+									sur mesure. Un délai de quelques jours est
+									prévu entre votre réservation et la séance, le
+									temps que votre thème soit étudié avec soin.
 								</p>
 							</div>
 
@@ -929,8 +931,8 @@ const Accompagnement = () => {
 
 											<ul className="space-y-2 mb-6">
 												{[
-													"Identifier tes talents innés via ton thème natal",
-													"Clarifier tes aspirations profondes",
+													"Identifier vos talents innés via votre thème natal",
+													"Clarifier vos aspirations profondes",
 													"Définir un plan d'action aligné",
 												].map((item, idx) => (
 													<li

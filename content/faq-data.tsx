@@ -44,6 +44,10 @@ export const faqCategories: FAQCategory[] = [
 				question: "Quelle est la différence entre astrologie et voyance ?",
 				answer: "L'astrologie n'est pas de la voyance. C'est un outil symbolique de connaissance de soi basé sur les cycles planétaires. Je ne prédis pas l'avenir de façon déterministe. Je vous aide à comprendre les énergies à l'œuvre dans votre vie et les périodes propices aux changements, tout en rappelant que vous restez maître de vos choix.",
 			},
+			{
+				question: "Êtes-vous médium ou voyante ?",
+				answer: "Non. Je suis astrologue et praticienne Reiki, pas médium. Mon travail s'appuie sur l'analyse de votre thème natal — votre carte du ciel au moment de votre naissance — et non sur des prédictions ou de la voyance. L'astrologie que je pratique, dans la lignée de Carl Gustav Jung, est un outil de compréhension de votre personnalité, de vos blocages et de vos cycles de vie, pas un outil pour prédire l'avenir.",
+			},
 		],
 	},
 	{

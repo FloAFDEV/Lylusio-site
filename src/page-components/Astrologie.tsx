@@ -729,6 +729,28 @@ const Astrologie = () => {
 					{/* Mini FAQ Section - Now using centralized FAQ data */}
 					<MiniFAQ category="Astrologie" maxQuestions={3} title="L'astrologie en quelques questions" />
 
+					{/* Lien croisé vers le Reiki */}
+					<section className="container mx-auto px-4 sm:px-6 lg:px-8 mb-16 md:mb-20 relative z-10">
+						<div className="max-w-3xl mx-auto card-soft text-center">
+							<h2 className="font-display text-xl text-foreground mb-3">
+								Vous hésitez avec le Reiki ?
+							</h2>
+							<p className="text-muted-foreground leading-relaxed mb-6">
+								L'astrologie éclaire vos dynamiques profondes, vos
+								cycles et vos blocages par la compréhension. Le
+								Reiki, lui, agit sur le plan énergétique et
+								corporel pour apaiser et rééquilibrer. Les deux
+								approches se complètent et peuvent se conjuguer.
+							</p>
+							<Link href="/reiki-toulouse">
+								<Button variant="elegant" className="group">
+									Découvrir le Reiki
+									<ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
+								</Button>
+							</Link>
+						</div>
+					</section>
+
 					{/* Articles Section */}
 					<section
 						ref={articlesRef}

@@ -149,6 +149,20 @@ const nextConfig: NextConfig = {
 				destination: "/contact",
 				permanent: true,
 			},
+			// Racine de l'ancien site headless → nouvelle page d'accueil
+			{
+				source: "/astrologue-cepet-toulouse",
+				destination: "/",
+				permanent: true,
+			},
+			// Catch-all : toute URL héritée sous l'ancien préfixe non mappée
+			// explicitement ci-dessus (les pages connues le sont déjà) → accueil.
+			// Placé APRÈS toutes les règles spécifiques /astrologue-cepet-toulouse/*.
+			{
+				source: "/astrologue-cepet-toulouse/:path*",
+				destination: "/",
+				permanent: true,
+			},
 
 			// Anciennes URLs simples
 			{

@@ -4,7 +4,7 @@ import { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { Mail, Phone, MapPin, Eye, ChevronDown } from "lucide-react";
+import { Mail, Phone, MapPin, ChevronDown } from "lucide-react";
 import { FaFacebook, FaInstagram, FaYoutube } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
 import GoldenPlantBadge from "@/components/GoldenPlantBadge";
@@ -21,8 +21,6 @@ const TitleIconSpacer = () => (
 );
 
 const Footer = () => {
-	const [showPhone, setShowPhone] = useState(false);
-	const [showEmail, setShowEmail] = useState(false);
 	const [navOpen, setNavOpen] = useState(false);
 	const [mounted, setMounted] = useState(false);
 	const { trackBookingClick, trackContactClick } = useAnalyticsEvent();
@@ -447,86 +445,38 @@ const Footer = () => {
 							</h4>
 							<ul className="space-y-4 md:space-y-5 mt-4 md:mt-6">
 								<li itemProp="telephone">
-									{!showPhone ? (
-										<button
-											onClick={() => {
-												setShowPhone(true);
-												trackContactClick("phone");
-											}}
-											className="flex items-center gap-3 text-primary-foreground/70 hover:text-primary-foreground transition-colors duration-300 text-sm md:text-base group cursor-pointer"
-											aria-label="Afficher le numéro de téléphone"
-										>
-											<div className="relative w-8 h-8 md:w-9 md:h-9 rounded-full bg-primary-foreground/10 flex items-center justify-center shrink-0 group-hover:bg-primary-foreground/20 transition-colors duration-300">
-												<Phone
-													className="w-4 h-4 text-primary-foreground/70 relative z-10 group-hover:text-primary-foreground group-hover:scale-110 transition-all duration-300"
-													aria-hidden="true"
-												/>
-											</div>
-											<span className="flex items-center gap-1.5 group-hover:translate-x-1.5 transition-transform duration-300">
-												<Eye
-													className="w-3 h-3 opacity-60 group-hover:opacity-100"
-													aria-hidden="true"
-												/>
-												Afficher le numéro
-											</span>
-										</button>
-									) : (
-										<a
-											href="tel:+33619151959"
-											className="flex items-center gap-3 text-primary-foreground/70 hover:text-primary-foreground transition-colors duration-300 text-sm md:text-base animate-reveal-contact group"
-										>
-											<div className="relative w-8 h-8 md:w-9 md:h-9 rounded-full bg-primary-foreground/15 flex items-center justify-center shrink-0 group-hover:bg-primary-foreground/25 transition-colors duration-300">
-												<Phone
-													className="w-4 h-4 text-primary-foreground relative z-10 group-hover:scale-110 transition-transform duration-300"
-													aria-hidden="true"
-												/>
-											</div>
-											<span className="group-hover:translate-x-1.5 transition-transform duration-300">
-												06 19 15 19 59
-											</span>
-										</a>
-									)}
+									<a
+										href="tel:+33619151959"
+										onClick={() => trackContactClick("phone")}
+										className="flex items-center gap-3 text-primary-foreground/70 hover:text-primary-foreground transition-colors duration-300 text-sm md:text-base group"
+									>
+										<div className="relative w-8 h-8 md:w-9 md:h-9 rounded-full bg-primary-foreground/10 flex items-center justify-center shrink-0 group-hover:bg-primary-foreground/20 transition-colors duration-300">
+											<Phone
+												className="w-4 h-4 text-primary-foreground/70 relative z-10 group-hover:text-primary-foreground group-hover:scale-110 transition-all duration-300"
+												aria-hidden="true"
+											/>
+										</div>
+										<span className="group-hover:translate-x-1.5 transition-transform duration-300">
+											06 19 15 19 59
+										</span>
+									</a>
 								</li>
 								<li itemProp="email">
-									{!showEmail ? (
-										<button
-											onClick={() => {
-												setShowEmail(true);
-												trackContactClick("email");
-											}}
-											className="flex items-center gap-3 text-primary-foreground/70 hover:text-primary-foreground transition-colors duration-300 text-sm md:text-base group cursor-pointer"
-											aria-label="Afficher l'email de contact"
-										>
-											<div className="relative w-8 h-8 md:w-9 md:h-9 rounded-full bg-primary-foreground/10 flex items-center justify-center shrink-0 group-hover:bg-primary-foreground/20 transition-colors duration-300">
-												<Mail
-													className="w-4 h-4 text-primary-foreground/70 relative z-10 group-hover:text-primary-foreground group-hover:scale-110 transition-all duration-300"
-													aria-hidden="true"
-												/>
-											</div>
-											<span className="flex items-center gap-1.5 group-hover:translate-x-1.5 transition-transform duration-300">
-												<Eye
-													className="w-3 h-3 opacity-60 group-hover:opacity-100"
-													aria-hidden="true"
-												/>
-												Afficher l'email
-											</span>
-										</button>
-									) : (
-										<a
-											href="mailto:contact@lylusio.fr"
-											className="flex items-center gap-3 text-primary-foreground/70 hover:text-primary-foreground transition-colors duration-300 text-sm md:text-base animate-reveal-contact group"
-										>
-											<div className="relative w-8 h-8 md:w-9 md:h-9 rounded-full bg-primary-foreground/15 flex items-center justify-center shrink-0 group-hover:bg-primary-foreground/25 transition-colors duration-300">
-												<Mail
-													className="w-4 h-4 text-primary-foreground relative z-10 group-hover:scale-110 transition-transform duration-300"
-													aria-hidden="true"
-												/>
-											</div>
-											<span className="group-hover:translate-x-1.5 transition-transform duration-300">
-												contact@lylusio.fr
-											</span>
-										</a>
-									)}
+									<a
+										href="mailto:contact@lylusio.fr"
+										onClick={() => trackContactClick("email")}
+										className="flex items-center gap-3 text-primary-foreground/70 hover:text-primary-foreground transition-colors duration-300 text-sm md:text-base group"
+									>
+										<div className="relative w-8 h-8 md:w-9 md:h-9 rounded-full bg-primary-foreground/10 flex items-center justify-center shrink-0 group-hover:bg-primary-foreground/20 transition-colors duration-300">
+											<Mail
+												className="w-4 h-4 text-primary-foreground/70 relative z-10 group-hover:text-primary-foreground group-hover:scale-110 transition-all duration-300"
+												aria-hidden="true"
+											/>
+										</div>
+										<span className="group-hover:translate-x-1.5 transition-transform duration-300">
+											contact@lylusio.fr
+										</span>
+									</a>
 								</li>
 								<li
 									className="flex items-start gap-3 text-primary-foreground/70 text-sm md:text-base group"

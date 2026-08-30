@@ -981,6 +981,28 @@ const Reiki = () => {
 					{/* Mini FAQ Section - Now using centralized FAQ data */}
 					<MiniFAQ category="Reiki" maxQuestions={3} />
 
+					{/* Lien croisé vers l'Astrologie */}
+					<section className="container mx-auto px-4 sm:px-6 lg:px-8 mb-16 md:mb-20 relative z-10">
+						<div className="max-w-3xl mx-auto card-soft text-center">
+							<h2 className="font-display text-xl text-foreground mb-3">
+								Vous hésitez avec l'astrologie ?
+							</h2>
+							<p className="text-muted-foreground leading-relaxed mb-6">
+								Le Reiki apaise et rééquilibre sur le plan
+								énergétique et corporel. L'astrologie, elle,
+								éclaire vos dynamiques profondes, vos cycles et vos
+								blocages par la compréhension. Les deux approches
+								se complètent.
+							</p>
+							<Link href="/astrologie-toulouse">
+								<Button variant="elegant" className="group">
+									Découvrir l'astrologie
+									<ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
+								</Button>
+							</Link>
+						</div>
+					</section>
+
 					{/* Articles Section - Elegant CTA */}
 					<section
 						ref={articlesRef}
