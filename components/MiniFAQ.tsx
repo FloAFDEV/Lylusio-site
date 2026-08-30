@@ -14,7 +14,7 @@ import {
 	AccordionItem,
 	AccordionTrigger,
 } from "@/components/ui/accordion";
-import { getFAQByCategory } from "@/content/faq-data";
+import { getFAQByCategory, type FAQQuestion } from "@/content/faq-data";
 
 interface MiniFAQProps {
 	/** Category title from faq-data (e.g., "Reiki", "Astrologie") */
@@ -23,11 +23,31 @@ interface MiniFAQProps {
 	maxQuestions?: number;
 	/** Optional title override */
 	title?: string;
+	/**
+	 * Questions (matched by exact text from faq-data) to always include and
+	 * show first — e.g. a key commercial objection that must stay visible in
+	 * the conversion path of a specific landing page. Uses the shared FAQ data,
+	 * so no answer text is duplicated and no extra JSON-LD is emitted.
+	 */
+	pinnedQuestions?: string[];
 }
 
-const MiniFAQ = ({ category, maxQuestions = 3, title }: MiniFAQProps) => {
+const MiniFAQ = ({
+	category,
+	maxQuestions = 3,
+	title,
+	pinnedQuestions = [],
+}: MiniFAQProps) => {
 	const faqQuestions = getFAQByCategory(category);
-	const displayQuestions = faqQuestions.slice(0, maxQuestions);
+
+	const pinned = pinnedQuestions
+		.map((q) => faqQuestions.find((item) => item.question === q))
+		.filter((item): item is FAQQuestion => Boolean(item));
+	const rest = faqQuestions.filter((item) => !pinned.includes(item));
+	const displayQuestions = [...pinned, ...rest].slice(
+		0,
+		Math.max(maxQuestions, pinned.length)
+	);
 
 	if (displayQuestions.length === 0) {
 		return null;

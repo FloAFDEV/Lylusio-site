@@ -14,11 +14,8 @@ const FloatingCTA = () => {
 	const pathname = usePathname();
 	const { trackBookingClick } = useAnalyticsEvent();
 
-	// Pages where CTA should be hidden (pages with existing CTAs)
+	// Pages where CTA should be hidden (pages with their own primary CTA flow)
 	const hiddenOnPages = [
-		"/astrologie-toulouse",
-		"/reiki-toulouse",
-		"/accompagnement-toulouse",
 		"/approche-therapeutique",
 		"/contact",
 	];

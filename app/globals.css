@@ -960,22 +960,6 @@ html {
 	}
 }
 
-/* Contact reveal animation - smooth golden appearance */
-@keyframes revealContact {
-	0% {
-		opacity: 0;
-		transform: translateY(6px);
-	}
-	100% {
-		opacity: 1;
-		transform: translateY(0);
-	}
-}
-
-.animate-reveal-contact {
-	animation: revealContact 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-}
-
 .animate-fade-up {
 	/* Removed opacity: 0 to prevent SSR flash - elements visible immediately */
 	animation: fadeUpSoft 1.2s ease-out forwards;

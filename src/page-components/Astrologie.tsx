@@ -274,221 +274,6 @@ const Astrologie = () => {
 						</div>
 					</section>
 
-					{/* Introduction */}
-					<section
-						ref={introRef}
-						className="container mx-auto px-4 sm:px-6 lg:px-8 mb-16 md:mb-20 relative z-10"
-					>
-						<div
-							className={`max-w-4xl mx-auto transition-all duration-700 delay-100 ${
-								introInView
-									? "opacity-100 translate-y-0"
-									: "opacity-0 translate-y-8"
-							}`}
-						>
-							<div className="grid md:grid-cols-2 gap-8 items-center">
-								<article className="card-soft">
-									<div className="flex items-center gap-3 mb-4">
-										<div className="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center">
-											<Moon className="w-5 h-5 text-accent" />
-										</div>
-										<h2 className="font-display text-xl text-foreground">
-											Un merveilleux support
-										</h2>
-									</div>
-									<p className="text-muted-foreground leading-relaxed">
-										Vieille de plus de{" "}
-										<strong className="text-foreground">
-											4000 ans
-										</strong>
-										, son nom dérivé du Latin « astrologia »
-										et du grec ancien signifie littéralement
-										le «{" "}
-										<strong className="text-foreground">
-											discours des astres
-										</strong>{" "}
-										». Par le mouvement des planètes de
-										notre système solaire, l'astrologie
-										interprète les alignements et les cycles
-										célestes.
-									</p>
-								</article>
-
-								<article className="card-soft bg-gradient-sand-center/30">
-									<div className="flex items-center gap-3 mb-4">
-										<div className="w-10 h-10 rounded-full bg-gold/10 flex items-center justify-center">
-											<Sun className="w-5 h-5 text-gold" />
-										</div>
-										<h2 className="font-display text-xl text-foreground">
-											Carl Gustav Jung
-										</h2>
-									</div>
-									<p className="text-muted-foreground leading-relaxed">
-										Fondateur de la psychologie analytique,
-										il fut le premier à intégrer
-										l'astrologie dans sa psychanalyse. Elle
-										permet de comprendre la personnalité et
-										la psychologie d'une personne : son
-										fonctionnement, ses réactions, ses
-										blocages et problématiques.
-									</p>
-								</article>
-							</div>
-						</div>
-					</section>
-
-					{/* Quote Section */}
-					<section
-						ref={historyRef}
-						className="container mx-auto px-4 sm:px-6 lg:px-8 mb-16 md:mb-20 relative z-10"
-					>
-						<div
-							className={`max-w-3xl mx-auto transition-all duration-700 delay-150 ${
-								historyInView
-									? "opacity-100 translate-y-0"
-									: "opacity-0 translate-y-8"
-							}`}
-						>
-							<blockquote className="relative bg-gradient-to-br from-accent/5 via-card to-gold/5 rounded-3xl p-8 md:p-12 border border-border/30 shadow-soft">
-								<Quote className="absolute top-4 left-4 w-8 h-8 text-accent/20" />
-								<p className="text-lg sm:text-xl md:text-2xl text-foreground font-display leading-relaxed text-center italic">
-									C'est un guide afin d'y voir plus clair à un
-									moment donné de sa vie, de retrouver une
-									direction lors d'une période de changement
-									ou d'évolution, de retrouver la voie de son
-									âme.
-								</p>
-								<Quote className="absolute bottom-4 right-4 w-8 h-8 text-gold/20 rotate-180" />
-							</blockquote>
-						</div>
-					</section>
-
-					{/* Comment je procède */}
-					<section
-						ref={processRef}
-						className="container mx-auto px-4 sm:px-6 lg:px-8 mb-16 md:mb-20 relative z-10"
-					>
-						<div
-							className={`max-w-5xl mx-auto transition-all duration-700 delay-200 ${
-								processInView
-									? "opacity-100 translate-y-0"
-									: "opacity-0 translate-y-8"
-							}`}
-						>
-							<div className="text-center mb-10">
-								<p className="section-label">Ma méthode</p>
-								<h2 className="font-display text-2xl sm:text-3xl md:text-4xl text-foreground">
-									Comment je procède ?
-								</h2>
-							</div>
-
-							<div className="grid md:grid-cols-2 gap-8 items-start">
-								{/* Left - Process */}
-								<article className="card-soft">
-									<p className="text-muted-foreground leading-relaxed mb-6">
-										Je vous demande toujours votre{" "}
-										<strong className="text-foreground">
-											date de naissance
-										</strong>
-										, l'
-										<strong className="text-foreground">
-											heure exacte
-										</strong>{" "}
-										et le{" "}
-										<strong className="text-foreground">
-											lieu
-										</strong>
-										. Par vos coordonnées de naissance,
-										j'utilise votre Thème Astral qui
-										m'apporte un réel éclairage sur votre
-										personnalité intrinsèque.
-									</p>
-
-									<ul className="space-y-4">
-										{[
-											"J'identifie vos forces, dons, savoir-être, talents innés qui sont des leviers sur lesquels vous pouvez vous appuyer",
-											"Je repère vos blocages, failles, difficultés à travailler pour évoluer",
-											"Je porte un regard particulier pour la planète Mars, très importante car elle représente le moteur de votre mise en action",
-											"Je travaille en phase avec les cycles astrologiques que vous vivez",
-										].map((item, index) => (
-											<li
-												key={index}
-												className="flex items-start gap-3"
-											>
-												<div className="w-6 h-6 rounded-full bg-accent/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-													<Check className="w-3.5 h-3.5 text-accent" />
-												</div>
-												<span className="text-foreground/80 text-sm">
-													{item}
-												</span>
-											</li>
-										))}
-									</ul>
-
-									<p className="mt-6 text-accent font-display italic border-l-2 border-gold/40 pl-4">
-										Votre Thème Astral n'est pas figé, c'est
-										pourquoi vous êtes en perpétuelle
-										évolution.
-									</p>
-								</article>
-
-								{/* Right - Benefits */}
-								<div className="space-y-6">
-									<article className="bg-gradient-to-br from-accent/5 to-transparent rounded-2xl p-6 border border-accent/10">
-										<div className="flex items-center gap-3 mb-3">
-											<Sparkles className="w-5 h-5 text-accent" />
-											<h3 className="font-display text-lg text-foreground">
-												Conscience de soi
-											</h3>
-										</div>
-										<p className="text-muted-foreground text-sm">
-											Développez une meilleure
-											compréhension de votre être
-											intérieur et des influences qui vous
-											entourent.
-										</p>
-									</article>
-
-									<article className="bg-gradient-to-br from-gold/5 to-transparent rounded-2xl p-6 border border-gold/10">
-										<div className="flex items-center gap-3 mb-3">
-											<Star className="w-5 h-5 text-gold" />
-											<h3 className="font-display text-lg text-foreground">
-												Croissance personnelle
-											</h3>
-										</div>
-										<p className="text-muted-foreground text-sm">
-											En travaillant sur les défis révélés
-											par l'astrologie, vous avez
-											l'opportunité de croître et de
-											ressentir une transformation
-											profonde.
-										</p>
-									</article>
-
-									<figure className="relative rounded-2xl overflow-hidden h-48">
-										<Image
-											src="/assets/astro-profondeurs.webp"
-											alt="L'astrologie des profondeurs"
-											fill
-											className="object-cover opacity-80"
-										/>
-										<div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent flex items-end p-4">
-											<Link
-												href="/category/blog/astrologie"
-												className="text-sm text-foreground hover:text-accent transition-colors flex items-center gap-2"
-											>
-												<BookOpen className="w-4 h-4" />
-												Découvrez mes articles sur
-												l'astrologie
-												<ArrowRight className="w-3 h-3" />
-											</Link>
-										</div>
-									</figure>
-								</div>
-							</div>
-						</div>
-					</section>
-
 					{/* Services / Tarifs */}
 					<section
 						ref={servicesRef}
@@ -501,7 +286,7 @@ const Astrologie = () => {
 									: "opacity-0 translate-y-8"
 							}`}
 						>
-							<div className="text-center mb-10">
+							<div className="text-center mb-8">
 								<p className="section-label">Consultations</p>
 								<h2 className="font-display text-2xl sm:text-3xl md:text-4xl text-foreground mb-4">
 									Mes prestations en Astrologie
@@ -509,6 +294,19 @@ const Astrologie = () => {
 								<p className="text-muted-foreground max-w-2xl mx-auto">
 									Des consultations personnalisées pour
 									éclairer votre chemin de vie
+								</p>
+							</div>
+
+							{/* Réassurance préparation / délai */}
+							<div className="max-w-xl mx-auto mb-8 sm:mb-10 p-4 bg-card/60 backdrop-blur-sm rounded-xl border border-accent/20 text-center">
+								<p className="text-muted-foreground text-xs sm:text-sm italic">
+									<span className="text-accent font-medium">
+										Bon à savoir :
+									</span>{" "}
+									Chaque consultation d'astrologie est préparée
+									sur mesure. Un délai de quelques jours est
+									prévu entre votre réservation et la séance, le
+									temps que votre thème soit étudié avec soin.
 								</p>
 							</div>
 
@@ -726,8 +524,228 @@ const Astrologie = () => {
 						</div>
 					</section>
 
+					{/* Introduction */}
+					<section
+						ref={introRef}
+						className="container mx-auto px-4 sm:px-6 lg:px-8 mb-16 md:mb-20 relative z-10"
+					>
+						<div
+							className={`max-w-4xl mx-auto transition-all duration-700 delay-100 ${
+								introInView
+									? "opacity-100 translate-y-0"
+									: "opacity-0 translate-y-8"
+							}`}
+						>
+							<div className="grid md:grid-cols-2 gap-8 items-center">
+								<article className="card-soft">
+									<div className="flex items-center gap-3 mb-4">
+										<div className="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center">
+											<Moon className="w-5 h-5 text-accent" />
+										</div>
+										<h2 className="font-display text-xl text-foreground">
+											Un merveilleux support
+										</h2>
+									</div>
+									<p className="text-muted-foreground leading-relaxed">
+										Vieille de plus de{" "}
+										<strong className="text-foreground">
+											4000 ans
+										</strong>
+										, son nom dérivé du Latin « astrologia »
+										et du grec ancien signifie littéralement
+										le «{" "}
+										<strong className="text-foreground">
+											discours des astres
+										</strong>{" "}
+										». Par le mouvement des planètes de
+										notre système solaire, l'astrologie
+										interprète les alignements et les cycles
+										célestes.
+									</p>
+								</article>
+
+								<article className="card-soft bg-gradient-sand-center/30">
+									<div className="flex items-center gap-3 mb-4">
+										<div className="w-10 h-10 rounded-full bg-gold/10 flex items-center justify-center">
+											<Sun className="w-5 h-5 text-gold" />
+										</div>
+										<h2 className="font-display text-xl text-foreground">
+											Carl Gustav Jung
+										</h2>
+									</div>
+									<p className="text-muted-foreground leading-relaxed">
+										Fondateur de la psychologie analytique,
+										il fut le premier à intégrer
+										l'astrologie dans sa psychanalyse. Elle
+										permet de comprendre la personnalité et
+										la psychologie d'une personne : son
+										fonctionnement, ses réactions, ses
+										blocages et problématiques.
+									</p>
+								</article>
+							</div>
+						</div>
+					</section>
+
+					{/* Quote Section */}
+					<section
+						ref={historyRef}
+						className="container mx-auto px-4 sm:px-6 lg:px-8 mb-16 md:mb-20 relative z-10"
+					>
+						<div
+							className={`max-w-3xl mx-auto transition-all duration-700 delay-150 ${
+								historyInView
+									? "opacity-100 translate-y-0"
+									: "opacity-0 translate-y-8"
+							}`}
+						>
+							<blockquote className="relative bg-gradient-to-br from-accent/5 via-card to-gold/5 rounded-3xl p-8 md:p-12 border border-border/30 shadow-soft">
+								<Quote className="absolute top-4 left-4 w-8 h-8 text-accent/20" />
+								<p className="text-lg sm:text-xl md:text-2xl text-foreground font-display leading-relaxed text-center italic">
+									C'est un guide afin d'y voir plus clair à un
+									moment donné de sa vie, de retrouver une
+									direction lors d'une période de changement
+									ou d'évolution, de retrouver la voie de son
+									âme.
+								</p>
+								<Quote className="absolute bottom-4 right-4 w-8 h-8 text-gold/20 rotate-180" />
+							</blockquote>
+						</div>
+					</section>
+
+					{/* Comment je procède */}
+					<section
+						ref={processRef}
+						className="container mx-auto px-4 sm:px-6 lg:px-8 mb-16 md:mb-20 relative z-10"
+					>
+						<div
+							className={`max-w-5xl mx-auto transition-all duration-700 delay-200 ${
+								processInView
+									? "opacity-100 translate-y-0"
+									: "opacity-0 translate-y-8"
+							}`}
+						>
+							<div className="text-center mb-10">
+								<p className="section-label">Ma méthode</p>
+								<h2 className="font-display text-2xl sm:text-3xl md:text-4xl text-foreground">
+									Comment je procède ?
+								</h2>
+							</div>
+
+							<div className="grid md:grid-cols-2 gap-8 items-start">
+								{/* Left - Process */}
+								<article className="card-soft">
+									<p className="text-muted-foreground leading-relaxed mb-6">
+										Je vous demande toujours votre{" "}
+										<strong className="text-foreground">
+											date de naissance
+										</strong>
+										, l'
+										<strong className="text-foreground">
+											heure exacte
+										</strong>{" "}
+										et le{" "}
+										<strong className="text-foreground">
+											lieu
+										</strong>
+										. Par vos coordonnées de naissance,
+										j'utilise votre Thème Astral qui
+										m'apporte un réel éclairage sur votre
+										personnalité intrinsèque.
+									</p>
+
+									<ul className="space-y-4">
+										{[
+											"J'identifie vos forces, dons, savoir-être, talents innés qui sont des leviers sur lesquels vous pouvez vous appuyer",
+											"Je repère vos blocages, failles, difficultés à travailler pour évoluer",
+											"Je porte un regard particulier pour la planète Mars, très importante car elle représente le moteur de votre mise en action",
+											"Je travaille en phase avec les cycles astrologiques que vous vivez",
+										].map((item, index) => (
+											<li
+												key={index}
+												className="flex items-start gap-3"
+											>
+												<div className="w-6 h-6 rounded-full bg-accent/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+													<Check className="w-3.5 h-3.5 text-accent" />
+												</div>
+												<span className="text-foreground/80 text-sm">
+													{item}
+												</span>
+											</li>
+										))}
+									</ul>
+
+									<p className="mt-6 text-accent font-display italic border-l-2 border-gold/40 pl-4">
+										Votre Thème Astral n'est pas figé, c'est
+										pourquoi vous êtes en perpétuelle
+										évolution.
+									</p>
+								</article>
+
+								{/* Right - Benefits */}
+								<div className="space-y-6">
+									<article className="bg-gradient-to-br from-accent/5 to-transparent rounded-2xl p-6 border border-accent/10">
+										<div className="flex items-center gap-3 mb-3">
+											<Sparkles className="w-5 h-5 text-accent" />
+											<h3 className="font-display text-lg text-foreground">
+												Conscience de soi
+											</h3>
+										</div>
+										<p className="text-muted-foreground text-sm">
+											Développez une meilleure
+											compréhension de votre être
+											intérieur et des influences qui vous
+											entourent.
+										</p>
+									</article>
+
+									<article className="bg-gradient-to-br from-gold/5 to-transparent rounded-2xl p-6 border border-gold/10">
+										<div className="flex items-center gap-3 mb-3">
+											<Star className="w-5 h-5 text-gold" />
+											<h3 className="font-display text-lg text-foreground">
+												Croissance personnelle
+											</h3>
+										</div>
+										<p className="text-muted-foreground text-sm">
+											En travaillant sur les défis révélés
+											par l'astrologie, vous avez
+											l'opportunité de croître et de
+											ressentir une transformation
+											profonde.
+										</p>
+									</article>
+
+									<figure className="relative rounded-2xl overflow-hidden h-48">
+										<Image
+											src="/assets/astro-profondeurs.webp"
+											alt="L'astrologie des profondeurs"
+											fill
+											className="object-cover opacity-80"
+										/>
+										<div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent flex items-end p-4">
+											<Link
+												href="/category/blog/astrologie"
+												className="text-sm text-foreground hover:text-accent transition-colors flex items-center gap-2"
+											>
+												<BookOpen className="w-4 h-4" />
+												Découvrez mes articles sur
+												l'astrologie
+												<ArrowRight className="w-3 h-3" />
+											</Link>
+										</div>
+									</figure>
+								</div>
+							</div>
+						</div>
+					</section>
+
 					{/* Mini FAQ Section - Now using centralized FAQ data */}
-					<MiniFAQ category="Astrologie" maxQuestions={3} title="L'astrologie en quelques questions" />
+					<MiniFAQ
+						category="Astrologie"
+						maxQuestions={3}
+						pinnedQuestions={["Êtes-vous médium ou voyante ?"]}
+						title="L'astrologie en quelques questions"
+					/>
 
 					{/* Lien croisé vers le Reiki */}
 					<section className="container mx-auto px-4 sm:px-6 lg:px-8 mb-16 md:mb-20 relative z-10">

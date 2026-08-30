@@ -164,6 +164,77 @@ const nextConfig: NextConfig = {
 				permanent: true,
 			},
 
+			// ── Structure WordPress encore plus ancienne : préfixe /accueil/ ──
+			// (générations antérieures à /astrologue-cepet-toulouse/, retrouvées
+			// dans les archives). Mêmes pages, correspondance certaine 1:1.
+			{
+				source: "/accueil/a-propos/:path*",
+				destination: "/emilie-perez",
+				permanent: true,
+			},
+			{
+				source: "/accueil/accompagnements/:path*",
+				destination: "/accompagnement-toulouse",
+				permanent: true,
+			},
+			{
+				source: "/accueil/mon-approche/:path*",
+				destination: "/approche-therapeutique",
+				permanent: true,
+			},
+			{
+				source: "/accueil/newsletter/:path*",
+				destination: "/contact",
+				permanent: true,
+			},
+			{
+				source: "/accueil/politique-de-confidentialite/:path*",
+				destination: "/confidentialite",
+				permanent: true,
+			},
+			{
+				source: "/accueil/soins_reiki/:path*",
+				destination: "/reiki-toulouse",
+				permanent: true,
+			},
+			{
+				source: "/accueil/soins_therapie_holistique/:path*",
+				destination: "/therapie-holistique",
+				permanent: true,
+			},
+			// Catégories de blog (avant le catch-all /accueil/blog/:path*)
+			{
+				source: "/accueil/blog/astrologie",
+				destination: "/category/blog/astrologie",
+				permanent: true,
+			},
+			{
+				source: "/accueil/blog/reiki",
+				destination: "/category/blog/reiki",
+				permanent: true,
+			},
+			{
+				source: "/accueil/blog/developpement-personnel",
+				destination: "/category/blog/developpement-personnel",
+				permanent: true,
+			},
+			{
+				source: "/accueil/blog/:path*",
+				destination: "/blog",
+				permanent: true,
+			},
+			// Racine + reliquat non mappé → accueil (après les règles spécifiques)
+			{
+				source: "/accueil",
+				destination: "/",
+				permanent: true,
+			},
+			{
+				source: "/accueil/:path*",
+				destination: "/",
+				permanent: true,
+			},
+
 			// Anciennes URLs simples
 			{
 				source: "/mon-approche",

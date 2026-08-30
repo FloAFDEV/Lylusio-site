@@ -208,6 +208,202 @@ const Reiki = () => {
 						</div>
 					</section>
 
+					{/* Services / Tarifs */}
+					<section
+						ref={servicesRef}
+						className="container mx-auto px-4 sm:px-6 lg:px-8 mb-20 md:mb-28 relative z-10"
+					>
+						<div
+							className={`max-w-5xl mx-auto transition-all duration-700 ${
+								servicesInView
+									? "opacity-100 translate-y-0"
+									: "opacity-0 translate-y-8"
+							}`}
+						>
+							<div className="text-center mb-12">
+								<p className="section-label">Séances</p>
+								<h2 className="font-display text-2xl sm:text-3xl md:text-4xl text-foreground mb-4">
+									<span className="font-calligraphic text-accent text-3xl sm:text-4xl md:text-5xl inline-block align-baseline">
+										M
+									</span>
+									es prestations en Reiki
+								</h2>
+								<p className="text-muted-foreground max-w-2xl mx-auto text-lg">
+									Des séances personnalisées pour retrouver
+									votre équilibre intérieur
+								</p>
+							</div>
+
+							<div className="grid md:grid-cols-2 gap-8 lg:gap-10">
+								{/* Reiki Présentiel */}
+								<article className="group relative bg-gradient-to-b from-card/90 to-card/60 backdrop-blur-md rounded-[2rem] overflow-hidden border border-border/20 shadow-soft hover:shadow-[0_20px_50px_-15px_hsl(var(--gold)/0.25)] hover:border-gold/40 hover:-translate-y-3 transition-all duration-500">
+									{/* Icon Header */}
+									<div className="relative pt-8 pb-4 px-6 flex justify-center">
+										{/* Halo full-header */}
+										<div
+											className="absolute inset-0 z-0 bg-gradient-to-b 
+    from-gold/10 via-accent/5 to-transparent
+    opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+										/>
+										<div className="relative">
+											<div className="w-20 h-20 lg:w-24 lg:h-24 rounded-[1.5rem] bg-gradient-to-br from-accent/20 to-gold/10 flex items-center justify-center shadow-elegant group-hover:scale-105 group-hover:shadow-[0_8px_30px_-8px_hsl(var(--gold)/0.4)] transition-all duration-500 rotate-3 group-hover:rotate-0">
+												<Heart className="w-10 h-10 lg:w-12 lg:h-12 text-accent" />
+											</div>
+										</div>
+									</div>
+
+									<div className="px-6 lg:px-8 pb-6 lg:pb-8 text-center">
+										<h3 className="font-display text-xl lg:text-2xl text-foreground mb-1 group-hover:text-accent transition-colors duration-300">
+											Reiki en présentiel
+										</h3>
+										<p className="text-xs uppercase tracking-widest text-gold/80 mb-4 font-medium">
+											Séance au cabinet
+										</p>
+
+										<p className="text-muted-foreground text-sm leading-relaxed mb-6">
+											Une séance de Reiki en personne pour
+											bénéficier pleinement de l'énergie
+											et du contact direct.
+										</p>
+
+										<ul className="space-y-2 mb-6 text-left">
+											{[
+												"Accueil et échange préalable",
+												"Séance de soin énergétique",
+												"Temps d'intégration",
+											].map((item) => (
+												<li
+													key={item}
+													className="flex items-center gap-2 text-sm text-foreground/70"
+												>
+													<Check className="w-4 h-4 text-accent flex-shrink-0" />
+													{item}
+												</li>
+											))}
+										</ul>
+
+										<div className="pt-5 border-t border-gold/15">
+											<div className="flex items-center justify-center gap-3 mb-4">
+												<p className="font-display text-2xl font-bold text-gold">
+													60€
+												</p>
+											</div>
+											<div className="flex flex-wrap justify-center gap-3 text-xs text-muted-foreground mb-4">
+												<span className="flex items-center gap-1">
+													<Clock className="w-3.5 h-3.5 text-accent" />
+													1h
+												</span>
+												<span className="flex items-center gap-1">
+													<MapPin className="w-3.5 h-3.5 text-accent" />
+													Toulouse / Cépet
+												</span>
+											</div>
+										</div>
+
+										<Button
+											variant="accent"
+											className="w-full group/btn"
+											size="lg"
+											onClick={() =>
+												window.open(
+													CALENDLY_URLS.REIKI,
+													"_blank"
+												)
+											}
+										>
+											<Calendar className="w-5 h-5 mr-2" />
+											Réserver
+											<ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover/btn:translate-x-1" />
+										</Button>
+									</div>
+								</article>
+
+								{/* Reiki à distance */}
+								<article className="group relative bg-gradient-to-b from-card/90 to-card/60 backdrop-blur-md rounded-[2rem] overflow-hidden border border-border/20 shadow-soft hover:shadow-[0_20px_50px_-15px_hsl(var(--gold)/0.25)] hover:border-gold/40 hover:-translate-y-3 transition-all duration-500">
+									{/* Icon Header */}
+									<div className="relative pt-8 pb-4 px-6 flex justify-center">
+										{/* Halo full-header */}
+										<div
+											className="absolute inset-0 z-0 bg-gradient-to-b 
+    from-gold/10 via-accent/5 to-transparent
+    opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+										/>
+										<div className="relative">
+											<div className="w-20 h-20 lg:w-24 lg:h-24 rounded-[1.5rem] bg-gradient-to-br from-gold/20 to-accent/10 flex items-center justify-center shadow-elegant group-hover:scale-105 group-hover:shadow-[0_8px_30px_-8px_hsl(var(--gold)/0.4)] transition-all duration-500 rotate-3 group-hover:rotate-0">
+												<Zap className="w-10 h-10 lg:w-12 lg:h-12 text-gold" />
+											</div>
+										</div>
+									</div>
+
+									<div className="px-6 lg:px-8 pb-6 lg:pb-8 text-center">
+										<h3 className="font-display text-xl lg:text-2xl text-foreground mb-1 group-hover:text-accent transition-colors duration-300">
+											Reiki à distance
+										</h3>
+										<p className="text-xs uppercase tracking-widest text-gold/80 mb-4 font-medium">
+											Séance en visio
+										</p>
+
+										<p className="text-muted-foreground text-sm leading-relaxed mb-6">
+											Le Reiki à distance est tout aussi
+											efficace qu'en présentiel. L'énergie
+											n'a pas de frontière.
+										</p>
+
+										<ul className="space-y-2 mb-6 text-left">
+											{[
+												"Connexion en visio",
+												"Séance de soin énergétique",
+												"Retour et échanges",
+											].map((item) => (
+												<li
+													key={item}
+													className="flex items-center gap-2 text-sm text-foreground/70"
+												>
+													<Check className="w-4 h-4 text-gold flex-shrink-0" />
+													{item}
+												</li>
+											))}
+										</ul>
+
+										<div className="pt-5 border-t border-gold/15">
+											<div className="flex items-center justify-center gap-3 mb-4">
+												<p className="font-display text-2xl font-bold text-gold">
+													50€
+												</p>
+											</div>
+											<div className="flex flex-wrap justify-center gap-3 text-xs text-muted-foreground mb-4">
+												<span className="flex items-center gap-1">
+													<Clock className="w-3.5 h-3.5 text-gold" />
+													45min-1h
+												</span>
+												<span className="flex items-center gap-1">
+													<MapPin className="w-3.5 h-3.5 text-gold" />
+													Où que vous soyez
+												</span>
+											</div>
+										</div>
+
+										<Button
+											variant="accent"
+											className="w-full group/btn"
+											size="lg"
+											onClick={() =>
+												window.open(
+													CALENDLY_URLS.REIKI,
+													"_blank"
+												)
+											}
+										>
+											<Calendar className="w-5 h-5 mr-2" />
+											Réserver
+											<ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover/btn:translate-x-1" />
+										</Button>
+									</div>
+								</article>
+							</div>
+						</div>
+					</section>
+
 					{/* Histoire du Reiki - Glass Card over Image */}
 					<section
 						ref={historyRef}
@@ -779,202 +975,6 @@ const Reiki = () => {
 								</p>
 								<Quote className="absolute bottom-4 right-4 w-8 h-8 text-accent/20 rotate-180" />
 							</blockquote>
-						</div>
-					</section>
-
-					{/* Services / Tarifs */}
-					<section
-						ref={servicesRef}
-						className="container mx-auto px-4 sm:px-6 lg:px-8 mb-20 md:mb-28 relative z-10"
-					>
-						<div
-							className={`max-w-5xl mx-auto transition-all duration-700 ${
-								servicesInView
-									? "opacity-100 translate-y-0"
-									: "opacity-0 translate-y-8"
-							}`}
-						>
-							<div className="text-center mb-12">
-								<p className="section-label">Séances</p>
-								<h2 className="font-display text-2xl sm:text-3xl md:text-4xl text-foreground mb-4">
-									<span className="font-calligraphic text-accent text-3xl sm:text-4xl md:text-5xl inline-block align-baseline">
-										M
-									</span>
-									es prestations en Reiki
-								</h2>
-								<p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-									Des séances personnalisées pour retrouver
-									votre équilibre intérieur
-								</p>
-							</div>
-
-							<div className="grid md:grid-cols-2 gap-8 lg:gap-10">
-								{/* Reiki Présentiel */}
-								<article className="group relative bg-gradient-to-b from-card/90 to-card/60 backdrop-blur-md rounded-[2rem] overflow-hidden border border-border/20 shadow-soft hover:shadow-[0_20px_50px_-15px_hsl(var(--gold)/0.25)] hover:border-gold/40 hover:-translate-y-3 transition-all duration-500">
-									{/* Icon Header */}
-									<div className="relative pt-8 pb-4 px-6 flex justify-center">
-										{/* Halo full-header */}
-										<div
-											className="absolute inset-0 z-0 bg-gradient-to-b 
-    from-gold/10 via-accent/5 to-transparent
-    opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-										/>
-										<div className="relative">
-											<div className="w-20 h-20 lg:w-24 lg:h-24 rounded-[1.5rem] bg-gradient-to-br from-accent/20 to-gold/10 flex items-center justify-center shadow-elegant group-hover:scale-105 group-hover:shadow-[0_8px_30px_-8px_hsl(var(--gold)/0.4)] transition-all duration-500 rotate-3 group-hover:rotate-0">
-												<Heart className="w-10 h-10 lg:w-12 lg:h-12 text-accent" />
-											</div>
-										</div>
-									</div>
-
-									<div className="px-6 lg:px-8 pb-6 lg:pb-8 text-center">
-										<h3 className="font-display text-xl lg:text-2xl text-foreground mb-1 group-hover:text-accent transition-colors duration-300">
-											Reiki en présentiel
-										</h3>
-										<p className="text-xs uppercase tracking-widest text-gold/80 mb-4 font-medium">
-											Séance au cabinet
-										</p>
-
-										<p className="text-muted-foreground text-sm leading-relaxed mb-6">
-											Une séance de Reiki en personne pour
-											bénéficier pleinement de l'énergie
-											et du contact direct.
-										</p>
-
-										<ul className="space-y-2 mb-6 text-left">
-											{[
-												"Accueil et échange préalable",
-												"Séance de soin énergétique",
-												"Temps d'intégration",
-											].map((item) => (
-												<li
-													key={item}
-													className="flex items-center gap-2 text-sm text-foreground/70"
-												>
-													<Check className="w-4 h-4 text-accent flex-shrink-0" />
-													{item}
-												</li>
-											))}
-										</ul>
-
-										<div className="pt-5 border-t border-gold/15">
-											<div className="flex items-center justify-center gap-3 mb-4">
-												<p className="font-display text-2xl font-bold text-gold">
-													60€
-												</p>
-											</div>
-											<div className="flex flex-wrap justify-center gap-3 text-xs text-muted-foreground mb-4">
-												<span className="flex items-center gap-1">
-													<Clock className="w-3.5 h-3.5 text-accent" />
-													1h
-												</span>
-												<span className="flex items-center gap-1">
-													<MapPin className="w-3.5 h-3.5 text-accent" />
-													Toulouse / Cépet
-												</span>
-											</div>
-										</div>
-
-										<Button
-											variant="accent"
-											className="w-full group/btn"
-											size="lg"
-											onClick={() =>
-												window.open(
-													CALENDLY_URLS.REIKI,
-													"_blank"
-												)
-											}
-										>
-											<Calendar className="w-5 h-5 mr-2" />
-											Réserver
-											<ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover/btn:translate-x-1" />
-										</Button>
-									</div>
-								</article>
-
-								{/* Reiki à distance */}
-								<article className="group relative bg-gradient-to-b from-card/90 to-card/60 backdrop-blur-md rounded-[2rem] overflow-hidden border border-border/20 shadow-soft hover:shadow-[0_20px_50px_-15px_hsl(var(--gold)/0.25)] hover:border-gold/40 hover:-translate-y-3 transition-all duration-500">
-									{/* Icon Header */}
-									<div className="relative pt-8 pb-4 px-6 flex justify-center">
-										{/* Halo full-header */}
-										<div
-											className="absolute inset-0 z-0 bg-gradient-to-b 
-    from-gold/10 via-accent/5 to-transparent
-    opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-										/>
-										<div className="relative">
-											<div className="w-20 h-20 lg:w-24 lg:h-24 rounded-[1.5rem] bg-gradient-to-br from-gold/20 to-accent/10 flex items-center justify-center shadow-elegant group-hover:scale-105 group-hover:shadow-[0_8px_30px_-8px_hsl(var(--gold)/0.4)] transition-all duration-500 rotate-3 group-hover:rotate-0">
-												<Zap className="w-10 h-10 lg:w-12 lg:h-12 text-gold" />
-											</div>
-										</div>
-									</div>
-
-									<div className="px-6 lg:px-8 pb-6 lg:pb-8 text-center">
-										<h3 className="font-display text-xl lg:text-2xl text-foreground mb-1 group-hover:text-accent transition-colors duration-300">
-											Reiki à distance
-										</h3>
-										<p className="text-xs uppercase tracking-widest text-gold/80 mb-4 font-medium">
-											Séance en visio
-										</p>
-
-										<p className="text-muted-foreground text-sm leading-relaxed mb-6">
-											Le Reiki à distance est tout aussi
-											efficace qu'en présentiel. L'énergie
-											n'a pas de frontière.
-										</p>
-
-										<ul className="space-y-2 mb-6 text-left">
-											{[
-												"Connexion en visio",
-												"Séance de soin énergétique",
-												"Retour et échanges",
-											].map((item) => (
-												<li
-													key={item}
-													className="flex items-center gap-2 text-sm text-foreground/70"
-												>
-													<Check className="w-4 h-4 text-gold flex-shrink-0" />
-													{item}
-												</li>
-											))}
-										</ul>
-
-										<div className="pt-5 border-t border-gold/15">
-											<div className="flex items-center justify-center gap-3 mb-4">
-												<p className="font-display text-2xl font-bold text-gold">
-													50€
-												</p>
-											</div>
-											<div className="flex flex-wrap justify-center gap-3 text-xs text-muted-foreground mb-4">
-												<span className="flex items-center gap-1">
-													<Clock className="w-3.5 h-3.5 text-gold" />
-													45min-1h
-												</span>
-												<span className="flex items-center gap-1">
-													<MapPin className="w-3.5 h-3.5 text-gold" />
-													Où que vous soyez
-												</span>
-											</div>
-										</div>
-
-										<Button
-											variant="accent"
-											className="w-full group/btn"
-											size="lg"
-											onClick={() =>
-												window.open(
-													CALENDLY_URLS.REIKI,
-													"_blank"
-												)
-											}
-										>
-											<Calendar className="w-5 h-5 mr-2" />
-											Réserver
-											<ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover/btn:translate-x-1" />
-										</Button>
-									</div>
-								</article>
-							</div>
 						</div>
 					</section>
 

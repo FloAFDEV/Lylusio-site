@@ -284,14 +284,30 @@ const Accompagnement = () => {
 										<span>Cépet · Toulouse</span>
 									</span>
 								</div>
+
+								<div className="mt-8 sm:mt-10 flex justify-center px-2">
+									<Button
+										asChild
+										variant="accent"
+										size="lg"
+										className="group"
+									>
+										<a href="#nos-prestations">
+											<Calendar className="w-4 h-4 mr-2" />
+											Voir les prestations &amp; tarifs
+											<ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
+										</a>
+									</Button>
+								</div>
 							</div>
 						</div>
 					</section>
 
 					{/* ===== ASTROLOGIE SECTION ===== */}
 					<section
+						id="nos-prestations"
 						ref={astroRef}
-						className="relative py-12 sm:py-16 md:py-24 bg-gradient-to-b from-transparent via-secondary/20 to-transparent"
+						className="relative py-12 sm:py-16 md:py-24 bg-gradient-to-b from-transparent via-secondary/20 to-transparent scroll-mt-24"
 					>
 						<div className="container mx-auto px-4 sm:px-6 lg:px-8">
 							{/* Section Header */}
