@@ -183,6 +183,9 @@ export default async function BlogPostPage({
 
 	let blogPostSchema = null;
 	let serverFetchSuccess = false;
+	// Vrai 404 différé : passé à true si le post est introuvable, puis
+	// consommé APRÈS le try/catch (voir plus bas).
+	let postNotFound = false;
 	// Slug canonique WordPress (peut différer du slug dans l'URL si caractères spéciaux)
 	let canonicalSlug: string | null = null;
 	// Post brut WordPress transmis au composant client pour le rendu initial côté serveur.
@@ -229,10 +232,12 @@ export default async function BlogPostPage({
 				`[BlogPostPage] Server fetch success for: ${title} (${slug})`
 			);
 		} else {
-			// Post doesn't exist in WordPress — return a clean 404.
-			// Only reached when the fetch itself succeeded (no exception),
-			// so this is a genuine missing slug, not a transient WP outage.
-			notFound();
+			// Post absent de WordPress → vrai 404.
+			// notFound() n'est PAS appelé ici : le catch ci-dessous
+			// intercepterait son exception interne Next.js
+			// (NEXT_HTTP_ERROR_FALLBACK) → soft-404 (HTTP 200).
+			// On mémorise l'état et on appelle notFound() après le try/catch.
+			postNotFound = true;
 		}
 	} catch (error) {
 		console.error(
@@ -240,6 +245,13 @@ export default async function BlogPostPage({
 			error
 		);
 		// WP may be temporarily down — let client component retry.
+	}
+
+	// Slug introuvable → vrai 404. Appelé HORS du try/catch pour que
+	// l'exception de contrôle de flux Next.js remonte au framework
+	// (même raison que redirect() ci-dessous).
+	if (postNotFound) {
+		notFound();
 	}
 
 	// Redirection canonique : si le slug WordPress diffère du slug dans l'URL
