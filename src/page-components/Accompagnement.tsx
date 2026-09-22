@@ -78,7 +78,7 @@ const Accompagnement = () => {
 			format: "Présentiel / Distance",
 			features: ["Analyse complète écrite personnalisée + échange"],
 			ctaHref: PHONE_TEL_HREF,
-			ctaLabel: "Réserver par téléphone",
+			ctaLabel: "Réserver une séance",
 		},
 		{
 			id: "transits",
@@ -95,7 +95,7 @@ const Accompagnement = () => {
 			isSecond: true,
 			features: ["Analyse complète écrite personnalisée + échange"],
 			ctaHref: PHONE_TEL_HREF,
-			ctaLabel: "Réserver par téléphone",
+			ctaLabel: "Réserver une séance",
 		},
 	];
 
@@ -116,7 +116,7 @@ const Accompagnement = () => {
 			"Relaxation profonde",
 		],
 		ctaHref: PHONE_TEL_HREF,
-		ctaLabel: "Réserver par téléphone",
+		ctaLabel: "Réserver une séance",
 		isHighlighted: true,
 	};
 
@@ -435,7 +435,7 @@ const Accompagnement = () => {
 													}}
 												>
 													<Calendar className="w-4 h-4 mr-2" />
-													Réserver par téléphone
+													Réserver une séance
 													<ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover/btn:translate-x-1" />
 												</Button>
 											</div>
@@ -549,7 +549,7 @@ const Accompagnement = () => {
 										<div className="absolute -inset-4 rounded-[2.5rem] opacity-0 group-hover:opacity-100 bg-gradient-to-br from-gold/20 via-gold/10 to-accent/10 blur-2xl transition-all duration-700 pointer-events-none" />
 
 										{/* Card container - removed overflow-hidden to prevent clipping */}
-										<div className="relative bg-gradient-to-b from-card/90 to-card/60 backdrop-blur-md rounded-[2rem] border border-border/20 shadow-soft group-hover:border-gold/40 group-hover:-translate-y-3 transition-all duration-500">
+										<div className="relative h-full flex flex-col bg-gradient-to-b from-card/90 to-card/60 backdrop-blur-md rounded-[2rem] border border-border/20 shadow-soft group-hover:border-gold/40 group-hover:-translate-y-3 transition-all duration-500">
 											{/* Animated border glow */}
 											<div className="absolute inset-0 rounded-[2rem] opacity-0 group-hover:opacity-100 shadow-[0_20px_50px_-15px_hsl(var(--gold)/0.3)] transition-opacity duration-500 pointer-events-none" />
 											{/* Image Header */}
@@ -573,7 +573,7 @@ const Accompagnement = () => {
 												</div>
 											)}
 
-											<div className="px-6 lg:px-8 pb-6 lg:pb-8 text-center pt-4">
+											<div className="px-6 lg:px-8 pb-6 lg:pb-8 text-center pt-4 flex-1 flex flex-col">
 												<h3 className="font-display text-xl lg:text-2xl text-foreground mb-1 group-hover:text-accent transition-colors duration-300">
 													{service.title}
 												</h3>
@@ -605,7 +605,7 @@ const Accompagnement = () => {
 													</ul>
 												)}
 
-												<div className="pt-5 border-t border-gold/15">
+												<div className="mt-auto pt-5 border-t border-gold/15">
 													<div className="flex items-center justify-center gap-3 mb-4">
 														<p className="font-display text-xl text-gold">
 															{service.price}
@@ -809,7 +809,7 @@ const Accompagnement = () => {
 											}}
 										>
 											<Calendar className="w-4 h-4 mr-2" />
-											Réserver mon soin Reiki par téléphone
+											Réserver une séance
 											<ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover/btn:translate-x-1" />
 										</Button>
 									</div>

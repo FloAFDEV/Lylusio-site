@@ -143,7 +143,7 @@ const Footer = () => {
 					href={PHONE_TEL_HREF}
 					className="flex items-center gap-2"
 				>
-					<span className="font-medium">Réserver par téléphone</span>
+					<span className="font-medium">Réserver une séance</span>
 					<svg
 						className="w-5 h-5 transform group-hover/cta:translate-x-1 transition-transform duration-500"
 						fill="none"

@@ -515,7 +515,7 @@ export default async function RessourcesPage() {
 											className="w-5 h-5"
 											aria-hidden="true"
 										/>
-										<span>Réserver par téléphone</span>
+										<span>Réserver une séance</span>
 										<ArrowRight
 											className="w-4 h-4 group-hover:translate-x-1 transition-transform"
 											aria-hidden="true"

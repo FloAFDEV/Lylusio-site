@@ -97,14 +97,14 @@ const FloatingCTA = () => {
 					href={PHONE_TEL_HREF}
 					onClick={handleLinkClick}
 					className="flex items-center gap-2"
-					aria-label="Appeler Émilie Perez pour prendre rendez-vous"
+					aria-label="Réserver une séance par téléphone"
 				>
 					<Phone
 						className="w-4 h-4 text-foreground"
 						aria-hidden="true"
 					/>
 					<span className="hidden sm:inline font-medium text-foreground">
-						Appeler
+						Réserver
 					</span>
 				</a>
 			</Button>

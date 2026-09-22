@@ -173,7 +173,7 @@ const Reiki = () => {
 											}}
 										>
 											<Calendar className="w-5 h-5 mr-2" />
-											Réserver par téléphone
+											Réserver une séance
 											<ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
 										</Button>
 										<Link href="/category/blog/reiki">
@@ -830,7 +830,7 @@ const Reiki = () => {
 											}}
 										>
 											<Calendar className="w-5 h-5 mr-2" />
-											Réserver par téléphone
+											Réserver une séance
 											<ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover/btn:translate-x-1" />
 										</Button>
 									</div>

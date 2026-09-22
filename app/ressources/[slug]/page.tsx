@@ -297,7 +297,7 @@ export default async function RessourceArticlePage({
 									href={PHONE_TEL_HREF}
 									aria-label="Appeler Émilie Perez pour réserver votre séance"
 								>
-									Réserver par téléphone
+									Réserver une séance
 								</a>
 							</Button>
 							<Button asChild variant="outline" size="lg">

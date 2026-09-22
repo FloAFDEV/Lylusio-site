@@ -7,7 +7,7 @@ import { PHONE_TEL_HREF } from "./contact";
 
 const CALENDLY_HREF_PATTERN = /href\s*=\s*["']https?:\/\/(?:www\.)?calendly\.com\/[^"']*["']/i;
 const CALENDLY_URL_TEXT_PATTERN = /^https?:\/\/(?:www\.)?calendly\.com\//i;
-const CALENDLY_PHONE_LINK_TEXT = "Prendre rendez-vous par téléphone";
+const CALENDLY_PHONE_LINK_TEXT = "Réserver une séance";
 
 /**
  * Neutralise les anciens liens Calendly encore présents dans le contenu

@@ -150,7 +150,7 @@ const HeroSection = () => {
 							aria-label="Appeler pour prendre rendez-vous"
 						>
 							<a href={PHONE_TEL_HREF}>
-								Réserver par téléphone
+								Réserver une séance
 							</a>
 						</Button>
 					</div>
