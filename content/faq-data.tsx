@@ -5,7 +5,7 @@
  * - /faq page (complete FAQ)
  * - /reiki-toulouse page (mini-FAQ)
  * - /astrologie-toulouse page (mini-FAQ)
- * - /accompagnement-toulouse page (mini-FAQ)
+ * - /accompagnement page (mini-FAQ)
  */
 
 import Link from "next/link";
@@ -150,11 +150,11 @@ export const faqCategories: FAQCategory[] = [
 			},
 			{
 				question: "Les consultations se font-elles en présentiel ou à distance ?",
-				answer: "Je propose les deux formules. Les consultations en présentiel ont lieu à Toulouse-nord. Les séances à distance se font par visioconférence (WhatsApp ou Google Meet) et sont tout aussi efficaces pour l'astrologie et le coaching. Pour le Reiki, le présentiel est privilégié, mais des séances à distance sont également possibles.",
+				answer: "Je propose les deux formules pour l'astrologie et le coaching : les consultations en présentiel ont lieu à Toulouse-nord, les séances à distance se font par visioconférence (WhatsApp ou Google Meet). Le Reiki, lui, se pratique uniquement en présentiel, au cabinet.",
 			},
 			{
 				question: "Comment prendre rendez-vous ?",
-				answer: "Vous pouvez réserver directement en ligne via les liens Calendly disponibles sur chaque page de service, ou me contacter par email ou téléphone pour échanger avant de réserver.",
+				answer: "Vous pouvez me contacter directement par téléphone ou par email pour organiser votre rendez-vous.",
 			},
 			{
 				question: "Quelle est votre politique d'annulation ?",

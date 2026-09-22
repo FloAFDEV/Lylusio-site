@@ -26,8 +26,8 @@ export default function TherapieHolistiquePage() {
       {
         "@type": "ListItem",
         "position": 2,
-        "name": "Accompagnement",
-        "item": "https://lylusio.fr/accompagnement-toulouse"
+        "name": "Reiki",
+        "item": "https://lylusio.fr/reiki-toulouse"
       },
       {
         "@type": "ListItem",

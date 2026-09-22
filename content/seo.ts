@@ -74,7 +74,7 @@ export const pageMetadata = {
 
   reiki: {
     title: 'Reiki Usui à Toulouse - Soins Énergétiques & Formation',
-    description: 'Praticienne Reiki Usui à Cépet, au nord de Toulouse. Soins énergétiques en cabinet et à distance. Formations Reiki 1er, 2ème et 3ème degré.',
+    description: 'Praticienne Reiki Usui à Cépet, au nord de Toulouse. Soins énergétiques en cabinet. Formations Reiki 1er, 2ème et 3ème degré.',
     canonical: `${baseUrl}/reiki-toulouse`,
     keywords: ['reiki toulouse', 'soin énergétique', 'reiki usui', 'formation reiki', 'praticien reiki toulouse'],
     openGraph: {
@@ -88,10 +88,10 @@ export const pageMetadata = {
   accompagnement: {
     title: 'Accompagnement Holistique à Toulouse - Thérapie Énergétique',
     description: 'Accompagnement personnalisé combinant astrologie, Reiki et développement personnel. En cabinet à Cépet (Toulouse Nord) ou à distance.',
-    canonical: `${baseUrl}/accompagnement-toulouse`,
+    canonical: `${baseUrl}/accompagnement`,
     keywords: ['accompagnement holistique toulouse', 'thérapie énergétique', 'développement personnel', 'coaching holistique'],
     openGraph: {
-      url: `${baseUrl}/accompagnement-toulouse`,
+      url: `${baseUrl}/accompagnement`,
       title: 'Accompagnement Holistique à Toulouse',
       description: 'Accompagnement personnalisé alliant astrologie, Reiki et développement personnel',
       images: [{ url: '/assets/seance-accompagnement.webp', width: 1200, height: 630 }],

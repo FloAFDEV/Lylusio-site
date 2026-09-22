@@ -27,14 +27,12 @@ import {
 	Infinity,
 	ArrowRight,
 	Zap,
-	CreditCard,
 } from "lucide-react";
 import { useParallax } from "@/hooks/useParallax";
 import { useInView } from "@/hooks/useInView";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { useAnalyticsEvent } from "@/hooks/useAnalytics";
-
-import CALENDLY_URLS from "@/lib/calendly";
+import { PHONE_TEL_HREF } from "@/lib/contact";
 
 const Accompagnement = () => {
 	const isMobile = useIsMobile();
@@ -60,9 +58,6 @@ const Accompagnement = () => {
 	const { ref: accompRef, isInView: accompInView } = useInView({
 		threshold: 0.1,
 	});
-	const { ref: bilanRef, isInView: bilanInView } = useInView({
-		threshold: 0.1,
-	});
 	const { ref: quoteRef, isInView: quoteInView } = useInView({
 		threshold: 0.2,
 	});
@@ -76,17 +71,14 @@ const Accompagnement = () => {
 			title: "Thème Natal",
 			subtitle: "Votre carte du ciel",
 			description:
-				"Une séance d'astrologie symbolique et psychologique pour explorer votre carte du ciel comme une boussole intérieure. Ensemble, nous mettons en lumière vos dynamiques profondes.",
+				"Une séance d'astrologie symbolique et psychologique pour explorer votre carte du ciel comme une boussole intérieure. Ensemble, nous mettons en lumière vos dynamiques profondes, vos schémas, vos forces et les zones de tension à apaiser. C'est une rencontre avec soi-même, sans jugement, pleine de sens. Les consultations peuvent se faire également en visio sur WhatsApp ou par téléphone si besoin.",
 			price: "90€ / 120€",
-			priceNote: "avec support écrit",
-			duration: "1h30 à 2h",
+			priceNote: "sans support écrit / avec support",
+			duration: "1h30 à 2h00",
 			format: "Présentiel / Distance",
-			features: [
-				"Analyse complète écrite",
-				"Échange approfondi",
-				"Délai de préparation",
-			],
-			calendlyLink: CALENDLY_URLS.THEME_NATAL,
+			features: ["Analyse complète écrite personnalisée + échange"],
+			ctaHref: PHONE_TEL_HREF,
+			ctaLabel: "Réserver par téléphone",
 		},
 		{
 			id: "transits",
@@ -95,18 +87,15 @@ const Accompagnement = () => {
 			title: "Lecture de Transits",
 			subtitle: "Reconnexion au Présent",
 			description:
-				"Si vous sentez que « quelque chose » bouge en vous, sans forcément savoir quoi… Si vous traversez une période où tout semble s'effondrer.",
+				"Si vous sentez que « quelque chose » bouge en vous, sans forcément savoir quoi… Si vous traversez une période où tout semble s'effondrer. Les consultations peuvent se faire également en visio sur WhatsApp ou par téléphone si besoin.",
 			price: "70€ / 90€",
-			priceNote: "avec support écrit",
-			duration: "1h30 à 2h",
+			priceNote: "sans support écrit / avec support",
+			duration: "1h30 à 2h00",
 			format: "Présentiel / Distance",
 			isSecond: true,
-			features: [
-				"Identifier les cycles",
-				"Mettre du sens",
-				"Ressources cachées",
-			],
-			calendlyLink: CALENDLY_URLS.TRANSITS,
+			features: ["Analyse complète écrite personnalisée + échange"],
+			ctaHref: PHONE_TEL_HREF,
+			ctaLabel: "Réserver par téléphone",
 		},
 	];
 
@@ -118,41 +107,17 @@ const Accompagnement = () => {
 		subtitle: "Rééquilibrage énergétique",
 		description:
 			"Un soin énergétique complet favorisant l'apaisement mental, émotionnel et physique. Le Reiki rétablit la circulation de l'énergie vitale.",
-		price: "60€ / 50€",
-		priceNote: "à distance",
+		price: "60€",
 		duration: "1h15 à 1h30",
-		format: "Présentiel / Distance",
+		format: "Présentiel",
 		features: [
 			"Rééquilibrage global",
 			"Libération blocages",
 			"Relaxation profonde",
 		],
-		calendlyLink: CALENDLY_URLS.REIKI,
+		ctaHref: PHONE_TEL_HREF,
+		ctaLabel: "Réserver par téléphone",
 		isHighlighted: true,
-	};
-
-	const bilanService = {
-		id: "bilan-pro",
-		icon: <Compass className="w-5 h-5 sm:w-6 sm:h-6 text-accent" />,
-		image: "/assets/tarif-bilan-pro.webp",
-		title: "Bilan Astro-Orientation",
-		subtitle: "Vie pro alignée",
-		description:
-			"Vous vous posez des questions sur votre vie professionnelle ? Vous envisagez une reconversion, vous voulez reprendre des études ou vous lancer dans l'entrepreneuriat ?",
-		price: "290€",
-		duration:
-			"4 séances d'1h30 complétées par des rdv téléphoniques réguliers",
-		format: "Présentiel / Distance",
-		features: [
-			"Talents innés",
-			"Aspirations profondes",
-			"Plan d'action aligné",
-		],
-		calendlyLink: CALENDLY_URLS.BILAN_PRO,
-		paymentInfo: {
-			phone: "+33619151959",
-			email: "contact@lylusio.fr",
-		},
 	};
 
 	return (
@@ -303,11 +268,188 @@ const Accompagnement = () => {
 						</div>
 					</section>
 
-					{/* ===== ASTROLOGIE SECTION ===== */}
+					{/* ===== ACCOMPAGNEMENT GLOBAL SECTION ===== */}
 					<section
 						id="nos-prestations"
-						ref={astroRef}
+						ref={accompRef}
 						className="relative py-12 sm:py-16 md:py-24 bg-gradient-to-b from-transparent via-secondary/20 to-transparent scroll-mt-24"
+					>
+						<div className="container mx-auto px-4 sm:px-6 lg:px-8">
+							{/* Section Header avec image ronde et parallax */}
+							<div
+								className={`flex flex-col items-center gap-6 lg:flex-row lg:items-start lg:gap-12 mb-10 sm:mb-14 transition-all duration-1000 ${
+									accompInView
+										? "opacity-100 translate-y-0"
+										: "opacity-0 translate-y-8"
+								}`}
+							>
+								{/* Image ronde avec effet parallax - alignée avec le titre */}
+								<div
+									className="relative w-32 h-32 sm:w-40 sm:h-40 lg:w-56 lg:h-56 flex-shrink-0 lg:mt-12"
+									style={{
+										transform:
+											!mounted || isMobile
+												? "none"
+												: `translateY(${-parallaxOffsetSlow}px)`,
+									}}
+								>
+									<div className="absolute inset-0 rounded-full bg-gradient-to-br from-gold/20 to-accent/10 animate-gentle-pulse" />
+									<div className="absolute inset-1 sm:inset-2 rounded-full overflow-hidden border-2 border-gold/20 shadow-elegant">
+										<Image
+											src="/assets/seance-accompagnement.webp"
+											alt="Symbole d'accompagnement"
+											fill
+											sizes="(max-width: 640px) 128px, (max-width: 768px) 160px, 224px"
+											className="object-cover"
+										/>
+									</div>
+									<div className="absolute -top-2 -right-2 sm:-top-3 sm:-right-3 w-8 h-8 sm:w-10 sm:h-10 bg-card/90 backdrop-blur-sm rounded-full border border-gold/30 flex items-center justify-center shadow-soft">
+										<Heart className="w-4 h-4 sm:w-5 sm:h-5 text-gold" />
+									</div>
+								</div>
+
+								<div className="text-center flex-1">
+									<p className="section-label">
+										Accompagnement Complet
+									</p>
+									<h2 className="font-display text-xl sm:text-2xl lg:text-3xl text-navy mb-3">
+										<span className="font-calligraphic text-accent text-2xl sm:text-3xl lg:text-4xl inline-block align-baseline">
+											A
+										</span>
+										ccompagnement pour les périodes de «
+										Transition »
+									</h2>
+									<p className="text-muted-foreground text-sm sm:text-base leading-relaxed max-w-xl mx-auto">
+										Astrologie • Reiki • Thérapie pour
+										traverser vos transitions de vie
+									</p>
+								</div>
+							</div>
+
+							{/* Format uniforme avec les autres cartes */}
+							<div className="max-w-4xl mx-auto">
+								<article
+									className={`group relative bg-card/80 backdrop-blur-sm rounded-3xl border border-border/30 shadow-soft hover:shadow-elegant hover:border-gold/30 transition-all duration-700 ${
+										accompInView
+											? "opacity-100 translate-y-0"
+											: "opacity-0 translate-y-8"
+									}`}
+									style={{ transitionDelay: "200ms" }}
+								>
+									<div className="flex flex-col lg:flex-row">
+										{/* Image side */}
+										<div className="relative lg:w-72 h-48 lg:h-auto overflow-hidden rounded-t-3xl lg:rounded-l-3xl lg:rounded-tr-none">
+											<Image
+												src="/assets/tarif-accompagnement.webp"
+												alt="Accompagnement global"
+												fill
+												className="object-cover transition-transform duration-700 group-hover:scale-110"
+											/>
+											<div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-card lg:bg-gradient-to-l" />
+											<div className="lg:hidden absolute inset-0 bg-gradient-to-t from-card via-card/50 to-transparent" />
+										</div>
+
+										{/* Icon badge hors du overflow-hidden */}
+										<div className="lg:-ml-7 lg:translate-y-1/2 w-14 h-14 rounded-xl bg-card/90 backdrop-blur-sm border-2 border-gold/30 flex items-center justify-center shadow-elegant">
+											<Heart className="w-7 h-7 text-gold" />
+										</div>
+
+										{/* Content side */}
+										<div className="flex-1 p-6 sm:p-8 lg:p-10">
+											<div className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-gold/15 text-gold text-xs font-medium rounded-full mb-3 border border-gold/20">
+												<Sparkles className="w-3 h-3 flex-shrink-0" />
+												<span>Transition</span>
+											</div>
+											<h3 className="font-display text-xl sm:text-2xl text-foreground mb-1">
+												Retrouver du sens
+											</h3>
+											<p className="text-accent text-sm font-medium mb-4">
+												Accompagnement global
+											</p>
+
+											{/* Pour qui */}
+											<p className="text-foreground text-sm font-medium mb-2">
+												Cet accompagnement est fait pour
+												vous si :
+											</p>
+											<ul className="space-y-2 mb-6">
+												{[
+													"Vous ressentez le besoin d'être écoutée vraiment, sans jugement, de déposer votre histoire, sans filtre, de relâcher en profondeur.",
+													"Vous souhaitez avancer sur vous en toute conscience et cohérence sans avoir peur de regarder votre personnalité, de retrouver du sens, du courage et de la responsabilité dans vos choix.",
+													"Vous sortez d'une rupture, d'un burn-out ou d'un effondrement personnel.",
+												].map((item, idx) => (
+													<li
+														key={idx}
+														className="flex items-start gap-2 text-sm text-foreground/80"
+													>
+														<Check className="w-4 h-4 text-accent flex-shrink-0 mt-0.5" />
+														<span>{item}</span>
+													</li>
+												))}
+											</ul>
+
+											{/* Ce que je propose */}
+											<p className="text-foreground text-sm font-medium mb-2">
+												Ce que je vous propose :
+											</p>
+											<ul className="space-y-2 mb-6">
+												{[
+													"Un espace pour déposer ce que vous vivez sans filtre, vrai, humain, sans chichi.",
+													"Ensemble, on regarde ce que vous traversez sous un autre angle, on démêle ce qui bloque, on reformule pour éclairer ce que votre inconscient essaie de vous dire.",
+													"Une séance combinant une mini-analyse astrologique des énergies du moment et un soin Reiki ciblé pour un rééquilibrage émotionnel et énergétique.",
+												].map((item, idx) => (
+													<li
+														key={idx}
+														className="flex items-start gap-2 text-sm text-foreground/80"
+													>
+														<Check className="w-4 h-4 text-accent flex-shrink-0 mt-0.5" />
+														<span>{item}</span>
+													</li>
+												))}
+											</ul>
+
+											{/* Price & CTA */}
+											<div className="flex flex-col sm:flex-row sm:items-center gap-4 pt-5 border-t border-gold/15">
+												<div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-muted-foreground">
+													<span className="font-display text-xl font-bold text-gold">
+														75€
+													</span>
+													<span className="flex items-center gap-1">
+														<Clock className="w-4 h-4 text-accent flex-shrink-0" />
+														<span>1h30</span>
+													</span>
+													<span className="flex items-center gap-1 whitespace-nowrap">
+														<MapPin className="w-4 h-4 text-accent flex-shrink-0" />
+														<span>Présentiel</span>
+													</span>
+												</div>
+												<Button
+													variant="accent"
+													className="sm:ml-auto group/btn"
+													onClick={() => {
+														trackBookingClick(
+															"Accompagnement Transition",
+														);
+														window.location.href =
+															PHONE_TEL_HREF;
+													}}
+												>
+													<Calendar className="w-4 h-4 mr-2" />
+													Réserver par téléphone
+													<ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover/btn:translate-x-1" />
+												</Button>
+											</div>
+										</div>
+									</div>
+								</article>
+							</div>
+						</div>
+					</section>
+
+					{/* ===== ASTROLOGIE SECTION ===== */}
+					<section
+						ref={astroRef}
+						className="relative py-12 sm:py-16 md:py-24 bg-gradient-to-b from-transparent via-secondary/20 to-transparent"
 					>
 						<div className="container mx-auto px-4 sm:px-6 lg:px-8">
 							{/* Section Header */}
@@ -503,14 +645,12 @@ const Accompagnement = () => {
 														trackBookingClick(
 															service.title,
 														);
-														window.open(
-															service.calendlyLink,
-															"_blank",
-														);
+														window.location.href =
+															service.ctaHref;
 													}}
 												>
 													<Calendar className="w-4 h-4 mr-2" />
-													Réserver
+													{service.ctaLabel}
 													<ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover/btn:translate-x-1" />
 												</Button>
 											</div>
@@ -642,11 +782,8 @@ const Accompagnement = () => {
 										<div className="pt-5 border-t border-gold/15">
 											<div className="flex items-center justify-center gap-3 mb-4">
 												<p className="font-display text-xl font-bold text-gold">
-													60€ / 50€
+													60€
 												</p>
-												<span className="text-xs text-muted-foreground">
-													(à distance)
-												</span>
 											</div>
 											<div className="flex flex-wrap justify-center gap-x-4 gap-y-2 text-xs text-muted-foreground mb-4">
 												<span className="flex items-center gap-1 whitespace-nowrap">
@@ -656,7 +793,7 @@ const Accompagnement = () => {
 												<span className="flex items-center gap-1 whitespace-nowrap">
 													<MapPin className="w-3.5 h-3.5 text-accent flex-shrink-0" />
 													<span>
-														Présentiel / Distance
+														Présentiel
 													</span>
 												</span>
 											</div>
@@ -667,14 +804,12 @@ const Accompagnement = () => {
 											className="w-full max-w-sm mx-auto group/btn"
 											onClick={() => {
 												trackBookingClick("Reiki");
-												window.open(
-													CALENDLY_URLS.REIKI,
-													"_blank",
-												);
+												window.location.href =
+													PHONE_TEL_HREF;
 											}}
 										>
 											<Calendar className="w-4 h-4 mr-2" />
-											Réserver mon soin Reiki
+											Réserver mon soin Reiki par téléphone
 											<ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover/btn:translate-x-1" />
 										</Button>
 									</div>
@@ -700,340 +835,6 @@ const Accompagnement = () => {
 								« Un espace pour déposer ce que vous vivez, sans
 								filtre, vrai, humain. »
 							</blockquote>
-						</div>
-					</section>
-
-					{/* ===== ACCOMPAGNEMENT GLOBAL SECTION ===== */}
-					<section
-						ref={accompRef}
-						className="relative py-12 sm:py-16 md:py-24 bg-gradient-to-b from-transparent via-secondary/20 to-transparent"
-					>
-						<div className="container mx-auto px-4 sm:px-6 lg:px-8">
-							{/* Section Header avec image ronde et parallax */}
-							<div
-								className={`flex flex-col items-center gap-6 lg:flex-row lg:items-start lg:gap-12 mb-10 sm:mb-14 transition-all duration-1000 ${
-									accompInView
-										? "opacity-100 translate-y-0"
-										: "opacity-0 translate-y-8"
-								}`}
-							>
-								{/* Image ronde avec effet parallax - alignée avec le titre */}
-								<div
-									className="relative w-32 h-32 sm:w-40 sm:h-40 lg:w-56 lg:h-56 flex-shrink-0 lg:mt-12"
-									style={{
-										transform:
-											!mounted || isMobile
-												? "none"
-												: `translateY(${-parallaxOffsetSlow}px)`,
-									}}
-								>
-									<div className="absolute inset-0 rounded-full bg-gradient-to-br from-gold/20 to-accent/10 animate-gentle-pulse" />
-									<div className="absolute inset-1 sm:inset-2 rounded-full overflow-hidden border-2 border-gold/20 shadow-elegant">
-										<Image
-											src="/assets/seance-accompagnement.webp"
-											alt="Symbole d'accompagnement"
-											fill
-											sizes="(max-width: 640px) 128px, (max-width: 768px) 160px, 224px"
-											className="object-cover"
-										/>
-									</div>
-									<div className="absolute -top-2 -right-2 sm:-top-3 sm:-right-3 w-8 h-8 sm:w-10 sm:h-10 bg-card/90 backdrop-blur-sm rounded-full border border-gold/30 flex items-center justify-center shadow-soft">
-										<Heart className="w-4 h-4 sm:w-5 sm:h-5 text-gold" />
-									</div>
-								</div>
-
-								<div className="text-center flex-1">
-									<p className="section-label">
-										Accompagnement Complet
-									</p>
-									<h2 className="font-display text-xl sm:text-2xl lg:text-3xl text-navy mb-3">
-										<span className="font-calligraphic text-accent text-2xl sm:text-3xl lg:text-4xl inline-block align-baseline">
-											A
-										</span>
-										ccompagnement Global
-									</h2>
-									<p className="text-muted-foreground text-sm sm:text-base leading-relaxed max-w-xl mx-auto">
-										Astrologie • Reiki • Thérapie pour
-										traverser vos transitions de vie
-									</p>
-								</div>
-							</div>
-
-							{/* Format uniforme avec les autres cartes */}
-							<div className="max-w-4xl mx-auto">
-								<article
-									className={`group relative bg-card/80 backdrop-blur-sm rounded-3xl border border-border/30 shadow-soft hover:shadow-elegant hover:border-gold/30 transition-all duration-700 ${
-										accompInView
-											? "opacity-100 translate-y-0"
-											: "opacity-0 translate-y-8"
-									}`}
-									style={{ transitionDelay: "200ms" }}
-								>
-									<div className="flex flex-col lg:flex-row">
-										{/* Image side */}
-										<div className="relative lg:w-72 h-48 lg:h-auto overflow-hidden rounded-t-3xl lg:rounded-l-3xl lg:rounded-tr-none">
-											<Image
-												src="/assets/tarif-accompagnement.webp"
-												alt="Accompagnement global"
-												fill
-												className="object-cover transition-transform duration-700 group-hover:scale-110"
-											/>
-											<div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-card lg:bg-gradient-to-l" />
-											<div className="lg:hidden absolute inset-0 bg-gradient-to-t from-card via-card/50 to-transparent" />
-										</div>
-
-										{/* Icon badge hors du overflow-hidden */}
-										<div className="lg:-ml-7 lg:translate-y-1/2 w-14 h-14 rounded-xl bg-card/90 backdrop-blur-sm border-2 border-gold/30 flex items-center justify-center shadow-elegant">
-											<Heart className="w-7 h-7 text-gold" />
-										</div>
-
-										{/* Content side */}
-										<div className="flex-1 p-6 sm:p-8 lg:p-10">
-											<div className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-gold/15 text-gold text-xs font-medium rounded-full mb-3 border border-gold/20">
-												<Sparkles className="w-3 h-3 flex-shrink-0" />
-												<span>Transition</span>
-											</div>
-											<h3 className="font-display text-xl sm:text-2xl text-foreground mb-1">
-												Retrouver du sens
-											</h3>
-											<p className="text-accent text-sm font-medium mb-4">
-												Accompagnement global
-											</p>
-
-											<p className="text-muted-foreground text-sm leading-relaxed mb-6">
-												Cet accompagnement est fait pour
-												vous si vous ressentez le besoin
-												d'être écoutée vraiment, sans
-												jugement, si vous sortez d'une
-												rupture, d'un burn-out ou d'un
-												effondrement personnel.
-											</p>
-
-											{/* Features */}
-											<ul className="space-y-2 mb-6">
-												{[
-													"Un espace pour déposer ce que vous vivez sans filtre",
-													"On regarde ce que vous traversez sous un autre angle",
-													"Mini-analyse astrologique des énergies du moment",
-													"Soin Reiki ciblé pour un rééquilibrage",
-												].map((item, idx) => (
-													<li
-														key={idx}
-														className="flex items-center gap-2 text-sm text-foreground/80"
-													>
-														<Check className="w-4 h-4 text-accent flex-shrink-0" />
-														<span>{item}</span>
-													</li>
-												))}
-											</ul>
-
-											{/* Price & CTA */}
-											<div className="flex flex-col sm:flex-row sm:items-center gap-4 pt-5 border-t border-gold/15">
-												<div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-muted-foreground">
-													<span className="font-display text-xl font-bold text-gold">
-														75€
-													</span>
-													<span className="flex items-center gap-1">
-														<Clock className="w-4 h-4 text-accent flex-shrink-0" />
-														<span>1h30</span>
-													</span>
-													<span className="flex items-center gap-1 whitespace-nowrap">
-														<MapPin className="w-4 h-4 text-accent flex-shrink-0" />
-														<span>Présentiel</span>
-													</span>
-												</div>
-												<Button
-													variant="accent"
-													className="sm:ml-auto group/btn"
-													onClick={() => {
-														trackBookingClick(
-															"Accompagnement Carte Astro",
-														);
-														window.open(
-															CALENDLY_URLS.ACCOMPAGNEMENT_GLOBAL,
-															"_blank",
-														);
-													}}
-												>
-													<Calendar className="w-4 h-4 mr-2" />
-													Réserver
-													<ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover/btn:translate-x-1" />
-												</Button>
-											</div>
-										</div>
-									</div>
-								</article>
-							</div>
-						</div>
-					</section>
-
-					{/* ===== BILAN PRO SECTION ===== */}
-					<section
-						ref={bilanRef}
-						className="relative py-12 sm:py-16 md:py-24 bg-gradient-to-b from-transparent via-secondary/20 to-transparent"
-					>
-						<div className="container mx-auto px-4 sm:px-6 lg:px-8">
-							<div
-								className={`text-center mb-8 sm:mb-10 transition-all duration-1000 ${
-									bilanInView
-										? "opacity-100 translate-y-0"
-										: "opacity-0 translate-y-8"
-								}`}
-							>
-								<p className="section-label">Orientation</p>
-								<h2 className="font-display text-xl sm:text-2xl lg:text-3xl text-navy mb-2">
-									<span className="font-calligraphic text-accent text-2xl sm:text-3xl lg:text-4xl inline-block align-baseline">
-										B
-									</span>
-									ilan & Orientation Pro
-								</h2>
-								<p className="text-muted-foreground text-sm">
-									Astrologie • Coaching • Reconversion
-								</p>
-							</div>
-
-							{/* Mobile: Carousel / Desktop: Card */}
-							<div className="md:hidden">
-								<MobileServiceCarousel
-									services={[bilanService]}
-								/>
-							</div>
-
-							{/* Desktop */}
-							<div className="hidden md:block max-w-4xl mx-auto">
-								<article
-									className={`group relative bg-card/80 backdrop-blur-sm rounded-3xl border border-border/30 shadow-soft hover:shadow-elegant hover:border-accent/30 transition-all duration-700 ${
-										bilanInView
-											? "opacity-100 translate-y-0"
-											: "opacity-0 translate-y-8"
-									}`}
-									style={{ transitionDelay: "200ms" }}
-								>
-									<div className="flex flex-col lg:flex-row-reverse">
-										{/* Image side */}
-										<div className="relative lg:w-72 h-48 lg:h-auto overflow-hidden rounded-t-3xl lg:rounded-r-3xl lg:rounded-tl-none">
-											<Image
-												src="/assets/tarif-bilan-pro.webp"
-												alt="Bilan et Orientation Professionnelle"
-												fill
-												className="object-cover transition-transform duration-700 group-hover:scale-110"
-											/>
-											<div className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-card lg:bg-gradient-to-r" />
-											<div className="lg:hidden absolute inset-0 bg-gradient-to-t from-card via-card/50 to-transparent" />
-										</div>
-
-										{/* Icon badge hors du overflow-hidden */}
-										<div className="lg:-mr-7 lg:translate-y-1/2 w-14 h-14 rounded-xl bg-card/90 backdrop-blur-sm border-2 border-accent/30 flex items-center justify-center shadow-elegant">
-											<Compass className="w-7 h-7 text-accent" />
-										</div>
-
-										{/* Content side */}
-										<div className="flex-1 p-6 sm:p-8 lg:p-10">
-											<h3 className="font-display text-xl sm:text-2xl text-foreground mb-1">
-												Bilan Astro-Orientation
-											</h3>
-											<p className="text-accent text-sm font-medium mb-4">
-												Pour une vie pro alignée
-											</p>
-
-											<p className="text-muted-foreground text-sm leading-relaxed mb-6">
-												Vous vous posez des questions
-												sur votre vie professionnelle ?
-												Vous envisagez une reconversion,
-												vous voulez reprendre des études
-												ou vous lancer dans
-												l'entrepreneuriat ?
-											</p>
-
-											<ul className="space-y-2 mb-6">
-												{[
-													"Identifier vos talents innés via votre thème natal",
-													"Clarifier vos aspirations profondes",
-													"Définir un plan d'action aligné",
-												].map((item, idx) => (
-													<li
-														key={idx}
-														className="flex items-center gap-2 text-sm text-foreground/80"
-													>
-														<Check className="w-4 h-4 text-accent flex-shrink-0" />
-														<span>{item}</span>
-													</li>
-												))}
-											</ul>
-
-											{/* Price & CTA */}
-											<div className="flex flex-col sm:flex-row sm:items-center gap-4 pt-5 border-t border-accent/15">
-												<div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-muted-foreground">
-													<span className="font-display text-xl font-bold text-gold">
-														290€
-													</span>
-													<span className="flex items-center gap-1">
-														<Clock className="w-4 h-4 text-accent flex-shrink-0" />
-														<span>
-															4 séances d'1h30
-															complétées par des
-															rdv téléphoniques
-															réguliers
-														</span>
-													</span>
-													<span className="flex items-center gap-1 whitespace-nowrap">
-														<MapPin className="w-4 h-4 text-gold flex-shrink-0" />
-														<span>
-															Présentiel /
-															Distance
-														</span>
-													</span>
-												</div>
-
-												<Button
-													variant="accent"
-													className="w-full sm:w-auto flex-shrink-0 group/btn"
-													onClick={() => {
-														trackBookingClick(
-															"Bilan Astro-Orientation",
-														);
-														window.open(
-															CALENDLY_URLS.BILAN_PRO,
-															"_blank",
-														);
-													}}
-												>
-													<Calendar className="w-4 h-4 mr-2" />
-													Réserver
-													<ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover/btn:translate-x-1" />
-												</Button>
-											</div>
-											{/* Payment information */}
-											<div className="mt-4 pt-4 border-t border-gold/10">
-												<div className="flex items-start gap-2 text-sm text-muted-foreground/90">
-													<CreditCard className="w-4 h-4 mt-0.5 text-gold flex-shrink-0" />
-													<p className="leading-relaxed">
-														Il est possible de payer
-														en 3 fois. Si c'est le
-														cas, veuillez me
-														contacter directement
-														par{" "}
-														<a
-															href="tel:+33619151959"
-															className="text-accent hover:text-gold transition-colors underline underline-offset-2"
-														>
-															téléphone
-														</a>{" "}
-														ou par{" "}
-														<a
-															href="mailto:contact@lylusio.fr"
-															className="text-accent hover:text-gold transition-colors underline underline-offset-2"
-														>
-															mail
-														</a>
-														.
-													</p>
-												</div>
-											</div>
-										</div>
-									</div>
-								</article>
-							</div>
 						</div>
 					</section>
 

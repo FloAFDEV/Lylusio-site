@@ -233,7 +233,7 @@ export const howToSchema = {
       position: 2,
       name: 'Séance sur-mesure',
       text: 'En cabinet à Cépet (Toulouse Nord) ou en ligne, une séance sur-mesure en astrologie ou Reiki selon vos attentes.',
-      url: `${baseUrl}/accompagnement-toulouse`,
+      url: `${baseUrl}/accompagnement`,
     },
     {
       '@type': 'HowToStep',

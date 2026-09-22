@@ -3,6 +3,57 @@
  * Gère [caption], [gallery], [audio], [video], etc.
  */
 
+import { PHONE_TEL_HREF } from "./contact";
+
+const CALENDLY_HREF_PATTERN = /href\s*=\s*["']https?:\/\/(?:www\.)?calendly\.com\/[^"']*["']/i;
+const CALENDLY_URL_TEXT_PATTERN = /^https?:\/\/(?:www\.)?calendly\.com\//i;
+const CALENDLY_PHONE_LINK_TEXT = "Prendre rendez-vous par téléphone";
+
+/**
+ * Neutralise les anciens liens Calendly encore présents dans le contenu
+ * WordPress (articles rédigés avant la migration vers la prise de
+ * rendez-vous par téléphone). Réécrit le href vers le numéro centralisé
+ * et retire target="_blank", sans toucher aux autres attributs (class,
+ * rel, etc.). Le texte visible du lien est conservé tel quel, sauf s'il
+ * s'agit lui-même de l'URL Calendly brute (ex: texte du lien = l'URL
+ * copiée-collée) — dans ce seul cas, le texte est remplacé par un intitulé
+ * cohérent avec la nouvelle destination. Les autres textes éditoriaux des
+ * articles ne sont jamais modifiés.
+ * @param content - Contenu HTML brut ou déjà partiellement traité
+ * @returns Contenu avec les liens Calendly redirigés vers tel:
+ */
+export function replaceCalendlyLinks(content: string): string {
+	if (!content) return "";
+
+	return content.replace(
+		/<a\b([^>]*)>([\s\S]*?)<\/a>/gi,
+		(fullMatch, attrs, innerHtml) => {
+			if (!CALENDLY_HREF_PATTERN.test(attrs)) {
+				return fullMatch;
+			}
+
+			let updatedAttrs = attrs.replace(
+				CALENDLY_HREF_PATTERN,
+				`href="${PHONE_TEL_HREF}"`
+			);
+			updatedAttrs = updatedAttrs.replace(
+				/\s+target\s*=\s*["']_blank["']/i,
+				""
+			);
+
+			// Le texte visible n'est remplacé que s'il s'agit lui-même de
+			// l'URL Calendly brute (aucun autre texte éditorial n'est touché)
+			const updatedInnerHtml = CALENDLY_URL_TEXT_PATTERN.test(
+				innerHtml.trim()
+			)
+				? CALENDLY_PHONE_LINK_TEXT
+				: innerHtml;
+
+			return `<a${updatedAttrs}>${updatedInnerHtml}</a>`;
+		}
+	);
+}
+
 /**
  * Supprime tous les shortcodes WordPress d'un contenu HTML
  * @param content - Contenu HTML brut depuis WordPress
@@ -110,6 +161,9 @@ export function processWordPressContent(content: string): string {
 
 	// 7. Supprimer les attributs style inline
 	processed = processed.replace(/\sstyle="[^"]*"/gi, "");
+
+	// 7b. Neutraliser les anciens liens Calendly (migration vers tel:)
+	processed = replaceCalendlyLinks(processed);
 
 	// 8. Nettoyer les espaces multiples et paragraphes vides (DOIT être à la fin)
 	processed = processed.replace(/\s{2,}/g, " ");

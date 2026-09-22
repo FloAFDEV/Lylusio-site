@@ -73,6 +73,12 @@ const nextConfig: NextConfig = {
 			destination: "/blog/transition-2025-2026-janvier-nest-pas-un-sprint",
 			permanent: true,
 		},
+		// Ancienne URL de la page Consultations & Tarifs (route canonique désormais /accompagnement)
+		{
+			source: "/accompagnement-toulouse/:path*",
+			destination: "/accompagnement",
+			permanent: true,
+		},
 		{
 			source: "/:path*",
 			has: [
@@ -96,9 +102,15 @@ const nextConfig: NextConfig = {
 				destination: "/reiki-toulouse",
 				permanent: true,
 			},
+			// Ancienne URL Reiki (signalée) : /astrologue-cepet-toulouse/soins_reiki/
+			{
+				source: "/astrologue-cepet-toulouse/soins_reiki/:path*",
+				destination: "/reiki-toulouse",
+				permanent: true,
+			},
 			{
 				source: "/astrologue-cepet-toulouse/accompagnements/:path*",
-				destination: "/accompagnement-toulouse",
+				destination: "/accompagnement",
 				permanent: true,
 			},
 			{
@@ -174,7 +186,7 @@ const nextConfig: NextConfig = {
 			},
 			{
 				source: "/accueil/accompagnements/:path*",
-				destination: "/accompagnement-toulouse",
+				destination: "/accompagnement",
 				permanent: true,
 			},
 			{
@@ -243,12 +255,12 @@ const nextConfig: NextConfig = {
 			},
 			{
 				source: "/services",
-				destination: "/accompagnement-toulouse",
+				destination: "/accompagnement",
 				permanent: true,
 			},
 			{
 				source: "/therapie-energetique",
-				destination: "/accompagnement-toulouse",
+				destination: "/accompagnement",
 				permanent: true,
 			},
 			{
@@ -259,11 +271,6 @@ const nextConfig: NextConfig = {
 			{
 				source: "/reiki",
 				destination: "/reiki-toulouse",
-				permanent: true,
-			},
-			{
-				source: "/accompagnement",
-				destination: "/accompagnement-toulouse",
 				permanent: true,
 			},
 			{
@@ -298,7 +305,7 @@ const nextConfig: NextConfig = {
 						value: [
 							"default-src 'self'",
 							// Google Tag Manager + Google Analytics + Google Ads
-							"script-src 'self' 'unsafe-eval' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://region1.google-analytics.com https://googleads.g.doubleclick.net https://www.googleadservices.com https://calendly.com",
+							"script-src 'self' 'unsafe-eval' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://region1.google-analytics.com https://googleads.g.doubleclick.net https://www.googleadservices.com",
 							"style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://www.googleadservices.com",
 							"font-src 'self' https://fonts.gstatic.com data:",
 							// Google Ads tracking pixels + conversions
@@ -307,7 +314,7 @@ const nextConfig: NextConfig = {
 							// Google Ads API calls
 							"connect-src 'self' https://lylusio.fr https://admin.lylusio.fr https://www.google-analytics.com https://analytics.google.com https://region1.google-analytics.com https://region1.analytics.google.com https://www.google.com https://www.googletagmanager.com https://googleads.g.doubleclick.net https://www.googleadservices.com",
 							// Google Ads iframes
-							"frame-src 'self' https://calendly.com https://www.youtube.com https://www.youtube-nocookie.com https://www.googletagmanager.com https://www.google.com https://bid.g.doubleclick.net",
+							"frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com https://www.googletagmanager.com https://www.google.com https://bid.g.doubleclick.net",
 							"object-src 'none'",
 							"base-uri 'self'",
 							"form-action 'self'",

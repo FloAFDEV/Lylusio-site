@@ -25,7 +25,7 @@ import {
 } from "lucide-react";
 import { useParallax } from "@/hooks/useParallax";
 import { useInView } from "@/hooks/useInView";
-import { CALENDLY_URLS } from "@/lib/calendly";
+import { PHONE_TEL_HREF } from "@/lib/contact";
 
 const Astrologie = () => {
 	const parallaxOffset = useParallax(0.15);
@@ -183,15 +183,13 @@ const Astrologie = () => {
 											variant="accent"
 											size="lg"
 											className="group"
-											onClick={() =>
-												window.open(
-													CALENDLY_URLS.THEME_NATAL,
-													"_blank"
-												)
-											}
+											onClick={() => {
+												window.location.href =
+													PHONE_TEL_HREF;
+											}}
 										>
 											<Calendar className="w-5 h-5 mr-2" />
-											Réserver ma consultation
+											Réserver par téléphone
 											<ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
 										</Button>
 										<Link href="/category/blog/astrologie">
@@ -397,19 +395,17 @@ const Astrologie = () => {
 										<Button
 											variant="accent"
 											className="w-full group/btn relative overflow-hidden shadow-[0_4px_20px_-4px_hsl(var(--accent)/0.3)] hover:shadow-[0_8px_30px_-4px_hsl(var(--accent)/0.5),0_0_20px_-4px_hsl(var(--gold)/0.3)] hover:scale-105 transition-all duration-300"
-											onClick={() =>
-												window.open(
-													CALENDLY_URLS.THEME_NATAL,
-													"_blank"
-												)
-											}
+											onClick={() => {
+												window.location.href =
+													PHONE_TEL_HREF;
+											}}
 										>
 											{/* Internal glow animation */}
 											<span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover/btn:translate-x-[100%] transition-transform duration-700 ease-out" />
 
 											<Calendar className="w-4 h-4 mr-2 group-hover/btn:rotate-12 transition-transform duration-300" />
 											<span className="relative">
-												Réserver
+												Réserver par téléphone
 											</span>
 											<ArrowRight className="w-4 h-4 ml-2 group-hover/btn:translate-x-2 transition-transform duration-300" />
 										</Button>
@@ -502,19 +498,17 @@ const Astrologie = () => {
 										<Button
 											variant="accent"
 											className="w-full group/btn relative overflow-hidden shadow-[0_4px_20px_-4px_hsl(var(--gold)/0.3)] hover:shadow-[0_8px_30px_-4px_hsl(var(--gold)/0.5),0_0_20px_-4px_hsl(var(--accent)/0.3)] hover:scale-105 transition-all duration-300"
-											onClick={() =>
-												window.open(
-													CALENDLY_URLS.TRANSITS,
-													"_blank"
-												)
-											}
+											onClick={() => {
+												window.location.href =
+													PHONE_TEL_HREF;
+											}}
 										>
 											{/* Internal glow animation */}
 											<span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover/btn:translate-x-[100%] transition-transform duration-700 ease-out" />
 
 											<Calendar className="w-4 h-4 mr-2 group-hover/btn:rotate-12 transition-transform duration-300" />
 											<span className="relative">
-												Réserver
+												Réserver par téléphone
 											</span>
 											<ArrowRight className="w-4 h-4 ml-2 group-hover/btn:translate-x-2 transition-transform duration-300" />
 										</Button>

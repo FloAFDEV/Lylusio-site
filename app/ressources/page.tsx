@@ -5,13 +5,12 @@ import { ArrowRight, ExternalLink, Sparkles, Calendar } from "lucide-react";
 
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import FloatingCTA from "@/components/FloatingCTA";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { Button } from "@/components/ui/button";
 import { YouTubeEmbed } from "@/components/YouTubeEmbed";
 import { getYouTubeVideoInfo } from "@/lib/youtube";
 import { generateMetadata as genMeta } from "@/content/seo";
-import CALENDLY_URLS from "@/lib/calendly";
+import { PHONE_TEL_HREF } from "@/lib/contact";
 import ArticleCard from "@/components/ressources/ArticleCard";
 import { ressourceArticles } from "@/lib/ressources";
 
@@ -85,7 +84,6 @@ export default async function RessourcesPage() {
 			/>
 
 			<Header />
-			<FloatingCTA />
 			<Breadcrumbs />
 
 			<main
@@ -509,17 +507,15 @@ export default async function RessourcesPage() {
 									className="w-full sm:w-auto group"
 								>
 									<a
-										href={CALENDLY_URLS.GENERAL}
-										target="_blank"
-										rel="noopener noreferrer"
-										aria-label="Réserver votre séance avec Émilie Perez (ouvre Calendly dans un nouvel onglet)"
+										href={PHONE_TEL_HREF}
+										aria-label="Appeler Émilie Perez pour réserver votre séance"
 										className="inline-flex items-center gap-2"
 									>
 										<Calendar
 											className="w-5 h-5"
 											aria-hidden="true"
 										/>
-										<span>Réserver votre séance</span>
+										<span>Réserver par téléphone</span>
 										<ArrowRight
 											className="w-4 h-4 group-hover:translate-x-1 transition-transform"
 											aria-hidden="true"
@@ -534,7 +530,7 @@ export default async function RessourcesPage() {
 									className="w-full sm:w-auto group"
 								>
 									<Link
-										href="/accompagnement-toulouse"
+										href="/accompagnement"
 										aria-label="Découvrir toutes les prestations d'accompagnement"
 										className="inline-flex items-center gap-2"
 									>

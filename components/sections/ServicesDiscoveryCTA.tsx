@@ -38,10 +38,10 @@ export default function ServicesDiscoveryCTA({
 		reiki: variant === "toulouse" ? "/reiki-toulouse" : "/reiki",
 		accompagnement:
 			variant === "toulouse"
-				? "/accompagnement-toulouse"
+				? "/accompagnement"
 				: "/accompagnement",
 		services:
-			variant === "toulouse" ? "/accompagnement-toulouse" : "/services",
+			variant === "toulouse" ? "/accompagnement" : "/services",
 	};
 
 	return (

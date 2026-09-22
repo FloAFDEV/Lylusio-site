@@ -6,10 +6,9 @@ import { ArrowLeft, Clock, CalendarDays } from "lucide-react";
 
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import FloatingCTA from "@/components/FloatingCTA";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { Button } from "@/components/ui/button";
-import CALENDLY_URLS from "@/lib/calendly";
+import { PHONE_TEL_HREF } from "@/lib/contact";
 import {
 	getRessourceArticleBySlug,
 	getAllRessourceSlugs,
@@ -142,7 +141,7 @@ const categoryServiceLink: Record<RessourceArticle["category"], { href: string; 
 	{
 		astrologie: { href: "/astrologie-toulouse", label: "Consultation d'astrologie" },
 		reiki: { href: "/reiki-toulouse", label: "Séance de Reiki" },
-		"developpement-personnel": { href: "/accompagnement-toulouse", label: "Accompagnement" },
+		"developpement-personnel": { href: "/accompagnement", label: "Accompagnement" },
 	};
 
 export default async function RessourceArticlePage({
@@ -180,7 +179,6 @@ export default async function RessourceArticlePage({
 			/>
 
 			<Header />
-			<FloatingCTA />
 			<Breadcrumbs customTitle={article.title} />
 
 			<main id="main-content" className="min-h-screen bg-background">
@@ -296,12 +294,10 @@ export default async function RessourceArticlePage({
 						<div className="flex flex-col sm:flex-row gap-3 justify-center">
 							<Button asChild variant="accent" size="lg">
 								<a
-									href={CALENDLY_URLS.GENERAL}
-									target="_blank"
-									rel="noopener noreferrer"
-									aria-label="Réserver votre séance avec Émilie Perez (ouvre Calendly)"
+									href={PHONE_TEL_HREF}
+									aria-label="Appeler Émilie Perez pour réserver votre séance"
 								>
-									Réserver une séance
+									Réserver par téléphone
 								</a>
 							</Button>
 							<Button asChild variant="outline" size="lg">

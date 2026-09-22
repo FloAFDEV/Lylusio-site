@@ -206,7 +206,7 @@ const TherapieHolistique = () => {
 									</p>
 
 									<div className="flex flex-col sm:flex-row gap-4">
-										<Link href="/accompagnement-toulouse">
+										<Link href="/accompagnement">
 											<Button
 												variant="elegant"
 												size="lg"
@@ -661,7 +661,7 @@ const TherapieHolistique = () => {
 									personnel vers un mieux-être global.
 								</p>
 
-								<Link href="/accompagnement-toulouse">
+								<Link href="/accompagnement">
 									<Button
 										variant="elegant"
 										size="lg"

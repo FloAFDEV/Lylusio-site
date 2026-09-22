@@ -18,7 +18,10 @@ interface ServiceItem {
   duration: string;
   format: string;
   features?: string[];
-  calendlyLink: string;
+  /** Lien du bouton d'action (tel:, mailto: ou URL externe) */
+  ctaHref: string;
+  /** Libellé du bouton d'action (par défaut "Réserver") */
+  ctaLabel?: string;
   isHighlighted?: boolean;
   paymentInfo?: {
     phone: string;
@@ -198,11 +201,15 @@ const MobileServiceCarousel = ({ services, className = "" }: MobileServiceCarous
                 className="w-full min-h-[44px] text-sm"
                 onClick={() => {
                   trackBookingClick(service.title);
-                  window.open(service.calendlyLink, "_blank");
+                  if (service.ctaHref.startsWith("tel:") || service.ctaHref.startsWith("mailto:")) {
+                    window.location.href = service.ctaHref;
+                  } else {
+                    window.open(service.ctaHref, "_blank");
+                  }
                 }}
               >
                 <Calendar className="w-4 h-4 mr-2 flex-shrink-0" />
-                <span className="truncate">Réserver</span>
+                <span className="truncate">{service.ctaLabel || "Réserver"}</span>
                 <ArrowRight className="w-4 h-4 ml-2 flex-shrink-0" />
               </Button>
 

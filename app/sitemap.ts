@@ -55,7 +55,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 			priority: 0.9
 		},
 		{
-			url: `${baseUrl}/accompagnement-toulouse`,
+			url: `${baseUrl}/accompagnement`,
 			lastModified: new Date("2026-04-06"),
 			changeFrequency: "monthly",
 			priority: 0.9

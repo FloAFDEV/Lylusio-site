@@ -11,7 +11,7 @@ export default function ReikiPage() {
     description: 'Soins énergétiques Reiki Usui et formations certifiantes (1er, 2ème et 3ème degré)',
     url: 'https://lylusio.fr/reiki-toulouse',
     image: 'https://lylusio.fr/assets/reiki-histoire.webp',
-    price: '70',
+    price: '60',
   });
 
   const breadcrumbSchema = {

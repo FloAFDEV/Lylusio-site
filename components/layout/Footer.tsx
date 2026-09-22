@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import GoldenPlantBadge from "@/components/GoldenPlantBadge";
 import { HoneypotContact } from "@/components/ClickToReveal";
 import { useAnalyticsEvent } from "@/hooks/useAnalytics";
+import { PHONE_TEL_HREF, PHONE_DISPLAY } from "@/lib/contact";
 
 const TitleIconSpacer = () => (
 	<span
@@ -102,14 +103,14 @@ const Footer = () => {
 		{ href: "/", label: "Accueil" },
 		{ href: "/emilie-perez", label: "Qui suis-je" },
 		{ href: "/approche-therapeutique", label: "Mon Approche" },
-		{ href: "/accompagnement-toulouse", label: "Consultations & Tarifs" },
+		{ href: "/astrologie-toulouse", label: "Astrologie" },
+		{ href: "/reiki-toulouse", label: "Reiki" },
 		{
 			href: "/therapie-holistique",
 			label: "Thérapie Holistique",
 			indent: true,
 		},
-		{ href: "/reiki-toulouse", label: "Reiki", indent: true },
-		{ href: "/astrologie-toulouse", label: "Astrologie" },
+		{ href: "/accompagnement", label: "Consultations & Tarifs" },
 	], []);
 
 	const secondaryNavLinks = useMemo(() => [
@@ -127,7 +128,7 @@ const Footer = () => {
 			<Button
 				asChild
 				size="lg"
-				aria-label="Réserver une séance avec Émilie Perez via Calendly"
+				aria-label="Appeler Émilie Perez pour prendre rendez-vous"
 				className="
         relative w-full sm:w-auto
         bg-gold-light text-foreground
@@ -139,12 +140,10 @@ const Footer = () => {
 				onClick={() => trackBookingClick("footer_cta")}
 			>
 				<a
-					href="https://calendly.com/lylusio-fr"
-					target="_blank"
-					rel="noopener noreferrer"
+					href={PHONE_TEL_HREF}
 					className="flex items-center gap-2"
 				>
-					<span className="font-medium">Réserver une séance</span>
+					<span className="font-medium">Réserver par téléphone</span>
 					<svg
 						className="w-5 h-5 transform group-hover/cta:translate-x-1 transition-transform duration-500"
 						fill="none"
@@ -446,7 +445,7 @@ const Footer = () => {
 							<ul className="space-y-4 md:space-y-5 mt-4 md:mt-6">
 								<li itemProp="telephone">
 									<a
-										href="tel:+33619151959"
+									href={PHONE_TEL_HREF}
 										onClick={() => trackContactClick("phone")}
 										className="flex items-center gap-3 text-primary-foreground/70 hover:text-primary-foreground transition-colors duration-300 text-sm md:text-base group"
 									>
@@ -457,7 +456,7 @@ const Footer = () => {
 											/>
 										</div>
 										<span className="group-hover:translate-x-1.5 transition-transform duration-300">
-											06 19 15 19 59
+										{PHONE_DISPLAY}
 										</span>
 									</a>
 								</li>

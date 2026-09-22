@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import { Phone, Mail, MapPin, Calendar, Eye } from "lucide-react";
 import { useInView } from "@/hooks/useInView";
 import { HoneypotContact } from "@/components/ClickToReveal";
+import { PHONE_TEL_HREF, PHONE_DISPLAY, EMAIL_MAILTO_HREF, EMAIL } from "@/lib/contact";
 
 /* Composant pour afficher la première lettre en calligraphie */
 const CalligraphicLabel = ({ label }: { label: string }) => (
@@ -143,9 +144,9 @@ const ContactCards = () => {
 				onReveal={() => setShowPhone(true)}
 				revealText="Afficher le numéro"
 				revealedContent={
-					<p className="text-muted-foreground">06 19 15 19 59</p>
+					<p className="text-muted-foreground">{PHONE_DISPLAY}</p>
 				}
-				href="tel:+33619151959"
+				href={PHONE_TEL_HREF}
 				isInView={isInView}
 				delay={0}
 			/>
@@ -158,9 +159,9 @@ const ContactCards = () => {
 				onReveal={() => setShowEmail(true)}
 				revealText="Afficher l'email"
 				revealedContent={
-					<p className="text-muted-foreground">contact@lylusio.fr</p>
+					<p className="text-muted-foreground">{EMAIL}</p>
 				}
-				href="mailto:contact@lylusio.fr"
+				href={EMAIL_MAILTO_HREF}
 				isInView={isInView}
 				delay={100}
 			/>
@@ -197,11 +198,9 @@ const ContactCards = () => {
 				</div>
 			</a>
 
-			{/* Calendly Card */}
+			{/* Rendez-vous Card */}
 			<a
-				href="https://calendly.com/lylusio-fr"
-				target="_blank"
-				rel="noopener noreferrer"
+				href={PHONE_TEL_HREF}
 				className={`card-soft flex items-center gap-4 transition-all duration-500 ease-out hover:border-accent/30 hover:-translate-y-1 hover:shadow-lg hover:shadow-accent/5 group ${
 					isInView
 						? "opacity-100 translate-y-0"
@@ -216,8 +215,8 @@ const ContactCards = () => {
 					<p className="font-display text-lg text-foreground">
 						<CalligraphicLabel label="Rendez-vous" />
 					</p>
-					<p className="text-muted-foreground text-sm font-white">
-						Réserver une séance en ligne
+					<p className="text-muted-foreground text-sm">
+						Les rendez-vous se prennent par téléphone
 					</p>
 				</div>
 			</a>

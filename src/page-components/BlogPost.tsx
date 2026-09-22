@@ -17,7 +17,7 @@ import * as utils from "@/lib/utils";
 import { getOptimizedImageUrl, transformContentImages } from "@/lib/wordpress-images";
 import { processWordPressContent } from "@/lib/wordpress-shortcodes";
 import { optimizeContentImages } from "@/lib/wordpress-content-images";
-import { CALENDLY_URLS } from "@/lib/calendly";
+import { PHONE_TEL_HREF } from "@/lib/contact";
 
 import {
 	ArrowLeft,
@@ -70,37 +70,6 @@ interface RelatedPost {
 	date: string;
 	excerpt: string;
 }
-
-// Helper to determine Calendly URL based on article categories
-const getCalendlyUrlFromCategories = (
-	categories: { id: number; name: string; slug: string }[]
-): string => {
-	const categorySlugs = categories.map((cat) => cat.slug.toLowerCase());
-
-	// Check if article is about astrology
-	if (
-		categorySlugs.some(
-			(slug) => slug.includes("astrologie") || slug.includes("astro")
-		)
-	) {
-		return CALENDLY_URLS.THEME_NATAL;
-	}
-
-	// Check if article is about reiki
-	if (
-		categorySlugs.some(
-			(slug) =>
-				slug.includes("reiki") ||
-				slug.includes("energie") ||
-				slug.includes("energetique")
-		)
-	) {
-		return CALENDLY_URLS.REIKI;
-	}
-
-	// Default to general Calendly
-	return CALENDLY_URLS.GENERAL;
-};
 
 const removeFeaturedImageFromContent = (
 	content: string,
@@ -447,11 +416,9 @@ const BlogPost = ({ initialData }: BlogPostProps = {}) => {
 		window.scrollTo(0, 0);
 	}, [slug]);
 
-	// Redirect all internal article links to Calendly based on article category
+	// Redirect all internal article links to the phone booking CTA
 	useEffect(() => {
 		if (!post) return;
-
-		const calendlyUrl = getCalendlyUrlFromCategories(post.categories);
 
 		const handleArticleLinksClick = (e: MouseEvent) => {
 			const target = e.target as HTMLElement;
@@ -460,7 +427,7 @@ const BlogPost = ({ initialData }: BlogPostProps = {}) => {
 			// Only intercept links inside the article content
 			if (link && link.closest(".prose")) {
 				e.preventDefault();
-				window.open(calendlyUrl, "_blank", "noopener,noreferrer");
+				window.location.href = PHONE_TEL_HREF;
 			}
 		};
 

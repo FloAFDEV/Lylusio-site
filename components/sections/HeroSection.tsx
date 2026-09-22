@@ -4,6 +4,7 @@ import { memo, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import { ChevronDown, MapPin } from "lucide-react";
 import Image from "next/image";
+import { PHONE_TEL_HREF } from "@/lib/contact";
 
 // ===========================
 // DECORATIVE CIRCLES
@@ -146,14 +147,10 @@ const HeroSection = () => {
 							asChild
 							size="lg"
 							className="bg-gold-light text-foreground hover:bg-navy hover:text-white font-medium px-8 motion-safe:transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2"
-							aria-label="Réserver une séance de consultation sur Calendly"
+							aria-label="Appeler pour prendre rendez-vous"
 						>
-							<a
-								href="https://calendly.com/lylusio-fr"
-								target="_blank"
-								rel="noopener noreferrer"
-							>
-								Réserver une séance
+							<a href={PHONE_TEL_HREF}>
+								Réserver par téléphone
 							</a>
 						</Button>
 					</div>

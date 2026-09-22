@@ -5,6 +5,7 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { useInView } from "@/hooks/useInView";
 import { useAnalyticsEvent } from "@/hooks/useAnalytics";
+import { PHONE_TEL_HREF } from "@/lib/contact";
 import {
 	Star,
 	Moon,
@@ -28,8 +29,7 @@ const services = [
 		duration: "1h30 à 2h",
 		format: "Présentiel ou distance",
 		href: "/astrologie-toulouse",
-		calendlyLink:
-			"https://calendly.com/lylusio-fr/themenatal?month=2025-12",
+		ctaHref: PHONE_TEL_HREF,
 	},
 	{
 		image: "/assets/seance-reiki-zen.webp",
@@ -40,10 +40,9 @@ const services = [
 			"Soin énergétique pour libérer les tensions et retrouver l'harmonie intérieure.",
 		price: "60€ / séance",
 		duration: "1h15 à 1h30",
-		format: "Présentiel ou distance",
+		format: "Présentiel",
 		href: "/reiki-toulouse",
-		calendlyLink:
-			"https://calendly.com/lylusio-fr/soin-energetique-reiki?month=2025-12",
+		ctaHref: PHONE_TEL_HREF,
 	},
 	{
 		image: "/assets/seance-accompagnement.webp",
@@ -55,8 +54,8 @@ const services = [
 		price: "À partir de 75€",
 		duration: "Variable",
 		format: "Présentiel ou distance",
-		href: "/accompagnement-toulouse",
-		calendlyLink: "https://calendly.com/lylusio-fr",
+		href: "/accompagnement",
+		ctaHref: PHONE_TEL_HREF,
 	},
 ];
 
@@ -210,10 +209,19 @@ const ServicesPreview = () => {
 														trackBookingClick(
 															service.title
 														);
-														window.open(
-															service.calendlyLink,
-															"_blank"
-														);
+														if (
+															service.ctaHref.startsWith(
+																"tel:"
+															)
+														) {
+															window.location.href =
+																service.ctaHref;
+														} else {
+															window.open(
+																service.ctaHref,
+																"_blank"
+															);
+														}
 													}}
 													className="px-2.5 md:px-3 h-8 md:h-9"
 													aria-label={`Réserver ${service.title}`}
@@ -321,7 +329,7 @@ const ServicesPreview = () => {
 						}`}
 					>
 						<Link
-							href="/accompagnement-toulouse"
+							href="/accompagnement"
 							aria-label="Voir tous les services proposés"
 						>
 							<Button

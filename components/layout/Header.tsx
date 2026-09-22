@@ -21,9 +21,9 @@ const MenuLabel = ({ label }: { label: string }) => (
 /* =========================
    Navigation data
 ========================= */
-const accompagnementsSubItems = [
-	{ label: "Thérapie Holistique", href: "/therapie-holistique" },
+const reikiSubItems = [
 	{ label: "Reiki", href: "/reiki-toulouse" },
+	{ label: "Thérapie Holistique", href: "/therapie-holistique" },
 ];
 const mainLinks = [
 	{ label: "Accueil", href: "/" },
@@ -31,11 +31,12 @@ const mainLinks = [
 	{ label: "Mon Approche", href: "/approche-therapeutique" },
 	{ label: "Astrologie", href: "/astrologie-toulouse" },
 	{
-		label: "Consultations & Tarifs",
-		href: "/accompagnement-toulouse",
+		label: "Reiki",
+		href: "/reiki-toulouse",
 		hasSubmenu: true,
-		subItems: accompagnementsSubItems,
+		subItems: reikiSubItems,
 	},
+	{ label: "Consultations & Tarifs", href: "/accompagnement" },
 	{ label: "Ressources", href: "/ressources" },
 	{ label: "Blog", href: "/blog" },
 	{ label: "Contact", href: "/contact" },
@@ -256,22 +257,6 @@ export const Header = () => {
 														</Link>
 													)
 												)}
-
-												{/* Lien direct vers la page Accompagnements */}
-												<Link
-													href={link.href}
-													onClick={handleNavClick}
-													className="block px-5 py-3 text-[13px] font-medium text-muted-foreground hover:text-accent hover:bg-accent/5 motion-safe:transition-all duration-&lsqb;750ms&rsqb; ease-out focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-inset border-t border-accent/15 group/all relative overflow-hidden"
-												>
-													<span className="relative z-10 flex items-center gap-1.5">
-														<span>→</span>
-														<span>
-															Voir tous les
-															accompagnements
-														</span>
-													</span>
-													<span className="absolute inset-0 bg-gradient-to-r from-transparent via-accent/5 to-transparent -translate-x-full group-hover/all:translate-x-full motion-safe:transition-transform duration-&lsqb;800ms&rsqb; ease-out" />
-												</Link>
 											</div>
 									</div>
 								</div>
@@ -458,46 +443,6 @@ export const Header = () => {
 															/>
 														</Link>
 													)
-												)}
-
-												{/* Lien direct vers la page Accompagnements */}
-												{mobileSubmenuOpen[
-													link.label
-												] && (
-													<Link
-														href={link.href}
-														onClick={handleNavClick}
-														className="block text-sm text-muted-foreground hover:text-accent py-2 pl-2 transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-lg"
-														style={{
-															opacity:
-																mobileSubmenuOpen[
-																	link.label
-																]
-																	? 1
-																	: 0,
-															transform:
-																mobileSubmenuOpen[
-																	link.label
-																]
-																	? "translateX(0)"
-																	: "translateX(1rem)",
-															transitionDelay:
-																mobileSubmenuOpen[
-																	link.label
-																]
-																	? `${
-																			(link
-																				.subItems
-																				?.length ||
-																				0) *
-																			80 + 100
-																	  }ms`
-																	: "0ms",
-														}}
-													>
-														→ Voir tous les
-														accompagnements
-													</Link>
 												)}
 											</div>
 										</div>

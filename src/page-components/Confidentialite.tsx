@@ -102,7 +102,7 @@ const Confidentialite = () => (
 							</ul>
 							<p className="leading-relaxed mt-4">
 								Ces données sont collectées uniquement dans le
-								cadre de la prise de rendez-vous via Calendly et
+								cadre de la prise de rendez-vous par téléphone et
 								de la réalisation des prestations.
 							</p>
 						</section>
@@ -155,7 +155,7 @@ const Confidentialite = () => (
 							</p>
 							<ul className="list-disc pl-6 space-y-2">
 								<li>
-									Gérer les prises de rendez-vous via Calendly
+									Gérer les prises de rendez-vous par téléphone
 								</li>
 								<li>
 									Réaliser les consultations d'astrologie et

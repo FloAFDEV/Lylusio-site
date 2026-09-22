@@ -15,7 +15,7 @@ const routeConfig: Record<
 		name: "Mon Approche",
 		seoName: "Approche Thérapeutique",
 	},
-	"/accompagnement-toulouse": {
+	"/accompagnement": {
 		name: "Consultations & Tarifs",
 		seoName: "Consultations & Tarifs Toulouse",
 	},
@@ -27,12 +27,12 @@ const routeConfig: Record<
 	"/reiki-toulouse": {
 		name: "Reiki",
 		seoName: "Reiki Toulouse",
-		parent: "/accompagnement-toulouse",
+		// Pas de parent - page autonome
 	},
 	"/therapie-holistique": {
 		name: "Thérapie Holistique",
 		seoName: "Thérapie Holistique",
-		parent: "/accompagnement-toulouse",
+		parent: "/reiki-toulouse",
 	},
 	"/emilie-perez": { name: "Qui suis-je", seoName: "Émilie Perez" },
 	"/ressources": { name: "Ressources", seoName: "Ressources" },

@@ -158,7 +158,7 @@ const CGU = () => {
 									</li>
 									<li>
 										<Link
-											href="/accompagnement-toulouse"
+											href="/accompagnement"
 											className="text-accent hover:underline"
 										>
 											Accompagnement personnalisé pour les
@@ -231,9 +231,9 @@ const CGU = () => {
 									7. Prise de rendez-vous et annulation
 								</h2>
 								<p className="text-foreground/80 leading-relaxed">
-									Les rendez-vous sont pris via la plateforme
-									Calendly. Lors de la réservation, vous
-									acceptez les présentes conditions.
+									Les rendez-vous sont pris par téléphone. Lors
+									de la réservation, vous acceptez les
+									présentes conditions.
 								</p>
 								<p className="text-foreground/80 leading-relaxed mt-4">
 									<strong>Conditions d'annulation :</strong>
@@ -263,7 +263,7 @@ const CGU = () => {
 									Les tarifs des prestations sont indiqués sur
 									la page{" "}
 									<Link
-										href="/accompagnement-toulouse"
+										href="/accompagnement"
 										className="text-accent hover:underline"
 									>
 										Accompagnement & Tarifs

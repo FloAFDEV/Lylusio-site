@@ -11,7 +11,8 @@ import { Button } from "@/components/ui/button";
 import { useInView } from "@/hooks/useInView";
 import { useParallax } from "@/hooks/useParallax";
 import { useMemo, useState, useEffect } from "react";
-import { ArrowRight, Quote } from "lucide-react";
+import { ArrowRight, Phone, Quote } from "lucide-react";
+import { PHONE_TEL_HREF, PHONE_DISPLAY } from "@/lib/contact";
 
 // Astro stars decoration component
 const AstroStars = ({ count = 15 }: { count?: number }) => {
@@ -1253,17 +1254,17 @@ const About = () => {
 										votre cheminement personnel, en cabinet à Cépet au nord de Toulouse, ou à distance depuis Montauban et partout en France.
 									</p>
 									<div className="flex flex-col sm:flex-row gap-4 justify-center">
-										<Link href="https://calendly.com/lylusio-fr">
+										<a href={PHONE_TEL_HREF}>
 											<Button
 												variant="accent"
 												size="lg"
 												className="w-full sm:w-auto"
 											>
-												Prenez rendez-vous dès maintenant
-												<ArrowRight className="ml-2 w-4 h-4" />
+												<Phone className="mr-2 w-4 h-4" />
+												{PHONE_DISPLAY}
 											</Button>
-										</Link>
-										<Link href="/accompagnement-toulouse">
+										</a>
+										<Link href="/accompagnement">
 											<Button
 												variant="outline"
 												size="lg"

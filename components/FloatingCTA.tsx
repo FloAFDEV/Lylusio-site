@@ -2,9 +2,10 @@
 
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
-import { Calendar } from "lucide-react";
+import { Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useAnalyticsEvent } from "@/hooks/useAnalytics";
+import { PHONE_TEL_HREF } from "@/lib/contact";
 
 const FloatingCTA = () => {
 	const [isVisible, setIsVisible] = useState(false);
@@ -93,19 +94,17 @@ const FloatingCTA = () => {
 				className="bg-gold-light hover:bg-navy text-foreground hover:text-white shadow-soft px-3 sm:px-4 py-2.5 transition-colors duration-300"
 			>
 				<a
-					href="https://calendly.com/lylusio-fr"
-					target="_blank"
-					rel="noopener noreferrer"
+					href={PHONE_TEL_HREF}
 					onClick={handleLinkClick}
 					className="flex items-center gap-2"
-					aria-label="Réserver une séance d'astrologie ou de Reiki avec Émilie Perez (ouvre Calendly dans un nouvel onglet)"
+					aria-label="Appeler Émilie Perez pour prendre rendez-vous"
 				>
-					<Calendar
+					<Phone
 						className="w-4 h-4 text-foreground"
 						aria-hidden="true"
 					/>
 					<span className="hidden sm:inline font-medium text-foreground">
-						Réserver
+						Appeler
 					</span>
 				</a>
 			</Button>
