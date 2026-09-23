@@ -4,13 +4,18 @@ import { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { Mail, Phone, MapPin, ChevronDown } from "lucide-react";
+import { Mail, Phone, MapPin, Clock, ChevronDown } from "lucide-react";
 import { FaFacebook, FaInstagram, FaYoutube } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
 import GoldenPlantBadge from "@/components/GoldenPlantBadge";
 import { HoneypotContact } from "@/components/ClickToReveal";
 import { useAnalyticsEvent } from "@/hooks/useAnalytics";
-import { PHONE_TEL_HREF, PHONE_DISPLAY } from "@/lib/contact";
+import {
+	PHONE_TEL_HREF,
+	PHONE_DISPLAY,
+	CONSULTATION_HOURS_SHORT,
+	BOOKING_HOURS_SHORT,
+} from "@/lib/contact";
 
 const TitleIconSpacer = () => (
 	<span
@@ -511,6 +516,28 @@ const Footer = () => {
 											Toulouse Nord & en ligne
 										</span>
 									</a>
+								</li>
+								<li className="flex items-start gap-3 text-primary-foreground/70 text-sm md:text-base group">
+									<div className="relative w-8 h-8 md:w-9 md:h-9 rounded-full bg-primary-foreground/10 flex items-center justify-center shrink-0 mt-0.5">
+										<Clock
+											className="w-4 h-4 text-primary-foreground/70 relative z-10"
+											aria-hidden="true"
+										/>
+									</div>
+									<div className="leading-relaxed">
+										<p>
+											<span className="text-primary-foreground/90 font-medium">
+												Consultations :
+											</span>{" "}
+											{CONSULTATION_HOURS_SHORT}
+										</p>
+										<p className="mt-1">
+											<span className="text-primary-foreground/90 font-medium">
+												Rendez-vous par téléphone :
+											</span>{" "}
+											{BOOKING_HOURS_SHORT}
+										</p>
+									</div>
 								</li>
 							</ul>
 							<HoneypotContact />

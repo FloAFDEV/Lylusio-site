@@ -7,10 +7,17 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { Button } from "@/components/ui/button";
-import { Phone, Mail, MapPin, Calendar, Eye } from "lucide-react";
+import { Phone, Mail, MapPin, Calendar, Clock, Eye } from "lucide-react";
 import { useInView } from "@/hooks/useInView";
 import { HoneypotContact } from "@/components/ClickToReveal";
-import { PHONE_TEL_HREF, PHONE_DISPLAY, EMAIL_MAILTO_HREF, EMAIL } from "@/lib/contact";
+import {
+	PHONE_TEL_HREF,
+	PHONE_DISPLAY,
+	EMAIL_MAILTO_HREF,
+	EMAIL,
+	CONSULTATION_HOURS_TEXT,
+	BOOKING_HOURS_TEXT,
+} from "@/lib/contact";
 
 /* Composant pour afficher la première lettre en calligraphie */
 const CalligraphicLabel = ({ label }: { label: string }) => (
@@ -198,7 +205,29 @@ const ContactCards = () => {
 				</div>
 			</a>
 
-			{/* Rendez-vous Card */}
+			{/* Consultations Card - horaires de consultation en cabinet, distincts de la prise de RDV */}
+			<div
+				className={`card-soft flex items-center gap-4 transition-all duration-500 ease-out ${
+					isInView
+						? "opacity-100 translate-y-0"
+						: "opacity-0 translate-y-6"
+				}`}
+				style={{ transitionDelay: isInView ? "300ms" : "0ms" }}
+			>
+				<div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center text-accent">
+					<Clock className="w-5 h-5" aria-hidden="true" />
+				</div>
+				<div>
+					<p className="font-display text-lg text-foreground">
+						<CalligraphicLabel label="Consultations" />
+					</p>
+					<p className="text-muted-foreground text-sm">
+						{CONSULTATION_HOURS_TEXT}
+					</p>
+				</div>
+			</div>
+
+			{/* Prise de rendez-vous Card */}
 			<a
 				href={PHONE_TEL_HREF}
 				className={`card-soft flex items-center gap-4 transition-all duration-500 ease-out hover:border-accent/30 hover:-translate-y-1 hover:shadow-lg hover:shadow-accent/5 group ${
@@ -206,17 +235,17 @@ const ContactCards = () => {
 						? "opacity-100 translate-y-0"
 						: "opacity-0 translate-y-6"
 				}`}
-				style={{ transitionDelay: isInView ? "300ms" : "0ms" }}
+				style={{ transitionDelay: isInView ? "400ms" : "0ms" }}
 			>
 				<div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center text-accent group-hover:bg-accent/20 transition-all duration-300">
 					<Calendar className="w-5 h-5" aria-hidden="true" />
 				</div>
 				<div>
 					<p className="font-display text-lg text-foreground">
-						<CalligraphicLabel label="Rendez-vous" />
+						<CalligraphicLabel label="Prise de rendez-vous" />
 					</p>
 					<p className="text-muted-foreground text-sm">
-						Les rendez-vous se prennent par téléphone
+						{BOOKING_HOURS_TEXT}
 					</p>
 				</div>
 			</a>
