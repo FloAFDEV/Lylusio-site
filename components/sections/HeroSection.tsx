@@ -77,27 +77,24 @@ const HeroSection = () => {
 					</div>
 
 					<div className="space-y-4 mb-8 text-left">
-						<p className="text-muted-foreground text-base md:text-lg lg:text-xl leading-relaxed max-w-prose mx-auto lg:mx-0">
-							Vous traversez peut-être un moment de bascule, une
-							période où les repères s'effritent, où ce que vous
-							croyiez dépassé revient frapper à la porte.
+						<p className="text-foreground font-medium text-base md:text-lg lg:text-xl leading-relaxed max-w-prose mx-auto lg:mx-0">
+							Vous n'avez pas besoin d'aller bien pour être ici.
 						</p>
 
 						<p className="text-muted-foreground text-sm md:text-base lg:text-lg leading-relaxed max-w-prose mx-auto lg:mx-0">
-							Ici, vous trouverez un lieu pour{" "}
+							Un{" "}
+							<span className="text-accent font-semibold">burn-out</span>, une{" "}
+							<span className="text-accent font-semibold">séparation</span>, un{" "}
 							<span className="text-accent font-semibold">
-								déposer
+								virage de vie
 							</span>
-							,{" "}
-							<span className="text-accent font-semibold">
-								comprendre
-							</span>{" "}
-							et{" "}
-							<span className="text-accent font-semibold">
-								transmuter
-							</span>{" "}
-							ce que vous vivez. Sans jugement, sans masque, sans
-							devoir aller bien.
+							… ou simplement un moment où ce que vous pensiez solide
+							vacille. Si vous lisez ces lignes, quelque chose en vous
+							sait déjà que{" "}
+							<strong className="font-semibold lg:font-bold">
+								ça ne peut plus continuer comme avant
+							</strong>
+							.
 						</p>
 
 						<p className="text-muted-foreground/80 text-sm md:text-base lg:text-lg leading-relaxed max-w-prose mx-auto lg:mx-0">
@@ -105,39 +102,41 @@ const HeroSection = () => {
 							<strong className="font-semibold lg:font-bold">
 								Émilie
 							</strong>
-							, astrologue et praticienne Reiki 3ème degré et
-							coach en évolution professionnelle à{" "}
+							, astrologue et praticienne Reiki à{" "}
 							<strong className="font-semibold lg:font-bold">
-								Toulouse
+								Cépet
 							</strong>
-							.
-						</p>
-
-						<p className="text-muted-foreground/80 text-sm md:text-base lg:text-lg leading-relaxed max-w-prose mx-auto lg:mx-0">
-							J'accompagne les femmes à retrouver sens, apaisement
-							et confiance, à travers une approche qui unit un
-							travail de conscience émotionnelle, de l'astrologie
-							symbolique et du Reiki.
+							. J'ai passé presque 10 ans à accompagner des personnes en
+							insertion et j'ai moi aussi traversé mes propres tempêtes.
+							L'astrologie m'accompagne depuis mon adolescence et le Reiki
+							depuis maintenant 6 ans. Ils m'ont aidée à comprendre et à
+							me remettre debout.
 						</p>
 
 						<p className="text-muted-foreground/70 text-sm md:text-base lg:text-lg leading-relaxed max-w-prose mx-auto lg:mx-0">
-							Mon intention : vous offrir un espace vrai, humain
-							et sécurisant, pour vous reconnecter à vous-même et
-							traverser vos transitions avec lucidité et douceur.
-						</p>
-
-						<p className="text-muted-foreground/70 text-sm md:text-base lg:text-lg leading-relaxed max-w-prose mx-auto lg:mx-0">
-							Parce que ce dont on a besoin dans ce moment, ce
-							n'est pas du développement personnel positif, mais{" "}
+							Ici, pas de pensée positive ni de blabla : je vous dis ce
+							que je vois{" "}
+							<span className="text-accent font-semibold">
+								avec justesse
+							</span>{" "}
+							mais toujours{" "}
+							<span className="text-accent font-semibold">
+								sans jugement
+							</span>
+							. Vous n'aurez pas à jouer un rôle,{" "}
 							<strong className="font-semibold lg:font-bold">
-								du vrai, du concret et du lien
+								vous arrivez comme vous êtes
 							</strong>
-							.
+							, avec vos contradictions, et c'est de là qu'on part. De
+							votre histoire, de votre thème astral et de ce que vous
+							ressentez, pour comprendre pourquoi vous tournez en rond.
+							Puis on cherche ce qui peut bouger, et comment.
 						</p>
 
 						<p className="text-primary italic text-sm md:text-base leading-relaxed max-w-prose mx-auto lg:mx-0">
-							Si vous ressentez qu'un cycle s'achève et qu'un
-							autre vous appelle, vous êtes au bon endroit.
+							Je ne prédis pas l'avenir et je ne décide pas à votre place.
+							Je vous aide à voir clair, pour que vous choisissiez en
+							connaissance de cause.
 						</p>
 					</div>
 

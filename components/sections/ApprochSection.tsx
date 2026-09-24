@@ -113,59 +113,61 @@ const ApprochSection = () => {
 							>
 								<div className="space-y-5 text-foreground/90 font-body leading-relaxed max-w-prose mx-auto lg:mx-0">
 									<p>
-										Mon approche est née de ce que j'ai
-										moi-même traversé. Elle mêle{" "}
+										J’accompagne les femmes en période de
+										transition.
+										<br />
+										Celles qui sentent que quelque chose
+										doit changer, mais qui ne savent plus
+										par où commencer.
+										<br />
 										<span className="font-semibold">
-											astrologie symbolique et
-											psychologique
+											Celles qui veulent du sens, du
+											concret, de la cohérence.
 										</span>
-										,{" "}
+										<br />
 										<span className="font-semibold">
-											thérapie énergétique Reiki
-										</span>{" "}
-										et{" "}
-										<span className="font-semibold">
-											écoute profonde
+											Celles qui veulent se transformer
+											sans renier qui elles sont.
 										</span>
-										.
+										<br />
+										<span className="font-semibold">
+											Celles qui, après un burn-out, une
+											séparation ou un changement de vie,
+											se retrouvent à la croisée des
+											chemins.
+										</span>
 									</p>
 
 									<p>
-										Mon intention est simple : offrir un
-										espace où l'on peut déposer ce que l'on
-										vit sans peur du jugement, pour se
-										comprendre autrement et retrouver du
-										sens à ce que l'on traverse.
-									</p>
-
-									<p className="text-primary font-medium">
-										Je ne promets pas de miracles.
+										J’utilise trois outils :{" "}
+										<Link
+											href="/astrologie-toulouse"
+											className="font-semibold text-accent hover:underline underline-offset-2"
+										>
+											l’astrologie thérapeutique
+										</Link>{" "}
+										pour éclairer vos schémas, le{" "}
+										<Link
+											href="/reiki-toulouse"
+											className="font-semibold text-accent hover:underline underline-offset-2"
+										>
+											Reiki
+										</Link>{" "}
+										pour réaligner le corps et l’esprit, et
+										la parole consciente pour mettre des
+										mots justes sur ce que vous vivez.
+										<br />
+										En cabinet à Cépet (Toulouse Nord) ou à
+										distance, pour Toulouse ou Montauban.
 									</p>
 
 									<blockquote className="relative py-5 my-8 border-l-2 border-accent/40 pl-5">
 										<Quote className="absolute -top-2 -left-3 w-6 h-6 text-accent/30" />
 										<p className="font-display text-lg sm:text-xl md:text-2xl italic text-foreground/90 text-left">
-											"On ne se change pas, on s'ajuste à
-											ce qui est déjà là."
+											« On ne se change pas, on s’ajuste à
+											ce qui est déjà là. »
 										</p>
 									</blockquote>
-
-									<p>
-										Je crée des espaces où la parole devient
-										action, où la compréhension ouvre sur le
-										mouvement et où la lucidité mène vers
-										l'apaisement. Parce que la lucidité sur
-										soi-même et sur son parcours, c'est pour
-										moi le début de la liberté. Et que
-										chaque étape de vie, même les plus
-										inconfortables, peut devenir un tremplin
-										pour la suite.
-									</p>
-
-									<p className="text-lg font-medium text-primary">
-										"La vérité, quand elle est dite avec
-										justesse, ouvre toutes les portes."
-									</p>
 								</div>
 							</div>
 
