@@ -13,7 +13,7 @@ import {
 	Clock,
 	MapPin,
 	ArrowRight,
-	Calendar,
+	Phone,
 	Sparkles,
 } from "lucide-react";
 
@@ -47,13 +47,14 @@ const services = [
 	{
 		image: "/assets/seance-accompagnement.webp",
 		icon: Moon,
-		title: "Accompagnement",
+		title: "Retrouver du sens",
+		trackingName: "Accompagnement",
 		alt: "Symbole d'accompagnement avec spirale et couleurs douces",
 		description:
-			"Coaching personnalisé pour traverser vos transitions avec clarté et confiance.",
-		price: "À partir de 75€",
-		duration: "Variable",
-		format: "Présentiel ou distance",
+			"Accompagnement global pour traverser vos transitions avec clarté et confiance.",
+		price: "75€",
+		duration: "1h30",
+		format: "Présentiel",
 		href: "/accompagnement",
 		ctaHref: PHONE_TEL_HREF,
 	},
@@ -188,7 +189,8 @@ const ServicesPreview = () => {
 													href={service.href}
 													onClick={() =>
 														trackServiceView(
-															service.title
+															service.trackingName ??
+																service.title
 														)
 													}
 													className="flex-1"
@@ -207,7 +209,8 @@ const ServicesPreview = () => {
 													size="sm"
 													onClick={() => {
 														trackBookingClick(
-															service.title
+															service.trackingName ??
+																service.title
 														);
 														if (
 															service.ctaHref.startsWith(
@@ -226,7 +229,7 @@ const ServicesPreview = () => {
 													className="px-2.5 md:px-3 h-8 md:h-9"
 													aria-label={`Réserver ${service.title}`}
 												>
-													<Calendar className="w-3.5 h-3.5 md:w-4 md:h-4 text-white" />
+													<Phone className="w-3.5 h-3.5 md:w-4 md:h-4 text-white" />
 												</Button>
 											</div>
 										</div>

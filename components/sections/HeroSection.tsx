@@ -146,7 +146,7 @@ const HeroSection = () => {
 							asChild
 							size="lg"
 							className="bg-gold-light text-foreground hover:bg-navy hover:text-white font-medium px-8 motion-safe:transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2"
-							aria-label="Appeler pour prendre rendez-vous"
+							aria-label="Réserver une séance par téléphone"
 						>
 							<a href={PHONE_TEL_HREF}>
 								Réserver une séance
@@ -156,7 +156,7 @@ const HeroSection = () => {
 
 					{/* Signature */}
 					<p
-						className="mt-8 sm:mt-10 font-calligraphic text-xl sm:text-2xl md:text-3xl text-navy/90 dark:text-gold/50"
+						className="mt-8 sm:mt-10 max-sm:mb-6 font-calligraphic text-xl sm:text-2xl md:text-3xl text-navy/90 dark:text-gold/50"
 						aria-hidden="true"
 					>
 						— Émilie Perez —
