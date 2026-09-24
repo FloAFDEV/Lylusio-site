@@ -8,15 +8,17 @@ export default function ApprochePage() {
   const articleSchema = {
     "@context": "https://schema.org",
     "@type": "Article",
-    "headline": "Mon Approche Thérapeutique Holistique",
-    "description": "Découvrez mon approche holistique combinant astrologie thérapeutique et Reiki pour un accompagnement global et bienveillant.",
+    "headline": "Mon Approche - Accompagnement des Femmes en Transition",
+    "description": "J'accompagne les femmes en période de transition : astrologie thérapeutique, Reiki et parole consciente. En cabinet à Cépet (Toulouse Nord) ou à distance.",
     "author": {
       "@type": "Person",
+      "@id": "https://lylusio.fr/emilie-perez#person",
       "name": "Émilie Perez",
       "url": "https://lylusio.fr/emilie-perez"
     },
     "publisher": {
       "@type": "Organization",
+      "@id": "https://lylusio.fr/#local-business",
       "name": "Lylusio",
       "logo": {
         "@type": "ImageObject",
@@ -25,7 +27,7 @@ export default function ApprochePage() {
     },
     "image": "https://lylusio.fr/assets/approche-arbre.webp",
     "datePublished": "2024-01-01",
-    "dateModified": "2026-01-08",
+    "dateModified": "2026-09-24",
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https://lylusio.fr/approche-therapeutique"

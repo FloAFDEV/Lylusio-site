@@ -118,14 +118,14 @@ export const pageMetadata = {
   },
 
   approche: {
-    title: 'Approche Thérapeutique Holistique - Astrologie & Reiki',
-    description: 'Découvrez mon approche holistique combinant astrologie thérapeutique et Reiki. Accompagnement global et bienveillant, en cabinet à Cépet (Toulouse Nord) ou à distance.',
+    title: 'Mon Approche - Accompagnement des Femmes en Transition',
+    description: 'J\'accompagne les femmes en période de transition : astrologie thérapeutique, Reiki et parole consciente. En cabinet à Cépet (Toulouse Nord) ou à distance.',
     canonical: `${baseUrl}/approche-therapeutique`,
     openGraph: {
       url: `${baseUrl}/approche-therapeutique`,
-      title: 'Mon Approche Thérapeutique Holistique',
-      description: 'Une approche intégrative alliant astrologie, Reiki et développement personnel',
-      images: [{ url: '/assets/approche-arbre.webp', width: 1200, height: 630 }],
+      title: 'Mon Approche - Accompagnement des Femmes en Transition',
+      description: 'Astrologie thérapeutique, Reiki et parole consciente pour relier la compréhension de ce que vous traversez et la mise en mouvement.',
+      images: [{ url: '/assets/approche-arbre.webp', width: 1280, height: 852, alt: 'Mon Approche - Lylusio' }],
     },
   },
 

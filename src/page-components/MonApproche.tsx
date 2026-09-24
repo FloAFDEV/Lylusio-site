@@ -23,6 +23,7 @@ import {
 } from "lucide-react";
 import { useParallax } from "@/hooks/useParallax";
 import { useInView } from "@/hooks/useInView";
+import { PHONE_TEL_HREF } from "@/lib/contact";
 
 const MonApproche = () => {
 	// FIX HYDRATION: Track if component is mounted (client-side only)
@@ -55,61 +56,63 @@ const MonApproche = () => {
 	const pillars = [
 		{
 			icon: Heart,
-			title: "Écoute Bienveillante",
+			title: "Écoute",
 			description:
-				"Un espace sans jugement pour déposer ce que vous vivez, où chaque mot a sa place.",
+				"Un espace sans jugement pour déposer ce que vous vivez.",
 		},
 		{
 			icon: Eye,
 			title: "Lucidité",
-			description:
-				"Comprendre vos schémas pour mieux vous en libérer. La clarté comme premier pas vers la liberté.",
+			description: "Comprendre vos schémas pour vous en libérer.",
 		},
 		{
 			icon: Sparkles,
 			title: "Transformation",
-			description:
-				"Chaque étape de vie, même les plus inconfortables, peut devenir un tremplin pour la suite.",
+			description: "Chaque étape inconfortable devient un tremplin.",
 		},
 		{
 			icon: Leaf,
 			title: "Authenticité",
-			description:
-				"Du vrai, du concret et du lien. Pas de blabla, pas de faux-semblants.",
+			description: "Du contact humain",
 		},
 	];
 
 	const objectives = [
 		{
 			icon: Key,
-			title: "Apprendre à se connaître",
-			description: "Pour s'affirmer sans attendre l'explosion",
+			text: "Apprendre à vous exprimer sans attendre l'explosion",
 		},
 		{
 			icon: Heart,
-			title: "Exprimer ses émotions",
-			description:
-				"Ressentis, besoins, difficultés, envies : mettre en avant ses propres valeurs",
+			text: "Mettre des mots sur vos émotions et vos besoins",
 		},
 		{
 			icon: Target,
-			title: "Être cohérente dans ses actes",
-			description:
-				"Assumer SES responsabilités. C'est accepter de ne plus se positionner en victime",
+			text: "Assumer vos actes plutôt que vous positionner en victime",
 		},
 		{
 			icon: Sparkles,
-			title: "Croire en ses capacités",
-			description: "D'évolution et de réussite",
+			text: "Croire en votre capacité d'évolution",
 		},
 	];
 
 	const deontologyItems = [
-		"Je ne suis pas magicienne, ni médium, ni voyante. Je ne promets rien, je ne prédis pas l'avenir. VOUS avez votre libre arbitre.",
-		"Je suis tenue au secret professionnel. Je ne rends compte d'un accompagnement qu'à la personne concernée, et non à une tierce personne.",
-		"J'ai le recul nécessaire pour ne pas projeter sur vous des problèmes non résolus de ma vie personnelle. Je n'utilise l'astrologie que dans la compréhension de votre parcours.",
-		"Ça ne m'intéresse pas de faire du « vite fait bien fait ». Je crois qu'il faut se laisser le temps de se comprendre et de laisser du temps au corps pour guérir.",
-		"En cas de besoins spécifiques qui dépassent mon champ de compétence, je vous oriente vers d'autres professionnels.",
+		{
+			title: "Une confidentialité totale.",
+			text: "Je suis tenue au secret professionnel.",
+		},
+		{
+			title: "Trouver le bon rythme.",
+			text: 'Je ne fais pas de "vite fait bien fait", on prend le temps qu\'il faut.',
+		},
+		{
+			title: "Une posture neutre.",
+			text: "Je n'utilise l'astrologie que pour éclairer votre parcours, jamais pour projeter les miens.",
+		},
+		{
+			title: "L'orientation quand c'est nécessaire.",
+			text: "Si votre besoin dépasse mon champ de compétence, je vous adresse à un autre professionnel.",
+		},
 	];
 
 	return (
@@ -220,58 +223,55 @@ const MonApproche = () => {
 									<span className="font-calligraphic text-gold text-md inline-block align-baseline  ">
 										J
 									</span>
-									'accompagne les{" "}
+									’accompagne les{" "}
 									<strong className="text-foreground">
 										femmes
 									</strong>{" "}
-									dans leurs périodes de transition et de
-									transformation intérieure. Celles qui
-									sentent que quelque chose doit évoluer mais
-									qui ne savent plus par où commencer.
+									en période de transition.
+									<br />
+									Celles qui sentent que quelque chose doit
+									changer, mais qui ne savent plus par où
+									commencer.
+									<br />
 									<strong className="text-foreground">
-										Celles qui veulent du sens, du concret
-										et de la cohérence.
+										Celles qui veulent du sens, du concret,
+										de la cohérence.
 									</strong>
 									<br />
 									<strong className="text-foreground">
-										Celles qui veulent vraiment se
-										transformer sans renier pour autant qui
-										elles sont.
+										Celles qui veulent se transformer sans
+										renier qui elles sont.
 									</strong>
 									<br />
 									<strong className="text-foreground">
-										Celles qui, un jour, se sentent à la
-										croisée des chemins : après un burn-out,
-										une séparation, un changement de vie, ou
-										simplement ce moment flou où tout ce
-										qu’on croyait solide se remet à bouger.
+										Celles qui, après un burn-out, une
+										séparation ou un changement de vie, se
+										retrouvent à la croisée des chemins.
 									</strong>
 								</p>
 
 								<p>
-									Dans mes séances, j’utilise les outils qui
-									m’ont le plus transformée :
+									J'utilise trois outils&nbsp;:{" "}
 									<Link
 										href="/astrologie-toulouse"
 										className="text-foreground font-medium hover:text-accent transition-colors"
 									>
-										l’astrologie thérapeutique
-									</Link>
-									, le{" "}
+										l'astrologie thérapeutique
+									</Link>{" "}
+									pour éclairer vos schémas, le{" "}
 									<Link
 										href="/reiki-toulouse"
 										className="text-foreground font-medium hover:text-accent transition-colors"
 									>
 										Reiki
 									</Link>{" "}
-									pour apaiser et réaligner le corps et
-									l’esprit, et la{" "}
+									pour réaligner le corps et l'esprit, et la{" "}
 									<strong className="text-foreground font-medium">
 										parole consciente
 									</strong>{" "}
-									pour mettre des mots justes sur vos
-									ressentis.
-									{" "}Je vous accompagne en cabinet à Cépet (Toulouse Nord) ou à distance, pour des personnes situées à Toulouse, Montauban et partout en France.
+									pour mettre des mots justes sur ce que vous
+									vivez. En cabinet à Cépet (Toulouse Nord) ou
+									à distance, pour Toulouse ou Montauban.
 								</p>
 							</div>
 
@@ -295,138 +295,6 @@ const MonApproche = () => {
 						</div>
 					</div>
 				</section>
-				<section className="py-16 bg-background">
-					<div className="container mx-auto px-4 sm:px-6 lg:px-8">
-						<div className="max-w-3xl mx-auto bg-card rounded-2xl p-8 lg:p-10 shadow-lg border border-border/20">
-							{/* Titre principal */}
-							<h2 className="font-heading text-2xl md:text-3xl text-primary mb-8 text-center">
-								La clarté émotionnelle comme moteur
-							</h2>
-
-							<div className="space-y-6 text-foreground/90 font-body leading-relaxed">
-								<p className="indent-4">
-									Mon intention est simple : offrir un espace
-									où l'on peut déposer ce que l'on vit sans
-									peur du jugement, pour se comprendre
-									autrement et retrouver du sens à ce que l'on
-									traverse.
-								</p>
-
-								<blockquote className="relative py-5 my-8 border-l-2 border-accent/40 pl-5">
-									<Quote className="absolute -top-2 -left-3 w-6 h-6 text-accent/30" />
-									<p className="font-display text-lg sm:text-xl md:text-2xl italic text-foreground/90 text-left">
-										Je ne promets pas de miracles.
-									</p>
-								</blockquote>
-
-								<p className="indent-4">
-									Je crée des espaces où la parole devient
-									action, où la compréhension ouvre sur le
-									mouvement et où la lucidité mène vers
-									l'apaisement. Parce que la lucidité sur
-									soi-même et sur son parcours, c'est pour moi
-									le début de la liberté. Et que chaque étape
-									de vie, même les plus inconfortables, peut
-									devenir un tremplin pour la suite.
-								</p>
-
-								<p className="indent-4">
-									Mes clientes me disent souvent :
-								</p>
-
-								{/* Quote avec icône */}
-								<blockquote className="relative py-5 my-8 border-l-2 border-accent/40 pl-5">
-									<Quote className="absolute -top-2 -left-3 w-6 h-6 text-accent/30" />
-									<p className="font-display text-lg sm:text-xl md:text-2xl italic text-foreground/90 text-left">
-										"Vous mettez des mots là où tout
-										était flou. Et d'un coup, tout
-										devient simple."
-									</p>
-								</blockquote>
-
-								<p className="indent-4">
-									C'est exactement ça, mon travail :{" "}
-									<strong>relier la tête</strong> et{" "}
-									<strong>le cœur, la conscience</strong> et{" "}
-									<strong>l'action</strong>. J'aime ce que je
-									fais, parce que c'est à la fois exigeant et
-									vivant. Je ne cherche pas la perfection, je
-									cherche avant tout la justesse.
-								</p>
-							</div>
-						</div>
-					</div>
-				</section>
-
-				{/* Philosophy Section with Pillars */}
-				<section
-					ref={pillarsRef}
-					className="relative py-20 md:py-28 bg-sand/30"
-				>
-					<div className="container mx-auto px-4 sm:px-6 lg:px-8">
-						<div
-							className={`max-w-3xl mx-auto text-center mb-14 transition-all duration-700 ${
-								mounted && pillarsInView
-									? "opacity-100 translate-y-0"
-									: "opacity-0 translate-y-8"
-							}`}
-						>
-							<p className="section-label text-xl">
-								Les fondements
-							</p>
-							<h2 className="font-display text-2xl sm:text-3xl lg:text-4xl text-navy mb-6">
-								Mes Piliers
-							</h2>
-							<p className="text-lg text-muted-foreground leading-relaxed">
-								Je crée des espaces où la parole devient action,
-								où la compréhension ouvre sur le mouvement et où
-								la lucidité mène vers l'apaisement.
-							</p>
-						</div>
-
-						<div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
-							{pillars.map((pillar, index) => (
-								<article
-									key={pillar.title}
-									className={`group bg-card/80 backdrop-blur-sm rounded-2xl p-8 text-center border border-border/20 hover:border-gold/30 hover:shadow-medium transition-all duration-500 ${
-										mounted && pillarsInView
-											? "opacity-100 translate-y-0"
-											: "opacity-0 translate-y-12"
-									}`}
-									style={{
-										transitionDelay:
-											mounted && pillarsInView
-												? `${200 + index * 100}ms`
-												: "0ms",
-										transform:
-											mounted && pillarsInView
-												? `translateY(0)`
-												: `translateY(${
-														20 + index * 5
-												  }px)`,
-									}}
-								>
-									<div className="w-16 h-16 mx-auto mb-5 rounded-full bg-sand/60 flex items-center justify-center shadow-soft group-hover:scale-110 group-hover:bg-gold/10 transition-all duration-500">
-										<pillar.icon
-											className="w-7 h-7 text-accent group-hover:text-gold transition-colors duration-500"
-											strokeWidth={1.5}
-										/>
-									</div>
-									<h3 className="font-display text-lg text-navy mb-3">
-										<span className="font-calligraphic text-accent text-3xl inline-block align-baseline ">
-											{pillar.title.charAt(0)}
-										</span>
-										{pillar.title.slice(1)}
-									</h3>
-									<p className="text-sm text-muted-foreground leading-relaxed">
-										{pillar.description}
-									</p>
-								</article>
-							))}
-						</div>
-					</div>
-				</section>
-
 				{/* Quote Section with Reveal Image Effect */}
 				<section
 					ref={quoteRef}
@@ -528,16 +396,6 @@ const MonApproche = () => {
 
 							{/* Content with staggered animation */}
 							<div className="order-1 lg:order-2 space-y-6">
-								<p
-									className={`section-label transition-all duration-700 ${
-										mounted && quoteInView
-											? "opacity-100 translate-y-0"
-											: "opacity-0 translate-y-4"
-									}`}
-								>
-									Ma conviction
-								</p>
-
 								<blockquote
 									className={`relative transition-all duration-700 delay-100 ${
 										mounted && quoteInView
@@ -547,51 +405,73 @@ const MonApproche = () => {
 								>
 									<Quote className="absolute -top-4 -left-2 w-10 h-10 text-accent/20" />
 									<p className="font-display text-2xl sm:text-3xl lg:text-4xl text-navy leading-snug pl-6">
-										La vérité, quand elle est dite avec
-										justesse, ouvre toutes les portes.
+										Mon travail est d'essayer de relier la
+										compréhension de ce que vous traversez
+										et la mise en mouvement.
 									</p>
 								</blockquote>
-
-								<p
-									className={`text-muted-foreground text-base sm:text-lg leading-relaxed transition-all duration-700 delay-200 ${
-										mounted && quoteInView
-											? "opacity-100 translate-y-0"
-											: "opacity-0 translate-y-4"
-									}`}
-								>
-									Mon intention est simple : offrir un espace
-									où l'on peut déposer ce que l'on vit sans
-									peur du jugement, pour se comprendre
-									autrement et retrouver du sens à ce que l'on
-									traverse.
-								</p>
-
-								<p
-									className={`text-muted-foreground text-base sm:text-lg leading-relaxed transition-all duration-700 delay-300 ${
-										mounted && quoteInView
-											? "opacity-100 translate-y-0"
-											: "opacity-0 translate-y-4"
-									}`}
-								>
-									Chaque accompagnement est unique. Je vous
-									accueille telle que vous êtes, avec votre
-									histoire, vos émotions, vos contradictions,
-									et c'est à partir de là que nous avançons
-									ensemble.
-								</p>
-
-								<p
-									className={`text-foreground font-medium text-lg transition-all duration-700 delay-400 ${
-										mounted && quoteInView
-											? "opacity-100 translate-y-0"
-											: "opacity-0 translate-y-4"
-									}`}
-								>
-									Parce que la lucidité sur soi-même et sur
-									son parcours, c'est pour moi le début de la
-									liberté.
-								</p>
 							</div>
+						</div>
+					</div>
+				</section>
+
+				{/* Philosophy Section with Pillars */}
+				<section
+					ref={pillarsRef}
+					className="relative py-20 md:py-28 bg-sand/30"
+				>
+					<div className="container mx-auto px-4 sm:px-6 lg:px-8">
+						<div
+							className={`max-w-3xl mx-auto text-center mb-14 transition-all duration-700 ${
+								mounted && pillarsInView
+									? "opacity-100 translate-y-0"
+									: "opacity-0 translate-y-8"
+							}`}
+						>
+							<h2 className="font-display text-2xl sm:text-3xl lg:text-4xl text-navy">
+								Mes 4 piliers
+							</h2>
+						</div>
+
+						<div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+							{pillars.map((pillar, index) => (
+								<article
+									key={pillar.title}
+									className={`group bg-card/80 backdrop-blur-sm rounded-2xl p-8 text-center border border-border/20 hover:border-gold/30 hover:shadow-medium transition-all duration-500 ${
+										mounted && pillarsInView
+											? "opacity-100 translate-y-0"
+											: "opacity-0 translate-y-12"
+									}`}
+									style={{
+										transitionDelay:
+											mounted && pillarsInView
+												? `${200 + index * 100}ms`
+												: "0ms",
+										transform:
+											mounted && pillarsInView
+												? `translateY(0)`
+												: `translateY(${
+														20 + index * 5
+												  }px)`,
+									}}
+								>
+									<div className="w-16 h-16 mx-auto mb-5 rounded-full bg-sand/60 flex items-center justify-center shadow-soft group-hover:scale-110 group-hover:bg-gold/10 transition-all duration-500">
+										<pillar.icon
+											className="w-7 h-7 text-accent group-hover:text-gold transition-colors duration-500"
+											strokeWidth={1.5}
+										/>
+									</div>
+									<h3 className="font-display text-lg text-navy mb-3">
+										<span className="font-calligraphic text-accent text-3xl inline-block align-baseline ">
+											{pillar.title.charAt(0)}
+										</span>
+										{pillar.title.slice(1)}
+									</h3>
+									<p className="text-sm text-muted-foreground leading-relaxed">
+										{pillar.description}
+									</p>
+								</article>
+							))}
 						</div>
 					</div>
 				</section>
@@ -611,16 +491,15 @@ const MonApproche = () => {
 										: "opacity-0 -translate-x-12"
 								}`}
 							>
-								<p className="section-label">Les objectifs</p>
 								<h2 className="font-display text-2xl sm:text-3xl lg:text-4xl text-navy mb-6">
-									Me faire accompagner, dans quel but ?
+									Ce que ça change concrètement
 								</h2>
 
-								<div className="space-y-4 mb-8">
+								<div className="space-y-4">
 									{objectives.map((obj, index) => (
 										<div
-											key={obj.title}
-											className={`flex items-start gap-4 p-4 bg-card/50 rounded-xl border border-border/20 transition-all duration-500 ${
+											key={obj.text}
+											className={`flex items-center gap-4 p-4 bg-card/50 rounded-xl border border-border/20 transition-all duration-500 ${
 												mounted && objectivesInView
 													? "opacity-100 translate-y-0"
 													: "opacity-0 translate-y-4"
@@ -634,46 +513,11 @@ const MonApproche = () => {
 											<div className="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center flex-shrink-0">
 												<obj.icon className="w-5 h-5 text-accent" />
 											</div>
-											<div>
-												<h3 className="font-display text-lg md:text-xl text-foreground mb-1">
-													{obj.title}
-												</h3>
-												<p className="text-sm text-muted-foreground">
-													{obj.description}
-												</p>
-											</div>
+											<p className="font-display text-lg md:text-xl text-foreground">
+												{obj.text}
+											</p>
 										</div>
 									))}
-								</div>
-
-								<div className="bg-gold/5 border border-gold/20 rounded-xl p-5">
-									<p className="text-foreground font-medium mb-2">
-										Tout ceci développe et amène l'estime de
-										soi et permet d'oser :
-									</p>
-									<ul className="text-sm text-muted-foreground space-y-1">
-										<li>
-											📍 Apprendre à se connaître pour
-											s’affirmer sans attendre l’explosion
-										</li>
-										<li>
-											📍 Exprimer ses émotions et besoins
-											pour être pleinement entendue
-										</li>
-										<li>
-											📍 Être cohérente dans ses actes et
-											assumer ses responsabilités
-										</li>
-										<li>
-											📍 Croire en ses capacités
-											d’évolution et de réussite
-										</li>
-										<li>📍 Oser s'exprimer</li>
-
-										<li>📍 Oser agir</li>
-										<li>📍 Oser être soi-même</li>
-										<li>📍 Oser se surpasser</li>
-									</ul>
 								</div>
 							</div>
 
@@ -755,26 +599,14 @@ const MonApproche = () => {
 							<Sparkles className="absolute top-6 right-6 w-7 h-7 text-gold/70 animate-float pointer-events-none" />
 
 							{/* Content */}
-							<p className="text-gold text-md sm:text-base leading-relaxed max-w-6xl mx-auto relative z-10">
+							<p className="text-gold text-md sm:text-base leading-relaxed max-w-6xl mx-auto pr-8 sm:pr-10 relative z-10">
 								<span className="font-calligraphic text-gold text-xl sm:text-md inline-block align-baseline">
 									L
 								</span>
-								'objectif de cet accompagnement est de vous
-								conduire vers une{" "}
-								<strong className="text-gold">autonomie</strong>{" "}
-								telle qu'à la fin vous n'ayez plus à
-								systématiquement faire appel à un coach ou à un
-								thérapeute lors des moments difficiles.{" "}
-								<strong className="text-gold">
-									Vous développerez la capacité à mobiliser
-									vos propres ressources en cas de besoin, à
-									travers une compréhension fine de vos
-									émotions, de vos schémas et de vos valeurs.
-								</strong>{" "}
-								Chaque pas, chaque exercice et chaque outil que
-								nous utilisons a pour objectif de vous rendre
-								plus confiante, plus lucide et pleinement
-								actrice de votre transformation.
+								'objectif&nbsp;: que vous développiez la
+								capacité à mobiliser vos propres ressources pour
+								ne pas dépendre d'un accompagnement en
+								permanence.
 							</p>
 						</div>
 					</div>
@@ -797,16 +629,25 @@ const MonApproche = () => {
 								<div className="w-16 h-16 mx-auto mb-4 rounded-full bg-accent/10 flex items-center justify-center">
 									<Shield className="w-8 h-8 text-accent" />
 								</div>
-								<p className="section-label">Engagement</p>
 								<h2 className="font-display text-2xl sm:text-3xl lg:text-4xl text-navy">
-									Ma Déontologie
+									Ce que vous pouvez attendre de moi
 								</h2>
 							</div>
+
+							<p className="text-center text-muted-foreground text-base sm:text-lg leading-relaxed mb-6">
+								Je ne prédis pas l'avenir et je ne fais pas de
+								miracles car je ne suis ni magicienne, ni médium,
+								ni voyante.
+							</p>
+
+							<p className="text-center text-foreground font-medium mb-6">
+								Ce que je vous garantis&nbsp;:
+							</p>
 
 							<div className="space-y-4">
 								{deontologyItems.map((item, index) => (
 									<div
-										key={index}
+										key={item.title}
 										className={`flex items-start gap-4 p-5 bg-card/50 rounded-xl border border-border/20 transition-all duration-500 ${
 											mounted && deontologyInView
 												? "opacity-100 translate-y-0"
@@ -822,20 +663,21 @@ const MonApproche = () => {
 											📍
 										</span>
 										<p className="text-muted-foreground text-sm sm:text-base leading-relaxed">
-											{item}
+											<strong className="text-foreground">
+												{item.title}
+											</strong>{" "}
+											{item.text}
 										</p>
 									</div>
 								))}
 							</div>
 
 							<p className="mt-8 text-center text-foreground font-medium italic">
-								Je suis à vos côtés, en tant qu'accompagnante.
-								Je ne fais pas à votre place ni ne vous dicte
-								quoi faire !
-								<br />
 								<strong>
-									Vous êtes actrice de votre transformation.
-								</strong>
+									Vous êtes actrice de votre transformation,
+								</strong>{" "}
+								je vous accompagne mais je ne décide pas à
+								votre place.
 							</p>
 						</div>
 					</div>
@@ -844,7 +686,7 @@ const MonApproche = () => {
 				{/* Final CTA Section */}
 				<section
 					ref={ctaRef}
-					className="relative py-20 md:py-28 bg-gradient-to-b from-background via-sand/20 to-background"
+					className="relative pt-10 md:pt-14 pb-20 md:pb-28 bg-gradient-to-b from-background via-sand/20 to-background"
 				>
 					<div className="container mx-auto px-4 sm:px-6 lg:px-8">
 						<div
@@ -858,33 +700,18 @@ const MonApproche = () => {
 								size="lg"
 								className="mx-auto mb-8 animate-gentle-pulse drop-shadow-[0_0_6px_rgba(212,175,55,0.45)]"
 							/>
-							<p className="text-muted-foreground text-base sm:text-lg leading-relaxed mb-8">
-								Découvrez mes différentes prestations ou
-								apprenez-en plus sur mon parcours. Je serai
-								ravie de vous accompagner dans votre
-								cheminement.
-							</p>
-
 							<div className="flex flex-col sm:flex-row gap-4 justify-center">
-								<Link href="/accompagnement">
-									<Button
-										variant="accent"
-										size="lg"
-										className="w-full sm:w-auto"
-									>
-										Voir mes prestations
+								<Button
+									asChild
+									variant="accent"
+									size="lg"
+									className="w-full sm:w-auto"
+								>
+									<a href={PHONE_TEL_HREF}>
+										Réservez votre première séance
 										<ArrowRight className="ml-2 w-4 h-4" />
-									</Button>
-								</Link>
-								<Link href="/emilie-perez">
-									<Button
-										variant="elegant"
-										size="lg"
-										className="w-full sm:w-auto"
-									>
-										Qui suis-je
-									</Button>
-								</Link>
+									</a>
+								</Button>
 							</div>
 						</div>
 					</div>

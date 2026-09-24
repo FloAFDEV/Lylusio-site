@@ -557,6 +557,48 @@ const Reiki = () => {
 												</div>
 											</div>
 										</div>
+
+										{/* Second Warning Box — même style que « Rappel important » */}
+										<div className="mt-4 bg-amber-50/80 dark:bg-amber-900/20 backdrop-blur-sm border border-amber-200/60 dark:border-amber-800/40 rounded-2xl p-6">
+											<div className="flex items-start gap-4">
+												<div className="w-12 h-12 rounded-xl bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center flex-shrink-0">
+													<AlertTriangle
+														className="w-6 h-6 text-amber-600 dark:text-amber-400"
+														aria-hidden="true"
+													/>
+												</div>
+												<p className="text-muted-foreground">
+													Je travaille dans le{" "}
+													<strong className="text-foreground">
+														plus grand respect de vos
+														croyances et en toute
+														bienveillance
+													</strong>
+													. Je{" "}
+													<strong className="text-foreground">
+														ne remplace pas votre médecin
+													</strong>
+													, le Reiki{" "}
+													<strong className="text-foreground">
+														ne se substitue donc ni à un
+														avis, ni à une consultation
+														médicale
+													</strong>
+													. Je m'engage à{" "}
+													<strong className="text-foreground">
+														être attentive à mes limites
+														dans ma pratique
+													</strong>{" "}
+													et à{" "}
+													<strong className="text-foreground">
+														vous orienter vers un autre
+														thérapeute si je l'estime
+														nécessaire
+													</strong>{" "}
+													pour votre bien.
+												</p>
+											</div>
+										</div>
 									</div>
 								</article>
 							</div>

@@ -12,7 +12,7 @@ import { useInView } from "@/hooks/useInView";
 import { useParallax } from "@/hooks/useParallax";
 import { useMemo, useState, useEffect } from "react";
 import { ArrowRight, Phone, Quote } from "lucide-react";
-import { PHONE_TEL_HREF, PHONE_DISPLAY } from "@/lib/contact";
+import { PHONE_TEL_HREF } from "@/lib/contact";
 
 // Astro stars decoration component
 const AstroStars = ({ count = 15 }: { count?: number }) => {
@@ -683,144 +683,42 @@ const About = () => {
 						</div>
 					</section>
 
-					{/* Lylusio story */}
-					<section
-						className="relative py-16 md:py-20 lg:py-24 overflow-hidden"
-						aria-labelledby="lylusio-title"
-					>
-						<div className="absolute inset-0 bg-gradient-to-t from-secondary/25 via-secondary/15 to-transparent" />
+					{/* Contact CTA — juste après « Ma transformation » */}
+					<section className="py-16 md:py-20 relative">
 						<AstroStars count={12} />
-						<div className="absolute -bottom-4 -right-4 pointer-events-none">
-							<GoldenPlantBadge
-								size="sm"
-								animate
-								className="opacity-60"
-							/>
-						</div>
-
-						<div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
+						<div className="container mx-auto px-4 sm:px-6 lg:px-8">
 							<AnimatedSection>
-								<div className="flex flex-col-reverse lg:flex-row gap-10 lg:gap-16 items-center max-w-5xl mx-auto">
-									<article className="lg:w-7/12 bg-card/70 backdrop-blur-sm rounded-2xl md:rounded-3xl p-6 sm:p-8 shadow-soft border border-border/20">
-										<h2
-											id="lylusio-title"
-											className="font-display text-2xl md:text-3xl text-foreground mb-6"
-										>
-											Pourquoi Lylusio ?
-										</h2>
-										<div className="space-y-5 text-muted-foreground text-base md:text-lg leading-relaxed">
-											<h3 className="font-display text-xl text-foreground">
-												Un lien profond avec les
-												civilisations amérindiennes
-											</h3>
-											<p>
-												<span className="font-calligraphic text-accent text-lg sm:text-xl md:text-2xl inline-block align-baseline">
-													D
-												</span>
-												epuis petite j'ai un lien
-												particulier avec les indiens et
-												leurs civilisations. Tout me «
-												parle » chez eux. Leur relation
-												à la nature, à la terre, à
-												l'Univers, aux étoiles, à leurs
-												ancêtres, à leurs traditions,
-												leurs cultures…détruites
-												pourtant par les Européens. Leur
-												adaptation à ce « nouveau »
-												monde a été leur force et je me
-												sens faire partie de cette «
-												famille ».
-											</p>
-											<p>
-												<strong className="text-foreground">
-													Lusio veut dire Lumière en
-													Amérindien
-												</strong>{" "}
-												(des peuples Zuni),{" "}
-												<strong className="text-foreground">
-													Lilou
-												</strong>{" "}
-												est mon surnom depuis mon
-												adolescence.
-											</p>
-											<p>
-												Finalement j'étais connectée aux
-												étoiles depuis toute petite et
-												ma passion n'a fait que grandir
-												avec le temps.
-											</p>
-											<p>
-												L'Astrologie faisait partie
-												intégrante de la vie des
-												indiens, les Mayas par exemple,
-												observaient quotidiennement le
-												ciel et arrivaient à prédire les
-												éclipses (solaires et lunaires),
-												les mouvements de chaque
-												constellation, ils avaient même
-												planifié le cycle de la planète
-												Vénus.
-											</p>
-											<p>
-												On ne va pas refaire un cours
-												d'histoire, mais je suis
-												toujours autant fascinée quand
-												je vois qu'ils ont réussi à
-												aligner leurs temples en
-												direction exacte du lever ou
-												coucher du soleil, ou en
-												fonction des équinoxes ou des
-												solstices, des planètes,…. Je
-												sais que mon cœur et mon âme se
-												rejoignent sur les grandes
-												terres d'Amérique.
-											</p>
-											<blockquote className="border-l-2 border-accent/50 pl-5 py-3 bg-accent/5 rounded-r-xl italic text-foreground/85 font-display text-lg md:text-xl mt-6">
-												"Quand le dernier arbre aura été
-												abattu, quand la dernière
-												rivière aura été empoisonnée,
-												quand le dernier poisson aura
-												été péché, alors enfin nous
-												saurons que l'argent ne se mange
-												pas."
-												<footer className="mt-2 text-sm text-muted-foreground not-italic">
-													— Amérindia
-												</footer>
-											</blockquote>
-										</div>
-									</article>
-
-									<figure className="w-full max-w-md md:max-w-lg lg:max-w-none lg:w-5/12 mx-auto relative group">
-										<div className="relative overflow-hidden rounded-2xl md:rounded-3xl shadow-medium">
-											{/* Decorative organic border */}
-											<div
-												className="absolute -inset-1 bg-gradient-to-br from-gold/20 via-accent/10 to-gold/20 rounded-2xl md:rounded-3xl opacity-60 group-hover:opacity-80 transition-opacity duration-500"
-												style={{
-													borderRadius: "1.5rem",
-												}}
-												aria-hidden="true"
-											/>
-											<div className="relative w-full aspect-[4/3] rounded-2xl md:rounded-3xl transition-all duration-700 group-hover:scale-[1.02]">
-												<Image
-													src="/assets/arbre-lumiere.webp"
-													alt="Grand arbre illuminé par un soleil couchant"
-													fill
-													sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 40vw"
-													className="object-cover rounded-2xl md:rounded-3xl"
-												/>
-											</div>
-											{/* Soft vignette overlay */}
-											<div className="absolute inset-0 rounded-2xl md:rounded-3xl bg-gradient-to-t from-background/20 via-transparent to-transparent pointer-events-none" />
-										</div>
-										{/* Plant badge */}
-										<div className="absolute -bottom-4 -right-4 pointer-events-none">
-											<GoldenPlantBadge
-												size="sm"
-												animate
-												className="opacity-60"
-											/>
-										</div>
-									</figure>
+								<div className="max-w-2xl mx-auto text-center bg-card/60 backdrop-blur-sm rounded-2xl md:rounded-3xl p-8 md:p-10 shadow-soft border border-border/20">
+									<GoldenPlantBadge
+										size="lg"
+										className="mx-auto mb-6 animate-gentle-pulse drop-shadow-[0_0_6px_rgba(212,175,55,0.45)]"
+									/>
+									<p className="text-muted-foreground text-base md:text-lg leading-relaxed mb-8">
+										Prête à commencer votre transformation ?
+										Je serais ravie de vous accompagner dans
+										votre cheminement personnel, en cabinet à Cépet au nord de Toulouse, ou à distance depuis Montauban et partout en France.
+									</p>
+									<div className="flex flex-col sm:flex-row gap-4 justify-center">
+										<a href={PHONE_TEL_HREF}>
+											<Button
+												variant="accent"
+												size="lg"
+												className="w-full sm:w-auto"
+											>
+												<Phone className="mr-2 w-4 h-4" />
+												Réserver une séance
+											</Button>
+										</a>
+										<Link href="/accompagnement">
+											<Button
+												variant="outline"
+												size="lg"
+												className="w-full sm:w-auto"
+											>
+												Voir mes accompagnements
+											</Button>
+										</Link>
+									</div>
 								</div>
 							</AnimatedSection>
 						</div>
@@ -1005,6 +903,149 @@ const About = () => {
 											</p>
 										</li>
 									</ul>
+								</div>
+							</AnimatedSection>
+						</div>
+					</section>
+
+					{/* Lylusio story */}
+					<section
+						className="relative py-16 md:py-20 lg:py-24 overflow-hidden"
+						aria-labelledby="lylusio-title"
+					>
+						<div className="absolute inset-0 bg-gradient-to-t from-secondary/25 via-secondary/15 to-transparent" />
+						<AstroStars count={12} />
+						<div className="absolute -bottom-4 -right-4 pointer-events-none">
+							<GoldenPlantBadge
+								size="sm"
+								animate
+								className="opacity-60"
+							/>
+						</div>
+
+						<div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
+							<AnimatedSection>
+								<div className="flex flex-col-reverse lg:flex-row gap-10 lg:gap-16 items-center max-w-5xl mx-auto">
+									<article className="lg:w-7/12 bg-card/70 backdrop-blur-sm rounded-2xl md:rounded-3xl p-6 sm:p-8 shadow-soft border border-border/20">
+										<h2
+											id="lylusio-title"
+											className="font-display text-2xl md:text-3xl text-foreground mb-6"
+										>
+											Pourquoi Lylusio ?
+										</h2>
+										<div className="space-y-5 text-muted-foreground text-base md:text-lg leading-relaxed">
+											<h3 className="font-display text-xl text-foreground">
+												Un lien profond avec les
+												civilisations amérindiennes
+											</h3>
+											<p>
+												<span className="font-calligraphic text-accent text-lg sm:text-xl md:text-2xl inline-block align-baseline">
+													D
+												</span>
+												epuis petite j'ai un lien
+												particulier avec les indiens et
+												leurs civilisations. Tout me «
+												parle » chez eux. Leur relation
+												à la nature, à la terre, à
+												l'Univers, aux étoiles, à leurs
+												ancêtres, à leurs traditions,
+												leurs cultures…détruites
+												pourtant par les Européens. Leur
+												adaptation à ce « nouveau »
+												monde a été leur force et je me
+												sens faire partie de cette «
+												famille ».
+											</p>
+											<p>
+												<strong className="text-foreground">
+													Lusio veut dire Lumière en
+													Amérindien
+												</strong>{" "}
+												(des peuples Zuni),{" "}
+												<strong className="text-foreground">
+													Lilou
+												</strong>{" "}
+												est mon surnom depuis mon
+												adolescence.
+											</p>
+											<p>
+												Finalement j'étais connectée aux
+												étoiles depuis toute petite et
+												ma passion n'a fait que grandir
+												avec le temps.
+											</p>
+											<p>
+												L'Astrologie faisait partie
+												intégrante de la vie des
+												indiens, les Mayas par exemple,
+												observaient quotidiennement le
+												ciel et arrivaient à prédire les
+												éclipses (solaires et lunaires),
+												les mouvements de chaque
+												constellation, ils avaient même
+												planifié le cycle de la planète
+												Vénus.
+											</p>
+											<p>
+												On ne va pas refaire un cours
+												d'histoire, mais je suis
+												toujours autant fascinée quand
+												je vois qu'ils ont réussi à
+												aligner leurs temples en
+												direction exacte du lever ou
+												coucher du soleil, ou en
+												fonction des équinoxes ou des
+												solstices, des planètes,…. Je
+												sais que mon cœur et mon âme se
+												rejoignent sur les grandes
+												terres d'Amérique.
+											</p>
+											<blockquote className="border-l-2 border-accent/50 pl-5 py-3 bg-accent/5 rounded-r-xl italic text-foreground/85 font-display text-lg md:text-xl mt-6">
+												"Quand le dernier arbre aura été
+												abattu, quand la dernière
+												rivière aura été empoisonnée,
+												quand le dernier poisson aura
+												été péché, alors enfin nous
+												saurons que l'argent ne se mange
+												pas."
+												<footer className="mt-2 text-sm text-muted-foreground not-italic">
+													— Amérindia
+												</footer>
+											</blockquote>
+										</div>
+									</article>
+
+									<figure className="w-full max-w-md md:max-w-lg lg:max-w-none lg:w-5/12 mx-auto relative group">
+										<div className="relative overflow-hidden rounded-2xl md:rounded-3xl shadow-medium">
+											{/* Decorative organic border */}
+											<div
+												className="absolute -inset-1 bg-gradient-to-br from-gold/20 via-accent/10 to-gold/20 rounded-2xl md:rounded-3xl opacity-60 group-hover:opacity-80 transition-opacity duration-500"
+												style={{
+													borderRadius: "1.5rem",
+												}}
+												aria-hidden="true"
+											/>
+											<div className="relative w-full aspect-[4/3] rounded-2xl md:rounded-3xl transition-all duration-700 group-hover:scale-[1.02]">
+												<Image
+													src="/assets/arbre-lumiere.webp"
+													alt="Grand arbre illuminé par un soleil couchant"
+													fill
+													sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 40vw"
+													className="object-cover rounded-2xl md:rounded-3xl"
+												/>
+											</div>
+											{/* Soft vignette overlay */}
+											<div className="absolute inset-0 rounded-2xl md:rounded-3xl bg-gradient-to-t from-background/20 via-transparent to-transparent pointer-events-none" />
+										</div>
+										{/* Plant badge */}
+										<div className="absolute -bottom-4 -right-4 pointer-events-none">
+											<GoldenPlantBadge
+												size="sm"
+												animate
+												className="opacity-60"
+											/>
+										</div>
+									</figure>
 								</div>
 							</AnimatedSection>
 						</div>
@@ -1235,47 +1276,6 @@ const About = () => {
 									</div>
 								</AnimatedSection>
 							</div>
-						</div>
-					</section>
-
-					{/* Final CTA */}
-					<section className="py-16 md:py-20 relative">
-						<AstroStars count={12} />
-						<div className="container mx-auto px-4 sm:px-6 lg:px-8">
-							<AnimatedSection>
-								<div className="max-w-2xl mx-auto text-center bg-card/60 backdrop-blur-sm rounded-2xl md:rounded-3xl p-8 md:p-10 shadow-soft border border-border/20">
-									<GoldenPlantBadge
-										size="lg"
-										className="mx-auto mb-6 animate-gentle-pulse drop-shadow-[0_0_6px_rgba(212,175,55,0.45)]"
-									/>
-									<p className="text-muted-foreground text-base md:text-lg leading-relaxed mb-8">
-										Prête à commencer votre transformation ?
-										Je serais ravie de vous accompagner dans
-										votre cheminement personnel, en cabinet à Cépet au nord de Toulouse, ou à distance depuis Montauban et partout en France.
-									</p>
-									<div className="flex flex-col sm:flex-row gap-4 justify-center">
-										<a href={PHONE_TEL_HREF}>
-											<Button
-												variant="accent"
-												size="lg"
-												className="w-full sm:w-auto"
-											>
-												<Phone className="mr-2 w-4 h-4" />
-												{PHONE_DISPLAY}
-											</Button>
-										</a>
-										<Link href="/accompagnement">
-											<Button
-												variant="outline"
-												size="lg"
-												className="w-full sm:w-auto"
-											>
-												Voir mes accompagnements
-											</Button>
-										</Link>
-									</div>
-								</div>
-							</AnimatedSection>
 						</div>
 					</section>
 
