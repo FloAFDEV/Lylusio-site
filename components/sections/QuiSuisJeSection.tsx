@@ -32,11 +32,11 @@ const QuiSuisJeSection = () => {
 
 							<div className="relative w-full h-full rounded-full overflow-hidden border-4 border-card shadow-gold">
 								<Image
-									src="/assets/emilie-about.webp"
-									alt="Émilie Perez, thérapeute en astrologie et Reiki à Toulouse"
+									src="/assets/emilie-enfant.webp"
+									alt="Émilie enfant - une petite fille rigoureuse et observatrice"
 									fill
 									sizes="(max-width: 768px) 160px, (max-width: 1024px) 208px, 224px"
-									className="object-cover"
+									className="object-cover object-top"
 									quality={85}
 									loading="lazy"
 								/>
@@ -70,44 +70,61 @@ const QuiSuisJeSection = () => {
 								<span className="font-calligraphic text-accent text-2xl md:text-3xl inline-block align-baseline">
 									E
 								</span>
-								t pour me définir je dirais que je suis avant
-								tout une communicante passionnée, profondément
-								curieuse de l'humain et de ses infinies
-								complexités.
+								nfant, j'observais tout : les silences, les
+								regards, les mots qu'on n'osait pas dire. Très
+								tôt, j'ai appris à tenir bon et à taire ce que
+								je ressentais.
 							</p>
 
 							<p>
-								Née sous le signe des <strong>Gémeaux</strong>{" "}
-								avec le{" "}
+								Puis, à mes 13 ans, la vie s'est chargée de venir
+								tout bousculer. Alors pendant des années, j'ai
+								mis des pansements et j'ai performé, jusqu'au
+								jour où je n'ai plus réussi à me mentir.
+								J'avais besoin de{" "}
+								<strong>vérité, d'alignement et de sens</strong>
+								.
+							</p>
+
+							<p>
+								Ce tournant m'a menée vers{" "}
+								<strong>l'astrologie humaniste</strong> et le{" "}
+								<strong>Reiki</strong>, après plus de dix ans
+								passés à accompagner des personnes en insertion
+								et en création d'entreprise. Aujourd'hui, je
+								n'accompagne pas de l'extérieur mais avec tout
+								ce que j'ai traversé. C’est ma manière d'être à
+								vos côtés :{" "}
 								<strong>
-									Soleil et Mercure conjoint à Chiron
-								</strong>{" "}
-								en Maison 8 et un{" "}
-								<strong>
-									ascendant Scorpion conjoint à Pluton
+									sans jugement, sans faux-semblants, sans
+									promesse de miracle
 								</strong>
-								… tel un Phœnix la notion de transformation et
-								de résilience a toujours fait partie de ma vie
-								du plus loin que je m'en souvienne.
+								.
 							</p>
 
 							<p>
-								Comme si je devais expérimenter toujours dans
-								une profondeur totale chacune des parties de ma
-								vie.
+								(Mon thème natal, avec Chiron et Pluton bien en
+								vue, avait de quoi me prévenir 😉)
+							</p>
+
+							<p className="italic text-sm md:text-base">
+								Oui, je suis Gémeaux ascendant Scorpion avec
+								Pluton collé à l'ascendant. Ça explique pas mal
+								de choses : le goût de la vérité, et une vie qui
+								ne fait rien à moitié.
 							</p>
 						</div>
 
 						<Link
 							href="/emilie-perez"
-							aria-label="Découvrir mon parcours complet"
+							aria-label="Découvrir mon histoire"
 						>
 							<Button
 								variant="elegant"
 								size="lg"
 								className="group/btn"
 							>
-								Lire mon histoire
+								Découvrir mon histoire
 								<ArrowRight className="w-4 h-4 ml-2 motion-safe:transition-transform group-hover/btn:translate-x-1" />
 							</Button>
 						</Link>

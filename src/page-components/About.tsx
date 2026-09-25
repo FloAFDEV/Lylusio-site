@@ -30,7 +30,7 @@ const AstroStars = ({ count = 15 }: { count?: number }) => {
 				left: `${5 + Math.random() * 90}%`,
 				animationDelay: `${Math.random() * 5}s`,
 			})),
-		[count]
+		[count],
 	);
 
 	if (!mounted) {
@@ -90,7 +90,6 @@ const About = () => {
 	const parallaxOffset = useParallax(0.1);
 	return (
 		<>
-
 			<div className="min-h-screen bg-background relative">
 				<FloatingParticles count={35} />
 				<AstroStars count={25} />
@@ -161,6 +160,8 @@ const About = () => {
 												style={{
 													borderRadius:
 														"45% 55% 50% 50% / 50% 50% 55% 45%",
+													objectPosition:
+														"center 55%",
 												}}
 											/>
 										</div>
@@ -170,72 +171,48 @@ const About = () => {
 								<div className="space-y-5 text-muted-foreground text-base md:text-lg leading-relaxed">
 									<p>
 										<span className="font-calligraphic text-accent text-lg sm:text-xl md:text-2xl inline-block align-baseline">
-											J
+											E
 										</span>
-										e suis{" "}
-										<strong className="text-foreground">
-											Émilie
-										</strong>
-										, et pour me définir je dirais que je
-										suis avant tout une communicante
-										passionnée, profondément curieuse de
-										l'humain et de ses infinies complexités.
+										nfant, j'observais tout : les silences, les regards,
+										les mots qu'on n'osait pas dire. Très tôt, j'ai
+										appris à tenir bon et à taire ce que je ressentais.
 									</p>
 									<p>
-										Née sous le signe des{" "}
+										Puis, à mes 13 ans, la vie s'est chargée de venir
+										tout bousculer. Alors pendant des années, j'ai mis
+										des pansements et j'ai performé, jusqu'au jour où je
+										n'ai plus réussi à me mentir. J'avais besoin de{" "}
 										<strong className="text-foreground">
-											Gémeaux
-										</strong>{" "}
-										avec le{" "}
-										<strong className="text-foreground">
-											Soleil et Mercure conjoint à Chiron
-										</strong>{" "}
-										en Maison 8 et un{" "}
-										<strong className="text-foreground">
-											ascendant Scorpion conjoint à Pluton
-										</strong>
-										… tel un Phœnix, la notion de
-										transformation et de résilience a
-										toujours fait partie de ma vie du plus
-										loin que je m'en souvienne.{" "}
-										<strong className="text-foreground">
-											Comme si je devais expérimenter
-											toujours dans une profondeur totale
-											chacune des parties de ma vie.
-										</strong>
-									</p>
-									<p className="text-foreground leading-relaxed">
-										Petite j'étais une enfant rigoureuse,
-										sérieuse et déjà très exigeante avec
-										moi-même. J'étais de celles qui
-										observaient beaucoup les adultes. Je
-										captais les silences, les regards, les
-										gestes imperceptibles, les mots non
-										dits.{" "}
-										<strong>
-											J'étais fascinée par ce décalage
-											entre ce que les gens disaient… et
-											ce qu'ils ressentaient vraiment et
-											j'adorais comprendre <i>pourquoi</i>
-										</strong>
-										. Très tôt, j'ai compris que la vérité
-										pouvait déranger, alors j'ai appris à me
-										taire, à "tenir bon", à{" "}
-										<strong>contrôler mes émotions</strong>.
-										Et pourtant, j'étais déjà celle à qui
-										l'on se confiait, celle à qui on venait
-										s'épancher, vider son sac, celle qui
-										écoutait sans juger.
-									</p>
-
-									<p className="text-foreground font-medium italic border-l-2 border-accent/40 pl-4 mt-4">
-										Avec le temps, j'ai compris que ma plus
-										grande force n'était pas d'avoir les
-										réponses, mais de{" "}
-										<strong>
-											savoir poser les bonnes questions
+											vérité, d'alignement et de sens
 										</strong>
 										.
+									</p>
+									<p>
+										Ce tournant m'a menée vers{" "}
+										<strong className="text-foreground">
+											l'astrologie humaniste
+										</strong>{" "}
+										et le <strong className="text-foreground">Reiki</strong>,
+										après plus de dix ans passés à accompagner des
+										personnes en insertion et en création d'entreprise.
+										Aujourd'hui, je n'accompagne pas de l'extérieur mais
+										avec tout ce que j'ai traversé. C’est ma manière
+										d'être à vos côtés :{" "}
+										<strong className="text-foreground">
+											sans jugement, sans faux-semblants, sans promesse
+											de miracle
+										</strong>
+										.
+									</p>
+									<p>
+										(Mon thème natal, avec Chiron et Pluton bien en vue,
+										avait de quoi me prévenir 😉)
+									</p>
+									<p className="italic text-sm md:text-base">
+										Oui, je suis Gémeaux ascendant Scorpion avec Pluton
+										collé à l'ascendant. Ça explique pas mal de choses :
+										le goût de la vérité, et une vie qui ne fait rien à
+										moitié.
 									</p>
 								</div>
 							</article>
@@ -437,11 +414,15 @@ const About = () => {
 											symbolique et fascinant,{" "}
 											<strong>
 												miroir de notre monde intérieur
-											</strong>. Mon approche est basée sur l'analyse du thème natal et l'accompagnement holistique, et non sur la voyance ou la médiumnité
-											. Je m'amusais à analyser et
-											décortiquer les thèmes des membres
-											de ma famille, des amis… Je pouvais
-											passer des heures à décortiquer, à
+											</strong>
+											. Mon approche est basée sur
+											l'analyse du thème natal et
+											l'accompagnement holistique, et non
+											sur la voyance ou la médiumnité . Je
+											m'amusais à analyser et décortiquer
+											les thèmes des membres de ma
+											famille, des amis… Je pouvais passer
+											des heures à décortiquer, à
 											reformuler, déjà fascinée par les
 											nuances du langage des astres et de
 											sa psychologie.
@@ -495,7 +476,10 @@ const About = () => {
 											ou encore{" "}
 											<strong>Stephen Arroyo</strong>,
 											j'ai trouvé dans{" "}
-											<Link href="/astrologie-toulouse" className="font-semibold text-accent hover:underline underline-offset-2">
+											<Link
+												href="/astrologie-toulouse"
+												className="font-semibold text-accent hover:underline underline-offset-2"
+											>
 												l'astrologie humaniste
 											</Link>{" "}
 											une voie de compréhension, de
@@ -580,7 +564,10 @@ const About = () => {
 												tournant pour moi. J'ai
 												rencontré des personnes clés et
 												j'ai commencé une formation en{" "}
-												<Link href="/reiki-toulouse" className="font-semibold text-accent hover:underline underline-offset-2">
+												<Link
+													href="/reiki-toulouse"
+													className="font-semibold text-accent hover:underline underline-offset-2"
+												>
 													Reiki Usui Shiki Ryoho
 												</Link>{" "}
 												(dans le respect de la
@@ -696,7 +683,10 @@ const About = () => {
 									<p className="text-muted-foreground text-base md:text-lg leading-relaxed mb-8">
 										Prête à commencer votre transformation ?
 										Je serais ravie de vous accompagner dans
-										votre cheminement personnel, en cabinet à Cépet au nord de Toulouse, ou à distance depuis Montauban et partout en France.
+										votre cheminement personnel, en cabinet
+										à Cépet au nord de Toulouse, ou à
+										distance depuis Montauban et partout en
+										France.
 									</p>
 									<div className="flex flex-col sm:flex-row gap-4 justify-center">
 										<a href={PHONE_TEL_HREF}>
@@ -1417,10 +1407,10 @@ const About = () => {
 																		0
 																			? "1rem 0.5rem 1rem 0.5rem"
 																			: i %
-																					3 ===
-																			  1
-																			? "0.5rem 1rem 0.5rem 1rem"
-																			: "0.75rem 0.4rem 0.75rem 0.4rem",
+																						3 ===
+																				  1
+																				? "0.5rem 1rem 0.5rem 1rem"
+																				: "0.75rem 0.4rem 0.75rem 0.4rem",
 																	transform: `rotate(${
 																		rotations[
 																			valueIndex
@@ -1441,7 +1431,7 @@ const About = () => {
 																{badge}
 															</span>
 														);
-													}
+													},
 												)}
 											</div>
 										</li>
