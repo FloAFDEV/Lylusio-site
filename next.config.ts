@@ -309,11 +309,10 @@ const nextConfig: NextConfig = {
 							"script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://region1.google-analytics.com https://googleads.g.doubleclick.net https://www.googleadservices.com",
 							"style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://www.googleadservices.com",
 							"font-src 'self' https://fonts.gstatic.com data:",
-							// Images : site, médias WordPress, miniatures YouTube, texture de
-							// /ressources (transparenttextures.com), pixels Google Ads.
+							// Images : site, médias WordPress, miniatures YouTube, pixels Google Ads.
 							// Pas de `https:` générique : il laissait passer le ping Ads sans cookie
 							// (pagead2.googlesyndication.com) envoyé en image sans consentement Marketing.
-							"img-src 'self' data: blob: https://admin.lylusio.fr https://i.ytimg.com https://www.transparenttextures.com https://www.google.com https://googleads.g.doubleclick.net https://www.googleadservices.com",
+							"img-src 'self' data: blob: https://admin.lylusio.fr https://i.ytimg.com https://www.google.com https://googleads.g.doubleclick.net https://www.googleadservices.com",
 							"media-src 'self' https:",
 							// GA4 + Google Ads. ad.doubleclick.net et stats.g.doubleclick.net ne sont
 							// utilisés qu'avec le consentement Marketing (ad_storage granted).

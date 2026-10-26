@@ -4,6 +4,8 @@
  * Sécurisé via Edge Functions avec rate limiting
  */
 
+import { sanitizeWordPressPost } from "./wordpress-shortcodes";
+
 // URL des Edge Functions internes (pas d'appel direct à WordPress)
 const API_BASE_URL =
 	process.env.NEXT_PUBLIC_SITE_URL || "https://lylusio.fr";
@@ -90,7 +92,7 @@ export async function fetchPosts(params: {
 
 			const data = await response.json();
 			return {
-				posts: [data],
+				posts: [sanitizeWordPressPost(data)],
 				total: 1,
 				totalPages: 1,
 			};
@@ -134,7 +136,7 @@ export async function fetchPosts(params: {
 		const totalPages = response.headers.get("X-WP-TotalPages");
 
 		return {
-			posts: data,
+			posts: Array.isArray(data) ? data.map(sanitizeWordPressPost) : data,
 			total: totalPosts ? parseInt(totalPosts, 10) : data.length,
 			totalPages: totalPages ? parseInt(totalPages, 10) : 1,
 		};
