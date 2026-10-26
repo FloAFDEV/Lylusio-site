@@ -399,9 +399,9 @@ describe("CSP : toutes les URL du sitemap", () => {
 		const violations = [];
 		for (const path of urls) {
 			const before = s.log.csp.length;
-			await s.page.goto(`${SITE}${path}`, { waitUntil: "networkidle" });
+			await s.page.goto(`${SITE}${path}`, { waitUntil: "load", timeout: 60000 });
 			await s.page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
-			await sleep(300);
+			await sleep(1500);
 			for (const v of s.log.csp.slice(before)) violations.push({ path, ...v });
 		}
 		assert.deepEqual(violations, []);

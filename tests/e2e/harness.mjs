@@ -126,8 +126,13 @@ export async function newSession(browser, { mobile = false } = {}) {
 		const u = new URL(url);
 
 		if (u.origin === SITE || u.origin === "https://www.lylusio.fr") {
-			const response = await route.fetch({ url: LOCAL + u.pathname + u.search, maxRedirects: 0 });
-			return route.fulfill({ response });
+			try {
+				const response = await route.fetch({ url: LOCAL + u.pathname + u.search, maxRedirects: 0 });
+				return await route.fulfill({ response });
+			} catch {
+				// Contexte fermé ou connexion locale réinitialisée : requête abandonnée
+				return route.abort().catch(() => {});
+			}
 		}
 		if (u.host === "admin.lylusio.fr") return route.continue();
 
@@ -178,7 +183,10 @@ export async function newSession(browser, { mobile = false } = {}) {
 				}
 			}
 		},
-		close: () => context.close(),
+		close: async () => {
+			await context.unrouteAll({ behavior: "ignoreErrors" });
+			await context.close();
+		},
 	};
 }
 
