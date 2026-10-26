@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { sanitizeWordPressPost } from "@/lib/wordpress-shortcodes";
 
 // ============================================================
 // Rate Limiting (inchangé)
@@ -212,7 +213,7 @@ async function fetchBySlug(
 		clearTimeout(timer);
 		if (!res.ok) return [];
 		const data = await res.json();
-		return Array.isArray(data) ? data : [];
+		return Array.isArray(data) ? data.map(sanitizeWordPressPost) : [];
 	} catch {
 		clearTimeout(timer);
 		return [];
@@ -242,7 +243,7 @@ async function fetchBySearch(
 		clearTimeout(timer);
 		if (!res.ok) return [];
 		const data = await res.json();
-		return Array.isArray(data) ? data : [];
+		return Array.isArray(data) ? data.map(sanitizeWordPressPost) : [];
 	} catch {
 		clearTimeout(timer);
 		return [];

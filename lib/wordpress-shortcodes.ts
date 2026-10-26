@@ -9,6 +9,26 @@ const CALENDLY_HREF_PATTERN = /href\s*=\s*["']https?:\/\/(?:www\.)?calendly\.com
 const CALENDLY_URL_TEXT_PATTERN = /^https?:\/\/(?:www\.)?calendly\.com\//i;
 const CALENDLY_PHONE_LINK_TEXT = "Réserver une séance";
 
+/**
+ * Nettoyage à appliquer côté serveur avant d'envoyer un post WordPress au
+ * navigateur (props Next.js, API) : plus aucune URL Calendly ni image
+ * d'émoji Facebook dans les données transmises.
+ */
+export function sanitizeWordPressPost<T>(post: T): T {
+	if (!post || typeof post !== "object") return post;
+	const clean = (html: unknown) =>
+		typeof html === "string" ? replaceFacebookEmojiImages(replaceCalendlyLinks(html)) : html;
+	const p = post as Record<string, unknown> & {
+		content?: { rendered?: unknown };
+		excerpt?: { rendered?: unknown };
+	};
+	return {
+		...p,
+		...(p.content ? { content: { ...p.content, rendered: clean(p.content.rendered) } } : {}),
+		...(p.excerpt ? { excerpt: { ...p.excerpt, rendered: clean(p.excerpt.rendered) } } : {}),
+	} as T;
+}
+
 const FACEBOOK_EMOJI_IMG_PATTERN =
 	/<img\b[^>]*\bsrc\s*=\s*["']https?:\/\/(?:static\.xx\.fbcdn\.net|www\.facebook\.com)\/images\/emoji\.php\/[^"']*["'][^>]*>/gi;
 

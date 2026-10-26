@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { sanitizeWordPressPost } from "@/lib/wordpress-shortcodes";
 
 // Removed edge runtime to allow static page generation
 // export const runtime = "edge";
@@ -204,7 +205,8 @@ export async function GET(request: NextRequest) {
 			);
 		}
 
-		const data = await response.json();
+		const raw = await response.json();
+		const data = Array.isArray(raw) ? raw.map(sanitizeWordPressPost) : raw;
 		const totalPages = response.headers.get("X-WP-TotalPages") || "1";
 		const total = response.headers.get("X-WP-Total") || "0";
 

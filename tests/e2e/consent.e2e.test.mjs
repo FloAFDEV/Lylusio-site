@@ -403,6 +403,10 @@ describe("CSP : toutes les URL du sitemap", () => {
 			await s.page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
 			await sleep(1500);
 			for (const v of s.log.csp.slice(before)) violations.push({ path, ...v });
+			// Aucune trace de Calendly ni d'émoji Facebook, y compris dans les données Next.js
+			const html = await s.page.content();
+			const rsc = await s.page.evaluate(() => JSON.stringify(self.__next_f ?? []));
+			if (/calendly|fbcdn/i.test(html + rsc)) violations.push({ path, leftover: "calendly/fbcdn" });
 		}
 		assert.deepEqual(violations, []);
 		assert.deepEqual(s.log.pageErrors, []);
