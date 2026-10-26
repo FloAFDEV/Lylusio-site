@@ -168,7 +168,7 @@ export default async function RessourcesPage() {
                transition-all duration-700 ease-out
                hover:[transform:perspective(1200px)_rotateY(-4deg)_rotateX(1deg)]
                hover:-translate-y-1 hover:shadow-xl
-               before:absolute before:inset-0 before:bg-[url('https://www.transparenttextures.com/patterns/felt.png')] before:opacity-15 before:pointer-events-none"
+               before:absolute before:inset-0 before:bg-[url('/assets/textures/felt.png')] before:opacity-15 before:pointer-events-none"
 							>
 								<div className="relative z-10 flex flex-col justify-between h-full">
 									<div className="flex flex-col items-center gap-6 mb-8">
@@ -256,7 +256,7 @@ export default async function RessourcesPage() {
                transition-all duration-700 ease-out
                hover:[transform:perspective(1200px)_rotateY(4deg)_rotateX(1deg)]
                hover:-translate-y-1 hover:shadow-xl
-               before:absolute before:inset-0 before:bg-[url('https://www.transparenttextures.com/patterns/felt.png')] before:opacity-15 before:pointer-events-none"
+               before:absolute before:inset-0 before:bg-[url('/assets/textures/felt.png')] before:opacity-15 before:pointer-events-none"
 							>
 								<div className="relative z-10 flex flex-col justify-between h-full">
 									<div className="flex flex-col items-center gap-6 mb-8">

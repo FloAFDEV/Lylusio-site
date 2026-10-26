@@ -48,7 +48,7 @@
 ## CSP
 
 - `connect-src` : origines GA4 + Ads observées ; `ad.doubleclick.net` et `stats.g.doubleclick.net` ne servent qu'avec Marketing accepté.
-- `img-src` : `'self' data: blob:`, `admin.lylusio.fr`, `i.ytimg.com`, `www.transparenttextures.com` (texture de /ressources), `www.google.com`, `googleads.g.doubleclick.net`, `www.googleadservices.com`. Vérifié sur toutes les URL du sitemap (test E2E).
+- `img-src` : `'self' data: blob:`, `admin.lylusio.fr`, `i.ytimg.com`, `www.google.com`, `googleads.g.doubleclick.net`, `www.googleadservices.com`. Vérifié sur toutes les URL du sitemap (test E2E).
 - Émojis Facebook collés dans les articles WordPress : remplacés par l'émoji texte (`replaceFacebookEmojiImages`), plutôt que d'autoriser Facebook.
 - Une nouvelle image externe (contenu WordPress, CSS) doit être ajoutée explicitement à `img-src` dans `next.config.ts`.
 
