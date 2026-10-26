@@ -113,6 +113,7 @@ export default ClickToReveal;
 // Honeypot component (invisible to users, visible to bots)
 export const HoneypotContact = () => (
 	<div
+		data-analytics-ignore
 		style={{
 			position: "absolute",
 			left: "-9999px",

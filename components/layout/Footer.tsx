@@ -9,7 +9,8 @@ import { FaFacebook, FaInstagram, FaYoutube } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
 import GoldenPlantBadge from "@/components/GoldenPlantBadge";
 import { HoneypotContact } from "@/components/ClickToReveal";
-import { useAnalyticsEvent } from "@/hooks/useAnalytics";
+import MapEmbed from "@/components/MapEmbed";
+import { openCookieSettings } from "@/lib/consent";
 import {
 	PHONE_TEL_HREF,
 	PHONE_DISPLAY,
@@ -29,7 +30,6 @@ const TitleIconSpacer = () => (
 const Footer = () => {
 	const [navOpen, setNavOpen] = useState(false);
 	const [mounted, setMounted] = useState(false);
-	const { trackBookingClick, trackContactClick } = useAnalyticsEvent();
 
 	// Hydration-safe: Stars generated only on client side
 	const [stars, setStars] = useState<
@@ -142,10 +142,11 @@ const Footer = () => {
         hover:bg-navy hover:text-white hover:border-white
         transition-colors duration-300
       "
-				onClick={() => trackBookingClick("footer_cta")}
 			>
 				<a
 					href={PHONE_TEL_HREF}
+					data-cta-location="footer_cta"
+					data-cta-intent="booking"
 					className="flex items-center gap-2"
 				>
 					<span className="font-medium">Réserver une séance</span>
@@ -451,7 +452,7 @@ const Footer = () => {
 								<li itemProp="telephone">
 									<a
 									href={PHONE_TEL_HREF}
-										onClick={() => trackContactClick("phone")}
+										data-cta-location="footer_contact"
 										className="flex items-center gap-3 text-primary-foreground/70 hover:text-primary-foreground transition-colors duration-300 text-sm md:text-base group"
 									>
 										<div className="relative w-8 h-8 md:w-9 md:h-9 rounded-full bg-primary-foreground/10 flex items-center justify-center shrink-0 group-hover:bg-primary-foreground/20 transition-colors duration-300">
@@ -468,7 +469,7 @@ const Footer = () => {
 								<li itemProp="email">
 									<a
 										href="mailto:contact@lylusio.fr"
-										onClick={() => trackContactClick("email")}
+										data-cta-location="footer_contact"
 										className="flex items-center gap-3 text-primary-foreground/70 hover:text-primary-foreground transition-colors duration-300 text-sm md:text-base group"
 									>
 										<div className="relative w-8 h-8 md:w-9 md:h-9 rounded-full bg-primary-foreground/10 flex items-center justify-center shrink-0 group-hover:bg-primary-foreground/20 transition-colors duration-300">
@@ -550,15 +551,12 @@ const Footer = () => {
 							<TitleIconSpacer /> Localisation
 						</h4>
 						<div className="relative group/map rounded-2xl overflow-hidden border border-border/30 shadow-sm hover:shadow-md transition-all duration-300">
-							<iframe
-								src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2897.188229409235!2d1.4298480117613777!3d43.748421570977264!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12aea7de29a6bfcf%3A0xe7a375cbe60d1076!2sEmilie%20Perez%20Astrologue%2C%20Praticienne%20Reiki%2C%20Coaching%20professionnel%20-%20Lylusio!5e1!3m2!1sfr!2sfr!4v1765194360692!5m2!1sfr!2sfr"
-								width="100%"
-								height="220"
-								style={{ border: 0 }}
-								allowFullScreen
-								loading="lazy"
-								referrerPolicy="strict-origin-when-cross-origin"
-								className="grayscale opacity-70 group-hover/map:grayscale-0 group-hover/map:opacity-100 transition-all duration-500 group-hover/map:scale-105"
+							<MapEmbed
+								embedUrl="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2897.188229409235!2d1.4298480117613777!3d43.748421570977264!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12aea7de29a6bfcf%3A0xe7a375cbe60d1076!2sEmilie%20Perez%20Astrologue%2C%20Praticienne%20Reiki%2C%20Coaching%20professionnel%20-%20Lylusio!5e1!3m2!1sfr!2sfr!4v1765194360692!5m2!1sfr!2sfr"
+								externalUrl="https://www.google.com/maps?q=49+route+de+Labastide+31620+Cépet"
+								address="49 route de Labastide, 31620 Cépet"
+								height={220}
+								iframeClassName="grayscale opacity-70 group-hover/map:grayscale-0 group-hover/map:opacity-100 transition-all duration-500 group-hover/map:scale-105"
 								title="Localisation du cabinet d'Émilie Perez à Cépet près de Toulouse"
 							/>
 						</div>
@@ -613,6 +611,18 @@ const Footer = () => {
 							</span>
 							<span className="absolute -bottom-0.5 left-0 w-0 h-[2px] bg-gradient-to-r from-gold via-gold-light to-gold group-hover:w-full transition-all duration-400 ease-out shadow-[0_0_12px_hsl(var(--gold)/0.7)]" />
 						</Link>
+
+						<button
+							type="button"
+							onClick={openCookieSettings}
+							aria-haspopup="dialog"
+							className="text-primary-foreground/90 hover:text-primary-foreground transition-all duration-300 relative group text-sm md:text-sm min-h-[44px] flex items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-primary px-2"
+						>
+							<span className="group-hover:translate-x-1 inline-block transition-transform duration-300">
+								Gérer les cookies
+							</span>
+							<span className="absolute -bottom-0.5 left-0 w-0 h-[2px] bg-gradient-to-r from-gold via-gold-light to-gold group-hover:w-full transition-all duration-400 ease-out shadow-[0_0_12px_hsl(var(--gold)/0.7)]" />
+						</button>
 					</nav>
 				</div>
 			</div>

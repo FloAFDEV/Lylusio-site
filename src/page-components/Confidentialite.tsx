@@ -29,7 +29,7 @@ const Confidentialite = () => (
 							olitique de confidentialité
 						</h1>
 						<p className="text-muted-foreground text-sm mt-4">
-							Dernière mise à jour : Décembre 2024
+							Dernière mise à jour : Octobre 2026
 						</p>
 					</header>
 
@@ -103,7 +103,11 @@ const Confidentialite = () => (
 							<p className="leading-relaxed mt-4">
 								Ces données sont collectées uniquement dans le
 								cadre de la prise de rendez-vous par téléphone et
-								de la réalisation des prestations.
+								de la réalisation des prestations. Le site ne
+								comporte aucun formulaire. Les données de
+								navigation (mesure d'audience, publicité) ne sont
+								collectées qu'avec votre accord, comme décrit
+								dans la section « Cookies » ci-dessous.
 							</p>
 						</section>
 
@@ -131,7 +135,8 @@ const Confidentialite = () => (
 									<strong className="text-foreground">
 										Votre consentement :
 									</strong>{" "}
-									pour l'envoi d'informations
+									pour l'envoi d'informations, et pour les
+									cookies de mesure d'audience et de publicité
 								</li>
 								<li>
 									<strong className="text-foreground">
@@ -201,16 +206,98 @@ const Confidentialite = () => (
 								Cookies
 							</h2>
 							<p className="leading-relaxed">
-								Ce site utilise uniquement des cookies
-								techniques essentiels au bon fonctionnement du
-								site. Aucun cookie de tracking publicitaire
-								n'est utilisé.
+								Aucun cookie de mesure d'audience ou de
+								publicité n'est déposé sans votre accord. Lors
+								de votre première visite, un bandeau vous
+								permet d'accepter, de refuser ou de choisir
+								catégorie par catégorie. Fermer le bandeau sans
+								choisir revient à ne rien accepter.
 							</p>
-							<p className="leading-relaxed mt-4">
-								Vous pouvez configurer votre navigateur pour
-								refuser les cookies, mais certaines
-								fonctionnalités du site pourraient ne plus
-								fonctionner correctement.
+
+							<h3 className="font-display text-lg text-foreground mt-6 mb-2">
+								Stockage nécessaire au fonctionnement
+							</h3>
+							<p className="leading-relaxed">
+								Votre choix est enregistré dans le stockage
+								local de votre navigateur pendant 180 jours,
+								afin de ne pas vous redemander votre avis à
+								chaque page. Si vous fermez le bandeau sans
+								choisir, cette information n'est conservée que
+								le temps de votre session.
+							</p>
+
+							<h3 className="font-display text-lg text-foreground mt-6 mb-2">
+								Mesure d'audience (Google Analytics)
+							</h3>
+							<p className="leading-relaxed">
+								Uniquement si vous acceptez les cookies
+								analytiques. Google Analytics, service de
+								Google, nous indique quelles pages sont
+								consultées et combien de fois les liens
+								d'appel ou d'email sont utilisés (sans le
+								numéro ni l'adresse), afin d'améliorer le
+								site. Cookies déposés : <code>_ga</code> et{" "}
+								<code>_ga_…</code>, pour 13 mois au maximum.
+								Sans cet accord, aucun outil Google n'est
+								chargé.
+							</p>
+
+							<h3 className="font-display text-lg text-foreground mt-6 mb-2">
+								Publicité (Google Ads)
+							</h3>
+							<p className="leading-relaxed">
+								Uniquement si vous acceptez à la fois les
+								cookies marketing et les cookies analytiques
+								(la publicité passe par l'outil de mesure
+								Google Analytics). Ces cookies servent à mesurer
+								l'efficacité de nos campagnes Google Ads et
+								peuvent permettre à Google de vous proposer des
+								annonces de Lylusio sur d'autres sites. Cookie
+								déposé : <code>_gcl_au</code>, pour 13 mois au
+								maximum.
+							</p>
+
+							<h3 className="font-display text-lg text-foreground mt-6 mb-2">
+								Contenus de services tiers
+							</h3>
+							<ul className="list-disc pl-6 space-y-2 mt-2">
+								<li>
+									<strong className="text-foreground">
+										Google Maps :
+									</strong>{" "}
+									la carte en bas de page n'est chargée que
+									si vous cliquez sur « Afficher la carte ».
+									Google peut alors déposer ses propres
+									cookies, selon ses règles.
+								</li>
+								<li>
+									<strong className="text-foreground">
+										YouTube :
+									</strong>{" "}
+									les vidéos ne sont chargées que lorsque vous
+									cliquez dessus, depuis youtube-nocookie.com
+									(mode de confidentialité renforcé de
+									YouTube). Pendant la lecture, YouTube peut
+									enregistrer des informations sur votre
+									appareil, selon ses règles.
+								</li>
+							</ul>
+
+							<h3 className="font-display text-lg text-foreground mt-6 mb-2">
+								Modifier ou retirer votre accord
+							</h3>
+							<p className="leading-relaxed">
+								Le lien « Gérer les cookies », en bas de chaque
+								page, vous permet de changer d'avis à tout
+								moment. Si vous retirez votre accord, la mesure
+								s'arrête et les cookies <code>_ga</code>,{" "}
+								<code>_ga_…</code> et <code>_gcl_…</code>{" "}
+								déposés sur lylusio.fr sont supprimés. Les
+								éventuels cookies déposés par Google sur ses
+								propres domaines (par exemple après avoir
+								affiché la carte ou une vidéo) ne peuvent pas
+								être supprimés par ce site : vous pouvez les
+								effacer dans les réglages de votre navigateur.
 							</p>
 						</section>
 

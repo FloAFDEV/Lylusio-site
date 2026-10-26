@@ -508,6 +508,8 @@ export default async function RessourcesPage() {
 								>
 									<a
 										href={PHONE_TEL_HREF}
+										data-cta-location="page_cta"
+										data-cta-intent="booking"
 										aria-label="Appeler Émilie Perez pour réserver votre séance"
 										className="inline-flex items-center gap-2"
 									>

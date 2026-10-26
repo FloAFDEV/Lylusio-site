@@ -689,7 +689,11 @@ const About = () => {
 										France.
 									</p>
 									<div className="flex flex-col sm:flex-row gap-4 justify-center">
-										<a href={PHONE_TEL_HREF}>
+										<a
+											href={PHONE_TEL_HREF}
+											data-cta-location="page_cta"
+											data-cta-intent="booking"
+										>
 											<Button
 												variant="accent"
 												size="lg"

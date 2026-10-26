@@ -70,6 +70,7 @@ const ContactCard = ({
 		return (
 			<a
 				href={href}
+				data-cta-location="contact_card"
 				target={external ? "_blank" : undefined}
 				rel={external ? "noopener noreferrer" : undefined}
 				className={cardClasses}
@@ -121,6 +122,7 @@ const ContactCard = ({
 				) : (
 					<a
 						href={href}
+						data-cta-location="contact_card"
 						target={external ? "_blank" : undefined}
 						rel={external ? "noopener noreferrer" : undefined}
 						className="text-muted-foreground hover:text-accent transition-colors duration-300 inline-block"
@@ -230,6 +232,8 @@ const ContactCards = () => {
 			{/* Prise de rendez-vous Card */}
 			<a
 				href={PHONE_TEL_HREF}
+				data-cta-location="contact_card"
+				data-cta-intent="booking"
 				className={`card-soft flex items-center gap-4 transition-all duration-500 ease-out hover:border-accent/30 hover:-translate-y-1 hover:shadow-lg hover:shadow-accent/5 group ${
 					isInView
 						? "opacity-100 translate-y-0"

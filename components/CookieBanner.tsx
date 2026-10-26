@@ -1,32 +1,50 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import { X, Cookie, Shield, Settings, Info, CheckCircle2 } from "lucide-react";
+import {
+	CONSENT_CHANGE_EVENT,
+	CONSENT_EXPIRY_DAYS,
+	DISMISSED_SESSION_KEY,
+	OPEN_CONSENT_SETTINGS_EVENT,
+	readConsent,
+	writeConsent,
+	type ConsentPreferences,
+} from "@/lib/consent";
 
 // Types de cookies
 type CookieCategory = "necessary" | "analytics" | "marketing";
 
-interface CookiePreferences {
-	necessary: boolean;
-	analytics: boolean;
-	marketing: boolean;
-}
+type CloseAction = "accept" | "reject" | "save" | "dismiss";
 
-const COOKIE_CONSENT_KEY = "lylusio-cookie-consent";
-const COOKIE_PREFERENCES_KEY = "lylusio-cookie-preferences";
-const COOKIE_EXPIRY_DAYS = 180; // 6 mois
+const NO_CONSENT: ConsentPreferences = {
+	necessary: true,
+	analytics: false,
+	marketing: false,
+};
+
+const COOKIE_EXPIRY_DAYS = CONSENT_EXPIRY_DAYS;
+
+const readStoredConsent = () => {
+	try {
+		return readConsent(window.localStorage);
+	} catch {
+		return null;
+	}
+};
 
 const CookieBanner = () => {
 	const [isVisible, setIsVisible] = useState(false);
 	const [isClosing, setIsClosing] = useState(false);
 	const [showSettings, setShowSettings] = useState(false);
+	// Panneau ouvert via « Gérer les cookies » (et non depuis le bandeau)
+	const [openedFromSettings, setOpenedFromSettings] = useState(false);
 	const [isTransitioning, setIsTransitioning] = useState(false);
-	const [preferences, setPreferences] = useState<CookiePreferences>({
-		necessary: true, // Toujours activé
-		analytics: true, // Coché par défaut
-		marketing: true, // Coché par défaut
-	});
+	// Rien n'est coché tant qu'aucun choix n'a été enregistré
+	const [preferences, setPreferences] =
+		useState<ConsentPreferences>(NO_CONSENT);
+	const dialogRef = useRef<HTMLDivElement>(null);
 
 	// Accessibilité: Respect prefers-reduced-motion
 	const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
@@ -44,111 +62,85 @@ const CookieBanner = () => {
 	}, []);
 
 	useEffect(() => {
-		const consent = localStorage.getItem(COOKIE_CONSENT_KEY);
-		const expiryDate = localStorage.getItem("cookie-consent-expiry");
-		console.log('[CookieBanner] Vérification consentement:', { consent, expiryDate });
-
-		// Vérifier si le consentement a expiré
-		if (expiryDate && new Date(expiryDate) < new Date()) {
-			console.log('[CookieBanner] Consentement expiré, nettoyage...');
-			localStorage.removeItem(COOKIE_CONSENT_KEY);
-			localStorage.removeItem(COOKIE_PREFERENCES_KEY);
-			localStorage.removeItem("cookie-consent-expiry");
+		// Le chargement des tags est géré par AnalyticsProvider (lib/google-tag)
+		const stored = readStoredConsent();
+		if (stored) {
+			setPreferences(stored);
+			return;
 		}
-
-		if (!consent || (expiryDate && new Date(expiryDate) < new Date())) {
-			// CWV Fix: Affichage immédiat sans délai pour éviter CLS
-			console.log('[CookieBanner] Aucun consentement, affichage du banner');
-			setIsVisible(true);
-		} else {
-			// Charger les préférences existantes
-			const savedPreferences = localStorage.getItem(
-				COOKIE_PREFERENCES_KEY
-			);
-			if (savedPreferences) {
-				setPreferences(JSON.parse(savedPreferences));
-			}
-			// CWV Fix: Charger GA4 uniquement si consentement analytics existe
-			const prefs = savedPreferences ? JSON.parse(savedPreferences) : null;
-			console.log('[CookieBanner] Préférences chargées:', prefs);
-			if (prefs?.analytics && typeof window !== 'undefined') {
-				// Déclencher l'événement pour charger GA4
-				console.log('[CookieBanner] Dispatch événement cookieConsentGranted');
-				window.dispatchEvent(new CustomEvent('cookieConsentGranted', {
-					detail: { analytics: true, marketing: prefs.marketing }
-				}));
-			}
+		let dismissed = false;
+		try {
+			dismissed = sessionStorage.getItem(DISMISSED_SESSION_KEY) === "1";
+		} catch {
+			/* stockage indisponible */
 		}
+		// CWV Fix: Affichage immédiat sans délai pour éviter CLS
+		if (!dismissed) setIsVisible(true);
 	}, []);
 
-	// Gestion de la touche Échap pour fermer
+	// « Gérer les cookies » : ouvre directement les préférences actuelles
 	useEffect(() => {
-		if (!isVisible) return;
-
-		const handleEscape = (e: KeyboardEvent) => {
-			if (e.key === "Escape") {
-				if (showSettings) {
-					handleHideSettings();
-				} else {
-					rejectAll();
-				}
-			}
+		const handleOpen = () => {
+			setPreferences(readStoredConsent() ?? NO_CONSENT);
+			setOpenedFromSettings(true);
+			setShowSettings(true);
+			setIsTransitioning(false);
+			setIsClosing(false);
+			setIsVisible(true);
 		};
+		window.addEventListener(OPEN_CONSENT_SETTINGS_EVENT, handleOpen);
+		return () =>
+			window.removeEventListener(OPEN_CONSENT_SETTINGS_EVENT, handleOpen);
+	}, []);
 
-		document.addEventListener("keydown", handleEscape);
-		return () => document.removeEventListener("keydown", handleEscape);
-	}, [isVisible, showSettings]);
+	useEffect(() => {
+		if (isVisible && !isClosing) dialogRef.current?.focus();
+	}, [isVisible, isClosing, showSettings]);
 
-	const savePreferences = (prefs: CookiePreferences) => {
-		const expiryDate = new Date();
-		expiryDate.setDate(expiryDate.getDate() + COOKIE_EXPIRY_DAYS);
-
-		console.log('[CookieBanner] Sauvegarde préférences:', prefs);
-		localStorage.setItem(COOKIE_CONSENT_KEY, "customized");
-		localStorage.setItem(COOKIE_PREFERENCES_KEY, JSON.stringify(prefs));
-		localStorage.setItem("cookie-consent-expiry", expiryDate.toISOString());
-
-		// CWV Fix: Charger les scripts uniquement après consentement
-		if (prefs.analytics && typeof window !== 'undefined') {
-			// Déclencher l'événement pour charger GA4
-			console.log('[CookieBanner] Dispatch événement cookieConsentGranted (acceptation)');
-			window.dispatchEvent(new CustomEvent('cookieConsentGranted', {
-				detail: { analytics: true, marketing: prefs.marketing }
-			}));
-		}
+	const savePreferences = (prefs: ConsentPreferences) => {
+		const saved = writeConsent(window.localStorage, prefs);
+		setPreferences(saved);
+		window.dispatchEvent(
+			new CustomEvent(CONSENT_CHANGE_EVENT, { detail: saved })
+		);
 	};
 
-	const handleClose = (accepted?: boolean) => {
-		setIsClosing(true);
-		setTimeout(() => {
-			if (accepted === true) {
-				// Accepter tout
-				const allAccepted = {
-					necessary: true,
-					analytics: true,
-					marketing: true,
-				};
-				savePreferences(allAccepted);
-			} else if (accepted === false) {
-				// Refuser tout (sauf nécessaires)
-				const allRefused = {
-					necessary: true,
-					analytics: false,
-					marketing: false,
-				};
-				savePreferences(allRefused);
-			} else {
-				// Personnalisé
-				savePreferences(preferences);
-			}
-			// CWV Fix: Pas de modification du body (déjà position fixed)
-			setIsVisible(false);
-		}, 400);
-	};
+	const handleClose = useCallback(
+		(action: CloseAction) => {
+			setIsClosing(true);
+			setTimeout(() => {
+				if (action === "accept") {
+					savePreferences({ necessary: true, analytics: true, marketing: true });
+				} else if (action === "reject") {
+					savePreferences(NO_CONSENT);
+				} else if (action === "save") {
+					savePreferences(preferences);
+				} else if (!readStoredConsent()) {
+					// Fermeture sans choix : aucun consentement, bandeau non
+					// réaffiché pendant la session, rien n'est enregistré
+					try {
+						sessionStorage.setItem(DISMISSED_SESSION_KEY, "1");
+					} catch {
+						/* stockage indisponible */
+					}
+				} else {
+					// Fermeture sans modification : on restaure le choix enregistré
+					setPreferences(readStoredConsent() ?? NO_CONSENT);
+				}
+				// CWV Fix: Pas de modification du body (déjà position fixed)
+				setIsVisible(false);
+				setShowSettings(false);
+				setOpenedFromSettings(false);
+				setIsClosing(false);
+			}, 400);
+		},
+		[preferences]
+	);
 
-	const acceptAll = () => handleClose(true);
-	const rejectAll = () => handleClose(false);
-	const saveCustom = () => handleClose();
+	const acceptAll = () => handleClose("accept");
+	const rejectAll = () => handleClose("reject");
+	const saveCustom = () => handleClose("save");
+	const dismiss = () => handleClose("dismiss");
 
 	const togglePreference = (category: CookieCategory) => {
 		if (category === "necessary") return; // Les cookies nécessaires ne peuvent pas être désactivés
@@ -175,6 +167,23 @@ const CookieBanner = () => {
 		}, 300);
 	};
 
+	// Échap : retour au bandeau depuis le panneau, sinon fermeture sans choix
+	useEffect(() => {
+		if (!isVisible) return;
+
+		const handleEscape = (e: KeyboardEvent) => {
+			if (e.key !== "Escape") return;
+			if (showSettings && !openedFromSettings) {
+				handleHideSettings();
+			} else {
+				handleClose("dismiss");
+			}
+		};
+
+		document.addEventListener("keydown", handleEscape);
+		return () => document.removeEventListener("keydown", handleEscape);
+	}, [isVisible, showSettings, openedFromSettings, handleClose]);
+
 	if (!isVisible) return null;
 
 	// Accessibilité: Durées d'animation réduites si prefers-reduced-motion
@@ -196,7 +205,7 @@ const CookieBanner = () => {
 
 			{/* Cookie Banner - CWV optimisé avec accessibilité */}
 			<div
-				className={`fixed inset-0 z-[70] flex items-center justify-center p-4 md:p-6 transition-all ${transitionDuration} ease-out ${
+				className={`fixed inset-0 z-[70] flex items-center justify-center p-4 md:p-6 focus:outline-none transition-all ${transitionDuration} ease-out ${
 					isClosing ? "opacity-0 scale-95" : "opacity-100 scale-100"
 				}`}
 				role="dialog"
@@ -204,6 +213,8 @@ const CookieBanner = () => {
 				aria-live="polite"
 				aria-label="Consentement aux cookies"
 				aria-describedby="cookie-description"
+				ref={dialogRef}
+				tabIndex={-1}
 			>
 				<div className="w-full max-w-2xl">
 					{/* Background optimisé performance (sans blur coûteux) */}
@@ -224,9 +235,9 @@ const CookieBanner = () => {
 								<div className="relative p-6 md:p-8">
 									{/* Bouton fermer visible */}
 									<button
-										onClick={rejectAll}
+										onClick={dismiss}
 										className="absolute top-4 right-4 text-navy/60 hover:text-navy transition-colors duration-200 p-2 hover:bg-sand/40 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold/50 focus:ring-offset-2 focus:ring-offset-cream"
-										aria-label="Refuser et fermer"
+										aria-label="Fermer sans accepter"
 									>
 										<X className="w-5 h-5" />
 									</button>
@@ -245,8 +256,8 @@ const CookieBanner = () => {
 												Respect de votre vie privée
 											</h3>
 											<p className="text-sm text-navy/70 font-normal drop-shadow-sm">
-												Votre consentement est requis
-												pour continuer
+												Acceptez, refusez ou
+												personnalisez vos choix
 											</p>
 										</div>
 									</div>
@@ -257,11 +268,16 @@ const CookieBanner = () => {
 											id="cookie-description"
 											className="text-base text-navy/90 leading-relaxed mb-4 font-normal drop-shadow-sm"
 										>
-											Nous utilisons des cookies pour
-											améliorer votre expérience et
-											analyser notre trafic. Vous pouvez
-											accepter tous les cookies ou les
-											personnaliser selon vos préférences.
+											Avec votre accord, nous utilisons
+											des cookies pour mesurer
+											l'audience du site (Google
+											Analytics) et l'efficacité de nos
+											campagnes publicitaires (Google
+											Ads). Refuser n'empêche pas
+											d'utiliser le site. Vous pouvez
+											modifier votre choix à tout moment
+											via « Gérer les cookies » en bas de
+											page.
 										</p>
 
 										{/* Quick info badges plus visibles */}
@@ -272,7 +288,7 @@ const CookieBanner = () => {
 											</span>
 											<span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-sand/70 border border-gold/30 rounded-full text-xs font-semibold text-navy/80 shadow-sm">
 												<CheckCircle2 className="w-3.5 h-3.5 text-gold drop-shadow-sm" />
-												RGPD Conforme
+												Modifiable à tout moment
 											</span>
 											<span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-sand/70 border border-gold/30 rounded-full text-xs font-semibold text-navy/80 shadow-sm">
 												<CheckCircle2 className="w-3.5 h-3.5 text-gold drop-shadow-sm" />
@@ -305,7 +321,7 @@ const CookieBanner = () => {
 											<span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
 											<CheckCircle2 className="w-4 h-4 mr-2 relative z-10" />
 											<span className="relative z-10">
-												Tout accepter et continuer
+												Tout accepter
 											</span>
 										</Button>
 
@@ -335,11 +351,19 @@ const CookieBanner = () => {
 								/* Panel de personnalisation */
 								<div className="relative p-6 md:p-8 max-h-[85vh] overflow-y-auto">
 									<button
-										onClick={handleHideSettings}
+										onClick={
+											openedFromSettings
+												? dismiss
+												: handleHideSettings
+										}
 										className="absolute top-6 left-6 text-navy/70 hover:text-navy transition-colors focus:outline-none focus:ring-2 focus:ring-gold/50 focus:ring-offset-2 focus:ring-offset-cream rounded-lg px-3 py-2 hover:bg-sand/40 font-semibold text-sm"
-										aria-label="Retour"
+										aria-label={
+											openedFromSettings
+												? "Fermer sans modifier"
+												: "Retour"
+										}
 									>
-										← Retour
+										{openedFromSettings ? "Fermer" : "← Retour"}
 									</button>
 
 									<div className="pt-12">
@@ -423,7 +447,10 @@ const CookieBanner = () => {
 															vous utilisez notre
 															site pour
 															l'améliorer (Google
-															Analytics).
+															Analytics). Sans
+															ce choix, aucun
+															outil Google n'est
+															chargé.
 														</p>
 														<p className="text-xs text-navy/60 font-normal">
 															<strong className="text-navy/80">
@@ -478,7 +505,12 @@ const CookieBanner = () => {
 															publicités et
 															mesurer
 															l'efficacité des
-															campagnes.
+															campagnes (Google
+															Ads, via la mesure
+															Google Analytics :
+															nécessite aussi les
+															cookies
+															analytiques).
 														</p>
 														<p className="text-xs text-navy/60 font-normal">
 															<strong className="text-navy/80">
@@ -532,14 +564,24 @@ const CookieBanner = () => {
 													Enregistrer mes choix
 												</span>
 											</Button>
-											<Button
-												variant="outline"
-												size="lg"
-												onClick={acceptAll}
-												className="w-full border-2 border-navy/30 text-navy bg-white/90 hover:bg-white hover:border-navy/50 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] focus:ring-2 focus:ring-accent/50 focus:ring-offset-2 focus:ring-offset-cream font-semibold shadow-md hover:shadow-lg"
-											>
-												Tout accepter
-											</Button>
+											<div className="grid grid-cols-2 gap-3">
+												<Button
+													variant="outline"
+													size="lg"
+													onClick={rejectAll}
+													className="w-full border-2 border-navy/30 text-navy bg-white/90 hover:bg-white hover:border-navy/50 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] focus:ring-2 focus:ring-accent/50 focus:ring-offset-2 focus:ring-offset-cream font-semibold shadow-md hover:shadow-lg"
+												>
+													Tout refuser
+												</Button>
+												<Button
+													variant="outline"
+													size="lg"
+													onClick={acceptAll}
+													className="w-full border-2 border-navy/30 text-navy bg-white/90 hover:bg-white hover:border-navy/50 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] focus:ring-2 focus:ring-accent/50 focus:ring-offset-2 focus:ring-offset-cream font-semibold shadow-md hover:shadow-lg"
+												>
+													Tout accepter
+												</Button>
+											</div>
 										</div>
 
 										{/* Info durée de conservation */}

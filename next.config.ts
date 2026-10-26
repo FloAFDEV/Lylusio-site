@@ -304,15 +304,22 @@ const nextConfig: NextConfig = {
 						key: "Content-Security-Policy",
 						value: [
 							"default-src 'self'",
-							// Google Tag Manager + Google Analytics + Google Ads
-							"script-src 'self' 'unsafe-eval' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://region1.google-analytics.com https://googleads.g.doubleclick.net https://www.googleadservices.com",
+							// Google tag (GA4 + destination Google Ads configurée côté Google).
+							// 'unsafe-inline' : scripts inline Next.js (pas de nonce). Pas de 'unsafe-eval'.
+							"script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://region1.google-analytics.com https://googleads.g.doubleclick.net https://www.googleadservices.com",
 							"style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://www.googleadservices.com",
 							"font-src 'self' https://fonts.gstatic.com data:",
-							// Google Ads tracking pixels + conversions
-							"img-src 'self' data: https: blob: https://www.google.com https://googleads.g.doubleclick.net https://www.googleadservices.com",
+							// Images : site, médias WordPress, miniatures YouTube, texture de
+							// /ressources (transparenttextures.com), pixels Google Ads.
+							// Pas de `https:` générique : il laissait passer le ping Ads sans cookie
+							// (pagead2.googlesyndication.com) envoyé en image sans consentement Marketing.
+							"img-src 'self' data: blob: https://admin.lylusio.fr https://i.ytimg.com https://www.transparenttextures.com https://www.google.com https://googleads.g.doubleclick.net https://www.googleadservices.com",
 							"media-src 'self' https:",
-							// Google Ads API calls
-							"connect-src 'self' https://lylusio.fr https://admin.lylusio.fr https://www.google-analytics.com https://analytics.google.com https://region1.google-analytics.com https://region1.analytics.google.com https://www.google.com https://www.googletagmanager.com https://googleads.g.doubleclick.net https://www.googleadservices.com",
+							// GA4 + Google Ads. ad.doubleclick.net et stats.g.doubleclick.net ne sont
+							// utilisés qu'avec le consentement Marketing (ad_storage granted).
+							// pagead2.googlesyndication.com volontairement absent (ici et dans img-src) :
+							// il ne reçoit que les pings sans cookie émis sans consentement Marketing.
+							"connect-src 'self' https://lylusio.fr https://admin.lylusio.fr https://www.google-analytics.com https://analytics.google.com https://region1.google-analytics.com https://region1.analytics.google.com https://www.google.com https://www.googletagmanager.com https://googleads.g.doubleclick.net https://www.googleadservices.com https://ad.doubleclick.net https://stats.g.doubleclick.net",
 							// Google Ads iframes
 							"frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com https://www.googletagmanager.com https://www.google.com https://bid.g.doubleclick.net",
 							"object-src 'none'",
@@ -324,7 +331,6 @@ const nextConfig: NextConfig = {
 					},
 					{ key: "X-Frame-Options", value: "SAMEORIGIN" },
 					{ key: "X-Content-Type-Options", value: "nosniff" },
-					{ key: "X-XSS-Protection", value: "1; mode=block" },
 					{
 						key: "Referrer-Policy",
 						value: "strict-origin-when-cross-origin",

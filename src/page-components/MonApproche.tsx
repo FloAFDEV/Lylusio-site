@@ -707,7 +707,11 @@ const MonApproche = () => {
 									size="lg"
 									className="w-full sm:w-auto"
 								>
-									<a href={PHONE_TEL_HREF}>
+									<a
+										href={PHONE_TEL_HREF}
+										data-cta-location="page_cta"
+										data-cta-intent="booking"
+									>
 										Réservez votre première séance
 										<ArrowRight className="ml-2 w-4 h-4" />
 									</a>

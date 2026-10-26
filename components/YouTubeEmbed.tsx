@@ -14,6 +14,9 @@ interface YouTubeEmbedProps {
  * Optimized YouTube embed component with lazy-loading facade
  * Loads thumbnail first, only loads iframe on user click
  * Saves ~500-800 KB per video until user interaction
+ * Lecteur servi depuis youtube-nocookie.com (mode de confidentialité renforcé) :
+ * aucune requête vers YouTube avant le clic ; la miniature passe par
+ * l'optimiseur d'images Next (/_next/image), donc par lylusio.fr.
  */
 export function YouTubeEmbed({
 	videoId,
@@ -84,7 +87,7 @@ export function YouTubeEmbed({
 	return (
 		<div className={`relative w-full aspect-video ${className}`}>
 			<iframe
-				src={`https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`}
+				src={`https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0`}
 				title={title}
 				allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
 				allowFullScreen

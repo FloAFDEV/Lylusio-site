@@ -139,6 +139,9 @@ npm run dev      # Serveur de développement (Turbopack)
 npm run build    # Build de production
 npm run start    # Serveur de production
 npm run lint     # Linter ESLint
+npm run typecheck # Vérification TypeScript
+npm test         # Tests unitaires (consentement, Google tag, événements)
+npm run test:e2e # Tests navigateur sur le build local (après npm run build)
 ```
 
 ---
@@ -192,7 +195,7 @@ Créer un fichier `.env.local` à la racine :
 # WordPress API
 NEXT_PUBLIC_WP_API_URL=https://votre-wordpress.fr/wp-json/wp/v2
 
-# Google Analytics
+# Google Analytics (chargé uniquement après consentement, voir docs/analytics-consent.md)
 NEXT_PUBLIC_GA_ID=G-XXXXXXXXXX
 
 # Autres variables...
