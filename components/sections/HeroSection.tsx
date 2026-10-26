@@ -148,7 +148,11 @@ const HeroSection = () => {
 							className="bg-gold-light text-foreground hover:bg-navy hover:text-white font-medium px-8 motion-safe:transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2"
 							aria-label="Réserver une séance par téléphone"
 						>
-							<a href={PHONE_TEL_HREF}>
+							<a
+								href={PHONE_TEL_HREF}
+								data-cta-location="hero"
+								data-cta-intent="booking"
+							>
 								Réserver une séance
 							</a>
 						</Button>

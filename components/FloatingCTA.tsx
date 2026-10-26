@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useAnalyticsEvent } from "@/hooks/useAnalytics";
 import { PHONE_TEL_HREF } from "@/lib/contact";
 
 const FloatingCTA = () => {
@@ -13,7 +12,6 @@ const FloatingCTA = () => {
 	const [isNearFooter, setIsNearFooter] = useState(false);
 	const [mounted, setMounted] = useState(false);
 	const pathname = usePathname();
-	const { trackBookingClick } = useAnalyticsEvent();
 
 	// Pages where CTA should be hidden (pages with their own primary CTA flow)
 	const hiddenOnPages = [
@@ -70,11 +68,6 @@ const FloatingCTA = () => {
 	const shouldShow =
 		mounted && isVisible && !isMenuOpen && !isNearFooter && !isHiddenPage;
 
-	// L'action de clic ne fait plus qu'appeler l'analytics (la navigation est gérée par le href du <a>)
-	const handleLinkClick = () => {
-		trackBookingClick("floating_cta");
-	};
-
 	// Do not render anything until mounted to prevent flash
 	if (!mounted) return null;
 
@@ -95,7 +88,8 @@ const FloatingCTA = () => {
 			>
 				<a
 					href={PHONE_TEL_HREF}
-					onClick={handleLinkClick}
+					data-cta-location="floating_cta"
+					data-cta-intent="booking"
 					className="flex items-center gap-2"
 					aria-label="Réserver une séance par téléphone"
 				>

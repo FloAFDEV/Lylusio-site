@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { useInView } from "@/hooks/useInView";
-import { useAnalyticsEvent } from "@/hooks/useAnalytics";
+import { trackContactClick } from "@/lib/google-tag";
 import { PHONE_TEL_HREF } from "@/lib/contact";
 import {
 	Star,
@@ -30,6 +30,7 @@ const services = [
 		format: "Présentiel ou distance",
 		href: "/astrologie-toulouse",
 		ctaHref: PHONE_TEL_HREF,
+		analyticsService: "astrologie",
 	},
 	{
 		image: "/assets/seance-reiki-zen.webp",
@@ -43,12 +44,12 @@ const services = [
 		format: "Présentiel",
 		href: "/reiki-toulouse",
 		ctaHref: PHONE_TEL_HREF,
+		analyticsService: "reiki",
 	},
 	{
 		image: "/assets/seance-accompagnement.webp",
 		icon: Moon,
 		title: "Retrouver du sens",
-		trackingName: "Accompagnement",
 		alt: "Symbole d'accompagnement avec spirale et couleurs douces",
 		description:
 			"Accompagnement global pour traverser vos transitions avec clarté et confiance.",
@@ -57,12 +58,12 @@ const services = [
 		format: "Présentiel",
 		href: "/accompagnement",
 		ctaHref: PHONE_TEL_HREF,
+		analyticsService: "accompagnement",
 	},
 ];
 
 const ServicesPreview = () => {
 	const { ref, isInView } = useInView({ threshold: 0.1 });
-	const { trackServiceView, trackBookingClick } = useAnalyticsEvent();
 
 	return (
 		<section
@@ -187,12 +188,6 @@ const ServicesPreview = () => {
 											<div className="flex gap-2 md:gap-3">
 												<Link
 													href={service.href}
-													onClick={() =>
-														trackServiceView(
-															service.trackingName ??
-																service.title
-														)
-													}
 													className="flex-1"
 												>
 													<Button
@@ -208,10 +203,11 @@ const ServicesPreview = () => {
 													variant="accent"
 													size="sm"
 													onClick={() => {
-														trackBookingClick(
-															service.trackingName ??
-																service.title
-														);
+														trackContactClick("phone", {
+															location: "services_preview",
+															intent: "booking",
+															service: service.analyticsService,
+														});
 														if (
 															service.ctaHref.startsWith(
 																"tel:"
@@ -240,10 +236,7 @@ const ServicesPreview = () => {
 					</div>
 
 					{/* Teaser Thérapie Holistique */}
-					<Link
-						href="/therapie-holistique"
-						onClick={() => trackServiceView("Thérapie Holistique")}
-					>
+					<Link href="/therapie-holistique">
 						<article
 							className={`group relative card-celestial hover:border-gold/40 transition-all duration-700 hover:-translate-y-2 hover:shadow-glow transform-gpu overflow-hidden ${
 								isInView

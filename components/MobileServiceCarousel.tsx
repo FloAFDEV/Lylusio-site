@@ -4,7 +4,7 @@ import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Clock, MapPin, Euro, Check, Calendar, ArrowRight, ChevronLeft, ChevronRight, CreditCard } from "lucide-react";
-import { useAnalyticsEvent } from "@/hooks/useAnalytics";
+import { trackContactClick } from "@/lib/google-tag";
 
 interface ServiceItem {
   id: string;
@@ -31,15 +31,16 @@ interface ServiceItem {
 
 interface MobileServiceCarouselProps {
   services: ServiceItem[];
+  /** Valeur du paramètre GA4 `service` (voir lib/analytics-events.ts) */
+  analyticsService?: string;
   className?: string;
 }
 
-const MobileServiceCarousel = ({ services, className = "" }: MobileServiceCarouselProps) => {
+const MobileServiceCarousel = ({ services, className = "", analyticsService = "none" }: MobileServiceCarouselProps) => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
-  const { trackBookingClick } = useAnalyticsEvent();
 
   const updateScrollState = () => {
     if (scrollRef.current) {
@@ -200,7 +201,13 @@ const MobileServiceCarousel = ({ services, className = "" }: MobileServiceCarous
                 size="default"
                 className="w-full min-h-[44px] text-sm"
                 onClick={() => {
-                  trackBookingClick(service.title);
+                  if (service.ctaHref.startsWith("tel:")) {
+                    trackContactClick("phone", {
+                      location: "service_carousel",
+                      intent: "booking",
+                      service: analyticsService,
+                    });
+                  }
                   if (service.ctaHref.startsWith("tel:") || service.ctaHref.startsWith("mailto:")) {
                     window.location.href = service.ctaHref;
                   } else {
@@ -222,6 +229,8 @@ const MobileServiceCarousel = ({ services, className = "" }: MobileServiceCarous
                       Il est possible de payer en 3 fois. Si c'est le cas, veuillez me contacter directement par{" "}
                       <a
                         href={`tel:${service.paymentInfo.phone}`}
+                        data-cta-location="payment_info"
+                        data-service={analyticsService}
                         className="text-accent hover:text-gold transition-colors underline underline-offset-2"
                       >
                         téléphone
@@ -229,6 +238,8 @@ const MobileServiceCarousel = ({ services, className = "" }: MobileServiceCarous
                       ou par{" "}
                       <a
                         href={`mailto:${service.paymentInfo.email}`}
+                        data-cta-location="payment_info"
+                        data-service={analyticsService}
                         className="text-accent hover:text-gold transition-colors underline underline-offset-2"
                       >
                         mail

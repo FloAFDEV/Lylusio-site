@@ -1,79 +1,65 @@
 'use client';
 
-import { Suspense, useEffect, useState } from 'react';
-import { usePathname, useSearchParams } from 'next/navigation';
-import { initGA, trackPageView } from '@/hooks/useAnalytics';
+import { useEffect } from 'react';
+import {
+  CONSENT_CHANGE_EVENT,
+  PREFERENCES_KEY,
+  readConsent,
+  type ConsentPreferences,
+} from '@/lib/consent';
+import { applyConsent, handleContactLinkClick } from '@/lib/google-tag';
 
-function AnalyticsTracker() {
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
-
-  useEffect(() => {
-    if (pathname) {
-      const url = pathname + (searchParams?.toString() ? `?${searchParams.toString()}` : '');
-      trackPageView(url);
-    }
-  }, [pathname, searchParams]);
-
-  return null;
-}
-
+/**
+ * Applique le consentement enregistré au Google tag et mesure les clics
+ * tel:/mailto:. Aucun page_view manuel : voir lib/google-tag.ts.
+ */
 export function AnalyticsProvider({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const [hasConsent, setHasConsent] = useState(false);
-
   useEffect(() => {
-    let gaInitialized = false;
-
-    // CWV Fix: Vérifier le consentement existant au chargement
-    const checkExistingConsent = () => {
+    const safeRead = () => {
       try {
-        const savedPreferences = localStorage.getItem('lylusio-cookie-preferences');
-        console.log('[GA4] Vérification consentement localStorage:', savedPreferences);
-        if (savedPreferences) {
-          const prefs = JSON.parse(savedPreferences);
-          if (prefs?.analytics && !gaInitialized) {
-            console.log('[GA4] Consentement trouvé, initialisation GA4...');
-            gaInitialized = true;
-            setHasConsent(true);
-            initGA();
-          }
-        }
-      } catch (error) {
-        console.error('[GA4] Error checking consent:', error);
+        return readConsent(window.localStorage);
+      } catch {
+        return null;
       }
     };
 
-    // CWV Fix: Écouter l'événement de consentement depuis le cookie banner
-    const handleConsentGranted = (event: Event) => {
-      const customEvent = event as CustomEvent;
-      const { analytics } = customEvent.detail || {};
-      console.log('[GA4] Événement cookieConsentGranted reçu:', { analytics, gaInitialized });
-      if (analytics && !gaInitialized) {
-        console.log('[GA4] Initialisation GA4 via événement...');
-        gaInitialized = true;
-        setHasConsent(true);
-        initGA();
-      }
+    applyConsent(safeRead());
+
+    const handleConsentChange = (event: Event) => {
+      const prefs = (event as CustomEvent<ConsentPreferences | null>).detail ?? null;
+      applyConsent(prefs);
     };
 
-    checkExistingConsent();
-    window.addEventListener('cookieConsentGranted', handleConsentGranted);
+    // Choix modifié dans un autre onglet
+    const handleStorage = (event: StorageEvent) => {
+      if (event.key === null || event.key === PREFERENCES_KEY) applyConsent(safeRead());
+    };
+
+    // Page restaurée depuis le bfcache : le choix a pu changer entre-temps
+    const handlePageShow = (event: PageTransitionEvent) => {
+      if (event.persisted) applyConsent(safeRead());
+    };
+
+    const handleClick = (event: MouseEvent) => {
+      handleContactLinkClick(event.target);
+    };
+
+    window.addEventListener(CONSENT_CHANGE_EVENT, handleConsentChange);
+    window.addEventListener('storage', handleStorage);
+    window.addEventListener('pageshow', handlePageShow);
+    document.addEventListener('click', handleClick, { capture: true });
 
     return () => {
-      window.removeEventListener('cookieConsentGranted', handleConsentGranted);
+      window.removeEventListener(CONSENT_CHANGE_EVENT, handleConsentChange);
+      window.removeEventListener('storage', handleStorage);
+      window.removeEventListener('pageshow', handlePageShow);
+      document.removeEventListener('click', handleClick, { capture: true });
     };
-  }, []); // Suppression de la dépendance hasConsent pour éviter les re-exécutions
+  }, []);
 
-  return (
-    <>
-      <Suspense fallback={null}>
-        <AnalyticsTracker />
-      </Suspense>
-      {children}
-    </>
-  );
+  return <>{children}</>;
 }

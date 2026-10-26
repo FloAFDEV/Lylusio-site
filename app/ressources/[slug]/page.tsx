@@ -295,6 +295,8 @@ export default async function RessourceArticlePage({
 							<Button asChild variant="accent" size="lg">
 								<a
 									href={PHONE_TEL_HREF}
+									data-cta-location="page_cta"
+									data-cta-intent="booking"
 									aria-label="Appeler Émilie Perez pour réserver votre séance"
 								>
 									Réserver une séance

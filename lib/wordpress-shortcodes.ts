@@ -9,6 +9,22 @@ const CALENDLY_HREF_PATTERN = /href\s*=\s*["']https?:\/\/(?:www\.)?calendly\.com
 const CALENDLY_URL_TEXT_PATTERN = /^https?:\/\/(?:www\.)?calendly\.com\//i;
 const CALENDLY_PHONE_LINK_TEXT = "Réserver une séance";
 
+const FACEBOOK_EMOJI_IMG_PATTERN =
+	/<img\b[^>]*\bsrc\s*=\s*["']https?:\/\/(?:static\.xx\.fbcdn\.net|www\.facebook\.com)\/images\/emoji\.php\/[^"']*["'][^>]*>/gi;
+
+/**
+ * Remplace les images d'émojis Facebook (collées dans des articles depuis
+ * Facebook) par l'émoji texte de leur attribut alt : évite une requête vers
+ * Facebook à l'affichage de l'article, sans consentement.
+ */
+export function replaceFacebookEmojiImages(content: string): string {
+	if (!content) return "";
+	return content.replace(FACEBOOK_EMOJI_IMG_PATTERN, (img) => {
+		const alt = img.match(/\balt\s*=\s*"([^"]*)"/i)?.[1] ?? img.match(/\balt\s*=\s*'([^']*)'/i)?.[1];
+		return alt ?? "";
+	});
+}
+
 /**
  * Neutralise les anciens liens Calendly encore présents dans le contenu
  * WordPress (articles rédigés avant la migration vers la prise de
@@ -164,6 +180,9 @@ export function processWordPressContent(content: string): string {
 
 	// 7b. Neutraliser les anciens liens Calendly (migration vers tel:)
 	processed = replaceCalendlyLinks(processed);
+
+	// 7c. Émojis copiés depuis Facebook : texte plutôt qu'image tierce
+	processed = replaceFacebookEmojiImages(processed);
 
 	// 8. Nettoyer les espaces multiples et paragraphes vides (DOIT être à la fin)
 	processed = processed.replace(/\s{2,}/g, " ");

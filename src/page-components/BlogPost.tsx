@@ -18,6 +18,8 @@ import { getOptimizedImageUrl, transformContentImages } from "@/lib/wordpress-im
 import { processWordPressContent } from "@/lib/wordpress-shortcodes";
 import { optimizeContentImages } from "@/lib/wordpress-content-images";
 import { PHONE_TEL_HREF } from "@/lib/contact";
+import { contactMethodFromHref } from "@/lib/analytics-events";
+import { trackContactClick } from "@/lib/google-tag";
 
 import {
 	ArrowLeft,
@@ -160,6 +162,11 @@ const processContent = (html: string): string => {
 		/<iframe[^>]*>[\s\S]*?<\/iframe>/gi,
 		(match) => {
 			const cleaned = match
+				// Mode de confidentialité renforcé pour les vidéos YouTube intégrées
+				.replace(
+					/https?:\/\/(?:www\.)?youtube\.com\/embed\//gi,
+					"https://www.youtube-nocookie.com/embed/"
+				)
 				.replace(/\swidth="[^"]*"/gi, "")
 				.replace(/\sheight="[^"]*"/gi, "")
 				.replace(/\sstyle="[^"]*"/gi, "");
@@ -175,6 +182,11 @@ const processContent = (html: string): string => {
 		/<video[^>]*>[\s\S]*?<\/video>/gi,
 		(match) => {
 			const cleaned = match
+				// Mode de confidentialité renforcé pour les vidéos YouTube intégrées
+				.replace(
+					/https?:\/\/(?:www\.)?youtube\.com\/embed\//gi,
+					"https://www.youtube-nocookie.com/embed/"
+				)
 				.replace(/\swidth="[^"]*"/gi, "")
 				.replace(/\sheight="[^"]*"/gi, "")
 				.replace(/\sclass="[^"]*"/gi, "")
@@ -427,6 +439,10 @@ const BlogPost = ({ initialData }: BlogPostProps = {}) => {
 			// Only intercept links inside the article content
 			if (link && link.closest(".prose")) {
 				e.preventDefault();
+				// Les liens tel:/mailto: sont déjà mesurés par l'écouteur délégué
+				if (!contactMethodFromHref(link.getAttribute("href"))) {
+					trackContactClick("phone", { intent: "booking" });
+				}
 				window.location.href = PHONE_TEL_HREF;
 			}
 		};

@@ -29,6 +29,7 @@ import {
 import { useParallax } from "@/hooks/useParallax";
 import { useInView } from "@/hooks/useInView";
 import { PHONE_TEL_HREF } from "@/lib/contact";
+import { trackContactClick } from "@/lib/google-tag";
 
 const Reiki = () => {
 	const parallaxOffset = useParallax(0.12);
@@ -168,6 +169,11 @@ const Reiki = () => {
 											size="lg"
 											className="group"
 											onClick={() => {
+												trackContactClick("phone", {
+													location: "page_hero",
+													intent: "booking",
+													service: "reiki",
+												});
 												window.location.href =
 													PHONE_TEL_HREF;
 											}}
@@ -867,6 +873,11 @@ const Reiki = () => {
 											className="w-full group/btn"
 											size="lg"
 											onClick={() => {
+												trackContactClick("phone", {
+													location: "service_card",
+													intent: "booking",
+													service: "reiki",
+												});
 												window.location.href =
 													PHONE_TEL_HREF;
 											}}

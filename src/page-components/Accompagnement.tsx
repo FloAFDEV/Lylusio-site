@@ -31,14 +31,13 @@ import {
 import { useParallax } from "@/hooks/useParallax";
 import { useInView } from "@/hooks/useInView";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { useAnalyticsEvent } from "@/hooks/useAnalytics";
+import { trackContactClick } from "@/lib/google-tag";
 import { PHONE_TEL_HREF } from "@/lib/contact";
 
 const Accompagnement = () => {
 	const isMobile = useIsMobile();
 	const parallaxOffset = useParallax(0.15);
 	const parallaxOffsetSlow = useParallax(0.08);
-	const { trackBookingClick } = useAnalyticsEvent();
 
 	// Hydration fix: only show decorative elements after mount
 	const [mounted, setMounted] = useState(false);
@@ -427,9 +426,11 @@ const Accompagnement = () => {
 													variant="accent"
 													className="sm:ml-auto group/btn"
 													onClick={() => {
-														trackBookingClick(
-															"Accompagnement Transition",
-														);
+														trackContactClick("phone", {
+															location: "service_card",
+															intent: "booking",
+															service: "accompagnement_transition",
+														});
 														window.location.href =
 															PHONE_TEL_HREF;
 													}}
@@ -525,6 +526,7 @@ const Accompagnement = () => {
 							<div className="lg:hidden">
 								<MobileServiceCarousel
 									services={astroServices}
+									analyticsService="astrologie"
 								/>
 							</div>
 
@@ -642,9 +644,11 @@ const Accompagnement = () => {
 													variant="accent"
 													className="w-full group/btn"
 													onClick={() => {
-														trackBookingClick(
-															service.title,
-														);
+														trackContactClick("phone", {
+															location: "service_card",
+															intent: "booking",
+															service: "astrologie",
+														});
 														window.location.href =
 															service.ctaHref;
 													}}
@@ -719,6 +723,7 @@ const Accompagnement = () => {
 							<div className="md:hidden">
 								<MobileServiceCarousel
 									services={[reikiService]}
+									analyticsService="reiki"
 								/>
 							</div>
 
@@ -803,7 +808,11 @@ const Accompagnement = () => {
 											variant="accent"
 											className="w-full max-w-sm mx-auto group/btn"
 											onClick={() => {
-												trackBookingClick("Reiki");
+												trackContactClick("phone", {
+													location: "service_card",
+													intent: "booking",
+													service: "reiki",
+												});
 												window.location.href =
 													PHONE_TEL_HREF;
 											}}

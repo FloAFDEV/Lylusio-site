@@ -26,6 +26,7 @@ import {
 import { useParallax } from "@/hooks/useParallax";
 import { useInView } from "@/hooks/useInView";
 import { PHONE_TEL_HREF } from "@/lib/contact";
+import { trackContactClick } from "@/lib/google-tag";
 
 const Astrologie = () => {
 	const parallaxOffset = useParallax(0.15);
@@ -184,6 +185,11 @@ const Astrologie = () => {
 											size="lg"
 											className="group"
 											onClick={() => {
+												trackContactClick("phone", {
+													location: "page_hero",
+													intent: "booking",
+													service: "astrologie",
+												});
 												window.location.href =
 													PHONE_TEL_HREF;
 											}}
@@ -396,6 +402,11 @@ const Astrologie = () => {
 											variant="accent"
 											className="w-full group/btn relative overflow-hidden shadow-[0_4px_20px_-4px_hsl(var(--accent)/0.3)] hover:shadow-[0_8px_30px_-4px_hsl(var(--accent)/0.5),0_0_20px_-4px_hsl(var(--gold)/0.3)] hover:scale-105 transition-all duration-300"
 											onClick={() => {
+												trackContactClick("phone", {
+													location: "service_card",
+													intent: "booking",
+													service: "astrologie",
+												});
 												window.location.href =
 													PHONE_TEL_HREF;
 											}}
@@ -499,6 +510,11 @@ const Astrologie = () => {
 											variant="accent"
 											className="w-full group/btn relative overflow-hidden shadow-[0_4px_20px_-4px_hsl(var(--gold)/0.3)] hover:shadow-[0_8px_30px_-4px_hsl(var(--gold)/0.5),0_0_20px_-4px_hsl(var(--accent)/0.3)] hover:scale-105 transition-all duration-300"
 											onClick={() => {
+												trackContactClick("phone", {
+													location: "service_card",
+													intent: "booking",
+													service: "astrologie",
+												});
 												window.location.href =
 													PHONE_TEL_HREF;
 											}}
